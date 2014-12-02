@@ -194,8 +194,13 @@ function($scope, $http, myFactory) {
 	$scope.view = "log in";
 	$scope.selectedLanguage = $scope.languages.listed[0];
 	$scope.selectedEntry = $scope.entries.listed[0];
+
 	$scope.user = null;
 	$scope.password = null;
+	$scope.newUser = null;
+	$scope.newPassword = null;
+	$scope.confirmPassword = null;
+	$scope.email = null;
 	
 	$scope.setSelectedLanguage = function(l)
 	{
@@ -229,46 +234,89 @@ function($scope, $http, myFactory) {
 
 	$scope.cancelCreate = function()
 	{
+		$scope.resetInput();
 		$scope.view = "log in";
 	}
 
 	$scope.createAccount = function()
 	{
+		$scope.resetInput();
 		$scope.view = "create view";
-		$scope.user = "Jerry";
 	}
 
 	$scope.addUser = function()
 	{
-		$scope.view = "main view";
-		$scope.user = "New User"
+		if ($scope.newUser == null)
+		{
+			alert("Username is invalid!");
+			return;
+		}
+
+		//This should ping the server to check name availability
+		if ($scope.newUser == "admin")
+		{
+			alert("Username is taken!");
+			return;
+		}
+
+		if ($scope.email == null)
+		{
+			alert("Email is invalid!");
+			return;
+		}
+
+		if ($scope.newPassword == $scope.confirmPassword 
+			&& $scope.confirmPassword !== null) {
+
+			//This should hit the server to add the new User to database
+			$scope.view = "main view";
+			$scope.user = $scope.newUser 
+			alert("Created new User!\n\nPlease contribute responsibly.");
+
+		}
+        else
+        	alert("Passwords do not match!");
+
 	}
 
 	$scope.login = function()
 	{
-        if ($scope.user === 'Sam' && $scope.password === '12345') {
+		//This is where a call to the server then database should be made
+        if ($scope.user === 'admin' && $scope.password === 'admin') {
 			$scope.view = "main view";
+			alert("Login Successful");
         }
         else
-        	$scope.view = "create view";
-
+        	alert("Login Failed");
 	}
 
 	$scope.logout = function()
 	{
+		$scope.resetInput();
 		$scope.view = "log in";
-		$scope.user = null;
 	}
 
 	$scope.nologin = function()
 	{
-		$scope.view = "main view";
+
+		$scope.resetInput();
 		$scope.user = "Guest";
+		$scope.view = "main view";
 	}
 	
 	$scope.chooseLanguage = function()
 	{
 		$scope.view = "choosing language";
+	}
+
+	$scope.resetInput = function()
+	{
+		$scope.user = null;
+		$scope.password = null;
+		$scope.newUser = null;
+		$scope.newPassword = null;
+		$scope.confirmPassword = null;
+		$scope.email = null;
 	}
 
 
