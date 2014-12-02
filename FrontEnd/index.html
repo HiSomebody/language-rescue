@@ -70,6 +70,9 @@
 						Rescuer: {{user}}         
 						<a class="btn btn-primary btn-sm" role="button" ng-click="logout()">Logout</a>
 					</h3>
+					<h4>
+						<a ng-click="showGoal()">Our Mission</a>
+					</h4>
 				</td>
 				<td>
 				</td>
@@ -110,9 +113,10 @@
 				</tr>
 			</table>
 
-			<a ng-show="!editing && user != 'Guest'" class="btn btn-primary btn-sm" role="button" ng-click="startEditing()">Edit</a>
-			<a ng-show="editing" class="btn btn-primary btn-sm" role="button" ng-click="contribute()">Contribute</a>
-			<a ng-show="editing" class="btn btn-primary btn-sm" role="button" ng-click="cancel()">Cancel</a>
+			<a ng-show="!adding && !editing && user != 'Guest'" class="btn btn-primary btn-sm" role="button" ng-click="startEditing()">Edit</a>
+			<a ng-show="!editing && !adding && user != 'Guest'" class="btn btn-primary btn-sm" role="button" ng-click="startAdding()">Add</a>
+			<a ng-show="editing || adding" class="btn btn-primary btn-sm" role="button" ng-click="contribute()">Contribute</a>
+			<a ng-show="editing || adding" class="btn btn-primary btn-sm" role="button" ng-click="cancel()">Cancel</a>
 		</div>
 		
 		<div ng-show="view=='log in'">
@@ -160,7 +164,7 @@
 
 				<td>
 				<h3>
-					<a class="btn btn-primary btn-sm" role="button" ng-click="createAccount()">Create Account</a>
+					<a class="btn btn-primary btn-sm" role="button" ng-click="createAccount()">Create Account?</a>
 				</h3>
 			</td>
 			</table>

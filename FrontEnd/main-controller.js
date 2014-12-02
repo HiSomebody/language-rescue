@@ -219,17 +219,36 @@ function($scope, $http, myFactory) {
 	{
 		$scope.contribution = $scope.selectedEntry.definitions[0];
 		$scope.editing = true;
+		$scope.adding = false;
+	}
+	
+	$scope.startAdding = function()
+	{
+		$scope.newEntry = "temp";
+		$scope.contribution = $scope.selectedEntry.definitions[0];
+		$scope.adding = true;
+		$scope.editing = false;
+
 	}
 	
 	$scope.contribute = function()
 	{
 		alert($scope.contribution);
 		$scope.editing = false;
+		$scope.adding = false;
+
+	}
+
+	$scope.showGoal = function()
+	{
+		alert("To save languages.");
 	}
 
 	$scope.cancel = function()
 	{
 		$scope.editing = false;
+		$scope.adding = false;
+
 	}
 
 	$scope.cancelCreate = function()
@@ -265,8 +284,13 @@ function($scope, $http, myFactory) {
 			return;
 		}
 
-		if ($scope.newPassword == $scope.confirmPassword 
-			&& $scope.confirmPassword !== null) {
+		if ($scope.newPassword == null)
+		{
+			alert("Password is invalid!");
+			return;
+		}
+
+		if ($scope.newPassword == $scope.confirmPassword) {
 
 			//This should hit the server to add the new User to database
 			$scope.view = "main view";
