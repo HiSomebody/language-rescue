@@ -57,6 +57,16 @@
 				<tr>
 				<td>
 					<h3>
+						Rescuer: {{user}}         
+						<a class="btn btn-primary btn-sm" role="button" ng-click="logout()">Logout</a>
+					</h3>
+				</td>
+				<td>
+				</td>
+				</tr>					
+				<tr>
+				<td>
+					<h3>
 						<a class="btn btn-primary btn-sm" role="button" ng-click="chooseLanguage()">Choose Language</a>
 					</h3>
 				</td>
@@ -89,11 +99,111 @@
 				</td>
 				</tr>
 			</table>
-			<a ng-show="!editing" class="btn btn-primary btn-sm" role="button" ng-click="startEditing()">Edit</a>
+
+			<a ng-show="!editing && user != 'Guest'" class="btn btn-primary btn-sm" role="button" ng-click="startEditing()">Edit</a>
 			<a ng-show="editing" class="btn btn-primary btn-sm" role="button" ng-click="contribute()">Contribute</a>
 			<a ng-show="editing" class="btn btn-primary btn-sm" role="button" ng-click="cancel()">Cancel</a>
 		</div>
 		
+		<div ng-show="view=='log in'">
+			<table align="center">
+				<tr>
+				<td>
+					<h3>
+						<a class="btn btn-primary btn-sm" role="button" ng-click="nologin()">Continue as Guest</a>
+					</h3>
+				</td>
+				<td>
+				</td>
+				</tr>
+				<tr>
+				<td>
+					<h3>
+						Username
+					</h3>
+					<textarea  rows="1" cols="50" style="font-size:20;" >Username</textarea>
+				</td>
+				</tr>
+				<tr>
+				<td>
+					<h3>
+						Password
+					</h3>	
+					<textarea  rows="1" cols="50" style="font-size:20;" >Password</textarea>
+
+				</td>
+				</tr>
+				<tr valign = "top">
+				<td>
+				</td>
+				</tr>
+
+				<tr>
+				<td>
+					<h3>
+						<a class="btn btn-primary btn-sm" role="button" ng-click="login()">Login</a>
+					</h3>
+				</td>
+				<td>
+				</td>
+				</tr>
+
+				<td>
+				<h3>
+					<a class="btn btn-primary btn-sm" role="button" ng-click="createAccount()">Create Account</a>
+				</h3>
+			</td>
+			</table>
+		</div>
+
+
+		<div ng-show="view=='create view'">
+			<table align="center">
+				<tr>
+				<td>
+					<h3>
+						Desired Username
+					</h3>	
+					<textarea  rows="1" cols="50" style="font-size:20;" >Username</textarea>
+				</td>
+				</tr>
+				<tr>
+				<td>
+					<h3>
+						Password
+					</h3>	
+					<textarea  rows="1" cols="50" style="font-size:20;" >Password</textarea>
+				</td>
+				</tr>
+				<tr>
+				<td>
+					<h3>
+						Confirm Password
+					</h3>	
+					<textarea  rows="1" cols="50" style="font-size:20;" >Retype Password</textarea>
+				</td>
+				</tr>
+				<tr>
+				<td>
+					<h3>
+						Email Address
+					</h3>	
+					<textarea  rows="1" cols="50" style="font-size:20;" >Email</textarea>
+				</td>
+				</tr>				
+				<tr valign = "top">
+				<td>
+				</td>
+				</tr>
+
+				<td>
+				<h3>
+					<a class="btn btn-primary btn-sm" role="button" ng-click="addUser()">Create Account</a>
+					<a class="btn btn-primary btn-sm" role="button" ng-click="cancelCreate()">Cancel</a>
+				</h3>
+			</td>
+			</table>
+		</div>
 		<br>
 	</body>	
 </html>

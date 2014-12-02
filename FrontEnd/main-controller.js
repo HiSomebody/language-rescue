@@ -191,9 +191,10 @@ app.controller('MainController',
 function($scope, $http, myFactory) {
   	$scope.languages = myFactory.languages;
 	$scope.entries = myFactory.entries;
-	$scope.view = "main view";
+	$scope.view = "log in";
 	$scope.selectedLanguage = $scope.languages.listed[0];
 	$scope.selectedEntry = $scope.entries.listed[0];
+	$scope.user = null;
 	
 	$scope.setSelectedLanguage = function(l)
 	{
@@ -223,6 +224,41 @@ function($scope, $http, myFactory) {
 	$scope.cancel = function()
 	{
 		$scope.editing = false;
+	}
+
+		$scope.cancelCreate = function()
+	{
+		$scope.view = "log in";
+	}
+
+	$scope.createAccount = function()
+	{
+		$scope.view = "create view";
+		$scope.user = "Jerry";
+	}
+
+	$scope.addUser = function()
+	{
+		$scope.view = "main view";
+		$scope.user = "New User"
+	}
+
+	$scope.login = function()
+	{
+		$scope.view = "main view";
+		$scope.user = "Jerry";
+	}
+
+	$scope.logout = function()
+	{
+		$scope.view = "log in";
+		$scope.user = null;
+	}
+
+	$scope.nologin = function()
+	{
+		$scope.view = "main view";
+		$scope.user = "Guest";
 	}
 	
 	$scope.chooseLanguage = function()
