@@ -94,44 +94,6 @@
 			<a ng-show="editing" class="btn btn-primary btn-sm" role="button" ng-click="cancel()">Cancel</a>
 		</div>
 		
-		Name of Quiz: <input type="text" ng-model="quizName"><br><br>
-		<div>
-	    	<li ng-repeat='question in questionList'>
-				Question: <input type="text" ng-model="question.questionText"><button type="button" ng-click='removeQuestion(question)'>&times;</button><br>
-				<h4>Answers:</h4>
-	 
-				<div>
-					<ul>
-						<li ng-repeat='answer in question.answers'>
-							Possible Answer: <input type="text" ng-model="answer.text"><button type="button" ng-click='removeAnswer(question, answer)'>&times;</button><br>
-						</li>
-					</ul>
-				</div><br>
-	 		   
-	 	   	 	
-				<div>
-		  			<a class="btn btn-primary btn-sm" role="button" ng-click="addAnswer(question)">Add Answer</a><br><br>
-	  			</div>
-				
-				
-				Correct Answer: 
-				<div class="btn-group">
-	  			  	<button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
-	    				{{question.correctAnswer}} <span class="caret"></span>
-	  			  	</button>
-	
-	  			  	<ul class="dropdown-menu" role="menu">
-	    				<li ng-repeat='answer in question.answers'>
-							<a ng-click='changeCorrect(question, answer.text)'>{{answer.text}}</a>
-						</li>			  
-	  			  	</ul>
-  				</div><br><br><div class="panel"><br><br>
-
-						 
-			</li>
-		</div>
-		
-		<a class="btn btn-primary btn-sm" role="button" ng-click="addQuestion()">Add Question</a><br><br>
 		<br>
 	</body>	
 </html>
