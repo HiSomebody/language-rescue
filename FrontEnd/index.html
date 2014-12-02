@@ -17,8 +17,8 @@
 
 </head>
 	<body ng-app="languageApp" ng-controller="MainController">
-		<div class="jumbotron">
-		    <p>Language Rescue</p>
+		<div class="jumbotron other-color">
+			<h1>Language Rescue</h1>
 		</div>
 
 		<div ng-show="view=='choosing language'">
@@ -121,7 +121,7 @@
 					<h3>
 						Username
 					</h3>
-					<textarea  rows="1" cols="50" style="font-size:20;" >Username</textarea>
+					<input style="font-size:20" type="text" ng-model="user" placeholder = "username" required>
 				</td>
 				</tr>
 				<tr>
@@ -129,7 +129,7 @@
 					<h3>
 						Password
 					</h3>	
-					<textarea  rows="1" cols="50" style="font-size:20;" >Password</textarea>
+					<input style="font-size:20" type="text" ng-model="password" placeholder = "password" required>
 
 				</td>
 				</tr>

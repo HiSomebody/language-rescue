@@ -195,6 +195,7 @@ function($scope, $http, myFactory) {
 	$scope.selectedLanguage = $scope.languages.listed[0];
 	$scope.selectedEntry = $scope.entries.listed[0];
 	$scope.user = null;
+	$scope.password = null;
 	
 	$scope.setSelectedLanguage = function(l)
 	{
@@ -226,7 +227,7 @@ function($scope, $http, myFactory) {
 		$scope.editing = false;
 	}
 
-		$scope.cancelCreate = function()
+	$scope.cancelCreate = function()
 	{
 		$scope.view = "log in";
 	}
@@ -245,8 +246,12 @@ function($scope, $http, myFactory) {
 
 	$scope.login = function()
 	{
-		$scope.view = "main view";
-		$scope.user = "Jerry";
+        if ($scope.user === 'Sam' && $scope.password === '12345') {
+			$scope.view = "main view";
+        }
+        else
+        	$scope.view = "create view";
+
 	}
 
 	$scope.logout = function()
