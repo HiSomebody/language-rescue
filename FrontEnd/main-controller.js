@@ -5,56 +5,67 @@ var app = angular.module("languageApp", ["ngRoute"])
 
 app.factory('myFactory', function($http){
 	
-	
 	var instance = {};
+	var languages = {};
+	$http.get('http://operationlanguagerescue.com:4244/selectall/languages')
+        .success(function(data){
+            languages.listed = data.json;
+        }).error(function()
+        {
+			alert('failure');
+            console.error('failed to retrieve data');
+        });
 	
-		var languages = {};
 	languages.listed = [
 		{
-			title: "Hiligaynon",
+			language_name: "Hiligaynon",
 			numEntries: 11
 		},
 		{
-			title: "Aklanon",
+			language_name: "Aklanon",
 			numEntries: 197
 		},
 		{
-			title: "Karay-a",
+			language_name: "Karay-a",
 			numEntries: 233
 		},
 		{
-			title: "Samoan",
+			language_name: "Samoan",
 			numEntries: 244
 		},
 		{
-			title: "Tongan",
+			language_name: "Tongan",
 			numEntries: 756
 		},
 		{
-			title: "Navajo",
+			language_name: "Navajo",
 			numEntries: 43
 		},
 		{
-			title: "Ilokano",
+			language_name: "Ilokano",
 			numEntries: 56
 		},
 		{
-			title: "Ati",
+			language_name: "Ati",
 			numEntries: 23
 		},
 		{
-			title: "Maori",
+			language_name: "Maori",
 			numEntries: 87
 		},
 		{
-			title: "Rotuman",
+			language_name: "Rotuman",
 			numEntries: 57
 		},
 		{
-			title: "Fijian",
+			language_name: "Fijian",
 			numEntries: 398
 		}
 	];
+	
+	
+	
+	
 	
 	var entries = {};
 	entries.listed = [
@@ -141,26 +152,11 @@ app.factory('myFactory', function($http){
 		}
 	];
 	
-	
-	
 	instance.entries = entries;
 	
 	
 	instance.languages = languages;
-	
-	
 
-
-	
-    /*
-	$http.get('quizes/quizes.json').success(function(data) {
-      	instance.quizes = data;
-    });
-	
-  	$http.get(instance.quizPath).success(function(data) {
-   	  	instance.questions = data;
-  	});
-	*/
 	return instance;
 }) 
  
@@ -191,21 +187,52 @@ app.controller('MainController',
 function($scope, $http, myFactory) {
   	$scope.languages = myFactory.languages;
 	$scope.entries = myFactory.entries;
-	$scope.view = "log in";
+	$scope.view = "loginView";
 	$scope.selectedLanguage = $scope.languages.listed[0];
 	$scope.selectedEntry = $scope.entries.listed[0];
 
-	$scope.user = null;
+	$scope.user = {};
 	$scope.password = null;
 	$scope.newUser = null;
 	$scope.newPassword = null;
 	$scope.confirmPassword = null;
 	$scope.email = null;
+	$scope.entryTerm = "";
+	$scope.entryDefinition = "";
+	
+	$scope.getAllLanguages = function()
+	{
+		$http.get('http://operationlanguagerescue.com:4244/selectall/languages')
+			.success(function(data){
+				myFactory.languages.listed = data.json;
+	            $scope.languages = myFactory.languages;
+			}).error(function()
+			{
+				alert('failure');
+				console.error('failed to retrieve data');
+			});
+	}
 	
 	$scope.setSelectedLanguage = function(l)
 	{
-		$scope.selectedLanguage = l;
-		$scope.view = "main view";
+		console.log(l);
+		$scope.selectedLanguage = l;	
+		$http.get('http://operationlanguagerescue.com:4244/selectwhere/entries/language_id/'+l.id)
+        .success(function(data){
+			myFactory.entries.listed = data.json;		
+            $scope.entries = myFactory.entries;
+			$scope.selectedEntry = $scope.entries.listed[0];
+
+			//alert('success');
+			//alert(data);
+        }).error(function()
+        {
+			alert('failure');
+            console.error('failed to retrieve data');
+        });
+		
+		
+		$scope.view = "mainView";
 		$scope.editing = false;
 	}
 	
@@ -217,15 +244,16 @@ function($scope, $http, myFactory) {
 	
 	$scope.startEditing = function()
 	{
-		$scope.contribution = $scope.selectedEntry.definitions[0];
+		//$scope.contribution = $scope.selectedEntry.definition;
 		$scope.editing = true;
 		$scope.adding = false;
 	}
 	
 	$scope.startAdding = function()
 	{
+		$scope.view = "addingEntryView";
 		$scope.newEntry = "temp";
-		$scope.contribution = $scope.selectedEntry.definitions[0];
+		//$scope.contribution = $scope.selectedEntry.definition;
 		$scope.adding = true;
 		$scope.editing = false;
 
@@ -238,6 +266,110 @@ function($scope, $http, myFactory) {
 		$scope.adding = false;
 
 	}
+	
+	$scope.contributeEntry = function()
+	{
+		if ($scope.entryTerm == '')
+		{
+			alert("please enter a term");
+		}
+		else if ($scope.entryDefinition == '')
+		{
+			alert("please enter a definition");
+		}
+		else
+		{
+			// CHECK IF ENTRY ALREADY EXISTS IN CURRENT LANGUAGE
+			$http.get('http://operationlanguagerescue.com:4244/check/entries/term/'+$scope.entryTerm)
+			.success(function(data){
+				//var exists = data.exists;
+				var exists = false;
+				for (var i = 0; i < data.json.length; i++)
+				{
+					if (data.json[i].language_id == $scope.selectedLanguage.id)
+					{
+						exists = true;
+					}
+				}
+				if (exists)
+				{
+					alert("That entry already exists in the current language");
+					return;
+				}
+				else
+				{
+					// INSERT ENTRY INTO CURRENT LANGUAGE
+					$http.post('http://operationlanguagerescue.com:4244/insert/entries', 
+					{language_id: $scope.selectedLanguage.id,
+					 term: $scope.entryTerm,
+					 definition: $scope.entryDefinition,
+					 first_contributed_user: $scope.user.username
+					 }).
+					  success(function(data, status, headers, config) {
+							$scope.setSelectedLanguage($scope.selectedLanguage);
+							alert("Successfully added entry to database!");
+							$scope.view = "mainView";
+							$scope.adding = false;
+							$scope.editing = false;
+							$scope.resetInput();
+					  }).
+					  error(function(data, status, headers, config) {
+							alert("Failed to add entry to database.");
+					  });
+				}
+			}).error(function()
+			{
+				alert('failure');
+				console.error('failed to retrieve whether language already exists');
+			});			
+		}
+	}
+	
+	$scope.createLanguage = function()
+	{
+		$scope.view = "addingLanguageView";
+	}
+	
+	$scope.addLanguage = function()
+	{
+		if ($scope.languageBeingAdded == '')
+		{
+			alert("please enter a name for the language");
+		}
+		else
+		{
+			// CHECK IF LANGUAGE ALREADY EXISTS IN CURRENT LANGUAGE
+			$http.get('http://operationlanguagerescue.com:4244/check/languages/language_name/'+$scope.languageBeingAdded)
+			.success(function(data){
+				var exists = data.exists;
+				if (exists)
+				{
+					alert("That language already exists in the database");
+					return;
+				}
+				else
+				{
+					// INSERT LANGUAGE INTO DATABASE
+					$http.post('http://operationlanguagerescue.com:4244/insert/languages', 
+					{language_name: $scope.languageBeingAdded
+					 }).
+					  success(function(data, status, headers, config) {
+							$scope.getAllLanguages();
+							alert("Successfully added language to database!");
+							$scope.view = "choosingLanguageView";
+							$scope.resetInput();
+					  }).
+					  error(function(data, status, headers, config) {
+							alert("Failed to add language to database.");
+					  });
+				}
+			}).error(function()
+			{
+				alert('failure');
+				console.error('failed to retrieve whether language already exists');
+			});			
+		}
+	}
 
 	$scope.showGoal = function()
 	{
@@ -248,19 +380,20 @@ function($scope, $http, myFactory) {
 	{
 		$scope.editing = false;
 		$scope.adding = false;
-
+		$scope.view = "mainView";
 	}
 
 	$scope.cancelCreate = function()
 	{
 		$scope.resetInput();
-		$scope.view = "log in";
+		$scope.view = "loginView";
 	}
 
 	$scope.createAccount = function()
 	{
 		$scope.resetInput();
-		$scope.view = "create view";
+		$scope.view = "createView";
+		
 	}
 
 	$scope.addUser = function()
@@ -272,11 +405,19 @@ function($scope, $http, myFactory) {
 		}
 
 		//This should ping the server to check name availability
-		if ($scope.newUser == "admin")
+		$http.get('http://operationlanguagerescue.com:4244/check/users/username/'+$scope.newUser)
+		.success(function(data){
+			var exists = data.exists;
+			if (exists)
+			{
+				alert("That username already exists");
+				return;
+			}		
+		}).error(function()
 		{
-			alert("Username is taken!");
-			return;
-		}
+			alert('failure');
+			console.error('failed to retrieve whether username already exists');
+		});
 
 		if ($scope.email == null)
 		{
@@ -293,10 +434,25 @@ function($scope, $http, myFactory) {
 		if ($scope.newPassword == $scope.confirmPassword) {
 
 			//This should hit the server to add the new User to database
-			$scope.view = "main view";
-			$scope.user = $scope.newUser 
-			alert("Created new User!\n\nPlease contribute responsibly.");
-
+					
+			$http.post('http://operationlanguagerescue.com:4244/insert/users', 
+			{username:$scope.newUser,
+			 password:$scope.newPassword,
+			 email:$scope.email,
+			 contributions:0,
+			 abuse_strikes:0,
+			 edits:0
+			 }).
+			  success(function(data, status, headers, config) {
+					alert("Created new User!\n\nPlease contribute responsibly.");
+					$scope.view = "mainView";
+					$scope.user.username = $scope.newUser;
+					$scope.resetInput();
+			  }).
+			  error(function(data, status, headers, config) {
+					alert("Failed to create new user.");
+			  });
+	
 		}
         else
         	alert("Passwords do not match!");
@@ -306,41 +462,68 @@ function($scope, $http, myFactory) {
 	$scope.login = function()
 	{
 		//This is where a call to the server then database should be made
-        if ($scope.user === 'admin' && $scope.password === 'admin') {
-			$scope.view = "main view";
-			alert("Login Successful");
-        }
-        else
-        	alert("Login Failed");
+		$http.get('http://operationlanguagerescue.com:4244/login/'+$scope.user.username+'/'+$scope.user.password)
+		.success(function(data){
+			var valid_username = data.valid_username;
+			var valid_password = data.valid_password;
+			
+			if (!valid_username)
+			{
+				alert('username doesn\'t exist');
+				return;
+			}
+			else if (valid_username && !valid_password)
+			{
+				alert("incorrect password for user " + $scope.user.username);
+				return;
+			}
+			else if (valid_username && valid_password)
+			{
+				$scope.view = "mainView";
+				alert("Login Successful");
+				$scope.user = data.user;
+				$scope.setSelectedLanguage($scope.languages.listed[0]);
+				$scope.resetInput();
+				return;
+			}
+		}).error(function()
+		{
+			alert('failure');
+			console.error('failed to retrieve whether username already exists');
+		});
 	}
 
 	$scope.logout = function()
 	{
 		$scope.resetInput();
-		$scope.view = "log in";
+		$scope.view = "loginView";
 	}
 
 	$scope.nologin = function()
 	{
 
 		$scope.resetInput();
-		$scope.user = "Guest";
-		$scope.view = "main view";
+		$scope.setSelectedLanguage($scope.languages.listed[0]);
+		$scope.user = {};
+		$scope.user.username = "Guest";
+		$scope.view = "mainView";
 	}
 	
 	$scope.chooseLanguage = function()
 	{
-		$scope.view = "choosing language";
+		$scope.view = "choosingLanguageView";
 	}
 
 	$scope.resetInput = function()
 	{
-		$scope.user = null;
 		$scope.password = null;
 		$scope.newUser = null;
 		$scope.newPassword = null;
 		$scope.confirmPassword = null;
 		$scope.email = null;
+		$scope.entryTerm = null;
+		$scope.entryDefinition = null;
+		$scope.currentEntry = null;
 	}
 
 
