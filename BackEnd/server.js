@@ -2,6 +2,9 @@ var express = require('express')
 var app = express();
 var mysql = require('mysql');
 var bodyParser = require('body-parser');
+var path = require('path');
+var fs = require('fs');
+var mainHtml = 'Default html';
 var connectionpool = mysql.createPool({
 	host	: 'localhost',
 	user	: 'root',
@@ -9,13 +12,33 @@ var connectionpool = mysql.createPool({
 	database : 'language_rescue_database'
 });
 	app.use(bodyParser.json());
-
-
+fs.readFile('../FrontEnd/index.html', function(err, html){
+	if (err) {
+		console.error('COULDN\'T OPEN FILE', err);
+		res.send({
+			result: 'error',
+			err: err.code
+		});
+		mainHtml = 'THERE WAS AN ERROR RETRIEVING THE FILE';
+	}
+	else
+	{
+		mainHtml = html;
+	}
+});
 app.use(function(req, res, next) {
 	res.header("Access-Control-Allow-Origin", "*");
 	res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 	next();
 });
+app.get('/', function(req,res){
+//	res.writeHeader(200, {"Content-Type":"text/html"});
+//	res.write(mainHtml);
+//	res.end();
+	res.sendFile(path.resolve(__dirname + '/../FrontEnd/index.html'));
+});
+
+
 app.get('/selectall/:table', function(req,res){
 	connectionpool.getConnection(function(err, connection) {
 		if (err) {
@@ -221,6 +244,10 @@ app.post('/insert/:table', function(req,res){
 			});
 		}
 	});
+});
+
+app.get('/:folder/:filename', function(req,res){
+	res.sendFile(path.resolve(__dirname + '/../FrontEnd/' + req.params.folder + '/' + req.params.filename));	
 });
 app.put('/:table/:id', function(req,res){});
 app.delete('/:table/:id', function(req,res){});
