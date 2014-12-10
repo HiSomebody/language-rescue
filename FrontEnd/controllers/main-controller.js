@@ -221,7 +221,7 @@ function($scope, $http, myFactory) {
         .success(function(data){
 			myFactory.entries.listed = data.json;		
             $scope.entries = myFactory.entries;
-			$scope.selectedEntry = $scope.entries.listed[0];
+			//$scope.selectedEntry = $scope.entries.listed[0];
 
 			//alert('success');
 			//alert(data);
