@@ -226,7 +226,8 @@ app.post('/insert/:table', function(req,res){
 				term : input.term,
 				definition : input.definition,
 				part_of_speech : input.part_of_speech,
-				first_contributed_user : input.first_contributed_user
+				first_contributed_user : input.first_contributed_user,
+				last_contributed_user: input.last_contributed_user
 			};
 		}
 		if (err) {
@@ -270,7 +271,7 @@ app.post('/update/:entry', function(req,res){
 				if (err) throw err;
 			});
 					
-			connection.query('UPDATE entries SET definition = \'' + input.definition + '\' WHERE term = \'' + input.term + '\'', function (err, result) {
+			connection.query('UPDATE entries SET definition = \'' + input.definition + '\', last_contributed_user = \'' + input.last_contributed_user + '\' WHERE term = \'' + input.term + '\'', function (err, result) {
 				if (err) throw err;
 				res.send('User updated the database with ID: ' + result.insertID);
 				process.stdout.write("responded postively: ");
