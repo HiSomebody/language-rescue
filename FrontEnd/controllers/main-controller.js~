@@ -569,6 +569,8 @@ function($scope, $http, myFactory) {
 	$scope.chooseLanguage = function()
 	{
 		$scope.view = "choosingLanguageView";
+		$scope.selectedEntry.definition = null;
+		$scope.selectedEntry.term = null;
 	}
 
 	$scope.resetInput = function()

@@ -571,6 +571,7 @@ function($scope, $http, myFactory) {
 		$scope.view = "choosingLanguageView";
 		$scope.selectedEntry.definition = null;
 		$scope.selectedEntry.term = null;
+		$scope.currentEntry = null;
 	}
 
 	$scope.resetInput = function()
@@ -585,6 +586,7 @@ function($scope, $http, myFactory) {
 		$scope.entryType = null;
 		$scope.selectedEntry.definition = null;
 		$scope.selectedEntry.term = null;
+		$scope.currentEntry = null;
 	}
 
 	$scope.flag = function()
