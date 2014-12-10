@@ -46,7 +46,7 @@
 					<tbody>
 					<tr valign="top" class="panel panel-default"
 						<a ng-click ="setSelectedLanguage(l)" class="{{(l == selectedEntry)? 'list-group-item active' : 'list-group-item'}}"
-						ng-repeat="l in languages.listed | filter:enteredLanguage | orderBy:'title'|limitTo:8">
+						ng-repeat="l in languages.listed | filter:enteredLanguage | orderBy:'title':reverse | limitTo:8">
 					<!--div class="list-group" style="overflow-y: auto; height: 90%"-->
 					<td>
 						{{l.language_name}}
