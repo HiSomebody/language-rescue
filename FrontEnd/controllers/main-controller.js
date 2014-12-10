@@ -268,9 +268,10 @@ function($scope, $http, myFactory) {
 		else
 		{
 			// CHECK IF ENTRY ALREADY EXISTS IN CURRENT LANGUAGE
-			$http.get('http://operationlanguagerescue.com:8080/check/entries/term/'+$scope.selectedEntry.entry)
+			$http.get('http://operationlanguagerescue.com:8080/check/entries/term/'+$scope.selectedEntry.term)
 			.success(function(data){
-									alert("http://operationlanguagerescue.com:8080/check/entries/term/"+$scope.selectedEntry.entry);
+
+				alert("http://operationlanguagerescue.com:8080/check/entries/term/"+$scope.selectedEntry.term);
 
 				//var exists = data.exists;
 				var exists = false;
@@ -290,7 +291,7 @@ function($scope, $http, myFactory) {
 				{
 					alert("made it this far");
 					// UPDATE ENTRY INTO CURRENT LANGUAGE
-					$http.post('http://operationlanguagerescue.com:8080/update/'+$scope.selectedEntry.entry, 
+					$http.post('http://operationlanguagerescue.com:8080/update/'+$scope.selectedEntry.term, 
 					{language_id: $scope.selectedLanguage.id,
 					 term: $scope.selectedEntry,
 					 definition: $scope.contribution,
