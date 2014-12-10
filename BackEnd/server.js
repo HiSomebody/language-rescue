@@ -272,11 +272,11 @@ process.stdout.write("hello my pretty: ");
 				if (err) throw err;
 			update});
 process.stdout.write("all good so far: ");
-								process.stdout.write("'UPDATE entries SET definition =  + input.definition + ' WHERE term =  + input.term + '");
+								process.stdout.write("UPDATE entries SET definition = \'" + input.definition + "\' WHERE term = \'" + input.term + "\'");
 		
 			connection.query('UPDATE entries SET definition = \'' + input.definition + '\' WHERE term = \'' + input.term + '\'', function (err, result) {
 
-								process.stdout.write("'UPDATE entries SET definition =  + input.definition + ' WHERE term =  + input.term + '");
+								process.stdout.write("UPDATE entries SET definition =  + input.definition + ' WHERE term =  + input.term + '");
 
 				if (err) throw err;
 				res.send('User updated the database with ID: ' + result.insertID);
