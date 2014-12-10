@@ -552,6 +552,8 @@ function($scope, $http, myFactory) {
 	{
 		$scope.resetInput();
 		$scope.view = "loginView";
+		$scope.user = {};
+		$scope.user.username = null;
 	}
 
 	$scope.nologin = function()
@@ -579,8 +581,6 @@ function($scope, $http, myFactory) {
 		$scope.entryTerm = null;
 		$scope.entryDefinition = null;
 		$scope.entryType = null;
-		$scope.user = {};
-		$scope.user.username = null;
 		$scope.selectedEntry.definition = null;
 		$scope.selectedEntry.term = null;
 	}

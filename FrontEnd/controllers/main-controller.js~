@@ -552,6 +552,8 @@ function($scope, $http, myFactory) {
 	{
 		$scope.resetInput();
 		$scope.view = "loginView";
+		$scope.selectedEntry.definition = null;
+		$scope.selectedEntry.term = null;
 	}
 
 	$scope.nologin = function()
