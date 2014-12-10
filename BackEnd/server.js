@@ -283,10 +283,32 @@ app.post('/update/:entry', function(req,res){
 	});
 });
 
+app.post('/flag/:entry', function(req,res){
+	var input = JSON.parse(JSON.stringify(req.body));
+	connectionpool.getConnection(function(err, connection) {
+		if (err) {
+			console.error('CONNECTION error: ', err);
+			res.statusCode = 503;
+			res.send({
+				result: 'error',
+				err: err.code
+			});
+		}
+		else
+		{
+			connection.query('UPDATE users SET violation = true WHERE username = entries.last_contributed_user AND entries.term = \'' + input.term + '\'', function (err, result) {
+				if (err) throw err;
+				res.send('User updated the database with ID: ' + result.insertID);
+				process.stdout.write("responded postively: ");
+			});
+		}
+	});
+});
+
 app.get('/:folder/:filename', function(req,res){
 	res.sendFile(path.resolve(__dirname + '/../FrontEnd/' + req.params.folder + '/' + req.params.filename));	
 });
 app.put('/:table/:id', function(req,res){});
 app.delete('/:table/:id', function(req,res){});
 app.listen(8080);
-console.log('Paul\'s Rest API listening on port 8080');
+console.log('Paul and Mitch\'s Rest API listening on port 8080');

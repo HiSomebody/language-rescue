@@ -356,6 +356,7 @@ function($scope, $http, myFactory) {
 					{language_id: $scope.selectedLanguage.id,
 					 term: $scope.entryTerm,
 					 definition: $scope.entryDefinition,
+					 part_of_speech: $scope.entryType,
 					 first_contributed_user: $scope.user.username
 					 }).
 					  success(function(data, status, headers, config) {
@@ -579,6 +580,27 @@ function($scope, $http, myFactory) {
 		$scope.email = null;
 		$scope.entryTerm = null;
 		$scope.entryDefinition = null;
+		$scope.entryType = null;
+	}
+
+	$scope.flag = function()
+	{
+		// FLAG USER WHO LAST EDITED ENTRY
+		$http.post('http://operationlanguagerescue.com:8080/flag/'+ $scope.selectedEntry.term, 
+
+		{language_id: $scope.selectedLanguage.id,
+		 term: $scope.selectedEntry.term,
+		 }).
+		  success(function(data, status, headers, config) {
+			alert("Successfully flagged last editor of entry in database!");
+			$scope.view = "mainView";
+			$scope.adding = false;
+			$scope.editing = true;
+			$scope.resetInput();
+	  }).
+	  error(function(data, status, headers, config) {
+		alert("Failed to flag editor of entry in database.");
+	  });
 	}
 
 

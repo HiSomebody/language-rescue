@@ -119,6 +119,8 @@
 			<a ng-show="!editing && !adding && user.username != 'Guest'" class="btn btn-primary btn-sm" role="button" ng-click="startAdding()">Add</a>
 			<a ng-show="editing || adding" class="btn btn-primary btn-sm" role="button" ng-click="contribute()">Contribute</a>
 			<a ng-show="editing || adding" class="btn btn-primary btn-sm" role="button" ng-click="cancel()">Cancel</a>
+			<a ng-show="editing" class="btn btn-primary btn-sm" role="button" ng-click="flag()">Flag Abuse</a>
+
 		</div>
 		
 		<div ng-show="view=='loginView'">
@@ -244,6 +246,15 @@
 						Definition:
 					</h3>	
 					<input style="font-size:20" type="text" ng-model="entryDefinition" placeholder = "enter definition" required>
+
+				</td>
+				</tr>
+				<tr>
+				<td>
+					<h3>
+						Part of speech:
+					</h3>	
+					<input style="font-size:20" type="text" ng-model="entryType" placeholder = "enter type" required>
 
 				</td>
 				</tr>
