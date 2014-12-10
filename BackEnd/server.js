@@ -251,6 +251,7 @@ app.post('/insert/:table', function(req,res){
 		}
 	});
 });
+
 app.post('/update/:entry', function(req,res){
 	var input = JSON.parse(JSON.stringify(req.body));
 	connectionpool.getConnection(function(err, connection) {
@@ -269,7 +270,7 @@ app.post('/update/:entry', function(req,res){
 				if (err) throw err;
 			update});
 		
-			connection.query('UPDATE entries SET definition = \'' + input.definition + '\' WHERE term = \'' + input.term + '\'' , function (err, result) {
+			connection.query('UPDATE entries SET definition = \'' + input.definition + '\' WHERE term = \'' + input.term + '\'', function (err, result) {
 				if (err) throw err;
 				res.send('User updated the database with ID: ' + result.insertID);
 			});

@@ -286,6 +286,7 @@ function($scope, $http, myFactory) {
 				}
 				else
 				{
+					alert("made it this far");
 					// UPDATE ENTRY INTO CURRENT LANGUAGE
 					$http.post('http://operationlanguagerescue.com:8080/update/'+$scope.selectedEntry.entry, 
 					{language_id: $scope.selectedLanguage.id,
