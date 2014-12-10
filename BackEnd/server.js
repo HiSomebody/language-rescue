@@ -268,13 +268,8 @@ app.post('/update/:entry', function(req,res){
 			connection.query('UPDATE users SET contributions = contributions+1 WHERE username = \'' + input.last_contributed_user + '\'', function (err, result) {
 				if (err) throw err;
 			});
-			
-			process.stdout.write("UPDATE entries SET definition = \'" + input.definition + "\' WHERE term = \'" + input.term + "\'");
-		
+					
 			connection.query('UPDATE entries SET definition = \'' + input.definition + '\' WHERE term = \'' + input.term + '\'', function (err, result) {
-
-				process.stdout.write("UPDATE entries SET definition =  + input.definition + ' WHERE term =  + input.term + '");
-
 				if (err) throw err;
 				res.send('User updated the database with ID: ' + result.insertID);
 				process.stdout.write("responded postively: ");
