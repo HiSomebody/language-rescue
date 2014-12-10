@@ -609,7 +609,7 @@ function($scope, $http, myFactory) {
 			$scope.view = "mainView";
 			$scope.adding = false;
 			$scope.editing = true;
-			$scope.resetInput();
+			//$scope.resetInput();
 	  }).
 	  error(function(data, status, headers, config) {
 		alert("Failed to flag editor of entry in database.");
