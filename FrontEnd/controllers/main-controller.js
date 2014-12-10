@@ -294,7 +294,7 @@ function($scope, $http, myFactory) {
 					$http.post('http://operationlanguagerescue.com:8080/update/'+$scope.selectedEntry.term, 
 
 					{language_id: $scope.selectedLanguage.id,
-					 term: $scope.selectedEntry,
+					 term: $scope.selectedEntry.term,
 					 definition: $scope.contribution,
 					 last_contributed_user: $scope.user.username
 					 }).
