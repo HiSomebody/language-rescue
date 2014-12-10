@@ -292,12 +292,17 @@ function($scope, $http, myFactory) {
 					alert("made it this far");
 					// UPDATE ENTRY INTO CURRENT LANGUAGE
 					$http.post('http://operationlanguagerescue.com:8080/update/'+$scope.selectedEntry.term, 
+
 					{language_id: $scope.selectedLanguage.id,
 					 term: $scope.selectedEntry,
 					 definition: $scope.contribution,
 					 last_contributed_user: $scope.user.username
 					 }).
 					  success(function(data, status, headers, config) {
+
+							alert("http://operationlanguagerescue.com:8080/update/"+$scope.selectedEntry.term);
+
+
 							$scope.setSelectedLanguage($scope.selectedLanguage);
 							alert("Successfully updated entry in database!");
 							$scope.view = "mainView";
