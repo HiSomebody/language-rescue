@@ -238,9 +238,63 @@ app.post('/insert/:table', function(req,res){
 		}
 		else
 		{
+			if (req.params.table == 'entries'){
+			connection.query('UPDATE users SET contributions = contributions+1 WHERE username = \'' + input.first_contributed_user + '\'', function (err, result) {
+				if (err) throw err;
+				//res.send('User contribution count has increased.');
+			});
+			}
 			connection.query('INSERT INTO ' + req.params.table + ' SET ?', data, function (err, result) {
 				if (err) throw err;
 				res.send('User added to the database with ID: ' + result.insertID);
+			});
+		}
+	});
+});
+
+app.post('/update/:entry', function(req,res){
+	var input = JSON.parse(JSON.stringify(req.body));
+	connectionpool.getConnection(function(err, connection) {
+		if (err) {
+			console.error('CONNECTION error: ', err);
+			res.statusCode = 503;
+			res.send({
+				result: 'error',
+				err: err.code
+			});
+		}
+		else
+		{
+			connection.query('UPDATE users SET contributions = contributions+1 WHERE username = \'' + input.last_contributed_user + '\'', function (err, result) {
+				if (err) throw err;
+			});
+					
+			connection.query('UPDATE entries SET definition = \'' + input.definition + '\' WHERE term = \'' + input.term + '\'', function (err, result) {
+				if (err) throw err;
+				res.send('User updated the database with ID: ' + result.insertID);
+				process.stdout.write("responded postively: ");
+			});
+		}
+	});
+});
+
+app.post('/flag/:entry', function(req,res){
+	var input = JSON.parse(JSON.stringify(req.body));
+	connectionpool.getConnection(function(err, connection) {
+		if (err) {
+			console.error('CONNECTION error: ', err);
+			res.statusCode = 503;
+			res.send({
+				result: 'error',
+				err: err.code
+			});
+		}
+		else
+		{
+			connection.query('UPDATE users SET violation = true WHERE username = entries.last_contributed_user AND entries.term = \'' + input.term + '\'', function (err, result) {
+				if (err) throw err;
+				res.send('User updated the database with ID: ' + result.insertID);
+				process.stdout.write("responded postively: ");
 			});
 		}
 	});
@@ -251,5 +305,5 @@ app.get('/:folder/:filename', function(req,res){
 });
 app.put('/:table/:id', function(req,res){});
 app.delete('/:table/:id', function(req,res){});
-app.listen(4244);
-console.log('Paul\'s Rest API listening on port 4244');
+app.listen(8080);
+console.log('Paul and Mitch\'s Rest API listening on port 8080');

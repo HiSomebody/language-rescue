@@ -208,7 +208,8 @@ app.post('/insert/:table', function(req,res){
 				username : input.username,
 				password : input.password,
 				email : input.email,
-				contributions : input.contributions
+				contributions : input.contributions,
+				abuse_strikes : input.abuse_strikes
 			
 			};
 		}
