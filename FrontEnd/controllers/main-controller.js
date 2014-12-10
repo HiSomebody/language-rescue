@@ -355,7 +355,8 @@ function($scope, $http, myFactory) {
 					 term: $scope.entryTerm,
 					 definition: $scope.entryDefinition,
 					 part_of_speech: $scope.entryType,
-					 first_contributed_user: $scope.user.username
+					 first_contributed_user: $scope.user.username,
+					 last_contributed_user: $scope.user.username
 					 }).
 					  success(function(data, status, headers, config) {
 							$scope.setSelectedLanguage($scope.selectedLanguage);

@@ -356,6 +356,7 @@ function($scope, $http, myFactory) {
 					 definition: $scope.entryDefinition,
 					 part_of_speech: $scope.entryType,
 					 first_contributed_user: $scope.user.username
+					 last_contributed_user: $scope.user.username
 					 }).
 					  success(function(data, status, headers, config) {
 							$scope.setSelectedLanguage($scope.selectedLanguage);
@@ -518,7 +519,7 @@ function($scope, $http, myFactory) {
 			console.error('failed to retrieve whether username already exists');
 		});
 
-		}
+	}
 
 	$scope.login = function()
 	{
