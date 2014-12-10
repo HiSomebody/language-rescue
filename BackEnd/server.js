@@ -251,6 +251,31 @@ app.post('/insert/:table', function(req,res){
 		}
 	});
 });
+app.post('/update/:entry', function(req,res){
+	var input = JSON.parse(JSON.stringify(req.body));
+	connectionpool.getConnection(function(err, connection) {
+		if (err) {
+			console.error('CONNECTION error: ', err);
+			res.statusCode = 503;
+			res.send({
+				result: 'error',
+				err: err.code
+			});
+		}
+		else
+		{
+
+			connection.query('UPDATE users SET contributions = contributions+1 WHERE username = \'' + input.last_contributed_user + '\'', function (err, result) {
+				if (err) throw err;
+			update});
+		
+			connection.query('UPDATE entries SET definition = \'' + input.definition + '\' WHERE term = \'' + input.term + '\'' , function (err, result) {
+				if (err) throw err;
+				res.send('User updated the database with ID: ' + result.insertID);
+			});
+		}
+	});
+});
 
 app.get('/:folder/:filename', function(req,res){
 	res.sendFile(path.resolve(__dirname + '/../FrontEnd/' + req.params.folder + '/' + req.params.filename));	

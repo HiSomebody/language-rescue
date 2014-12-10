@@ -244,7 +244,7 @@ function($scope, $http, myFactory) {
 	
 	$scope.startEditing = function()
 	{
-		//$scope.contribution = $scope.selectedEntry.definition;
+		$scope.contribution = $scope.selectedEntry.definition;
 		$scope.editing = true;
 		$scope.adding = false;
 	}
@@ -261,9 +261,57 @@ function($scope, $http, myFactory) {
 	
 	$scope.contribute = function()
 	{
-		alert($scope.contribution);
-		$scope.editing = false;
-		$scope.adding = false;
+		if ($scope.contribution == '')
+		{
+			alert("please enter a definition");
+		}
+		else
+		{
+			// CHECK IF ENTRY ALREADY EXISTS IN CURRENT LANGUAGE
+			$http.get('http://operationlanguagerescue.com:8080/check/entries/term/'+$scope.entryTerm)
+			.success(function(data){
+				//var exists = data.exists;
+				var exists = false;
+				for (var i = 0; i < data.json.length; i++)
+				{
+					if (data.json[i].language_id == $scope.selectedLanguage.id)
+					{
+						exists = true;
+					}
+				}
+				if (!exists)
+				{
+					alert("That entry doesn't exist in the current language");
+					return;
+				}
+				else
+				{
+					// UPDATE ENTRY INTO CURRENT LANGUAGE
+					$http.post('http://operationlanguagerescue.com:8080/update/', 
+					{language_id: $scope.selectedLanguage.id,
+					 term: $scope.selectedEntry,
+					 definition: $scope.contribution,
+					 last_contributed_user: $scope.user.username
+					 }).
+					  success(function(data, status, headers, config) {
+							$scope.setSelectedLanguage($scope.selectedLanguage);
+							alert("Successfully updated entry in database!");
+							$scope.view = "mainView";
+							$scope.adding = false;
+							$scope.editing = false;
+							$scope.resetInput();
+							$scope.user.contributions++
+					  }).
+					  error(function(data, status, headers, config) {
+							alert("Failed to update entry in database.");
+					  });
+				}
+			}).error(function()
+			{
+				alert('failure');
+				console.error('failed to retrieve whether language already exists');
+			});			
+		}
 
 	}
 	
