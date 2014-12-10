@@ -268,10 +268,8 @@ function($scope, $http, myFactory) {
 		else
 		{
 			// CHECK IF ENTRY ALREADY EXISTS IN CURRENT LANGUAGE
-			$http.get('http://operationlanguagerescue.com:8080/check/entries/term/'+$scope.selectedEntry.term)
+			$http.get('http://operationlanguagerescue.com:8080/check/entries/term/'+ $scope.selectedEntry.term)
 			.success(function(data){
-
-				alert("http://operationlanguagerescue.com:8080/check/entries/term/"+$scope.selectedEntry.term);
 
 				//var exists = data.exists;
 				var exists = false;
@@ -289,9 +287,8 @@ function($scope, $http, myFactory) {
 				}
 				else
 				{
-					alert("made it this far");
 					// UPDATE ENTRY INTO CURRENT LANGUAGE
-					$http.post('http://operationlanguagerescue.com:8080/update/'+$scope.selectedEntry.term, 
+					$http.post('http://operationlanguagerescue.com:8080/update/'+ $scope.selectedEntry.term, 
 
 					{language_id: $scope.selectedLanguage.id,
 					 term: $scope.selectedEntry.term,
@@ -300,16 +297,12 @@ function($scope, $http, myFactory) {
 					 }).
 					  success(function(data, status, headers, config) {
 
-							alert("http://operationlanguagerescue.com:8080/update/"+$scope.selectedEntry.term);
-
-
-							$scope.setSelectedLanguage($scope.selectedLanguage);
 							alert("Successfully updated entry in database!");
 							$scope.view = "mainView";
 							$scope.adding = false;
 							$scope.editing = false;
 							$scope.resetInput();
-							$scope.user.contributions++
+							$scope.user.contributions++;
 					  }).
 					  error(function(data, status, headers, config) {
 							alert("Failed to update entry in database.");
@@ -364,12 +357,13 @@ function($scope, $http, myFactory) {
 					 }).
 					  success(function(data, status, headers, config) {
 							$scope.setSelectedLanguage($scope.selectedLanguage);
+							$scope.setSelectedEntry($scope.entries.listed[$scope.entries.listed.size-1])
 							alert("Successfully added entry to database!");
 							$scope.view = "mainView";
 							$scope.adding = false;
 							$scope.editing = false;
 							$scope.resetInput();
-							$scope.user.contributions++
+							$scope.user.contributions++;
 					  }).
 					  error(function(data, status, headers, config) {
 							alert("Failed to add entry to database.");
@@ -582,7 +576,6 @@ function($scope, $http, myFactory) {
 		$scope.email = null;
 		$scope.entryTerm = null;
 		$scope.entryDefinition = null;
-		$scope.currentEntry = null;
 	}
 
 
