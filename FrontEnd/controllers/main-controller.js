@@ -591,6 +591,7 @@ function($scope, $http, myFactory) {
 		$scope.entryTerm = null;
 		$scope.entryDefinition = null;
 		$scope.entryType = null;
+		$scope.selectedEntry = {};
 		$scope.selectedEntry.definition = null;
 		$scope.selectedEntry.term = null;
 		$scope.currentEntry = null;
