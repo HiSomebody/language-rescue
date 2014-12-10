@@ -466,53 +466,59 @@ function($scope, $http, myFactory) {
 			{
 				alert("That username already exists");
 				return;
-			}		
+			}
+			else
+			{
+				if ($scope.email == null)
+				{
+					alert("Email is invalid!");
+					return;
+				}
+
+				if ($scope.newPassword == null)
+				{
+					alert("Password is invalid!");
+					return;
+				}
+
+				if ($scope.newPassword == $scope.confirmPassword) {
+
+					//This should hit the server to add the new User to database
+					
+					$http.post('http://operationlanguagerescue.com:8080/insert/users', 
+					{username:$scope.newUser,
+					 password:$scope.newPassword,
+					 email:$scope.email,
+					 contributions:0,
+					 abuse_strikes:0,
+					 edits:0
+
+					 }).
+					  success(function(data, status, headers, config) {
+							alert("Created new User!\n\nPlease contribute responsibly.");
+							$scope.view = "mainView";
+							$scope.user.username = $scope.newUser;
+							$scope.resetInput();
+							$scope.user.contributions = 0;
+					  }).
+					  error(function(data, status, headers, config) {
+							alert("Failed to create new user.");
+					  });
+	
+				}
+				else
+					alert("Passwords do not match!");
+
+				}
+
+			}
 		}).error(function()
 		{
 			alert('failure');
 			console.error('failed to retrieve whether username already exists');
 		});
 
-		if ($scope.email == null)
-		{
-			alert("Email is invalid!");
-			return;
-		}
-
-		if ($scope.newPassword == null)
-		{
-			alert("Password is invalid!");
-			return;
-		}
-
-		if ($scope.newPassword == $scope.confirmPassword) {
-
-			//This should hit the server to add the new User to database
-					
-			$http.post('http://operationlanguagerescue.com:8080/insert/users', 
-			{username:$scope.newUser,
-			 password:$scope.newPassword,
-			 email:$scope.email,
-			 contributions:0,
-			 abuse_strikes:0,
-			 edits:0
-			 }).
-			  success(function(data, status, headers, config) {
-					alert("Created new User!\n\nPlease contribute responsibly.");
-					$scope.view = "mainView";
-					$scope.user.username = $scope.newUser;
-					$scope.resetInput();
-					$scope.user.contributions = 0;
-			  }).
-			  error(function(data, status, headers, config) {
-					alert("Failed to create new user.");
-			  });
-	
-		}
-        else
-        	alert("Passwords do not match!");
-
-	}
+		
 
 	$scope.login = function()
 	{
