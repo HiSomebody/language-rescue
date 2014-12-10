@@ -511,14 +511,14 @@ function($scope, $http, myFactory) {
 
 				}
 
-			}
+			
 		}).error(function()
 		{
 			alert('failure');
 			console.error('failed to retrieve whether username already exists');
 		});
 
-		
+	}
 
 	$scope.login = function()
 	{
