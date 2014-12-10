@@ -526,6 +526,7 @@ function($scope, $http, myFactory) {
 		$scope.entryTerm = null;
 		$scope.entryDefinition = null;
 		$scope.currentEntry = null;
+		$scope.user.contributions = 0;
 	}
 
 
