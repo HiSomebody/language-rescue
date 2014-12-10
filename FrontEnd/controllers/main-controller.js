@@ -298,6 +298,7 @@ function($scope, $http, myFactory) {
 					  success(function(data, status, headers, config) {
 
 							alert("Successfully updated entry in database!");
+							$scope.setSelectedLanguage($scope.selectedLanguage);
 							$scope.view = "mainView";
 							$scope.adding = false;
 							$scope.editing = false;
