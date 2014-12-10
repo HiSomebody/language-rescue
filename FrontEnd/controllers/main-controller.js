@@ -282,7 +282,7 @@ function($scope, $http, myFactory) {
 						exists = true;
 					}
 				}
-				if (exists)
+				if (!exists)
 				{
 					alert("That entry doesn't exist in the current language");
 					return;
