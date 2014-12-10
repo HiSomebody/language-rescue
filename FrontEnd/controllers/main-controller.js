@@ -449,6 +449,7 @@ function($scope, $http, myFactory) {
 					$scope.view = "mainView";
 					$scope.user.username = $scope.newUser;
 					$scope.resetInput();
+					$scope.user.contributions = 0;
 			  }).
 			  error(function(data, status, headers, config) {
 					alert("Failed to create new user.");
