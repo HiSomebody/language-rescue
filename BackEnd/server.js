@@ -291,7 +291,7 @@ app.post('/flag/:entry', function(req,res){
 		}
 		else
 		{
-			connection.query('UPDATE users SET violation = true WHERE username = entries.last_contributed_user AND entries.term = \'' + input.term + '\'', function (err, result) {
+			connection.query('UPDATE users JOIN entries ON entries.last_contributed_user = users.username ON entries.term = \'' + input.term + '\'SET users.abuse_strikes = users.abuse_strikes+1', function (err, result) {
 				if (err) throw err;
 				res.send('User updated the database with ID: ' + result.insertID);
 				process.stdout.write("responded postively: ");
