@@ -270,6 +270,8 @@ function($scope, $http, myFactory) {
 			// CHECK IF ENTRY ALREADY EXISTS IN CURRENT LANGUAGE
 			$http.get('http://operationlanguagerescue.com:8080/check/entries/term/'+$scope.selectedEntry.entry)
 			.success(function(data){
+									alert("http://operationlanguagerescue.com:8080/check/entries/term/"+$scope.selectedEntry.entry);
+
 				//var exists = data.exists;
 				var exists = false;
 				for (var i = 0; i < data.json.length; i++)
