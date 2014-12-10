@@ -312,6 +312,7 @@ function($scope, $http, myFactory) {
 							$scope.adding = false;
 							$scope.editing = false;
 							$scope.resetInput();
+							$scope.user.contributions++
 					  }).
 					  error(function(data, status, headers, config) {
 							alert("Failed to add entry to database.");

@@ -208,7 +208,7 @@ app.post('/insert/:table', function(req,res){
 				username : input.username,
 				password : input.password,
 				email : input.email,
-				contributions : input.contributions
+				contributions : 0
 			
 			};
 		}
@@ -238,6 +238,11 @@ app.post('/insert/:table', function(req,res){
 		}
 		else
 		{
+			if (req.params.table == 'entries')
+			connection.query('UPDATE users SET contributions = contributions+1 WHERE username = \'' + input.first_contributed_user + '\'', function (err, result) {
+				if (err) throw err;
+				res.send('User contribution count has increased.');
+			});
 			connection.query('INSERT INTO ' + req.params.table + ' SET ?', data, function (err, result) {
 				if (err) throw err;
 				res.send('User added to the database with ID: ' + result.insertID);
