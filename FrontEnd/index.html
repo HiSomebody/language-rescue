@@ -27,7 +27,7 @@
 				</td>
 				<td style="text-align:right">
 				<h3>
-						Rescuer: {{user.username}} | Contributions: {{user.contributions}}         
+						Rescuer: {{user.username}} {{(user.username == 'Guest')? '' : ' | Contributions:'}} {{user.contributions}}      
 						<a class="btn btn-primary btn-sm" role="button" ng-click="logout()">Logout</a>
 					</h3>
 				</td>
@@ -46,7 +46,7 @@
 					<tbody>
 					<tr valign="top" class="panel panel-default"
 						<a ng-click ="setSelectedLanguage(l)" class="{{(l == selectedEntry)? 'list-group-item active' : 'list-group-item'}}"
-						ng-repeat="l in languages.listed | filter:enteredLanguage | orderBy:'title':reverse | limitTo:8">
+						ng-repeat="l in languages.listed | filter:enteredLanguage | orderBy:'language_name' | limitTo:8">
 					<!--div class="list-group" style="overflow-y: auto; height: 90%"-->
 					<td>
 						{{l.language_name}}
