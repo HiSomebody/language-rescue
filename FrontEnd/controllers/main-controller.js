@@ -298,9 +298,7 @@ function($scope, $http, myFactory) {
 					  success(function(data, status, headers, config) {
 
 							alert("Successfully updated entry in database!");
-							tempselect = $scope.selectedEntry;
 							$scope.setSelectedLanguage($scope.selectedLanguage);
-							$scope.selectedEntry = tempselect;
 							$scope.view = "mainView";
 							$scope.adding = false;
 							$scope.editing = false;
@@ -581,6 +579,10 @@ function($scope, $http, myFactory) {
 		$scope.entryTerm = null;
 		$scope.entryDefinition = null;
 		$scope.entryType = null;
+		$scope.user = {};
+		$scope.user.username = null;
+		$scope.selectedEntry.definition = null;
+		$scope.selectedEntry.term = null;
 	}
 
 	$scope.flag = function()
