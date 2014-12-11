@@ -199,6 +199,7 @@ function($scope, $http, myFactory) {
 	$scope.email = null;
 	$scope.entryTerm = "";
 	$scope.entryDefinition = "";
+	$scope.loggedIn = false;
 	
 	$scope.getAllLanguages = function()
 	{
@@ -259,6 +260,19 @@ function($scope, $http, myFactory) {
 		$scope.adding = true;
 		$scope.editing = false;
 
+	}
+
+	$scope.setView = function(view)
+	{
+		$scope.view = view;
+		if (view == "loginView" && $scope.loggedIn)
+		{
+			$scope.view = "mainView";
+		}
+		else if (view == "mainView" && !$scope.loggedIn)
+		{
+			$scope.view = "loginView";
+		}
 	}
 	
 	$scope.contribute = function()
@@ -556,6 +570,7 @@ function($scope, $http, myFactory) {
 				$scope.user = data.user;
 				$scope.setSelectedLanguage($scope.languages.listed[0]);
 				$scope.resetInput();
+				$scope.loggedIn = true;
 				return;
 			}
 		}).error(function()
@@ -571,6 +586,7 @@ function($scope, $http, myFactory) {
 		$scope.view = "loginView";
 		$scope.user = {};
 		$scope.user.username = null;
+		$scope.loggedIn = false;
 	}
 
 	$scope.nologin = function()
