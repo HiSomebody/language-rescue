@@ -65,6 +65,7 @@
 		</div>
 		
 		<div ng-show="view=='mainView'">
+			<div ng-show="successUpdate" class="alert alert-success" role="alert">Successfully updated entry!"</div>
 			<table align="center">
 				<tr>
 				<td style="text-align:left">
@@ -185,6 +186,8 @@
 						Username
 					</h3>	
 					<input style="font-size:20" type="text" ng-model="newUser" ng-minlength=5 placeholder = "Must be 5 characters" required>
+				
+					<div ng-show="badCreateUsername" class="alert alert-danger" role="alert">Username is too short</div>
 				</td>
 				</tr>
 				<tr>
@@ -193,6 +196,7 @@
 						Password
 					</h3>	
 					<input style="font-size:20" type="text" ng-model="newPassword" ng-minlength=6 placeholder = "Must be 6 characters" required>
+					<div ng-show="passwordTooShort" class="alert alert-danger" role="alert">Password is too short</div>	
 				</td>
 				</tr>
 				<tr>
@@ -201,6 +205,7 @@
 						Confirm Password
 					</h3>	
 					<input style="font-size:20" type="text" ng-model="confirmPassword" ng-minlength=5 placeholder = "Passwords must match" required>
+					<div ng-show="passwordNotMatch" class="alert alert-danger" role="alert">Passwords do not match</div>
 				</td>
 				</tr>
 				<tr>
