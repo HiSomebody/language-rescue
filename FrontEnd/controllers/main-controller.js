@@ -602,6 +602,7 @@ app.controller('MainController',
 
 	$scope.nologin = function()
 	{
+		$scope.setSelectedLanguage($scope.languages.listed[0]);
 		$scope.successUpdate = false;
 		alert('Continuing as Guest');
 		$scope.resetInput();
