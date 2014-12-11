@@ -140,6 +140,8 @@
 						Username
 					</h3>
 					<input style="font-size:20" type="text" ng-model="user.username" placeholder = "username" required>
+				
+					<div ng-show="badUsername" class="alert alert-danger" role="alert">Username does not exist</div>
 				</td>
 				</tr>
 				<tr>
@@ -153,6 +155,7 @@
 				</tr>
 				<tr valign = "top">
 				<td>
+					<div ng-show="badPassword" class="alert alert-danger" role="alert">Password is incorrect</div>
 				</td>
 				</tr>
 
@@ -173,7 +176,6 @@
 			</td>
 			</table>
 		</div>
-
 
 		<div ng-show="view=='createView'">
 			<table align="center">

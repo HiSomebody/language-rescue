@@ -528,21 +528,25 @@ function($scope, $http, myFactory) {
 		.success(function(data){
 			var valid_username = data.valid_username;
 			var valid_password = data.valid_password;
-			
+			$scope.badUsername = false;
+			$scope.badPassword = false;		
 			if (!valid_username)
 			{
-				alert('username doesn\'t exist');
+				//alert('Username doesn\'t exist');
+				$scope.badUsername = true;
 				return;
 			}
 			else if (valid_username && !valid_password)
 			{
-				alert("incorrect password for user " + $scope.user.username);
+				//alert("incorrect password for user " + $scope.user.username);
+				$scope.badPassword = true;
 				return;
 			}
 			else if (valid_username && valid_password)
 			{
 				$scope.view = "mainView";
-				alert("Login Successful");
+				$scope.badPassword = false;
+				$scope.badUsername = false;
 				$scope.user = data.user;
 				$scope.setSelectedLanguage($scope.languages.listed[0]);
 				$scope.resetInput();
