@@ -238,6 +238,7 @@ function($scope, $http, myFactory) {
 	
 	$scope.setSelectedEntry = function(e)
 	{
+		$scope.successUpdate = false;
 		$scope.selectedEntry = e;
 		$scope.editing = false;
 	}
@@ -251,6 +252,7 @@ function($scope, $http, myFactory) {
 	
 	$scope.startAdding = function()
 	{
+		$scope.successUpdate = false;
 		$scope.view = "addingEntryView";
 		$scope.newEntry = "temp";
 		//$scope.contribution = $scope.selectedEntry.definition;
@@ -261,6 +263,7 @@ function($scope, $http, myFactory) {
 	
 	$scope.contribute = function()
 	{
+		$scope.successUpdate = false;
 		if ($scope.contribution == '')
 		{
 			alert("please enter a definition");
@@ -297,7 +300,8 @@ function($scope, $http, myFactory) {
 					 }).
 					  success(function(data, status, headers, config) {
 
-							alert("Successfully updated entry in database!");
+							$scope.successUpdate = true;
+							//alert("Successfully updated entry in database!");
 							$scope.setSelectedLanguage($scope.selectedLanguage);
 							$scope.view = "mainView";
 							$scope.adding = false;
@@ -320,6 +324,7 @@ function($scope, $http, myFactory) {
 	
 	$scope.contributeEntry = function()
 	{
+		$scope.successUpdate = false;
 		if ($scope.entryTerm == '')
 		{
 			alert("please enter a term");
@@ -523,6 +528,7 @@ function($scope, $http, myFactory) {
 
 	$scope.login = function()
 	{
+		$scope.successUpdate = false;
 		//This is where a call to the server then database should be made
 		$http.get('http://operationlanguagerescue.com:8080/login/'+$scope.user.username+'/'+$scope.user.password)
 		.success(function(data){
@@ -569,7 +575,7 @@ function($scope, $http, myFactory) {
 
 	$scope.nologin = function()
 	{
-
+		$scope.successUpdate = false;
 		$scope.resetInput();
 		$scope.setSelectedLanguage($scope.languages.listed[0]);
 		$scope.user = {};
@@ -579,6 +585,7 @@ function($scope, $http, myFactory) {
 	
 	$scope.chooseLanguage = function()
 	{
+		$scope.successUpdate = false;
 		$scope.view = "choosingLanguageView";
 		$scope.selectedEntry.definition = null;
 		$scope.selectedEntry.term = null;
@@ -598,6 +605,7 @@ function($scope, $http, myFactory) {
 		$scope.selectedEntry = {};
 		$scope.selectedEntry.definition = null;
 		$scope.selectedEntry.term = null;
+		$scope.successUpdate = false;
 		$scope.currentEntry = null;
 	}
 
