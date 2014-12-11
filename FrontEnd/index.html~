@@ -21,6 +21,125 @@
 			<h1>Language Rescue</h1>
 		</div>
 
+
+
+<nav class="navbar navbar-default" role="navigation">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Begin</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class={{(view=='loginView')?'active':''}}><a href="#">Login</a></li>
+        <li class={{(view=='loginView')?'active':''}}"><a href="#">Link</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+            <li class="divider"></li>
+            <li><a href="#">One more separated link</a></li>
+          </ul>
+        </li>
+      </ul>
+      <form class="navbar-form navbar-left" role="search">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search">
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+      </form>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#">Link</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		<div ng-show="view=='homepage'">
+
+
+
+		  <h1>Welcome to Language Rescue</h1> 
+		  <h2>Our pages</h2>
+
+		  <p>Home</p>
+		  <p>Login</p>
+		  <p>Our Mission</p>
+		  <p>About us</p>
+
+		</div>
+
+		<div ng-show="view=='ourMission'">
+
+
+
+		  <h1>Our Mission</h1> 
+
+		 
+
+		  <p>We save languages!</p>
+
+		</div>
+
+		<div ng-show="view=='Aboutus'">
+
+
+
+		  <h1>About us/h1> 
+		  	 <h2>This website was made as a project for BYU CS360</h2>
+
+		  <h2>Creators</h2>
+
+		  <p>Paul Soderquist</p>
+		  <p>Mitch Green</p>
+
+		  <h2>Webmaster</h2>
+		  <p>paulsoderquist3@gmail.com</p>
+
+
+		</div>
+
+
+
+
 		<div ng-show="view=='choosingLanguageView'">
 				<tr>
 				<td>					
@@ -44,9 +163,8 @@
 						</th>
 					</thead>
 					<tbody>
-					<tr valign="top" class="panel panel-default"
-						<a ng-click ="setSelectedLanguage(l)" class="{{(l == selectedEntry)? 'list-group-item active' : 'list-group-item'}}"
-						ng-repeat="l in languages.listed | filter:enteredLanguage | orderBy:'language_name' | limitTo:8">
+					<tr valign="top" class="panel panel-default">
+						<a ng-click ="setSelectedLanguage(l)" class="{{(l == selectedEntry)? 'list-group-item active' : 'list-group-item'}}" ng-repeat="l in languages.listed | filter:enteredLanguage | orderBy:'language_name' | limitTo:8">
 					<!--div class="list-group" style="overflow-y: auto; height: 90%"-->
 					<td>
 						{{l.language_name}}
@@ -65,6 +183,7 @@
 		</div>
 		
 		<div ng-show="view=='mainView'">
+			<div ng-show="successUpdate" class="alert alert-success" role="alert">Successfully updated entry!"</div>
 			<table align="center">
 				<tr>
 				<td style="text-align:left">
@@ -105,7 +224,7 @@
 					<input style="font-size:24" type="text" ng-model="currentEntry" placeholder = "search entries">
 					<div class="list-group" style="overflow-y: auto; height: 90%">
 					  <a ng-click ="setSelectedEntry(e)" class="{{(e == selectedEntry)? 'list-group-item active' : 'list-group-item'}}"
-							ng-repeat="e in entries.listed | filter:currentEntry | orderBy: 'e.term'|limitTo:8">{{e.term}}</a>
+							ng-repeat="e in entries.listed | filter:currentEntry | orderBy: 'term'|limitTo:8">{{e.term}}</a>
 					</div>
 				</td>
 				<td>
@@ -140,6 +259,8 @@
 						Username
 					</h3>
 					<input style="font-size:20" type="text" ng-model="user.username" placeholder = "username" required>
+				
+					<div ng-show="badUsername" class="alert alert-danger" role="alert">Username does not exist</div>
 				</td>
 				</tr>
 				<tr>
@@ -153,6 +274,7 @@
 				</tr>
 				<tr valign = "top">
 				<td>
+					<div ng-show="badPassword" class="alert alert-danger" role="alert">Password is incorrect</div>
 				</td>
 				</tr>
 
@@ -174,7 +296,6 @@
 			</table>
 		</div>
 
-
 		<div ng-show="view=='createView'">
 			<table align="center">
 				<tr>
@@ -183,6 +304,8 @@
 						Username
 					</h3>	
 					<input style="font-size:20" type="text" ng-model="newUser" ng-minlength=5 placeholder = "Must be 5 characters" required>
+				
+					<div ng-show="badCreateUsername" class="alert alert-danger" role="alert">Username is too short</div>
 				</td>
 				</tr>
 				<tr>
@@ -191,6 +314,7 @@
 						Password
 					</h3>	
 					<input style="font-size:20" type="text" ng-model="newPassword" ng-minlength=6 placeholder = "Must be 6 characters" required>
+					<div ng-show="passwordTooShort" class="alert alert-danger" role="alert">Password is too short</div>	
 				</td>
 				</tr>
 				<tr>
@@ -199,6 +323,7 @@
 						Confirm Password
 					</h3>	
 					<input style="font-size:20" type="text" ng-model="confirmPassword" ng-minlength=5 placeholder = "Passwords must match" required>
+					<div ng-show="passwordNotMatch" class="alert alert-danger" role="alert">Passwords do not match</div>
 				</td>
 				</tr>
 				<tr>
