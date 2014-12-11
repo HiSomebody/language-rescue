@@ -37,7 +37,7 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-center">
         <li class={{(view=='loginView')?'active':''}}><a ng-click="setView('loginView')">Login</a></li>
-        <li class={{(view=='mainView')?'active':''}}><a ng-click="setView('loginView')">Main Editing Page</a></li>
+        <li class={{(view=='mainView')?'active':''}}><a ng-click="setView('loginView')">Database</a></li>
         <li class={{(view=='ourMissionView')?'active':''}}><a ng-click="setView('ourMissionView')">Our Mission</a></li>
         <li class={{(view=='aboutUsView')?'active':''}}><a ng-click="setView('aboutUsView')">About Us</a></li>
       </ul>
@@ -186,6 +186,7 @@
 				<td>
 					<h3>
 						<a class="btn btn-primary btn-sm" role="button" ng-click="chooseLanguage()">Choose Language</a>
+						<a class="btn btn-primary btn-sm" role="button" ng-click="toggleSearch()">Switch to {{(!searchByEnglish)?'English':selectedLanguage.language_name}} Search</a>
 					</h3>
 				</td>
 				<td>
@@ -208,11 +209,11 @@
 					<input style="font-size:24" type="text" ng-model="currentEntry" placeholder = "search entries">
 					<div class="list-group" style="overflow-y: auto; height: 90%">
 					  <a ng-click ="setSelectedEntry(e)" class="{{(e == selectedEntry)? 'list-group-item active' : 'list-group-item'}}"
-							ng-repeat="e in entries.listed | filter:currentEntry | orderBy: 'term'|limitTo:8">{{e.term}}</a>
+							ng-repeat="e in entries.listed | filter:currentEntry | orderBy: 'term'|limitTo:8">{{(!searchByEnglish)?e.term:e.definition}}</a>
 					</div>
 				</td>
 				<td>
-				<textarea ng-show="!editing" rows="12"  style="font-size:24;" ng-readonly="!editing">{{selectedEntry.definition}}</textarea>
+				<textarea ng-show="!editing" rows="12"  style="font-size:24;" ng-readonly="!editing">{{(!searchByEnglish)?selectedEntry.definition:selectedEntry.term}}</textarea>
 				<textarea ng-show="editing" rows="12"  style="font-size:24;" ng-readonly="!editing" ng-model="contribution">{{contribution}}</textarea>
 				</td>
 				</tr>

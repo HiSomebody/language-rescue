@@ -200,6 +200,7 @@ function($scope, $http, myFactory) {
 	$scope.entryTerm = "";
 	$scope.entryDefinition = "";
 	$scope.loggedIn = false;
+	$scope.searchByEnglish = false;
 	
 	$scope.getAllLanguages = function()
 	{
@@ -246,11 +247,24 @@ function($scope, $http, myFactory) {
 	
 	$scope.startEditing = function()
 	{
-		$scope.contribution = $scope.selectedEntry.definition;
+		if ($scope.searchByEnglish)
+		{
+			$scope.contribution = $scope.selectedEntry.term;
+		}
+		else
+		{
+			$scope.contribution = $scope.selectedEntry.definition;
+		}
 		$scope.editing = true;
 		$scope.adding = false;
 	}
-	
+
+	$scope.toggleSearch = function()
+	{
+		$scope.searchByEnglish = !$scope.searchByEnglish;
+	}
+
+
 	$scope.startAdding = function()
 	{
 		$scope.successUpdate = false;
@@ -304,12 +318,24 @@ function($scope, $http, myFactory) {
 				}
 				else
 				{
+					var newDefinition = $scope.contribution;
+					var newEntry = $scope.selectedEntry.term;
+					if ($scope.searchByEnglish)
+					{
+						newDefinition = $scope.selectedEntry.definition;
+						newEntry = $scope.contribution;
+						alert(newDefinition + newEntry);
+					}
+					else
+					{
+						alert(newDefinition + newEntry);
+					}
 					// UPDATE ENTRY INTO CURRENT LANGUAGE
 					$http.post('http://operationlanguagerescue.com:'+port+'/update/'+ $scope.selectedEntry.term, 
-
+					 
 					{language_id: $scope.selectedLanguage.id,
-					 term: $scope.selectedEntry.term,
-					 definition: $scope.contribution,
+					 term: newEntry,
+					 definition: newDefinition,
 					 last_contributed_user: $scope.user.username
 					 }).
 					  success(function(data, status, headers, config) {
@@ -542,6 +568,7 @@ function($scope, $http, myFactory) {
 
 	$scope.login = function()
 	{
+		alert('trying to log in with ' + $scope.user.username+ ' ' +$scope.user.password);
 		$scope.successUpdate = false;
 		//This is where a call to the server then database should be made
 		$http.get('http://operationlanguagerescue.com:'+port+'/login/'+$scope.user.username+'/'+$scope.user.password)
@@ -552,13 +579,13 @@ function($scope, $http, myFactory) {
 			$scope.badPassword = false;		
 			if (!valid_username)
 			{
-				//alert('Username doesn\'t exist');
+				alert('Username doesn\'t exist');
 				$scope.badUsername = true;
 				return;
 			}
 			else if (valid_username && !valid_password)
 			{
-				//alert("incorrect password for user " + $scope.user.username);
+				alert("incorrect password for user " + $scope.user.username);
 				$scope.badPassword = true;
 				return;
 			}
