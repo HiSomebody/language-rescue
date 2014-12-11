@@ -1,0 +1,10 @@
+A sad fact of life is that as our elders pass on they take with them all of the knowledge and experience they have attained during this life. Similarly, more and more the youth of this day and age are learning less about their traditional cultures and instead subscribe to modern global trends. This means that many traditions, cultures, and languages that have existed for generations are slowly being lost as time continues forward.
+
+Our goal with this application is to create a database for those languages that are too small for major translators to consider implementing. There are over 100 major languages and over 6000 spoken languages and dialects in the world. Each language is a product of the place and culture it originated, and many are spoken by groups that are smaller than 1000 people.
+
+With this database we hope that many of these midlevel and smaller languages will be logged and recorded for future generations so they can understand a bit more about their ancestors and the way they communicated and saw the world. We also hope to make a service that is easy to use and search so that those who are living among these smaller groups will be able to increase their own language skills and share thier knowledge.
+
+Please join our site and start contributing your knowledge of any language you would like to help us preserve.
+
+
+
