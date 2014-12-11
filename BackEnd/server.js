@@ -307,5 +307,5 @@ app.get('/:folder/:filename', function(req,res){
 });
 app.put('/:table/:id', function(req,res){});
 app.delete('/:table/:id', function(req,res){});
-app.listen(8080);
-console.log('Paul and Mitch\'s Rest API listening on port 8080');
+app.listen(80);
+console.log('Paul and Mitch\'s Rest API listening on port 80');

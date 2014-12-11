@@ -1,13 +1,13 @@
 
 //Define an angular module for our app
 var app = angular.module("languageApp", ["ngRoute"])
- 
+var port = 80;
 
 app.factory('myFactory', function($http){
 	
 	var instance = {};
 	var languages = {};
-	$http.get('http://operationlanguagerescue.com:8080/selectall/languages')
+	$http.get('http://operationlanguagerescue.com:' + port + '/selectall/languages')
         .success(function(data){
             languages.listed = data.json;
         }).error(function()
@@ -202,7 +202,7 @@ function($scope, $http, myFactory) {
 	
 	$scope.getAllLanguages = function()
 	{
-		$http.get('http://operationlanguagerescue.com:8080/selectall/languages')
+		$http.get('http://operationlanguagerescue.com:' + port + '/selectall/languages')
 			.success(function(data){
 				myFactory.languages.listed = data.json;
 	            $scope.languages = myFactory.languages;
@@ -217,7 +217,7 @@ function($scope, $http, myFactory) {
 	{
 		console.log(l);
 		$scope.selectedLanguage = l;	
-		$http.get('http://operationlanguagerescue.com:8080/selectwhere/entries/language_id/'+l.id)
+		$http.get('http://operationlanguagerescue.com:'+port+'/selectwhere/entries/language_id/'+l.id)
         .success(function(data){
 			myFactory.entries.listed = data.json;		
             $scope.entries = myFactory.entries;
@@ -271,7 +271,7 @@ function($scope, $http, myFactory) {
 		else
 		{
 			// CHECK IF ENTRY ALREADY EXISTS IN CURRENT LANGUAGE
-			$http.get('http://operationlanguagerescue.com:8080/check/entries/term/'+ $scope.selectedEntry.term)
+			$http.get('http://operationlanguagerescue.com:'+port+'/check/entries/term/'+ $scope.selectedEntry.term)
 			.success(function(data){
 
 				//var exists = data.exists;
@@ -291,7 +291,7 @@ function($scope, $http, myFactory) {
 				else
 				{
 					// UPDATE ENTRY INTO CURRENT LANGUAGE
-					$http.post('http://operationlanguagerescue.com:8080/update/'+ $scope.selectedEntry.term, 
+					$http.post('http://operationlanguagerescue.com:'+port+'/update/'+ $scope.selectedEntry.term, 
 
 					{language_id: $scope.selectedLanguage.id,
 					 term: $scope.selectedEntry.term,
@@ -336,7 +336,7 @@ function($scope, $http, myFactory) {
 		else
 		{
 			// CHECK IF ENTRY ALREADY EXISTS IN CURRENT LANGUAGE
-			$http.get('http://operationlanguagerescue.com:8080/check/entries/term/'+$scope.entryTerm)
+			$http.get('http://operationlanguagerescue.com:'+port+'/check/entries/term/'+$scope.entryTerm)
 			.success(function(data){
 				//var exists = data.exists;
 				var exists = false;
@@ -355,7 +355,7 @@ function($scope, $http, myFactory) {
 				else
 				{
 					// INSERT ENTRY INTO CURRENT LANGUAGE
-					$http.post('http://operationlanguagerescue.com:8080/insert/entries', 
+					$http.post('http://operationlanguagerescue.com:'+port+'/insert/entries', 
 					{language_id: $scope.selectedLanguage.id,
 					 term: $scope.entryTerm,
 					 definition: $scope.entryDefinition,
@@ -399,7 +399,7 @@ function($scope, $http, myFactory) {
 		else
 		{
 			// CHECK IF LANGUAGE ALREADY EXISTS IN CURRENT LANGUAGE
-			$http.get('http://operationlanguagerescue.com:8080/check/languages/language_name/'+$scope.languageBeingAdded)
+			$http.get('http://operationlanguagerescue.com:'+port+'/check/languages/language_name/'+$scope.languageBeingAdded)
 			.success(function(data){
 				var exists = data.exists;
 				if (exists)
@@ -410,7 +410,7 @@ function($scope, $http, myFactory) {
 				else
 				{
 					// INSERT LANGUAGE INTO DATABASE
-					$http.post('http://operationlanguagerescue.com:8080/insert/languages', 
+					$http.post('http://operationlanguagerescue.com:'+port+'/insert/languages', 
 					{language_name: $scope.languageBeingAdded
 					 }).
 					  success(function(data, status, headers, config) {
@@ -465,7 +465,7 @@ function($scope, $http, myFactory) {
 		}
 
 		//This should ping the server to check name availability
-		$http.get('http://operationlanguagerescue.com:8080/check/users/username/'+$scope.newUser)
+		$http.get('http://operationlanguagerescue.com:'+port+'/check/users/username/'+$scope.newUser)
 		.success(function(data){
 			var exists = data.exists;
 			if (exists)
@@ -491,7 +491,7 @@ function($scope, $http, myFactory) {
 
 					//This should hit the server to add the new User to database
 					
-					$http.post('http://operationlanguagerescue.com:8080/insert/users', 
+					$http.post('http://operationlanguagerescue.com:'+port+'/insert/users', 
 					{username:$scope.newUser,
 					 password:$scope.newPassword,
 					 email:$scope.email,
@@ -530,7 +530,7 @@ function($scope, $http, myFactory) {
 	{
 		$scope.successUpdate = false;
 		//This is where a call to the server then database should be made
-		$http.get('http://operationlanguagerescue.com:8080/login/'+$scope.user.username+'/'+$scope.user.password)
+		$http.get('http://operationlanguagerescue.com:'+port+'/login/'+$scope.user.username+'/'+$scope.user.password)
 		.success(function(data){
 			var valid_username = data.valid_username;
 			var valid_password = data.valid_password;
@@ -612,7 +612,7 @@ function($scope, $http, myFactory) {
 	$scope.flag = function()
 	{
 		// FLAG USER WHO LAST EDITED ENTRY
-		$http.post('http://operationlanguagerescue.com:8080/flag/'+ $scope.selectedEntry.term, 
+		$http.post('http://operationlanguagerescue.com:'+port+'/flag/'+ $scope.selectedEntry.term, 
 
 		{language_id: $scope.selectedLanguage.id,
 		 term: $scope.selectedEntry.term,
