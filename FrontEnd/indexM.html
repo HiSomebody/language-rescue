@@ -1,0 +1,383 @@
+<html>
+<head><title>Language Rescue</title>
+
+	 <style>
+	 body { text-align: center }
+	 </style>
+ 	<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+ 	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+ 	<link rel="stylesheet" href="css/bootstrap.min.css"></link>
+	<!--link rel="stylesheet" type="text/css" href="app.css"-->
+	
+	<!--script type="text/javascript" src="js/angular.js"></script-->
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.7/angular.min.js"></script>
+	<script type="text/javascript" src="js/angular-route.js"></script>
+	 <!--script src="app.js" type="text/javascript"></script-->
+     <script src="controllers/main-controller.js" type="text/javascript"></script>
+
+</head>
+	<body ng-app="languageApp" ng-controller="MainController">
+		<div class="jumbotron other-color white-text">
+			<h1>Language Rescue</h1>
+		</div>
+
+		<div ng-show="view=='homepage'">
+
+
+
+  <h1>Welcome to Language Rescue</h1> 
+  <h2>Our pages</h2>
+
+  <p>Home</p>
+  <p>Login</p>
+  <p>Our Mission</p>
+  <p>About us</p>
+
+		</div>
+
+				<div ng-show="view=='ourMission'">
+
+
+
+  <h1>Our Mission</h1> 
+
+ 
+
+  <p>A sad fact of life is that as our elders pass on they take with them all of the knowledge and experience they have attained during this life. Similarly, more and more the youth of this day and age are learning less about their traditional cultures and instead subscribe to modern global trends. This means that many traditions, cultures, and languages that have existed for generations are slowly being lost as time continues forward.
+
+Our goal with this application is to create a database for those languages that are too small for major translators to consider implementing. There are over 100 major languages and over 6000 spoken languages and dialects in the world. Each language is a product of the place and culture it originated, and many are spoken by groups that are smaller than 1000 people.
+
+With this database we hope that many of these midlevel and smaller languages will be logged and recorded for future generations so they can understand a bit more about their ancestors and the way they communicated and saw the world. We also hope to make a service that is easy to use and search so that those who are living among these smaller groups will be able to increase their own language skills and share thier knowledge.
+
+Please join our site and start contributing your knowledge of any language you would like to help us preserve.</p>
+
+<img src="imgages/map_language_extinction.jpg" />
+
+  <img src="map_language_extinction.jpg" alt="Map" style="width:304px;height:228px">
+
+		</div>
+
+				<div ng-show="view=='Aboutus'">
+
+
+
+  <h1>About us/h1> 
+  	 <h2>This website was made as a project for BYU CS360</h2>
+
+  <h2>Creators</h2>
+
+  <p>Paul Soderquist</p>
+  <p>Mitch Green</p>
+
+  <h2>Webmaster</h2>
+  <p>paulsoderquist3@gmail.com</p>
+
+
+		</div>
+
+		<div ng-show="view=='choosingLanguageView'">
+				<tr>
+				<td>					
+				</td>
+				<td style="text-align:right">
+				<h3>
+						Rescuer: {{user.username}} {{(user.username == 'Guest')? '' : ' | Contributions:'}} {{user.contributions}}      
+						<a class="btn btn-primary btn-sm" role="button" ng-click="logout()">Logout</a>
+					</h3>
+				</td>
+				</tr>
+			<input style="font-size:24" type="text" ng-model="enteredLanguage" placeholder = "search languages">
+			<div class="table-responsive">
+				<table class="table table-striped table-bordered table-hover table-condensed">
+					<thead>
+						<th>
+							Language
+						</th>
+						<th>
+							Number of Entries
+						</th>
+					</thead>
+					<tbody>
+					<tr valign="top" class="panel panel-default">
+						<a ng-click ="setSelectedLanguage(l)" class="{{(l == selectedEntry)? 'list-group-item active' : 'list-group-item'}}" ng-repeat="l in languages.listed | filter:enteredLanguage | orderBy:'language_name' | limitTo:8">
+					<!--div class="list-group" style="overflow-y: auto; height: 90%"-->
+					<td>
+						{{l.language_name}}
+					</td>
+					<td>
+						{{l.numEntries}}
+					</td>
+					</a>
+					</tr>
+					
+					<!--/div-->
+					</tbody>
+				</table>
+			</div>
+			<a ng-show="user.username != 'Guest'" "class="btn btn-primary btn-sm" role="button" ng-click="createLanguage()">Add Language</a>
+		</div>
+		
+		<div ng-show="view=='mainView'">
+			<div ng-show="successUpdate" class="alert alert-success" role="alert">Successfully updated entry!"</div>
+			<table align="center">
+				<tr>
+				<td style="text-align:left">
+					<h4>
+						<a ng-click="showGoal()">Our Mission</a>
+					</h4>
+				</td>
+				<td style="text-align:right">
+				<h3>
+						Rescuer: {{user.username}} {{(user.username == 'Guest')? '' : ' | Contributions:'}} {{user.contributions}}      
+						<a class="btn btn-primary btn-sm" role="button" ng-click="logout()">Logout</a>
+					</h3>
+				</td>
+				</tr>					
+				<tr>
+				<td>
+					<h3>
+						<a class="btn btn-primary btn-sm" role="button" ng-click="chooseLanguage()">Choose Language</a>
+					</h3>
+				</td>
+				<td>
+				</td>
+				</tr>
+				<tr>
+				<td>
+					<h3>
+						{{selectedLanguage.language_name}}
+					</h3>
+				</td>
+				<td>
+					<h3>
+						Definition
+					</h3>	
+				</td>
+				</tr>
+				<tr valign = "top">
+				<td>
+					<input style="font-size:24" type="text" ng-model="currentEntry" placeholder = "search entries">
+					<div class="list-group" style="overflow-y: auto; height: 90%">
+					  <a ng-click ="setSelectedEntry(e)" class="{{(e == selectedEntry)? 'list-group-item active' : 'list-group-item'}}"
+							ng-repeat="e in entries.listed | filter:currentEntry | orderBy: 'term'|limitTo:8">{{e.term}}</a>
+					</div>
+				</td>
+				<td>
+				<textarea ng-show="!editing" rows="12"  style="font-size:24;" ng-readonly="!editing">{{selectedEntry.definition}}</textarea>
+				<textarea ng-show="editing" rows="12"  style="font-size:24;" ng-readonly="!editing" ng-model="contribution">{{contribution}}</textarea>
+				</td>
+				</tr>
+			</table>
+
+			<a ng-show="!adding && !editing && user.username != 'Guest'" class="btn btn-primary btn-sm" role="button" ng-click="startEditing()">Edit</a>
+			<a ng-show="!editing && !adding && user.username != 'Guest'" class="btn btn-primary btn-sm" role="button" ng-click="startAdding()">Add</a>
+			<a ng-show="editing || adding" class="btn btn-primary btn-sm" role="button" ng-click="contribute()">Contribute</a>
+			<a ng-show="editing || adding" class="btn btn-primary btn-sm" role="button" ng-click="cancel()">Cancel</a>
+			<a ng-show="editing" class="btn btn-primary btn-sm" role="button" ng-click="flag()">Flag Abuse</a>
+
+		</div>
+		
+		<div ng-show="view=='loginView'">
+			<table align="center">
+				<tr>
+				<td>
+					<h3>
+						<a class="btn btn-primary btn-sm" role="button" ng-click="nologin()">Continue as Guest</a>
+					</h3>
+				</td>
+				<td>
+				</td>
+				</tr>
+				<tr>
+				<td>
+					<h3>
+						Username
+					</h3>
+					<input style="font-size:20" type="text" ng-model="user.username" placeholder = "username" required>
+				
+					<div ng-show="badUsername" class="alert alert-danger" role="alert">Username does not exist</div>
+				</td>
+				</tr>
+				<tr>
+				<td>
+					<h3>
+						Password
+					</h3>	
+					<input style="font-size:20" type="password" ng-model="user.password" placeholder = "password" required>
+
+				</td>
+				</tr>
+				<tr valign = "top">
+				<td>
+					<div ng-show="badPassword" class="alert alert-danger" role="alert">Password is incorrect</div>
+				</td>
+				</tr>
+
+				<tr>
+				<td>
+					<h3>
+						<a class="btn btn-primary btn-sm" role="button" ng-click="login()">Login</a>
+					</h3>
+				</td>
+				<td>
+				</td>
+				</tr>
+
+				<td>
+				<h3>
+					<a class="btn btn-primary btn-sm" role="button" ng-click="createAccount()">Create Account?</a>
+				</h3>
+			</td>
+			</table>
+		</div>
+
+		<div ng-show="view=='createView'">
+			<table align="center">
+				<tr>
+				<td>
+					<h3>
+						Username
+					</h3>	
+					<input style="font-size:20" type="text" ng-model="newUser" ng-minlength=5 placeholder = "Must be 5 characters" required>
+				
+					<div ng-show="badCreateUsername" class="alert alert-danger" role="alert">Username is too short</div>
+				</td>
+				</tr>
+				<tr>
+				<td>
+					<h3>
+						Password
+					</h3>	
+					<input style="font-size:20" type="text" ng-model="newPassword" ng-minlength=6 placeholder = "Must be 6 characters" required>
+					<div ng-show="passwordTooShort" class="alert alert-danger" role="alert">Password is too short</div>	
+				</td>
+				</tr>
+				<tr>
+				<td>
+					<h3>
+						Confirm Password
+					</h3>	
+					<input style="font-size:20" type="text" ng-model="confirmPassword" ng-minlength=5 placeholder = "Passwords must match" required>
+					<div ng-show="passwordNotMatch" class="alert alert-danger" role="alert">Passwords do not match</div>
+				</td>
+				</tr>
+				<tr>
+				<td>
+					<h3>
+						Email Address
+					</h3>	
+					<input type = "email" style="font-size:20" type="text" ng-model="email" placeholder = "Enter a valid email please" required>
+				</td>
+				</tr>				
+				<tr valign = "top">
+				<td>
+				</td>
+				</tr>
+
+				<td>
+				<h3>
+					<a class="btn btn-primary btn-sm" role="button" ng-click="addUser()">Create Account</a>
+					<a class="btn btn-primary btn-sm" role="button" ng-click="cancelCreate()">Cancel</a>
+				</h3>
+			</td>
+			</table>
+		</div>
+		
+		<div ng-show="view=='addingEntryView'">
+			<table align="center">
+				<tr>
+				<td>
+					Add a new entry to {{selectedLanguage.language_name}} language!
+				</td>
+				<td>
+				</td>
+				</tr>
+				<tr>
+				<td>
+					<h3>
+						Term/Phrase:
+					</h3>
+					<input style="font-size:20" type="text" ng-model="entryTerm" placeholder = "enter term" required>
+				</td>
+				</tr>
+				<tr>
+				<td>
+					<h3>
+						Definition:
+					</h3>	
+					<input style="font-size:20" type="text" ng-model="entryDefinition" placeholder = "enter definition" required>
+
+				</td>
+				</tr>
+				<tr>
+				<td>
+					<h3>
+						Part of speech:
+					</h3>	
+					<input style="font-size:20" type="text" ng-model="entryType" placeholder = "enter type" required>
+
+				</td>
+				</tr>
+				<tr valign = "top">
+				<td>
+				</td>
+				</tr>
+
+				<tr>
+				<td>
+					<h3>
+						<a class="btn btn-primary btn-sm" role="button" ng-click="contributeEntry()">Add Entry</a>
+						<a class="btn btn-primary btn-sm" role="button" ng-click="cancel()">Cancel</a>
+					</h3>
+				</td>
+				<td>
+				</td>
+				</tr>
+
+				
+			</table>
+		</div>
+		
+		<div ng-show="view=='addingLanguageView'">
+			<table align="center">
+				<tr>
+				<td>
+					Add a new language to our database!
+				</td>
+				<td>
+				</td>
+				</tr>
+				<tr>
+				<td>
+					<h3>
+						Language Name:
+					</h3>
+					<input style="font-size:20" type="text" ng-model="languageBeingAdded" placeholder = "enter language" required>
+				</td>
+				</tr>
+				
+				<tr valign = "top">
+				<td>
+				</td>
+				</tr>
+
+				<tr>
+				<td>
+					<h3>
+						<a class="btn btn-primary btn-sm" role="button" ng-click="addLanguage()">Add Language</a>
+						<a class="btn btn-primary btn-sm" role="button" ng-click="chooseLanguage()">Cancel</a>
+					</h3>
+				</td>
+				<td>
+				</td>
+				</tr>
+
+				
+			</table>
+		</div>
+		
+		
+		
+		<br>
+	</body>	
+</html>

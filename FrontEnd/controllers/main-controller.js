@@ -8,59 +8,59 @@ app.factory('myFactory', function($http){
 	var instance = {};
 	var languages = {};
 	$http.get('http://operationlanguagerescue.com:' + port + '/selectall/languages')
-        .success(function(data){
-            languages.listed = data.json;
-        }).error(function()
-        {
-			alert('failure');
-            console.error('failed to retrieve data');
-        });
+	.success(function(data){
+		languages.listed = data.json;
+	}).error(function()
+	{
+		alert('failure');
+		console.error('failed to retrieve data');
+	});
 	
 	languages.listed = [
-		{
-			language_name: "Hiligaynon",
-			numEntries: 11
-		},
-		{
-			language_name: "Aklanon",
-			numEntries: 197
-		},
-		{
-			language_name: "Karay-a",
-			numEntries: 233
-		},
-		{
-			language_name: "Samoan",
-			numEntries: 244
-		},
-		{
-			language_name: "Tongan",
-			numEntries: 756
-		},
-		{
-			language_name: "Navajo",
-			numEntries: 43
-		},
-		{
-			language_name: "Ilokano",
-			numEntries: 56
-		},
-		{
-			language_name: "Ati",
-			numEntries: 23
-		},
-		{
-			language_name: "Maori",
-			numEntries: 87
-		},
-		{
-			language_name: "Rotuman",
-			numEntries: 57
-		},
-		{
-			language_name: "Fijian",
-			numEntries: 398
-		}
+	{
+		language_name: "Hiligaynon",
+		numEntries: 11
+	},
+	{
+		language_name: "Aklanon",
+		numEntries: 197
+	},
+	{
+		language_name: "Karay-a",
+		numEntries: 233
+	},
+	{
+		language_name: "Samoan",
+		numEntries: 244
+	},
+	{
+		language_name: "Tongan",
+		numEntries: 756
+	},
+	{
+		language_name: "Navajo",
+		numEntries: 43
+	},
+	{
+		language_name: "Ilokano",
+		numEntries: 56
+	},
+	{
+		language_name: "Ati",
+		numEntries: 23
+	},
+	{
+		language_name: "Maori",
+		numEntries: 87
+	},
+	{
+		language_name: "Rotuman",
+		numEntries: 57
+	},
+	{
+		language_name: "Fijian",
+		numEntries: 398
+	}
 	];
 	
 	
@@ -69,87 +69,87 @@ app.factory('myFactory', function($http){
 	
 	var entries = {};
 	entries.listed = [
-		{
-			entry: "Kumusta",
-			definitions: [
-			"Hello",
-			"How are you?",
-			"How is it?"
-			],
-			type: "Greeting"
-		},
-		{
-			entry: "Kumusta ka?",
-			definitions: [
-			"How are you?"
-			],
-			type: "Greeting"
-		},
-		{
-			entry: "Oy",
-			definitions: [
-			"Hey"
-			],
-			type: "Interjection"
-		},
-		{
-			entry: "Maayo",
-			definitions: [
-			"Good",
-			"Well",
-			"Great"
-			],
-			type: "Adjective"
-		},
-		{
-			entry: "Maayong aga",
-			definitions: [
-			"Good Morning"
-			],
-			type: "Greeting"
-		},
-		{
-			entry: "Maayong udto",
-			definitions: [
-			"Good noon"
-			],
-			type: "Greeting"
-		},
-		{
-			entry: "Maayong gab-i",
-			definitions: [
-			"Good evening"
-			],
-			type: "Greeting"
-		},
-		{
-			entry: "Karabao",
-			definitions: [
-			"Water buffalo"
-			],
-			type: "Noun"
-		},
-		{
-			entry: "hatag",
-			definitions: [
-			"give"
-			],
-			type: "Verb"
-		},
-		{
-			entry: "Diin ka magkadto?",
-			definitions: [
-			"Where are you going?"
-			],
-			type: "Greeting"
-		},
-		{
-			entry: "Diin ka naghalin?",
-			definitions: [
-			"Where are you coming from?"
-			],
-			type: "Greeting"
-		}
+	{
+		entry: "Kumusta",
+		definitions: [
+		"Hello",
+		"How are you?",
+		"How is it?"
+		],
+		type: "Greeting"
+	},
+	{
+		entry: "Kumusta ka?",
+		definitions: [
+		"How are you?"
+		],
+		type: "Greeting"
+	},
+	{
+		entry: "Oy",
+		definitions: [
+		"Hey"
+		],
+		type: "Interjection"
+	},
+	{
+		entry: "Maayo",
+		definitions: [
+		"Good",
+		"Well",
+		"Great"
+		],
+		type: "Adjective"
+	},
+	{
+		entry: "Maayong aga",
+		definitions: [
+		"Good Morning"
+		],
+		type: "Greeting"
+	},
+	{
+		entry: "Maayong udto",
+		definitions: [
+		"Good noon"
+		],
+		type: "Greeting"
+	},
+	{
+		entry: "Maayong gab-i",
+		definitions: [
+		"Good evening"
+		],
+		type: "Greeting"
+	},
+	{
+		entry: "Karabao",
+		definitions: [
+		"Water buffalo"
+		],
+		type: "Noun"
+	},
+	{
+		entry: "hatag",
+		definitions: [
+		"give"
+		],
+		type: "Verb"
+	},
+	{
+		entry: "Diin ka magkadto?",
+		definitions: [
+		"Where are you going?"
+		],
+		type: "Greeting"
+	},
+	{
+		entry: "Diin ka naghalin?",
+		definitions: [
+		"Where are you coming from?"
+		],
+		type: "Greeting"
+	}
 	];
 	
 	instance.entries = entries;
@@ -159,78 +159,78 @@ app.factory('myFactory', function($http){
 
 	return instance;
 }) 
- 
- 
+
+
 app.config(function($routeProvider) {
-    $routeProvider.when('/ChooseQuiz', {
-        templateUrl: 'views/choose_quiz.html',
-        controller: 'MainController'
-      }).when('/PreQuiz', {
-        templateUrl: 'views/pre_quiz.html',
-        controller: 'MainController'
-    }).when('/Quiz', {
-        templateUrl: 'views/quiz.html',
-        controller: 'MainController'
-      }).when('/Results', {
-        templateUrl: 'views/results.html',
-        controller: 'MainController'
-    }).
-	  otherwise({
-        redirectTo: '/ChooseQuiz'
-      })
+	$routeProvider.when('/ChooseQuiz', {
+		templateUrl: 'views/choose_quiz.html',
+		controller: 'MainController'
+	}).when('/PreQuiz', {
+		templateUrl: 'views/pre_quiz.html',
+		controller: 'MainController'
+	}).when('/Quiz', {
+		templateUrl: 'views/quiz.html',
+		controller: 'MainController'
+	}).when('/Results', {
+		templateUrl: 'views/results.html',
+		controller: 'MainController'
+	}).
+	otherwise({
+		redirectTo: '/ChooseQuiz'
+	})
 })
- 
- 
+
+
 
 app.controller('MainController', 
 	
-function($scope, $http, myFactory) {
-  	$scope.languages = myFactory.languages;
-	$scope.entries = myFactory.entries;
-	$scope.view = "loginView";
-	$scope.selectedLanguage = $scope.languages.listed[0];
-	$scope.selectedEntry = $scope.entries.listed[0];
+	function($scope, $http, myFactory) {
+		$scope.languages = myFactory.languages;
+		$scope.entries = myFactory.entries;
+		$scope.view = "splashPageView";
+		$scope.selectedLanguage = $scope.languages.listed[0];
+		$scope.selectedEntry = $scope.entries.listed[0];
 
-	$scope.user = {};
-	$scope.password = null;
-	$scope.newUser = null;
-	$scope.newPassword = null;
-	$scope.confirmPassword = null;
-	$scope.email = null;
-	$scope.entryTerm = "";
-	$scope.entryDefinition = "";
-	$scope.loggedIn = false;
-	
-	$scope.getAllLanguages = function()
-	{
-		$http.get('http://operationlanguagerescue.com:' + port + '/selectall/languages')
+		$scope.user = {};
+		$scope.password = null;
+		$scope.newUser = null;
+		$scope.newPassword = null;
+		$scope.confirmPassword = null;
+		$scope.email = null;
+		$scope.entryTerm = "";
+		$scope.entryDefinition = "";
+		$scope.loggedIn = false;
+
+		$scope.getAllLanguages = function()
+		{
+			$http.get('http://operationlanguagerescue.com:' + port + '/selectall/languages')
 			.success(function(data){
 				myFactory.languages.listed = data.json;
-	            $scope.languages = myFactory.languages;
+				$scope.languages = myFactory.languages;
 			}).error(function()
 			{
 				alert('failure');
 				console.error('failed to retrieve data');
 			});
-	}
-	
-	$scope.setSelectedLanguage = function(l)
-	{
-		console.log(l);
-		$scope.selectedLanguage = l;	
-		$http.get('http://operationlanguagerescue.com:'+port+'/selectwhere/entries/language_id/'+l.id)
-        .success(function(data){
-			myFactory.entries.listed = data.json;		
-            $scope.entries = myFactory.entries;
+		}
+
+		$scope.setSelectedLanguage = function(l)
+		{
+			console.log(l);
+			$scope.selectedLanguage = l;	
+			$http.get('http://operationlanguagerescue.com:'+port+'/selectwhere/entries/language_id/'+l.id)
+			.success(function(data){
+				myFactory.entries.listed = data.json;		
+				$scope.entries = myFactory.entries;
 			//$scope.selectedEntry = $scope.entries.listed[0];
 
 			//alert('success');
 			//alert(data);
-        }).error(function()
-        {
+		}).error(function()
+		{
 			alert('failure');
-            console.error('failed to retrieve data');
-        });
+			console.error('failed to retrieve data');
+		});
 		
 		
 		$scope.view = "mainView";
@@ -264,15 +264,22 @@ function($scope, $http, myFactory) {
 
 	$scope.setView = function(view)
 	{
-		$scope.view = view;
+
 		if (view == "loginView" && $scope.loggedIn)
 		{
+			alert("You are already logged in!")
 			$scope.view = "mainView";
 		}
 		else if (view == "mainView" && !$scope.loggedIn)
 		{
-			$scope.view = "loginView";
+			$scope.nologin();
 		}
+		else
+		{
+			$scope.view = view;
+
+		}
+
 	}
 	
 	$scope.contribute = function()
@@ -307,14 +314,14 @@ function($scope, $http, myFactory) {
 					// UPDATE ENTRY INTO CURRENT LANGUAGE
 					$http.post('http://operationlanguagerescue.com:'+port+'/update/'+ $scope.selectedEntry.term, 
 
-					{language_id: $scope.selectedLanguage.id,
-					 term: $scope.selectedEntry.term,
-					 definition: $scope.contribution,
-					 last_contributed_user: $scope.user.username
-					 }).
-					  success(function(data, status, headers, config) {
+						{language_id: $scope.selectedLanguage.id,
+							term: $scope.selectedEntry.term,
+							definition: $scope.contribution,
+							last_contributed_user: $scope.user.username
+						}).
+					success(function(data, status, headers, config) {
 
-							$scope.successUpdate = true;
+						$scope.successUpdate = true;
 							//alert("Successfully updated entry in database!");
 							$scope.setSelectedLanguage($scope.selectedLanguage);
 							$scope.view = "mainView";
@@ -322,10 +329,10 @@ function($scope, $http, myFactory) {
 							$scope.editing = false;
 							$scope.resetInput();
 							$scope.user.contributions++;
-					  }).
-					  error(function(data, status, headers, config) {
-							alert("Failed to update entry in database.");
-					  });
+						}).
+					error(function(data, status, headers, config) {
+						alert("Failed to update entry in database.");
+					});
 				}
 			}).error(function()
 			{
@@ -370,26 +377,26 @@ function($scope, $http, myFactory) {
 				{
 					// INSERT ENTRY INTO CURRENT LANGUAGE
 					$http.post('http://operationlanguagerescue.com:'+port+'/insert/entries', 
-					{language_id: $scope.selectedLanguage.id,
-					 term: $scope.entryTerm,
-					 definition: $scope.entryDefinition,
-					 part_of_speech: $scope.entryType,
-					 first_contributed_user: $scope.user.username,
-					 last_contributed_user: $scope.user.username
-					 }).
-					  success(function(data, status, headers, config) {
-							$scope.setSelectedLanguage($scope.selectedLanguage);
-							$scope.setSelectedEntry($scope.entries.listed[$scope.entries.listed.size-1])
-							alert("Successfully added entry to database!");
-							$scope.view = "mainView";
-							$scope.adding = false;
-							$scope.editing = false;
-							$scope.resetInput();
-							$scope.user.contributions++;
-					  }).
-					  error(function(data, status, headers, config) {
-							alert("Failed to add entry to database.");
-					  });
+						{language_id: $scope.selectedLanguage.id,
+							term: $scope.entryTerm,
+							definition: $scope.entryDefinition,
+							part_of_speech: $scope.entryType,
+							first_contributed_user: $scope.user.username,
+							last_contributed_user: $scope.user.username
+						}).
+					success(function(data, status, headers, config) {
+						$scope.setSelectedLanguage($scope.selectedLanguage);
+						$scope.setSelectedEntry($scope.entries.listed[$scope.entries.listed.size-1])
+						alert("Successfully added entry to database!");
+						$scope.view = "mainView";
+						$scope.adding = false;
+						$scope.editing = false;
+						$scope.resetInput();
+						$scope.user.contributions++;
+					}).
+					error(function(data, status, headers, config) {
+						alert("Failed to add entry to database.");
+					});
 				}
 			}).error(function()
 			{
@@ -425,17 +432,17 @@ function($scope, $http, myFactory) {
 				{
 					// INSERT LANGUAGE INTO DATABASE
 					$http.post('http://operationlanguagerescue.com:'+port+'/insert/languages', 
-					{language_name: $scope.languageBeingAdded
-					 }).
-					  success(function(data, status, headers, config) {
-							$scope.getAllLanguages();
-							alert("Successfully added language to database!");
-							$scope.view = "choosingLanguageView";
-							$scope.resetInput();
-					  }).
-					  error(function(data, status, headers, config) {
-							alert("Failed to add language to database.");
-					  });
+						{language_name: $scope.languageBeingAdded
+						}).
+					success(function(data, status, headers, config) {
+						$scope.getAllLanguages();
+						alert("Successfully added language to database!");
+						$scope.view = "choosingLanguageView";
+						$scope.resetInput();
+					}).
+					error(function(data, status, headers, config) {
+						alert("Failed to add language to database.");
+					});
 				}
 			}).error(function()
 			{
@@ -506,30 +513,32 @@ function($scope, $http, myFactory) {
 					//This should hit the server to add the new User to database
 					
 					$http.post('http://operationlanguagerescue.com:'+port+'/insert/users', 
-					{username:$scope.newUser,
-					 password:$scope.newPassword,
-					 email:$scope.email,
-					 contributions:0,
-					 abuse_strikes:0,
-					 edits:0
+						{username:$scope.newUser,
+							password:$scope.newPassword,
+							email:$scope.email,
+							contributions:0,
+							abuse_strikes:0,
+							edits:0
 
-					 }).
-					  success(function(data, status, headers, config) {
-							alert("Created new User!\n\nPlease contribute responsibly.");
-							$scope.view = "mainView";
-							$scope.user.username = $scope.newUser;
-							$scope.resetInput();
-							$scope.user.contributions = 0;
-					  }).
-					  error(function(data, status, headers, config) {
-							alert("Failed to create new user.");
-					  });
-	
+						}).
+					success(function(data, status, headers, config) {
+						alert("Created new User!\n\nPlease contribute responsibly.");
+						$scope.view = "mainView";
+						$scope.loggedIn = true;
+
+						$scope.user.username = $scope.newUser;
+						$scope.resetInput();
+						$scope.user.contributions = 0;
+					}).
+					error(function(data, status, headers, config) {
+						alert("Failed to create new user.");
+					});
+
 				}
 				else
 					alert("Passwords do not match!");
 
-				}
+			}
 
 			
 		}).error(function()
@@ -542,6 +551,8 @@ function($scope, $http, myFactory) {
 
 	$scope.login = function()
 	{
+		$scope.loggedIn = false;
+
 		$scope.successUpdate = false;
 		//This is where a call to the server then database should be made
 		$http.get('http://operationlanguagerescue.com:'+port+'/login/'+$scope.user.username+'/'+$scope.user.password)
@@ -592,11 +603,11 @@ function($scope, $http, myFactory) {
 	$scope.nologin = function()
 	{
 		$scope.successUpdate = false;
+		alert('Continuing as Guest');
 		$scope.resetInput();
-		$scope.setSelectedLanguage($scope.languages.listed[0]);
 		$scope.user = {};
 		$scope.user.username = "Guest";
-		$scope.view = "mainView";
+		$scope.view = "mainView"
 	}
 	
 	$scope.chooseLanguage = function()
@@ -630,19 +641,19 @@ function($scope, $http, myFactory) {
 		// FLAG USER WHO LAST EDITED ENTRY
 		$http.post('http://operationlanguagerescue.com:'+port+'/flag/'+ $scope.selectedEntry.term, 
 
-		{language_id: $scope.selectedLanguage.id,
-		 term: $scope.selectedEntry.term,
-		 }).
-		  success(function(data, status, headers, config) {
+			{language_id: $scope.selectedLanguage.id,
+				term: $scope.selectedEntry.term,
+			}).
+		success(function(data, status, headers, config) {
 			alert("Successfully flagged last editor of entry in database!");
 			$scope.view = "mainView";
 			$scope.adding = false;
 			$scope.editing = true;
 			//$scope.resetInput();
-	  }).
-	  error(function(data, status, headers, config) {
-		alert("Failed to flag editor of entry in database.");
-	  });
+		}).
+		error(function(data, status, headers, config) {
+			alert("Failed to flag editor of entry in database.");
+		});
 	}
 
 
