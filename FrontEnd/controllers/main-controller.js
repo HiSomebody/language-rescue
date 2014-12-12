@@ -170,7 +170,7 @@ app.controller('MainController',
 		$scope.successUpdate = false;
 		if ($scope.contribution == '')
 		{
-			alert("please enter a definition");
+			alert("Please enter a definition.");
 		}
 		else
 		{
@@ -191,7 +191,7 @@ app.controller('MainController',
 				}
 				if (!exists)
 				{
-					alert("That entry doesn't exist in the current language");
+					alert("That entry doesn't exist in the current language.");
 					return;
 				}
 				else
@@ -222,7 +222,7 @@ app.controller('MainController',
 			}).error(function()
 			{
 				alert('failure');
-				console.error('failed to retrieve whether language already exists');
+				console.error('Failed to retrieve whether language already exists.');
 			});			
 		}
 
@@ -233,11 +233,11 @@ app.controller('MainController',
 		$scope.successUpdate = false;
 		if ($scope.entryTerm == '')
 		{
-			alert("please enter a term");
+			alert("Please enter a term.");
 		}
 		else if ($scope.entryDefinition == '')
 		{
-			alert("please enter a definition");
+			alert("Please enter a definition.");
 		}
 		else
 		{
@@ -255,7 +255,7 @@ app.controller('MainController',
 				}
 				if (exists)
 				{
-					alert("That entry already exists in the current language");
+					alert("That entry already exists in the current language.");
 					return;
 				}
 				else
@@ -272,7 +272,7 @@ app.controller('MainController',
 					success(function(data, status, headers, config) {
 						$scope.setSelectedLanguage($scope.selectedLanguage);
 						$scope.setSelectedEntry($scope.entries.listed[$scope.entries.listed.size-1])
-						alert("Successfully added entry to database!");
+						alert("Successfully added a new entry to the database!");
 						$scope.view = "mainView";
 						$scope.adding = false;
 						$scope.editing = false;
@@ -286,7 +286,7 @@ app.controller('MainController',
 			}).error(function()
 			{
 				alert('failure');
-				console.error('failed to retrieve whether language already exists');
+				console.error('Failed to retrieve whether language already exists.');
 			});			
 		}
 	}
@@ -300,7 +300,7 @@ app.controller('MainController',
 	{
 		if ($scope.languageBeingAdded == '')
 		{
-			alert("please enter a name for the language");
+			alert("Please enter a name for the language.");
 		}
 		else
 		{
@@ -310,7 +310,7 @@ app.controller('MainController',
 				var exists = data.exists;
 				if (exists)
 				{
-					alert("That language already exists in the database");
+					alert("That language already exists in the database.");
 					return;
 				}
 				else
@@ -321,7 +321,7 @@ app.controller('MainController',
 						}).
 					success(function(data, status, headers, config) {
 						$scope.getAllLanguages();
-						alert("Successfully added language to database!");
+						alert("Successfully added a new language to the database!");
 						$scope.view = "choosingLanguageView";
 						$scope.resetInput();
 					}).
@@ -332,14 +332,14 @@ app.controller('MainController',
 			}).error(function()
 			{
 				alert('failure');
-				console.error('failed to retrieve whether language already exists');
+				console.error('Failed to retrieve whether language already exists');
 			});			
 		}
 	}
 
 	$scope.showGoal = function()
 	{
-		alert("To save languages.");
+		alert("To save lots of languages.");
 	}
 
 	$scope.cancel = function()
@@ -376,7 +376,7 @@ app.controller('MainController',
 			var exists = data.exists;
 			if (exists)
 			{
-				alert("That username already exists");
+				alert("That username already exists!");
 				return;
 			}
 			else
@@ -407,7 +407,7 @@ app.controller('MainController',
 
 						}).
 					success(function(data, status, headers, config) {
-						alert("Created new User!\n\nPlease contribute responsibly.");
+						alert("Created a new User!\n\nPlease contribute responsibly.");
 						$scope.view = "mainView";
 						$scope.loggedIn = true;
 
@@ -429,7 +429,7 @@ app.controller('MainController',
 		}).error(function()
 		{
 			alert('failure');
-			console.error('failed to retrieve whether username already exists');
+			console.error('Failed to retrieve whether username already exists');
 		});
 
 	}
@@ -472,7 +472,7 @@ app.controller('MainController',
 		}).error(function()
 		{
 			alert('failure');
-			console.error('failed to retrieve whether username already exists');
+			console.error('Failed to retrieve whether username already exists');
 		});
 	}
 
@@ -489,7 +489,7 @@ app.controller('MainController',
 	{
 		$scope.setSelectedLanguage($scope.languages.listed[0]);
 		$scope.successUpdate = false;
-		alert('Continuing as Guest.  For full user privileges please create an account');
+		alert('Continuing as a Guest. For full user privileges please create an account');
 		$scope.resetInput();
 		$scope.user = {};
 		$scope.user.username = "Guest";
@@ -531,7 +531,7 @@ app.controller('MainController',
 				term: $scope.selectedEntry.term,
 			}).
 		success(function(data, status, headers, config) {
-			alert("Successfully flagged last editor of entry in database!");
+			alert("Successfully flagged the last editor of the entry in the database!");
 			$scope.view = "mainView";
 			$scope.adding = false;
 			$scope.editing = true;
