@@ -95,7 +95,7 @@
          <h2>
             About us
          </h2>
-         <p>This website was made as a project for BYU CS360</p>
+         <p>This website was made as a project for BYU CS360.</p>
          <h2>Creators</h2>
          <p>Paul Soderquist - Computer Science</p>
          <p>Mitch Green - Computer Science emphasis Animation - Japanese</p>
@@ -192,7 +192,7 @@
       <tr>
 
          <h3>
-            Here you can view entries in the given language.  By creating an account you can help by adding to this dictionary database.
+            Here you can view entries in the given language. By creating an account you can help by adding to this dictionary database.
          </h3>	
 
       </tr>    
@@ -242,12 +242,13 @@
       </tr>
    </table>
    <div ng-show="editing">Please click and edit the entry in the text area. Then click contribute to submit.</div>
+   <div ng-show="editing">Remember to contribute responsibly. Abuse will be flagged and abusers recorded.</div>
+
    <a ng-show="!adding && !editing && user.username != 'Guest'" class="btn btn-primary btn-sm" role="button" ng-click="startEditing()">Edit</a>
    <a ng-show="!editing && !adding && user.username != 'Guest'" class="btn btn-primary btn-sm" role="button" ng-click="startAdding()">Add</a>
    <a ng-show="editing || adding" class="btn btn-primary btn-sm" role="button" ng-click="contribute()">Contribute</a>
    <a ng-show="editing || adding" class="btn btn-primary btn-sm" role="button" ng-click="cancel()">Cancel</a>
    <a ng-show="editing" class="btn btn-primary btn-sm" role="button" ng-click="flag()">Flag Abuse</a>
-   <div ng-show="editing">Please contribute responsibly. Abuse will be flagged and abusers recorded.</div>
 </div>
 <div ng-show="view=='loginView'">
    <table align="center">
