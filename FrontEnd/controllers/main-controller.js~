@@ -264,7 +264,8 @@ app.controller('MainController',
 
 	$scope.setView = function(view)
 	{
-
+			$scope.badUsername = false;
+			$scope.badPassword = false;
 		if (view == "loginView" && $scope.loggedIn)
 		{
 			alert("You are already logged in!")
@@ -602,6 +603,7 @@ app.controller('MainController',
 
 	$scope.nologin = function()
 	{
+		$scope.setSelectedLanguage($scope.languages.listed[0]);
 		$scope.successUpdate = false;
 		alert('Continuing as Guest');
 		$scope.resetInput();

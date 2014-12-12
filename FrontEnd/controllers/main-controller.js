@@ -264,7 +264,8 @@ app.controller('MainController',
 
 	$scope.setView = function(view)
 	{
-
+		$scope.badUsername = false;
+		$scope.badPassword = false;
 		if (view == "loginView" && $scope.loggedIn)
 		{
 			alert("You are already logged in!")
