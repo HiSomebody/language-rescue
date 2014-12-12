@@ -36,151 +36,151 @@
                <li class={{(view=='ourMissionView')?'active':''}}><a ng-click="setView('ourMissionView')">Our Mission</a></li>
                <li class={{(view=='aboutUsView')?'active':''}}><a ng-click="setView('aboutUsView')">About Us</a></li>
             </ul>
-               <!--
-                  <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#">Link</a></li>
-                    <li class="dropdown">
-                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
-                      <ul class="dropdown-menu" role="menu">
-                        <li><a href="#">Action</a></li>
-                        <li><a href="#">Another action</a></li>
-                        <li><a href="#">Something else here</a></li>
-                        <li class="divider"></li>
-                        <li><a href="#">Separated link</a></li>
-                      </ul>
-                    </li>
-                 </ul>-->
-              </div>
-              <!-- /.navbar-collapse -->
-           </div>
-           <!-- /.container-fluid -->
-        </nav>
-        <div ng-show="view=='ourMissionView'">
-         <tr>
-            <td style="text-align:left">
-               <h2>
-                  Our Mission
-               </h2>
-            </td>
-         </tr>
-         <tr>
-            <td style="text-align:left">
-               <p>
-                  A sad fact of life is that as our elders and seniors pass on they take with them all of the knowledge and experience they have attained during this life. Similarly, more and more the youth of this day and age are learning less about their traditional cultures and instead subscribe to modern global trends. This means that many traditions, cultures, and languages that have existed for generations are slowly being lost as time continues to move forward.
-               </p>
-               <p>
-                  Our goal with this application is to create a database for those languages that are too small for major translators to consider implementing. There are over 100 major languages and over 6000 spoken languages and dialects in the world. Each language is a product of the place and culture it originated, and many are spoken by groups that are smaller than 1000 people.
-               </p>
-               <p>
-                  With this database we hope that many of these midsize and smaller languages will be logged and recorded for future generations so they can understand a bit more about their ancestors and the way they communicated and saw the world. We also hope to make a service that is easy to use and search so that those who are living among these smaller groups will be able to increase their own language skills and share their knowledge.
-               </p>
-               <p>
-                  Please join our site and start contributing your knowledge of any language you would like to help us preserve.
-               </p>
-            </td>
-         </tr>
-         <tr>
-            <td style="text-align:center">
-               <h3>
-                  <img src="images/map_language_extinction.jpg" alt="Extinction Map"  class="img-responsive center-block" style="width:800px" />
-               </h3>
-            </td>
-         </tr>
-      </div>
-      <div ng-show="view=='aboutUsView'">
-         <tr>
-            <td>                    
-            </td>
-            <td style="text-align:center">
-               <h2>
-                  About us
-               </h2>
-               <p>This website was made as a project for BYU CS360</p>
-               <h2>Creators</h2>
-               <p>Paul Soderquist - Computer Science</p>
-               <p>Mitch Green - Computer Science emphasis Animation - Japanese</p>
-               <h2>Webmaster</h2>
-               <p>paulsoderquist3@gmail.com</p>
-               <h2>Github</h2>
-               <p>
-                  <a href="http://www.github.com/psoder3/language-rescue"> 
-                     www.github.com/psoder3/language-rescue
-                  </a> 
-               </p>
-            </td>
-         </tr>
-      </div>
-      <div ng-show="view=='splashPageView'">
-         <tr>
-            <td>                    
-            </td>
-            <td style="text-align:center">
-               <h2>
-                  Welcome to Operation: Language Rescue
-               </h2>
-            </td>
-         </tr>
-         <tr>
-            <td>                    
-            </td>
-            <td style="text-align:center">
-               <h3>
-                  Many less common languages are in need of documentation, but together we can help preserve them.
-               </h3>
-            </td>
-         </tr>
-         <tr>
-            <td>                    
-            </td>
-            <td style="text-align:center">
-               <h3>
-                  <img src="images/mmw-disappearing-languages.jpg" class="img-responsive center-block" alt="Waves" style="width:800px"/>
-               </h3>
-               <h3>
-                  Do you accept this mission?
-               </h3>
-               <a class="btn btn-primary btn-sm" role="button" ng-click="setView('loginView')">Get Started!</a>
-            </td>
-         </tr>
-      </div>
-      <div ng-show="view=='choosingLanguageView'">
-        <tr>
-           <td>					
-           </td>
-           <td style="text-align:right">
-              <h3>
-               Rescuer: {{user.username}} {{(user.username == 'Guest')? '' : ' | Contributions:'}} {{user.contributions}}      
-               <a class="btn btn-primary btn-sm" role="button" ng-click="logout()">Logout</a>
-            </h3>
-         </td>
-      </tr>
-      <input style="font-size:24" type="text" ng-model="enteredLanguage" placeholder = "search languages">
-      <div class="table-responsive">
-        <table class="table table-striped table-bordered table-hover table-condensed">
-          <thead>
-            <th>
-              Language
-           </th>
-           <th>
-              Number of Entries
-           </th>
-        </thead>
-        <tbody>
-          <tr valign="top" class="panel panel-default"
-          <a ng-click ="setSelectedLanguage(l)" class="{{(l == selectedEntry)? 'list-group-item active' : 'list-group-item'}}"
-          ng-repeat="l in languages.listed | filter:enteredLanguage | orderBy:'language_name' | limitTo:8">
-          <!--div class="list-group" style="overflow-y: auto; height: 90%"-->
-          <td>
-            {{l.language_name}}
-         </td>
-         <td>
-            {{l.numEntries}}
-         </td>
-      </a>
+<!--
+<ul class="nav navbar-nav navbar-right">
+<li><a href="#">Link</a></li>
+<li class="dropdown">
+<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
+<ul class="dropdown-menu" role="menu">
+<li><a href="#">Action</a></li>
+<li><a href="#">Another action</a></li>
+<li><a href="#">Something else here</a></li>
+<li class="divider"></li>
+<li><a href="#">Separated link</a></li>
+</ul>
+</li>
+</ul>-->
+</div>
+<!-- /.navbar-collapse -->
+</div>
+<!-- /.container-fluid -->
+</nav>
+<div ng-show="view=='ourMissionView'">
+   <tr>
+      <td style="text-align:left">
+         <h2>
+            Our Mission
+         </h2>
+      </td>
    </tr>
+   <tr>
+      <td style="text-align:left">
+         <p>
+            A sad fact of life is that as our elders and seniors pass on they take with them all of the knowledge and experience they have attained during this life. Similarly, more and more the youth of this day and age are learning less about their traditional cultures and instead subscribe to modern global trends. This means that many traditions, cultures, and languages that have existed for generations are slowly being lost as time continues to move forward.
+         </p>
+         <p>
+            Our goal with this application is to create a database for those languages that are too small for major translators to consider implementing. There are over 100 major languages and over 6000 spoken languages and dialects in the world. Each language is a product of the place and culture it originated, and many are spoken by groups that are smaller than 1000 people.
+         </p>
+         <p>
+            With this database we hope that many of these midsize and smaller languages will be logged and recorded for future generations so they can understand a bit more about their ancestors and the way they communicated and saw the world. We also hope to make a service that is easy to use and search so that those who are living among these smaller groups will be able to increase their own language skills and share their knowledge.
+         </p>
+         <p>
+            Please join our site and start contributing your knowledge of any language you would like to help us preserve.
+         </p>
+      </td>
+   </tr>
+   <tr>
+      <td style="text-align:center">
+         <h3>
+            <img src="images/map_language_extinction.jpg" alt="Extinction Map"  class="img-responsive center-block" style="width:800px" />
+         </h3>
+      </td>
+   </tr>
+</div>
+<div ng-show="view=='aboutUsView'">
+   <tr>
+      <td>                    
+      </td>
+      <td style="text-align:center">
+         <h2>
+            About us
+         </h2>
+         <p>This website was made as a project for BYU CS360</p>
+         <h2>Creators</h2>
+         <p>Paul Soderquist - Computer Science</p>
+         <p>Mitch Green - Computer Science emphasis Animation - Japanese</p>
+         <h2>Webmaster</h2>
+         <p>paulsoderquist3@gmail.com</p>
+         <h2>Github</h2>
+         <p>
+            <a href="http://www.github.com/psoder3/language-rescue"> 
+               www.github.com/psoder3/language-rescue
+            </a> 
+         </p>
+      </td>
+   </tr>
+</div>
+<div ng-show="view=='splashPageView'">
+   <tr>
+      <td>                    
+      </td>
+      <td style="text-align:center">
+         <h2>
+            Welcome to Operation: Language Rescue
+         </h2>
+      </td>
+   </tr>
+   <tr>
+      <td>                    
+      </td>
+      <td style="text-align:center">
+         <h3>
+            Many less common languages are in need of documentation, but together we can help preserve them.
+         </h3>
+      </td>
+   </tr>
+   <tr>
+      <td>                    
+      </td>
+      <td style="text-align:center">
+         <h3>
+            <img src="images/mmw-disappearing-languages.jpg" class="img-responsive center-block" alt="Waves" style="width:800px"/>
+         </h3>
+         <h3>
+            Do you accept this mission?
+         </h3>
+         <a class="btn btn-primary btn-sm" role="button" ng-click="setView('loginView')">Get Started!</a>
+      </td>
+   </tr>
+</div>
+<div ng-show="view=='choosingLanguageView'">
+   <tr>
+      <td>					
+      </td>
+      <td style="text-align:right">
+         <h3>
+            Rescuer: {{user.username}} {{(user.username == 'Guest')? '' : ' | Contributions:'}} {{user.contributions}}      
+            <a class="btn btn-primary btn-sm" role="button" ng-click="logout()">Logout</a>
+         </h3>
+      </td>
+   </tr>
+   <input style="font-size:24" type="text" ng-model="enteredLanguage" placeholder = "search languages">
+   <div class="table-responsive">
+      <table class="table table-striped table-bordered table-hover table-condensed">
+         <thead>
+            <th>
+               Language
+            </th>
+            <th>
+               Number of Entries
+            </th>
+         </thead>
+         <tbody>
+            <tr valign="top" class="panel panel-default"
+            <a ng-click ="setSelectedLanguage(l)" class="{{(l == selectedEntry)? 'list-group-item active' : 'list-group-item'}}"
+            ng-repeat="l in languages.listed | filter:enteredLanguage | orderBy:'language_name' | limitTo:8">
+            <!--div class="list-group" style="overflow-y: auto; height: 90%"-->
+            <td>
+               {{l.language_name}}
+            </td>
+            <td>
+               {{l.numEntries}}
+            </td>
+         </a>
+      </tr>
 
-   <!--/div-->
-</tbody>
+      <!--/div-->
+   </tbody>
 </table>
 </div>
 <a ng-show="user.username != 'Guest'" "class="btn btn-primary btn-sm" role="button" ng-click="createLanguage()">Add Language</a>
@@ -189,65 +189,65 @@
    <div ng-show="successUpdate" class="alert alert-success" role="alert">Successfully updated entry!"</div>
 
    <table align="center">
-    <tr>
+      <tr>
 
-     <h3>
-        Here you can view entries in the given language.  By creating an account you can help by adding to this dictionary database.
-     </h3>	
+         <h3>
+            Here you can view entries in the given language.  By creating an account you can help by adding to this dictionary database.
+         </h3>	
 
-  </tr>    
-  <tr>
-   <td style="text-align:left">
-   </td>
-   <td style="text-align:right">
-      <h3>
-         Rescuer: {{user.username}} {{(user.username == 'Guest')? '' : ' | Contributions:'}} {{user.contributions}}      
-         <a class="btn btn-primary btn-sm" role="button" ng-click="logout()">Logout</a>
-      </h3>
-   </td>
-</tr>
-<tr>
-   <td>
-      <h3>
-         <a class="btn btn-primary btn-sm" role="button" ng-click="chooseLanguage()">Choose Language</a>
-      </h3>
-   </td>
-   <td>
-   </td>
-</tr>
-<tr>
-   <td>
-      <h3>
-         {{selectedLanguage.language_name}}
-      </h3>
-   </td>
-   <td>
-      <h3>
-         Definition
-      </h3>
-   </td>
-</tr>
-<tr valign = "top">
-   <td>
-      <input style="font-size:24" type="text" ng-model="currentEntry" placeholder = "search entries">
-      <div class="list-group" style="overflow-y: auto; height: 90%">
-         <a ng-click ="setSelectedEntry(e)" class="{{(e == selectedEntry)? 'list-group-item active' : 'list-group-item'}}"
-         ng-repeat="e in entries.listed | filter:currentEntry | orderBy: 'term'|limitTo:8">{{e.term}}</a>
-      </div>
-   </td>
-   <td>
-      <textarea ng-show="!editing" rows="12"  style="font-size:24;" ng-readonly="!editing">{{selectedEntry.definition}}</textarea>
-      <textarea ng-show="editing" rows="12"  style="font-size:24;" ng-readonly="!editing" ng-model="contribution">{{contribution}}</textarea>
-   </td>
-</tr>
-</table>
-<div ng-show="editing">Please click and edit the entry in the text area. Then click contribute to submit.</div>
-<a ng-show="!adding && !editing && user.username != 'Guest'" class="btn btn-primary btn-sm" role="button" ng-click="startEditing()">Edit</a>
-<a ng-show="!editing && !adding && user.username != 'Guest'" class="btn btn-primary btn-sm" role="button" ng-click="startAdding()">Add</a>
-<a ng-show="editing || adding" class="btn btn-primary btn-sm" role="button" ng-click="contribute()">Contribute</a>
-<a ng-show="editing || adding" class="btn btn-primary btn-sm" role="button" ng-click="cancel()">Cancel</a>
-<a ng-show="editing" class="btn btn-primary btn-sm" role="button" ng-click="flag()">Flag Abuse</a>
-<div ng-show="editing">Please contribute responsibly. Abuse will be flagged and abusers recorded.</div>
+      </tr>    
+      <tr>
+         <td style="text-align:left">
+         </td>
+         <td style="text-align:right">
+            <h3>
+               Rescuer: {{user.username}} {{(user.username == 'Guest')? '' : ' | Contributions:'}} {{user.contributions}}      
+               <a class="btn btn-primary btn-sm" role="button" ng-click="logout()">Logout</a>
+            </h3>
+         </td>
+      </tr>
+      <tr>
+         <td>
+            <h3>
+               <a class="btn btn-primary btn-sm" role="button" ng-click="chooseLanguage()">Choose Language</a>
+            </h3>
+         </td>
+         <td>
+         </td>
+      </tr>
+      <tr>
+         <td>
+            <h3>
+               {{selectedLanguage.language_name}}
+            </h3>
+         </td>
+         <td>
+            <h3>
+               Definition
+            </h3>
+         </td>
+      </tr>
+      <tr valign = "top">
+         <td>
+            <input style="font-size:24" type="text" ng-model="currentEntry" placeholder = "search entries">
+            <div class="list-group" style="overflow-y: auto; height: 90%">
+               <a ng-click ="setSelectedEntry(e)" class="{{(e == selectedEntry)? 'list-group-item active' : 'list-group-item'}}"
+               ng-repeat="e in entries.listed | filter:currentEntry | orderBy: 'term'|limitTo:8">{{e.term}}</a>
+            </div>
+         </td>
+         <td>
+            <textarea ng-show="!editing" rows="12"  style="font-size:24;" ng-readonly="!editing">{{selectedEntry.definition}}</textarea>
+            <textarea ng-show="editing" rows="12"  style="font-size:24;" ng-readonly="!editing" ng-model="contribution">{{contribution}}</textarea>
+         </td>
+      </tr>
+   </table>
+   <div ng-show="editing">Please click and edit the entry in the text area. Then click contribute to submit.</div>
+   <a ng-show="!adding && !editing && user.username != 'Guest'" class="btn btn-primary btn-sm" role="button" ng-click="startEditing()">Edit</a>
+   <a ng-show="!editing && !adding && user.username != 'Guest'" class="btn btn-primary btn-sm" role="button" ng-click="startAdding()">Add</a>
+   <a ng-show="editing || adding" class="btn btn-primary btn-sm" role="button" ng-click="contribute()">Contribute</a>
+   <a ng-show="editing || adding" class="btn btn-primary btn-sm" role="button" ng-click="cancel()">Cancel</a>
+   <a ng-show="editing" class="btn btn-primary btn-sm" role="button" ng-click="flag()">Flag Abuse</a>
+   <div ng-show="editing">Please contribute responsibly. Abuse will be flagged and abusers recorded.</div>
 </div>
 <div ng-show="view=='loginView'">
    <table align="center">

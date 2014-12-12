@@ -11,7 +11,7 @@ var connectionpool = mysql.createPool({
 	password : 'nd888nd7',
 	database : 'language_rescue_database'
 });
-	app.use(bodyParser.json());
+app.use(bodyParser.json());
 fs.readFile('../FrontEnd/index.html', function(err, html){
 	if (err) {
 		console.error('COULDN\'T OPEN FILE', err);
@@ -35,7 +35,7 @@ app.get('/', function(req,res){
 //	res.writeHeader(200, {"Content-Type":"text/html"});
 //	res.write(mainHtml);
 //	res.end();
-	res.sendFile(path.resolve(__dirname + '/../FrontEnd/index.html'));
+res.sendFile(path.resolve(__dirname + '/../FrontEnd/index.html'));
 });
 
 
@@ -203,14 +203,14 @@ app.post('/insert/:table', function(req,res){
 		var data = {};
 		if (req.params.table == 'users')
 		{
-		
+			
 			data = {
 				username : input.username,
 				password : input.password,
 				email : input.email,
 				contributions : input.contributions,
 				abuse_strikes : input.abuse_strikes
-			
+				
 			};
 		}
 		else if (req.params.table == 'languages')
@@ -241,8 +241,8 @@ app.post('/insert/:table', function(req,res){
 		else
 		{
 			if (req.params.table == 'entries'){
-			connection.query('UPDATE users SET contributions = contributions+1 WHERE username = \'' + input.first_contributed_user + '\'', function (err, result) {
-				if (err) throw err;
+				connection.query('UPDATE users SET contributions = contributions+1 WHERE username = \'' + input.first_contributed_user + '\'', function (err, result) {
+					if (err) throw err;
 				//res.send('User contribution count has increased.');
 			});
 			}
@@ -270,7 +270,7 @@ app.post('/update/:entry', function(req,res){
 			connection.query('UPDATE users SET contributions = contributions+1 WHERE username = \'' + input.last_contributed_user + '\'', function (err, result) {
 				if (err) throw err;
 			});
-					
+			
 			connection.query('UPDATE entries SET definition = \'' + input.definition + '\', last_contributed_user = \'' + input.last_contributed_user + '\' WHERE term = \'' + input.term + '\'', function (err, result) {
 				if (err) throw err;
 				res.send('User updated the database with ID: ' + result.insertID);

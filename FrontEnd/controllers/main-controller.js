@@ -180,7 +180,7 @@ app.controller('MainController',
 
 				//var exists = data.exists;
 				var exists = false;
-					console.log(data.json.length);
+				console.log(data.json.length);
 				for (var i = 0; i < data.json.length; i++)
 				{
 
