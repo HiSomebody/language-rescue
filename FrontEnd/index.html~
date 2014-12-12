@@ -139,7 +139,7 @@
                <h3>
                   Do you accept this mission?
                </h3>
-               <a class="btn btn-primary btn-sm" role="button" ng-click="setView('mainView')">Get Started!</a>
+               <a class="btn btn-primary btn-sm" role="button" ng-click="setView('loginView')">Get Started!</a>
             </td>
          </tr>
       </div>
@@ -187,8 +187,16 @@
 		</div>
       <div ng-show="view=='mainView'">
          <div ng-show="successUpdate" class="alert alert-success" role="alert">Successfully updated entry!"</div>
-         <table align="center">
-            <tr>
+	         
+	<table align="center">
+        <tr>
+	
+	<h2>
+	Here you can view entries in the given languages.  By creating an account you can help by adding to this dictionary
+	</h2>	
+		
+	</tr>    
+	<tr>
                <td style="text-align:left">
                </td>
                <td style="text-align:right">
