@@ -241,6 +241,7 @@
                </td>
             </tr>
          </table>
+	<div ng-show="editing">Please click and edit the entry in the text area</div>
          <a ng-show="!adding && !editing && user.username != 'Guest'" class="btn btn-primary btn-sm" role="button" ng-click="startEditing()">Edit</a>
          <a ng-show="!editing && !adding && user.username != 'Guest'" class="btn btn-primary btn-sm" role="button" ng-click="startAdding()">Add</a>
          <a ng-show="editing || adding" class="btn btn-primary btn-sm" role="button" ng-click="contribute()">Contribute</a>
@@ -312,7 +313,7 @@
                   <h3>
                      Password
                   </h3>
-                  <input style="font-size:20" type="text" ng-model="newPassword" ng-minlength=6 placeholder = "Must be 6 characters" required>
+                  <input style="font-size:20" type="password" ng-model="newPassword" ng-minlength=6 placeholder = "Must be 6 characters" required>
                   <div ng-show="passwordTooShort" class="alert alert-danger" role="alert">Password is too short</div>
                </td>
             </tr>
@@ -321,7 +322,7 @@
                   <h3>
                      Confirm Password
                   </h3>
-                  <input style="font-size:20" type="text" ng-model="confirmPassword" ng-minlength=5 placeholder = "Passwords must match" required>
+                  <input style="font-size:20" type="password" ng-model="confirmPassword" ng-minlength=5 placeholder = "Passwords must match" required>
                   <div ng-show="passwordNotMatch" class="alert alert-danger" role="alert">Passwords do not match</div>
                </td>
             </tr>
