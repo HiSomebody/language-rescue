@@ -16,6 +16,7 @@ app.factory('myFactory', function($http){
 		console.error('failed to retrieve data');
 	});
 	
+/*
 	languages.listed = [
 	{
 		language_name: "Hiligaynon",
@@ -63,8 +64,7 @@ app.factory('myFactory', function($http){
 	}
 	];
 	
-	
-	
+	*/
 	
 	
 	var entries = {};
@@ -152,6 +152,8 @@ app.factory('myFactory', function($http){
 	}
 	];
 	
+
+
 	instance.entries = entries;
 	
 	
@@ -264,8 +266,8 @@ app.controller('MainController',
 
 	$scope.setView = function(view)
 	{
-			$scope.badUsername = false;
-			$scope.badPassword = false;
+		$scope.badUsername = false;
+		$scope.badPassword = false;
 		if (view == "loginView" && $scope.loggedIn)
 		{
 			alert("You are already logged in!")

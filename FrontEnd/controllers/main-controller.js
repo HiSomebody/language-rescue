@@ -16,6 +16,7 @@ app.factory('myFactory', function($http){
 		console.error('failed to retrieve data');
 	});
 	
+
 	languages.listed = [
 	{
 		language_name: "Hiligaynon",
@@ -62,7 +63,6 @@ app.factory('myFactory', function($http){
 		numEntries: 398
 	}
 	];
-	
 	
 	
 	
@@ -152,6 +152,8 @@ app.factory('myFactory', function($http){
 	}
 	];
 	
+
+
 	instance.entries = entries;
 	
 	
