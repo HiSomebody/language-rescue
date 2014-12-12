@@ -16,139 +16,19 @@ app.factory('myFactory', function($http){
 		console.error('failed to retrieve data');
 	});
 	
-/*
+
 	languages.listed = [
 	{
-		language_name: "Hiligaynon",
-		numEntries: 11
-	},
-	{
-		language_name: "Aklanon",
-		numEntries: 197
-	},
-	{
-		language_name: "Karay-a",
-		numEntries: 233
-	},
-	{
-		language_name: "Samoan",
-		numEntries: 244
-	},
-	{
-		language_name: "Tongan",
-		numEntries: 756
-	},
-	{
-		language_name: "Navajo",
-		numEntries: 43
-	},
-	{
-		language_name: "Ilokano",
-		numEntries: 56
-	},
-	{
-		language_name: "Ati",
-		numEntries: 23
-	},
-	{
-		language_name: "Maori",
-		numEntries: 87
-	},
-	{
-		language_name: "Rotuman",
-		numEntries: 57
-	},
-	{
-		language_name: "Fijian",
-		numEntries: 398
 	}
 	];
 	
-	*/
+	
 	
 	
 	var entries = {};
+
 	entries.listed = [
 	{
-		entry: "Kumusta",
-		definitions: [
-		"Hello",
-		"How are you?",
-		"How is it?"
-		],
-		type: "Greeting"
-	},
-	{
-		entry: "Kumusta ka?",
-		definitions: [
-		"How are you?"
-		],
-		type: "Greeting"
-	},
-	{
-		entry: "Oy",
-		definitions: [
-		"Hey"
-		],
-		type: "Interjection"
-	},
-	{
-		entry: "Maayo",
-		definitions: [
-		"Good",
-		"Well",
-		"Great"
-		],
-		type: "Adjective"
-	},
-	{
-		entry: "Maayong aga",
-		definitions: [
-		"Good Morning"
-		],
-		type: "Greeting"
-	},
-	{
-		entry: "Maayong udto",
-		definitions: [
-		"Good noon"
-		],
-		type: "Greeting"
-	},
-	{
-		entry: "Maayong gab-i",
-		definitions: [
-		"Good evening"
-		],
-		type: "Greeting"
-	},
-	{
-		entry: "Karabao",
-		definitions: [
-		"Water buffalo"
-		],
-		type: "Noun"
-	},
-	{
-		entry: "hatag",
-		definitions: [
-		"give"
-		],
-		type: "Verb"
-	},
-	{
-		entry: "Diin ka magkadto?",
-		definitions: [
-		"Where are you going?"
-		],
-		type: "Greeting"
-	},
-	{
-		entry: "Diin ka naghalin?",
-		definitions: [
-		"Where are you coming from?"
-		],
-		type: "Greeting"
 	}
 	];
 	
@@ -300,8 +180,10 @@ app.controller('MainController',
 
 				//var exists = data.exists;
 				var exists = false;
+					console.log(data.json.length);
 				for (var i = 0; i < data.json.length; i++)
 				{
+
 					if (data.json[i].language_id == $scope.selectedLanguage.id)
 					{
 						exists = true;
