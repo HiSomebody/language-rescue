@@ -325,7 +325,17 @@ app.post('/increment/:game', function(req,res){
 		{
 			connection.query('UPDATE games SET game_count = game_count+1 WHERE game_title = \'' + req.params.game + '\'', function (err, result) {
 				if (err) throw err;
-				res.send('User updated the database');
+				else {
+					connection.query('SELECT game_count FROM games WHERE game_title = \''+req.params.game+'\'', function(err, rows, fields)
+					{
+						res.send({
+						result: 'success',
+						response: rows[0].game_count
+						});
+					}
+				}
+
+			
 				process.stdout.write("responded postively: ");
 			});
 		}
