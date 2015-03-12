@@ -331,11 +331,15 @@ app.post('/increment/:game', function(req,res){
 						{
 							console.log("ERROR!!!");
 						}
+						var xml = require('xml');
+
+						response.set('Content-Type', 'text/xml');
+						response.send(xml(rows[0].game_count));
 						console.log("ROWS[0]: " + rows[0]);
 						console.log("ROWS[0].game_count: " + rows[0].game_count);
-						res.send(
-						rows[0].game_count
-						);
+						//res.send(
+						//rows[0].game_count
+						//);
 					});
 				};
 
