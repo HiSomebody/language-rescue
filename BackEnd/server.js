@@ -26,6 +26,7 @@ fs.readFile('../FrontEnd/index.html', function(err, html){
 		mainHtml = html;
 	}
 });
+
 app.use(function(req, res, next) {
 	res.header("Access-Control-Allow-Origin", "*");
 	res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -36,6 +37,12 @@ app.get('/', function(req,res){
 //	res.write(mainHtml);
 //	res.end();
 res.sendFile(path.resolve(__dirname + '/../FrontEnd/index.html'));
+});
+app.get('/doubleit', function(req,res){
+//	res.writeHeader(200, {"Content-Type":"text/html"});
+//	res.write(mainHtml);
+//	res.end();
+res.sendFile(path.resolve(__dirname + '/../FrontEnd/GAMES/DoubleIt/index.html'));
 });
 
 
