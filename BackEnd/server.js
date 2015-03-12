@@ -332,6 +332,7 @@ app.post('/increment/:game', function(req,res){
 							console.log("ERROR!!!");
 						}
 						console.log("ROWS[0]: " + rows[0]);
+						console.log("ROWS[0].game_count: " + rows[0].game_count);
 						res.send({
 						result: 'success',
 						response: rows[0].game_count
