@@ -19,6 +19,7 @@ xmlhttp.onreadystatechange=function()
 console.log("on ready state kwan");
   if (xmlhttp.readyState==4 && xmlhttp.status==200)
     {
+console.log("success 200");
     xmlDoc=xmlhttp.responseXML;
     txt="";
     x=xmlDoc.getElementsByTagName("views");
@@ -26,6 +27,7 @@ console.log("on ready state kwan");
       {
       txt=txt + x[i].childNodes[0].nodeValue + "<br>";
       }
+console.log(txt);
     viewCount=txt;
     }
   }
