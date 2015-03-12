@@ -321,7 +321,7 @@ app.post('/increment/:game', function(req,res){
 				err: err.code
 			});
 		}
-		else {({{({})}})}
+		else
 		{
 			connection.query('UPDATE games SET game_count = game_count+1 WHERE game_title = \'' + req.params.game + '\'', function (err, result) {
 				if (err) throw err;
