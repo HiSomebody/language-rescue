@@ -355,6 +355,12 @@ app.post('/increment/:game', function(req,res){
 app.get('/:folder/:filename', function(req,res){
 	res.sendFile(path.resolve(__dirname + '/../FrontEnd/' + req.params.folder + '/' + req.params.filename));	
 });
+
+app.post('/inbound', function(request, response) {
+    response.type('text/xml');
+    response.send('<Response><Say>Hello there! Thanks for calling Paul\'s Server.</Say></Response>');
+});
+
 app.put('/:table/:id', function(req,res){});
 app.delete('/:table/:id', function(req,res){});
 app.listen(80);
