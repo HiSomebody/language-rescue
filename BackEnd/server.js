@@ -333,9 +333,10 @@ app.post('/increment/:game', function(req,res){
 							console.log("ERROR!!!");
 						}
 
-
+						var numViews = rows[0].game_count;
+						var xmlObj = [{ views: numViews }];
 						res.set('Content-Type', 'text/xml');
-						res.send(xml(rows[0].game_count));
+						res.send(xml(xmlObj));
 						console.log("ROWS[0]: " + rows[0]);
 						console.log("ROWS[0].game_count: " + rows[0].game_count);
 						//res.send(
