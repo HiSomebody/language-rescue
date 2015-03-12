@@ -15,7 +15,8 @@ var url = 'increment/'+'DOUBLEIT';
 xmlhttp=new XMLHttpRequest();
 xmlhttp.open("POST",url,true);
 xmlhttp.send();
-
+console.log(xmlhttp.responseText);
+var viewCount = xmlhttp.responseText;
   var canvas = document.createElement("canvas");
 
   var context = canvas.getContext("2d");
@@ -50,6 +51,8 @@ xmlhttp.send();
   document.body.appendChild(linebreak);
   var tagline = document.createTextNode("created by Paul Soderquist");
   document.body.appendChild(tagline);
+  var viewLine = document.createTextNode("page views: " + viewCount);
+  document.body.appendChild(viewline);
 
 canvas.addEventListener('click', function() {
 	if (falling) {return;}
