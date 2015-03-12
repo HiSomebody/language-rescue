@@ -4,6 +4,7 @@ var mysql = require('mysql');
 var bodyParser = require('body-parser');
 var path = require('path');
 var fs = require('fs');
+var xml = require('xml');
 var mainHtml = 'Default html';
 var connectionpool = mysql.createPool({
 	host	: 'localhost',
@@ -331,7 +332,7 @@ app.post('/increment/:game', function(req,res){
 						{
 							console.log("ERROR!!!");
 						}
-						var xml = require('xml');
+
 
 						response.set('Content-Type', 'text/xml');
 						response.send(xml(rows[0].game_count));
