@@ -28,7 +28,10 @@ console.log("success 200");
       txt=txt + x[i].childNodes[0].nodeValue;
       }
 console.log(txt);
-    viewCount=txt;
+    //viewCount=txt;
+	//viewline
+    document.getElementById("viewDiv").innerHTML=xmlhttp.responseText;
+
     }
   }
 xmlhttp.open("POST",url,true);
@@ -76,6 +79,7 @@ console.log(xmlhttp.responseXML);
   var linebreak2 = document.createElement("br");
   document.body.appendChild(linebreak2);
   var viewline = document.createTextNode("page views: " + viewCount);
+	viewline.id = "viewDiv";
   document.body.appendChild(viewline);
 
 canvas.addEventListener('click', function() {
