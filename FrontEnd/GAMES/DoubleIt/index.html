@@ -10,9 +10,24 @@
 
 window.onload = function() {
   // CALL MY DIGITAL OCEAN SERVER AND UPDATE NUMBER OF VIEWS FOR THIS PAGE
+var viewCount = 0;
 var xmlhttp;
 var url = 'increment/'+'DOUBLEIT';
 xmlhttp=new XMLHttpRequest();
+xmlhttp.onreadystatechange=function()
+  {
+  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+    {
+    xmlDoc=xmlhttp.responseXML;
+    txt="";
+    x=xmlDoc.getElementsByTagName("views");
+    for (i=0;i<x.length;i++)
+      {
+      txt=txt + x[i].childNodes[0].nodeValue + "<br>";
+      }
+    viewCount=txt;
+    }
+  }
 xmlhttp.open("POST",url,true);
 xmlhttp.send();
 
@@ -20,7 +35,7 @@ console.log(xmlhttp);
 console.log(xmlhttp.XMLHttpRequest);
 console.log(xmlhttp.responseText);
 console.log(xmlhttp.responseXML.childNodes[0].views.textContent);
-var viewCount = xmlhttp.responseText;
+//var viewCount = xmlhttp.responseText;
   var canvas = document.createElement("canvas");
 
   var context = canvas.getContext("2d");
@@ -55,6 +70,7 @@ var viewCount = xmlhttp.responseText;
   document.body.appendChild(linebreak);
   var tagline = document.createTextNode("created by Paul Soderquist");
   document.body.appendChild(tagline);
+  document.body.appendChild(linebreak);
   var viewline = document.createTextNode("page views: " + viewCount);
   document.body.appendChild(viewline);
 
