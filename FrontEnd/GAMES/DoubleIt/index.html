@@ -19,7 +19,7 @@ xmlhttp.send();
 console.log(xmlhttp);
 console.log(xmlhttp.XMLHttpRequest);
 console.log(xmlhttp.responseText);
-console.log(xmlhttp.responseXML);
+console.log(xmlhttp.responseXML.childNodes[0].views.textContent);
 var viewCount = xmlhttp.responseText;
   var canvas = document.createElement("canvas");
 
