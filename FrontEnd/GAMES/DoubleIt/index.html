@@ -11,17 +11,10 @@
 window.onload = function() {
   // CALL MY DIGITAL OCEAN SERVER AND UPDATE NUMBER OF VIEWS FOR THIS PAGE
 var xmlhttp;
-var url = 'https://operationlanguagerescue.com:'+80+'/increment/'+'DOUBLEIT';
-if (window.XMLHttpRequest)
-  {// code for IE7+, Firefox, Chrome, Opera, Safari
-  xmlhttp=new XMLHttpRequest();
-  }
-else
-  {// code for IE6, IE5
-  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-  }
-	xmlhttp.open("POST",url,true);
-	xmlhttp.send();
+var url = 'https://operationlanguagerescue.com/doubleit:'+80+'/increment/'+'DOUBLEIT';
+xmlhttp=new XMLHttpRequest();
+xmlhttp.open("POST",url,true);
+xmlhttp.send();
 
   var canvas = document.createElement("canvas");
 
