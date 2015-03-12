@@ -1,0 +1,249 @@
+<html>
+<head>
+<meta name="title" content="Double It" />
+<meta property="og:description" content="Keep doubling your money to become a millionaire!" />
+<meta property="og:image" content="https://students.cs.byu.edu/~psoder3/DoubleIt/DoubleItImg.png"/>
+<link rel="image_src" href="https://students.cs.byu.edu/~psoder3/DoubleIt/DoubleItImg.png" />
+<title>Double It!</title>
+<script>
+// HARD VERSION
+
+window.onload = function() {
+  // CALL MY DIGITAL OCEAN SERVER AND UPDATE NUMBER OF VIEWS FOR THIS PAGE
+var xmlhttp;
+var url = 'https://operationlanguagerescue.com:'+80+'/increment/'+'DOUBLEIT';
+if (window.XMLHttpRequest)
+  {// code for IE7+, Firefox, Chrome, Opera, Safari
+  xmlhttp=new XMLHttpRequest();
+  }
+else
+  {// code for IE6, IE5
+  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+	xmlhttp.open("POST",url,true);
+	xmlhttp.send();
+
+  var canvas = document.createElement("canvas");
+
+  var context = canvas.getContext("2d");
+  var colorRed = "#FF3300";
+  var colorGreen = "#66FF33";
+  var currentColor = colorGreen;
+  var bucketColor = "#996600";
+  var canvasWidth = 400;
+  var canvasHeight = 400;
+  var circleRadius = 15;
+  var totalMoney = 1;
+  var highScore = 1;
+  var isUnder = false;
+  var MovingRight = false;
+  var MovingLeft = false;
+  var wonGame = false;
+  var bucketX = 260;
+  var bucketY = 350;
+  var bucketWidth = 40;
+  var bucketHeight = 40;
+  canvas.width = canvasWidth;
+  canvas.height = canvasHeight;
+  var isCatching = false;
+  var startingX = 130;
+  var startingY = -600;
+  var posX = startingX;
+  var posY = startingY;
+  var hasClicked = false;
+  var falling = false;
+  document.body.appendChild(canvas);
+  var linebreak = document.createElement("br");
+  document.body.appendChild(linebreak);
+  var tagline = document.createTextNode("created by Paul Soderquist");
+  document.body.appendChild(tagline);
+
+canvas.addEventListener('click', function() {
+	if (falling) {return;}
+	if (wonGame && !hasClicked)
+	{
+		hasClicked = true;
+		return;
+	}
+	if (isUnder){
+		MovingRight = true;
+		MovingLeft = false;
+	}
+	else {
+		MovingRight = false;
+		MovingLeft = true;
+	}
+	isUnder = !isUnder;
+}, false);
+
+/*
+// Draw a red circle particle on the canvas
+context.beginPath();
+context.fillStyle = colorRed;
+// After setting the fill style, draw an arc on the canvas
+context.arc(100, 200, 10, 0, Math.PI*2, true); 
+context.closePath();
+context.fill();
+*/
+
+/*
+// Draw a green circle particle on the canvas
+context.beginPath();
+context.fillStyle = colorGreen;
+// After setting the fill style, draw an arc on the canvas
+context.arc(300, 200, 10, 0, Math.PI*2, true); 
+context.closePath();
+context.fill();
+*/
+
+// Draw shapes on the canvas using an interval of 30ms
+setInterval(function() {
+var CountDown = 3;
+if (posY > startingY/3)
+{
+    CountDown = 1;
+}
+else if (posY > (startingY/3)*2)
+{
+    CountDown = 2;
+}
+else
+{
+    CountDown = 3;
+}
+
+if (wonGame && !hasClicked)
+{
+	return;
+}
+if (MovingLeft)
+{
+	bucketX -= 15;
+	boundLeft = 130 - bucketWidth/2;
+	if (bucketX < boundLeft)
+	{
+		bucketX = boundLeft;
+		isCatching = true;
+	}
+}
+else if (MovingRight)
+{
+	isCatching = false;
+	bucketX += 15;
+	boundRight = 260;
+	if (bucketX > boundRight)
+	{
+		bucketX = boundRight;
+	}
+}
+  
+  if (isCatching && posY < canvasHeight-bucketHeight*(4/5))
+  {
+    posX += 0;
+    posY += 8;
+  }
+  else if (!isCatching && posY < canvasHeight)
+  {
+    posX += 0;
+    posY += 8;
+  }
+  else
+  {
+	if (isCatching)
+	{
+		if (currentColor == colorRed)
+		{
+			totalMoney = 1;
+		}
+		else
+		{
+			totalMoney *= 2;
+			if (totalMoney >= 1000000)
+			{
+				wonGame = true;
+			}
+			if (totalMoney > highScore)
+			{
+				highScore = totalMoney;
+			}
+		}
+	}
+	posX = startingX,
+	posY = startingY;
+	currentColor = (Math.random() > .3)? colorGreen : colorRed;
+	falling = false;
+  }
+  if (posY > 0)
+  {
+    falling = true;
+  }
+  context.fillStyle = "black";
+  context.fillRect(0,0,canvas.width, canvas.height);
+
+  context.font = "30px Arial";
+  context.fillStyle = "white";
+  var numDigitsTotal = 2;
+  var num1 = totalMoney;
+  while (num1 > 10)
+  {
+     num1/=10;
+     numDigitsTotal++;
+  }
+
+  var numDigitsHigh = 2;
+  var num2 = highScore;
+  while (num2 > 10)
+  {
+     num2/=10;
+     numDigitsHigh++;
+  }
+
+  context.fillText("$"+totalMoney,390-(17*numDigitsTotal),50);
+  context.fillStyle = "green";
+  context.fillText("$"+highScore,390-(17*numDigitsHigh),80);
+
+  // Draw a circle particle on the canvas
+  context.beginPath();
+  context.fillStyle = currentColor;
+  // After setting the fill style, draw an arc on the canvas
+  context.arc(posX, posY, circleRadius, 0, Math.PI*2, true); 
+  context.closePath();
+  context.fill();
+  context.fillStyle = bucketColor;
+  if (!falling)
+  {
+    context.font = "30px Arial";
+    context.fillRect(bucketX-2, bucketY-2, bucketWidth + 4, bucketHeight + 4);
+    context.fillStyle = "yellow";
+    context.fillText(CountDown,bucketX + bucketWidth/3.5,bucketY + bucketHeight*0.75);
+  }
+  else
+  {
+    context.fillRect(bucketX, bucketY, bucketWidth, bucketHeight);
+  }
+	if (wonGame && !hasClicked)
+	{
+		context.font = "30px Arial";
+		context.fillStyle = "yellow";
+		context.fillText("YOU'RE A MILLIONAIRE!",30,150);
+		context.fillText("TAP TO CONTINUE",60,180);
+	}
+
+}, 30);
+}
+</script>
+</head>
+<body style="text-align:center">
+<br>
+<h1 style="font-family:Calibri">Double It!</h1>
+<p>
+Catch the green dots and double your money
+<br>
+Catch the red and start over!
+<br>
+Try to reach 1 Million dollars.
+</p>
+
+</body>
+</html>
+
