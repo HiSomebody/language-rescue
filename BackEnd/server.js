@@ -361,6 +361,11 @@ app.post('/inbound', function(request, response) {
     response.send('<Response><Say>Hello there! Thanks for calling Paul\'s Server.</Say></Response>');
 });
 
+app.post('/incomingtext', function(request, response) {
+    response.type('text/xml');
+    response.send('<Response><h1>Hello there! Thanks for texting Paul\'s Server.</h1></Response>');
+});
+
 app.put('/:table/:id', function(req,res){});
 app.delete('/:table/:id', function(req,res){});
 app.listen(80);
