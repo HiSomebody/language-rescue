@@ -16,6 +16,7 @@ var url = 'increment/'+'DOUBLEIT';
 xmlhttp=new XMLHttpRequest();
 xmlhttp.onreadystatechange=function()
   {
+console.log("on ready state kwan");
   if (xmlhttp.readyState==4 && xmlhttp.status==200)
     {
     xmlDoc=xmlhttp.responseXML;
