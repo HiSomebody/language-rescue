@@ -15,7 +15,7 @@ var url = 'increment/'+'DOUBLEIT';
 xmlhttp=new XMLHttpRequest();
 xmlhttp.open("POST",url,true);
 xmlhttp.send();
-console.log(xmlhttp.response.response);
+console.log(xmlhttp);
 var viewCount = xmlhttp.response.response;
   var canvas = document.createElement("canvas");
 
