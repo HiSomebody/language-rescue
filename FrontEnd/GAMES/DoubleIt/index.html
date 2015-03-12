@@ -75,11 +75,7 @@ console.log(xmlhttp.responseXML);
   document.body.appendChild(linebreak1);
   var tagline = document.createTextNode("created by Paul Soderquist");
   document.body.appendChild(tagline);
-  var linebreak2 = document.createElement("br");
-  document.body.appendChild(linebreak2);
-  var viewline = document.createElement("page views: " + viewCount);
-  document.body.appendChild(viewline);
-
+  
 canvas.addEventListener('click', function() {
 	if (falling) {return;}
 	if (wonGame && !hasClicked)
