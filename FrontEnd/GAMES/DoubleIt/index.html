@@ -16,6 +16,7 @@ xmlhttp=new XMLHttpRequest();
 xmlhttp.open("POST",url,true);
 xmlhttp.send();
 console.log(xmlhttp.responseText);
+console.log(xmlhttp.responseXML);
 var viewCount = xmlhttp.responseText;
   var canvas = document.createElement("canvas");
 
