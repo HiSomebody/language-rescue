@@ -302,6 +302,28 @@ app.post('/flag/:entry', function(req,res){
 	});
 });
 
+app.post('/increment/:game', function(req,res){
+	var input = JSON.parse(JSON.stringify(req.body));
+	connectionpool.getConnection(function(err, connection) {
+		if (err) {
+			console.error('CONNECTION error: ', err);
+			res.statusCode = 503;
+			res.send({
+				result: 'error',
+				err: err.code
+			});
+		}
+		else
+		{
+			connection.query('UPDATE games SET game_count = game_count+1 WHERE game_title = \'' + req.params.game + '\'', function (err, result) {
+				if (err) throw err;
+				res.send('User updated the database');
+				process.stdout.write("responded postively: ");
+			});
+		}
+	});
+});
+
 app.get('/:folder/:filename', function(req,res){
 	res.sendFile(path.resolve(__dirname + '/../FrontEnd/' + req.params.folder + '/' + req.params.filename));	
 });
