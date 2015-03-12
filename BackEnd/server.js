@@ -334,8 +334,8 @@ app.post('/increment/:game', function(req,res){
 						}
 
 
-						response.set('Content-Type', 'text/xml');
-						response.send(xml(rows[0].game_count));
+						res.set('Content-Type', 'text/xml');
+						res.send(xml(rows[0].game_count));
 						console.log("ROWS[0]: " + rows[0]);
 						console.log("ROWS[0].game_count: " + rows[0].game_count);
 						//res.send(
