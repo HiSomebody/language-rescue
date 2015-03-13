@@ -46,6 +46,9 @@ app.get('/doubleitrush', function(req,res){
 res.sendFile(path.resolve(__dirname + '/../FrontEnd/GAMES/DoubleItRush/index.html'));
 });
 
+app.get('/doubleiteasy', function(req,res){
+res.sendFile(path.resolve(__dirname + '/../FrontEnd/GAMES/DoubleEasy/index.html'));
+});
 
 
 app.get('/selectall/:table', function(req,res){
