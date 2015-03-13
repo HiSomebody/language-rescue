@@ -33,19 +33,19 @@ app.use(function(req, res, next) {
 	res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 	next();
 });
+
 app.get('/', function(req,res){
-//	res.writeHeader(200, {"Content-Type":"text/html"});
-//	res.write(mainHtml);
-//	res.end();
 res.sendFile(path.resolve(__dirname + '/../FrontEnd/index.html'));
-//res.sendFile(path.resolve(__dirname + '/../FrontEnd/GAMES/DoubleIt/index.html'));
 });
+
 app.get('/doubleit', function(req,res){
-//	res.writeHeader(200, {"Content-Type":"text/html"});
-//	res.write(mainHtml);
-//	res.end();
 res.sendFile(path.resolve(__dirname + '/../FrontEnd/GAMES/DoubleIt/index.html'));
 });
+
+app.get('/doubleitrush', function(req,res){
+res.sendFile(path.resolve(__dirname + '/../FrontEnd/GAMES/DoubleItRush/index.html'));
+});
+
 
 
 app.get('/selectall/:table', function(req,res){

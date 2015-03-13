@@ -1,46 +1,12 @@
 <html>
 <head>
-<meta name="title" content="Double It! (Psychic Version)" />
+<meta name="title" content="Double It! (Rush Version)" />
 <meta property="og:description" content="Keep doubling your money to become a millionaire!" />
 <meta property="og:image" content="https://students.cs.byu.edu/~psoder3/DoubleIt/DoubleItImg.png"/>
 <link rel="image_src" href="https://students.cs.byu.edu/~psoder3/DoubleIt/DoubleItImg.png" />
-<title>Double It!</title>
+<title>Double It! (Rush)</title>
 <script>
-// HARD VERSION
-
 window.onload = function() {
-  // CALL MY DIGITAL OCEAN SERVER AND UPDATE NUMBER OF VIEWS FOR THIS PAGE
-var viewCount = 0;
-var xmlhttp;
-var url = 'increment/'+'DOUBLEIT';
-xmlhttp=new XMLHttpRequest();
-xmlhttp.onreadystatechange=function()
-  {
-console.log("on ready state kwan");
-  if (xmlhttp.readyState==4 && xmlhttp.status==200)
-    {
-console.log("success 200");
-    xmlDoc=xmlhttp.responseXML;
-    txt="";
-    x=xmlDoc.getElementsByTagName("views");
-    for (i=0;i<x.length;i++)
-      {
-      txt=txt + x[i].childNodes[0].nodeValue;
-      }
-console.log(txt);
-    viewCount=txt;
-    document.getElementById("viewDiv").innerHTML="page views: " + viewCount;
-
-    }
-  }
-xmlhttp.open("POST",url,true);
-xmlhttp.send();
-
-console.log(xmlhttp);
-console.log(xmlhttp.XMLHttpRequest);
-console.log(xmlhttp.responseText);
-console.log(xmlhttp.responseXML);
-//var viewCount = xmlhttp.responseText;
   var canvas = document.createElement("canvas");
 
   var context = canvas.getContext("2d");
@@ -65,19 +31,22 @@ console.log(xmlhttp.responseXML);
   canvas.height = canvasHeight;
   var isCatching = false;
   var startingX = 130;
-  var startingY = -600;
+  var startingY = 20;
+  var counter = 0;
   var posX = startingX;
   var posY = startingY;
   var hasClicked = false;
-  var falling = false;
   document.body.appendChild(canvas);
-  var linebreak1 = document.createElement("br");
-  document.body.appendChild(linebreak1);
+  var linebreak = document.createElement("br");
+  document.body.appendChild(linebreak);
   var tagline = document.createTextNode("created by Paul Soderquist");
   document.body.appendChild(tagline);
-  
+  var startingBallSpeed = 8;
+  var ballSpeed = startingBallSpeed;
+  var boundLeft = 130 - bucketWidth/2
+  var boundRight = 260;
 canvas.addEventListener('click', function() {
-	if (falling) {return;}
+	//if (falling) {return;}
 	if (wonGame && !hasClicked)
 	{
 		hasClicked = true;
@@ -116,20 +85,6 @@ context.fill();
 
 // Draw shapes on the canvas using an interval of 30ms
 setInterval(function() {
-var CountDown = 3;
-if (posY > startingY/3)
-{
-    CountDown = 1;
-}
-else if (posY > (startingY/3)*2)
-{
-    CountDown = 2;
-}
-else
-{
-    CountDown = 3;
-}
-
 if (wonGame && !hasClicked)
 {
 	return;
@@ -137,41 +92,48 @@ if (wonGame && !hasClicked)
 if (MovingLeft)
 {
 	bucketX -= 15;
-	boundLeft = 130 - bucketWidth/2;
+	if (bucketX < boundLeft + bucketWidth)
+	{
+		isCatching = true;
+	}
 	if (bucketX < boundLeft)
 	{
 		bucketX = boundLeft;
-		isCatching = true;
 	}
 }
 else if (MovingRight)
 {
-	isCatching = false;
+	if (bucketX > boundLeft + bucketWidth)
+	{
+		isCatching = false;
+	}
 	bucketX += 15;
-	boundRight = 260;
 	if (bucketX > boundRight)
 	{
 		bucketX = boundRight;
 	}
 }
-  
-  if (isCatching && posY < canvasHeight-bucketHeight*(4/5))
+
+
+  var tempPosY = posY;
+  if (isCatching && posY < canvasHeight-bucketHeight*(3/4))
   {
     posX += 0;
-    posY += 8;
+    posY += ballSpeed;
   }
   else if (!isCatching && posY < canvasHeight)
   {
     posX += 0;
-    posY += 8;
+    posY += ballSpeed;
   }
-  else
+  else//if (tempPosY > canvasHeight - bucketHeight)
   {
-	if (isCatching)
+	if (isCatching || bucketX < boundLeft + bucketWidth*0.75)
 	{
 		if (currentColor == colorRed)
 		{
 			totalMoney = 1;
+			ballSpeed = startingBallSpeed;
 		}
 		else
 		{
@@ -188,12 +150,14 @@ else if (MovingRight)
 	}
 	posX = startingX,
 	posY = startingY;
-	currentColor = (Math.random() > .3)? colorGreen : colorRed;
-	falling = false;
-  }
-  if (posY > 0)
-  {
-    falling = true;
+	
+	
+	counter++;
+	if (counter % 2 == 0)
+	{
+		ballSpeed++;
+	}
+	currentColor = (Math.random() > .5)? colorGreen : colorRed;
   }
   context.fillStyle = "black";
   context.fillRect(0,0,canvas.width, canvas.height);
@@ -228,17 +192,8 @@ else if (MovingRight)
   context.closePath();
   context.fill();
   context.fillStyle = bucketColor;
-  if (!falling)
-  {
-    context.font = "30px Arial";
-    context.fillRect(bucketX-2, bucketY-2, bucketWidth + 4, bucketHeight + 4);
-    context.fillStyle = "yellow";
-    context.fillText(CountDown,bucketX + bucketWidth/3.5,bucketY + bucketHeight*0.75);
-  }
-  else
-  {
-    context.fillRect(bucketX, bucketY, bucketWidth, bucketHeight);
-  }
+  context.fillRect(bucketX, bucketY, bucketWidth, bucketHeight);
+
 	if (wonGame && !hasClicked)
 	{
 		context.font = "30px Arial";
@@ -252,9 +207,8 @@ else if (MovingRight)
 </script>
 </head>
 <body style="text-align:center">
-<div id="viewDiv"><h2></h2></div>
 <br>
-<h1 style="font-family:Calibri">Double It! (Psychic Version)</h1>
+<h1 style="font-family:Calibri">Double It! (Rush Version)</h1>
 <p>
 Catch the green dots and double your money
 <br>
