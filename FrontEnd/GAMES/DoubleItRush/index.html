@@ -45,6 +45,9 @@ window.onload = function() {
   var ballSpeed = startingBallSpeed;
   var boundLeft = 130 - bucketWidth/2
   var boundRight = 260;
+
+  var leftKey = 37;
+  var rightKey = 39;
 canvas.addEventListener('click', function() {
 	//if (falling) {return;}
 	if (wonGame && !hasClicked)
@@ -203,6 +206,52 @@ else if (MovingRight)
 	}
 
 }, 30);
+
+document.onkeydown = checkKey;
+
+function checkKey(e) {
+
+    e = e || window.event;
+
+    if (e.keyCode == '38') {
+        // up arrow
+    }
+    else if (e.keyCode == '40') {
+        // down arrow
+    }
+    else if (e.keyCode == '37') {
+       // left arrow
+	if (wonGame && !hasClicked)
+	{
+		hasClicked = true;
+		return;
+	}
+	
+	if (MovingRight)
+	{
+		isUnder = !isUnder;
+	}
+	MovingRight = false;
+	MovingLeft = true;
+    }
+    else if (e.keyCode == '39') {
+       // right arrow
+	if (wonGame && !hasClicked)
+	{
+		hasClicked = true;
+		return;
+	}
+	
+	if (MovingLeft)
+	{
+		isUnder = !isUnder;
+	}
+	MovingRight = true;
+	MovingLeft = false;
+    }
+
+}
+
 }
 </script>
 </head>
