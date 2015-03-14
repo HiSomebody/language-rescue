@@ -8,6 +8,28 @@
 <script>
 // HARD VERSION
 
+function ScreenShotShare(e) {
+      var dataURL = canvas.toDataURL();
+	console.log(dataURL);
+        //var childWin = window.open ("", "height=200,width=200");
+          //  childWin.document.body.innerHTML = "<span><img src = "+ dataURL + "></span>";
+var shareTitle = "I got to $" + highScore + " on Double It (Psychic Version)!";
+var desc = "Double your money to become a millionaire!";
+var url = "http://operationlanguagerescue.com/doubleit";
+var imageUrl = dataURL;
+
+window.open('http://www.facebook.com/sharer.php?s=100&p[title]=' + shareTitle + '&p[summary]=' + desc + '&p[url]=' + url + '&p[images][0]=' + imageUrl + '', 'sharer', 'toolbar=0,status=0,width=626,height=436');
+
+}
+
+function ScreenShot(e) {
+      var dataURL = canvas.toDataURL();
+	console.log(dataURL);
+        var childWin = window.open ("", "height=200,width=200");
+        childWin.document.body.innerHTML = "<span><img src = "+ dataURL + "></span>";
+}
+
+
 window.onload = function() {
   // CALL MY DIGITAL OCEAN SERVER AND UPDATE NUMBER OF VIEWS FOR THIS PAGE
 var viewCount = 0;
@@ -252,7 +274,10 @@ else if (MovingRight)
 </script>
 </head>
 <body style="text-align:center">
-<div id="viewDiv"><h2></h2></div>
+
+<a id="fb-share" style='text-decoration:none;' type="icon_link" onClick="ScreenShotShare();" href="javascript: void(0)"><input type="button" value="Share"></a>
+
+<input type="button" value="Take Screen Shot" onclick="ScreenShot();">
 <br>
 <h1 style="font-family:Calibri">Double It! (Psychic Version)</h1>
 <br>
