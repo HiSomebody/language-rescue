@@ -284,7 +284,7 @@ else if (MovingRight)
 document.onkeydown = checkKey;
 
 function checkKey(e) {
-
+if (falling) {return;}
     e = e || window.event;
 
     if (e.keyCode == '38') {
