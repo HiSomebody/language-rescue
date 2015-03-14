@@ -20,8 +20,10 @@ FB.ui({
 }
 
 
+
+
 var canvas;
-function ScreenShot(e) {
+function ScreenShotShare(e) {
       var dataURL = canvas.toDataURL();
 	console.log(dataURL);
         //var childWin = window.open ("", "height=200,width=200");
@@ -33,6 +35,13 @@ var imageUrl = dataURL;
 
 window.open('http://www.facebook.com/sharer.php?s=100&p[title]=' + shareTitle + '&p[summary]=' + desc + '&p[url]=' + url + '&p[images][0]=' + imageUrl + '', 'sharer', 'toolbar=0,status=0,width=626,height=436');
 
+}
+
+function ScreenShot(e) {
+      var dataURL = canvas.toDataURL();
+	console.log(dataURL);
+        var childWin = window.open ("", "height=200,width=200");
+        childWin.document.body.innerHTML = "<span><img src = "+ dataURL + "></span>";
 }
 
 window.onload = function() {
@@ -286,10 +295,9 @@ function checkKey(e) {
 </head>
 <body style="text-align:center">
 
-<a id="fb-share" style='text-decoration:none;' type="icon_link" onClick="ScreenShot();" href="javascript: void(0)"><input type="button"></a>
+<a id="fb-share" style='text-decoration:none;' type="icon_link" onClick="ScreenShotShare();" href="javascript: void(0)"><input type="button" value="Share"></a>
 
-
-<!--input type="button" value="Take Screen Shot" onclick="ScreenShot();"-->
+<input type="button" value="Take Screen Shot" onclick="ScreenShot();">
 <br>
 <h1 style="font-family:Calibri">Double It! (Rush Version)</h1>
 <p>
