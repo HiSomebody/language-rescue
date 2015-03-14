@@ -1,13 +1,42 @@
 <html>
 <head>
-<meta name="title" content="Double It! (Rush Version)" />
+<meta property="og:title" content="Double It Rush" />
+<meta property="og:site_name" content="DoubleIt" />
+<meta property="og:type" content="game.achievement" />
+<meta property="og:url" content="http://operationlanguagerescue.com/doubleitrush" />
 <meta property="og:description" content="Keep doubling your money to become a millionaire!" />
 <meta property="og:image" content="https://students.cs.byu.edu/~psoder3/DoubleIt/DoubleItImg.png"/>
 <link rel="image_src" href="https://students.cs.byu.edu/~psoder3/DoubleIt/DoubleItImg.png" />
 <title>Double It! (Rush)</title>
+
 <script>
+  var highScore = 1;
+
+window.fbAsyncInit = function() {
+FB.ui({
+  method: 'share',
+  href: 'http://operationlanguagerescue.com/doubleitrush',
+}, function(response){});
+}
+
+
+var canvas;
+function ScreenShot(e) {
+      var dataURL = canvas.toDataURL();
+	console.log(dataURL);
+        //var childWin = window.open ("", "height=200,width=200");
+          //  childWin.document.body.innerHTML = "<span><img src = "+ dataURL + "></span>";
+var shareTitle = "I got to $" + highScore + " on Double It Rush!";
+var desc = "Double your money to become a millionaire!";
+var url = "http://operationlanguagerescue.com/doubleitrush";
+var imageUrl = dataURL;
+
+window.open('http://www.facebook.com/sharer.php?s=100&p[title]=' + shareTitle + '&p[summary]=' + desc + '&p[url]=' + url + '&p[images][0]=' + imageUrl + '', 'sharer', 'toolbar=0,status=0,width=626,height=436');
+
+}
+
 window.onload = function() {
-  var canvas = document.createElement("canvas");
+  canvas = document.createElement("canvas");
 
   var context = canvas.getContext("2d");
   var colorRed = "#FF3300";
@@ -18,7 +47,7 @@ window.onload = function() {
   var canvasHeight = 400;
   var circleRadius = 15;
   var totalMoney = 1;
-  var highScore = 1;
+
   var isUnder = false;
   var MovingRight = false;
   var MovingLeft = false;
@@ -256,6 +285,11 @@ function checkKey(e) {
 </script>
 </head>
 <body style="text-align:center">
+
+<a id="fb-share" style='text-decoration:none;' type="icon_link" onClick="ScreenShot();" href="javascript: void(0)"><input type="button"></a>
+
+
+<!--input type="button" value="Take Screen Shot" onclick="ScreenShot();"-->
 <br>
 <h1 style="font-family:Calibri">Double It! (Rush Version)</h1>
 <p>
@@ -265,7 +299,6 @@ Catch the red and start over!
 <br>
 Try to reach 1 Million dollars.
 </p>
-
 </body>
 </html>
 
