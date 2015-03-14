@@ -7,7 +7,8 @@
 <title>Double It!</title>
 <script>
 // HARD VERSION
-
+var highScore = 1;
+var canvas;
 function ScreenShotShare(e) {
       var dataURL = canvas.toDataURL();
 	console.log(dataURL);
@@ -63,7 +64,7 @@ console.log(xmlhttp.XMLHttpRequest);
 console.log(xmlhttp.responseText);
 console.log(xmlhttp.responseXML);
 //var viewCount = xmlhttp.responseText;
-  var canvas = document.createElement("canvas");
+  canvas = document.createElement("canvas");
 
   var context = canvas.getContext("2d");
   var colorRed = "#FF3300";
@@ -74,7 +75,7 @@ console.log(xmlhttp.responseXML);
   var canvasHeight = 400;
   var circleRadius = 15;
   var totalMoney = 1;
-  var highScore = 1;
+  highScore = 1;
   var isUnder = false;
   var MovingRight = false;
   var MovingLeft = false;
