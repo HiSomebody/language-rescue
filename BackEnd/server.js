@@ -363,6 +363,10 @@ app.get('/:folder/:filename', function(req,res){
 	res.sendFile(path.resolve(__dirname + '/../FrontEnd/' + req.params.folder + '/' + req.params.filename));	
 });
 
+app.get('/GAMES/FriendsInABox/Avatars/:folder/:filename', function(req,res){
+	res.sendFile(path.resolve(__dirname + '/../FrontEnd/GAMES/FriendsInABox/Avatars/' + req.params.folder + '/' + req.params.filename));	
+});
+
 app.post('/inbound', function(request, response) {
     response.type('text/xml');
     response.send('<Response><Say>Hello there! Thanks for calling Paul\'s Server.</Say></Response>');
