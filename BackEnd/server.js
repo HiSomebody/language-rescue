@@ -50,6 +50,10 @@ app.get('/doubleiteasy', function(req,res){
 res.sendFile(path.resolve(__dirname + '/../FrontEnd/GAMES/DoubleEasy/index.html'));
 });
 
+app.get('/friendsinabox', function(req,res){
+res.sendFile(path.resolve(__dirname + '/../FrontEnd/GAMES/FriendsInABox/index.html'));
+});
+
 
 app.get('/selectall/:table', function(req,res){
 	connectionpool.getConnection(function(err, connection) {

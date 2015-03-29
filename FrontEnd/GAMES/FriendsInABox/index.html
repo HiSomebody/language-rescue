@@ -1,0 +1,290 @@
+
+<html>
+<head>
+<meta property="og:title" content="Friends in a Box" />
+<meta property="og:site_name" content="FriendsInABox" />
+<meta property="og:type" content="game.achievement" />
+<meta property="og:url" content="http://operationlanguagerescue.com/friendsinabox" />
+<meta property="og:description" content="Observe the friends in a box together!" />
+<meta property="og:image" content="https://students.cs.byu.edu/~psoder3/Friends/friendsImg.png"/>
+<link rel="image_src" href="https://students.cs.byu.edu/~psoder3/Friends/friendsImg.png"/>
+<title>Friends in a Box</title>
+
+<script>
+var persons = [];
+var canvas;
+var currentPlayer = {};
+function RotateCurrent(index){
+	for (var i = 0; i < persons.length-1; i++)
+	{
+		var temp = persons[i];
+		persons[i] = persons[i+1];
+		persons[i+1] = temp;
+		currentPlayer = persons[0];
+	}
+}
+window.onload = function() {
+  canvas = document.createElement("canvas");
+
+  var context = canvas.getContext("2d");
+  
+  var canvasWidth = 900;
+  var canvasHeight = 500;
+  var totalMoney = 1;
+  canvas.width = canvasWidth;
+  canvas.height = canvasHeight;
+  document.body.appendChild(canvas);
+  var linebreak = document.createElement("br");
+  document.body.appendChild(linebreak);
+  var tagline = document.createTextNode("created by Paul Soderquist");
+  document.body.appendChild(tagline);
+  var personHeight = 90;
+  var moveAmount = 10;
+  var walkingMMInterval = 120;
+  var counter = 0;
+
+  persons.push({name:'Paul',personX:0,personY:canvasHeight-personHeight,rightLeft:'Right',moving:false,rotation:6,numSteps:0,shirt:1,pants:1,shoes:1,offset:0});
+  persons.push({name:'Zach',personX:160,personY:canvasHeight-personHeight,rightLeft:'Right',moving:false,rotation:6,numSteps:0,shirt:2,pants:2,shoes:2,offset:0});
+  persons.push({name:'Dallin',personX:320,personY:canvasHeight-personHeight,rightLeft:'Right',moving:false,rotation:6,numSteps:0,shirt:2,pants:2,shoes:2,offset:0});
+  persons.push({name:'Elena',personX:480,personY:canvasHeight-personHeight,rightLeft:'Right',moving:false,rotation:6,numSteps:0,shirt:2,pants:2,shoes:2,offset:0});
+  persons.push({name:'MikaylaBetterHair',personX:640,personY:canvasHeight-personHeight,rightLeft:'Right',moving:false,rotation:6,numSteps:0,shirt:2,pants:2,shoes:2,offset:-15});
+  persons.push({name:'Michelle',personX:800,personY:canvasHeight-personHeight,rightLeft:'Right',moving:false,rotation:6,numSteps:0,shirt:2,pants:2,shoes:2,offset:0});
+  persons.push({name:'Elyssa',personX:80,personY:canvasHeight-personHeight,rightLeft:'Right',moving:false,rotation:6,numSteps:0,shirt:2,pants:2,shoes:2,offset:0});
+  persons.push({name:'HannahShorter',personX:240,personY:canvasHeight-personHeight,rightLeft:'Right',moving:false,rotation:6,numSteps:0,shirt:2,pants:2,shoes:2,offset:-10});
+  persons.push({name:'Caitlin',personX:400,personY:canvasHeight-personHeight,rightLeft:'Right',moving:false,rotation:6,numSteps:0,shirt:2,pants:2,shoes:2,offset:-5});
+  persons.push({name:'Sadee',personX:560,personY:canvasHeight-personHeight,rightLeft:'Right',moving:false,rotation:6,numSteps:0,shirt:2,pants:2,shoes:2,offset:-5});
+  persons.push({name:'Matthew',personX:720,personY:canvasHeight-personHeight,rightLeft:'Right',moving:false,rotation:6,numSteps:0,shirt:2,pants:2,shoes:2,offset:0});
+  currentPlayer = persons[0];
+  var leftKey = 37;
+  var rightKey = 39;
+
+  canvas.addEventListener('click', function() {
+	//if (falling) {return;}
+	
+}, false);
+
+/*
+// Draw a red circle particle on the canvas
+context.beginPath();
+context.fillStyle = colorRed;
+// After setting the fill style, draw an arc on the canvas
+context.arc(100, 200, 10, 0, Math.PI*2, true); 
+context.closePath();
+context.fill();
+*/
+
+/*
+// Draw a green circle particle on the canvas
+context.beginPath();
+context.fillStyle = colorGreen;
+// After setting the fill style, draw an arc on the canvas
+context.arc(300, 200, 10, 0, Math.PI*2, true); 
+context.closePath();
+context.fill();
+*/
+
+// Draw shapes on the canvas using an interval of 30ms
+setInterval(function() {
+
+	
+  context.fillStyle = "gray";
+  context.fillRect(0,0,canvas.width, canvas.height);
+
+	for (var i = 0; i < persons.length; i++)
+	{
+		var p = persons[i];
+		var personName = p.name;
+		var direction = 'HeadOn';
+		
+		
+		if (p.rotation == 3 || p.rotation == 6)
+		{
+			direction = 'HeadOn';
+		}
+		else if (p.rightLeft == 'Right') 
+		{
+			if (p.rotation == 1)
+			{
+				direction = 'RightLeft';
+			}
+			else if (p.rotation == 4) 
+			{
+				direction = 'RightRight';
+			}
+			else if (p.rotation == 2 || p.rotation == 5)
+			{
+				direction = 'RightCenter';
+			}
+			if (p.personX < canvasWidth + 100)
+			{
+				p.personX += moveAmount;
+			}
+		}
+		else if (p.rightLeft == 'Left')
+		{
+			if (p.rotation == 1)
+			{
+				direction = 'LeftLeft';
+			}
+			else if (p.rotation == 4)
+			{
+				direction = 'LeftRight';
+			}
+			else if (p.rotation == 2 || p.rotation == 5)
+			{
+				direction = 'LeftCenter';
+			}
+			if (p.personX > -100)
+			{
+				p.personX -= moveAmount;
+			}
+		}
+		else
+		{
+			console.log('Hit Error Branch');
+		}
+		
+		var personX = p.personX;
+		var personY = p.personY;
+		drawPerson(p,direction,personX,personY);
+		//if (counter % 2 == 0)
+		{
+			if (p.moving)
+			{
+				p.rotation++;
+				if (p.rotation == 3 || p.rotation == 6) {
+					p.moving = false;
+					p.numSteps--;
+				}
+			}
+		}		
+	}
+}, walkingMMInterval);
+
+setInterval(function()
+{
+	for (var i = 0; i < persons.length; i++)
+	{
+		var player = persons[i];
+		if (player.numSteps > 0)
+		{
+			player.lastNum = player.numSteps;
+			if (player.moving == false)
+			{
+				movePlayer(player);
+			}
+		}
+	}
+	
+	if (Math.random() < .03)
+	{
+		var playerIndex = Math.floor((Math.random()*(persons.length-1)))+1;
+		console.log(playerIndex);
+		var p = persons[playerIndex];
+		p.numSteps = (Math.floor((Math.random()*1000))%8)+1;
+		console.log(p.numSteps);
+		p.rightLeft = (Math.random() < .5)? 'Right':'Left';
+	}		
+
+}, 30);
+
+function drawPerson(player,direction,x,y) {
+  var ctx = canvas.getContext('2d');
+  var headImg = new Image();
+  var shirtImg = new Image();
+  var pantsImg = new Image();
+  var shoesImg = new Image();
+  /*
+  var img = new Image();
+  img.src = 'PaintNetFiles/Rendered/'+player.name+direction+'.png';
+  img.onload = function(){
+    ctx.drawImage(img,x,y);
+  }
+  */
+  shirtImg.src = 'Avatars/Shirts/'+player.shirt+'/'+direction+'.png';
+  pantsImg.src = 'Avatars/Pants/'+player.pants+'/'+direction+'.png';
+  shoesImg.src = 'Avatars/Shoes/'+player.shoes+'/'+direction+'.png';
+  headImg.src = 'Avatars/Heads/'+player.name+'.png';
+
+  var headX = x+player.offset;
+  
+  shirtImg.onload = function(){
+    ctx.drawImage(shirtImg,x,y);
+  }
+  pantsImg.onload = function(){
+    ctx.drawImage(pantsImg,x,y);
+  }
+  shoesImg.onload = function(){
+    ctx.drawImage(shoesImg,x,y);
+  }
+  headImg.onload = function(){
+	if (direction == 'LeftLeft' || direction == 'LeftRight')
+    {
+		ctx.drawImage(headImg,headX-1,y+2);
+	}
+	else if (direction == 'RightLeft' || direction == 'RightRight')
+	{
+		ctx.drawImage(headImg,headX+1,y+2);
+	}
+	else
+	{
+		ctx.drawImage(headImg,headX,y);
+	}
+  }
+}
+
+document.onkeydown = checkKey;
+
+function movePlayer(player) {
+	player.moving = true;
+	player.rotation++;
+	if (player.rotation > 6) 
+	{player.rotation = 1;}
+	//console.log(player.rotation);
+	
+}
+
+function checkKey(e) {
+	if (currentPlayer.moving)
+	{
+		return;
+	}
+    e = e || window.event;
+
+    if (e.keyCode == '38') {
+        // up arrow
+    }
+    else if (e.keyCode == '40') {
+        // down arrow
+    }
+    else if (e.keyCode == leftKey) {
+		currentPlayer.numSteps = 1;
+		currentPlayer.rightLeft = 'Left';
+	    movePlayer(currentPlayer);
+    }
+    else if (e.keyCode == rightKey) {
+		currentPlayer.numSteps = 1;
+		currentPlayer.rightLeft = 'Right';
+		movePlayer(currentPlayer);
+    }
+
+}
+
+}
+</script>
+</head>
+<body style="text-align:center">
+
+<a id="fb-share" style='text-decoration:none;' type="icon_link" onClick="ScreenShotShare();" href="javascript: void(0)"><input type="button" value="Share"></a>
+
+<input type="button" value="Take Screen Shot" onclick="ScreenShot();">
+<input type="button" value="Change Player" onclick="RotateCurrent(1);">
+<br>
+<h1 style="font-family:Calibri">Friends in a Box</h1>
+
+<p>
+Add people to the box!
+</p>
+</body>
+</html>
+
