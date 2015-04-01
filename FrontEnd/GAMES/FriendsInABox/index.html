@@ -285,17 +285,17 @@ window.onload = function() {
   var counter = 0;
 
   
-  var PAUL = {name:'Paul',imgName:'Paul',personX:0,personY:canvasHeight-personHeight,rightLeft:'Right',moving:false,rotation:6,numSteps:0,shirt:1,pants:1,shoes:1,offset:0};
-  var ZACH = {name:'Zach',imgName:'Zach',personX:160,personY:canvasHeight-personHeight,rightLeft:'Right',moving:false,rotation:6,numSteps:0,shirt:2,pants:2,shoes:2,offset:0};
-  var DALLIN = {name:'Dallin',imgName:'Dallin',personX:320,personY:canvasHeight-personHeight,rightLeft:'Right',moving:false,rotation:6,numSteps:0,shirt:2,pants:2,shoes:2,offset:0};
-  var ELENA = {name:'Elena',imgName:'Elena',personX:480,personY:canvasHeight-personHeight,rightLeft:'Right',moving:false,rotation:6,numSteps:0,shirt:2,pants:2,shoes:2,offset:0};
-  var MIKAYLA = {name:'Mikayla',imgName:'MikaylaBetterHair',personX:640,personY:canvasHeight-personHeight,rightLeft:'Right',moving:false,rotation:6,numSteps:0,shirt:2,pants:2,shoes:2,offset:-15};
-  var MICHELLE = {name:'Michelle',imgName:'Michelle',personX:800,personY:canvasHeight-personHeight,rightLeft:'Right',moving:false,rotation:6,numSteps:0,shirt:2,pants:2,shoes:2,offset:0};
-  var ELYSSA = {name:'Elyssa',imgName:'Elyssa',personX:80,personY:canvasHeight-personHeight,rightLeft:'Right',moving:false,rotation:6,numSteps:0,shirt:2,pants:2,shoes:2,offset:0};
-  var HANNAH = {name:'Hannah',imgName:'HannahShorter',personX:240,personY:canvasHeight-personHeight,rightLeft:'Right',moving:false,rotation:6,numSteps:0,shirt:2,pants:2,shoes:2,offset:-10};
-  var CAITLIN = {name:'Caitlin',imgName:'Caitlin',personX:400,personY:canvasHeight-personHeight,rightLeft:'Right',moving:false,rotation:6,numSteps:0,shirt:2,pants:2,shoes:2,offset:-5};
-  var SADEE = {name:'Sadee',imgName:'Sadee',personX:560,personY:canvasHeight-personHeight,rightLeft:'Right',moving:false,rotation:6,numSteps:0,shirt:2,pants:2,shoes:2,offset:-5};
-  var MATTHEW = {name:'Matthew',imgName:'Matthew',personX:720,personY:canvasHeight-personHeight,rightLeft:'Right',moving:false,rotation:6,numSteps:0,shirt:2,pants:2,shoes:2,offset:0};
+  var PAUL = {name:'Paul',imgName:'Paul',personX:0,personY:canvasHeight-personHeight,rightLeft:'Right',moving:false,rotation:6,numSteps:0,shirt:1,pants:1,shoes:1,offset:0,gamesWon:0};
+  var ZACH = {name:'Zach',imgName:'Zach',personX:160,personY:canvasHeight-personHeight,rightLeft:'Right',moving:false,rotation:6,numSteps:0,shirt:2,pants:2,shoes:2,offset:0,gamesWon:0};
+  var DALLIN = {name:'Dallin',imgName:'Dallin',personX:320,personY:canvasHeight-personHeight,rightLeft:'Right',moving:false,rotation:6,numSteps:0,shirt:2,pants:2,shoes:2,offset:0,gamesWon:0};
+  var ELENA = {name:'Elena',imgName:'Elena',personX:480,personY:canvasHeight-personHeight,rightLeft:'Right',moving:false,rotation:6,numSteps:0,shirt:2,pants:2,shoes:2,offset:0,gamesWon:0};
+  var MIKAYLA = {name:'Mikayla',imgName:'MikaylaBetterHair',personX:640,personY:canvasHeight-personHeight,rightLeft:'Right',moving:false,rotation:6,numSteps:0,shirt:2,pants:2,shoes:2,offset:-15,gamesWon:0};
+  var MICHELLE = {name:'Michelle',imgName:'Michelle',personX:800,personY:canvasHeight-personHeight,rightLeft:'Right',moving:false,rotation:6,numSteps:0,shirt:2,pants:2,shoes:2,offset:0,gamesWon:0};
+  var ELYSSA = {name:'Elyssa',imgName:'Elyssa',personX:80,personY:canvasHeight-personHeight,rightLeft:'Right',moving:false,rotation:6,numSteps:0,shirt:2,pants:2,shoes:2,offset:0,gamesWon:0};
+  var HANNAH = {name:'Hannah',imgName:'HannahShorter',personX:240,personY:canvasHeight-personHeight,rightLeft:'Right',moving:false,rotation:6,numSteps:0,shirt:2,pants:2,shoes:2,offset:-10,gamesWon:0};
+  var CAITLIN = {name:'Caitlin',imgName:'Caitlin',personX:400,personY:canvasHeight-personHeight,rightLeft:'Right',moving:false,rotation:6,numSteps:0,shirt:2,pants:2,shoes:2,offset:-5,gamesWon:0};
+  var SADEE = {name:'Sadee',imgName:'Sadee',personX:560,personY:canvasHeight-personHeight,rightLeft:'Right',moving:false,rotation:6,numSteps:0,shirt:2,pants:2,shoes:2,offset:-5,gamesWon:0};
+  var MATTHEW = {name:'Matthew',imgName:'Matthew',personX:720,personY:canvasHeight-personHeight,rightLeft:'Right',moving:false,rotation:6,numSteps:0,shirt:2,pants:2,shoes:2,offset:0,gamesWon:0};
 
   AddToList(PAUL);
   AddToList(ZACH);
@@ -426,7 +426,12 @@ setInterval(function() {
 		for (var i = 0; i < lineup.length; i++)
 		{
 			var p = lineup[i];
-			context.fillText(i+1 + " " + p.name,25,155+(15*i));
+			var games = "";
+			if (p.gamesWon > 0)
+			{
+				games = p.gamesWon;
+			}
+			context.fillText(i+1 + " " + p.name + "    " + games,25,155+(15*i));
 		}
 	}
 	
@@ -455,6 +460,7 @@ setInterval(function()
 				context.fillText(player.name + " is the winner!",300,60);
 				context.fillText("CLICK TO CONTINUE",300,100);
 				RACEOVER = true;
+				player.gamesWon++;
 				break;
 			}
 		}
