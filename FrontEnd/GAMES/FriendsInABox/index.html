@@ -11,7 +11,7 @@
 <title>Friends in a Box</title>
 
 <script>
-var Local = false;
+var Local = true;
 
 var canvas;
 
@@ -205,6 +205,38 @@ function AddToList(player){
 	personsOutOfBox.push(player);
 }
 
+
+function getLineup()
+{
+	var lineup = [];
+	var copy = [];
+	for (var i = 0; i < personsInBox.length; i++)
+	{
+		copy.push(personsInBox[i]);
+	}
+	while (copy.length > 0)
+	{
+		var highest = copy[0];
+		var highestX = copy[0].personX;
+		var indexHighest = 0;
+		for (var i = 0; i < copy.length; i++)
+		{
+			var p = copy[i];
+			if (p.personX > highestX)
+			{
+				highestX = p.personX;
+				highest = p;
+				indexHighest = i;
+			}
+		}
+		lineup.push(highest);
+		copy.splice(indexHighest, 1);
+	}
+	console.log(lineup);
+	return lineup;
+}
+
+
 window.onload = function() {
   canvas = document.createElement("canvas");
 
@@ -380,8 +412,26 @@ setInterval(function() {
 					p.numSteps--;
 				}
 			}
-		}		
+		}
 	}
+	
+	
+	if (RACING)
+	{
+		var lineup = getLineup();
+		// DISPLAY LINEUP
+		context.fillStyle = "white";
+		context.fillRect(20,140,canvas.width/5, 15*personsInBox.length+10);
+		context.font = "10px Arial";
+		context.fillStyle = "black";
+		for (var i = 0; i < lineup.length; i++)
+		{
+			var p = lineup[i];
+			context.fillText(i+1 + " " + p.name,25,155+(15*i));
+		}
+	}
+	
+	
 }, walkingMMInterval);
 
 setInterval(function()
@@ -408,17 +458,6 @@ setInterval(function()
 				RACEOVER = true;
 				break;
 			}
-		}
-		
-		// DISPLAY LINEUP
-		context.fillStyle = "white";
-		context.fillRect(20,140,canvas.width/5, 15*personsInBox.length+10);
-		context.font = "10px Arial";
-		context.fillStyle = "black";
-		for (var i = 0; i < personsInBox.length; i++)
-		{
-			var p = personsInBox[i];
-			context.fillText(i+1 + " " + p.name,25,155+(15*i));
 		}
 	}
 	
