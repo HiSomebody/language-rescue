@@ -13,6 +13,7 @@
 <script>
 var Local = false;
 
+var canvas;
 function ScreenShotShare(e) {
       var dataURL = canvas.toDataURL();
 	console.log(dataURL);
@@ -37,7 +38,6 @@ function ScreenShot(e) {
 
 var personsOutOfBox = [];
 var personsInBox = [];
-var canvas;
 var currentPlayer = {};
 
 var selectBackground = document.createElement("SELECT");
