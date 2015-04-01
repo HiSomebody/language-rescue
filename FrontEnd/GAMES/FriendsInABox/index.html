@@ -11,6 +11,8 @@
 <title>Friends in a Box</title>
 
 <script>
+var Local = false;
+
 function ScreenShotShare(e) {
       var dataURL = canvas.toDataURL();
 	console.log(dataURL);
@@ -257,9 +259,14 @@ setInterval(function() {
     
   if (selectBackground.value != "none")
   {
+		var prefaceURL = "Backgrounds/";
+		if (!Local)
+		{
+			prefaceURL = "GAMES/FriendsInABox/Backgrounds/";
+		}
 		var img = new Image();
 		img.setAttribute('crossOrigin', 'anonymous');
-		img.src = "Backgrounds/" + selectBackground.value + ".png";
+		img.src = prefaceURL + selectBackground.value + ".png";
 	    var pat = context.createPattern(img, "no-repeat");
 		context.fillStyle = pat;
   }
@@ -383,7 +390,6 @@ function drawPerson(player,direction,x,y) {
     ctx.drawImage(img,x,y);
   }
   */
-  var Local = false;
   if (Local)
   {
   	shirtImg.src = 'Avatars/Shirts/'+player.shirt+'/'+direction+'.png';
