@@ -31,6 +31,7 @@
          <!-- Collect the nav links, forms, and other content for toggling -->
          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-center">
+		<li class={{(view=='gamesView')?'active':''}}><a ng-click="setView('gamesView')">GAMES!</a></li>
                <li class={{(view=='loginView')?'active':''}}><a ng-click="setView('loginView')">Login</a></li>
                <li class={{(view=='mainView')?'active':''}}><a ng-click="setView('mainView')">Database</a></li>
                <li class={{(view=='ourMissionView')?'active':''}}><a ng-click="setView('ourMissionView')">Our Mission</a></li>
@@ -110,6 +111,43 @@
       </td>
    </tr>
 </div>
+
+<div ng-show="view=='gamesView'">
+   <tr>
+      <td>                    
+      </td>
+      <td style="text-align:center">
+         <h2>
+            Games host on this site:
+         </h2>
+		<a class="btn btn-primary btn-sm" href="https://operationlanguagerescue.com/friendsinabox">Friends in a Box</a>
+		<a class="btn btn-primary btn-sm" href="https://operationlanguagerescue.com/doubleitrush">Double It (Rush Version)</a>
+		<a class="btn btn-primary btn-sm" href="https://operationlanguagerescue.com/doubleit">Double It (Psychic Version)</a>
+		<a class="btn btn-primary btn-sm" href="https://operationlanguagerescue.com/doubleiteasy">Double It (Easy Version)</a>
+      </td>
+   </tr>
+   <tr>
+      <td>                    
+      </td>
+      <td style="text-align:center">
+         <h3>
+         </h3>
+      </td>
+   </tr>
+   <tr>
+      <td>                    
+      </td>
+      <td style="text-align:center">
+         <h3>
+            
+         </h3>
+         <h3>
+         </h3>
+         <a class="btn btn-primary btn-sm" role="button" ng-click="setView('loginView')">Get Started!</a>
+      </td>
+   </tr>
+</div>
+
 <div ng-show="view=='splashPageView'">
    <tr>
       <td>                    
