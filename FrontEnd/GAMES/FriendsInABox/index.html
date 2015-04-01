@@ -14,6 +14,7 @@
 var Local = false;
 
 var canvas;
+
 function ScreenShotShare(e) {
       //var dataURL = canvas.toDataURL();
 	//console.log(dataURL);
@@ -61,9 +62,35 @@ selectCurrent.onchange = SwapControl;
 selectRemove.onchange = RemoveFromBox;
 selectAdd.onchange = AddToBox;
 selectBackground.onchange = blurFocus;
+var raceButton = document.createElement("button");
+	raceButton.onclick = startRace;
+	var btnTxt = document.createTextNode("Race!");
+    raceButton.appendChild(btnTxt);
+var RACING = false;
+var RACEOVER = false;
 
 function blurFocus(){
 	document.activeElement.blur();
+}
+
+function startRace()
+{
+	if (personsInBox.length < 1)
+	{
+		return;
+	}
+	RACING = true;
+	
+	for (var i = 0; i < personsInBox.length; i++)
+	{
+		var p = personsInBox[i];
+		p.personX = 0;
+	}
+}
+
+function finishRace()
+{
+	RACING = false;
 }
 
 function AddBackgrounds(){
@@ -183,6 +210,15 @@ window.onload = function() {
 
   var context = canvas.getContext("2d");
   
+  canvas.addEventListener('click', function() {
+	if (!RACEOVER)
+	{
+		return;
+	}
+	finishRace();
+	RACEOVER = false;
+}, false);
+  
   var canvasWidth = 900;
   var canvasHeight = 500;
   var totalMoney = 1;
@@ -209,6 +245,7 @@ window.onload = function() {
   document.body.appendChild(linebreak3);
   var tagline = document.createTextNode("created by Paul Soderquist");
   document.body.appendChild(tagline);
+  document.body.appendChild(raceButton);
 
 
   var personHeight = 90;
@@ -253,7 +290,10 @@ window.onload = function() {
 }, false);
 
 setInterval(function() {
-
+	if (RACEOVER)
+	{
+		return;
+	}
 	
   context.fillStyle = "gray";
     
@@ -265,7 +305,7 @@ setInterval(function() {
 			prefaceURL = "GAMES/FriendsInABox/Backgrounds/";
 		}
 		var img = new Image();
-		img.setAttribute('crossOrigin', 'anonymous');
+		//img.setAttribute('crossOrigin', 'anonymous');
 		img.src = prefaceURL + selectBackground.value + ".png";
 	    var pat = context.createPattern(img, "no-repeat");
 		context.fillStyle = pat;
@@ -346,6 +386,42 @@ setInterval(function() {
 
 setInterval(function()
 {
+	if (RACEOVER)
+	{
+		return;
+	}
+	if (RACING)
+	{
+		// CHECK FOR WINNER
+		for (var i = 0; i < personsInBox.length; i++)
+		{
+			var player = personsInBox[i];
+			if (player.personX > canvasWidth - 50)
+			{
+				context.fillStyle = "white";
+				context.fillRect(20,20,canvas.width-40, 100);
+				console.log(player.name + " is the winner!");
+				context.font = "30px Arial";
+				context.fillStyle = "blue";
+				context.fillText(player.name + " is the winner!",300,60);
+				context.fillText("CLICK TO CONTINUE",300,100);
+				RACEOVER = true;
+				break;
+			}
+		}
+		
+		// DISPLAY LINEUP
+		context.fillStyle = "white";
+		context.fillRect(20,140,canvas.width/5, 15*personsInBox.length+10);
+		context.font = "10px Arial";
+		context.fillStyle = "black";
+		for (var i = 0; i < personsInBox.length; i++)
+		{
+			var p = personsInBox[i];
+			context.fillText(i+1 + " " + p.name,25,155+(15*i));
+		}
+	}
+	
 	for (var i = 0; i < personsInBox.length; i++)
 	{
 		var player = personsInBox[i];
@@ -359,15 +435,35 @@ setInterval(function()
 		}
 	}
 	var ratio = personsInBox.length/(personsOutOfBox.length+personsInBox.length);
+	if (RACING)
+	{
+		ratio *= 2;
+	}
+	
 	if (Math.random() < .03*ratio && personsInBox.length > 1)
 	{
 		console.log("length" + personsInBox.length);
-		var playerIndex = Math.floor((Math.random()*(personsInBox.length-1))+1);
+		var playerIndex;
+		if (!RACING)
+		{
+			playerIndex = Math.floor((Math.random()*(personsInBox.length-1))+1);
+		}
+		else
+		{
+			playerIndex = Math.floor((Math.random()*(personsInBox.length)));
+		}
 		console.log(playerIndex);
 		var p = personsInBox[playerIndex];
 		p.numSteps = (Math.floor((Math.random()*1000))%8)+1;
 		console.log(p.numSteps);
-		p.rightLeft = (Math.random() < .5)? 'Right':'Left';
+		if (RACING)
+		{
+			p.rightLeft = (Math.random() < .8)? 'Right':'Left';
+		}
+		else
+		{
+			p.rightLeft = (Math.random() < .5)? 'Right':'Left';
+		}
 	}		
 
 }, 30);
@@ -375,13 +471,13 @@ setInterval(function()
 function drawPerson(player,direction,x,y) {
   var ctx = canvas.getContext('2d');
   var headImg = new Image();
-  		headImg.setAttribute('crossOrigin', 'anonymous');
+  		//headImg.setAttribute('crossOrigin', 'anonymous');
   var shirtImg = new Image();
-  		shirtImg.setAttribute('crossOrigin', 'anonymous');
+  		//shirtImg.setAttribute('crossOrigin', 'anonymous');
   var pantsImg = new Image();
-		pantsImg.setAttribute('crossOrigin', 'anonymous');
+		//pantsImg.setAttribute('crossOrigin', 'anonymous');
   var shoesImg = new Image();
-  		shoesImg.setAttribute('crossOrigin', 'anonymous');
+  		//shoesImg.setAttribute('crossOrigin', 'anonymous');
 
   /*
   var img = new Image();
@@ -443,7 +539,7 @@ function movePlayer(player) {
 }
 
 function checkKey(e) {
-	if (currentPlayer.moving)
+	if (currentPlayer.moving || RACING)
 	{
 		return;
 	}
