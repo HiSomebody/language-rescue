@@ -11,10 +11,38 @@
 <title>Friends in a Box</title>
 
 <script>
+function ScreenShotShare(e) {
+      var dataURL = canvas.toDataURL();
+	console.log(dataURL);
+        //var childWin = window.open ("", "height=200,width=200");
+          //  childWin.document.body.innerHTML = "<span><img src = "+ dataURL + "></span>";
+var shareTitle = "I got to $" + highScore + " on Double It Rush!";
+var desc = "Double your money to become a millionaire!";
+var url = "http://operationlanguagerescue.com/doubleitrush";
+var imageUrl = dataURL;
+
+window.open('http://www.facebook.com/sharer.php?s=100&p[title]=' + shareTitle + '&p[summary]=' + desc + '&p[url]=' + url + '&p[images][0]=' + imageUrl + '', 'sharer', 'toolbar=0,status=0,width=626,height=436');
+
+}
+
+function ScreenShot(e) {
+      var dataURL = canvas.toDataURL();
+	console.log(dataURL);
+        var childWin = window.open ("", "height=900,width=500");
+        childWin.document.body.innerHTML = "<span><img src = "+ dataURL + "></span>";
+}
+
+
 var personsOutOfBox = [];
 var personsInBox = [];
 var canvas;
 var currentPlayer = {};
+
+var selectBackground = document.createElement("SELECT");
+var option44 = document.createElement("option");
+	option44.text = "none";
+	selectBackground.add(option44);
+	
 var selectCurrent = document.createElement("SELECT");
 var selectRemove = document.createElement("SELECT");
 var selectAdd = document.createElement("SELECT");
@@ -28,19 +56,42 @@ var option33 = document.createElement("option");
 	option33.text = "select";
 	selectCurrent.add(option33);
 selectCurrent.onchange = SwapControl;
-selectRemove.onfocus = RemoveFromBox;
 selectRemove.onchange = RemoveFromBox;
 selectAdd.onchange = AddToBox;
+selectBackground.onchange = blurFocus;
+
+function blurFocus(){
+	document.activeElement.blur();
+}
+
+function AddBackgrounds(){
+	var option1 = document.createElement("option");
+	option1.text = "Tropical";
+	selectBackground.add(option1);
+	var option2 = document.createElement("option");
+	option2.text = "Moonlight";
+	selectBackground.add(option2);
+	var option3 = document.createElement("option");
+	option3.text = "Rolling Hills";
+	selectBackground.add(option3);
+	var option4 = document.createElement("option");
+	option4.text = "Dunes";
+	selectBackground.add(option4);
+}
 
 function SwapControl(){
 	for (var i = 0; i < personsInBox.length; i++)
 	{
 		if (personsInBox[i].name == this.value)
 		{
-			currentPlayer = personsInBox[i];
-			return;
+			var temp = personsInBox[i];
+			personsInBox[i] = personsInBox[0];
+			personsInBox[0] = temp;
+			currentPlayer = personsInBox[0];
+			break;
 		}
 	}
+	document.activeElement.blur()
 }
 
 function RotateCurrent(index){
@@ -74,14 +125,21 @@ function RemoveFromBox(){
 		option2.text = player.name;
 		option2.id = player.name+"option";
 		selectAdd.add(option2);
-		selectRemove.remove(selectRemove.selectedIndex);
-		selectCurrent.remove(selectRemove.selectedIndex);
+		var index = selectRemove.selectedIndex;
+		selectRemove.remove(index);
+		selectCurrent.remove(index);
+		if (personsInBox.indexOf(currentPlayer) == -1 && personsInBox.length > 0)
+		{
+			currentPlayer = personsInBox[0];
+		}
 	}
+	document.activeElement.blur()
 }
 
 function AddToBox(){
 	var player;
 	var found = false;
+	
 	for (var i = 0; i < personsOutOfBox.length; i++)
 	{
 		if (personsOutOfBox[i].name == this.value)
@@ -104,6 +162,11 @@ function AddToBox(){
 		selectRemove.add(option2);
 		selectAdd.remove(selectAdd.selectedIndex);
 	}
+	if (personsInBox.length == 1)
+	{
+		currentPlayer = personsInBox[0];
+	}
+	document.activeElement.blur()
 }
 
 function AddToList(player){
@@ -135,6 +198,9 @@ window.onload = function() {
   var tagline2 = document.createTextNode("Current");
   document.body.appendChild(tagline2);
   document.body.appendChild(selectCurrent);
+  var tagline5 = document.createTextNode("Background");
+  document.body.appendChild(tagline5);
+  document.body.appendChild(selectBackground);
   var linebreak = document.createElement("br");
   document.body.appendChild(linebreak);
   var linebreak3 = document.createElement("br");
@@ -172,6 +238,8 @@ window.onload = function() {
   AddToList(CAITLIN);
   AddToList(SADEE);
   AddToList(MATTHEW);
+  
+  AddBackgrounds();
 
   //currentPlayer = personsInBox[0];
   var leftKey = 37;
@@ -182,32 +250,21 @@ window.onload = function() {
 	
 }, false);
 
-/*
-// Draw a red circle particle on the canvas
-context.beginPath();
-context.fillStyle = colorRed;
-// After setting the fill style, draw an arc on the canvas
-context.arc(100, 200, 10, 0, Math.PI*2, true); 
-context.closePath();
-context.fill();
-*/
-
-/*
-// Draw a green circle particle on the canvas
-context.beginPath();
-context.fillStyle = colorGreen;
-// After setting the fill style, draw an arc on the canvas
-context.arc(300, 200, 10, 0, Math.PI*2, true); 
-context.closePath();
-context.fill();
-*/
-
-// Draw shapes on the canvas using an interval of 30ms
 setInterval(function() {
 
 	
   context.fillStyle = "gray";
-  context.fillRect(0,0,canvas.width, canvas.height);
+    
+  if (selectBackground.value != "none")
+  {
+		var img = new Image();
+		img.setAttribute('crossOrigin', 'anonymous');
+		img.src = "Backgrounds/" + selectBackground.value + ".png";
+	    var pat = context.createPattern(img, "no-repeat");
+		context.fillStyle = pat;
+  }
+  
+    context.fillRect(0,0,canvas.width, canvas.height);
 
 	for (var i = 0; i < personsInBox.length; i++)
 	{
@@ -294,11 +351,11 @@ setInterval(function()
 			}
 		}
 	}
-	
-	if (Math.random() < .03 && personsInBox.length > 0)
+	var ratio = personsInBox.length/(personsOutOfBox.length+personsInBox.length);
+	if (Math.random() < .03*ratio && personsInBox.length > 1)
 	{
 		console.log("length" + personsInBox.length);
-		var playerIndex = Math.floor((Math.random()*(personsInBox.length-1)));
+		var playerIndex = Math.floor((Math.random()*(personsInBox.length-1))+1);
 		console.log(playerIndex);
 		var p = personsInBox[playerIndex];
 		p.numSteps = (Math.floor((Math.random()*1000))%8)+1;
@@ -311,9 +368,14 @@ setInterval(function()
 function drawPerson(player,direction,x,y) {
   var ctx = canvas.getContext('2d');
   var headImg = new Image();
+  		headImg.setAttribute('crossOrigin', 'anonymous');
   var shirtImg = new Image();
+  		shirtImg.setAttribute('crossOrigin', 'anonymous');
   var pantsImg = new Image();
+		pantsImg.setAttribute('crossOrigin', 'anonymous');
   var shoesImg = new Image();
+  		shoesImg.setAttribute('crossOrigin', 'anonymous');
+
   /*
   var img = new Image();
   img.src = 'PaintNetFiles/Rendered/'+player.name+direction+'.png';
@@ -408,7 +470,6 @@ function checkKey(e) {
 <a id="fb-share" style='text-decoration:none;' type="icon_link" onClick="ScreenShotShare();" href="javascript: void(0)"><input type="button" value="Share"></a>
 
 <input type="button" value="Take Screen Shot" onclick="ScreenShot();">
-<input type="button" value="Change Player" onclick="RotateCurrent(1);">
 <br>
 <h1 style="font-family:Calibri">Friends in a Box</h1>
 
