@@ -11,11 +11,40 @@
 <title>Friends in a Box</title>
 
 <script>
-var persons = [];
+var personsOutOfBox = [];
+var personsInBox = [];
 var canvas;
 var currentPlayer = {};
+var selectCurrent = document.createElement("SELECT");
+var selectRemove = document.createElement("SELECT");
+var selectAdd = document.createElement("SELECT");
+var option11 = document.createElement("option");
+	option11.text = "select";
+	selectAdd.add(option11);
+var option22 = document.createElement("option");
+	option22.text = "select";
+	selectRemove.add(option22);
+var option33 = document.createElement("option");
+	option33.text = "select";
+	selectCurrent.add(option33);
+selectCurrent.onchange = SwapControl;
+selectRemove.onfocus = RemoveFromBox;
+selectRemove.onchange = RemoveFromBox;
+selectAdd.onchange = AddToBox;
+
+function SwapControl(){
+	for (var i = 0; i < personsInBox.length; i++)
+	{
+		if (personsInBox[i].name == this.value)
+		{
+			currentPlayer = personsInBox[i];
+			return;
+		}
+	}
+}
+
 function RotateCurrent(index){
-	for (var i = 0; i < persons.length-1; i++)
+	for (var i = 0; i < personsInBox.length-1; i++)
 	{
 		var temp = persons[i];
 		persons[i] = persons[i+1];
@@ -23,6 +52,67 @@ function RotateCurrent(index){
 		currentPlayer = persons[0];
 	}
 }
+
+
+function RemoveFromBox(){
+	//var x = document.getElementById(player.name+"option");
+	var player;
+	var found = false;
+	for (var i = 0; i < personsInBox.length; i++)
+	{
+		if (personsInBox[i].name == this.value)
+		{
+			player = personsInBox[i];
+			personsInBox.splice(i, 1);
+			found = true;
+			break;
+		}
+	}
+	if (found){
+		personsOutOfBox.push(player);
+		var option2 = document.createElement("option");
+		option2.text = player.name;
+		option2.id = player.name+"option";
+		selectAdd.add(option2);
+		selectRemove.remove(selectRemove.selectedIndex);
+		selectCurrent.remove(selectRemove.selectedIndex);
+	}
+}
+
+function AddToBox(){
+	var player;
+	var found = false;
+	for (var i = 0; i < personsOutOfBox.length; i++)
+	{
+		if (personsOutOfBox[i].name == this.value)
+		{
+			player = personsOutOfBox[i];
+			personsOutOfBox.splice(i, 1);
+			found = true;
+			break;
+		}
+	}
+	if (found){
+		personsInBox.push(player);
+		var option = document.createElement("option");
+		option.text = player.name;
+		option.id = player.name+"option";
+		selectCurrent.add(option);
+		var option2 = document.createElement("option");
+		option2.text = player.name;
+		option2.id = player.name+"option";
+		selectRemove.add(option2);
+		selectAdd.remove(selectAdd.selectedIndex);
+	}
+}
+
+function AddToList(player){
+	var option = document.createElement("option");
+	option.text = player.name;
+	selectAdd.add(option);
+	personsOutOfBox.push(player);
+}
+
 window.onload = function() {
   canvas = document.createElement("canvas");
 
@@ -34,27 +124,56 @@ window.onload = function() {
   canvas.width = canvasWidth;
   canvas.height = canvasHeight;
   document.body.appendChild(canvas);
+  var linebreak2 = document.createElement("br");
+  document.body.appendChild(linebreak2);
+  var tagline3 = document.createTextNode("Add");
+  document.body.appendChild(tagline3);
+  document.body.appendChild(selectAdd);
+  var tagline4 = document.createTextNode("Remove");
+  document.body.appendChild(tagline4);
+  document.body.appendChild(selectRemove);
+  var tagline2 = document.createTextNode("Current");
+  document.body.appendChild(tagline2);
+  document.body.appendChild(selectCurrent);
   var linebreak = document.createElement("br");
   document.body.appendChild(linebreak);
+  var linebreak3 = document.createElement("br");
+  document.body.appendChild(linebreak3);
   var tagline = document.createTextNode("created by Paul Soderquist");
   document.body.appendChild(tagline);
+
+
   var personHeight = 90;
   var moveAmount = 10;
   var walkingMMInterval = 120;
   var counter = 0;
 
-  persons.push({name:'Paul',personX:0,personY:canvasHeight-personHeight,rightLeft:'Right',moving:false,rotation:6,numSteps:0,shirt:1,pants:1,shoes:1,offset:0});
-  persons.push({name:'Zach',personX:160,personY:canvasHeight-personHeight,rightLeft:'Right',moving:false,rotation:6,numSteps:0,shirt:2,pants:2,shoes:2,offset:0});
-  persons.push({name:'Dallin',personX:320,personY:canvasHeight-personHeight,rightLeft:'Right',moving:false,rotation:6,numSteps:0,shirt:2,pants:2,shoes:2,offset:0});
-  persons.push({name:'Elena',personX:480,personY:canvasHeight-personHeight,rightLeft:'Right',moving:false,rotation:6,numSteps:0,shirt:2,pants:2,shoes:2,offset:0});
-  persons.push({name:'MikaylaBetterHair',personX:640,personY:canvasHeight-personHeight,rightLeft:'Right',moving:false,rotation:6,numSteps:0,shirt:2,pants:2,shoes:2,offset:-15});
-  persons.push({name:'Michelle',personX:800,personY:canvasHeight-personHeight,rightLeft:'Right',moving:false,rotation:6,numSteps:0,shirt:2,pants:2,shoes:2,offset:0});
-  persons.push({name:'Elyssa',personX:80,personY:canvasHeight-personHeight,rightLeft:'Right',moving:false,rotation:6,numSteps:0,shirt:2,pants:2,shoes:2,offset:0});
-  persons.push({name:'HannahShorter',personX:240,personY:canvasHeight-personHeight,rightLeft:'Right',moving:false,rotation:6,numSteps:0,shirt:2,pants:2,shoes:2,offset:-10});
-  persons.push({name:'Caitlin',personX:400,personY:canvasHeight-personHeight,rightLeft:'Right',moving:false,rotation:6,numSteps:0,shirt:2,pants:2,shoes:2,offset:-5});
-  persons.push({name:'Sadee',personX:560,personY:canvasHeight-personHeight,rightLeft:'Right',moving:false,rotation:6,numSteps:0,shirt:2,pants:2,shoes:2,offset:-5});
-  persons.push({name:'Matthew',personX:720,personY:canvasHeight-personHeight,rightLeft:'Right',moving:false,rotation:6,numSteps:0,shirt:2,pants:2,shoes:2,offset:0});
-  currentPlayer = persons[0];
+  
+  var PAUL = {name:'Paul',imgName:'Paul',personX:0,personY:canvasHeight-personHeight,rightLeft:'Right',moving:false,rotation:6,numSteps:0,shirt:1,pants:1,shoes:1,offset:0};
+  var ZACH = {name:'Zach',imgName:'Zach',personX:160,personY:canvasHeight-personHeight,rightLeft:'Right',moving:false,rotation:6,numSteps:0,shirt:2,pants:2,shoes:2,offset:0};
+  var DALLIN = {name:'Dallin',imgName:'Dallin',personX:320,personY:canvasHeight-personHeight,rightLeft:'Right',moving:false,rotation:6,numSteps:0,shirt:2,pants:2,shoes:2,offset:0};
+  var ELENA = {name:'Elena',imgName:'Elena',personX:480,personY:canvasHeight-personHeight,rightLeft:'Right',moving:false,rotation:6,numSteps:0,shirt:2,pants:2,shoes:2,offset:0};
+  var MIKAYLA = {name:'Mikayla',imgName:'MikaylaBetterHair',personX:640,personY:canvasHeight-personHeight,rightLeft:'Right',moving:false,rotation:6,numSteps:0,shirt:2,pants:2,shoes:2,offset:-15};
+  var MICHELLE = {name:'Michelle',imgName:'Michelle',personX:800,personY:canvasHeight-personHeight,rightLeft:'Right',moving:false,rotation:6,numSteps:0,shirt:2,pants:2,shoes:2,offset:0};
+  var ELYSSA = {name:'Elyssa',imgName:'Elyssa',personX:80,personY:canvasHeight-personHeight,rightLeft:'Right',moving:false,rotation:6,numSteps:0,shirt:2,pants:2,shoes:2,offset:0};
+  var HANNAH = {name:'Hannah',imgName:'HannahShorter',personX:240,personY:canvasHeight-personHeight,rightLeft:'Right',moving:false,rotation:6,numSteps:0,shirt:2,pants:2,shoes:2,offset:-10};
+  var CAITLIN = {name:'Caitlin',imgName:'Caitlin',personX:400,personY:canvasHeight-personHeight,rightLeft:'Right',moving:false,rotation:6,numSteps:0,shirt:2,pants:2,shoes:2,offset:-5};
+  var SADEE = {name:'Sadee',imgName:'Sadee',personX:560,personY:canvasHeight-personHeight,rightLeft:'Right',moving:false,rotation:6,numSteps:0,shirt:2,pants:2,shoes:2,offset:-5};
+  var MATTHEW = {name:'Matthew',imgName:'Matthew',personX:720,personY:canvasHeight-personHeight,rightLeft:'Right',moving:false,rotation:6,numSteps:0,shirt:2,pants:2,shoes:2,offset:0};
+
+  AddToList(PAUL);
+  AddToList(ZACH);
+  AddToList(DALLIN);
+  AddToList(ELENA);
+  AddToList(MIKAYLA);
+  AddToList(MICHELLE);
+  AddToList(ELYSSA);
+  AddToList(HANNAH);
+  AddToList(CAITLIN);
+  AddToList(SADEE);
+  AddToList(MATTHEW);
+
+  //currentPlayer = personsInBox[0];
   var leftKey = 37;
   var rightKey = 39;
 
@@ -90,9 +209,9 @@ setInterval(function() {
   context.fillStyle = "gray";
   context.fillRect(0,0,canvas.width, canvas.height);
 
-	for (var i = 0; i < persons.length; i++)
+	for (var i = 0; i < personsInBox.length; i++)
 	{
-		var p = persons[i];
+		var p = personsInBox[i];
 		var personName = p.name;
 		var direction = 'HeadOn';
 		
@@ -163,9 +282,9 @@ setInterval(function() {
 
 setInterval(function()
 {
-	for (var i = 0; i < persons.length; i++)
+	for (var i = 0; i < personsInBox.length; i++)
 	{
-		var player = persons[i];
+		var player = personsInBox[i];
 		if (player.numSteps > 0)
 		{
 			player.lastNum = player.numSteps;
@@ -176,11 +295,12 @@ setInterval(function()
 		}
 	}
 	
-	if (Math.random() < .03)
+	if (Math.random() < .03 && personsInBox.length > 0)
 	{
-		var playerIndex = Math.floor((Math.random()*(persons.length-1)))+1;
+		console.log("length" + personsInBox.length);
+		var playerIndex = Math.floor((Math.random()*(personsInBox.length-1)));
 		console.log(playerIndex);
-		var p = persons[playerIndex];
+		var p = personsInBox[playerIndex];
 		p.numSteps = (Math.floor((Math.random()*1000))%8)+1;
 		console.log(p.numSteps);
 		p.rightLeft = (Math.random() < .5)? 'Right':'Left';
@@ -201,11 +321,21 @@ function drawPerson(player,direction,x,y) {
     ctx.drawImage(img,x,y);
   }
   */
-  shirtImg.src = 'GAMES/FriendsInABox/Avatars/Shirts/'+player.shirt+'/'+direction+'.png';
-  pantsImg.src = 'GAMES/FriendsInABox/Avatars/Pants/'+player.pants+'/'+direction+'.png';
-  shoesImg.src = 'GAMES/FriendsInABox/Avatars/Shoes/'+player.shoes+'/'+direction+'.png';
-  headImg.src = 'GAMES/FriendsInABox/Avatars/Heads/'+player.name+'.png';
-
+  var Local = true;
+  if (Local)
+  {
+  	shirtImg.src = 'Avatars/Shirts/'+player.shirt+'/'+direction+'.png';
+  	pantsImg.src = 'Avatars/Pants/'+player.pants+'/'+direction+'.png';
+  	shoesImg.src = 'Avatars/Shoes/'+player.shoes+'/'+direction+'.png';
+  	headImg.src = 'Avatars/Heads/'+player.imgName+'.png';
+  }
+  else
+  {
+	shirtImg.src = 'GAMES/FriendsInABox/Avatars/Shirts/'+player.shirt+'/'+direction+'.png';
+  	pantsImg.src = 'GAMES/FriendsInABox/Avatars/Pants/'+player.pants+'/'+direction+'.png';
+  	shoesImg.src = 'GAMES/FriendsInABox/Avatars/Shoes/'+player.shoes+'/'+direction+'.png';
+  	headImg.src = 'GAMES/FriendsInABox/Avatars/Heads/'+player.imgName+'.png';
+  }
   var headX = x+player.offset;
   
   shirtImg.onload = function(){
