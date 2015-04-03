@@ -47,6 +47,7 @@ var option44 = document.createElement("option");
 	selectBackground.add(option44);
 	
 var selectPants = document.createElement("SELECT");
+	selectPants.onchange = changePants;
 var selectShirt = document.createElement("SELECT");
 	
 var selectCurrent = document.createElement("SELECT");
@@ -163,6 +164,11 @@ function AddPants(){
 	var option17 = document.createElement("option");
 	option17.text = "Zigzag-Yellow-Purple";
 	selectPants.add(option17);
+}
+
+function changePants()
+{
+	currentPlayer.pants = selectPants.value;
 }
 
 function AddShirts(){
