@@ -49,6 +49,7 @@ var option44 = document.createElement("option");
 var selectPants = document.createElement("SELECT");
 	selectPants.onchange = changePants;
 var selectShirt = document.createElement("SELECT");
+	selectShirt.onchange = changeShirt;
 	
 var selectCurrent = document.createElement("SELECT");
 var selectRemove = document.createElement("SELECT");
@@ -169,7 +170,15 @@ function AddPants(){
 function changePants()
 {
 	currentPlayer.pants = selectPants.value;
+	document.activeElement.blur()
 }
+
+function changeShirt()
+{
+	currentPlayer.shirt = selectShirt.value;
+	document.activeElement.blur()
+}
+
 
 function AddShirts(){
 	var option1 = document.createElement("option");
@@ -343,7 +352,7 @@ window.onload = function() {
   document.body.appendChild(tagline5);
   document.body.appendChild(selectBackground);
   document.body.appendChild(selectPants);
-  document.body.appendChild(selectShirt);
+  //document.body.appendChild(selectShirt);
   document.body.appendChild(raceButton);
   var linebreak = document.createElement("br");
   document.body.appendChild(linebreak);
