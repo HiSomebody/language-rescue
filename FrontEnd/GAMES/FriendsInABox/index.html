@@ -720,16 +720,29 @@ function exitScreen1()
 		var p = personsInBox[i];
 		if (p.name == "Hannah")
 		{
-			p.together = 1;
+			p1 = p;
 		}
 		else if (p.name == "Paul")
 		{
-			p.together = 2;
+			p2 = p;
 		}
 	}
 	if (p1 != null && p2 != null)
 	{
-		findEachother(p1,p2);
+		if (p1.together != null)
+		{
+			p1.together = null;
+		}
+		if (p2.together != null)
+		{
+			p2.together = null;
+		}
+		else
+		{
+			p1.together = 1;
+			p2.together = 2;
+			findEachother(p1,p2);
+		}
 	}
 }
 
