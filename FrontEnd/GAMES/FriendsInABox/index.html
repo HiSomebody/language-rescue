@@ -758,14 +758,16 @@ function checkKey(e) {
 	}
 	if (cheatString.length > 5)
 	{
-		cheatString = str.substring(1, 5);
+		cheatString = cheatString.substring(1, 5);
 	}
 	if (cheatString == "dasig")
 	{
+		console.log("cheat1");
 		currentPlayer.cheating = !currentPlayer.cheating;
 	}
 	if (cheatString == "gugma")
 	{
+		console.log("cheat1");
 		exitScreen1();
 	}
 	
