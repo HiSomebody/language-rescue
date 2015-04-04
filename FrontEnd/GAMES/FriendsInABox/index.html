@@ -748,14 +748,14 @@ function exitScreen1()
 
 function findEachother(p1,p2)
 {
-	if (p1.personX < p2.personX - 40)
+	if (p1.personX <= p2.personX)
 	{
-		p1.numSteps = (p2.personX - p1.personX)/20;
+		p1.numSteps = (p2.personX - p1.personX)/20-2;
 		p1.rightLeft = "Right";
 	}
-	else if (p1.personX > p2.personX + 40)
+	else if (p1.personX > p2.personX)
 	{
-		p1.numSteps = (p1.personX - p2.personX)/20;
+		p1.numSteps = (p1.personX - p2.personX)/20-2;
 		p1.rightLeft = "Left";
 	}
 }
