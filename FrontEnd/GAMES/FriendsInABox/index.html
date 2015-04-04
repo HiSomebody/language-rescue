@@ -757,6 +757,10 @@ function checkKey(e) {
 		cheatString += getLetter(e.keyCode);
 		console.log("CHEAT: " + cheatString);
 	}
+	else
+	{
+		cheatString = "";
+	}
 	if (cheatString.length > 5)
 	{
 		cheatString = cheatString.substring(1, 5);
@@ -765,10 +769,12 @@ function checkKey(e) {
 	{
 		console.log("cheat1");
 		currentPlayer.cheating = !currentPlayer.cheating;
+		cheatString = "";
 	}
 	if (cheatString == "gugma")
 	{
 		console.log("cheat1");
+		cheatString = "";
 		exitScreen1();
 	}
 	
