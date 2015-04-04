@@ -721,7 +721,7 @@ function drawPerson(player,direction,x,y) {
 document.onkeydown = checkKey;
 
 function movePlayer(player) {
-	if (player.together !- null)
+	if (player.together != null)
 	{
 		return;
 	}
@@ -772,7 +772,7 @@ function findEachother(p1,p2)
 {
 	if (p1.personX <= p2.personX)
 	{
-		p1.numSteps = (p2.personX - p1.personX)/20-2;
+		p1.numSteps = (p2.personX - p1.personX)/20+2;
 		p1.rightLeft = "Right";
 	}
 	else if (p1.personX > p2.personX)
