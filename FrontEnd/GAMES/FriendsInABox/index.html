@@ -71,6 +71,10 @@ var raceButton = document.createElement("button");
 	raceButton.onclick = startRace;
 	var btnTxt = document.createTextNode("Race!");
     raceButton.appendChild(btnTxt);
+var addAllButton = document.createElement("button");
+	addAllButton.onclick = addAllToBox();
+	var btnTxt1 = document.createTextNode("Add All");
+    addAllButton.appendChild(btnTxt1);
 var RACING = false;
 var RACEOVER = false;
 
@@ -270,7 +274,16 @@ function RemoveFromBox(){
 	document.activeElement.blur()
 }
 
-function AddToBox(){
+function addAllToBox()
+{
+	for (var i = 0; i < personsOutOfBox.length(); i++)
+	{
+		selectAdd.value = personsOutOfBox[i].name;
+		AddToBox(true);
+	}
+}
+
+function AddToBox(noblur){
 	var player;
 	var found = false;
 	
@@ -300,7 +313,10 @@ function AddToBox(){
 	{
 		currentPlayer = personsInBox[0];
 	}
-	document.activeElement.blur()
+	if (!noblur)
+	{
+		document.activeElement.blur();
+	}
 }
 
 function AddToList(player){
@@ -378,6 +394,8 @@ window.onload = function() {
   document.body.appendChild(selectPants);
   document.body.appendChild(selectShirt);
   document.body.appendChild(raceButton);
+  document.body.appendChild(addAllButton);
+
   var linebreak = document.createElement("br");
   document.body.appendChild(linebreak);
   var linebreak3 = document.createElement("br");
@@ -703,6 +721,10 @@ function drawPerson(player,direction,x,y) {
 document.onkeydown = checkKey;
 
 function movePlayer(player) {
+	if (player.together !- null)
+	{
+		return;
+	}
 	player.moving = true;
 	player.rotation++;
 	if (player.rotation > 6) 
