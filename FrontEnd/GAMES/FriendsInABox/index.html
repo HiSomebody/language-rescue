@@ -279,6 +279,7 @@ function addAllToBox()
 	for (var i = 0; i < personsOutOfBox.length; i++)
 	{
 		selectAdd.value = personsOutOfBox[i].name;
+		console.log(selectAdd.value);
 		AddToBox(true);
 	}
 }
@@ -286,7 +287,8 @@ function addAllToBox()
 function AddToBox(noblur){
 	var player;
 	var found = false;
-	
+	console.log(selectAdd.value);
+
 	for (var i = 0; i < personsOutOfBox.length; i++)
 	{
 		if (personsOutOfBox[i].name == this.value)
