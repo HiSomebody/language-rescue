@@ -721,10 +721,6 @@ function drawPerson(player,direction,x,y) {
 document.onkeydown = checkKey;
 
 function movePlayer(player) {
-	if (player.together != null)
-	{
-		return;
-	}
 	player.moving = true;
 	player.rotation++;
 	if (player.rotation > 6) 
@@ -825,12 +821,12 @@ function checkKey(e) {
     else if (e.keyCode == '40') {
         // down arrow
     }
-    else if (e.keyCode == leftKey) {
+    else if (e.keyCode == leftKey && currentPlayer.together == null) {
 		currentPlayer.numSteps = 1;
 		currentPlayer.rightLeft = 'Left';
 	    movePlayer(currentPlayer);
     }
-    else if (e.keyCode == rightKey) {
+    else if (e.keyCode == rightKey && currentPlayer.together == null) {
 		currentPlayer.numSteps = 1;
 		currentPlayer.rightLeft = 'Right';
 		movePlayer(currentPlayer);
