@@ -755,6 +755,7 @@ function checkKey(e) {
 	if (e.keyCode <= 90 && e.keyCode >= 65)
 	{
 		cheatString += getLetter(e.keyCode);
+		console.log("CHEAT: " + cheatString);
 	}
 	if (cheatString.length > 5)
 	{
