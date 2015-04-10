@@ -54,6 +54,9 @@ app.get('/friendsinabox', function(req,res){
 res.sendFile(path.resolve(__dirname + '/../FrontEnd/GAMES/FriendsInABox/index.html'));
 });
 
+app.get('/band', function(req,res){
+res.sendFile(path.resolve(__dirname + '/../FrontEnd/band/index.html'));
+});
 
 app.get('/selectall/:table', function(req,res){
 	connectionpool.getConnection(function(err, connection) {
