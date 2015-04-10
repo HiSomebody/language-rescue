@@ -58,6 +58,14 @@ app.get('/band', function(req,res){
 res.sendFile(path.resolve(__dirname + '/../FrontEnd/band/index.html'));
 });
 
+app.get('/themain.htm', function(req,res){
+res.sendFile(path.resolve(__dirname + '/../FrontEnd/band/themain.htm'));
+});
+
+app.get('/bazei.htm', function(req,res){
+res.sendFile(path.resolve(__dirname + '/../FrontEnd/band/bazei.htm'));
+});
+
 app.get('/selectall/:table', function(req,res){
 	connectionpool.getConnection(function(err, connection) {
 		if (err) {
