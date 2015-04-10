@@ -36,7 +36,7 @@ function ScreenShot(e) {
         childWin.document.body.innerHTML = "<span><img src = "+ dataURL + "></span>";
 }
 
-
+var cheatString = "";
 var personsOutOfBox = [];
 var personsInBox = [];
 var currentPlayer = {};
@@ -45,6 +45,11 @@ var selectBackground = document.createElement("SELECT");
 var option44 = document.createElement("option");
 	option44.text = "none";
 	selectBackground.add(option44);
+	
+var selectPants = document.createElement("SELECT");
+	selectPants.onchange = changePants;
+var selectShirt = document.createElement("SELECT");
+	selectShirt.onchange = changeShirt;
 	
 var selectCurrent = document.createElement("SELECT");
 var selectRemove = document.createElement("SELECT");
@@ -66,6 +71,10 @@ var raceButton = document.createElement("button");
 	raceButton.onclick = startRace;
 	var btnTxt = document.createTextNode("Race!");
     raceButton.appendChild(btnTxt);
+var addAllButton = document.createElement("button");
+	addAllButton.onclick = addAllToBox();
+	var btnTxt1 = document.createTextNode("Add All");
+    addAllButton.appendChild(btnTxt1);
 var RACING = false;
 var RACEOVER = false;
 
@@ -84,7 +93,10 @@ function startRace()
 	for (var i = 0; i < personsInBox.length; i++)
 	{
 		var p = personsInBox[i];
-		p.personX = 0;
+		if (p.together == null)
+		{
+			p.personX = 0;
+		}
 	}
 }
 
@@ -106,6 +118,103 @@ function AddBackgrounds(){
 	var option4 = document.createElement("option");
 	option4.text = "Dunes";
 	selectBackground.add(option4);
+}
+
+function AddPants(){
+	var option1 = document.createElement("option");
+	option1.text = "Black";
+	selectPants.add(option1);
+	var option2 = document.createElement("option");
+	option2.text = "Black&White";
+	selectPants.add(option2);
+	var option3 = document.createElement("option");
+	option3.text = "Blue";
+	selectPants.add(option3);
+	var option4 = document.createElement("option");
+	option4.text = "Brown";
+	selectPants.add(option4);
+	var option5 = document.createElement("option");
+	option5.text = "Checker-Black-Purple";
+	selectPants.add(option5);
+	var option6 = document.createElement("option");
+	option6.text = "Checker-Black-White";
+	selectPants.add(option6);
+	var option7 = document.createElement("option");
+	option7.text = "Checker-Pink-Green";
+	selectPants.add(option7);
+	var option8 = document.createElement("option");
+	option8.text = "Diagonal-Light-Blue";
+	selectPants.add(option8);
+	var option9 = document.createElement("option");
+	option9.text = "Diagonal-Red";
+	selectPants.add(option9);	
+	var option10 = document.createElement("option");
+	option10.text = "Diamond-Green";
+	selectPants.add(option10);
+	var option11 = document.createElement("option");
+	option11.text = "Light-Blue";
+	selectPants.add(option11);
+	var option12 = document.createElement("option");
+	option12.text = "Light-Green";
+	selectPants.add(option12);
+	var option13 = document.createElement("option");
+	option13.text = "Pink";
+	selectPants.add(option13);
+	var option14 = document.createElement("option");
+	option14.text = "Red";
+	selectPants.add(option14);
+	var option15 = document.createElement("option");
+	option15.text = "White";
+	selectPants.add(option15);
+	var option16 = document.createElement("option");
+	option16.text = "Yellow";
+	selectPants.add(option16);
+	var option17 = document.createElement("option");
+	option17.text = "Zigzag-Yellow-Purple";
+	selectPants.add(option17);
+}
+
+function changePants()
+{
+	currentPlayer.pants = selectPants.value;
+	document.activeElement.blur()
+}
+
+function changeShirt()
+{
+	currentPlayer.shirt = selectShirt.value;
+	document.activeElement.blur()
+}
+
+
+function AddShirts(){
+	var option1 = document.createElement("option");
+	option1.text = "Blue";
+	selectShirt.add(option1);
+	var option2 = document.createElement("option");
+	option2.text = "Light-Blue";
+	selectShirt.add(option2);
+	var option3 = document.createElement("option");
+	option3.text = "Light-Green";
+	selectShirt.add(option3);
+	var option4 = document.createElement("option");
+	option4.text = "Orange";
+	selectShirt.add(option4);
+	var option5 = document.createElement("option");
+	option5.text = "Purple";
+	selectShirt.add(option5);
+	var option6 = document.createElement("option");
+	option6.text = "Sky-Blue";
+	selectShirt.add(option6);
+	var option7 = document.createElement("option");
+	option7.text = "Stripes-Red-Dark-Red";
+	selectShirt.add(option7);
+	var option8 = document.createElement("option");
+	option8.text = "White";
+	selectShirt.add(option8);
+	var option9 = document.createElement("option");
+	option9.text = "Yellow";
+	selectShirt.add(option9);
 }
 
 function SwapControl(){
@@ -165,10 +274,21 @@ function RemoveFromBox(){
 	document.activeElement.blur()
 }
 
-function AddToBox(){
+function addAllToBox()
+{
+	for (var i = 0; i < personsOutOfBox.length; i++)
+	{
+		selectAdd.value = personsOutOfBox[i].name;
+		console.log(selectAdd.value);
+		AddToBox(true);
+	}
+}
+
+function AddToBox(noblur){
 	var player;
 	var found = false;
-	
+	console.log(selectAdd.value);
+
 	for (var i = 0; i < personsOutOfBox.length; i++)
 	{
 		if (personsOutOfBox[i].name == this.value)
@@ -195,7 +315,10 @@ function AddToBox(){
 	{
 		currentPlayer = personsInBox[0];
 	}
-	document.activeElement.blur()
+	if (!noblur)
+	{
+		document.activeElement.blur();
+	}
 }
 
 function AddToList(player){
@@ -270,7 +393,11 @@ window.onload = function() {
   var tagline5 = document.createTextNode("Background");
   document.body.appendChild(tagline5);
   document.body.appendChild(selectBackground);
+  document.body.appendChild(selectPants);
+  document.body.appendChild(selectShirt);
   document.body.appendChild(raceButton);
+  //document.body.appendChild(addAllButton);
+
   var linebreak = document.createElement("br");
   document.body.appendChild(linebreak);
   var linebreak3 = document.createElement("br");
@@ -286,17 +413,20 @@ window.onload = function() {
   var counter = 0;
 
   
-  var PAUL = {name:'Paul',imgName:'Paul',personX:0,personY:canvasHeight-personHeight,rightLeft:'Right',moving:false,rotation:6,numSteps:0,shirt:1,pants:1,shoes:1,offset:0,gamesWon:0};
-  var ZACH = {name:'Zach',imgName:'Zach',personX:160,personY:canvasHeight-personHeight,rightLeft:'Right',moving:false,rotation:6,numSteps:0,shirt:2,pants:2,shoes:2,offset:0,gamesWon:0};
-  var DALLIN = {name:'Dallin',imgName:'Dallin',personX:320,personY:canvasHeight-personHeight,rightLeft:'Right',moving:false,rotation:6,numSteps:0,shirt:2,pants:2,shoes:2,offset:0,gamesWon:0};
-  var ELENA = {name:'Elena',imgName:'Elena',personX:480,personY:canvasHeight-personHeight,rightLeft:'Right',moving:false,rotation:6,numSteps:0,shirt:2,pants:2,shoes:2,offset:0,gamesWon:0};
-  var MIKAYLA = {name:'Mikayla',imgName:'MikaylaBetterHair',personX:640,personY:canvasHeight-personHeight,rightLeft:'Right',moving:false,rotation:6,numSteps:0,shirt:2,pants:2,shoes:2,offset:-15,gamesWon:0};
-  var MICHELLE = {name:'Michelle',imgName:'Michelle',personX:800,personY:canvasHeight-personHeight,rightLeft:'Right',moving:false,rotation:6,numSteps:0,shirt:2,pants:2,shoes:2,offset:0,gamesWon:0};
-  var ELYSSA = {name:'Elyssa',imgName:'Elyssa',personX:80,personY:canvasHeight-personHeight,rightLeft:'Right',moving:false,rotation:6,numSteps:0,shirt:2,pants:2,shoes:2,offset:0,gamesWon:0};
-  var HANNAH = {name:'Hannah',imgName:'HannahShorter',personX:240,personY:canvasHeight-personHeight,rightLeft:'Right',moving:false,rotation:6,numSteps:0,shirt:2,pants:2,shoes:2,offset:-10,gamesWon:0};
-  var CAITLIN = {name:'Caitlin',imgName:'Caitlin',personX:400,personY:canvasHeight-personHeight,rightLeft:'Right',moving:false,rotation:6,numSteps:0,shirt:2,pants:2,shoes:2,offset:-5,gamesWon:0};
-  var SADEE = {name:'Sadee',imgName:'Sadee',personX:560,personY:canvasHeight-personHeight,rightLeft:'Right',moving:false,rotation:6,numSteps:0,shirt:2,pants:2,shoes:2,offset:-5,gamesWon:0};
-  var MATTHEW = {name:'Matthew',imgName:'Matthew',personX:720,personY:canvasHeight-personHeight,rightLeft:'Right',moving:false,rotation:6,numSteps:0,shirt:2,pants:2,shoes:2,offset:0,gamesWon:0};
+  var PAUL = {name:'Paul',imgName:'Paul',personX:0,personY:canvasHeight-personHeight,rightLeft:'Right',moving:false,rotation:6,numSteps:0,shirt:"Blue",pants:"Brown",shoes:1,offset:0,gamesWon:0,cheating:false,together:null};
+  var ZACH = {name:'Zach',imgName:'Zach',personX:160,personY:canvasHeight-personHeight,rightLeft:'Right',moving:false,rotation:6,numSteps:0,shirt:"Stripes-Red-Dark-Red",pants:"Black",shoes:2,offset:0,gamesWon:0,cheating:false,together:null};
+  var DALLIN = {name:'Dallin',imgName:'Dallin',personX:320,personY:canvasHeight-personHeight,rightLeft:'Right',moving:false,rotation:6,numSteps:0,shirt:"Light-Green",pants:"Blue",shoes:2,offset:0,gamesWon:0,cheating:false,together:null};
+  var ELENA = {name:'Elena',imgName:'Elena',personX:480,personY:canvasHeight-personHeight,rightLeft:'Right',moving:false,rotation:6,numSteps:0,shirt:"Orange",pants:"Black&White",shoes:2,offset:0,gamesWon:0,cheating:false,together:null};
+  var MIKAYLA = {name:'Mikayla',imgName:'MikaylaBetterHair',personX:640,personY:canvasHeight-personHeight,rightLeft:'Right',moving:false,rotation:6,numSteps:0,shirt:"Purple",pants:"Pink",shoes:2,offset:-15,gamesWon:0,cheating:false,together:null};
+  var MICHELLE = {name:'Michelle',imgName:'Michelle',personX:800,personY:canvasHeight-personHeight,rightLeft:'Right',moving:false,rotation:6,numSteps:0,shirt:"Sky-Blue",pants:"Red",shoes:2,offset:0,gamesWon:0,cheating:false,together:null};
+  var ELYSSA = {name:'Elyssa',imgName:'Elyssa',personX:80,personY:canvasHeight-personHeight,rightLeft:'Right',moving:false,rotation:6,numSteps:0,shirt:"Stripes-Red-Dark-Red",pants:"White",shoes:2,offset:0,gamesWon:0,cheating:false,together:null};
+  var HANNAH = {name:'Hannah',imgName:'HannahShorter',personX:240,personY:canvasHeight-personHeight,rightLeft:'Right',moving:false,rotation:6,numSteps:0,shirt:"White",pants:"Yellow",shoes:2,offset:-10,gamesWon:0,cheating:false,together:null};
+  var CAITLIN = {name:'Caitlin',imgName:'Caitlin',personX:400,personY:canvasHeight-personHeight,rightLeft:'Right',moving:false,rotation:6,numSteps:0,shirt:"Yellow",pants:"Light-Blue",shoes:2,offset:-5,gamesWon:0,cheating:false,together:null};
+  var SADEE = {name:'Sadee',imgName:'Sadee',personX:560,personY:canvasHeight-personHeight,rightLeft:'Right',moving:false,rotation:6,numSteps:0,shirt:"Blue",pants:"Light-Green",shoes:2,offset:-5,gamesWon:0,cheating:false,together:null};
+  var MATTHEW = {name:'Matthew',imgName:'Matthew',personX:720,personY:canvasHeight-personHeight,rightLeft:'Right',moving:false,rotation:6,numSteps:0,shirt:"Light-Blue",pants:"Blue",shoes:2,offset:0,gamesWon:0,cheating:false,together:null};
+  var David = {name:'David',imgName:'David',personX:40,personY:canvasHeight-personHeight,rightLeft:'Right',moving:false,rotation:6,numSteps:0,shirt:"Light-Green",pants:"Light-Blue",shoes:2,offset:0,gamesWon:0,cheating:false,together:null};
+  var Molly = {name:'Molly',imgName:'Molly',personX:120,personY:canvasHeight-personHeight,rightLeft:'Right',moving:false,rotation:6,numSteps:0,shirt:"Orange",pants:"Light-Green",shoes:2,offset:-10,gamesWon:0,cheating:false,together:null};
+  var Taylor = {name:'Taylor',imgName:'Taylor',personX:200,personY:canvasHeight-personHeight,rightLeft:'Right',moving:false,rotation:6,numSteps:0,shirt:"Purple",pants:"White",shoes:2,offset:0,gamesWon:0,cheating:false,together:null};
 
   AddToList(PAUL);
   AddToList(ZACH);
@@ -309,9 +439,13 @@ window.onload = function() {
   AddToList(CAITLIN);
   AddToList(SADEE);
   AddToList(MATTHEW);
+  AddToList(David);
+  AddToList(Molly);
+  AddToList(Taylor);
   
   AddBackgrounds();
-
+  AddPants();
+  AddShirts();
   //currentPlayer = personsInBox[0];
   var leftKey = 37;
   var rightKey = 39;
@@ -487,6 +621,17 @@ setInterval(function()
 	
 	if (Math.random() < .03*ratio && personsInBox.length > 1)
 	{
+		for (var k = 0; k < personsInBox.length; k++)
+		{
+			var p1 = personsInBox[k];
+			if (p1.cheating && p1.together == null)
+			{
+				if (Math.random() < .3)
+				{
+					p1.numSteps = (Math.floor((Math.random()*1000))%8)+1;
+				}
+			}
+		}
 		console.log("length" + personsInBox.length);
 		var playerIndex;
 		if (!RACING)
@@ -499,15 +644,18 @@ setInterval(function()
 		}
 		console.log(playerIndex);
 		var p = personsInBox[playerIndex];
-		p.numSteps = (Math.floor((Math.random()*1000))%8)+1;
-		console.log(p.numSteps);
-		if (RACING)
+		if (!p.cheating && player.together == null)
 		{
-			p.rightLeft = (Math.random() < .8)? 'Right':'Left';
-		}
-		else
-		{
-			p.rightLeft = (Math.random() < .5)? 'Right':'Left';
+			p.numSteps = (Math.floor((Math.random()*1000))%8)+1;
+			console.log(p.numSteps);
+			if (RACING)
+			{
+				p.rightLeft = (Math.random() < .8)? 'Right':'Left';
+			}
+			else
+			{
+				p.rightLeft = (Math.random() < .5)? 'Right':'Left';
+			}
 		}
 	}		
 
@@ -583,7 +731,86 @@ function movePlayer(player) {
 	
 }
 
+function exitScreen1()
+{
+	var p1;
+	var p2;
+	for (var i = 0; i < personsInBox.length; i++)
+	{
+		var p = personsInBox[i];
+		if (p.name == "Hannah")
+		{
+			p1 = p;
+		}
+		else if (p.name == "Paul")
+		{
+			p2 = p;
+		}
+	}
+	if (p1 != null && p2 != null)
+	{
+		if (p1.together != null)
+		{
+			p1.together = null;
+		}
+		if (p2.together != null)
+		{
+			p2.together = null;
+		}
+		else
+		{
+			p1.together = 1;
+			p2.together = 2;
+			findEachother(p1,p2);
+		}
+	}
+}
+
+function findEachother(p1,p2)
+{
+	if (p1.personX <= p2.personX)
+	{
+		p1.numSteps = (p2.personX - p1.personX)/20+2;
+		p1.rightLeft = "Right";
+	}
+	else if (p1.personX > p2.personX)
+	{
+		p1.numSteps = (p1.personX - p2.personX)/20-2;
+		p1.rightLeft = "Left";
+	}
+}
+
+function getLetter(code){
+	return String.fromCharCode(code);
+}
+
 function checkKey(e) {
+	if (e.keyCode <= 90 && e.keyCode >= 65)
+	{
+		cheatString += getLetter(e.keyCode);
+		console.log("CHEAT: " + cheatString);
+	}
+	else
+	{
+		cheatString = "";
+	}
+	if (cheatString.length > 5)
+	{
+		cheatString = cheatString.substring(1, 5);
+	}
+	if (cheatString == "DASIG")
+	{
+		console.log("cheat1");
+		currentPlayer.cheating = !currentPlayer.cheating;
+		cheatString = "";
+	}
+	if (cheatString == "GUGMA")
+	{
+		console.log("cheat2");
+		cheatString = "";
+		exitScreen1();
+	}
+	
 	if (currentPlayer.moving || RACING)
 	{
 		return;
@@ -596,12 +823,12 @@ function checkKey(e) {
     else if (e.keyCode == '40') {
         // down arrow
     }
-    else if (e.keyCode == leftKey) {
+    else if (e.keyCode == leftKey && currentPlayer.together == null) {
 		currentPlayer.numSteps = 1;
 		currentPlayer.rightLeft = 'Left';
 	    movePlayer(currentPlayer);
     }
-    else if (e.keyCode == rightKey) {
+    else if (e.keyCode == rightKey && currentPlayer.together == null) {
 		currentPlayer.numSteps = 1;
 		currentPlayer.rightLeft = 'Right';
 		movePlayer(currentPlayer);
