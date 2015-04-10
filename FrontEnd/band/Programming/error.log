@@ -1,0 +1,2498 @@
+
+
+Error log timestamp Monday 01/04/10 06:51:02 PM
+
+Runtime error: Subscript out of range: 58, images$()
+
+Error(Exception)>>defaultAction
+Error(Exception)>>activateHandler: <anUndefinedObject> 
+Error(Exception)>>handle
+Error(Exception)>>signal
+Error class(Exception class)>>signal: <'Subscript out of ran...'> 
+BasicProgram(Object)>>error: <'Subscript out of ran...'> 
+BasicProgram>>terminateRun: <anError> 
+[] in BasicProgram>>errorHandlerBlock
+ExceptionHandler>>evaluateResponseBlock: <aBlockClosure> for: <anError> 
+[] in ExceptionHandler>>handle:
+ProtectedFrameMarker(BlockClosure)>>setUnwind: <aBlockClosure> 
+BlockClosure>>invisibleEnsure: <aBlockClosure> 
+ExceptionHandler>>handle: <anError> 
+ExceptionHandler>>findHandler: <anError> 
+Error(Exception)>>activateHandler: <anExceptionHandler> 
+Error(Exception)>>handle
+Error(Exception)>>signal
+Error class(Exception class)>>signal: <'Subscript out of ran...'> 
+BasicProgram(Object)>>error: <'Subscript out of ran...'> 
+BasicProgram>>runError: <'Subscript out of ran...'> 
+BasicStringArray(BasicArray)>>boundsError: <58> 
+BasicStringArray(BasicArray)>>assignUsing: <anOrderedCollection> 
+BasicArrayAssigner>>value
+[] in BasicProgram>>begin
+ExceptionHandler>>evaluateProtectedBlock: <aBlockClosure> 
+[] in ExceptionHandler>>activateDuring:
+ProtectedFrameMarker(BlockClosure)>>setUnwind: <aBlockClosure> 
+BlockClosure>>invisibleEnsure: <aBlockClosure> 
+ExceptionHandler>>activateDuring: <aBlockClosure> 
+ExceptionHandler class>>handle: <anError class> with: <aBlockClosure> during: <aBlockClosure> 
+BlockClosure>>on: <anError class> do: <aBlockClosure> 
+BasicProgram>>begin
+BasicProgram>>run
+[] in BasicSourcePane>>run
+BasicCompiler class>>compileFromString: <'
+ loadbmp "hands", ...'> notify: <aBasicSourcePane> ifSuccess: <aBlockClosure> 
+BasicSourcePane>>run
+BasicSourceWindow>>run
+BasicEditorModel>>run: <aToolbarButton> 
+BasicEditorModel(Object)>>perform: <#run:> with: <aToolbarButton> 
+ToolbarButton>>triggerClickedEvent
+Message>>perform
+NotificationManager>>runPendingEvents
+NotificationManager>>runEventLoop
+Message>>perform
+Message>>evaluate
+Process>>safelyEvaluate: <aMessage> 
+Process>>evaluate: <aMessage> 
+
+
+Error log timestamp Monday 01/04/10 06:52:24 PM
+
+Runtime error: Subscript out of range: 58, images$()
+
+Error(Exception)>>defaultAction
+Error(Exception)>>activateHandler: <anUndefinedObject> 
+Error(Exception)>>handle
+Error(Exception)>>signal
+Error class(Exception class)>>signal: <'Subscript out of ran...'> 
+BasicProgram(Object)>>error: <'Subscript out of ran...'> 
+BasicProgram>>terminateRun: <anError> 
+[] in BasicProgram>>errorHandlerBlock
+ExceptionHandler>>evaluateResponseBlock: <aBlockClosure> for: <anError> 
+[] in ExceptionHandler>>handle:
+ProtectedFrameMarker(BlockClosure)>>setUnwind: <aBlockClosure> 
+BlockClosure>>invisibleEnsure: <aBlockClosure> 
+ExceptionHandler>>handle: <anError> 
+ExceptionHandler>>findHandler: <anError> 
+Error(Exception)>>activateHandler: <anExceptionHandler> 
+Error(Exception)>>handle
+Error(Exception)>>signal
+Error class(Exception class)>>signal: <'Subscript out of ran...'> 
+BasicProgram(Object)>>error: <'Subscript out of ran...'> 
+BasicProgram>>runError: <'Subscript out of ran...'> 
+BasicStringArray(BasicArray)>>boundsError: <58> 
+BasicStringArray(BasicArray)>>assignUsing: <anOrderedCollection> 
+BasicArrayAssigner>>value
+[] in BasicProgram>>begin
+ExceptionHandler>>evaluateProtectedBlock: <aBlockClosure> 
+[] in ExceptionHandler>>activateDuring:
+ProtectedFrameMarker(BlockClosure)>>setUnwind: <aBlockClosure> 
+BlockClosure>>invisibleEnsure: <aBlockClosure> 
+ExceptionHandler>>activateDuring: <aBlockClosure> 
+ExceptionHandler class>>handle: <anError class> with: <aBlockClosure> during: <aBlockClosure> 
+BlockClosure>>on: <anError class> do: <aBlockClosure> 
+BasicProgram>>begin
+BasicProgram>>run
+[] in BasicSourcePane>>run
+BasicCompiler class>>compileFromString: <'
+ loadbmp "hands", ...'> notify: <aBasicSourcePane> ifSuccess: <aBlockClosure> 
+BasicSourcePane>>run
+BasicSourceWindow>>run
+BasicEditorModel>>run: <aToolbarButton> 
+BasicEditorModel(Object)>>perform: <#run:> with: <aToolbarButton> 
+ToolbarButton>>triggerClickedEvent
+Message>>perform
+NotificationManager>>runPendingEvents
+NotificationManager>>runEventLoop
+Message>>perform
+Message>>evaluate
+Process>>safelyEvaluate: <aMessage> 
+Process>>evaluate: <aMessage> 
+
+
+Error log timestamp Monday 01/04/10 06:53:36 PM
+
+Runtime error: Subscript out of range: 58, images$()
+
+Error(Exception)>>defaultAction
+Error(Exception)>>activateHandler: <anUndefinedObject> 
+Error(Exception)>>handle
+Error(Exception)>>signal
+Error class(Exception class)>>signal: <'Subscript out of ran...'> 
+BasicProgram(Object)>>error: <'Subscript out of ran...'> 
+BasicProgram>>terminateRun: <anError> 
+[] in BasicProgram>>errorHandlerBlock
+ExceptionHandler>>evaluateResponseBlock: <aBlockClosure> for: <anError> 
+[] in ExceptionHandler>>handle:
+ProtectedFrameMarker(BlockClosure)>>setUnwind: <aBlockClosure> 
+BlockClosure>>invisibleEnsure: <aBlockClosure> 
+ExceptionHandler>>handle: <anError> 
+ExceptionHandler>>findHandler: <anError> 
+Error(Exception)>>activateHandler: <anExceptionHandler> 
+Error(Exception)>>handle
+Error(Exception)>>signal
+Error class(Exception class)>>signal: <'Subscript out of ran...'> 
+BasicProgram(Object)>>error: <'Subscript out of ran...'> 
+BasicProgram>>runError: <'Subscript out of ran...'> 
+BasicStringArray(BasicArray)>>boundsError: <58> 
+BasicStringArray(BasicArray)>>assignUsing: <anOrderedCollection> 
+BasicArrayAssigner>>value
+[] in BasicProgram>>begin
+ExceptionHandler>>evaluateProtectedBlock: <aBlockClosure> 
+[] in ExceptionHandler>>activateDuring:
+ProtectedFrameMarker(BlockClosure)>>setUnwind: <aBlockClosure> 
+BlockClosure>>invisibleEnsure: <aBlockClosure> 
+ExceptionHandler>>activateDuring: <aBlockClosure> 
+ExceptionHandler class>>handle: <anError class> with: <aBlockClosure> during: <aBlockClosure> 
+BlockClosure>>on: <anError class> do: <aBlockClosure> 
+BasicProgram>>begin
+BasicProgram>>run
+[] in BasicSourcePane>>run
+BasicCompiler class>>compileFromString: <'
+ loadbmp "hands", ...'> notify: <aBasicSourcePane> ifSuccess: <aBlockClosure> 
+BasicSourcePane>>run
+BasicSourceWindow>>run
+BasicEditorModel>>run: <aToolbarButton> 
+BasicEditorModel(Object)>>perform: <#run:> with: <aToolbarButton> 
+ToolbarButton>>triggerClickedEvent
+Message>>perform
+NotificationManager>>runPendingEvents
+NotificationManager>>runEventLoop
+Message>>perform
+Message>>evaluate
+Process>>safelyEvaluate: <aMessage> 
+Process>>evaluate: <aMessage> 
+
+
+Error log timestamp Monday 01/04/10 06:54:44 PM
+
+Runtime error: Subscript out of range: 58, images$()
+
+Error(Exception)>>defaultAction
+Error(Exception)>>activateHandler: <anUndefinedObject> 
+Error(Exception)>>handle
+Error(Exception)>>signal
+Error class(Exception class)>>signal: <'Subscript out of ran...'> 
+BasicProgram(Object)>>error: <'Subscript out of ran...'> 
+BasicProgram>>terminateRun: <anError> 
+[] in BasicProgram>>errorHandlerBlock
+ExceptionHandler>>evaluateResponseBlock: <aBlockClosure> for: <anError> 
+[] in ExceptionHandler>>handle:
+ProtectedFrameMarker(BlockClosure)>>setUnwind: <aBlockClosure> 
+BlockClosure>>invisibleEnsure: <aBlockClosure> 
+ExceptionHandler>>handle: <anError> 
+ExceptionHandler>>findHandler: <anError> 
+Error(Exception)>>activateHandler: <anExceptionHandler> 
+Error(Exception)>>handle
+Error(Exception)>>signal
+Error class(Exception class)>>signal: <'Subscript out of ran...'> 
+BasicProgram(Object)>>error: <'Subscript out of ran...'> 
+BasicProgram>>runError: <'Subscript out of ran...'> 
+BasicStringArray(BasicArray)>>boundsError: <58> 
+BasicStringArray(BasicArray)>>assignUsing: <anOrderedCollection> 
+BasicArrayAssigner>>value
+[] in BasicProgram>>begin
+ExceptionHandler>>evaluateProtectedBlock: <aBlockClosure> 
+[] in ExceptionHandler>>activateDuring:
+ProtectedFrameMarker(BlockClosure)>>setUnwind: <aBlockClosure> 
+BlockClosure>>invisibleEnsure: <aBlockClosure> 
+ExceptionHandler>>activateDuring: <aBlockClosure> 
+ExceptionHandler class>>handle: <anError class> with: <aBlockClosure> during: <aBlockClosure> 
+BlockClosure>>on: <anError class> do: <aBlockClosure> 
+BasicProgram>>begin
+BasicProgram>>run
+[] in BasicSourcePane>>run
+BasicCompiler class>>compileFromString: <'
+ loadbmp "hands", ...'> notify: <aBasicSourcePane> ifSuccess: <aBlockClosure> 
+BasicSourcePane>>run
+BasicSourceWindow>>run
+BasicEditorModel>>run: <aToolbarButton> 
+BasicEditorModel(Object)>>perform: <#run:> with: <aToolbarButton> 
+ToolbarButton>>triggerClickedEvent
+Message>>perform
+NotificationManager>>runPendingEvents
+NotificationManager>>runEventLoop
+Message>>perform
+Message>>evaluate
+Process>>safelyEvaluate: <aMessage> 
+Process>>evaluate: <aMessage> 
+
+
+Error log timestamp Monday 01/04/10 06:57:10 PM
+
+Runtime error: Subscript out of range: 58, images$()
+
+Error(Exception)>>defaultAction
+Error(Exception)>>activateHandler: <anUndefinedObject> 
+Error(Exception)>>handle
+Error(Exception)>>signal
+Error class(Exception class)>>signal: <'Subscript out of ran...'> 
+BasicProgram(Object)>>error: <'Subscript out of ran...'> 
+BasicProgram>>terminateRun: <anError> 
+[] in BasicProgram>>errorHandlerBlock
+ExceptionHandler>>evaluateResponseBlock: <aBlockClosure> for: <anError> 
+[] in ExceptionHandler>>handle:
+ProtectedFrameMarker(BlockClosure)>>setUnwind: <aBlockClosure> 
+BlockClosure>>invisibleEnsure: <aBlockClosure> 
+ExceptionHandler>>handle: <anError> 
+ExceptionHandler>>findHandler: <anError> 
+Error(Exception)>>activateHandler: <anExceptionHandler> 
+Error(Exception)>>handle
+Error(Exception)>>signal
+Error class(Exception class)>>signal: <'Subscript out of ran...'> 
+BasicProgram(Object)>>error: <'Subscript out of ran...'> 
+BasicProgram>>runError: <'Subscript out of ran...'> 
+BasicStringArray(BasicArray)>>boundsError: <58> 
+BasicStringArray(BasicArray)>>assignUsing: <anOrderedCollection> 
+BasicArrayAssigner>>value
+[] in BasicProgram>>begin
+ExceptionHandler>>evaluateProtectedBlock: <aBlockClosure> 
+[] in ExceptionHandler>>activateDuring:
+ProtectedFrameMarker(BlockClosure)>>setUnwind: <aBlockClosure> 
+BlockClosure>>invisibleEnsure: <aBlockClosure> 
+ExceptionHandler>>activateDuring: <aBlockClosure> 
+ExceptionHandler class>>handle: <anError class> with: <aBlockClosure> during: <aBlockClosure> 
+BlockClosure>>on: <anError class> do: <aBlockClosure> 
+BasicProgram>>begin
+BasicProgram>>run
+[] in BasicSourcePane>>run
+BasicCompiler class>>compileFromString: <'
+ loadbmp "hands", ...'> notify: <aBasicSourcePane> ifSuccess: <aBlockClosure> 
+BasicSourcePane>>run
+BasicSourceWindow>>run
+BasicEditorModel>>run: <aToolbarButton> 
+BasicEditorModel(Object)>>perform: <#run:> with: <aToolbarButton> 
+ToolbarButton>>triggerClickedEvent
+Message>>perform
+NotificationManager>>runPendingEvents
+NotificationManager>>runEventLoop
+Message>>perform
+Message>>evaluate
+Process>>safelyEvaluate: <aMessage> 
+Process>>evaluate: <aMessage> 
+
+
+Error log timestamp Monday 01/04/10 06:59:21 PM
+
+Runtime error: Subscript out of range: 58, images$()
+
+Error(Exception)>>defaultAction
+Error(Exception)>>activateHandler: <anUndefinedObject> 
+Error(Exception)>>handle
+Error(Exception)>>signal
+Error class(Exception class)>>signal: <'Subscript out of ran...'> 
+BasicProgram(Object)>>error: <'Subscript out of ran...'> 
+BasicProgram>>terminateRun: <anError> 
+[] in BasicProgram>>errorHandlerBlock
+ExceptionHandler>>evaluateResponseBlock: <aBlockClosure> for: <anError> 
+[] in ExceptionHandler>>handle:
+ProtectedFrameMarker(BlockClosure)>>setUnwind: <aBlockClosure> 
+BlockClosure>>invisibleEnsure: <aBlockClosure> 
+ExceptionHandler>>handle: <anError> 
+ExceptionHandler>>findHandler: <anError> 
+Error(Exception)>>activateHandler: <anExceptionHandler> 
+Error(Exception)>>handle
+Error(Exception)>>signal
+Error class(Exception class)>>signal: <'Subscript out of ran...'> 
+BasicProgram(Object)>>error: <'Subscript out of ran...'> 
+BasicProgram>>runError: <'Subscript out of ran...'> 
+BasicStringArray(BasicArray)>>boundsError: <58> 
+BasicStringArray(BasicArray)>>assignUsing: <anOrderedCollection> 
+BasicArrayAssigner>>value
+[] in BasicProgram>>begin
+ExceptionHandler>>evaluateProtectedBlock: <aBlockClosure> 
+[] in ExceptionHandler>>activateDuring:
+ProtectedFrameMarker(BlockClosure)>>setUnwind: <aBlockClosure> 
+BlockClosure>>invisibleEnsure: <aBlockClosure> 
+ExceptionHandler>>activateDuring: <aBlockClosure> 
+ExceptionHandler class>>handle: <anError class> with: <aBlockClosure> during: <aBlockClosure> 
+BlockClosure>>on: <anError class> do: <aBlockClosure> 
+BasicProgram>>begin
+BasicProgram>>run
+[] in BasicSourcePane>>run
+BasicCompiler class>>compileFromString: <'
+ loadbmp "hands", ...'> notify: <aBasicSourcePane> ifSuccess: <aBlockClosure> 
+BasicSourcePane>>run
+BasicSourceWindow>>run
+BasicEditorModel>>run: <aToolbarButton> 
+BasicEditorModel(Object)>>perform: <#run:> with: <aToolbarButton> 
+ToolbarButton>>triggerClickedEvent
+Message>>perform
+NotificationManager>>runPendingEvents
+NotificationManager>>runEventLoop
+Message>>perform
+Message>>evaluate
+Process>>safelyEvaluate: <aMessage> 
+Process>>evaluate: <aMessage> 
+
+
+Error log timestamp Monday 01/04/10 07:41:49 PM
+
+Runtime error: Bitmap named 0 not found!
+
+Error(Exception)>>defaultAction
+Error(Exception)>>activateHandler: <anUndefinedObject> 
+Error(Exception)>>handle
+Error(Exception)>>signal
+Error class(Exception class)>>signal: <'Bitmap named 0 not f...'> 
+BasicProgram(Object)>>error: <'Bitmap named 0 not f...'> 
+BasicProgram>>terminateRun: <anError> 
+[] in BasicProgram>>errorHandlerBlock
+ExceptionHandler>>evaluateResponseBlock: <aBlockClosure> for: <anError> 
+[] in ExceptionHandler>>handle:
+ProtectedFrameMarker(BlockClosure)>>setUnwind: <aBlockClosure> 
+BlockClosure>>invisibleEnsure: <aBlockClosure> 
+ExceptionHandler>>handle: <anError> 
+ExceptionHandler>>findHandler: <anError> 
+Error(Exception)>>activateHandler: <anExceptionHandler> 
+Error(Exception)>>handle
+Error(Exception)>>signal
+Error class(Exception class)>>signal: <'Bitmap named 0 not f...'> 
+BasicProgram(Object)>>error: <'Bitmap named 0 not f...'> 
+BasicProgram>>runError: <'Bitmap named 0 not f...'> 
+[] in BasicProgram>>bmpNamed:
+LinearHashTable>>lookUpValue: <0> for: <aDictionary> ifAbsent: <aBlockClosure> 
+Dictionary>>at: <0> ifAbsent: <aBlockClosure> 
+BasicProgram>>bmpNamed: <'0'> 
+LibGraphDevice(BasicGraphicDevice)>>drawBmp: <anOrderedCollection> 
+LibGraphDevice(BasicGraphicDevice)>>writeItem: <'drawbmp  0 0'> 
+LibGraphPane>>writeItem: <'drawbmp  0 0'> 
+LibGraphPane(SubPane)>>writeItemCr: <'drawbmp  0 0'> 
+[] in PrintCommand>>deviceCr:handle:
+BlockClosure>>value: <aBasicProgram> value: <'#main.draw'> value: <aBasicStringContext> 
+BasicTripleParameterContextHolder>>value
+[] in BasicProgram>>begin
+ExceptionHandler>>evaluateProtectedBlock: <aBlockClosure> 
+[] in ExceptionHandler>>activateDuring:
+ProtectedFrameMarker(BlockClosure)>>setUnwind: <aBlockClosure> 
+BlockClosure>>invisibleEnsure: <aBlockClosure> 
+ExceptionHandler>>activateDuring: <aBlockClosure> 
+ExceptionHandler class>>handle: <anError class> with: <aBlockClosure> during: <aBlockClosure> 
+BlockClosure>>on: <anError class> do: <aBlockClosure> 
+BasicProgram>>begin
+BasicProgram>>gotoAndIfStoppedBegin: <'[action]'> 
+BasicProgram>>handlerName: <'[action]'> evaluate: <aBlockClosure> callParameters: <anOrderedCollection> 
+BasicProgram>>submitHandlerName: <'[action]'> evaluate: <aBlockClosure> callParameters: <anOrderedCollection> 
+BasicProgram>>submitHandlerName: <'[action]'> callParameters: <anOrderedCollection> 
+LibButton>>click
+BasicWindow>>click: <aLibButton> 
+LibButton(Button)>>click: <aLibButton> 
+Message>>perform
+Message>>evaluate
+LibButton(Object)>>triggerEvent: <#clicked> 
+
+
+Error log timestamp Monday 01/04/10 07:42:19 PM
+
+Runtime error: Bitmap named 0 not found!
+
+Error(Exception)>>defaultAction
+Error(Exception)>>activateHandler: <anUndefinedObject> 
+Error(Exception)>>handle
+Error(Exception)>>signal
+Error class(Exception class)>>signal: <'Bitmap named 0 not f...'> 
+BasicProgram(Object)>>error: <'Bitmap named 0 not f...'> 
+BasicProgram>>terminateRun: <anError> 
+[] in BasicProgram>>errorHandlerBlock
+ExceptionHandler>>evaluateResponseBlock: <aBlockClosure> for: <anError> 
+[] in ExceptionHandler>>handle:
+ProtectedFrameMarker(BlockClosure)>>setUnwind: <aBlockClosure> 
+BlockClosure>>invisibleEnsure: <aBlockClosure> 
+ExceptionHandler>>handle: <anError> 
+ExceptionHandler>>findHandler: <anError> 
+Error(Exception)>>activateHandler: <anExceptionHandler> 
+Error(Exception)>>handle
+Error(Exception)>>signal
+Error class(Exception class)>>signal: <'Bitmap named 0 not f...'> 
+BasicProgram(Object)>>error: <'Bitmap named 0 not f...'> 
+BasicProgram>>runError: <'Bitmap named 0 not f...'> 
+[] in BasicProgram>>bmpNamed:
+LinearHashTable>>lookUpValue: <0> for: <aDictionary> ifAbsent: <aBlockClosure> 
+Dictionary>>at: <0> ifAbsent: <aBlockClosure> 
+BasicProgram>>bmpNamed: <'0'> 
+LibGraphDevice(BasicGraphicDevice)>>drawBmp: <anOrderedCollection> 
+LibGraphDevice(BasicGraphicDevice)>>writeItem: <'drawbmp  0 0'> 
+LibGraphPane>>writeItem: <'drawbmp  0 0'> 
+LibGraphPane(SubPane)>>writeItemCr: <'drawbmp  0 0'> 
+[] in PrintCommand>>deviceCr:handle:
+BlockClosure>>value: <aBasicProgram> value: <'#main.draw'> value: <aBasicStringContext> 
+BasicTripleParameterContextHolder>>value
+[] in BasicProgram>>begin
+ExceptionHandler>>evaluateProtectedBlock: <aBlockClosure> 
+[] in ExceptionHandler>>activateDuring:
+ProtectedFrameMarker(BlockClosure)>>setUnwind: <aBlockClosure> 
+BlockClosure>>invisibleEnsure: <aBlockClosure> 
+ExceptionHandler>>activateDuring: <aBlockClosure> 
+ExceptionHandler class>>handle: <anError class> with: <aBlockClosure> during: <aBlockClosure> 
+BlockClosure>>on: <anError class> do: <aBlockClosure> 
+BasicProgram>>begin
+BasicProgram>>gotoAndIfStoppedBegin: <'[action]'> 
+BasicProgram>>handlerName: <'[action]'> evaluate: <aBlockClosure> callParameters: <anOrderedCollection> 
+BasicProgram>>submitHandlerName: <'[action]'> evaluate: <aBlockClosure> callParameters: <anOrderedCollection> 
+BasicProgram>>submitHandlerName: <'[action]'> callParameters: <anOrderedCollection> 
+LibButton>>click
+BasicWindow>>click: <aLibButton> 
+LibButton(Button)>>click: <aLibButton> 
+Message>>perform
+Message>>evaluate
+LibButton(Object)>>triggerEvent: <#clicked> 
+
+
+Error log timestamp Monday 01/04/10 07:45:23 PM
+
+Runtime error: Subscript out of range: 61, images$()
+
+Error(Exception)>>defaultAction
+Error(Exception)>>activateHandler: <anUndefinedObject> 
+Error(Exception)>>handle
+Error(Exception)>>signal
+Error class(Exception class)>>signal: <'Subscript out of ran...'> 
+BasicProgram(Object)>>error: <'Subscript out of ran...'> 
+BasicProgram>>terminateRun: <anError> 
+[] in BasicProgram>>errorHandlerBlock
+ExceptionHandler>>evaluateResponseBlock: <aBlockClosure> for: <anError> 
+[] in ExceptionHandler>>handle:
+ProtectedFrameMarker(BlockClosure)>>setUnwind: <aBlockClosure> 
+BlockClosure>>invisibleEnsure: <aBlockClosure> 
+ExceptionHandler>>handle: <anError> 
+ExceptionHandler>>findHandler: <anError> 
+Error(Exception)>>activateHandler: <anExceptionHandler> 
+Error(Exception)>>handle
+Error(Exception)>>signal
+Error class(Exception class)>>signal: <'Subscript out of ran...'> 
+BasicProgram(Object)>>error: <'Subscript out of ran...'> 
+BasicProgram>>runError: <'Subscript out of ran...'> 
+BasicStringArray(BasicArray)>>boundsError: <61> 
+BasicStringArray(BasicArray)>>assignUsing: <anOrderedCollection> 
+BasicArrayAssigner>>value
+[] in BasicProgram>>begin
+ExceptionHandler>>evaluateProtectedBlock: <aBlockClosure> 
+[] in ExceptionHandler>>activateDuring:
+ProtectedFrameMarker(BlockClosure)>>setUnwind: <aBlockClosure> 
+BlockClosure>>invisibleEnsure: <aBlockClosure> 
+ExceptionHandler>>activateDuring: <aBlockClosure> 
+ExceptionHandler class>>handle: <anError class> with: <aBlockClosure> during: <aBlockClosure> 
+BlockClosure>>on: <anError class> do: <aBlockClosure> 
+BasicProgram>>begin
+BasicProgram>>run
+[] in BasicSourcePane>>run
+BasicCompiler class>>compileFromString: <'
+ loadbmp "hands", ...'> notify: <aBasicSourcePane> ifSuccess: <aBlockClosure> 
+BasicSourcePane>>run
+BasicSourceWindow>>run
+BasicEditorModel>>run: <aToolbarButton> 
+BasicEditorModel(Object)>>perform: <#run:> with: <aToolbarButton> 
+ToolbarButton>>triggerClickedEvent
+Message>>perform
+NotificationManager>>runPendingEvents
+NotificationManager>>runEventLoop
+Message>>perform
+Message>>evaluate
+Process>>safelyEvaluate: <aMessage> 
+Process>>evaluate: <aMessage> 
+
+
+Error log timestamp Monday 01/04/10 07:45:32 PM
+
+Runtime error: Subscript out of range: 61, images$()
+
+Error(Exception)>>defaultAction
+Error(Exception)>>activateHandler: <anUndefinedObject> 
+Error(Exception)>>handle
+Error(Exception)>>signal
+Error class(Exception class)>>signal: <'Subscript out of ran...'> 
+BasicProgram(Object)>>error: <'Subscript out of ran...'> 
+BasicProgram>>terminateRun: <anError> 
+[] in BasicProgram>>errorHandlerBlock
+ExceptionHandler>>evaluateResponseBlock: <aBlockClosure> for: <anError> 
+[] in ExceptionHandler>>handle:
+ProtectedFrameMarker(BlockClosure)>>setUnwind: <aBlockClosure> 
+BlockClosure>>invisibleEnsure: <aBlockClosure> 
+ExceptionHandler>>handle: <anError> 
+ExceptionHandler>>findHandler: <anError> 
+Error(Exception)>>activateHandler: <anExceptionHandler> 
+Error(Exception)>>handle
+Error(Exception)>>signal
+Error class(Exception class)>>signal: <'Subscript out of ran...'> 
+BasicProgram(Object)>>error: <'Subscript out of ran...'> 
+BasicProgram>>runError: <'Subscript out of ran...'> 
+BasicStringArray(BasicArray)>>boundsError: <61> 
+BasicStringArray(BasicArray)>>assignUsing: <anOrderedCollection> 
+BasicArrayAssigner>>value
+[] in BasicProgram>>begin
+ExceptionHandler>>evaluateProtectedBlock: <aBlockClosure> 
+[] in ExceptionHandler>>activateDuring:
+ProtectedFrameMarker(BlockClosure)>>setUnwind: <aBlockClosure> 
+BlockClosure>>invisibleEnsure: <aBlockClosure> 
+ExceptionHandler>>activateDuring: <aBlockClosure> 
+ExceptionHandler class>>handle: <anError class> with: <aBlockClosure> during: <aBlockClosure> 
+BlockClosure>>on: <anError class> do: <aBlockClosure> 
+BasicProgram>>begin
+BasicProgram>>run
+[] in BasicSourcePane>>run
+BasicCompiler class>>compileFromString: <'
+ loadbmp "hands", ...'> notify: <aBasicSourcePane> ifSuccess: <aBlockClosure> 
+BasicSourcePane>>run
+BasicSourceWindow>>run
+BasicEditorModel>>run: <aToolbarButton> 
+BasicEditorModel(Object)>>perform: <#run:> with: <aToolbarButton> 
+ToolbarButton>>triggerClickedEvent
+Message>>perform
+NotificationManager>>runPendingEvents
+NotificationManager>>runEventLoop
+Message>>perform
+Message>>evaluate
+Process>>safelyEvaluate: <aMessage> 
+Process>>evaluate: <aMessage> 
+
+
+Error log timestamp Wednesday 01/06/10 07:39:46 PM
+
+Runtime error: Handle #main already in use
+
+Error(Exception)>>defaultAction
+Error(Exception)>>activateHandler: <anUndefinedObject> 
+Error(Exception)>>handle
+Error(Exception)>>signal
+Error class(Exception class)>>signal: <'Handle #main already...'> 
+BasicProgram(Object)>>error: <'Handle #main already...'> 
+BasicProgram>>terminateRun: <anError> 
+[] in BasicProgram>>errorHandlerBlock
+ExceptionHandler>>evaluateResponseBlock: <aBlockClosure> for: <anError> 
+[] in ExceptionHandler>>handle:
+ProtectedFrameMarker(BlockClosure)>>setUnwind: <aBlockClosure> 
+BlockClosure>>invisibleEnsure: <aBlockClosure> 
+ExceptionHandler>>handle: <anError> 
+ExceptionHandler>>findHandler: <anError> 
+Error(Exception)>>activateHandler: <anExceptionHandler> 
+Error(Exception)>>handle
+Error(Exception)>>signal
+Error class(Exception class)>>signal: <'Handle #main already...'> 
+BasicProgram(Object)>>error: <'Handle #main already...'> 
+[] in OpenCommand>>using:
+[] in BasicProgram>>begin
+ExceptionHandler>>evaluateProtectedBlock: <aBlockClosure> 
+[] in ExceptionHandler>>activateDuring:
+ProtectedFrameMarker(BlockClosure)>>setUnwind: <aBlockClosure> 
+BlockClosure>>invisibleEnsure: <aBlockClosure> 
+ExceptionHandler>>activateDuring: <aBlockClosure> 
+ExceptionHandler class>>handle: <anError class> with: <aBlockClosure> during: <aBlockClosure> 
+BlockClosure>>on: <anError class> do: <aBlockClosure> 
+BasicProgram>>begin
+BasicProgram>>gotoAndIfStoppedBegin: <'[shuffle]'> 
+BasicProgram>>handlerName: <'[shuffle]'> evaluate: <aBlockClosure> callParameters: <anOrderedCollection> 
+BasicProgram>>submitHandlerName: <'[shuffle]'> evaluate: <aBlockClosure> callParameters: <anOrderedCollection> 
+BasicProgram>>submitHandlerName: <'[shuffle]'> callParameters: <anOrderedCollection> 
+LibButton>>click
+BasicGraphicDevice>>click: <aLibButton> 
+LibButton(Button)>>click: <aLibButton> 
+Message>>perform
+Message>>evaluate
+LibButton(Object)>>triggerEvent: <#clicked> 
+LibButton(Button)>>triggerClickedEvent
+LibButton(Button)>>notifyClicked: <3539594> 
+LibButton(ControlPane)>>asyncControlEvent: <0> with: <3539594> 
+Message>>perform
+NotificationManager>>empty
+NotificationManager>>runPendingEvents
+NotificationManager>>runEventLoop
+Message>>perform
+Message>>evaluate
+Process>>safelyEvaluate: <aMessage> 
+Process>>evaluate: <aMessage> 
+
+
+Error log timestamp Wednesday 01/06/10 07:42:00 PM
+
+Runtime error: Handle #main already in use
+
+Error(Exception)>>defaultAction
+Error(Exception)>>activateHandler: <anUndefinedObject> 
+Error(Exception)>>handle
+Error(Exception)>>signal
+Error class(Exception class)>>signal: <'Handle #main already...'> 
+BasicProgram(Object)>>error: <'Handle #main already...'> 
+BasicProgram>>terminateRun: <anError> 
+[] in BasicProgram>>errorHandlerBlock
+ExceptionHandler>>evaluateResponseBlock: <aBlockClosure> for: <anError> 
+[] in ExceptionHandler>>handle:
+ProtectedFrameMarker(BlockClosure)>>setUnwind: <aBlockClosure> 
+BlockClosure>>invisibleEnsure: <aBlockClosure> 
+ExceptionHandler>>handle: <anError> 
+ExceptionHandler>>findHandler: <anError> 
+Error(Exception)>>activateHandler: <anExceptionHandler> 
+Error(Exception)>>handle
+Error(Exception)>>signal
+Error class(Exception class)>>signal: <'Handle #main already...'> 
+BasicProgram(Object)>>error: <'Handle #main already...'> 
+[] in OpenCommand>>using:
+[] in BasicProgram>>begin
+ExceptionHandler>>evaluateProtectedBlock: <aBlockClosure> 
+[] in ExceptionHandler>>activateDuring:
+ProtectedFrameMarker(BlockClosure)>>setUnwind: <aBlockClosure> 
+BlockClosure>>invisibleEnsure: <aBlockClosure> 
+ExceptionHandler>>activateDuring: <aBlockClosure> 
+ExceptionHandler class>>handle: <anError class> with: <aBlockClosure> during: <aBlockClosure> 
+BlockClosure>>on: <anError class> do: <aBlockClosure> 
+BasicProgram>>begin
+BasicProgram>>gotoAndIfStoppedBegin: <'[start]'> 
+BasicProgram>>handlerName: <'[start]'> evaluate: <aBlockClosure> callParameters: <anOrderedCollection> 
+BasicProgram>>submitHandlerName: <'[start]'> evaluate: <aBlockClosure> callParameters: <anOrderedCollection> 
+BasicProgram>>submitHandlerName: <'[start]'> callParameters: <anOrderedCollection> 
+LibButton>>click
+BasicGraphicDevice>>click: <aLibButton> 
+LibButton(Button)>>click: <aLibButton> 
+Message>>perform
+Message>>evaluate
+LibButton(Object)>>triggerEvent: <#clicked> 
+LibButton(Button)>>triggerClickedEvent
+LibButton(Button)>>notifyClicked: <4850068> 
+LibButton(ControlPane)>>asyncControlEvent: <0> with: <4850068> 
+Message>>perform
+NotificationManager>>empty
+NotificationManager>>runPendingEvents
+NotificationManager>>runEventLoop
+Message>>perform
+Message>>evaluate
+Process>>safelyEvaluate: <aMessage> 
+Process>>evaluate: <aMessage> 
+
+
+Error log timestamp Thursday 01/07/10 02:57:32 PM
+
+Runtime error: Handle #main already in use
+
+Error(Exception)>>defaultAction
+Error(Exception)>>activateHandler: <anUndefinedObject> 
+Error(Exception)>>handle
+Error(Exception)>>signal
+Error class(Exception class)>>signal: <'Handle #main already...'> 
+BasicProgram(Object)>>error: <'Handle #main already...'> 
+BasicProgram>>terminateRun: <anError> 
+[] in BasicProgram>>errorHandlerBlock
+ExceptionHandler>>evaluateResponseBlock: <aBlockClosure> for: <anError> 
+[] in ExceptionHandler>>handle:
+ProtectedFrameMarker(BlockClosure)>>setUnwind: <aBlockClosure> 
+BlockClosure>>invisibleEnsure: <aBlockClosure> 
+ExceptionHandler>>handle: <anError> 
+ExceptionHandler>>findHandler: <anError> 
+Error(Exception)>>activateHandler: <anExceptionHandler> 
+Error(Exception)>>handle
+Error(Exception)>>signal
+Error class(Exception class)>>signal: <'Handle #main already...'> 
+BasicProgram(Object)>>error: <'Handle #main already...'> 
+[] in OpenCommand>>using:
+[] in BasicProgram>>begin
+ExceptionHandler>>evaluateProtectedBlock: <aBlockClosure> 
+[] in ExceptionHandler>>activateDuring:
+ProtectedFrameMarker(BlockClosure)>>setUnwind: <aBlockClosure> 
+BlockClosure>>invisibleEnsure: <aBlockClosure> 
+ExceptionHandler>>activateDuring: <aBlockClosure> 
+ExceptionHandler class>>handle: <anError class> with: <aBlockClosure> during: <aBlockClosure> 
+BlockClosure>>on: <anError class> do: <aBlockClosure> 
+BasicProgram>>begin
+BasicProgram>>gotoAndIfStoppedBegin: <'[action1]'> 
+BasicProgram>>handlerName: <'[action1]'> evaluate: <aBlockClosure> callParameters: <anOrderedCollection> 
+BasicProgram>>submitHandlerName: <'[action1]'> evaluate: <aBlockClosure> callParameters: <anOrderedCollection> 
+BasicProgram>>submitHandlerName: <'[action1]'> callParameters: <anOrderedCollection> 
+LibButton>>click
+BasicGraphicDevice>>click: <aLibButton> 
+LibButton(Button)>>click: <aLibButton> 
+Message>>perform
+Message>>evaluate
+LibButton(Object)>>triggerEvent: <#clicked> 
+LibButton(Button)>>triggerClickedEvent
+LibButton(Button)>>notifyClicked: <393980> 
+LibButton(ControlPane)>>asyncControlEvent: <0> with: <393980> 
+Message>>perform
+NotificationManager>>empty
+NotificationManager>>runPendingEvents
+NotificationManager>>runEventLoop
+Message>>perform
+Message>>evaluate
+Process>>safelyEvaluate: <aMessage> 
+Process>>evaluate: <aMessage> 
+
+
+Error log timestamp Thursday 01/07/10 02:58:31 PM
+
+Runtime error: Handle #main already in use
+
+Error(Exception)>>defaultAction
+Error(Exception)>>activateHandler: <anUndefinedObject> 
+Error(Exception)>>handle
+Error(Exception)>>signal
+Error class(Exception class)>>signal: <'Handle #main already...'> 
+BasicProgram(Object)>>error: <'Handle #main already...'> 
+BasicProgram>>terminateRun: <anError> 
+[] in BasicProgram>>errorHandlerBlock
+ExceptionHandler>>evaluateResponseBlock: <aBlockClosure> for: <anError> 
+[] in ExceptionHandler>>handle:
+ProtectedFrameMarker(BlockClosure)>>setUnwind: <aBlockClosure> 
+BlockClosure>>invisibleEnsure: <aBlockClosure> 
+ExceptionHandler>>handle: <anError> 
+ExceptionHandler>>findHandler: <anError> 
+Error(Exception)>>activateHandler: <anExceptionHandler> 
+Error(Exception)>>handle
+Error(Exception)>>signal
+Error class(Exception class)>>signal: <'Handle #main already...'> 
+BasicProgram(Object)>>error: <'Handle #main already...'> 
+[] in OpenCommand>>using:
+[] in BasicProgram>>begin
+ExceptionHandler>>evaluateProtectedBlock: <aBlockClosure> 
+[] in ExceptionHandler>>activateDuring:
+ProtectedFrameMarker(BlockClosure)>>setUnwind: <aBlockClosure> 
+BlockClosure>>invisibleEnsure: <aBlockClosure> 
+ExceptionHandler>>activateDuring: <aBlockClosure> 
+ExceptionHandler class>>handle: <anError class> with: <aBlockClosure> during: <aBlockClosure> 
+BlockClosure>>on: <anError class> do: <aBlockClosure> 
+BasicProgram>>begin
+BasicProgram>>gotoAndIfStoppedBegin: <'[action1]'> 
+BasicProgram>>handlerName: <'[action1]'> evaluate: <aBlockClosure> callParameters: <anOrderedCollection> 
+BasicProgram>>submitHandlerName: <'[action1]'> evaluate: <aBlockClosure> callParameters: <anOrderedCollection> 
+BasicProgram>>submitHandlerName: <'[action1]'> callParameters: <anOrderedCollection> 
+LibButton>>click
+BasicGraphicDevice>>click: <aLibButton> 
+LibButton(Button)>>click: <aLibButton> 
+Message>>perform
+Message>>evaluate
+LibButton(Object)>>triggerEvent: <#clicked> 
+LibButton(Button)>>triggerClickedEvent
+LibButton(Button)>>notifyClicked: <721658> 
+LibButton(Object)>>perform: <#notifyClicked:> with: <721658> 
+LibButton(ControlPane)>>asyncControlEvent: <0> with: <721658> 
+Message>>perform
+NotificationManager>>empty
+NotificationManager>>runPendingEvents
+NotificationManager>>runEventLoop
+Message>>perform
+Message>>evaluate
+Process>>safelyEvaluate: <aMessage> 
+
+
+Error log timestamp Thursday 01/07/10 02:58:38 PM
+
+Runtime error: Handle #main already in use
+
+Error(Exception)>>defaultAction
+Error(Exception)>>activateHandler: <anUndefinedObject> 
+Error(Exception)>>handle
+Error(Exception)>>signal
+Error class(Exception class)>>signal: <'Handle #main already...'> 
+BasicProgram(Object)>>error: <'Handle #main already...'> 
+BasicProgram>>terminateRun: <anError> 
+[] in BasicProgram>>errorHandlerBlock
+ExceptionHandler>>evaluateResponseBlock: <aBlockClosure> for: <anError> 
+[] in ExceptionHandler>>handle:
+ProtectedFrameMarker(BlockClosure)>>setUnwind: <aBlockClosure> 
+BlockClosure>>invisibleEnsure: <aBlockClosure> 
+ExceptionHandler>>handle: <anError> 
+ExceptionHandler>>findHandler: <anError> 
+Error(Exception)>>activateHandler: <anExceptionHandler> 
+Error(Exception)>>handle
+Error(Exception)>>signal
+Error class(Exception class)>>signal: <'Handle #main already...'> 
+BasicProgram(Object)>>error: <'Handle #main already...'> 
+[] in OpenCommand>>using:
+[] in BasicProgram>>begin
+ExceptionHandler>>evaluateProtectedBlock: <aBlockClosure> 
+[] in ExceptionHandler>>activateDuring:
+ProtectedFrameMarker(BlockClosure)>>setUnwind: <aBlockClosure> 
+BlockClosure>>invisibleEnsure: <aBlockClosure> 
+ExceptionHandler>>activateDuring: <aBlockClosure> 
+ExceptionHandler class>>handle: <anError class> with: <aBlockClosure> during: <aBlockClosure> 
+BlockClosure>>on: <anError class> do: <aBlockClosure> 
+BasicProgram>>begin
+BasicProgram>>gotoAndIfStoppedBegin: <'[action2]'> 
+BasicProgram>>handlerName: <'[action2]'> evaluate: <aBlockClosure> callParameters: <anOrderedCollection> 
+BasicProgram>>submitHandlerName: <'[action2]'> evaluate: <aBlockClosure> callParameters: <anOrderedCollection> 
+BasicProgram>>submitHandlerName: <'[action2]'> callParameters: <anOrderedCollection> 
+LibButton>>click
+BasicGraphicDevice>>click: <aLibButton> 
+LibButton(Button)>>click: <aLibButton> 
+Message>>perform
+Message>>evaluate
+LibButton(Object)>>triggerEvent: <#clicked> 
+LibButton(Button)>>triggerClickedEvent
+LibButton(Button)>>notifyClicked: <721672> 
+LibButton(Object)>>perform: <#notifyClicked:> with: <721672> 
+LibButton(ControlPane)>>asyncControlEvent: <0> with: <721672> 
+Message>>perform
+NotificationManager>>empty
+NotificationManager>>runPendingEvents
+NotificationManager>>runEventLoop
+Message>>perform
+Message>>evaluate
+Process>>safelyEvaluate: <aMessage> 
+
+
+Error log timestamp Thursday 01/07/10 03:21:07 PM
+
+Runtime error: Invalid file handle: #main.draw2
+
+Error(Exception)>>defaultAction
+Error(Exception)>>activateHandler: <anUndefinedObject> 
+Error(Exception)>>handle
+Error(Exception)>>signal
+Error class(Exception class)>>signal: <'Invalid file handle:...'> 
+BasicProgram(Object)>>error: <'Invalid file handle:...'> 
+BasicProgram>>terminateRun: <anError> 
+[] in BasicProgram>>errorHandlerBlock
+ExceptionHandler>>evaluateResponseBlock: <aBlockClosure> for: <anError> 
+[] in ExceptionHandler>>handle:
+ProtectedFrameMarker(BlockClosure)>>setUnwind: <aBlockClosure> 
+BlockClosure>>invisibleEnsure: <aBlockClosure> 
+ExceptionHandler>>handle: <anError> 
+ExceptionHandler>>findHandler: <anError> 
+Error(Exception)>>activateHandler: <anExceptionHandler> 
+Error(Exception)>>handle
+Error(Exception)>>signal
+Error class(Exception class)>>signal: <'Invalid file handle:...'> 
+BasicProgram(Object)>>error: <'Invalid file handle:...'> 
+[] in BasicProgram>>deviceAt:
+LinearHashTable>>lookUpValue: <'#main.draw2'> for: <aDictionary> ifAbsent: <aBlockClosure> 
+Dictionary>>at: <'#main.draw2'> ifAbsent: <aBlockClosure> 
+BasicProgram>>deviceAt: <'#main.draw2'> 
+[] in PrintCommand>>deviceCr:handle:
+BlockClosure>>value: <aBasicProgram> value: <'#main.draw2'> value: <aBasicStringContext> 
+BasicTripleParameterContextHolder>>value
+[] in BasicProgram>>begin
+ExceptionHandler>>evaluateProtectedBlock: <aBlockClosure> 
+[] in ExceptionHandler>>activateDuring:
+ProtectedFrameMarker(BlockClosure)>>setUnwind: <aBlockClosure> 
+BlockClosure>>invisibleEnsure: <aBlockClosure> 
+ExceptionHandler>>activateDuring: <aBlockClosure> 
+ExceptionHandler class>>handle: <anError class> with: <aBlockClosure> during: <aBlockClosure> 
+BlockClosure>>on: <anError class> do: <aBlockClosure> 
+BasicProgram>>begin
+BasicProgram>>run
+[] in BasicSourcePane>>run
+BasicCompiler class>>compileFromString: <'loadbmp "curtain", "...'> notify: <aBasicSourcePane> ifSuccess: <aBlockClosure> 
+BasicSourcePane>>run
+BasicSourceWindow>>run
+BasicEditorModel>>run: <aToolbarButton> 
+BasicEditorModel(Object)>>perform: <#run:> with: <aToolbarButton> 
+ToolbarButton>>triggerClickedEvent
+Message>>perform
+NotificationManager>>runPendingEvents
+NotificationManager>>runEventLoop
+Message>>perform
+Message>>evaluate
+Process>>safelyEvaluate: <aMessage> 
+Process>>evaluate: <aMessage> 
+
+
+Error log timestamp Thursday 01/07/10 03:50:20 PM
+
+Runtime error: Bad command for #main2, YOU
+
+Error(Exception)>>defaultAction
+Error(Exception)>>activateHandler: <anUndefinedObject> 
+Error(Exception)>>handle
+Error(Exception)>>signal
+Error class(Exception class)>>signal: <'Bad command for #mai...'> 
+BasicProgram(Object)>>error: <'Bad command for #mai...'> 
+BasicProgram>>terminateRun: <anError> 
+[] in BasicProgram>>errorHandlerBlock
+ExceptionHandler>>evaluateResponseBlock: <aBlockClosure> for: <anError> 
+[] in ExceptionHandler>>handle:
+ProtectedFrameMarker(BlockClosure)>>setUnwind: <aBlockClosure> 
+BlockClosure>>invisibleEnsure: <aBlockClosure> 
+ExceptionHandler>>handle: <anError> 
+ExceptionHandler>>findHandler: <anError> 
+Error(Exception)>>activateHandler: <anExceptionHandler> 
+Error(Exception)>>handle
+Error(Exception)>>signal
+Error class(Exception class)>>signal: <'Bad command for #mai...'> 
+BasicProgram(Object)>>error: <'Bad command for #mai...'> 
+BasicProgram>>runError: <'Bad command for #mai...'> 
+BasicProgram>>badCommand: <'YOU'> forHandle: <'#main2'> 
+BasicDialogBox(BasicWindow)>>writeItem: <'YOU WIN!'> 
+BasicDialogBox(BasicFile)>>writeItemCr: <'YOU WIN!'> 
+[] in PrintCommand>>deviceCr:handle:
+BlockClosure>>value: <aBasicProgram> value: <'#main2'> value: <aBasicStringContext> 
+BasicTripleParameterContextHolder>>value
+[] in BasicProgram>>begin
+ExceptionHandler>>evaluateProtectedBlock: <aBlockClosure> 
+[] in ExceptionHandler>>activateDuring:
+ProtectedFrameMarker(BlockClosure)>>setUnwind: <aBlockClosure> 
+BlockClosure>>invisibleEnsure: <aBlockClosure> 
+ExceptionHandler>>activateDuring: <aBlockClosure> 
+ExceptionHandler class>>handle: <anError class> with: <aBlockClosure> during: <aBlockClosure> 
+BlockClosure>>on: <anError class> do: <aBlockClosure> 
+BasicProgram>>begin
+BasicProgram>>gotoAndIfStoppedBegin: <'[action1]'> 
+BasicProgram>>handlerName: <'[action1]'> evaluate: <aBlockClosure> callParameters: <anOrderedCollection> 
+BasicProgram>>submitHandlerName: <'[action1]'> evaluate: <aBlockClosure> callParameters: <anOrderedCollection> 
+BasicProgram>>submitHandlerName: <'[action1]'> callParameters: <anOrderedCollection> 
+LibButton>>click
+BasicGraphicDevice>>click: <aLibButton> 
+LibButton(Button)>>click: <aLibButton> 
+Message>>perform
+Message>>evaluate
+LibButton(Object)>>triggerEvent: <#clicked> 
+LibButton(Button)>>triggerClickedEvent
+LibButton(Button)>>notifyClicked: <4391652> 
+LibButton(Object)>>perform: <#notifyClicked:> with: <4391652> 
+LibButton(ControlPane)>>asyncControlEvent: <0> with: <4391652> 
+Message>>perform
+
+
+Error log timestamp Thursday 01/07/10 03:50:26 PM
+
+Runtime error: Bad command for #main2, YOU
+
+Error(Exception)>>defaultAction
+Error(Exception)>>activateHandler: <anUndefinedObject> 
+Error(Exception)>>handle
+Error(Exception)>>signal
+Error class(Exception class)>>signal: <'Bad command for #mai...'> 
+BasicProgram(Object)>>error: <'Bad command for #mai...'> 
+BasicProgram>>terminateRun: <anError> 
+[] in BasicProgram>>errorHandlerBlock
+ExceptionHandler>>evaluateResponseBlock: <aBlockClosure> for: <anError> 
+[] in ExceptionHandler>>handle:
+ProtectedFrameMarker(BlockClosure)>>setUnwind: <aBlockClosure> 
+BlockClosure>>invisibleEnsure: <aBlockClosure> 
+ExceptionHandler>>handle: <anError> 
+ExceptionHandler>>findHandler: <anError> 
+Error(Exception)>>activateHandler: <anExceptionHandler> 
+Error(Exception)>>handle
+Error(Exception)>>signal
+Error class(Exception class)>>signal: <'Bad command for #mai...'> 
+BasicProgram(Object)>>error: <'Bad command for #mai...'> 
+BasicProgram>>runError: <'Bad command for #mai...'> 
+BasicProgram>>badCommand: <'YOU'> forHandle: <'#main2'> 
+BasicDialogBox(BasicWindow)>>writeItem: <'YOU WIN!'> 
+BasicDialogBox(BasicFile)>>writeItemCr: <'YOU WIN!'> 
+[] in PrintCommand>>deviceCr:handle:
+BlockClosure>>value: <aBasicProgram> value: <'#main2'> value: <aBasicStringContext> 
+BasicTripleParameterContextHolder>>value
+[] in BasicProgram>>begin
+ExceptionHandler>>evaluateProtectedBlock: <aBlockClosure> 
+[] in ExceptionHandler>>activateDuring:
+ProtectedFrameMarker(BlockClosure)>>setUnwind: <aBlockClosure> 
+BlockClosure>>invisibleEnsure: <aBlockClosure> 
+ExceptionHandler>>activateDuring: <aBlockClosure> 
+ExceptionHandler class>>handle: <anError class> with: <aBlockClosure> during: <aBlockClosure> 
+BlockClosure>>on: <anError class> do: <aBlockClosure> 
+BasicProgram>>begin
+BasicProgram>>gotoAndIfStoppedBegin: <'[action1]'> 
+BasicProgram>>handlerName: <'[action1]'> evaluate: <aBlockClosure> callParameters: <anOrderedCollection> 
+BasicProgram>>submitHandlerName: <'[action1]'> evaluate: <aBlockClosure> callParameters: <anOrderedCollection> 
+BasicProgram>>submitHandlerName: <'[action1]'> callParameters: <anOrderedCollection> 
+LibButton>>click
+BasicGraphicDevice>>click: <aLibButton> 
+LibButton(Button)>>click: <aLibButton> 
+Message>>perform
+Message>>evaluate
+LibButton(Object)>>triggerEvent: <#clicked> 
+LibButton(Button)>>triggerClickedEvent
+LibButton(Button)>>notifyClicked: <2359984> 
+LibButton(Object)>>perform: <#notifyClicked:> with: <2359984> 
+LibButton(ControlPane)>>asyncControlEvent: <0> with: <2359984> 
+Message>>perform
+
+
+Error log timestamp Thursday 01/07/10 03:52:44 PM
+
+Runtime error: The parameter is incorrect. ( OS error 16r57 )
+
+Error(Exception)>>defaultAction
+Error(Exception)>>activateHandler: <anUndefinedObject> 
+Error(Exception)>>handle
+Error(Exception)>>signal
+Error class(Exception class)>>signal: <'The parameter is inc...'> 
+BasicDialogTopPane(Object)>>osError: <87> 
+BasicDialogTopPane(Object)>>osError
+BasicDialogTopPane(Window)>>releaseDC: <aDeviceContext> 
+RecordingPen(GraphicsTool)>>release
+RecordingPen>>release
+RecordingPen(GraphicsTool)>>destroy
+BasicDialogTopPane(Window)>>close
+BasicDialogTopPane(ApplicationWindow)>>closeViewOverride
+BasicDialogTopPane(TopPane)>>closeOverride
+BasicDialogTopPane>>closeOverride
+BasicDialogBox>>close
+[] in BasicProgram>>closeAll
+LinearHashTable>>elementsDo: <aBlockClosure> 
+Set(HashedCollection)>>do: <aBlockClosure> 
+BasicProgram>>closeAll
+BasicProgram>>terminateRun: <anError> 
+[] in BasicProgram>>errorHandlerBlock
+ExceptionHandler>>evaluateResponseBlock: <aBlockClosure> for: <anError> 
+[] in ExceptionHandler>>handle:
+ProtectedFrameMarker(BlockClosure)>>setUnwind: <aBlockClosure> 
+BlockClosure>>invisibleEnsure: <aBlockClosure> 
+ExceptionHandler>>handle: <anError> 
+ExceptionHandler>>findHandler: <anError> 
+Error(Exception)>>activateHandler: <anExceptionHandler> 
+Error(Exception)>>handle
+Error(Exception)>>signal
+Error class(Exception class)>>signal: <'Bad command for #mai...'> 
+BasicProgram(Object)>>error: <'Bad command for #mai...'> 
+BasicProgram>>runError: <'Bad command for #mai...'> 
+BasicProgram>>badCommand: <'YOU'> forHandle: <'#mainn'> 
+BasicDialogBox(BasicWindow)>>writeItem: <'YOU WIN!'> 
+BasicDialogBox(BasicFile)>>writeItemCr: <'YOU WIN!'> 
+[] in PrintCommand>>deviceCr:handle:
+BlockClosure>>value: <aBasicProgram> value: <'#mainn'> value: <aBasicStringContext> 
+BasicTripleParameterContextHolder>>value
+[] in BasicProgram>>begin
+ExceptionHandler>>evaluateProtectedBlock: <aBlockClosure> 
+[] in ExceptionHandler>>activateDuring:
+ProtectedFrameMarker(BlockClosure)>>setUnwind: <aBlockClosure> 
+BlockClosure>>invisibleEnsure: <aBlockClosure> 
+ExceptionHandler>>activateDuring: <aBlockClosure> 
+ExceptionHandler class>>handle: <anError class> with: <aBlockClosure> during: <aBlockClosure> 
+BlockClosure>>on: <anError class> do: <aBlockClosure> 
+BasicProgram>>begin
+BasicProgram>>gotoAndIfStoppedBegin: <'[action1]'> 
+
+
+Error log timestamp Thursday 01/07/10 03:53:10 PM
+
+Runtime error: The parameter is incorrect. ( OS error 16r57 )
+
+Error(Exception)>>defaultAction
+Error(Exception)>>activateHandler: <anUndefinedObject> 
+Error(Exception)>>handle
+Error(Exception)>>signal
+Error class(Exception class)>>signal: <'The parameter is inc...'> 
+BasicDialogTopPane(Object)>>osError: <87> 
+BasicDialogTopPane(Object)>>osError
+BasicDialogTopPane(Window)>>releaseDC: <aDeviceContext> 
+RecordingPen(GraphicsTool)>>release
+RecordingPen>>release
+RecordingPen(GraphicsTool)>>destroy
+BasicDialogTopPane(Window)>>close
+BasicDialogTopPane(ApplicationWindow)>>closeViewOverride
+BasicDialogTopPane(TopPane)>>closeOverride
+BasicDialogTopPane>>closeOverride
+BasicDialogBox>>close
+[] in BasicProgram>>closeAll
+LinearHashTable>>elementsDo: <aBlockClosure> 
+Set(HashedCollection)>>do: <aBlockClosure> 
+BasicProgram>>closeAll
+BasicProgram>>terminateRun: <anError> 
+[] in BasicProgram>>errorHandlerBlock
+ExceptionHandler>>evaluateResponseBlock: <aBlockClosure> for: <anError> 
+[] in ExceptionHandler>>handle:
+ProtectedFrameMarker(BlockClosure)>>setUnwind: <aBlockClosure> 
+BlockClosure>>invisibleEnsure: <aBlockClosure> 
+ExceptionHandler>>handle: <anError> 
+ExceptionHandler>>findHandler: <anError> 
+Error(Exception)>>activateHandler: <anExceptionHandler> 
+Error(Exception)>>handle
+Error(Exception)>>signal
+Error class(Exception class)>>signal: <'Bad command for #mai...'> 
+BasicProgram(Object)>>error: <'Bad command for #mai...'> 
+BasicProgram>>runError: <'Bad command for #mai...'> 
+BasicProgram>>badCommand: <'YOU'> forHandle: <'#mainn'> 
+BasicDialogBox(BasicWindow)>>writeItem: <'YOU WIN!'> 
+BasicDialogBox(BasicFile)>>writeItemCr: <'YOU WIN!'> 
+[] in PrintCommand>>deviceCr:handle:
+BlockClosure>>value: <aBasicProgram> value: <'#mainn'> value: <aBasicStringContext> 
+BasicTripleParameterContextHolder>>value
+[] in BasicProgram>>begin
+ExceptionHandler>>evaluateProtectedBlock: <aBlockClosure> 
+[] in ExceptionHandler>>activateDuring:
+ProtectedFrameMarker(BlockClosure)>>setUnwind: <aBlockClosure> 
+BlockClosure>>invisibleEnsure: <aBlockClosure> 
+ExceptionHandler>>activateDuring: <aBlockClosure> 
+ExceptionHandler class>>handle: <anError class> with: <aBlockClosure> during: <aBlockClosure> 
+BlockClosure>>on: <anError class> do: <aBlockClosure> 
+BasicProgram>>begin
+BasicProgram>>gotoAndIfStoppedBegin: <'[action1]'> 
+
+
+Error log timestamp Thursday 01/07/10 03:55:06 PM
+
+Runtime error: The parameter is incorrect. ( OS error 16r57 )
+
+Error(Exception)>>defaultAction
+Error(Exception)>>activateHandler: <anUndefinedObject> 
+Error(Exception)>>handle
+Error(Exception)>>signal
+Error class(Exception class)>>signal: <'The parameter is inc...'> 
+BasicDialogTopPane(Object)>>osError: <87> 
+BasicDialogTopPane(Object)>>osError
+BasicDialogTopPane(Window)>>releaseDC: <aDeviceContext> 
+RecordingPen(GraphicsTool)>>release
+RecordingPen>>release
+RecordingPen(GraphicsTool)>>destroy
+BasicDialogTopPane(Window)>>close
+BasicDialogTopPane(ApplicationWindow)>>closeViewOverride
+BasicDialogTopPane(TopPane)>>closeOverride
+BasicDialogTopPane>>closeOverride
+BasicDialogBox>>close
+[] in BasicProgram>>closeAll
+LinearHashTable>>elementsDo: <aBlockClosure> 
+Set(HashedCollection)>>do: <aBlockClosure> 
+BasicProgram>>closeAll
+BasicProgram>>terminateRun: <anError> 
+[] in BasicProgram>>errorHandlerBlock
+ExceptionHandler>>evaluateResponseBlock: <aBlockClosure> for: <anError> 
+[] in ExceptionHandler>>handle:
+ProtectedFrameMarker(BlockClosure)>>setUnwind: <aBlockClosure> 
+BlockClosure>>invisibleEnsure: <aBlockClosure> 
+ExceptionHandler>>handle: <anError> 
+ExceptionHandler>>findHandler: <anError> 
+Error(Exception)>>activateHandler: <anExceptionHandler> 
+Error(Exception)>>handle
+Error(Exception)>>signal
+Error class(Exception class)>>signal: <'Bad command for #mai...'> 
+BasicProgram(Object)>>error: <'Bad command for #mai...'> 
+BasicProgram>>runError: <'Bad command for #mai...'> 
+BasicProgram>>badCommand: <'YOU'> forHandle: <'#main2'> 
+BasicDialogBox(BasicWindow)>>writeItem: <'YOU WIN!'> 
+BasicDialogBox(BasicFile)>>writeItemCr: <'YOU WIN!'> 
+[] in PrintCommand>>deviceCr:handle:
+BlockClosure>>value: <aBasicProgram> value: <'#main2'> value: <aBasicStringContext> 
+BasicTripleParameterContextHolder>>value
+[] in BasicProgram>>begin
+ExceptionHandler>>evaluateProtectedBlock: <aBlockClosure> 
+[] in ExceptionHandler>>activateDuring:
+ProtectedFrameMarker(BlockClosure)>>setUnwind: <aBlockClosure> 
+BlockClosure>>invisibleEnsure: <aBlockClosure> 
+ExceptionHandler>>activateDuring: <aBlockClosure> 
+ExceptionHandler class>>handle: <anError class> with: <aBlockClosure> during: <aBlockClosure> 
+BlockClosure>>on: <anError class> do: <aBlockClosure> 
+BasicProgram>>begin
+BasicProgram>>gotoAndIfStoppedBegin: <'[action1]'> 
+
+
+Error log timestamp Thursday 01/07/10 04:15:02 PM
+
+Runtime error: Invalid bitmap format
+
+Error(Exception)>>defaultAction
+Error(Exception)>>activateHandler: <anUndefinedObject> 
+Error(Exception)>>handle
+Error(Exception)>>signal
+Error class(Exception class)>>signal: <'Invalid bitmap forma...'> 
+BasicProgram(Object)>>error: <'Invalid bitmap forma...'> 
+BasicProgram>>terminateRun: <anError> 
+[] in BasicProgram>>errorHandlerBlock
+ExceptionHandler>>evaluateResponseBlock: <aBlockClosure> for: <anError> 
+[] in ExceptionHandler>>handle:
+ProtectedFrameMarker(BlockClosure)>>setUnwind: <aBlockClosure> 
+BlockClosure>>invisibleEnsure: <aBlockClosure> 
+ExceptionHandler>>handle: <anError> 
+ExceptionHandler>>findHandler: <anError> 
+Error(Exception)>>activateHandler: <anExceptionHandler> 
+Error(Exception)>>handle
+Error(Exception)>>signal
+Error class(Exception class)>>signal: <'Invalid bitmap forma...'> 
+DIB class(Object)>>error: <'Invalid bitmap forma...'> 
+DIB class>>fromFileStream: <aFileStream> 
+DIB class>>fromFile: <'C:\Users\Quin\Docume...'> in: <aDirectory> 
+DIB class>>fromFile: <'C:\Users\Quin\Docume...'> 
+Bitmap class>>fromFile: <'C:\Users\Quin\Docume...'> 
+BasicProgram>>bmpFromFile: <'C:\Users\Quin\Docume...'> 
+BasicProgram>>bmpLoad: <aBasicStringContext> with: <aBasicStringContext> 
+[] in BmpLoadCommand>>using:
+[] in BasicProgram>>begin
+ExceptionHandler>>evaluateProtectedBlock: <aBlockClosure> 
+[] in ExceptionHandler>>activateDuring:
+ProtectedFrameMarker(BlockClosure)>>setUnwind: <aBlockClosure> 
+BlockClosure>>invisibleEnsure: <aBlockClosure> 
+ExceptionHandler>>activateDuring: <aBlockClosure> 
+ExceptionHandler class>>handle: <anError class> with: <aBlockClosure> during: <aBlockClosure> 
+BlockClosure>>on: <anError class> do: <aBlockClosure> 
+BasicProgram>>begin
+BasicProgram>>run
+[] in BasicSourcePane>>run
+BasicCompiler class>>compileFromString: <'loadbmp "curtain", "...'> notify: <aBasicSourcePane> ifSuccess: <aBlockClosure> 
+BasicSourcePane>>run
+BasicSourceWindow>>run
+BasicEditorModel>>run: <aToolbarButton> 
+BasicEditorModel(Object)>>perform: <#run:> with: <aToolbarButton> 
+ToolbarButton>>triggerClickedEvent
+Message>>perform
+NotificationManager>>runPendingEvents
+NotificationManager>>runEventLoop
+Message>>perform
+Message>>evaluate
+Process>>safelyEvaluate: <aMessage> 
+Process>>evaluate: <aMessage> 
+
+
+Error log timestamp Thursday 01/07/10 04:15:12 PM
+
+Runtime error: Invalid bitmap format
+
+Error(Exception)>>defaultAction
+Error(Exception)>>activateHandler: <anUndefinedObject> 
+Error(Exception)>>handle
+Error(Exception)>>signal
+Error class(Exception class)>>signal: <'Invalid bitmap forma...'> 
+BasicProgram(Object)>>error: <'Invalid bitmap forma...'> 
+BasicProgram>>terminateRun: <anError> 
+[] in BasicProgram>>errorHandlerBlock
+ExceptionHandler>>evaluateResponseBlock: <aBlockClosure> for: <anError> 
+[] in ExceptionHandler>>handle:
+ProtectedFrameMarker(BlockClosure)>>setUnwind: <aBlockClosure> 
+BlockClosure>>invisibleEnsure: <aBlockClosure> 
+ExceptionHandler>>handle: <anError> 
+ExceptionHandler>>findHandler: <anError> 
+Error(Exception)>>activateHandler: <anExceptionHandler> 
+Error(Exception)>>handle
+Error(Exception)>>signal
+Error class(Exception class)>>signal: <'Invalid bitmap forma...'> 
+DIB class(Object)>>error: <'Invalid bitmap forma...'> 
+DIB class>>fromFileStream: <aFileStream> 
+DIB class>>fromFile: <'C:\Users\Quin\Docume...'> in: <aDirectory> 
+DIB class>>fromFile: <'C:\Users\Quin\Docume...'> 
+Bitmap class>>fromFile: <'C:\Users\Quin\Docume...'> 
+BasicProgram>>bmpFromFile: <'C:\Users\Quin\Docume...'> 
+BasicProgram>>bmpLoad: <aBasicStringContext> with: <aBasicStringContext> 
+[] in BmpLoadCommand>>using:
+[] in BasicProgram>>begin
+ExceptionHandler>>evaluateProtectedBlock: <aBlockClosure> 
+[] in ExceptionHandler>>activateDuring:
+ProtectedFrameMarker(BlockClosure)>>setUnwind: <aBlockClosure> 
+BlockClosure>>invisibleEnsure: <aBlockClosure> 
+ExceptionHandler>>activateDuring: <aBlockClosure> 
+ExceptionHandler class>>handle: <anError class> with: <aBlockClosure> during: <aBlockClosure> 
+BlockClosure>>on: <anError class> do: <aBlockClosure> 
+BasicProgram>>begin
+BasicProgram>>run
+[] in BasicSourcePane>>run
+BasicCompiler class>>compileFromString: <'loadbmp "curtain", "...'> notify: <aBasicSourcePane> ifSuccess: <aBlockClosure> 
+BasicSourcePane>>run
+BasicSourceWindow>>run
+BasicEditorModel>>run: <aToolbarButton> 
+BasicEditorModel(Object)>>perform: <#run:> with: <aToolbarButton> 
+ToolbarButton>>triggerClickedEvent
+Message>>perform
+NotificationManager>>runPendingEvents
+NotificationManager>>runEventLoop
+Message>>perform
+Message>>evaluate
+Process>>safelyEvaluate: <aMessage> 
+Process>>evaluate: <aMessage> 
+
+
+Error log timestamp Thursday 01/07/10 04:55:26 PM
+
+Runtime error: Handle #main already in use
+
+Error(Exception)>>defaultAction
+Error(Exception)>>activateHandler: <anUndefinedObject> 
+Error(Exception)>>handle
+Error(Exception)>>signal
+Error class(Exception class)>>signal: <'Handle #main already...'> 
+BasicProgram(Object)>>error: <'Handle #main already...'> 
+BasicProgram>>terminateRun: <anError> 
+[] in BasicProgram>>errorHandlerBlock
+ExceptionHandler>>evaluateResponseBlock: <aBlockClosure> for: <anError> 
+[] in ExceptionHandler>>handle:
+ProtectedFrameMarker(BlockClosure)>>setUnwind: <aBlockClosure> 
+BlockClosure>>invisibleEnsure: <aBlockClosure> 
+ExceptionHandler>>handle: <anError> 
+ExceptionHandler>>findHandler: <anError> 
+Error(Exception)>>activateHandler: <anExceptionHandler> 
+Error(Exception)>>handle
+Error(Exception)>>signal
+Error class(Exception class)>>signal: <'Handle #main already...'> 
+BasicProgram(Object)>>error: <'Handle #main already...'> 
+[] in OpenCommand>>using:
+[] in BasicProgram>>begin
+ExceptionHandler>>evaluateProtectedBlock: <aBlockClosure> 
+[] in ExceptionHandler>>activateDuring:
+ProtectedFrameMarker(BlockClosure)>>setUnwind: <aBlockClosure> 
+BlockClosure>>invisibleEnsure: <aBlockClosure> 
+ExceptionHandler>>activateDuring: <aBlockClosure> 
+ExceptionHandler class>>handle: <anError class> with: <aBlockClosure> during: <aBlockClosure> 
+BlockClosure>>on: <anError class> do: <aBlockClosure> 
+BasicProgram>>begin
+BasicProgram>>gotoAndIfStoppedBegin: <'[shuffle]'> 
+BasicProgram>>handlerName: <'[shuffle]'> evaluate: <aBlockClosure> callParameters: <anOrderedCollection> 
+BasicProgram>>submitHandlerName: <'[shuffle]'> evaluate: <aBlockClosure> callParameters: <anOrderedCollection> 
+BasicProgram>>submitHandlerName: <'[shuffle]'> callParameters: <anOrderedCollection> 
+LibButton>>click
+BasicGraphicDevice>>click: <aLibButton> 
+LibButton(Button)>>click: <aLibButton> 
+Message>>perform
+Message>>evaluate
+LibButton(Object)>>triggerEvent: <#clicked> 
+LibButton(Button)>>triggerClickedEvent
+LibButton(Button)>>notifyClicked: <2556770> 
+LibButton(ControlPane)>>asyncControlEvent: <0> with: <2556770> 
+Message>>perform
+NotificationManager>>empty
+NotificationManager>>runPendingEvents
+NotificationManager>>runEventLoop
+Message>>perform
+Message>>evaluate
+Process>>safelyEvaluate: <aMessage> 
+Process>>evaluate: <aMessage> 
+
+
+Error log timestamp Thursday 01/07/10 04:55:55 PM
+
+Runtime error: Invalid file handle: #main.draw1
+
+Error(Exception)>>defaultAction
+Error(Exception)>>activateHandler: <anUndefinedObject> 
+Error(Exception)>>handle
+Error(Exception)>>signal
+Error class(Exception class)>>signal: <'Invalid file handle:...'> 
+BasicProgram(Object)>>error: <'Invalid file handle:...'> 
+BasicProgram>>terminateRun: <anError> 
+[] in BasicProgram>>errorHandlerBlock
+ExceptionHandler>>evaluateResponseBlock: <aBlockClosure> for: <anError> 
+[] in ExceptionHandler>>handle:
+ProtectedFrameMarker(BlockClosure)>>setUnwind: <aBlockClosure> 
+BlockClosure>>invisibleEnsure: <aBlockClosure> 
+ExceptionHandler>>handle: <anError> 
+ExceptionHandler>>findHandler: <anError> 
+Error(Exception)>>activateHandler: <anExceptionHandler> 
+Error(Exception)>>handle
+Error(Exception)>>signal
+Error class(Exception class)>>signal: <'Invalid file handle:...'> 
+BasicProgram(Object)>>error: <'Invalid file handle:...'> 
+[] in BasicProgram>>deviceAt:
+LinearHashTable>>lookUpValue: <'#main.draw1'> for: <aDictionary> ifAbsent: <aBlockClosure> 
+Dictionary>>at: <'#main.draw1'> ifAbsent: <aBlockClosure> 
+BasicProgram>>deviceAt: <'#main.draw1'> 
+[] in PrintCommand>>deviceCr:handle:
+BlockClosure>>value: <aBasicProgram> value: <'#main.draw1'> value: <aBasicStringContext> 
+BasicTripleParameterContextHolder>>value
+[] in BasicProgram>>begin
+ExceptionHandler>>evaluateProtectedBlock: <aBlockClosure> 
+[] in ExceptionHandler>>activateDuring:
+ProtectedFrameMarker(BlockClosure)>>setUnwind: <aBlockClosure> 
+BlockClosure>>invisibleEnsure: <aBlockClosure> 
+ExceptionHandler>>activateDuring: <aBlockClosure> 
+ExceptionHandler class>>handle: <anError class> with: <aBlockClosure> during: <aBlockClosure> 
+BlockClosure>>on: <anError class> do: <aBlockClosure> 
+BasicProgram>>begin
+BasicProgram>>gotoAndIfStoppedBegin: <'[shuffle]'> 
+BasicProgram>>handlerName: <'[shuffle]'> evaluate: <aBlockClosure> callParameters: <anOrderedCollection> 
+BasicProgram>>submitHandlerName: <'[shuffle]'> evaluate: <aBlockClosure> callParameters: <anOrderedCollection> 
+BasicProgram>>submitHandlerName: <'[shuffle]'> callParameters: <anOrderedCollection> 
+LibButton>>click
+BasicGraphicDevice>>click: <aLibButton> 
+LibButton(Button)>>click: <aLibButton> 
+Message>>perform
+Message>>evaluate
+LibButton(Object)>>triggerEvent: <#clicked> 
+LibButton(Button)>>triggerClickedEvent
+LibButton(Button)>>notifyClicked: <4391556> 
+LibButton(ControlPane)>>asyncControlEvent: <0> with: <4391556> 
+Message>>perform
+NotificationManager>>empty
+
+
+Error log timestamp Thursday 01/07/10 04:56:41 PM
+
+Runtime error: Invalid file handle: #main.draw1
+
+Error(Exception)>>defaultAction
+Error(Exception)>>activateHandler: <anUndefinedObject> 
+Error(Exception)>>handle
+Error(Exception)>>signal
+Error class(Exception class)>>signal: <'Invalid file handle:...'> 
+BasicProgram(Object)>>error: <'Invalid file handle:...'> 
+BasicProgram>>terminateRun: <anError> 
+[] in BasicProgram>>errorHandlerBlock
+ExceptionHandler>>evaluateResponseBlock: <aBlockClosure> for: <anError> 
+[] in ExceptionHandler>>handle:
+ProtectedFrameMarker(BlockClosure)>>setUnwind: <aBlockClosure> 
+BlockClosure>>invisibleEnsure: <aBlockClosure> 
+ExceptionHandler>>handle: <anError> 
+ExceptionHandler>>findHandler: <anError> 
+Error(Exception)>>activateHandler: <anExceptionHandler> 
+Error(Exception)>>handle
+Error(Exception)>>signal
+Error class(Exception class)>>signal: <'Invalid file handle:...'> 
+BasicProgram(Object)>>error: <'Invalid file handle:...'> 
+[] in BasicProgram>>deviceAt:
+LinearHashTable>>lookUpValue: <'#main.draw1'> for: <aDictionary> ifAbsent: <aBlockClosure> 
+Dictionary>>at: <'#main.draw1'> ifAbsent: <aBlockClosure> 
+BasicProgram>>deviceAt: <'#main.draw1'> 
+[] in PrintCommand>>deviceCr:handle:
+BlockClosure>>value: <aBasicProgram> value: <'#main.draw1'> value: <aBasicStringContext> 
+BasicTripleParameterContextHolder>>value
+[] in BasicProgram>>begin
+ExceptionHandler>>evaluateProtectedBlock: <aBlockClosure> 
+[] in ExceptionHandler>>activateDuring:
+ProtectedFrameMarker(BlockClosure)>>setUnwind: <aBlockClosure> 
+BlockClosure>>invisibleEnsure: <aBlockClosure> 
+ExceptionHandler>>activateDuring: <aBlockClosure> 
+ExceptionHandler class>>handle: <anError class> with: <aBlockClosure> during: <aBlockClosure> 
+BlockClosure>>on: <anError class> do: <aBlockClosure> 
+BasicProgram>>begin
+BasicProgram>>gotoAndIfStoppedBegin: <'[shuffle]'> 
+BasicProgram>>handlerName: <'[shuffle]'> evaluate: <aBlockClosure> callParameters: <anOrderedCollection> 
+BasicProgram>>submitHandlerName: <'[shuffle]'> evaluate: <aBlockClosure> callParameters: <anOrderedCollection> 
+BasicProgram>>submitHandlerName: <'[shuffle]'> callParameters: <anOrderedCollection> 
+LibButton>>click
+BasicGraphicDevice>>click: <aLibButton> 
+LibButton(Button)>>click: <aLibButton> 
+Message>>perform
+Message>>evaluate
+LibButton(Object)>>triggerEvent: <#clicked> 
+LibButton(Button)>>triggerClickedEvent
+LibButton(Button)>>notifyClicked: <3867602> 
+LibButton(ControlPane)>>asyncControlEvent: <0> with: <3867602> 
+Message>>perform
+NotificationManager>>empty
+
+
+Error log timestamp Thursday 01/07/10 04:58:25 PM
+
+Runtime error: Invalid file handle: #main.draw1
+
+Error(Exception)>>defaultAction
+Error(Exception)>>activateHandler: <anUndefinedObject> 
+Error(Exception)>>handle
+Error(Exception)>>signal
+Error class(Exception class)>>signal: <'Invalid file handle:...'> 
+BasicProgram(Object)>>error: <'Invalid file handle:...'> 
+BasicProgram>>terminateRun: <anError> 
+[] in BasicProgram>>errorHandlerBlock
+ExceptionHandler>>evaluateResponseBlock: <aBlockClosure> for: <anError> 
+[] in ExceptionHandler>>handle:
+ProtectedFrameMarker(BlockClosure)>>setUnwind: <aBlockClosure> 
+BlockClosure>>invisibleEnsure: <aBlockClosure> 
+ExceptionHandler>>handle: <anError> 
+ExceptionHandler>>findHandler: <anError> 
+Error(Exception)>>activateHandler: <anExceptionHandler> 
+Error(Exception)>>handle
+Error(Exception)>>signal
+Error class(Exception class)>>signal: <'Invalid file handle:...'> 
+BasicProgram(Object)>>error: <'Invalid file handle:...'> 
+[] in BasicProgram>>deviceAt:
+LinearHashTable>>lookUpValue: <'#main.draw1'> for: <aDictionary> ifAbsent: <aBlockClosure> 
+Dictionary>>at: <'#main.draw1'> ifAbsent: <aBlockClosure> 
+BasicProgram>>deviceAt: <'#main.draw1'> 
+[] in PrintCommand>>deviceCr:handle:
+BlockClosure>>value: <aBasicProgram> value: <'#main.draw1'> value: <aBasicStringContext> 
+BasicTripleParameterContextHolder>>value
+[] in BasicProgram>>begin
+ExceptionHandler>>evaluateProtectedBlock: <aBlockClosure> 
+[] in ExceptionHandler>>activateDuring:
+ProtectedFrameMarker(BlockClosure)>>setUnwind: <aBlockClosure> 
+BlockClosure>>invisibleEnsure: <aBlockClosure> 
+ExceptionHandler>>activateDuring: <aBlockClosure> 
+ExceptionHandler class>>handle: <anError class> with: <aBlockClosure> during: <aBlockClosure> 
+BlockClosure>>on: <anError class> do: <aBlockClosure> 
+BasicProgram>>begin
+BasicProgram>>gotoAndIfStoppedBegin: <'[shuffle]'> 
+BasicProgram>>handlerName: <'[shuffle]'> evaluate: <aBlockClosure> callParameters: <anOrderedCollection> 
+BasicProgram>>submitHandlerName: <'[shuffle]'> evaluate: <aBlockClosure> callParameters: <anOrderedCollection> 
+BasicProgram>>submitHandlerName: <'[shuffle]'> callParameters: <anOrderedCollection> 
+LibButton>>click
+BasicGraphicDevice>>click: <aLibButton> 
+LibButton(Button)>>click: <aLibButton> 
+Message>>perform
+Message>>evaluate
+LibButton(Object)>>triggerEvent: <#clicked> 
+LibButton(Button)>>triggerClickedEvent
+LibButton(Button)>>notifyClicked: <2359606> 
+LibButton(ControlPane)>>asyncControlEvent: <0> with: <2359606> 
+Message>>perform
+NotificationManager>>empty
+
+
+Error log timestamp Thursday 01/07/10 05:01:17 PM
+
+Runtime error: Invalid file handle: #main.draw1
+
+Error(Exception)>>defaultAction
+Error(Exception)>>activateHandler: <anUndefinedObject> 
+Error(Exception)>>handle
+Error(Exception)>>signal
+Error class(Exception class)>>signal: <'Invalid file handle:...'> 
+BasicProgram(Object)>>error: <'Invalid file handle:...'> 
+BasicProgram>>terminateRun: <anError> 
+[] in BasicProgram>>errorHandlerBlock
+ExceptionHandler>>evaluateResponseBlock: <aBlockClosure> for: <anError> 
+[] in ExceptionHandler>>handle:
+ProtectedFrameMarker(BlockClosure)>>setUnwind: <aBlockClosure> 
+BlockClosure>>invisibleEnsure: <aBlockClosure> 
+ExceptionHandler>>handle: <anError> 
+ExceptionHandler>>findHandler: <anError> 
+Error(Exception)>>activateHandler: <anExceptionHandler> 
+Error(Exception)>>handle
+Error(Exception)>>signal
+Error class(Exception class)>>signal: <'Invalid file handle:...'> 
+BasicProgram(Object)>>error: <'Invalid file handle:...'> 
+[] in BasicProgram>>deviceAt:
+LinearHashTable>>lookUpValue: <'#main.draw1'> for: <aDictionary> ifAbsent: <aBlockClosure> 
+Dictionary>>at: <'#main.draw1'> ifAbsent: <aBlockClosure> 
+BasicProgram>>deviceAt: <'#main.draw1'> 
+[] in PrintCommand>>deviceCr:handle:
+BlockClosure>>value: <aBasicProgram> value: <'#main.draw1'> value: <aBasicStringContext> 
+BasicTripleParameterContextHolder>>value
+[] in BasicProgram>>begin
+ExceptionHandler>>evaluateProtectedBlock: <aBlockClosure> 
+[] in ExceptionHandler>>activateDuring:
+ProtectedFrameMarker(BlockClosure)>>setUnwind: <aBlockClosure> 
+BlockClosure>>invisibleEnsure: <aBlockClosure> 
+ExceptionHandler>>activateDuring: <aBlockClosure> 
+ExceptionHandler class>>handle: <anError class> with: <aBlockClosure> during: <aBlockClosure> 
+BlockClosure>>on: <anError class> do: <aBlockClosure> 
+BasicProgram>>begin
+BasicProgram>>gotoAndIfStoppedBegin: <'[shuffle]'> 
+BasicProgram>>handlerName: <'[shuffle]'> evaluate: <aBlockClosure> callParameters: <anOrderedCollection> 
+BasicProgram>>submitHandlerName: <'[shuffle]'> evaluate: <aBlockClosure> callParameters: <anOrderedCollection> 
+BasicProgram>>submitHandlerName: <'[shuffle]'> callParameters: <anOrderedCollection> 
+LibButton>>click
+BasicGraphicDevice>>click: <aLibButton> 
+LibButton(Button)>>click: <aLibButton> 
+Message>>perform
+Message>>evaluate
+LibButton(Object)>>triggerEvent: <#clicked> 
+LibButton(Button)>>triggerClickedEvent
+LibButton(Button)>>notifyClicked: <3408360> 
+LibButton(ControlPane)>>asyncControlEvent: <0> with: <3408360> 
+Message>>perform
+NotificationManager>>empty
+
+
+Error log timestamp Thursday 01/07/10 05:01:27 PM
+
+Runtime error: Invalid file handle: #main.draw1
+
+Error(Exception)>>defaultAction
+Error(Exception)>>activateHandler: <anUndefinedObject> 
+Error(Exception)>>handle
+Error(Exception)>>signal
+Error class(Exception class)>>signal: <'Invalid file handle:...'> 
+BasicProgram(Object)>>error: <'Invalid file handle:...'> 
+BasicProgram>>terminateRun: <anError> 
+[] in BasicProgram>>errorHandlerBlock
+ExceptionHandler>>evaluateResponseBlock: <aBlockClosure> for: <anError> 
+[] in ExceptionHandler>>handle:
+ProtectedFrameMarker(BlockClosure)>>setUnwind: <aBlockClosure> 
+BlockClosure>>invisibleEnsure: <aBlockClosure> 
+ExceptionHandler>>handle: <anError> 
+ExceptionHandler>>findHandler: <anError> 
+Error(Exception)>>activateHandler: <anExceptionHandler> 
+Error(Exception)>>handle
+Error(Exception)>>signal
+Error class(Exception class)>>signal: <'Invalid file handle:...'> 
+BasicProgram(Object)>>error: <'Invalid file handle:...'> 
+[] in BasicProgram>>deviceAt:
+LinearHashTable>>lookUpValue: <'#main.draw1'> for: <aDictionary> ifAbsent: <aBlockClosure> 
+Dictionary>>at: <'#main.draw1'> ifAbsent: <aBlockClosure> 
+BasicProgram>>deviceAt: <'#main.draw1'> 
+[] in PrintCommand>>deviceCr:handle:
+BlockClosure>>value: <aBasicProgram> value: <'#main.draw1'> value: <aBasicStringContext> 
+BasicTripleParameterContextHolder>>value
+[] in BasicProgram>>begin
+ExceptionHandler>>evaluateProtectedBlock: <aBlockClosure> 
+[] in ExceptionHandler>>activateDuring:
+ProtectedFrameMarker(BlockClosure)>>setUnwind: <aBlockClosure> 
+BlockClosure>>invisibleEnsure: <aBlockClosure> 
+ExceptionHandler>>activateDuring: <aBlockClosure> 
+ExceptionHandler class>>handle: <anError class> with: <aBlockClosure> during: <aBlockClosure> 
+BlockClosure>>on: <anError class> do: <aBlockClosure> 
+BasicProgram>>begin
+BasicProgram>>gotoAndIfStoppedBegin: <'[shuffle]'> 
+BasicProgram>>handlerName: <'[shuffle]'> evaluate: <aBlockClosure> callParameters: <anOrderedCollection> 
+BasicProgram>>submitHandlerName: <'[shuffle]'> evaluate: <aBlockClosure> callParameters: <anOrderedCollection> 
+BasicProgram>>submitHandlerName: <'[shuffle]'> callParameters: <anOrderedCollection> 
+LibButton>>click
+BasicGraphicDevice>>click: <aLibButton> 
+LibButton(Button)>>click: <aLibButton> 
+Message>>perform
+Message>>evaluate
+LibButton(Object)>>triggerEvent: <#clicked> 
+LibButton(Button)>>triggerClickedEvent
+LibButton(Button)>>notifyClicked: <2884190> 
+LibButton(ControlPane)>>asyncControlEvent: <0> with: <2884190> 
+Message>>perform
+NotificationManager>>empty
+
+
+Error log timestamp Thursday 01/07/10 05:02:20 PM
+
+Runtime error: Invalid file handle: #main.draw1
+
+Error(Exception)>>defaultAction
+Error(Exception)>>activateHandler: <anUndefinedObject> 
+Error(Exception)>>handle
+Error(Exception)>>signal
+Error class(Exception class)>>signal: <'Invalid file handle:...'> 
+BasicProgram(Object)>>error: <'Invalid file handle:...'> 
+BasicProgram>>terminateRun: <anError> 
+[] in BasicProgram>>errorHandlerBlock
+ExceptionHandler>>evaluateResponseBlock: <aBlockClosure> for: <anError> 
+[] in ExceptionHandler>>handle:
+ProtectedFrameMarker(BlockClosure)>>setUnwind: <aBlockClosure> 
+BlockClosure>>invisibleEnsure: <aBlockClosure> 
+ExceptionHandler>>handle: <anError> 
+ExceptionHandler>>findHandler: <anError> 
+Error(Exception)>>activateHandler: <anExceptionHandler> 
+Error(Exception)>>handle
+Error(Exception)>>signal
+Error class(Exception class)>>signal: <'Invalid file handle:...'> 
+BasicProgram(Object)>>error: <'Invalid file handle:...'> 
+[] in BasicProgram>>deviceAt:
+LinearHashTable>>lookUpValue: <'#main.draw1'> for: <aDictionary> ifAbsent: <aBlockClosure> 
+Dictionary>>at: <'#main.draw1'> ifAbsent: <aBlockClosure> 
+BasicProgram>>deviceAt: <'#main.draw1'> 
+[] in PrintCommand>>deviceCr:handle:
+BlockClosure>>value: <aBasicProgram> value: <'#main.draw1'> value: <aBasicStringContext> 
+BasicTripleParameterContextHolder>>value
+[] in BasicProgram>>begin
+ExceptionHandler>>evaluateProtectedBlock: <aBlockClosure> 
+[] in ExceptionHandler>>activateDuring:
+ProtectedFrameMarker(BlockClosure)>>setUnwind: <aBlockClosure> 
+BlockClosure>>invisibleEnsure: <aBlockClosure> 
+ExceptionHandler>>activateDuring: <aBlockClosure> 
+ExceptionHandler class>>handle: <anError class> with: <aBlockClosure> during: <aBlockClosure> 
+BlockClosure>>on: <anError class> do: <aBlockClosure> 
+BasicProgram>>begin
+BasicProgram>>gotoAndIfStoppedBegin: <'[shuffle]'> 
+BasicProgram>>handlerName: <'[shuffle]'> evaluate: <aBlockClosure> callParameters: <anOrderedCollection> 
+BasicProgram>>submitHandlerName: <'[shuffle]'> evaluate: <aBlockClosure> callParameters: <anOrderedCollection> 
+BasicProgram>>submitHandlerName: <'[shuffle]'> callParameters: <anOrderedCollection> 
+LibButton>>click
+BasicGraphicDevice>>click: <aLibButton> 
+LibButton(Button)>>click: <aLibButton> 
+Message>>perform
+Message>>evaluate
+LibButton(Object)>>triggerEvent: <#clicked> 
+LibButton(Button)>>triggerClickedEvent
+LibButton(Button)>>notifyClicked: <3670504> 
+LibButton(Object)>>perform: <#notifyClicked:> with: <3670504> 
+LibButton(ControlPane)>>asyncControlEvent: <0> with: <3670504> 
+Message>>perform
+
+
+Error log timestamp Thursday 01/07/10 05:03:09 PM
+
+Runtime error: Invalid file handle: #main.draw1
+
+Error(Exception)>>defaultAction
+Error(Exception)>>activateHandler: <anUndefinedObject> 
+Error(Exception)>>handle
+Error(Exception)>>signal
+Error class(Exception class)>>signal: <'Invalid file handle:...'> 
+BasicProgram(Object)>>error: <'Invalid file handle:...'> 
+BasicProgram>>terminateRun: <anError> 
+[] in BasicProgram>>errorHandlerBlock
+ExceptionHandler>>evaluateResponseBlock: <aBlockClosure> for: <anError> 
+[] in ExceptionHandler>>handle:
+ProtectedFrameMarker(BlockClosure)>>setUnwind: <aBlockClosure> 
+BlockClosure>>invisibleEnsure: <aBlockClosure> 
+ExceptionHandler>>handle: <anError> 
+ExceptionHandler>>findHandler: <anError> 
+Error(Exception)>>activateHandler: <anExceptionHandler> 
+Error(Exception)>>handle
+Error(Exception)>>signal
+Error class(Exception class)>>signal: <'Invalid file handle:...'> 
+BasicProgram(Object)>>error: <'Invalid file handle:...'> 
+[] in BasicProgram>>deviceAt:
+LinearHashTable>>lookUpValue: <'#main.draw1'> for: <aDictionary> ifAbsent: <aBlockClosure> 
+Dictionary>>at: <'#main.draw1'> ifAbsent: <aBlockClosure> 
+BasicProgram>>deviceAt: <'#main.draw1'> 
+[] in PrintCommand>>deviceCr:handle:
+BlockClosure>>value: <aBasicProgram> value: <'#main.draw1'> value: <aBasicStringContext> 
+BasicTripleParameterContextHolder>>value
+[] in BasicProgram>>begin
+ExceptionHandler>>evaluateProtectedBlock: <aBlockClosure> 
+[] in ExceptionHandler>>activateDuring:
+ProtectedFrameMarker(BlockClosure)>>setUnwind: <aBlockClosure> 
+BlockClosure>>invisibleEnsure: <aBlockClosure> 
+ExceptionHandler>>activateDuring: <aBlockClosure> 
+ExceptionHandler class>>handle: <anError class> with: <aBlockClosure> during: <aBlockClosure> 
+BlockClosure>>on: <anError class> do: <aBlockClosure> 
+BasicProgram>>begin
+BasicProgram>>gotoAndIfStoppedBegin: <'[shuffle]'> 
+BasicProgram>>handlerName: <'[shuffle]'> evaluate: <aBlockClosure> callParameters: <anOrderedCollection> 
+BasicProgram>>submitHandlerName: <'[shuffle]'> evaluate: <aBlockClosure> callParameters: <anOrderedCollection> 
+BasicProgram>>submitHandlerName: <'[shuffle]'> callParameters: <anOrderedCollection> 
+LibButton>>click
+BasicGraphicDevice>>click: <aLibButton> 
+LibButton(Button)>>click: <aLibButton> 
+Message>>perform
+Message>>evaluate
+LibButton(Object)>>triggerEvent: <#clicked> 
+LibButton(Button)>>triggerClickedEvent
+LibButton(Button)>>notifyClicked: <3146334> 
+LibButton(Object)>>perform: <#notifyClicked:> with: <3146334> 
+LibButton(ControlPane)>>asyncControlEvent: <0> with: <3146334> 
+Message>>perform
+
+
+Error log timestamp Thursday 01/07/10 05:03:43 PM
+
+Runtime error: Invalid file handle: #main.draw1
+
+Error(Exception)>>defaultAction
+Error(Exception)>>activateHandler: <anUndefinedObject> 
+Error(Exception)>>handle
+Error(Exception)>>signal
+Error class(Exception class)>>signal: <'Invalid file handle:...'> 
+BasicProgram(Object)>>error: <'Invalid file handle:...'> 
+BasicProgram>>terminateRun: <anError> 
+[] in BasicProgram>>errorHandlerBlock
+ExceptionHandler>>evaluateResponseBlock: <aBlockClosure> for: <anError> 
+[] in ExceptionHandler>>handle:
+ProtectedFrameMarker(BlockClosure)>>setUnwind: <aBlockClosure> 
+BlockClosure>>invisibleEnsure: <aBlockClosure> 
+ExceptionHandler>>handle: <anError> 
+ExceptionHandler>>findHandler: <anError> 
+Error(Exception)>>activateHandler: <anExceptionHandler> 
+Error(Exception)>>handle
+Error(Exception)>>signal
+Error class(Exception class)>>signal: <'Invalid file handle:...'> 
+BasicProgram(Object)>>error: <'Invalid file handle:...'> 
+[] in BasicProgram>>deviceAt:
+LinearHashTable>>lookUpValue: <'#main.draw1'> for: <aDictionary> ifAbsent: <aBlockClosure> 
+Dictionary>>at: <'#main.draw1'> ifAbsent: <aBlockClosure> 
+BasicProgram>>deviceAt: <'#main.draw1'> 
+[] in PrintCommand>>deviceCr:handle:
+BlockClosure>>value: <aBasicProgram> value: <'#main.draw1'> value: <aBasicStringContext> 
+BasicTripleParameterContextHolder>>value
+[] in BasicProgram>>begin
+ExceptionHandler>>evaluateProtectedBlock: <aBlockClosure> 
+[] in ExceptionHandler>>activateDuring:
+ProtectedFrameMarker(BlockClosure)>>setUnwind: <aBlockClosure> 
+BlockClosure>>invisibleEnsure: <aBlockClosure> 
+ExceptionHandler>>activateDuring: <aBlockClosure> 
+ExceptionHandler class>>handle: <anError class> with: <aBlockClosure> during: <aBlockClosure> 
+BlockClosure>>on: <anError class> do: <aBlockClosure> 
+BasicProgram>>begin
+BasicProgram>>gotoAndIfStoppedBegin: <'[shuffle]'> 
+BasicProgram>>handlerName: <'[shuffle]'> evaluate: <aBlockClosure> callParameters: <anOrderedCollection> 
+BasicProgram>>submitHandlerName: <'[shuffle]'> evaluate: <aBlockClosure> callParameters: <anOrderedCollection> 
+BasicProgram>>submitHandlerName: <'[shuffle]'> callParameters: <anOrderedCollection> 
+LibButton>>click
+BasicGraphicDevice>>click: <aLibButton> 
+LibButton(Button)>>click: <aLibButton> 
+Message>>perform
+Message>>evaluate
+LibButton(Object)>>triggerEvent: <#clicked> 
+LibButton(Button)>>triggerClickedEvent
+LibButton(Button)>>notifyClicked: <3932648> 
+LibButton(Object)>>perform: <#notifyClicked:> with: <3932648> 
+LibButton(ControlPane)>>asyncControlEvent: <0> with: <3932648> 
+Message>>perform
+
+
+Error log timestamp Thursday 01/07/10 05:07:04 PM
+
+Runtime error: Invalid file handle: #main.draw1
+
+Error(Exception)>>defaultAction
+Error(Exception)>>activateHandler: <anUndefinedObject> 
+Error(Exception)>>handle
+Error(Exception)>>signal
+Error class(Exception class)>>signal: <'Invalid file handle:...'> 
+BasicProgram(Object)>>error: <'Invalid file handle:...'> 
+BasicProgram>>terminateRun: <anError> 
+[] in BasicProgram>>errorHandlerBlock
+ExceptionHandler>>evaluateResponseBlock: <aBlockClosure> for: <anError> 
+[] in ExceptionHandler>>handle:
+ProtectedFrameMarker(BlockClosure)>>setUnwind: <aBlockClosure> 
+BlockClosure>>invisibleEnsure: <aBlockClosure> 
+ExceptionHandler>>handle: <anError> 
+ExceptionHandler>>findHandler: <anError> 
+Error(Exception)>>activateHandler: <anExceptionHandler> 
+Error(Exception)>>handle
+Error(Exception)>>signal
+Error class(Exception class)>>signal: <'Invalid file handle:...'> 
+BasicProgram(Object)>>error: <'Invalid file handle:...'> 
+[] in BasicProgram>>deviceAt:
+LinearHashTable>>lookUpValue: <'#main.draw1'> for: <aDictionary> ifAbsent: <aBlockClosure> 
+Dictionary>>at: <'#main.draw1'> ifAbsent: <aBlockClosure> 
+BasicProgram>>deviceAt: <'#main.draw1'> 
+[] in PrintCommand>>deviceCr:handle:
+BlockClosure>>value: <aBasicProgram> value: <'#main.draw1'> value: <aBasicStringContext> 
+BasicTripleParameterContextHolder>>value
+[] in BasicProgram>>begin
+ExceptionHandler>>evaluateProtectedBlock: <aBlockClosure> 
+[] in ExceptionHandler>>activateDuring:
+ProtectedFrameMarker(BlockClosure)>>setUnwind: <aBlockClosure> 
+BlockClosure>>invisibleEnsure: <aBlockClosure> 
+ExceptionHandler>>activateDuring: <aBlockClosure> 
+ExceptionHandler class>>handle: <anError class> with: <aBlockClosure> during: <aBlockClosure> 
+BlockClosure>>on: <anError class> do: <aBlockClosure> 
+BasicProgram>>begin
+BasicProgram>>gotoAndIfStoppedBegin: <'[shuffle]'> 
+BasicProgram>>handlerName: <'[shuffle]'> evaluate: <aBlockClosure> callParameters: <anOrderedCollection> 
+BasicProgram>>submitHandlerName: <'[shuffle]'> evaluate: <aBlockClosure> callParameters: <anOrderedCollection> 
+BasicProgram>>submitHandlerName: <'[shuffle]'> callParameters: <anOrderedCollection> 
+LibButton>>click
+BasicGraphicDevice>>click: <aLibButton> 
+LibButton(Button)>>click: <aLibButton> 
+Message>>perform
+Message>>evaluate
+LibButton(Object)>>triggerEvent: <#clicked> 
+LibButton(Button)>>triggerClickedEvent
+LibButton(Button)>>notifyClicked: <1245960> 
+LibButton(ControlPane)>>asyncControlEvent: <0> with: <1245960> 
+Message>>perform
+NotificationManager>>empty
+
+
+Error log timestamp Thursday 01/07/10 05:08:46 PM
+
+Runtime error: Branch label not found: [start]
+
+Error(Exception)>>defaultAction
+Error(Exception)>>activateHandler: <anUndefinedObject> 
+Error(Exception)>>handle
+Error(Exception)>>signal
+Error class(Exception class)>>signal: <'Branch label not fou...'> 
+BasicProgram(Object)>>error: <'Branch label not fou...'> 
+BasicProgram>>terminateRun: <anError> 
+[] in BasicProgram>>errorHandlerBlock
+ExceptionHandler>>evaluateResponseBlock: <aBlockClosure> for: <anError> 
+[] in ExceptionHandler>>handle:
+ProtectedFrameMarker(BlockClosure)>>setUnwind: <aBlockClosure> 
+BlockClosure>>invisibleEnsure: <aBlockClosure> 
+ExceptionHandler>>handle: <anError> 
+ExceptionHandler>>findHandler: <anError> 
+Error(Exception)>>activateHandler: <anExceptionHandler> 
+Error(Exception)>>handle
+Error(Exception)>>signal
+Error class(Exception class)>>signal: <'Branch label not fou...'> 
+BasicProgram(Object)>>error: <'Branch label not fou...'> 
+BasicProgram>>runError: <'Branch label not fou...'> 
+[] in BasicProgram>>init
+[] in BasicValueManager>>indexFromName:
+LinearHashTable>>lookUpValue: <'[start]'> for: <aDictionary> ifAbsent: <aBlockClosure> 
+Dictionary>>at: <'[start]'> ifAbsent: <aBlockClosure> 
+BasicValueManager>>indexFromName: <'[start]'> 
+BasicValueReference>>unused: <aBasicValueManager> 
+BasicValueReference>>for: <aBasicValueManager> 
+BasicValueManager>>atReference: <aBasicValueReference> 
+[] in BasicProgram>>begin
+ExceptionHandler>>evaluateProtectedBlock: <aBlockClosure> 
+[] in ExceptionHandler>>activateDuring:
+ProtectedFrameMarker(BlockClosure)>>setUnwind: <aBlockClosure> 
+BlockClosure>>invisibleEnsure: <aBlockClosure> 
+ExceptionHandler>>activateDuring: <aBlockClosure> 
+ExceptionHandler class>>handle: <anError class> with: <aBlockClosure> during: <aBlockClosure> 
+BlockClosure>>on: <anError class> do: <aBlockClosure> 
+BasicProgram>>begin
+BasicProgram>>run
+[] in BasicSourcePane>>run
+BasicCompiler class>>compileFromString: <'loadbmp "curtain", "...'> notify: <aBasicSourcePane> ifSuccess: <aBlockClosure> 
+BasicSourcePane>>run
+BasicSourceWindow>>run
+BasicEditorModel>>run: <aToolbarButton> 
+BasicEditorModel(Object)>>perform: <#run:> with: <aToolbarButton> 
+ToolbarButton>>triggerClickedEvent
+Message>>perform
+NotificationManager>>runPendingEvents
+NotificationManager>>runEventLoop
+Message>>perform
+Message>>evaluate
+
+
+Error log timestamp Thursday 01/07/10 05:13:33 PM
+
+Runtime error: Invalid file handle: #main.draw1
+
+Error(Exception)>>defaultAction
+Error(Exception)>>activateHandler: <anUndefinedObject> 
+Error(Exception)>>handle
+Error(Exception)>>signal
+Error class(Exception class)>>signal: <'Invalid file handle:...'> 
+BasicProgram(Object)>>error: <'Invalid file handle:...'> 
+BasicProgram>>terminateRun: <anError> 
+[] in BasicProgram>>errorHandlerBlock
+ExceptionHandler>>evaluateResponseBlock: <aBlockClosure> for: <anError> 
+[] in ExceptionHandler>>handle:
+ProtectedFrameMarker(BlockClosure)>>setUnwind: <aBlockClosure> 
+BlockClosure>>invisibleEnsure: <aBlockClosure> 
+ExceptionHandler>>handle: <anError> 
+ExceptionHandler>>findHandler: <anError> 
+Error(Exception)>>activateHandler: <anExceptionHandler> 
+Error(Exception)>>handle
+Error(Exception)>>signal
+Error class(Exception class)>>signal: <'Invalid file handle:...'> 
+BasicProgram(Object)>>error: <'Invalid file handle:...'> 
+[] in BasicProgram>>deviceAt:
+LinearHashTable>>lookUpValue: <'#main.draw1'> for: <aDictionary> ifAbsent: <aBlockClosure> 
+Dictionary>>at: <'#main.draw1'> ifAbsent: <aBlockClosure> 
+BasicProgram>>deviceAt: <'#main.draw1'> 
+[] in PrintCommand>>deviceCr:handle:
+BlockClosure>>value: <aBasicProgram> value: <'#main.draw1'> value: <aBasicStringContext> 
+BasicTripleParameterContextHolder>>value
+[] in BasicProgram>>begin
+ExceptionHandler>>evaluateProtectedBlock: <aBlockClosure> 
+[] in ExceptionHandler>>activateDuring:
+ProtectedFrameMarker(BlockClosure)>>setUnwind: <aBlockClosure> 
+BlockClosure>>invisibleEnsure: <aBlockClosure> 
+ExceptionHandler>>activateDuring: <aBlockClosure> 
+ExceptionHandler class>>handle: <anError class> with: <aBlockClosure> during: <aBlockClosure> 
+BlockClosure>>on: <anError class> do: <aBlockClosure> 
+BasicProgram>>begin
+BasicProgram>>gotoAndIfStoppedBegin: <'[shuffle]'> 
+BasicProgram>>handlerName: <'[shuffle]'> evaluate: <aBlockClosure> callParameters: <anOrderedCollection> 
+BasicProgram>>submitHandlerName: <'[shuffle]'> evaluate: <aBlockClosure> callParameters: <anOrderedCollection> 
+BasicProgram>>submitHandlerName: <'[shuffle]'> callParameters: <anOrderedCollection> 
+LibButton>>click
+BasicGraphicDevice>>click: <aLibButton> 
+LibButton(Button)>>click: <aLibButton> 
+Message>>perform
+Message>>evaluate
+LibButton(Object)>>triggerEvent: <#clicked> 
+LibButton(Button)>>triggerClickedEvent
+LibButton(Button)>>notifyClicked: <3408522> 
+LibButton(ControlPane)>>asyncControlEvent: <0> with: <3408522> 
+Message>>perform
+NotificationManager>>empty
+
+
+Error log timestamp Thursday 01/07/10 05:14:07 PM
+
+Runtime error: Invalid file handle: #main.draw1
+
+Error(Exception)>>defaultAction
+Error(Exception)>>activateHandler: <anUndefinedObject> 
+Error(Exception)>>handle
+Error(Exception)>>signal
+Error class(Exception class)>>signal: <'Invalid file handle:...'> 
+BasicProgram(Object)>>error: <'Invalid file handle:...'> 
+BasicProgram>>terminateRun: <anError> 
+[] in BasicProgram>>errorHandlerBlock
+ExceptionHandler>>evaluateResponseBlock: <aBlockClosure> for: <anError> 
+[] in ExceptionHandler>>handle:
+ProtectedFrameMarker(BlockClosure)>>setUnwind: <aBlockClosure> 
+BlockClosure>>invisibleEnsure: <aBlockClosure> 
+ExceptionHandler>>handle: <anError> 
+ExceptionHandler>>findHandler: <anError> 
+Error(Exception)>>activateHandler: <anExceptionHandler> 
+Error(Exception)>>handle
+Error(Exception)>>signal
+Error class(Exception class)>>signal: <'Invalid file handle:...'> 
+BasicProgram(Object)>>error: <'Invalid file handle:...'> 
+[] in BasicProgram>>deviceAt:
+LinearHashTable>>lookUpValue: <'#main.draw1'> for: <aDictionary> ifAbsent: <aBlockClosure> 
+Dictionary>>at: <'#main.draw1'> ifAbsent: <aBlockClosure> 
+BasicProgram>>deviceAt: <'#main.draw1'> 
+[] in PrintCommand>>deviceCr:handle:
+BlockClosure>>value: <aBasicProgram> value: <'#main.draw1'> value: <aBasicStringContext> 
+BasicTripleParameterContextHolder>>value
+[] in BasicProgram>>begin
+ExceptionHandler>>evaluateProtectedBlock: <aBlockClosure> 
+[] in ExceptionHandler>>activateDuring:
+ProtectedFrameMarker(BlockClosure)>>setUnwind: <aBlockClosure> 
+BlockClosure>>invisibleEnsure: <aBlockClosure> 
+ExceptionHandler>>activateDuring: <aBlockClosure> 
+ExceptionHandler class>>handle: <anError class> with: <aBlockClosure> during: <aBlockClosure> 
+BlockClosure>>on: <anError class> do: <aBlockClosure> 
+BasicProgram>>begin
+BasicProgram>>gotoAndIfStoppedBegin: <'[shuffle]'> 
+BasicProgram>>handlerName: <'[shuffle]'> evaluate: <aBlockClosure> callParameters: <anOrderedCollection> 
+BasicProgram>>submitHandlerName: <'[shuffle]'> evaluate: <aBlockClosure> callParameters: <anOrderedCollection> 
+BasicProgram>>submitHandlerName: <'[shuffle]'> callParameters: <anOrderedCollection> 
+LibButton>>click
+BasicGraphicDevice>>click: <aLibButton> 
+LibButton(Button)>>click: <aLibButton> 
+Message>>perform
+Message>>evaluate
+LibButton(Object)>>triggerEvent: <#clicked> 
+LibButton(Button)>>triggerClickedEvent
+LibButton(Button)>>notifyClicked: <7602812> 
+LibButton(ControlPane)>>asyncControlEvent: <0> with: <7602812> 
+Message>>perform
+NotificationManager>>empty
+
+
+Error log timestamp Thursday 01/07/10 05:14:34 PM
+
+Runtime error: Invalid file handle: #main.draw1
+
+Error(Exception)>>defaultAction
+Error(Exception)>>activateHandler: <anUndefinedObject> 
+Error(Exception)>>handle
+Error(Exception)>>signal
+Error class(Exception class)>>signal: <'Invalid file handle:...'> 
+BasicProgram(Object)>>error: <'Invalid file handle:...'> 
+BasicProgram>>terminateRun: <anError> 
+[] in BasicProgram>>errorHandlerBlock
+ExceptionHandler>>evaluateResponseBlock: <aBlockClosure> for: <anError> 
+[] in ExceptionHandler>>handle:
+ProtectedFrameMarker(BlockClosure)>>setUnwind: <aBlockClosure> 
+BlockClosure>>invisibleEnsure: <aBlockClosure> 
+ExceptionHandler>>handle: <anError> 
+ExceptionHandler>>findHandler: <anError> 
+Error(Exception)>>activateHandler: <anExceptionHandler> 
+Error(Exception)>>handle
+Error(Exception)>>signal
+Error class(Exception class)>>signal: <'Invalid file handle:...'> 
+BasicProgram(Object)>>error: <'Invalid file handle:...'> 
+[] in BasicProgram>>deviceAt:
+LinearHashTable>>lookUpValue: <'#main.draw1'> for: <aDictionary> ifAbsent: <aBlockClosure> 
+Dictionary>>at: <'#main.draw1'> ifAbsent: <aBlockClosure> 
+BasicProgram>>deviceAt: <'#main.draw1'> 
+[] in PrintCommand>>deviceCr:handle:
+BlockClosure>>value: <aBasicProgram> value: <'#main.draw1'> value: <aBasicStringContext> 
+BasicTripleParameterContextHolder>>value
+[] in BasicProgram>>begin
+ExceptionHandler>>evaluateProtectedBlock: <aBlockClosure> 
+[] in ExceptionHandler>>activateDuring:
+ProtectedFrameMarker(BlockClosure)>>setUnwind: <aBlockClosure> 
+BlockClosure>>invisibleEnsure: <aBlockClosure> 
+ExceptionHandler>>activateDuring: <aBlockClosure> 
+ExceptionHandler class>>handle: <anError class> with: <aBlockClosure> during: <aBlockClosure> 
+BlockClosure>>on: <anError class> do: <aBlockClosure> 
+BasicProgram>>begin
+BasicProgram>>gotoAndIfStoppedBegin: <'[shuffle]'> 
+BasicProgram>>handlerName: <'[shuffle]'> evaluate: <aBlockClosure> callParameters: <anOrderedCollection> 
+BasicProgram>>submitHandlerName: <'[shuffle]'> evaluate: <aBlockClosure> callParameters: <anOrderedCollection> 
+BasicProgram>>submitHandlerName: <'[shuffle]'> callParameters: <anOrderedCollection> 
+LibButton>>click
+BasicGraphicDevice>>click: <aLibButton> 
+LibButton(Button)>>click: <aLibButton> 
+Message>>perform
+Message>>evaluate
+LibButton(Object)>>triggerEvent: <#clicked> 
+LibButton(Button)>>triggerClickedEvent
+LibButton(Button)>>notifyClicked: <1442340> 
+LibButton(ControlPane)>>asyncControlEvent: <0> with: <1442340> 
+Message>>perform
+NotificationManager>>empty
+
+
+Error log timestamp Thursday 01/07/10 05:15:13 PM
+
+Runtime error: Invalid file handle: #main.draw1
+
+Error(Exception)>>defaultAction
+Error(Exception)>>activateHandler: <anUndefinedObject> 
+Error(Exception)>>handle
+Error(Exception)>>signal
+Error class(Exception class)>>signal: <'Invalid file handle:...'> 
+BasicProgram(Object)>>error: <'Invalid file handle:...'> 
+BasicProgram>>terminateRun: <anError> 
+[] in BasicProgram>>errorHandlerBlock
+ExceptionHandler>>evaluateResponseBlock: <aBlockClosure> for: <anError> 
+[] in ExceptionHandler>>handle:
+ProtectedFrameMarker(BlockClosure)>>setUnwind: <aBlockClosure> 
+BlockClosure>>invisibleEnsure: <aBlockClosure> 
+ExceptionHandler>>handle: <anError> 
+ExceptionHandler>>findHandler: <anError> 
+Error(Exception)>>activateHandler: <anExceptionHandler> 
+Error(Exception)>>handle
+Error(Exception)>>signal
+Error class(Exception class)>>signal: <'Invalid file handle:...'> 
+BasicProgram(Object)>>error: <'Invalid file handle:...'> 
+[] in BasicProgram>>deviceAt:
+LinearHashTable>>lookUpValue: <'#main.draw1'> for: <aDictionary> ifAbsent: <aBlockClosure> 
+Dictionary>>at: <'#main.draw1'> ifAbsent: <aBlockClosure> 
+BasicProgram>>deviceAt: <'#main.draw1'> 
+[] in PrintCommand>>deviceCr:handle:
+BlockClosure>>value: <aBasicProgram> value: <'#main.draw1'> value: <aBasicStringContext> 
+BasicTripleParameterContextHolder>>value
+[] in BasicProgram>>begin
+ExceptionHandler>>evaluateProtectedBlock: <aBlockClosure> 
+[] in ExceptionHandler>>activateDuring:
+ProtectedFrameMarker(BlockClosure)>>setUnwind: <aBlockClosure> 
+BlockClosure>>invisibleEnsure: <aBlockClosure> 
+ExceptionHandler>>activateDuring: <aBlockClosure> 
+ExceptionHandler class>>handle: <anError class> with: <aBlockClosure> during: <aBlockClosure> 
+BlockClosure>>on: <anError class> do: <aBlockClosure> 
+BasicProgram>>begin
+BasicProgram>>gotoAndIfStoppedBegin: <'[shuffle]'> 
+BasicProgram>>handlerName: <'[shuffle]'> evaluate: <aBlockClosure> callParameters: <anOrderedCollection> 
+BasicProgram>>submitHandlerName: <'[shuffle]'> evaluate: <aBlockClosure> callParameters: <anOrderedCollection> 
+BasicProgram>>submitHandlerName: <'[shuffle]'> callParameters: <anOrderedCollection> 
+LibButton>>click
+BasicGraphicDevice>>click: <aLibButton> 
+LibButton(Button)>>click: <aLibButton> 
+Message>>perform
+Message>>evaluate
+LibButton(Object)>>triggerEvent: <#clicked> 
+LibButton(Button)>>triggerClickedEvent
+LibButton(Button)>>notifyClicked: <7144012> 
+LibButton(Object)>>perform: <#notifyClicked:> with: <7144012> 
+LibButton(ControlPane)>>asyncControlEvent: <0> with: <7144012> 
+Message>>perform
+
+
+Error log timestamp Thursday 01/07/10 05:15:58 PM
+
+Runtime error: Invalid file handle: #main.draw1
+
+Error(Exception)>>defaultAction
+Error(Exception)>>activateHandler: <anUndefinedObject> 
+Error(Exception)>>handle
+Error(Exception)>>signal
+Error class(Exception class)>>signal: <'Invalid file handle:...'> 
+BasicProgram(Object)>>error: <'Invalid file handle:...'> 
+BasicProgram>>terminateRun: <anError> 
+[] in BasicProgram>>errorHandlerBlock
+ExceptionHandler>>evaluateResponseBlock: <aBlockClosure> for: <anError> 
+[] in ExceptionHandler>>handle:
+ProtectedFrameMarker(BlockClosure)>>setUnwind: <aBlockClosure> 
+BlockClosure>>invisibleEnsure: <aBlockClosure> 
+ExceptionHandler>>handle: <anError> 
+ExceptionHandler>>findHandler: <anError> 
+Error(Exception)>>activateHandler: <anExceptionHandler> 
+Error(Exception)>>handle
+Error(Exception)>>signal
+Error class(Exception class)>>signal: <'Invalid file handle:...'> 
+BasicProgram(Object)>>error: <'Invalid file handle:...'> 
+[] in BasicProgram>>deviceAt:
+LinearHashTable>>lookUpValue: <'#main.draw1'> for: <aDictionary> ifAbsent: <aBlockClosure> 
+Dictionary>>at: <'#main.draw1'> ifAbsent: <aBlockClosure> 
+BasicProgram>>deviceAt: <'#main.draw1'> 
+[] in PrintCommand>>deviceCr:handle:
+BlockClosure>>value: <aBasicProgram> value: <'#main.draw1'> value: <aBasicStringContext> 
+BasicTripleParameterContextHolder>>value
+[] in BasicProgram>>begin
+ExceptionHandler>>evaluateProtectedBlock: <aBlockClosure> 
+[] in ExceptionHandler>>activateDuring:
+ProtectedFrameMarker(BlockClosure)>>setUnwind: <aBlockClosure> 
+BlockClosure>>invisibleEnsure: <aBlockClosure> 
+ExceptionHandler>>activateDuring: <aBlockClosure> 
+ExceptionHandler class>>handle: <anError class> with: <aBlockClosure> during: <aBlockClosure> 
+BlockClosure>>on: <anError class> do: <aBlockClosure> 
+BasicProgram>>begin
+BasicProgram>>run
+[] in BasicSourcePane>>run
+BasicCompiler class>>compileFromString: <'
+
+
+loadbmp "curta...'> notify: <aBasicSourcePane> ifSuccess: <aBlockClosure> 
+BasicSourcePane>>run
+BasicSourceWindow>>run
+BasicEditorModel>>run: <aToolbarButton> 
+BasicEditorModel(Object)>>perform: <#run:> with: <aToolbarButton> 
+ToolbarButton>>triggerClickedEvent
+Message>>perform
+NotificationManager>>runPendingEvents
+NotificationManager>>runEventLoop
+Message>>perform
+Message>>evaluate
+Process>>safelyEvaluate: <aMessage> 
+Process>>evaluate: <aMessage> 
+
+
+Error log timestamp Thursday 01/07/10 05:16:15 PM
+
+Runtime error: Handle #main already in use
+
+Error(Exception)>>defaultAction
+Error(Exception)>>activateHandler: <anUndefinedObject> 
+Error(Exception)>>handle
+Error(Exception)>>signal
+Error class(Exception class)>>signal: <'Handle #main already...'> 
+BasicProgram(Object)>>error: <'Handle #main already...'> 
+BasicProgram>>terminateRun: <anError> 
+[] in BasicProgram>>errorHandlerBlock
+ExceptionHandler>>evaluateResponseBlock: <aBlockClosure> for: <anError> 
+[] in ExceptionHandler>>handle:
+ProtectedFrameMarker(BlockClosure)>>setUnwind: <aBlockClosure> 
+BlockClosure>>invisibleEnsure: <aBlockClosure> 
+ExceptionHandler>>handle: <anError> 
+ExceptionHandler>>findHandler: <anError> 
+Error(Exception)>>activateHandler: <anExceptionHandler> 
+Error(Exception)>>handle
+Error(Exception)>>signal
+Error class(Exception class)>>signal: <'Handle #main already...'> 
+BasicProgram(Object)>>error: <'Handle #main already...'> 
+[] in OpenCommand>>using:
+[] in BasicProgram>>begin
+ExceptionHandler>>evaluateProtectedBlock: <aBlockClosure> 
+[] in ExceptionHandler>>activateDuring:
+ProtectedFrameMarker(BlockClosure)>>setUnwind: <aBlockClosure> 
+BlockClosure>>invisibleEnsure: <aBlockClosure> 
+ExceptionHandler>>activateDuring: <aBlockClosure> 
+ExceptionHandler class>>handle: <anError class> with: <aBlockClosure> during: <aBlockClosure> 
+BlockClosure>>on: <anError class> do: <aBlockClosure> 
+BasicProgram>>begin
+BasicProgram>>gotoAndIfStoppedBegin: <'[shuffle]'> 
+BasicProgram>>handlerName: <'[shuffle]'> evaluate: <aBlockClosure> callParameters: <anOrderedCollection> 
+BasicProgram>>submitHandlerName: <'[shuffle]'> evaluate: <aBlockClosure> callParameters: <anOrderedCollection> 
+BasicProgram>>submitHandlerName: <'[shuffle]'> callParameters: <anOrderedCollection> 
+LibButton>>click
+BasicGraphicDevice>>click: <aLibButton> 
+LibButton(Button)>>click: <aLibButton> 
+Message>>perform
+Message>>evaluate
+LibButton(Object)>>triggerEvent: <#clicked> 
+LibButton(Button)>>triggerClickedEvent
+LibButton(Button)>>notifyClicked: <1049708> 
+LibButton(Object)>>perform: <#notifyClicked:> with: <1049708> 
+LibButton(ControlPane)>>asyncControlEvent: <0> with: <1049708> 
+Message>>perform
+NotificationManager>>empty
+NotificationManager>>runPendingEvents
+NotificationManager>>runEventLoop
+Message>>perform
+Message>>evaluate
+Process>>safelyEvaluate: <aMessage> 
+
+
+Error log timestamp Thursday 01/07/10 05:16:31 PM
+
+Runtime error: Handle #main already in use
+
+Error(Exception)>>defaultAction
+Error(Exception)>>activateHandler: <anUndefinedObject> 
+Error(Exception)>>handle
+Error(Exception)>>signal
+Error class(Exception class)>>signal: <'Handle #main already...'> 
+BasicProgram(Object)>>error: <'Handle #main already...'> 
+BasicProgram>>terminateRun: <anError> 
+[] in BasicProgram>>errorHandlerBlock
+ExceptionHandler>>evaluateResponseBlock: <aBlockClosure> for: <anError> 
+[] in ExceptionHandler>>handle:
+ProtectedFrameMarker(BlockClosure)>>setUnwind: <aBlockClosure> 
+BlockClosure>>invisibleEnsure: <aBlockClosure> 
+ExceptionHandler>>handle: <anError> 
+ExceptionHandler>>findHandler: <anError> 
+Error(Exception)>>activateHandler: <anExceptionHandler> 
+Error(Exception)>>handle
+Error(Exception)>>signal
+Error class(Exception class)>>signal: <'Handle #main already...'> 
+BasicProgram(Object)>>error: <'Handle #main already...'> 
+[] in OpenCommand>>using:
+[] in BasicProgram>>begin
+ExceptionHandler>>evaluateProtectedBlock: <aBlockClosure> 
+[] in ExceptionHandler>>activateDuring:
+ProtectedFrameMarker(BlockClosure)>>setUnwind: <aBlockClosure> 
+BlockClosure>>invisibleEnsure: <aBlockClosure> 
+ExceptionHandler>>activateDuring: <aBlockClosure> 
+ExceptionHandler class>>handle: <anError class> with: <aBlockClosure> during: <aBlockClosure> 
+BlockClosure>>on: <anError class> do: <aBlockClosure> 
+BasicProgram>>begin
+BasicProgram>>run
+[] in BasicSourcePane>>run
+BasicCompiler class>>compileFromString: <'
+
+
+loadbmp "curta...'> notify: <aBasicSourcePane> ifSuccess: <aBlockClosure> 
+BasicSourcePane>>run
+BasicSourceWindow>>run
+BasicEditorModel>>run: <aToolbarButton> 
+BasicEditorModel(Object)>>perform: <#run:> with: <aToolbarButton> 
+ToolbarButton>>triggerClickedEvent
+Message>>perform
+NotificationManager>>runPendingEvents
+NotificationManager>>runEventLoop
+Message>>perform
+Message>>evaluate
+Process>>safelyEvaluate: <aMessage> 
+Process>>evaluate: <aMessage> 
+
+
+Error log timestamp Thursday 01/07/10 05:18:59 PM
+
+Runtime error: Invalid file handle: #main.draw1
+
+Error(Exception)>>defaultAction
+Error(Exception)>>activateHandler: <anUndefinedObject> 
+Error(Exception)>>handle
+Error(Exception)>>signal
+Error class(Exception class)>>signal: <'Invalid file handle:...'> 
+BasicProgram(Object)>>error: <'Invalid file handle:...'> 
+BasicProgram>>terminateRun: <anError> 
+[] in BasicProgram>>errorHandlerBlock
+ExceptionHandler>>evaluateResponseBlock: <aBlockClosure> for: <anError> 
+[] in ExceptionHandler>>handle:
+ProtectedFrameMarker(BlockClosure)>>setUnwind: <aBlockClosure> 
+BlockClosure>>invisibleEnsure: <aBlockClosure> 
+ExceptionHandler>>handle: <anError> 
+ExceptionHandler>>findHandler: <anError> 
+Error(Exception)>>activateHandler: <anExceptionHandler> 
+Error(Exception)>>handle
+Error(Exception)>>signal
+Error class(Exception class)>>signal: <'Invalid file handle:...'> 
+BasicProgram(Object)>>error: <'Invalid file handle:...'> 
+[] in BasicProgram>>deviceAt:
+LinearHashTable>>lookUpValue: <'#main.draw1'> for: <aDictionary> ifAbsent: <aBlockClosure> 
+Dictionary>>at: <'#main.draw1'> ifAbsent: <aBlockClosure> 
+BasicProgram>>deviceAt: <'#main.draw1'> 
+[] in PrintCommand>>deviceCr:handle:
+BlockClosure>>value: <aBasicProgram> value: <'#main.draw1'> value: <aBasicStringContext> 
+BasicTripleParameterContextHolder>>value
+[] in BasicProgram>>begin
+ExceptionHandler>>evaluateProtectedBlock: <aBlockClosure> 
+[] in ExceptionHandler>>activateDuring:
+ProtectedFrameMarker(BlockClosure)>>setUnwind: <aBlockClosure> 
+BlockClosure>>invisibleEnsure: <aBlockClosure> 
+ExceptionHandler>>activateDuring: <aBlockClosure> 
+ExceptionHandler class>>handle: <anError class> with: <aBlockClosure> during: <aBlockClosure> 
+BlockClosure>>on: <anError class> do: <aBlockClosure> 
+BasicProgram>>begin
+BasicProgram>>gotoAndIfStoppedBegin: <'[shuffle]'> 
+BasicProgram>>handlerName: <'[shuffle]'> evaluate: <aBlockClosure> callParameters: <anOrderedCollection> 
+BasicProgram>>submitHandlerName: <'[shuffle]'> evaluate: <aBlockClosure> callParameters: <anOrderedCollection> 
+BasicProgram>>submitHandlerName: <'[shuffle]'> callParameters: <anOrderedCollection> 
+LibButton>>click
+BasicGraphicDevice>>click: <aLibButton> 
+LibButton(Button)>>click: <aLibButton> 
+Message>>perform
+Message>>evaluate
+LibButton(Object)>>triggerEvent: <#clicked> 
+LibButton(Button)>>triggerClickedEvent
+LibButton(Button)>>notifyClicked: <1114944> 
+LibButton(Object)>>perform: <#notifyClicked:> with: <1114944> 
+LibButton(ControlPane)>>asyncControlEvent: <0> with: <1114944> 
+Message>>perform
+
+
+Error log timestamp Thursday 01/07/10 05:19:18 PM
+
+Runtime error: Handle #main already in use
+
+Error(Exception)>>defaultAction
+Error(Exception)>>activateHandler: <anUndefinedObject> 
+Error(Exception)>>handle
+Error(Exception)>>signal
+Error class(Exception class)>>signal: <'Handle #main already...'> 
+BasicProgram(Object)>>error: <'Handle #main already...'> 
+BasicProgram>>terminateRun: <anError> 
+[] in BasicProgram>>errorHandlerBlock
+ExceptionHandler>>evaluateResponseBlock: <aBlockClosure> for: <anError> 
+[] in ExceptionHandler>>handle:
+ProtectedFrameMarker(BlockClosure)>>setUnwind: <aBlockClosure> 
+BlockClosure>>invisibleEnsure: <aBlockClosure> 
+ExceptionHandler>>handle: <anError> 
+ExceptionHandler>>findHandler: <anError> 
+Error(Exception)>>activateHandler: <anExceptionHandler> 
+Error(Exception)>>handle
+Error(Exception)>>signal
+Error class(Exception class)>>signal: <'Handle #main already...'> 
+BasicProgram(Object)>>error: <'Handle #main already...'> 
+[] in OpenCommand>>using:
+[] in BasicProgram>>begin
+ExceptionHandler>>evaluateProtectedBlock: <aBlockClosure> 
+[] in ExceptionHandler>>activateDuring:
+ProtectedFrameMarker(BlockClosure)>>setUnwind: <aBlockClosure> 
+BlockClosure>>invisibleEnsure: <aBlockClosure> 
+ExceptionHandler>>activateDuring: <aBlockClosure> 
+ExceptionHandler class>>handle: <anError class> with: <aBlockClosure> during: <aBlockClosure> 
+BlockClosure>>on: <anError class> do: <aBlockClosure> 
+BasicProgram>>begin
+BasicProgram>>run
+[] in BasicSourcePane>>run
+BasicCompiler class>>compileFromString: <'loadbmp "curtain", "...'> notify: <aBasicSourcePane> ifSuccess: <aBlockClosure> 
+BasicSourcePane>>run
+BasicSourceWindow>>run
+BasicEditorModel>>run: <aToolbarButton> 
+BasicEditorModel(Object)>>perform: <#run:> with: <aToolbarButton> 
+ToolbarButton>>triggerClickedEvent
+Message>>perform
+NotificationManager>>runPendingEvents
+NotificationManager>>runEventLoop
+Message>>perform
+Message>>evaluate
+Process>>safelyEvaluate: <aMessage> 
+Process>>evaluate: <aMessage> 
+
+
+Error log timestamp Thursday 01/07/10 05:19:33 PM
+
+Runtime error: Handle #main already in use
+
+Error(Exception)>>defaultAction
+Error(Exception)>>activateHandler: <anUndefinedObject> 
+Error(Exception)>>handle
+Error(Exception)>>signal
+Error class(Exception class)>>signal: <'Handle #main already...'> 
+BasicProgram(Object)>>error: <'Handle #main already...'> 
+BasicProgram>>terminateRun: <anError> 
+[] in BasicProgram>>errorHandlerBlock
+ExceptionHandler>>evaluateResponseBlock: <aBlockClosure> for: <anError> 
+[] in ExceptionHandler>>handle:
+ProtectedFrameMarker(BlockClosure)>>setUnwind: <aBlockClosure> 
+BlockClosure>>invisibleEnsure: <aBlockClosure> 
+ExceptionHandler>>handle: <anError> 
+ExceptionHandler>>findHandler: <anError> 
+Error(Exception)>>activateHandler: <anExceptionHandler> 
+Error(Exception)>>handle
+Error(Exception)>>signal
+Error class(Exception class)>>signal: <'Handle #main already...'> 
+BasicProgram(Object)>>error: <'Handle #main already...'> 
+[] in OpenCommand>>using:
+[] in BasicProgram>>begin
+ExceptionHandler>>evaluateProtectedBlock: <aBlockClosure> 
+[] in ExceptionHandler>>activateDuring:
+ProtectedFrameMarker(BlockClosure)>>setUnwind: <aBlockClosure> 
+BlockClosure>>invisibleEnsure: <aBlockClosure> 
+ExceptionHandler>>activateDuring: <aBlockClosure> 
+ExceptionHandler class>>handle: <anError class> with: <aBlockClosure> during: <aBlockClosure> 
+BlockClosure>>on: <anError class> do: <aBlockClosure> 
+BasicProgram>>begin
+BasicProgram>>run
+[] in BasicSourcePane>>run
+BasicCompiler class>>compileFromString: <'loadbmp "curtain", "...'> notify: <aBasicSourcePane> ifSuccess: <aBlockClosure> 
+BasicSourcePane>>run
+[] in BasicSourceWindow>>run
+AboutLibertyBASICDialog>>ok: <anUndefinedObject> 
+Message>>perform
+Message>>evaluate
+Button(Object)>>triggerEvent: <#clicked> 
+Button>>triggerClickedEvent
+Button>>notifyClicked: <2294904> 
+Button(Object)>>perform: <#notifyClicked:> with: <2294904> 
+Button(ControlPane)>>asyncControlEvent: <0> with: <2294904> 
+Message>>perform
+NotificationManager>>empty
+NotificationManager>>runPendingEvents
+NotificationManager>>runEventLoop
+Message>>perform
+Message>>evaluate
+Process>>safelyEvaluate: <aMessage> 
+Process>>evaluate: <aMessage> 
+
+
+Error log timestamp Thursday 01/07/10 05:19:49 PM
+
+Runtime error: Invalid file handle: #main.draw1
+
+Error(Exception)>>defaultAction
+Error(Exception)>>activateHandler: <anUndefinedObject> 
+Error(Exception)>>handle
+Error(Exception)>>signal
+Error class(Exception class)>>signal: <'Invalid file handle:...'> 
+BasicProgram(Object)>>error: <'Invalid file handle:...'> 
+BasicProgram>>terminateRun: <anError> 
+[] in BasicProgram>>errorHandlerBlock
+ExceptionHandler>>evaluateResponseBlock: <aBlockClosure> for: <anError> 
+[] in ExceptionHandler>>handle:
+ProtectedFrameMarker(BlockClosure)>>setUnwind: <aBlockClosure> 
+BlockClosure>>invisibleEnsure: <aBlockClosure> 
+ExceptionHandler>>handle: <anError> 
+ExceptionHandler>>findHandler: <anError> 
+Error(Exception)>>activateHandler: <anExceptionHandler> 
+Error(Exception)>>handle
+Error(Exception)>>signal
+Error class(Exception class)>>signal: <'Invalid file handle:...'> 
+BasicProgram(Object)>>error: <'Invalid file handle:...'> 
+[] in BasicProgram>>deviceAt:
+LinearHashTable>>lookUpValue: <'#main.draw1'> for: <aDictionary> ifAbsent: <aBlockClosure> 
+Dictionary>>at: <'#main.draw1'> ifAbsent: <aBlockClosure> 
+BasicProgram>>deviceAt: <'#main.draw1'> 
+[] in PrintCommand>>deviceCr:handle:
+BlockClosure>>value: <aBasicProgram> value: <'#main.draw1'> value: <aBasicStringContext> 
+BasicTripleParameterContextHolder>>value
+[] in BasicProgram>>begin
+ExceptionHandler>>evaluateProtectedBlock: <aBlockClosure> 
+[] in ExceptionHandler>>activateDuring:
+ProtectedFrameMarker(BlockClosure)>>setUnwind: <aBlockClosure> 
+BlockClosure>>invisibleEnsure: <aBlockClosure> 
+ExceptionHandler>>activateDuring: <aBlockClosure> 
+ExceptionHandler class>>handle: <anError class> with: <aBlockClosure> during: <aBlockClosure> 
+BlockClosure>>on: <anError class> do: <aBlockClosure> 
+BasicProgram>>begin
+BasicProgram>>gotoAndIfStoppedBegin: <'[shuffle]'> 
+BasicProgram>>handlerName: <'[shuffle]'> evaluate: <aBlockClosure> callParameters: <anOrderedCollection> 
+BasicProgram>>submitHandlerName: <'[shuffle]'> evaluate: <aBlockClosure> callParameters: <anOrderedCollection> 
+BasicProgram>>submitHandlerName: <'[shuffle]'> callParameters: <anOrderedCollection> 
+LibButton>>click
+BasicGraphicDevice>>click: <aLibButton> 
+LibButton(Button)>>click: <aLibButton> 
+Message>>perform
+Message>>evaluate
+LibButton(Object)>>triggerEvent: <#clicked> 
+LibButton(Button)>>triggerClickedEvent
+LibButton(Button)>>notifyClicked: <3409074> 
+LibButton(Object)>>perform: <#notifyClicked:> with: <3409074> 
+LibButton(ControlPane)>>asyncControlEvent: <0> with: <3409074> 
+Message>>perform

@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xml>
+	<track>
+		<path>Rocks.mp3</path>
+		<title>Rocks *New!*</title>
+	</track>				
+	<track>
+		<path>garbage.mp3</path>
+		<title>Garbage</title>
+	</track>			
+	<track>
+		<path>charmander.mp3</path>
+		<title>Charmander</title>
+	</track>	
+	<track>
+		<path>water.mp3</path>
+		<title>Water</title>
+	</track>
+	<track>
+		<path>Malibu.mp3</path>
+		<title>Malibu</title>
+	</track>	
+
+	
+</xml>

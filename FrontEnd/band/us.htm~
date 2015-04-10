@@ -1,0 +1,67 @@
+<html>
+<head><title></title>
+
+<script type="text/javascript">
+var playVid = function()
+{
+	var input = document.getElementById("password");
+	if (input.value != "i love bazeika")
+	{
+		alert("incorrect password");
+		return;
+	}
+	var x = document.createElement("VIDEO");
+	x.src = "fly_away.mp4";
+	x.width = "750";
+	x.height = "500";
+	x.autoplay = true;
+	x.controls = true;
+	document.body.appendChild(x);
+};
+</script>
+
+</head>
+<body bgcolor="red">
+
+What's the Password?<br>
+<input type="text" id="password">
+<input type="button" onclick="playVid()" value="Enter">
+
+<!--video width="750" height="500" controls autoplay>
+  <source src="In memory of Daxton, Paul, and Daniel (with Hey oh).wmv" type="video/wmv">
+  <source src="In_memory_of_Daxton_Paul_and_Daniel_with_Hey_oh_.mp4" type="video/mp4">
+  <source src="In_memory_of_Daxton_Paul_and_Daniel_with_Hey_oh_.ogv" type="video/ogg">
+
+Your browser does not support the video tag.
+</video-->
+
+<!--EMBED SRC="In memory of Daxton, Paul, and Daniel (with Hey oh).WMV" Hidden=false AUTOSTART=true>
+<object id="MediaPlayer1" width="750" height="700"
+	standby="Loading Windows Media Player components..."
+	data="video-file.wvx"  
+	type="application/x-mplayer2"
+	title="Title of this video object" 
+	style="background-color: #000000;" >
+		<param name="filename" value="In memory of Daxton, Paul, and Daniel (with Hey oh).wmv" />
+		<param name="height" value="768" />
+		<param name="width" value="640" />
+		<param name="autoStart" value="1" /> 
+		<param name="autoPlay" value="1" /> 
+		<param name="AnimationatStart" value="1" />
+		<param name="showdisplay" value="1" />
+		<param name="TransparentAtStart" value="0" />
+		<param name="ShowControls" value="1" />
+		<param name="ShowStatusBar" value="1" />
+		<param name="ClickToPlay" value="0" />
+		<param name="bgcolor" value="#000000" />
+		<param name="volume" value="100%" />
+		<param name="InvokeURLs" value="0" />
+		<param name="loop" value="0" />
+      <em>Description of this video object</em>
+</object-->
+<br>
+<br>
+<br>
+<a href="videos.htm"><img src="back.bmp"></a>
+</body>
+</html>

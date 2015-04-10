@@ -1,0 +1,262 @@
+
+'piano6.bas - a cool piano that uses Windows' built-in MIDI synthesizer
+'plays one note at a time on channel 1 (channel 1 = 144)
+'allows selection from 128 MIDI voices
+'
+'this program uses a piano with one key more than earlier piano programs
+
+NoMainWin
+
+[initVariables]
+    note=0                  'will contain value for note
+    BLACK=0                 'color value for black keys
+    WHITE=hexdec("FFFFFF")  'color value for white keys
+
+
+    WindowWidth=640:WindowHeight=240
+    UpperLeftX=10:UpperLeftY=10
+
+    Dim ins$(128)   'names of instruments
+
+    'read instrument name data into array for combobox
+    For vc = 0 to 127
+        Read data$
+        ins$(vc)=data$
+    Next vc
+
+    'combobox index is 1-based, instrument voices are 0-based
+    instrum=1 'select first instrument voice
+    voice=0   'voice 0 = instrum 1
+
+    msg$="To play the piano, click the keys with your mouse " _
+    +"or type on keyboard. Select a voice from the combobox."
+
+
+[windowSetup]
+    Button #p.default, "Close",[quit],UL,520,15,96,30
+    Statictext #p, "Select Instrument",15,5,200,20
+    Combobox #p.ins, ins$(,[instrument],15, 25, 220,400
+    Graphicbox #p.g, 0, 70,638,100
+    Statictext #p.vol, msg$,15,180,550,40
+
+Open "Electronic Piano" For Window_nf As #p
+
+    LoadBmp "piano","bmp\piano6.bmp"
+
+    #p.g   "down;drawbmp piano 0 0;flush"
+    #p.g   "setfocus; when leftButtonDown [newNote]"
+    #p.g   "when leftButtonUp [endNote]"
+    #p.g   "when leftButtonMove [moveNote]"
+    #p.g   "when characterInput [keyNote]"
+    #p.ins "select Grand Piano"
+    #p     "trapclose [quit]"
+
+    Wnd=hWnd(#p.g)  'handle of graphicbox
+    'get device context for graphicbox
+    CallDLL #user32, "GetDC",_
+        Wnd As long,  hDC As long
+
+    'open midi device and obtain handle
+    'midi functions return 0 if successful
+    struct m, a$ As ptr
+    CallDLL #winmm, "midiOutOpen",_
+        m As struct,-1 As long,0 As long,_
+        0 As long,0 As long,ret As long
+
+    hMidiOut=m.a$.struct    'handle to midi device
+    Wait
+
+[quit]'stop note, close midi device, DLLs, window
+    timer 0
+    UnloadBmp "piano"
+    gosub [stopPlay]   'stop all output
+    CallDLL #winmm, "midiOutClose", hMidiOut As ulong,_
+        ret As ulong
+
+    CallDLL#user32,"ReleaseDC",_
+        Wnd As long,hDC As long,result As long
+    Close #p
+    End
+
+
+[instrument]'user selected an instrument voice
+    #p.ins "selectionindex? instrum"
+    #p.g   "setfocus"
+    gosub [doChange]   'change voice
+    Wait
+
+
+[newNote] 'mouse clicked to start new note
+    gosub [stopNote]   'stop previous note
+    gosub [findNote]   'set new note value
+    note=mnote         'set note to match piano key clicked by mouse
+    gosub [playNewNote]'play new note
+    Wait
+
+
+[moveNote]'mouse moved while button was down
+          'determine if it has moved to new note
+          'and if it has, stop old note and sound new note
+    gosub [findNote]         'set note value
+    if mnote=note then wait  'mouse is on same key, do nothing
+    gosub [stopNote]         'stop previous note
+    note=mnote               'set note to match piano key clicked by mouse
+    gosub [playNewNote]      'play new note
+    Wait
+
+
+[keyNote]   'a keyboard key was pressed
+    gosub [stopNote]      'stop previous note
+    gosub [findKeyNote]   'set new note value
+    gosub [playNewNote]   'play new note
+    timer 1000, [cutOff]  'to stop notes played by typing on keyboard
+    wait
+
+
+[cutOff]'stop note played by typing on keyboard
+    gosub [stopNote]
+    wait
+
+
+[endNote]'stop note when mouse button is released
+    gosub [stopNote]
+    Wait
+
+
+'GOSUBS:
+[findKeyNote]'determine a note based on keyboard key pressed
+    k = asc(Inkey$)
+    select case
+    case  (k>96) and (k<123)
+        note=k-50   'lowercase letters
+    case (k>64) and (k<91)
+        note=k-18   'uppercase letters
+    case else
+        note=48     'non-alpha key
+    end select
+    RETURN
+
+
+[playNewNote]'play new note:
+    gosub [stopNote]
+    event=144   'event 144 = play on channel 1
+    low=(note*256)+event
+    velocity=127
+    hi=velocity*256*256
+    dwMsg=low+hi
+    CallDLL #winmm, "midiOutShortMsg",hMidiOut As ulong,_
+        dwMsg As ulong, ret As ulong
+    RETURN
+
+
+[stopNote]'stop note from playing
+    timer 0
+    event=144    'event 144 = play on channel 1
+    low=(note*256)+event
+    hiZero=0     'stop note from sounding by setting velocity to 0
+    dwMsg=low+hiZero
+    CallDLL #winmm, "midiOutShortMsg",hMidiOut As ulong,_
+        dwMsg As ulong, ret As ulong
+    #p.g "setfocus; when characterInput [keyNote]"
+    RETURN
+
+
+[stopPlay]'stop all notes from playing
+    event=128    'event 128 = stop play
+    low=(note*256)+event
+    dwMsg=low+hi
+    CallDLL #winmm, "midiOutShortMsg",hMidiOut As ulong,_
+        dwMsg As ulong, ret As ulong
+    timer 0
+    RETURN
+
+
+[doChange]'signal a voice change:
+    event=192  'event 192 = change
+    voice=instrum-1
+    velocity=127
+    low=(voice*256)+event
+    hi=velocity*256*256
+    dwMsg=low+hi
+    CallDLL #winmm, "midiOutShortMsg",hMidiOut As ulong,_
+        dwMsg As ulong, ret As ulong
+    RETURN
+
+
+[findNote]'determine piano key pressed by mouse to set note
+          'note value will be in mnote
+    MX=MouseX:MY=MouseY
+
+    CallDLL #gdi32, "GetPixel",hDC As long,_
+        MX As long,MY As long,keyColor As long
+
+    If keyColor=BLACK Then  'black keys
+        If MX<=54  Then mnote = 49 : RETURN  'c#
+        If MX<=97  Then mnote = 51 : RETURN  'd#
+        If MX<=183 Then mnote = 54 : RETURN  'f#
+        If MX<=226 Then mnote = 56 : RETURN  'g#
+        If MX<=266 Then mnote = 58 : RETURN  'a#
+        If MX<=354 Then mnote = 61 : RETURN  'c#
+        If MX<=397 Then mnote = 63 : RETURN  'd#
+        If MX<=483 Then mnote = 66 : RETURN  'f#
+        If MX<=527 Then mnote = 68 : RETURN  'g#
+        If MX<=566 Then mnote = 70 : RETURN  'a#
+        return
+    end if
+    if keyColor=WHITE then  'white keys
+        If MX<=43  Then mnote = 48 : RETURN  'c
+        If MX<=86  Then mnote = 50 : RETURN  'd
+        If MX<=129 Then mnote = 52 : RETURN  'e
+        If MX<=172 Then mnote = 53 : RETURN  'f
+        If MX<=215 Then mnote = 55 : RETURN  'g
+        If MX<=258 Then mnote = 57 : RETURN  'a
+        If MX<=300 Then mnote = 59 : RETURN  'b
+        If MX<=343 Then mnote = 60 : RETURN  'c
+        If MX<=386 Then mnote = 62 : RETURN  'd
+        If MX<=429 Then mnote = 64 : RETURN  'e
+        If MX<=472 Then mnote = 65 : RETURN  'f
+        If MX<=515 Then mnote = 67 : RETURN  'g
+        If MX<=558 Then mnote = 69 : RETURN  'a
+        If MX<=600 Then mnote = 71 : RETURN  'b
+        If MX<=638 Then mnote = 72 : RETURN  'c
+        return
+   End If
+   RETURN
+
+
+'list of 128 voices, in order of their MIDI indexes
+Data "Grand Piano","Bright Grand","Electric Grand","Honky Tonk"
+Data "Rhodes","Chorus Piano","Harpsichord","Clavinet"
+Data "Celesta","Glockenspiel","Music Box","Vibraphone"
+Data "Marimba","Xylophone","Tubular Bells","Dulcimer"
+Data "Hammond Organ","Percussion Organ","Rock Organ"
+Data "Church Organ","Reed Organ","Accordian","Harmonica"
+Data "Tango Accordian","Accoustic Nylon Guitar"
+Data "Accoustic Steel Guitar","Electric Jazz Guitar"
+Data "Electric Clean Guitar","Electric Mute Guitar"
+Data "Overdrive Guitar","Distorted Guitar","Guitar Harmonic"
+Data "Accoustic Bass","Electric Bass Finger","Electric Bass Pick"
+Data "Fretless Bass","Slap Bass One","Slap Bass Two"
+Data "Synth Bass One","Synth Bass Two","Violin","Viola","Cello"
+Data "Contrabass","Tremolo Strings","Pizzicato Strings"
+Data "Orchestra Harp","Timpani","String Ensemble One"
+Data "String Ensemble Two","Synth Strings One","Synth Strings Two"
+Data "Choir Ahhs","Voice Oohs","Synth Voice","Orchestra Hit"
+Data "Trumpet","Trombone","Tuba","Mute Trumpet","French Horn"
+Data "Brass Section","Synth Brass One","Synth Brass Two"
+Data "Soprano Sax","Alto Sax","Tenor Sax","Bari Sax","Oboe"
+Data "English Horn","Bassoon","Clarinet","Piccolo","Flute"
+Data "Recorder","Pan Flute","Bottle Blow","Shakuhachi","Whistle"
+Data "Ocarina","Square Wave","Sawtooth","Caliope","Chiff Lead"
+Data "Charang","Solo Synth VX","Brite Saw","Brass and Lead"
+Data "Fantasia Pad","Warm Pad","Poly Synth Pad","Space Vox Pad"
+Data "Bowd Glas Pad","Metal Pad","Halo Pad","Sweep Pad"
+Data "Ice Rain","Sound Track","Crystal","Atmosphere","Brightness"
+Data "Goblin","Echo Drops","Star Theme","Sitar","Banjo","Shamisen"
+Data "Koto","Kalimba","Bagpipe","Fiddle","Shanai"
+Data "Tinkle Bell","Agogo","Steel Drums","Wood Block","Taiko Drum"
+Data "Melodic Tom","Synth Drum","Rev Cymbal"
+Data "Guitar Fret Noise","Breath Noise","Sea Shore","Bird Tweet"
+Data "Phone Ring","Helicopter","Applause","Gunshot"
+
+

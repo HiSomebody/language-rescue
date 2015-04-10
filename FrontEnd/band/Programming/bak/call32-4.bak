@@ -1,0 +1,51 @@
+
+    'CALLDLL4.BAS  -  Make some API calls to play wave files and
+    'dynamically resize a window
+
+    open "kernel32" for dll as #kernel
+    open "user32" for dll as #user
+    open "winmm" for dll as #mmsystem
+    open "Me" for window as #aWindow
+
+    print str$(playMode)
+
+    wavefile$ = "chimes.wav"
+    playMode = 4
+    calldll #mmsystem, "sndPlaySoundA", wavefile$ as ptr, playMode as long, result as long
+
+    hndl = hwnd(#aWindow)
+
+    for x = 50 to 350 step 5
+
+        calldll #user, "MoveWindow", _
+            hndl as ulong, _
+            50 as long, _
+            50 as long, _
+            x as long, _
+            x as long, _
+            1 as long, _
+            result as boolean
+
+    next x
+
+    input r$
+
+    progname$ = "notepad.exe"
+    code = _SW_SHOWNA
+
+    notice str$(code)
+
+    calldll #kernel, "WinExec", _
+        progname$ as struct, _
+        code as ushort, _
+        result as ushort
+
+    print result
+
+    input r$
+
+    close #kernel
+
+    input r$
+
+    'WinConstants

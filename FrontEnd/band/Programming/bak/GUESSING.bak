@@ -1,0 +1,159 @@
+loadbmp "curtain", "curtain.bmp"
+   loadbmp "d1", "dice1.bmp"
+  loadbmp "d2", "dice2.bmp"
+  loadbmp "d3", "dice3.bmp"
+
+
+
+button #main.button1, "Curtain 1", [action1], UL, 20, 230, 200, 50
+button #main.replace1, "Close Curtain", [close1], UL, 20, 180, 200, 40
+button #main.button2, "Curtain 2", [action2], UL, 320, 230, 200, 50
+button #main.replace2, "Close Curtain", [close2], UL, 320, 180, 200, 40
+button #main.button3, "Curtain 3", [action3], UL, 620, 230, 200, 50
+button #main.replace3, "Close Curtain", [close3], UL, 620, 180, 200, 40
+button #main.close, "Done", [done], UL, 170, 300, 200, 80
+button #main.reshuffle, "Start Over", [shuffle], UL, 400, 300, 200, 80
+statictext #main.statictext1, "Find the Two", 380, 5, 100, 20
+graphicbox #main.draw1, 20, 25, 200, 150
+graphicbox #main.draw2, 320, 25, 200, 150
+graphicbox #main.draw3, 620, 25, 200, 150
+
+
+
+nomainwin
+
+WindowWidth = 880
+WindowHeight = 460
+
+
+
+
+x =(int(rnd(1)*3)+1)
+y =(int(rnd(1)*3)+1)
+z =(int(rnd(1)*3)+1)
+
+
+
+
+open "guess" for graphics as #main
+print #main, "trapclose [quit]"
+print #main.draw1, "drawbmp curtain"
+print #main.draw2, "drawbmp curtain"
+print #main.draw3, "drawbmp curtain"
+
+wait
+
+[action1]
+
+
+if x = 1 then
+    print #main.draw1, "drawbmp d1"
+end if
+if x = 2 then
+    print #main.draw1, "drawbmp d2"
+end if
+if x = 3 then
+    print #main.draw1, "drawbmp d3"
+end if
+
+if x = y then
+goto [action1]
+end if
+
+if x = z then
+goto [action1]
+end if
+
+
+
+wait
+
+
+
+[action2]
+
+
+
+
+if y = 1 then
+    print #main.draw2, "drawbmp d1"
+end if
+if y = 2 then
+    print #main.draw2, "drawbmp d2"
+end if
+if y = 3 then
+    print #main.draw2, "drawbmp d3"
+end if
+
+if y = x then
+goto [action2]
+end if
+
+if y = z then
+goto [action2]
+end if
+
+
+wait
+
+
+[action3]
+if z = 1 then
+    print #main.draw3, "drawbmp d1"
+end if
+if z = 2 then
+    print #main.draw3, "drawbmp d2"
+end if
+if z = 3 then
+    print #main.draw3, "drawbmp d3"
+end if
+
+if z = x then
+goto [action3]
+end if
+
+if z = y then
+goto [action3]
+end if
+
+
+
+wait
+
+
+[close1]
+print #main.draw1, "drawbmp curtain"
+wait
+
+
+[close2]
+print #main.draw2, "drawbmp curtain"
+wait
+
+
+
+[close3]
+print #main.draw3, "drawbmp curtain"
+wait
+
+
+[shuffle]
+print #main.draw1, "drawbmp curtain"
+print #main.draw2, "drawbmp curtain"
+print #main.draw3, "drawbmp curtain"
+
+
+
+wait
+
+
+[done]
+close #main
+end
+
+
+[quit]
+
+close #main
+end
+
