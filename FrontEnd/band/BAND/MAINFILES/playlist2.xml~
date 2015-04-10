@@ -1,23 +1,23 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <xml>
 	<track>
-		<path>MAINFILES/Rocks.mp3</path>
+		<path>Rocks.mp3</path>
 		<title>Rocks *New!*</title>
 	</track>				
 	<track>
-		<path>MAINFILES/Garbage.mp3</path>
+		<path>Garbage.mp3</path>
 		<title>Garbage</title>
 	</track>			
 	<track>
-		<path>MAINFILES/Charmander.mp3</path>
+		<path>Charmander.mp3</path>
 		<title>Charmander</title>
 	</track>	
 	<track>
-		<path>MAINFILES/Water.mp3</path>
+		<path>Water.mp3</path>
 		<title>Water</title>
 	</track>
 	<track>
-		<path>MAINFILES/Malibu.mp3</path>
+		<path>Malibu.mp3</path>
 		<title>Malibu</title>
 	</track>	
 
