@@ -58,12 +58,8 @@ app.get('/band', function(req,res){
 res.sendFile(path.resolve(__dirname + '/../FrontEnd/band/index.html'));
 });
 
-app.get('/themain.htm', function(req,res){
-res.sendFile(path.resolve(__dirname + '/../FrontEnd/band/themain.htm'));
-});
-
-app.get('/bazei.htm', function(req,res){
-res.sendFile(path.resolve(__dirname + '/../FrontEnd/band/bazei.htm'));
+app.get('/BAND/:filename', function(req,res){
+res.sendFile(path.resolve(__dirname + '/../FrontEnd/band/BAND/'+req.params.filename));
 });
 
 app.get('/selectall/:table', function(req,res){

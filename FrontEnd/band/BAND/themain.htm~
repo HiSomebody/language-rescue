@@ -1,0 +1,79 @@
+<html>
+<head>
+
+<title>main</title>
+
+<style type="text/css">
+body {color: white}
+h1 {font-size: 79pt; font-family: jokerman}
+p {font-size: 9pt}
+h5 {font-size: 20}
+h2 {color: white}
+</style>
+
+</head>
+
+<body bgcolor= "FF124">
+<h1> alsdkfjasldfkj </h1>
+<center>
+
+
+
+<table>
+<tr>
+<th>
+<script type="text/javascript" src="MAINFILES/swfobject.js"></script>
+		
+<div id="flashPlayer">
+  This text will be replaced by the flash music player.
+</div>
+
+<script type="text/javascript">
+   var so = new SWFObject("MAINFILES/playerMultipleList.swf", "mymovie", "210", "400", "7");  
+   so.addVariable("autoPlay","no")
+   so.addVariable("playlistPath","playlist.xml")
+   so.write("flashPlayer");
+</script>
+</th>
+
+<th><img src="MAINFILES/frontpic.JPG"></th>
+
+
+<th>
+<script type="text/javascript" src="MAINFILES/swfobject.js"></script>
+		
+<div id="flashP">
+  This text will be replaced by the flash music player.
+</div>
+
+<script type="text/javascript">
+   var so = new SWFObject("MAINFILES/playerMultipleList.swf", "mymovie", "210", "400", "7");  
+   so.addVariable("autoPlay","no")
+   so.addVariable("playlistPath","playlist2.xml")
+   so.write("flashP");
+</script>
+</th>
+
+</tr>
+</table>
+
+
+
+<br>
+
+
+<a href="MAINFILES/pics.htm"><img src="MAINFILES/pics.bmp"></a>
+<a href="MAINFILES/biographies.htm"><img src="MAINFILES/biographies.bmp"></a>
+<a href="MAINFILES/sched.htm"><img src="MAINFILES/schedule.bmp"></a>
+<a href="MAINFILES/singalong.htm"><img src="MAINFILES/singalong.jpg"></a>
+<a href="MAINFILES/videos.htm"><img src="MAINFILES/videos.bmp"></a>
+<a href="MAINFILES/games.htm"><img src="MAINFILES/games.bmp"></a>
+<a href="MAINFILES/ilonggo.htm"><img src="MAINFILES/ilonggo.bmp"></a>
+<br>
+<a href="MAINFILES/first.htm"><img src="MAINFILES/first.bmp"></a>
+<br><br><br>
+<p>running since 2008</p>
+<p>last updated: 1/19/10<p>
+</center>
+</body>
+</html>

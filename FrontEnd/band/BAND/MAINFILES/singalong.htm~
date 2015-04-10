@@ -1,0 +1,41 @@
+<html>
+<head><title>Singalong</title>
+<style type="text/css">
+body2 {bgcolor: white}
+h1 {font-size: 20pt}
+p {font-size: 20pt}
+h5 {font-size: 20}
+h2 {color: white}
+</style>
+
+<body bgcolor="#31aa5b">
+</head>
+
+<body>
+<a href="themain.htm"><img src="home.bmp"></a>
+<h1><center>Sing Along With Our Songs</center></h1>
+
+<center>
+<iframe name="inline" src="who1.htm"
+width="350" height="200" background color="#31aa5b"></iframe>
+<iframe name="inline" src="new.htm"
+width="350" height="200">&nbsp</iframe>
+<iframe name="inline" src="evermore.htm"
+width="350" height="200">&nbsp</iframe>
+<iframe name="inline" src="besure.htm"
+width="350" height="200">&nbsp</iframe>
+<iframe name="inline" src="livingwithout.htm"
+width="350" height="200">&nbsp</iframe>
+<iframe name="inline" src="youdontevenknow.htm"
+width="350" height="200">&nbsp</iframe>
+<iframe name="inline" src="reflection.htm"
+width="350" height="200">&nbsp</iframe>
+<iframe name="inline" src="furrylog.htm"
+width="350" height="200">&nbsp</iframe>
+<iframe name="inline" src="ps2.htm"
+width="350" height="200">&nbsp</iframe>
+</center>
+</iframe><br><br>
+<a href="singalong.htm"><img src="backtotop.bmp"></a>
+</body>
+</html>

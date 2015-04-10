@@ -1,0 +1,17 @@
+<html>
+
+<head>
+<title>Bazeika</title>
+
+
+<frameset cols = "6%, 94%">
+
+<frame src = "bazei.htm" name = "left">
+
+
+<frame src = "themain.htm" name = "right">
+</frameset><noframes></noframes>
+</head>
+
+</body>
+</html>

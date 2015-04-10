@@ -1,0 +1,20 @@
+<html>
+<head>
+<title>main</title>
+
+<style type="text/css">
+h1 {font-size: 70pt; color: "lightblue"}
+</style>
+</head>
+<body style="background-image: url(sweet.jpg)">
+<body>
+<center><a href="themain.htm"><img src="home.bmp"></a>
+<a href="biographies.htm"><img src="biographies.bmp"></a><h1>Daniel</h1>
+<img src="danielbiog.jpg"><br>
+<br>
+
+<a href="daniel.htm"><img src="backtotop.bmp"></a>
+
+</center>
+</body>
+</html>
