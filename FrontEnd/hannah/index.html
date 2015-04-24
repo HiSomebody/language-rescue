@@ -1,0 +1,131 @@
+<html>
+<head>
+<title>Swing Dancing Videos</title>
+<script type="text/javascript">
+var path = "videos";
+var vidName = "041.mp4";
+var moveTitle = "Back Hand Slide"
+var moveDescription = "Just do the regular stepping and then"
+ + " the guy lets go with right hand and spins counter-clockwise"
+ + " letting her hand slide on his back then he catches with his left hand and spins her around";
+ 
+ var backslide = {title:"Back Hand Slide",description:"Just do the regular stepping and then the guy lets go with his right hand and spins counter-clockwise letting her right hand slide on his back then he catches with his left hand and spins her around", filename:"041.mp4"};
+ var backflip = {title:"Back Flip",description:"Move into cuddle position (swing her right hand in front of her then behind her back), then guy lets go with his left hand and softly yanks with his right hand to send her spinning outward.  He lets her spin until his right arm is across her stomach and moves his left arm down behind her thighs.  Only flip if she knows because it helps if she jumps a bit.", filename:"057.mp4"};
+ var coolcreation = {title:"Our Cool Creation",description:"Start same as window (each bring the other's left arm over their head) then slide right arms down to handhold (arms are now crossed).  Guy spins girl counter-clockwise with both hands, then he goes clockwise under one arm, drops both arms.  Then girl spins under once counter-clockwise, and guy spins under twice clockwise (the second time he only goes under one arm). Then girl drops arms and they repeat process with swapped roles. Break out with guy bringing her crossed arms behind his neck and her sliding down to shove off his chest", filename:"060.mp4"};
+ var pushdip = {title:"Back Push to Dip",description:"Move into cuddle position (swing her right hand in front of her then behind her back), but guy lets go with his right hand so he can shove her back under her arm the opposite direction. Repeat a few times, then instead of returning to cuddle position, turn it into a spin 3 times (keeping her close). On the last spin grab each other\'s right shoulders with right arms and guy dips the girl in front of him", filename:"058.mp4"};
+ var stallhip = {title:"Stall on Hip",description:"Move into cuddle position (swing her right hand in front of her then behind her back), then let go with left hand and yank softly with right hand to start her spinning outward.  She stops at full extension and he yanks her to spin back in to cuddle position.  She leans on him then he pushes her spinning outward again.  This time when she comes in be sure to grab her free hand.  Both squat together then she jumps really high to land above his hip for a stall", filename:"stallhip.mp4"};
+ var shespinhespin = {title:"She Spin, He Spin",description:"Keep both arms together while taking turns going under.  Girl counter-clockwise and guy clockwise", filename:"054.mp4"};
+ var window1 = {title:"Window",description:"Each bring the other's left arm over their head then slide right arms down to handhold (arms are now crossed).  Guy spins girl twice counter-clockwise with both hands together (you\'ll need to adjust your grip though). You are now holding hands through a window. Continue walking. To change direction let go of hands through the window and regrab them under the window, then guy spins girl once with both hands to recreate the window.  To finish, he spins her around without removing hands from window. Then he brings her crossed arms behind his neck and she slides them down to shove off his chest", filename:"052.mp4"};
+ var slowpretzel = {title:"Pretzel (Slow)",description:"Guy spins counter-clockwise under his own left arm, keeps his left arm swinging all the way back and clockwise around the girl to make her turn around (you are both now facing outward from each other). Guy now spins her left arm with his right arm clockwise around her then spins counter-clockwise out from under his own right arm.  Bring her back into cuddle position to finish if you want", filename:"044.mp4"};
+ var fastpretzel = {title:"Pretzel (Faster)",description:"Guy spins counter-clockwise under his own left arm, keeps his left arm swinging all the way back and clockwise around the girl to make her turn around (you are both now facing outward from each other). Guy now spins her left arm with his right arm clockwise around her then spins counter-clockwise out from under his own right arm.  Bring her back into cuddle position to finish if you want", filename:"045.mp4"};
+ 
+ var moves = [];
+ moves.push(backslide);
+ moves.push(backflip);
+ moves.push(coolcreation);
+ moves.push(pushdip);
+ moves.push(stallhip);
+ moves.push(shespinhespin);
+ moves.push(window1);
+ moves.push(slowpretzel);
+ moves.push(fastpretzel);
+
+
+var changeMove = function()
+{
+	var move;
+	var found = false;
+	for (var i = 0; i < moves.length; i++)
+	{
+		if (moves[i].title == this.value)
+		{
+			move = moves[i];
+			found = true;
+			break;
+		}
+	}
+	if (found){
+		playVid(move);
+	}
+	document.activeElement.blur();
+} 
+ 
+var playVid = function(move)
+{
+	var video = document.getElementById("Video");
+	video.src = path + "/" + move.filename;
+	var div1 = document.getElementById("div1");
+	var div2 = document.getElementById("div2");
+	var div11 = document.createElement("DIV");
+	var div22 = document.createElement("DIV");
+	var t = document.createTextNode(move.title);
+	var m = document.createTextNode(move.description);
+	var t1 = document.getElementById("t1");
+	var m1 = document.getElementById("m1");
+	document.body.removeChild(div1);
+	document.body.removeChild(div2);
+	div11.appendChild(t);
+	div22.appendChild(m);
+	div11.setAttribute("style", "background-color: pink; font-size:28");
+	div11.setAttribute("id", "div1");
+	div22.setAttribute("style", "background-color: pink; font-size:20");
+	div22.setAttribute("id", "div2");
+	document.body.appendChild(div11);
+    document.body.appendChild(div22);
+} 
+ 
+var startFirstVid = function()
+{
+	var input = document.getElementById("password");
+	if (input.value != "kay Hannah lang")
+	{
+		alert("incorrect password");
+		return;
+	}
+	var pass_button	= document.getElementById("pass_button");
+	document.body.removeChild(input);
+	document.body.removeChild(pass_button);
+	var selectMove = document.createElement("SELECT");
+	selectMove.onchange = changeMove;
+	var option1 = document.createElement("option");
+	option1.text = "select move";
+	selectMove.add(option1);
+	for (var i = 0; i < moves.length; i++)
+	{
+		var option = document.createElement("option");
+		option.text = moves[i].title;
+		selectMove.add(option);
+	}
+	document.body.appendChild(selectMove);
+	var linebreak1 = document.createElement("br");
+	document.body.appendChild(linebreak1);
+	var x = document.createElement("VIDEO");
+	x.id = "Video";
+	x.src = path + "/" + vidName;
+	x.width = "750";
+	x.height = "500";
+	x.autoplay = true;
+	x.controls = true;
+	document.body.appendChild(x);
+    var linebreak = document.createElement("br");
+	document.body.appendChild(linebreak);
+	var div1 = document.createElement("DIV");
+	var div2 = document.createElement("DIV");
+    var t = document.createTextNode(moveTitle);
+	var m = document.createTextNode(moveDescription);
+    div1.setAttribute("style", "background-color: pink; font-size:28");
+	div1.setAttribute("id", "div1");
+	div2.setAttribute("style", "background-color: pink; font-size:20");
+	div2.setAttribute("id", "div2");
+    div1.appendChild(t);
+	div2.appendChild(m);
+    document.body.appendChild(div1);
+    document.body.appendChild(div2);
+};
+</script>
+</head>
+<body style="background-image:url(videos/glitter.jpg); text-align:center">
+<input type="password" id="password" placeholder="Password">
+<input type="button" id="pass_button" onclick="startFirstVid()" value="Enter">
+</body>
+</html>
