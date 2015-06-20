@@ -46,15 +46,15 @@ window.onload = function() {
   var bucketColor = "#996600";
   var canvasWidth = 400;
   var canvasHeight = 400;
-  if (window.innerWidth < canvasHeight && window.innerHeight < canvasHeight)
+  if (window.innerWidth < canvasHeight || window.innerHeight < canvasHeight)
   {
 	var dimension = window.innerWidth;
 	if (window.innerHeight < window.innerWidth)
 	{
 		dimension = window.innerHeight;
 	}
-	canvasWidth  = dimension/2;
-	canvasHeight = dimension/2;
+	canvasWidth  = dimension;///2;
+	canvasHeight = dimension;///2;
   }
   var circleRadius = .0375*canvasHeight;//15;
   var totalMoney = 1;
