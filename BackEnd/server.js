@@ -43,7 +43,7 @@ res.sendFile(path.resolve(__dirname + '/../FrontEnd/GAMES/DoubleIt/index.html'))
 });
 
 app.get('/doubleitrush/:filename', function(req,res){
-res.sendFile(path.resolve(__dirname + '/../FrontEnd/GAMES/DoubleIt/'+req.params.filename));
+res.sendFile(path.resolve(__dirname + '/../FrontEnd/GAMES/DoubleItRush/'+req.params.filename));
 });
 
 app.get('/doubleitrush', function(req,res){
