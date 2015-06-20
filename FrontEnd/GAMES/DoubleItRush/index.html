@@ -46,7 +46,7 @@ window.onload = function() {
   var bucketColor = "#996600";
   var canvasWidth = 400;
   var canvasHeight = 400;
-  if (window.innerWidth < 400 && window.innerHeight < 400)
+  if (window.innerWidth < canvasHeight && window.innerHeight < canvasHeight)
   {
 	var dimension = window.innerWidth;
 	if (window.innerHeight < window.innerWidth)
@@ -56,22 +56,22 @@ window.onload = function() {
 	canvasWidth  = dimension;
 	canvasHeight = dimension;
   }
-  var circleRadius = 15;
+  var circleRadius = .0375*canvasHeight;//15;
   var totalMoney = 1;
 
   var isUnder = false;
   var MovingRight = false;
   var MovingLeft = false;
   var wonGame = false;
-  var bucketX = 260;
-  var bucketY = 350;
-  var bucketWidth = 40;
-  var bucketHeight = 40;
+  var bucketX = canvasHeight*.65;//260;
+  var bucketY = canvasHeight*.875;//350;
+  var bucketWidth = canvasHeight/10;//40;
+  var bucketHeight = canvasHeight/10;//40;
   canvas.width = canvasWidth;
   canvas.height = canvasHeight;
   var isCatching = false;
-  var startingX = 130;
-  var startingY = 20;
+  var startingX = canvasHeight*.325;//130;
+  var startingY = canvasHeight/20;//20;
   var counter = 0;
   var posX = startingX;
   var posY = startingY;
@@ -83,8 +83,8 @@ window.onload = function() {
   document.body.appendChild(tagline);
   var startingBallSpeed = 8;
   var ballSpeed = startingBallSpeed;
-  var boundLeft = 130 - bucketWidth/2
-  var boundRight = 260;
+  var boundLeft = canvasHeight*.325 - bucketWidth/2;
+  var boundRight = canvasHeight*.65;//260;
 
   var leftKey = 37;
   var rightKey = 39;
@@ -205,7 +205,8 @@ else if (MovingRight)
   context.fillStyle = "black";
   context.fillRect(0,0,canvas.width, canvas.height);
 
-  context.font = "30px Arial";
+  var num = canvas.height/13.3;
+  context.font = num.toString()+"px Arial";
   context.fillStyle = "white";
   var numDigitsTotal = 2;
   var num1 = totalMoney;
@@ -223,9 +224,9 @@ else if (MovingRight)
      numDigitsHigh++;
   }
 
-  context.fillText("$"+totalMoney,390-(17*numDigitsTotal),50);
+  context.fillText("$"+totalMoney,9.75*canvas.width-(.0425*canvas.width*numDigitsTotal),canvas.width/8);
   context.fillStyle = "green";
-  context.fillText("$"+highScore,390-(17*numDigitsHigh),80);
+  context.fillText("$"+highScore,9.75*canvas.width-(.0425*canvas.width*numDigitsHigh),canvas.width/5);
 
   // Draw a circle particle on the canvas
   context.beginPath();
@@ -239,7 +240,8 @@ else if (MovingRight)
 
 	if (wonGame && !hasClicked)
 	{
-		context.font = "30px Arial";
+		var num = canvas.height/13.3;
+		context.font = num.toString()+"px Arial";
 		context.fillStyle = "yellow";
 		context.fillText("YOU'RE A MILLIONAIRE!",30,150);
 		context.fillText("TAP TO CONTINUE",60,180);
