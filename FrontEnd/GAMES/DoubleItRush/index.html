@@ -87,7 +87,8 @@ window.onload = function() {
   var ballSpeed = startingBallSpeed;
   var boundLeft = canvasHeight*.325 - bucketWidth/2;
   var boundRight = canvasHeight*.65;//260;
-
+  var totalBalls = 0;
+  var highBalls = 0;
   var leftKey = 37;
   var rightKey = 39;
 canvas.addEventListener('click', function() {
@@ -191,15 +192,17 @@ else if (MovingRight)
 		if (currentColor == colorRed)
 		{
 			totalMoney = 1;
+			totalBalls = 0;
 			ballSpeed = startingBallSpeed;
 		}
 		else
 		{
 			totalMoney *= 2;
+			totalBalls++;
 			if (totalMoney >= 1000000 && !wonGame)
 			{
 				wonGame = true;
-				bucketColor = "darksalmon";
+				bucketColor = "goldenrod";
 				
 			}
 			if (totalMoney >= 1000000000 && !billionaire)
@@ -210,7 +213,9 @@ else if (MovingRight)
 			if (totalMoney > highScore)
 			{
 				highScore = totalMoney;
+				highBalls = totalBalls;
 			}
+			ballSpeed++
 		}
 	}
 	posX = startingX,
@@ -218,10 +223,10 @@ else if (MovingRight)
 	
 	
 	counter++;
-	if (counter % 2 == 0 && isCatching)
+	/*if (counter % 2)
 	{
 		ballSpeed++;
-	}
+	}*/
 	currentColor = (Math.random() > .5)? colorGreen : colorRed;
 	
 	//DELETE NEXT LINE
@@ -248,10 +253,27 @@ else if (MovingRight)
      num2/=10;
      numDigitsHigh++;
   }
+  
+  var numDigitsBalls = 1;
+  var num3 = totalBalls;
+  while (num3 > 10)
+  {
+     num3/=10;
+     numDigitsBalls++;
+  }
 
   context.fillText("$"+totalMoney,.975*canvas.width-(.0425*canvas.width*numDigitsTotal),canvas.width/8);
   context.fillStyle = "green";
   context.fillText("$"+highScore,.975*canvas.width-(.0425*canvas.width*numDigitsHigh),canvas.width/5);
+  context.fillStyle = "white";
+  context.fillText(totalBalls,.975*canvas.width-(.0425*canvas.width*numDigitsBalls),canvas.width*.275);
+  context.beginPath();
+  context.fillStyle = colorGreen;
+  context.arc(.975*canvas.width-(.0425*canvas.width*(numDigitsBalls+1)), canvas.width*.275), circleRadius, 0, Math.PI*2, true);
+  
+  context.closePath();
+  context.fill();
+  
 
   // Draw a circle particle on the canvas
   context.beginPath();
