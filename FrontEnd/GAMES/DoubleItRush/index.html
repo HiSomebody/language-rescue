@@ -240,7 +240,7 @@ else if (MovingRight)
   context.fillStyle = "white";
   var numDigitsTotal = 2;
   var num1 = totalMoney;
-  while (num1 > 10)
+  while (num1 >= 10)
   {
      num1/=10;
      numDigitsTotal++;
@@ -248,15 +248,15 @@ else if (MovingRight)
 
   var numDigitsHigh = 2;
   var num2 = highScore;
-  while (num2 > 10)
+  while (num2 >= 10)
   {
      num2/=10;
      numDigitsHigh++;
   }
   
-  var numDigitsBalls = 2;
+  var numDigitsBalls = 1;
   var num3 = totalBalls;
-  while (num3 > 10)
+  while (num3 >= 10)
   {
      num3/=10;
      numDigitsBalls++;
