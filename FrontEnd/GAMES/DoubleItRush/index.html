@@ -63,6 +63,7 @@ window.onload = function() {
   var MovingRight = false;
   var MovingLeft = false;
   var wonGame = false;
+  var billionaire = false;
   var bucketX = canvasHeight*.65;//260;
   var bucketY = canvasHeight*.875;//350;
   var bucketWidth = canvasHeight/10;//40;
@@ -93,6 +94,11 @@ canvas.addEventListener('click', function() {
 	if (wonGame && !hasClicked)
 	{
 		hasClicked = true;
+		return;
+	}
+	if (billionaire && !hasClickedBillionaire)
+	{
+		hasClickedBillionaire = true;
 		return;
 	}
 	if (isUnder){
@@ -129,6 +135,10 @@ context.fill();
 // Draw shapes on the canvas using an interval of 30ms
 setInterval(function() {
 if (wonGame && !hasClicked)
+{
+	return;
+}
+if (billionaire && !hasClickedBillionaire)
 {
 	return;
 }
@@ -185,6 +195,10 @@ else if (MovingRight)
 			{
 				wonGame = true;
 			}
+			if (totalMoney >= 1000000000)
+			{
+				billionaire = true;
+			}
 			if (totalMoney > highScore)
 			{
 				highScore = totalMoney;
@@ -201,6 +215,9 @@ else if (MovingRight)
 		ballSpeed++;
 	}
 	currentColor = (Math.random() > .5)? colorGreen : colorRed;
+	
+	//DELETE NEXT LINE
+	currentColor = colorGreen;
   }
   context.fillStyle = "black";
   context.fillRect(0,0,canvas.width, canvas.height);
@@ -246,6 +263,15 @@ else if (MovingRight)
 		context.fillText("YOU'RE A MILLIONAIRE!",30,150);
 		context.fillText("TAP TO CONTINUE",60,180);
 	}
+	
+	if (billionaire && !hasClickedBillionaire)
+	{
+		var num = canvas.height/13.3;
+		context.font = num.toString()+"px Arial";
+		context.fillStyle = "lightblue";
+		context.fillText("YOU'RE A BILLIONAIRE!",30,150);
+		context.fillText("TAP TO CONTINUE",60,180);
+	}
 
 }, 30);
 
@@ -269,6 +295,12 @@ function checkKey(e) {
 		return;
 	}
 	
+	if (billionaire && !hasClickedBillionaire)
+	{
+		hasClickedBillionaire = true;
+		return;
+	}
+	
 	if (MovingRight)
 	{
 		isUnder = !isUnder;
@@ -281,6 +313,12 @@ function checkKey(e) {
 	if (wonGame && !hasClicked)
 	{
 		hasClicked = true;
+		return;
+	}
+	
+	if (billionaire && !hasClickedBillionaire)
+	{
+		hasClickedBillionaire = true;
 		return;
 	}
 	
@@ -307,7 +345,7 @@ Catch the green dots and double your money
 <br>
 Catch the red and start over!
 <br>
-Try to reach 1 Million dollars.
+See how rich you can get.
 </p>
 
 <!--a id="fb-share" style='text-decoration:none;' type="icon_link" onClick="ScreenShotShare();" href="javascript: void(0)"><input type="button" value="Share"></a-->
