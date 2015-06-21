@@ -215,7 +215,10 @@ else if (MovingRight)
 				highScore = totalMoney;
 				highBalls = totalBalls;
 			}
-			ballSpeed++
+			if (totalBalls %2 == 0)
+			{
+				ballSpeed++;
+			}
 		}
 	}
 	posX = startingX,
