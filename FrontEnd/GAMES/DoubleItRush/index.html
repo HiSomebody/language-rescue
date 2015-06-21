@@ -51,10 +51,10 @@ window.onload = function() {
 	var dimension = window.innerWidth;
 	if (window.innerHeight < window.innerWidth)
 	{
-		dimension = window.innerHeight*.75;
+		dimension = window.innerHeight;
 	}
-	canvasWidth  = dimension;///2;
-	canvasHeight = dimension;///2;
+	canvasWidth  = dimension*.75;///2;
+	canvasHeight = dimension*.75;///2;
   }
   var circleRadius = .0375*canvasHeight;//15;
   var totalMoney = 1;
