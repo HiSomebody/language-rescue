@@ -269,7 +269,7 @@ else if (MovingRight)
   context.fillText(totalBalls,.975*canvas.width-(.0425*canvas.width*numDigitsBalls),canvas.width*.275);
   context.beginPath();
   context.fillStyle = colorGreen;
-  context.arc(.975*canvas.width-(.0425*canvas.width*(numDigitsBalls+1)), canvas.width*.275), circleRadius, 0, Math.PI*2, true);
+  context.arc(.975*canvas.width-(.0425*canvas.width*(numDigitsBalls+1)), canvas.width*.275, circleRadius, 0, Math.PI*2, true);
   
   context.closePath();
   context.fill();
