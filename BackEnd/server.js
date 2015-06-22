@@ -42,6 +42,10 @@ app.get('/doubleit', function(req,res){
 res.sendFile(path.resolve(__dirname + '/../FrontEnd/GAMES/DoubleIt/index.html'));
 });
 
+app.get('/ilonggo', function(req,res){
+res.sendFile(path.resolve(__dirname + '/../FrontEnd/The_Giant_Ilonggo_Phrasebook_Second_Edition.pdf'));
+});
+
 app.get('/doubleitrush/:filename', function(req,res){
 res.sendFile(path.resolve(__dirname + '/../FrontEnd/GAMES/DoubleItRush/'+req.params.filename));
 });
