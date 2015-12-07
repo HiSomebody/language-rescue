@@ -7,7 +7,7 @@ app.factory('myFactory', function($http){
 	
 	var instance = {};
 	var languages = {};
-	$http.get('http://operationlanguagerescue.com:' + port + '/selectall/languages')
+	$http.get('http://104.236.169.62:' + port + '/selectall/languages')
 	.success(function(data){
 		languages.listed = data.json;
 	}).error(function()
@@ -85,7 +85,7 @@ app.controller('MainController',
 
 		$scope.getAllLanguages = function()
 		{
-			$http.get('http://operationlanguagerescue.com:' + port + '/selectall/languages')
+			$http.get('http://104.236.169.62:' + port + '/selectall/languages')
 			.success(function(data){
 				myFactory.languages.listed = data.json;
 				$scope.languages = myFactory.languages;
@@ -100,7 +100,7 @@ app.controller('MainController',
 		{
 			console.log(l);
 			$scope.selectedLanguage = l;	
-			$http.get('http://operationlanguagerescue.com:'+port+'/selectwhere/entries/language_id/'+l.id)
+			$http.get('http://104.236.169.62:'+port+'/selectwhere/entries/language_id/'+l.id)
 			.success(function(data){
 				myFactory.entries.listed = data.json;		
 				$scope.entries = myFactory.entries;
@@ -175,7 +175,7 @@ app.controller('MainController',
 		else
 		{
 			// CHECK IF ENTRY ALREADY EXISTS IN CURRENT LANGUAGE
-			$http.get('http://operationlanguagerescue.com:'+port+'/check/entries/term/'+ $scope.selectedEntry.term)
+			$http.get('http://104.236.169.62:'+port+'/check/entries/term/'+ $scope.selectedEntry.term)
 			.success(function(data){
 
 				//var exists = data.exists;
@@ -197,7 +197,7 @@ app.controller('MainController',
 				else
 				{
 					// UPDATE ENTRY INTO CURRENT LANGUAGE
-					$http.post('http://operationlanguagerescue.com:'+port+'/update/'+ $scope.selectedEntry.term, 
+					$http.post('http://104.236.169.62:'+port+'/update/'+ $scope.selectedEntry.term, 
 
 						{language_id: $scope.selectedLanguage.id,
 							term: $scope.selectedEntry.term,
@@ -242,7 +242,7 @@ app.controller('MainController',
 		else
 		{
 			// CHECK IF ENTRY ALREADY EXISTS IN CURRENT LANGUAGE
-			$http.get('http://operationlanguagerescue.com:'+port+'/check/entries/term/'+$scope.entryTerm)
+			$http.get('http://104.236.169.62:'+port+'/check/entries/term/'+$scope.entryTerm)
 			.success(function(data){
 				//var exists = data.exists;
 				var exists = false;
@@ -261,7 +261,7 @@ app.controller('MainController',
 				else
 				{
 					// INSERT ENTRY INTO CURRENT LANGUAGE
-					$http.post('http://operationlanguagerescue.com:'+port+'/insert/entries', 
+					$http.post('http://104.236.169.62:'+port+'/insert/entries', 
 						{language_id: $scope.selectedLanguage.id,
 							term: $scope.entryTerm,
 							definition: $scope.entryDefinition,
@@ -305,7 +305,7 @@ app.controller('MainController',
 		else
 		{
 			// CHECK IF LANGUAGE ALREADY EXISTS IN CURRENT LANGUAGE
-			$http.get('http://operationlanguagerescue.com:'+port+'/check/languages/language_name/'+$scope.languageBeingAdded)
+			$http.get('http://104.236.169.62:'+port+'/check/languages/language_name/'+$scope.languageBeingAdded)
 			.success(function(data){
 				var exists = data.exists;
 				if (exists)
@@ -316,7 +316,7 @@ app.controller('MainController',
 				else
 				{
 					// INSERT LANGUAGE INTO DATABASE
-					$http.post('http://operationlanguagerescue.com:'+port+'/insert/languages', 
+					$http.post('http://104.236.169.62:'+port+'/insert/languages', 
 						{language_name: $scope.languageBeingAdded
 						}).
 					success(function(data, status, headers, config) {
@@ -371,7 +371,7 @@ app.controller('MainController',
 		}
 
 		//This should ping the server to check name availability
-		$http.get('http://operationlanguagerescue.com:'+port+'/check/users/username/'+$scope.newUser)
+		$http.get('http://104.236.169.62:'+port+'/check/users/username/'+$scope.newUser)
 		.success(function(data){
 			var exists = data.exists;
 			if (exists)
@@ -397,7 +397,7 @@ app.controller('MainController',
 
 					//This should hit the server to add the new User to database
 					
-					$http.post('http://operationlanguagerescue.com:'+port+'/insert/users', 
+					$http.post('http://104.236.169.62:'+port+'/insert/users', 
 						{username:$scope.newUser,
 							password:$scope.newPassword,
 							email:$scope.email,
@@ -440,7 +440,7 @@ app.controller('MainController',
 
 		$scope.successUpdate = false;
 		//This is where a call to the server then database should be made
-		$http.get('http://operationlanguagerescue.com:'+port+'/login/'+$scope.user.username+'/'+$scope.user.password)
+		$http.get('http://104.236.169.62:'+port+'/login/'+$scope.user.username+'/'+$scope.user.password)
 		.success(function(data){
 			var valid_username = data.valid_username;
 			var valid_password = data.valid_password;
@@ -525,7 +525,7 @@ app.controller('MainController',
 	$scope.flag = function()
 	{
 		// FLAG USER WHO LAST EDITED ENTRY
-		$http.post('http://operationlanguagerescue.com:'+port+'/flag/'+ $scope.selectedEntry.term, 
+		$http.post('http://104.236.169.62:'+port+'/flag/'+ $scope.selectedEntry.term, 
 
 			{language_id: $scope.selectedLanguage.id,
 				term: $scope.selectedEntry.term,
