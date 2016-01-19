@@ -147,11 +147,6 @@
    <div ng-show="editing">Please click and edit the entry in the text area. Then click contribute to submit.</div>
    <div ng-show="editing">Remember to contribute responsibly. Abuse will be flagged and abusers recorded.</div>
 
-   <a ng-show="!adding && !editing && user.username != 'Guest'" class="btn btn-primary btn-sm" role="button" ng-click="startEditing()">Edit</a>
-   <a ng-show="!editing && !adding && user.username != 'Guest'" class="btn btn-primary btn-sm" role="button" ng-click="startAdding()">Add</a>
-   <a ng-show="editing || adding" class="btn btn-primary btn-sm" role="button" ng-click="contribute()">Contribute</a>
-   <a ng-show="editing || adding" class="btn btn-primary btn-sm" role="button" ng-click="cancel()">Cancel</a>
-   <a ng-show="editing" class="btn btn-primary btn-sm" role="button" ng-click="flag()">Flag Abuse</a>
 </div>
 
 
