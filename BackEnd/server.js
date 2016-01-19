@@ -277,6 +277,17 @@ app.post('/insert/:table', function(req,res){
 				last_contributed_user: input.last_contributed_user
 			};
 		}
+		else if (req.params.table == 'media_library')
+		{
+			data = {
+				title : input.title,
+				description : input.description,
+				type : input.type,
+				ownerID : input.ownerID,
+				ownerName: input.ownerName,
+				available: input.available
+			};
+		}
 		if (err) {
 			console.error('CONNECTION error: ', err);
 			res.statusCode = 503;

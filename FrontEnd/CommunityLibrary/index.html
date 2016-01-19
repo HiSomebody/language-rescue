@@ -1,0 +1,334 @@
+<html>
+<head>
+   <title>248th Ward Community Library</title>
+   <style>
+   body { text-align: center;
+			background-color:#20df20}
+   </style>
+   <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+   <script type="text/javascript" src="js/bootstrap.min.js"></script>
+   <link rel="stylesheet" href="css/library_bootstrap.css">
+</link>
+<!--link rel="stylesheet" type="text/css" href="app.css"-->
+<!--script type="text/javascript" src="js/angular.js"></script-->
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.7/angular.min.js"></script>
+<script type="text/javascript" src="js/angular-route.js"></script>
+<!--script src="app.js" type="text/javascript"></script-->
+<script src="controllers/library-controller.js" type="text/javascript"></script>
+</head>
+<body ng-app="libraryApp" ng-controller="libraryController">
+   <div class="page-header">
+      <h1>248th Ward Community Library</h1>
+   </div>
+   <nav class="navbar navbar-inverse" role="navigation">
+      <div class="container-fluid">
+         <!-- Brand and toggle get grouped for better mobile display -->
+         <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+               <span class="sr-only">Toggle navigation</span>
+            </button>
+            <a class="navbar-brand" ng-click="setView('splashPageView')">Welcome</a>
+         </div>
+         <!-- Collect the nav links, forms, and other content for toggling -->
+         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-center">
+			<!--<li class={{(view=='gamesView')?'active':''}}><a ng-click="setView('gamesView')">GAMES!</a></li>-->
+               <!--<li class={{(view=='loginView')?'active':''}}><a ng-click="setView('loginView')">Login</a></li>-->
+               <li class={{(view=='splashPageView')?'active':''}}><a ng-click="setView('splashPageView')">Add Movie</a></li>
+			   <li class={{(view=='mainView')?'active':''}}><a ng-click="setView('mainView')">Library</a></li>
+               <li class={{(view=='aboutView')?'active':''}}><a ng-click="setView('aboutView')">About</a></li>
+            </ul>
+
+</div>
+<!-- /.navbar-collapse -->
+</div>
+<!-- /.container-fluid -->
+</nav>
+<div ng-show="view=='aboutView'">
+   <tr>
+      <td style="text-align:left">
+         <h2>
+            About
+         </h2>
+      </td>
+   </tr>
+   <tr>
+      <td style="text-align:left">
+        <p>
+			This is just a way for members of our ward to keep track of what movies are available for borrowing amongst ourselves because Netflix, VidAngel, Hulu, etc. don't have a lot of the greatest movies.
+        </p>
+      </td>
+   </tr>
+</div>
+
+
+
+<div ng-show="view=='splashPageView'">
+<table align="center">
+      <tr>
+         <td>
+            Add a movie to the library for people to borrow!
+         </td>
+         <td>
+         </td>
+      </tr>
+      <tr>
+         <td>
+            <h3>
+               
+            </h3>
+            <input class="form-control" style="font-size:20" type="text" ng-model="entryTitle" placeholder = "movie title" required>
+         </td>
+      </tr>
+      <tr>
+         <td>
+            <h3>
+            </h3>
+            <input class="form-control" style="font-size:20" type="text" ng-model="entryOwner" placeholder = "your name" required>
+         </td>
+      </tr>
+      <tr>
+         <td>
+            <h3>
+            </h3>
+			<textarea class="form-control" rows="5" id="additionalInfo" placeholder = "additional info"></textarea>
+         </td>
+      </tr>
+      <tr valign = "top">
+         <td>
+         </td>
+      </tr>
+      <tr>
+         <td>
+            <h3>
+               <a class="btn btn-danger btn-lg" role="button" ng-click="contributeEntry()">Add Movie</a>
+               <a class="btn btn-danger btn-lg" role="button" ng-click="cancel()">Skip</a>
+            </h3>
+         </td>
+         <td>
+         </td>
+      </tr>
+   </table>
+</div>
+
+<div ng-show="view=='mainView'">
+   <div ng-show="successUpdate" class="alert alert-success" role="alert">Successfully updated entry!"</div>
+
+   <table align="center">
+      <tr valign = "top">
+         <td>
+            <input style="font-size:24" type="text" ng-model="currentEntry" placeholder = "search entries">
+            <div class="list-group" style="overflow-y: auto; height: 90%">
+               <a ng-click ="setSelectedEntry(e)" class="{{(e == selectedEntry)? 'list-group-item active' : 'list-group-item'}}"
+               ng-repeat="e in entries.listed | filter:currentEntry | orderBy: 'term'|limitTo:8">{{e.term}}</a>
+            </div>
+         </td>
+         <td>
+            <textarea ng-show="!editing" rows="12"  style="font-size:24;" ng-readonly="!editing">{{selectedEntry.definition}}</textarea>
+            <textarea ng-show="editing" rows="12"  style="font-size:24;" ng-readonly="!editing" ng-model="contribution">{{contribution}}</textarea>
+         </td>
+      </tr>
+   </table>
+   <div ng-show="editing">Please click and edit the entry in the text area. Then click contribute to submit.</div>
+   <div ng-show="editing">Remember to contribute responsibly. Abuse will be flagged and abusers recorded.</div>
+
+   <a ng-show="!adding && !editing && user.username != 'Guest'" class="btn btn-primary btn-sm" role="button" ng-click="startEditing()">Edit</a>
+   <a ng-show="!editing && !adding && user.username != 'Guest'" class="btn btn-primary btn-sm" role="button" ng-click="startAdding()">Add</a>
+   <a ng-show="editing || adding" class="btn btn-primary btn-sm" role="button" ng-click="contribute()">Contribute</a>
+   <a ng-show="editing || adding" class="btn btn-primary btn-sm" role="button" ng-click="cancel()">Cancel</a>
+   <a ng-show="editing" class="btn btn-primary btn-sm" role="button" ng-click="flag()">Flag Abuse</a>
+</div>
+
+
+<div ng-show="view=='loginView'">
+   <table align="center">
+      <tr>
+         <td>
+            <h3>
+               You may proceed as a Guest to view the Database.
+            </h3>
+         </td>
+         <td>
+         </td>
+      </tr>
+      <tr>
+         <td>
+            <h3>
+               <a class="btn btn-primary btn-sm" role="button" ng-click="nologin()">Continue as Guest</a>
+            </h3>
+         </td>
+         <td>
+         </td>
+      </tr>
+      <tr>
+         <td>
+            <h3>
+               Username
+            </h3>
+            <input style="font-size:20" type="text" ng-model="user.username" placeholder = "username" required>
+            <div ng-show="badUsername" class="alert alert-danger" role="alert">Username does not exist</div>
+         </td>
+      </tr>
+      <tr>
+         <td>
+            <h3>
+               Password
+            </h3>
+            <input style="font-size:20" type="password" ng-model="user.password" placeholder = "password" required>
+         </td>
+      </tr>
+      <tr valign = "top">
+         <td>
+            <div ng-show="badPassword" class="alert alert-danger" role="alert">Password is incorrect</div>
+         </td>
+      </tr>
+      <tr>
+         <td>
+            <h3>
+               <a class="btn btn-primary btn-sm" role="button" ng-click="login()">Login</a>
+            </h3>
+         </td>
+         <td>
+         </td>
+      </tr>
+      <td>
+         <h3>
+            <a class="btn btn-primary btn-sm" role="button" ng-click="createAccount()">Create Account?</a>
+         </h3>
+      </td>
+   </table>
+</div>
+<div ng-show="view=='createView'">
+   <table align="center">
+      <tr>
+         <td>
+            <h3>
+               Username
+            </h3>
+            <input style="font-size:20" type="text" ng-model="newUser" ng-minlength=5 placeholder = "Must be 5 characters" required>
+            <div ng-show="badCreateUsername" class="alert alert-danger" role="alert">Username is too short</div>
+         </td>
+      </tr>
+      <tr>
+         <td>
+            <h3>
+               Password
+            </h3>
+            <input style="font-size:20" type="password" ng-model="newPassword" ng-minlength=6 placeholder = "Must be 6 characters" required>
+            <div ng-show="passwordTooShort" class="alert alert-danger" role="alert">Password is too short</div>
+         </td>
+      </tr>
+      <tr>
+         <td>
+            <h3>
+               Confirm Password
+            </h3>
+            <input style="font-size:20" type="password" ng-model="confirmPassword" ng-minlength=5 placeholder = "Passwords must match" required>
+            <div ng-show="passwordNotMatch" class="alert alert-danger" role="alert">Passwords do not match</div>
+         </td>
+      </tr>
+      <tr>
+         <td>
+            <h3>
+               Email Address
+            </h3>
+            <input type = "email" style="font-size:20" type="text" ng-model="email" placeholder = "Enter a valid email" required>
+         </td>
+      </tr>
+      <tr valign = "top">
+         <td>
+         </td>
+      </tr>
+      <td>
+         <h3>
+            <a class="btn btn-primary btn-sm" role="button" ng-click="addUser()">Create Account</a>
+            <a class="btn btn-primary btn-sm" role="button" ng-click="cancelCreate()">Cancel</a>
+         </h3>
+      </td>
+   </table>
+</div>
+<div ng-show="view=='addingEntryView'">
+   <table align="center">
+      <tr>
+         <td>
+            Add a new entry to the {{selectedLanguage.language_name}} language!
+         </td>
+         <td>
+         </td>
+      </tr>
+      <tr>
+         <td>
+            <h3>
+               Term/Phrase:
+            </h3>
+            <input style="font-size:20" type="text" ng-model="entryTerm" placeholder = "Enter term" required>
+         </td>
+      </tr>
+      <tr>
+         <td>
+            <h3>
+               Definition:
+            </h3>
+            <input style="font-size:20" type="text" ng-model="entryDefinition" placeholder = "Enter definition" required>
+         </td>
+      </tr>
+      <tr>
+         <td>
+            <h3>
+               Part of speech:
+            </h3>
+            <input style="font-size:20" type="text" ng-model="entryType" placeholder = "Enter type" required>
+         </td>
+      </tr>
+      <tr valign = "top">
+         <td>
+         </td>
+      </tr>
+      <tr>
+         <td>
+            <h3>
+               <a class="btn btn-primary btn-sm" role="button" ng-click="contributeEntry()">Add Entry</a>
+               <a class="btn btn-primary btn-sm" role="button" ng-click="cancel()">Cancel</a>
+            </h3>
+         </td>
+         <td>
+         </td>
+      </tr>
+   </table>
+</div>
+<div ng-show="view=='addingLanguageView'">
+   <table align="center">
+      <tr>
+         <td>
+            Add a new language to our database!
+         </td>
+         <td>
+         </td>
+      </tr>
+      <tr>
+         <td>
+            <h3>
+               Language Name:
+            </h3>
+            <input style="font-size:20" type="text" ng-model="languageBeingAdded" placeholder = "Enter language" required>
+         </td>
+      </tr>
+      <tr valign = "top">
+         <td>
+         </td>
+      </tr>
+      <tr>
+         <td>
+            <h3>
+               <a class="btn btn-primary btn-lg" role="button" ng-click="addLanguage()">Add Language</a>
+               <a class="btn btn-primary btn-lg" role="button" ng-click="chooseLanguage()">Cancel</a>
+            </h3>
+         </td>
+         <td>
+         </td>
+      </tr>
+   </table>
+</div>
+<br>
+</body>
+</html>
