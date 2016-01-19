@@ -236,11 +236,11 @@ app.controller('libraryController',
 			var c = inString[i];
 			if (c == '\'')
 			{
-				changed += "\\\'";
+				changed += "~";
 			}
 			else if (c == '\"')
 			{
-				changed += "\\\"";
+				changed += "~";
 			}
 			else
 			{
