@@ -75,7 +75,7 @@
       <tr>
          <td>
             <h3>
-               
+
             </h3>
             <input class="form-control" style="font-size:20" type="text" ng-model="entryTitle" placeholder = "movie title" required>
          </td>
@@ -126,12 +126,14 @@
 		<div ng-show="selectedEntry.ownerName != null" align="center">
 		<br>
 		Owner:&nbsp<strong>{{selectedEntry.ownerName}}</strong>
+    <br>
+    <a class="btn btn-danger btn-lg" role="button" ng-click="remove()">Remove</a>
 		</div>
 		</td>
       </tr>
 	</table>
 	<table align="center">
-      <tr valign = "top">  
+      <tr valign = "top">
 		<td>
             <input style="font-size:24" type="text" ng-model="currentEntry" placeholder = "search entries">
             <div class="list-group" style="overflow-y: auto; height: 90%">
@@ -140,7 +142,7 @@
             </div>
          </td>
          <td>
-            
+
          </td>
 	  </tr>
    </table>
