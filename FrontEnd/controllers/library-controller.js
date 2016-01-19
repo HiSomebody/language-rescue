@@ -41,7 +41,7 @@ app.factory('myFactory', function($http){
 	for (var j = 0; j < entries.listed.length; j++)
 	{
 		var word = entries.listed[j];
-		if (word.find("~") != -1 || word.find("`") != -1)
+		if (word.indexOf("~") != -1 || word.indexOf("`") != -1)
 		{
 			var changed = "";
 			for (var i = 0; i < inString.length; i++)
