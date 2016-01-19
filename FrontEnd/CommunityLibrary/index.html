@@ -116,7 +116,15 @@
 
    <table align="center">
       <tr valign = "top">
-         <td>
+		<td>
+		<h2>{{e.title}}</h2>
+		{{selectedEntry.description}}
+		<br>
+		Owner:&nbsp{{selectedEntry.ownerName}}
+		</td>
+      </tr>
+	  <tr>
+		<td>
             <input style="font-size:24" type="text" ng-model="currentEntry" placeholder = "search entries">
             <div class="list-group" style="overflow-y: auto; height: 90%">
                <a ng-click ="setSelectedEntry(e)" class="{{(e == selectedEntry)? 'list-group-item active' : 'list-group-item'}}"
@@ -124,11 +132,9 @@
             </div>
          </td>
          <td>
-            <textarea ng-show="!editing" rows="12"  style="font-size:24;" ng-readonly="!editing">{{selectedEntry.description}}</textarea>
-            <textarea ng-show="editing" rows="12"  style="font-size:24;" ng-readonly="!editing" ng-model="contribution">{{contribution}}</textarea>
-			{{selectedEntry.ownerName}}
+            
          </td>
-      </tr>
+	  </tr>
    </table>
    <div ng-show="editing">Please click and edit the entry in the text area. Then click contribute to submit.</div>
    <div ng-show="editing">Remember to contribute responsibly. Abuse will be flagged and abusers recorded.</div>
