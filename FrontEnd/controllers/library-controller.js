@@ -40,13 +40,15 @@ app.factory('myFactory', function($http){
 	instance.entries = mediaList;
 	for (var j = 0; j < entries.listed.length; j++)
 	{
-		var word = entries.listed[j];
-		if (word.indexOf("~") != -1 || word.indexOf("`") != -1)
+		var titleStr = entries.listed[j].title;
+		var ownerStr = entries.listed[j].ownerName;
+		var descriptionStr = entries.listed[j].additionalInfo;
+		if (titleStr.indexOf("~") != -1 || titleStr.indexOf("`") != -1)
 		{
 			var changed = "";
-			for (var i = 0; i < inString.length; i++)
+			for (var i = 0; i < titleStr.length; i++)
 			{
-				var c = inString[i];
+				var c = titleStr[i];
 				if (c == '~')
 				{
 					changed += "\'";
@@ -60,6 +62,50 @@ app.factory('myFactory', function($http){
 					changed += c;
 				}
 			}
+			entries.listed[j].title = changed;
+		}
+		if (ownerStr.indexOf("~") != -1 || ownerStr.indexOf("`") != -1)
+		{
+			var changed = "";
+			for (var i = 0; i < ownerStr.length; i++)
+			{
+				var c = ownerStr[i];
+				if (c == '~')
+				{
+					changed += "\'";
+				}
+				else if (c == '`')
+				{
+					changed += "\"";
+				}
+				else
+				{
+					changed += c;
+				}
+			}
+			entries.listed[j].ownerName = changed;
+		}
+		
+		if (descriptionStr.indexOf("~") != -1 || descriptionStr.indexOf("`") != -1)
+		{
+			var changed = "";
+			for (var i = 0; i < descriptionStr.length; i++)
+			{
+				var c = descriptionStr[i];
+				if (c == '~')
+				{
+					changed += "\'";
+				}
+				else if (c == '`')
+				{
+					changed += "\"";
+				}
+				else
+				{
+					changed += c;
+				}
+			}
+			entries.listed[j].additionalInfo = changed;
 		}
 	}
 	instance.languages = languages;
