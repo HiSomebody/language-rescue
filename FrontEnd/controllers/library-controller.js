@@ -264,13 +264,15 @@ app.controller('libraryController',
 		else
 		{
 			// CHECK IF ENTRY ALREADY EXISTS BY SAME OWNER
-			$http.get('http://104.236.169.62:'+port+'/check/media_library/title/'+change($scope.entryTitle))
+			var changed = change($scope.entryTitle);
+			console.log(changedString);
+			$http.get('http://104.236.169.62:'+port+'/check/media_library/title/'+changedString)
 			.success(function(data){
 				//var exists = data.exists;
 				var exists = false;
 				for (var i = 0; i < data.json.length; i++)
 				{
-					if (data.json[i].ownerName.toLowerCase() == $scope.entryOwner.toLowerCase())
+					if (data.json[i].ownerName.toLowerCase() == change($scope.entryOwner.toLowerCase()))
 					{
 						exists = true;
 					}
@@ -284,7 +286,7 @@ app.controller('libraryController',
 				{
 					// INSERT ENTRY INTO LIBRARY
 					$http.post('http://104.236.169.62:'+port+'/insert/media_library', 
-						{	title: change($scope.entryTitle),
+						{	title: changedString,
 							ownerID: 0,
 							ownerName: change($scope.entryOwner),
 							description: change($scope.additionalInfo),
