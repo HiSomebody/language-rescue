@@ -117,10 +117,14 @@
    <table align="center">
       <tr valign = "top">
 		<td>
-		<h2>{{e.title}}</h2>
+		<h2>{{selectedEntry.title}}</h2>
 		{{selectedEntry.description}}
-		<br>
+		</td>
+	  </tr>
+	  <tr>
+		<div ng-show="selectedEntry.ownerName != null">
 		Owner:&nbsp{{selectedEntry.ownerName}}
+		</div>
 		</td>
       </tr>
 	  <tr>
