@@ -539,6 +539,9 @@ app.controller('libraryController',
 		$scope.selectedEntry.term = null;
 		$scope.successUpdate = false;
 		$scope.currentEntry = null;
+		$scope.additionalInfo = null;
+		$scope.entryOwner = null;
+		$scope.entryTitle = null;
 	}
 
 	$scope.flag = function()
