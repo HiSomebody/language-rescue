@@ -124,8 +124,9 @@
             </div>
          </td>
          <td>
-            <textarea ng-show="!editing" rows="12"  style="font-size:24;" ng-readonly="!editing">{{selectedEntry.definition}}</textarea>
+            <textarea ng-show="!editing" rows="12"  style="font-size:24;" ng-readonly="!editing">{{selectedEntry.description}}</textarea>
             <textarea ng-show="editing" rows="12"  style="font-size:24;" ng-readonly="!editing" ng-model="contribution">{{contribution}}</textarea>
+			{{selectedEntry.ownerName}}
          </td>
       </tr>
    </table>
