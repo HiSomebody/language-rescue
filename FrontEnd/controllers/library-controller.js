@@ -228,6 +228,7 @@ app.controller('libraryController',
 		if (view == "mainView" && !$scope.loggedIn)
 		{
 			fixChars($scope.entries);
+			$scope.view = view;
 		}
 		else
 		{
