@@ -38,11 +38,11 @@ app.factory('myFactory', function($http){
 
 
 	instance.entries = mediaList;
-	for (var j = 0; j < entries.listed.length; j++)
+	for (var j = 0; j < instance.entries.listed.length; j++)
 	{
-		var titleStr = entries.listed[j].title;
-		var ownerStr = entries.listed[j].ownerName;
-		var descriptionStr = entries.listed[j].additionalInfo;
+		var titleStr = instance.entries.listed[j].title;
+		var ownerStr = instance.entries.listed[j].ownerName;
+		var descriptionStr = instance.entries.listed[j].additionalInfo;
 		if (titleStr != null && (titleStr.indexOf("~") != -1 || titleStr.indexOf("`") != -1))
 		{
 			var changed = "";
@@ -62,7 +62,7 @@ app.factory('myFactory', function($http){
 					changed += c;
 				}
 			}
-			entries.listed[j].title = changed;
+			instance.entries.listed[j].title = changed;
 		}
 		if (ownerStr != null && (ownerStr.indexOf("~") != -1 || ownerStr.indexOf("`") != -1))
 		{
@@ -83,7 +83,7 @@ app.factory('myFactory', function($http){
 					changed += c;
 				}
 			}
-			entries.listed[j].ownerName = changed;
+			instance.entries.listed[j].ownerName = changed;
 		}
 		
 		if (descriptionStr != null && (descriptionStr.indexOf("~") != -1 || descriptionStr.indexOf("`") != -1))
@@ -105,7 +105,7 @@ app.factory('myFactory', function($http){
 					changed += c;
 				}
 			}
-			entries.listed[j].additionalInfo = changed;
+			instance.entries.listed[j].additionalInfo = changed;
 		}
 	}
 	instance.languages = languages;
