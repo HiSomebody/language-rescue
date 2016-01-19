@@ -2,13 +2,13 @@
 var app = angular.module("libraryApp", ["ngRoute"])
 var port = 80;
 
-var fixChars = function(instance)
+var fixChars = function(entries)
 {
-	for (var j = 0; j < instance.entries.listed.length; j++)
+	for (var j = 0; j < entries.listed.length; j++)
 	{
-		var titleStr = instance.entries.listed[j].title;
-		var ownerStr = instance.entries.listed[j].ownerName;
-		var descriptionStr = instance.entries.listed[j].additionalInfo;
+		var titleStr = entries.listed[j].title;
+		var ownerStr = entries.listed[j].ownerName;
+		var descriptionStr = entries.listed[j].additionalInfo;
 		if (titleStr != null && (titleStr.indexOf("~") != -1 || titleStr.indexOf("`") != -1))
 		{
 			var changed = "";
@@ -28,7 +28,7 @@ var fixChars = function(instance)
 					changed += c;
 				}
 			}
-			instance.entries.listed[j].title = changed;
+			entries.listed[j].title = changed;
 		}
 		if (ownerStr != null && (ownerStr.indexOf("~") != -1 || ownerStr.indexOf("`") != -1))
 		{
@@ -49,7 +49,7 @@ var fixChars = function(instance)
 					changed += c;
 				}
 			}
-			instance.entries.listed[j].ownerName = changed;
+			entries.listed[j].ownerName = changed;
 		}
 		
 		if (descriptionStr != null && (descriptionStr.indexOf("~") != -1 || descriptionStr.indexOf("`") != -1))
@@ -71,7 +71,7 @@ var fixChars = function(instance)
 					changed += c;
 				}
 			}
-			instance.entries.listed[j].additionalInfo = changed;
+			entries.listed[j].additionalInfo = changed;
 		}
 	}
 }
@@ -112,7 +112,7 @@ app.factory('myFactory', function($http){
 
 
 	instance.entries = mediaList;
-	fixChars(instance);
+	fixChars(instance.entries);
 	instance.languages = languages;
 
 	return instance;
@@ -179,7 +179,7 @@ app.controller('libraryController',
 			$http.get('http://104.236.169.62:'+port+'/selectwhere/entries/language_id/'+l.id)
 			.success(function(data){
 				myFactory.entries.listed = data.json;
-				fixChars(myFactory);
+				fixChars(myFactory.entries);
 				$scope.entries = myFactory.entries;
 			//$scope.selectedEntry = $scope.entries.listed[0];
 
@@ -225,7 +225,15 @@ app.controller('libraryController',
 	{
 		$scope.badUsername = false;
 		$scope.badPassword = false;
-		$scope.view = view;
+		if (view == "mainView" && !$scope.loggedIn)
+		{
+			fixChars($scope.entries);
+		}
+		else
+		{
+			$scope.view = view;
+		}
+
 	}
 	
 	$scope.contribute = function()
