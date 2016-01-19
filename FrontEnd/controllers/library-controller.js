@@ -34,7 +34,7 @@ app.factory('myFactory', function($http){
 	
 
 
-	instance.entries = entries;
+	instance.entries = mediaList;
 	
 	
 	instance.languages = languages;
