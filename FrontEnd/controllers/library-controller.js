@@ -225,21 +225,7 @@ app.controller('libraryController',
 	{
 		$scope.badUsername = false;
 		$scope.badPassword = false;
-		if (view == "loginView" && $scope.loggedIn)
-		{
-			alert("You are already logged in!")
-			$scope.view = "mainView";
-		}
-		else if (view == "mainView" && !$scope.loggedIn)
-		{
-			$scope.nologin();
-		}
-		else
-		{
-			$scope.view = view;
-
-		}
-
+		$scope.view = view;
 	}
 	
 	$scope.contribute = function()
