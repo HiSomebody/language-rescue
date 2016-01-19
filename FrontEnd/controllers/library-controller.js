@@ -23,7 +23,10 @@ app.factory('myFactory', function($http){
 	];
 	
 	
-	
+	mediaList.listed = [
+	{
+	}
+	];
 	
 	var entries = {};
 
