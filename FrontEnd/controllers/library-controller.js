@@ -436,6 +436,7 @@ app.controller('libraryController',
 	{
 		$scope.editing = false;
 		$scope.adding = false;
+		fixChars($scope.entries);
 		$scope.view = "mainView";
 	}
 
