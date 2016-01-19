@@ -270,7 +270,7 @@ app.controller('libraryController',
 				var exists = false;
 				for (var i = 0; i < data.json.length; i++)
 				{
-					if (data.json[i].ownerName == $scope.entryOwner)
+					if (data.json[i].ownerName.toLowerCase() == $scope.entryOwner.toLowerCase())
 					{
 						exists = true;
 					}
