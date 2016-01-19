@@ -43,7 +43,7 @@ app.factory('myFactory', function($http){
 		var titleStr = entries.listed[j].title;
 		var ownerStr = entries.listed[j].ownerName;
 		var descriptionStr = entries.listed[j].additionalInfo;
-		if (titleStr.indexOf("~") != -1 || titleStr.indexOf("`") != -1)
+		if (titleStr != null && (titleStr.indexOf("~") != -1 || titleStr.indexOf("`") != -1))
 		{
 			var changed = "";
 			for (var i = 0; i < titleStr.length; i++)
@@ -64,7 +64,7 @@ app.factory('myFactory', function($http){
 			}
 			entries.listed[j].title = changed;
 		}
-		if (ownerStr.indexOf("~") != -1 || ownerStr.indexOf("`") != -1)
+		if (ownerStr != null && (ownerStr.indexOf("~") != -1 || ownerStr.indexOf("`") != -1))
 		{
 			var changed = "";
 			for (var i = 0; i < ownerStr.length; i++)
@@ -86,7 +86,7 @@ app.factory('myFactory', function($http){
 			entries.listed[j].ownerName = changed;
 		}
 		
-		if (descriptionStr.indexOf("~") != -1 || descriptionStr.indexOf("`") != -1)
+		if (descriptionStr != null && (descriptionStr.indexOf("~") != -1 || descriptionStr.indexOf("`") != -1))
 		{
 			var changed = "";
 			for (var i = 0; i < descriptionStr.length; i++)
