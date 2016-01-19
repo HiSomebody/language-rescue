@@ -231,7 +231,7 @@ app.controller('libraryController',
 	var change = function(inString)
 	{
 		var changed = "";
-		for (var i = 0; i < len(inString); i++)
+		for (var i = 0; i < inString.length; i++)
 		{
 			var c = inString[i];
 			if (c == '\'')
