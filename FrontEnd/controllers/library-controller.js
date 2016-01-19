@@ -2,42 +2,8 @@
 var app = angular.module("libraryApp", ["ngRoute"])
 var port = 80;
 
-app.factory('myFactory', function($http){
-	
-	var instance = {};
-	var languages = {};
-	var mediaList = {};
-	$http.get('http://104.236.169.62:' + port + '/selectall/media_library')
-	.success(function(data){
-		mediaList.listed = data.json;
-	}).error(function()
-	{
-		alert('failure');
-		console.error('failed to retrieve data');
-	});
-	
-
-	languages.listed = [
-	{
-	}
-	];
-	
-	
-	mediaList.listed = [
-	{
-	}
-	];
-	
-	var entries = {};
-
-	entries.listed = [
-	{
-	}
-	];
-	
-
-
-	instance.entries = mediaList;
+var fixChars = function(instance)
+{
 	for (var j = 0; j < instance.entries.listed.length; j++)
 	{
 		var titleStr = instance.entries.listed[j].title;
@@ -108,6 +74,45 @@ app.factory('myFactory', function($http){
 			instance.entries.listed[j].additionalInfo = changed;
 		}
 	}
+}
+
+app.factory('myFactory', function($http){
+	
+	var instance = {};
+	var languages = {};
+	var mediaList = {};
+	$http.get('http://104.236.169.62:' + port + '/selectall/media_library')
+	.success(function(data){
+		mediaList.listed = data.json;
+	}).error(function()
+	{
+		alert('failure');
+		console.error('failed to retrieve data');
+	});
+	
+
+	languages.listed = [
+	{
+	}
+	];
+	
+	
+	mediaList.listed = [
+	{
+	}
+	];
+	
+	var entries = {};
+
+	entries.listed = [
+	{
+	}
+	];
+	
+
+
+	instance.entries = mediaList;
+	fixChars(instance);
 	instance.languages = languages;
 
 	return instance;
@@ -173,7 +178,8 @@ app.controller('libraryController',
 			$scope.selectedLanguage = l;	
 			$http.get('http://104.236.169.62:'+port+'/selectwhere/entries/language_id/'+l.id)
 			.success(function(data){
-				myFactory.entries.listed = data.json;		
+				myFactory.entries.listed = data.json;
+				fixChars(myFactory);
 				$scope.entries = myFactory.entries;
 			//$scope.selectedEntry = $scope.entries.listed[0];
 
