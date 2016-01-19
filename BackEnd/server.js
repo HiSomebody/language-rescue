@@ -70,6 +70,10 @@ app.get('/hannah', function(req,res){
 res.sendFile(path.resolve(__dirname + '/../FrontEnd/hannah/index.html'));
 });
 
+app.get('/library', function(req,res){
+res.sendFile(path.resolve(__dirname + '/../FrontEnd/CommunityLibrary/index.html'));
+}
+
 app.get('/videos/:filename', function(req,res){
 res.sendFile(path.resolve(__dirname + '/../FrontEnd/hannah/videos/'+req.params.filename));
 });
