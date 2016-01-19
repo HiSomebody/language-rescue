@@ -38,8 +38,30 @@ app.factory('myFactory', function($http){
 
 
 	instance.entries = mediaList;
-	
-	
+	for (var j = 0; j < entries.listed.length; j++)
+	{
+		var word = entries.listed[j];
+		if (word.find("~") != -1 || word.find("`") != -1)
+		{
+			var changed = "";
+			for (var i = 0; i < inString.length; i++)
+			{
+				var c = inString[i];
+				if (c == '~')
+				{
+					changed += "\'";
+				}
+				else if (c == '`')
+				{
+					changed += "\"";
+				}
+				else
+				{
+					changed += c;
+				}
+			}
+		}
+	}
 	instance.languages = languages;
 
 	return instance;
@@ -243,7 +265,7 @@ app.controller('libraryController',
 			}
 			else if (c == '\"')
 			{
-				changed += "~";
+				changed += "`";
 			}
 			else
 			{
