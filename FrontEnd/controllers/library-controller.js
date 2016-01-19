@@ -228,6 +228,28 @@ app.controller('libraryController',
 
 	}
 	
+	var change = function(inString)
+	{
+		var changed = "";
+		for (var i = 0; i < len(inString); i++)
+		{
+			var c = inString[i];
+			if (c == '\'')
+			{
+				changed += "\\\'";
+			}
+			else if (c == '\"')
+			{
+				changed += "\\\"";
+			}
+			else
+			{
+				changed += c;
+			}
+		}
+		return changed;
+	}
+	
 	$scope.contributeEntry = function()
 	{
 		$scope.successUpdate = false;
@@ -242,7 +264,7 @@ app.controller('libraryController',
 		else
 		{
 			// CHECK IF ENTRY ALREADY EXISTS BY SAME OWNER
-			$http.get('http://104.236.169.62:'+port+'/check/media_library/title/'+$scope.entryTitle)
+			$http.get('http://104.236.169.62:'+port+'/check/media_library/title/'+change($scope.entryTitle))
 			.success(function(data){
 				//var exists = data.exists;
 				var exists = false;
@@ -262,10 +284,10 @@ app.controller('libraryController',
 				{
 					// INSERT ENTRY INTO LIBRARY
 					$http.post('http://104.236.169.62:'+port+'/insert/media_library', 
-						{	title: $scope.entryTitle,
+						{	title: change($scope.entryTitle),
 							ownerID: 0,
-							ownerName: $scope.entryOwner,
-							description: $scope.additionalInfo,
+							ownerName: change($scope.entryOwner),
+							description: change($scope.additionalInfo),
 							type: "movie",
 							available: 1
 						}).
