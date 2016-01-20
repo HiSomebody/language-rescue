@@ -8,7 +8,7 @@ var fixChars = function(entries)
 	{
 		var titleStr = entries.listed[j].title;
 		var ownerStr = entries.listed[j].ownerName;
-		var descriptionStr = entries.listed[j].additionalInfo;
+		var descriptionStr = entries.listed[j].description;
 		if (titleStr != null && (titleStr.indexOf("~") != -1 || titleStr.indexOf("`") != -1))
 		{
 			var changed = "";
@@ -51,7 +51,7 @@ var fixChars = function(entries)
 			}
 			entries.listed[j].ownerName = changed;
 		}
-		
+
 		if (descriptionStr != null && (descriptionStr.indexOf("~") != -1 || descriptionStr.indexOf("`") != -1))
 		{
 			var changed = "";
@@ -77,7 +77,7 @@ var fixChars = function(entries)
 }
 
 app.factory('myFactory', function($http){
-	
+
 	var instance = {};
 	var languages = {};
 	var mediaList = {};
@@ -89,26 +89,26 @@ app.factory('myFactory', function($http){
 		alert('failure');
 		console.error('failed to retrieve data');
 	});
-	
+
 
 	languages.listed = [
 	{
 	}
 	];
-	
-	
+
+
 	mediaList.listed = [
 	{
 	}
 	];
-	
+
 	var entries = {};
 
 	entries.listed = [
 	{
 	}
 	];
-	
+
 
 
 	instance.entries = mediaList;
@@ -116,7 +116,7 @@ app.factory('myFactory', function($http){
 	instance.languages = languages;
 
 	return instance;
-}) 
+})
 
 
 app.config(function($routeProvider) {
@@ -140,8 +140,8 @@ app.config(function($routeProvider) {
 
 
 
-app.controller('libraryController', 
-	
+app.controller('libraryController',
+
 	function($scope, $http, myFactory) {
 		$scope.languages = myFactory.languages;
 		$scope.entries = myFactory.entries;
@@ -175,7 +175,7 @@ app.controller('libraryController',
 		$scope.setSelectedLanguage = function(l)
 		{
 			console.log(l);
-			$scope.selectedLanguage = l;	
+			$scope.selectedLanguage = l;
 			$http.get('http://104.236.169.62:'+port+'/selectwhere/entries/language_id/'+l.id)
 			.success(function(data){
 				myFactory.entries.listed = data.json;
@@ -190,26 +190,26 @@ app.controller('libraryController',
 			alert('failure');
 			console.error('failed to retrieve data');
 		});
-		
-		
+
+
 		$scope.view = "mainView";
 		$scope.editing = false;
 	}
-	
+
 	$scope.setSelectedEntry = function(e)
 	{
 		$scope.successUpdate = false;
 		$scope.selectedEntry = e;
 		$scope.editing = false;
 	}
-	
+
 	$scope.startEditing = function()
 	{
 		$scope.contribution = $scope.selectedEntry.definition;
 		$scope.editing = true;
 		$scope.adding = false;
 	}
-	
+
 	$scope.startAdding = function()
 	{
 		$scope.successUpdate = false;
@@ -236,7 +236,7 @@ app.controller('libraryController',
 		}
 
 	}
-	
+
 	$scope.contribute = function()
 	{
 		$scope.successUpdate = false;
@@ -269,7 +269,7 @@ app.controller('libraryController',
 				else
 				{
 					// UPDATE ENTRY INTO CURRENT LANGUAGE
-					$http.post('http://104.236.169.62:'+port+'/update/'+ $scope.selectedEntry.term, 
+					$http.post('http://104.236.169.62:'+port+'/update/'+ $scope.selectedEntry.term,
 
 						{language_id: $scope.selectedLanguage.id,
 							term: $scope.selectedEntry.term,
@@ -295,11 +295,11 @@ app.controller('libraryController',
 			{
 				alert('failure');
 				console.error('Failed to retrieve whether language already exists.');
-			});			
+			});
 		}
 
 	}
-	
+
 	var change = function(inString)
 	{
 		var changed = "";
@@ -321,7 +321,7 @@ app.controller('libraryController',
 		}
 		return changed;
 	}
-	
+
 	$scope.contributeEntry = function()
 	{
 		$scope.successUpdate = false;
@@ -357,7 +357,7 @@ app.controller('libraryController',
 				else
 				{
 					// INSERT ENTRY INTO LIBRARY
-					$http.post('http://104.236.169.62:'+port+'/insert/media_library', 
+					$http.post('http://104.236.169.62:'+port+'/insert/media_library',
 						{	title: changedString,
 							ownerID: 0,
 							ownerName: change($scope.entryOwner),
@@ -378,15 +378,15 @@ app.controller('libraryController',
 			{
 				alert('failure');
 				console.error('Failed to retrieve whether owner already entered that title.');
-			});			
+			});
 		}
 	}
-	
+
 	$scope.createLanguage = function()
 	{
 		$scope.view = "addingLanguageView";
 	}
-	
+
 	$scope.addLanguage = function()
 	{
 		if ($scope.languageBeingAdded == '')
@@ -407,7 +407,7 @@ app.controller('libraryController',
 				else
 				{
 					// INSERT LANGUAGE INTO DATABASE
-					$http.post('http://104.236.169.62:'+port+'/insert/languages', 
+					$http.post('http://104.236.169.62:'+port+'/insert/languages',
 						{language_name: $scope.languageBeingAdded
 						}).
 					success(function(data, status, headers, config) {
@@ -424,7 +424,7 @@ app.controller('libraryController',
 			{
 				alert('failure');
 				console.error('Failed to retrieve whether language already exists');
-			});			
+			});
 		}
 	}
 
@@ -451,7 +451,7 @@ app.controller('libraryController',
 	{
 		$scope.resetInput();
 		$scope.view = "createView";
-		
+
 	}
 
 	$scope.addUser = function()
@@ -488,8 +488,8 @@ app.controller('libraryController',
 				if ($scope.newPassword == $scope.confirmPassword) {
 
 					//This should hit the server to add the new User to database
-					
-					$http.post('http://104.236.169.62:'+port+'/insert/users', 
+
+					$http.post('http://104.236.169.62:'+port+'/insert/users',
 						{username:$scope.newUser,
 							password:$scope.newPassword,
 							email:$scope.email,
@@ -517,7 +517,7 @@ app.controller('libraryController',
 
 			}
 
-			
+
 		}).error(function()
 		{
 			alert('failure');
@@ -537,7 +537,7 @@ app.controller('libraryController',
 			var valid_username = data.valid_username;
 			var valid_password = data.valid_password;
 			$scope.badUsername = false;
-			$scope.badPassword = false;		
+			$scope.badPassword = false;
 			if (!valid_username)
 			{
 				//alert('Username doesn\'t exist');
@@ -587,7 +587,7 @@ app.controller('libraryController',
 		$scope.user.username = "Guest";
 		$scope.view = "mainView"
 	}
-	
+
 	$scope.chooseLanguage = function()
 	{
 		$scope.successUpdate = false;
@@ -620,7 +620,7 @@ app.controller('libraryController',
 	$scope.flag = function()
 	{
 		// FLAG USER WHO LAST EDITED ENTRY
-		$http.post('http://104.236.169.62:'+port+'/flag/'+ $scope.selectedEntry.term, 
+		$http.post('http://104.236.169.62:'+port+'/flag/'+ $scope.selectedEntry.term,
 
 			{language_id: $scope.selectedLanguage.id,
 				term: $scope.selectedEntry.term,
