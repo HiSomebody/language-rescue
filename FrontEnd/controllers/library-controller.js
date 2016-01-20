@@ -71,7 +71,7 @@ var fixChars = function(entries)
 					changed += c;
 				}
 			}
-			entries.listed[j].additionalInfo = changed;
+			entries.listed[j].description = changed;
 		}
 	}
 }
