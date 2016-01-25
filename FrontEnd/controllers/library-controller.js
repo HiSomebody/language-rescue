@@ -343,6 +343,36 @@ app.controller('libraryController',
 		return changed;
 	}
 
+
+
+	$scope.unhide = function()
+	{
+
+
+			//$scope.successUpdate = true;
+				//alert("Successfully updated entry in database!");
+				for (var i = 0; i < $scope.entries.listed.length; i++)
+				{
+					if ($scope.entries.listed[i].title == $scope.entryTitle)
+					{
+						$scope.selectedEntry = $scope.entries.listed[i];
+						$http.post('http://104.236.169.62:'+port+'/unhideMedia',
+							{
+								id: $scope.selectedEntry.id,
+							}).
+						success(function(data, status, headers, config) {
+								$scope.entries.listed[i].show_entry = 1;
+							}).
+						error(function(data, status, headers, config) {
+							alert("Failed to update entry in database.");
+						});
+						return;
+					}
+				}
+				$scope.editingMovieEntry = false;
+	}
+
+
 	$scope.contributeEntry = function()
 	{
 		$scope.successUpdate = false;
@@ -362,16 +392,29 @@ app.controller('libraryController',
 			$http.get('http://104.236.169.62:'+port+'/check/media_library/title/'+changedString)
 			.success(function(data){
 				var exists = false;
+				var hidden = false;
 				for (var i = 0; i < data.json.length; i++)
 				{
-					if (data.json[i].ownerName.toLowerCase() == change($scope.entryOwner.toLowerCase()))
+					if (data.json[i].ownerName.toLowerCase() == change($scope.entryOwner.toLowerCase()) && data.json[i].show_entry == 1)
 					{
 						exists = true;
+						hidden = false;
+					}
+					else if (data.json[i].ownerName.toLowerCase() == change($scope.entryOwner.toLowerCase()) && data.json[i].show_entry == 0)
+					{
+						exists = true;
+						hidden = true;
 					}
 				}
-				if (exists)
+				if (exists && !hidden)
 				{
 					alert("You've already entered that movie.");
+					return;
+				}
+				else if (exists && hidden)
+				{
+					data.json[i].show_entry = 1;
+					$scope.unhide();
 					return;
 				}
 				else
