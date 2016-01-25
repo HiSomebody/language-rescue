@@ -260,7 +260,8 @@
             <br>
             <div class="list-group" style="height: 90%" id="MediaListDiv">
                <a ng-click ="openModal(e)" class="{{(e == selectedEntry)? 'list-group-item active' : 'list-group-item'}}"
-               ng-repeat="e in entries.listed | filter:currentEntry | orderBy: 'title'|limitTo:1000" ng-if="e.show_entry == 1">{{e.title}}</a>
+               ng-repeat="e in entries.listed | filter:currentEntry | orderBy: 'title'|limitTo:1000" ng-if="e.show_entry == 1"
+               data-toggle="modal" data-target="#myModal">{{e.title}}</a>
             </div>
          </td>
          <td>
