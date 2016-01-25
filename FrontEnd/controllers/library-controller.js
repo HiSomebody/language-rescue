@@ -413,7 +413,6 @@ app.controller('libraryController',
 				}
 				else if (exists && hidden)
 				{
-					data.json[i].show_entry = 1;
 					$scope.unhide();
 					return;
 				}
