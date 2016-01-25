@@ -112,14 +112,13 @@
 </div>
 
 <div ng-show="view=='mainView'">
-   <div ng-show="successUpdate" class="alert alert-success" role="alert">Successfully updated entry!"</div>
+   <div ng-show="successMovieUpdate" class="alert alert-success" role="alert">Successfully updated entry!"</div>
 
 
 
 
-   <table align="center">
+   <table ng-show="editingMovieEntry == false" align="center">
 
-     <div ng-hide="editingMovieEntry == true">
 
        <tr valign = "top">
          <td align = "center">
@@ -136,32 +135,8 @@
            </div>
          </td>
        </tr>
-     </div>
 
-     <div ng-show="editingMovieEntry == true">
-       <tr>
-          <td>
-             <h3>
 
-             </h3>
-             <input class="form-control" style="font-size:20" type="text" ng-model="entryTitle" placeholder = "movie title" required>
-          </td>
-       </tr>
-       <tr>
-          <td>
-             <h3>
-             </h3>
-             <input class="form-control" style="font-size:20" type="text" ng-model="entryOwner" placeholder = "your name" required>
-          </td>
-       </tr>
-       <tr>
-          <td>
-             <h3>
-             </h3>
-       <textarea class="form-control" rows="5" id="additionalInfo" ng-model="additionalInfo" placeholder = "additional info"></textarea>
-          </td>
-       </tr>
-     </div>
 
 
 
@@ -173,20 +148,44 @@
 
 
 
-             <a ng-show ="!editingMovieEntry" class="btn btn-danger btn-sm" role="button" ng-click="remove()">Remove</a>
-             <a ng-show ="!editingMovieEntry" class="btn btn-danger btn-sm" role="button" ng-click="editMovieEntry()">Edit</a>
-             <a ng-show = "editingMovieEntry" class="btn btn-danger btn-sm" role="button" ng-click="editContribution()">Save</a>
+             <a class="btn btn-danger btn-sm" role="button" ng-click="remove()">Remove</a>
+             <a class="btn btn-danger btn-sm" role="button" ng-click="editMovieEntry()">Edit</a>
 
-           </div>
          </td>
        </tr>
-    </div>
   	</table>
 
+    <table ng-show="editingMovieEntry == true" align="center">
 
 
+      <tr>
+         <td>
+            <h3>
 
-
+            </h3>
+            <input class="form-control" style="font-size:20" type="text" ng-model="entryTitle" placeholder = "movie title" required>
+         </td>
+      </tr>
+      <tr>
+         <td>
+            <h3>
+            </h3>
+            <input class="form-control" style="font-size:20" type="text" ng-model="entryOwner" placeholder = "your name" required>
+         </td>
+      </tr>
+      <tr>
+         <td>
+            <h3>
+            </h3>
+      <textarea class="form-control" rows="5" id="additionalInfo" ng-model="additionalInfo" placeholder = "additional info"></textarea>
+         </td>
+      </tr>
+      <tr>
+        <td align="center">
+          <a class="btn btn-danger btn-sm" role="button" ng-click="editContribution()">Save</a>
+        </td>
+      </tr>
+    </table>
 
 
 	<table align="center">
@@ -203,6 +202,10 @@
          </td>
 	  </tr>
    </table>
+
+
+
+
    <div ng-show="editing">Please click and edit the entry in the text area. Then click contribute to submit.</div>
    <div ng-show="editing">Remember to contribute responsibly. Abuse will be flagged and abusers recorded.</div>
 
