@@ -332,6 +332,8 @@ app.post('/deleteMedia', function(req,res){
 		{
 			connection.query('UPDATE media_library SET show_entry = 0 WHERE id = \'' + input.id + '\'', function (err, result) {
 				if (err) throw err;
+				res.send('User updated the database with ID: ' + result.insertID);
+				process.stdout.write("responded postively: ");
 			});
 /*
 			connection.query('UPDATE entries SET definition = \'' + input.definition + '\', last_contributed_user = \'' + input.last_contributed_user + '\' WHERE term = \'' + input.term + '\'', function (err, result) {
@@ -360,6 +362,8 @@ app.post('/updateMedia', function(req,res){
 		{
 			connection.query('UPDATE media_library SET title = \'' + input.title + '\', ownerName = \'' + input.ownerName + '\', description = \'' + input.description + '\'' + ' WHERE id = \'' + input.id + '\'', function (err, result) {
 				if (err) throw err;
+				res.send('User updated the database with ID: ' + result.insertID);
+				process.stdout.write("responded postively: ");
 			});
 /*
 			connection.query('UPDATE entries SET definition = \'' + input.definition + '\', last_contributed_user = \'' + input.last_contributed_user + '\' WHERE term = \'' + input.term + '\'', function (err, result) {
