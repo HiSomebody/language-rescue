@@ -177,6 +177,33 @@
 
      <!-- Modal content-->
      <div class="modal-content">
+        <table align="center">
+
+           <tr valign = "top">
+             <td align = "center">
+               <h2>{{selectedEntry.title}}</h2>
+               {{selectedEntry.description}}
+             </td>
+           </tr>
+           <tr>
+             <td align = "center">
+               <div ng-show="selectedEntry.ownerName != null" align="center">
+                 <br>
+                 Owner:&nbsp<strong>{{selectedEntry.ownerName}}</strong>
+                 <br>
+               </div>
+             </td>
+           </tr>
+
+           <tr>
+             <td align = "center">
+                   <a class="btn btn-danger btn-sm" role="button" ng-click="removeEntry()">Remove</a>
+                   <a class="btn btn-danger btn-sm" role="button" ng-click="editMovieEntry()">Edit</a>
+                   <br>
+               </td>
+             </tr>
+        	</table>
+          <!--
        <div class="modal-header">
          <button type="button" class="close" data-dismiss="modal">&times;</button>
          <h4 class="modal-title">Modal Header</h4>
@@ -187,12 +214,14 @@
        <div class="modal-footer">
          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
        </div>
+     -->
      </div>
 
    </div>
  </div>
 
-   <table ng-show="!editingMovieEntry && selectedEntry.ownerName != null" align="center">
+
+   <!--table ng-show="!editingMovieEntry && selectedEntry.ownerName != null" align="center">
 
      <tr valign = "top">
        <td align = "center">
@@ -217,7 +246,7 @@
              <br>
          </td>
        </tr>
-  	</table>
+  	</table-->
   <!--/div-->
 
 
