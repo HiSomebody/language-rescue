@@ -284,11 +284,13 @@ app.controller('libraryController',
 		{
 					// UPDATE ENTRY
 					$http.post('http://104.236.169.62:'+port+'/updateMedia',
-
 						{id: $scope.selectedEntry.id,
-							title: $scope.selectedEntry.title,
-							ownerName: $scope.selectedEntry.ownerName,
-							description: $scope.selectedEntry.description
+							title: change($scope.selectedEntry.title),
+							ownerName: change($scope.selectedEntry.ownerName),
+							description: change($scope.selectedEntry.description),
+							type: "movie",
+							available: 1,
+							show_entry: 1
 						}).
 					success(function(data, status, headers, config) {
 
@@ -298,7 +300,7 @@ app.controller('libraryController',
 
 						}).
 					error(function(data, status, headers, config) {
-						alert("Failed to update entry in database.");
+						alert("Failed to update media entry in database.");
 					});
 		}
 

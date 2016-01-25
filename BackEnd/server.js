@@ -358,7 +358,7 @@ app.post('/updateMedia', function(req,res){
 		}
 		else
 		{
-			connection.query('UPDATE media_library SET title = \'' + input.title + '\', ownerName = \'' + input.title + '\', description = \'' + input.description + '\'' + ' WHERE id = \'' + input.id + '\'', function (err, result) {
+			connection.query('UPDATE media_library SET title = \'' + input.title + '\', ownerName = \'' + input.ownerName + '\', description = \'' + input.description + '\'' + ' WHERE id = \'' + input.id + '\'', function (err, result) {
 				if (err) throw err;
 			});
 /*
