@@ -234,7 +234,7 @@
 		      <td>
             <input style="font-size:24" type="text" ng-model="currentEntry" placeholder = "search entries">
             <br>
-            <div class="list-group" style="overflow-y: auto; height: 90%">
+            <div class="list-group" style="height: 90%">
                <a ng-click ="setSelectedEntry(e)" class="{{(e == selectedEntry)? 'list-group-item active' : 'list-group-item'}}"
                ng-repeat="e in entries.listed | filter:currentEntry | orderBy: 'title'|limitTo:1000" ng-if="e.show_entry == 1">{{e.title}}</a>
             </div>
