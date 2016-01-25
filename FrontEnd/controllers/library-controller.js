@@ -1,5 +1,5 @@
 //Define an angular module for our app
-var app = angular.module("libraryApp", ["ngRoute"])
+var app = angular.module("libraryApp", ["ngRoute","ui.bootstrap.modal"])
 var port = 80;
 
 var fixChars = function(entries)
