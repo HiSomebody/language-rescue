@@ -12,6 +12,10 @@
         overflow-y: scroll;
         max-height:260px;
     }
+    .details-scroll-pane {
+        overflow-y: scroll;
+        max-height:150px;
+    }
     .page-header {
         padding-bottom: 3px;
         margin: 5px 0 10px;
@@ -165,7 +169,7 @@
 
    <table ng-show="editingMovieEntry == false && selectedEntry.ownerName != null" align="center">
 
-
+     <div class="details-scroll-pane">
      <tr valign = "top">
        <td align = "center">
          <h2>{{selectedEntry.title}}</h2>
@@ -190,7 +194,7 @@
          </td>
        </tr>
   	</table>
-
+  </div>
 
 
     <table ng-show="editingMovieEntry == true" align="center">
@@ -225,7 +229,7 @@
       </tr>
     </table>
 
-	<table align="center">
+	<table align="center" ng-show="editingMovieEntry">
       <tr valign = "top">
 		      <td>
             <input style="font-size:24" type="text" ng-model="currentEntry" placeholder = "search entries">
