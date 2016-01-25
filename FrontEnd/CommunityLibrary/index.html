@@ -44,6 +44,10 @@
 </div>
 <!-- /.container-fluid -->
 </nav>
+
+<!------------------------------------------------------------------------------------------------------------------->
+
+
 <div ng-show="view=='aboutView'">
    <tr>
       <td style="text-align:left">
@@ -60,6 +64,26 @@
       </td>
    </tr>
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!------------------------------------------------------------------------------------------------------------------->
+
+
+
+
+
+
 
 
 
@@ -111,6 +135,19 @@
    </table>
 </div>
 
+
+
+
+
+
+
+
+
+<!------------------------------------------------------------------------------------------------------------------->
+
+
+
+
 <div ng-show="view=='mainView'">
    <div ng-show="successMovieUpdate" class="alert alert-success" role="alert">Successfully updated entry!"</div>
 
@@ -120,40 +157,33 @@
    <table ng-show="editingMovieEntry == false && selectedEntry.ownerName != null" align="center">
 
 
-       <tr valign = "top">
-         <td align = "center">
-           <h2>{{selectedEntry.title}}</h2>
-           {{selectedEntry.description}}
-         </td>
-       </tr>
-       <tr>
-         <td align = "center">
-           <div ng-show="selectedEntry.ownerName != null" align="center">
-             <br>
-             Owner:&nbsp<strong>{{selectedEntry.ownerName}}</strong>
-             <br>
-           </div>
-         </td>
-       </tr>
-
-
-
-
+     <tr valign = "top">
+       <td align = "center">
+         <h2>{{selectedEntry.title}}</h2>
+         {{selectedEntry.description}}
+       </td>
+     </tr>
+     <tr>
+       <td align = "center">
+         <div ng-show="selectedEntry.ownerName != null" align="center">
+           <br>
+           Owner:&nbsp<strong>{{selectedEntry.ownerName}}</strong>
+           <br>
+         </div>
+       </td>
+     </tr>
 
      <tr>
-
        <td align = "center">
-
              <a class="btn btn-danger btn-sm" role="button" ng-click="remove()">Remove</a>
              <a class="btn btn-danger btn-sm" role="button" ng-click="editMovieEntry()">Edit</a>
-
          </td>
        </tr>
   	</table>
 
+
+
     <table ng-show="editingMovieEntry == true" align="center">
-
-
       <tr>
          <td>
             <h3>
@@ -179,6 +209,7 @@
       <tr>
         <td align="center">
           <a class="btn btn-danger btn-sm" role="button" ng-click="editContribution()">Save</a>
+          <a ng-show="editing || adding" class="btn btn-primary btn-sm" role="button" ng-click="cancelEdit()">Cancel</a>
         </td>
       </tr>
     </table>
@@ -206,6 +237,23 @@
    <div ng-show="editing">Remember to contribute responsibly. Abuse will be flagged and abusers recorded.</div>
 
 </div>
+
+
+
+
+
+
+
+
+<!------------------------------------------------------------------------------------------------------------------->
+
+
+
+
+
+
+
+
 
 
 <div ng-show="view=='loginView'">
@@ -266,6 +314,14 @@
       </td>
    </table>
 </div>
+
+
+
+<!------------------------------------------------------------------------------------------------------------------->
+
+
+
+
 <div ng-show="view=='createView'">
    <table align="center">
       <tr>
@@ -315,6 +371,13 @@
       </td>
    </table>
 </div>
+
+
+<!------------------------------------------------------------------------------------------------------------------->
+
+
+
+
 <div ng-show="view=='addingEntryView'">
    <table align="center">
       <tr>
@@ -364,6 +427,13 @@
       </tr>
    </table>
 </div>
+
+
+<!------------------------------------------------------------------------------------------------------------------->
+
+
+
+
 <div ng-show="view=='addingLanguageView'">
    <table align="center">
       <tr>

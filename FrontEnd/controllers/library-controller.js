@@ -297,6 +297,9 @@ app.controller('libraryController',
 							$scope.editingMovieEntry = false;
 							$scope.resetInput();
 							$scope.user.contributions++;
+
+							$scope.editingMovieEntry = false;
+
 						}).
 					error(function(data, status, headers, config) {
 						alert("Failed to update entry in database.");
@@ -450,6 +453,11 @@ app.controller('libraryController',
 		$scope.adding = false;
 		fixChars($scope.entries);
 		$scope.view = "mainView";
+	}
+
+	$scope.cancelEdit = function()
+	{
+		$scope.editingMovieEntry = false;
 	}
 
 	$scope.cancelCreate = function()
