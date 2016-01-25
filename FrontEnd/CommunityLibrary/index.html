@@ -10,7 +10,8 @@
     }
     .list-group {
         overflow-y: scroll;
-        max-height:260px;
+        overflow-x: scroll;
+        max-height:210px;
     }
     .details-scroll-pane {
         overflow-y: scroll;
@@ -166,7 +167,7 @@
 
 
 
-   <div class="details-scroll-pane">
+   <!--div class="details-scroll-pane"-->
    <table ng-show="!editingMovieEntry && selectedEntry.ownerName != null" align="center">
 
      <tr valign = "top">
@@ -193,7 +194,7 @@
          </td>
        </tr>
   	</table>
-  </div>
+  <!--/div-->
 
 
     <table ng-show="editingMovieEntry == true" align="center">
