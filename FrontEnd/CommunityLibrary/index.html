@@ -1,14 +1,19 @@
 <html>
 <head>
    <title>248th Ward Community Library</title>
-   <style>
-   body { text-align: center;
-			background-color:#20df20}
-   </style>
    <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
    <script type="text/javascript" src="js/bootstrap.min.js"></script>
    <link rel="stylesheet" href="css/library_bootstrap.css">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <style>
+   body { text-align: center;
+			background-color:#20df20}
+  .pane {
+        display: inline-block;
+        overflow-y: scroll;
+        max-height:200px;
+    }
+   </style>
 </link>
 <!--link rel="stylesheet" type="text/css" href="app.css"-->
 <!--script type="text/javascript" src="js/angular.js"></script-->
@@ -215,10 +220,10 @@
       </tr>
     </table>
 
-
+  <div class = "pane">
 	<table align="center">
       <tr valign = "top">
-		<td>
+		      <td>
             <input style="font-size:24" type="text" ng-model="currentEntry" placeholder = "search entries">
             <div class="list-group" style="overflow-y: auto; height: 90%">
                <a ng-click ="setSelectedEntry(e)" class="{{(e == selectedEntry)? 'list-group-item active' : 'list-group-item'}}"
@@ -230,7 +235,7 @@
          </td>
 	  </tr>
    </table>
-
+ </div>
 
 
 
