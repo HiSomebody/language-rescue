@@ -271,6 +271,7 @@ app.controller('libraryController',
 
 	$scope.editContribution = function()
 	{
+		console.log($scope.selectedEntry);
 		$scope.successUpdate = false;
 		if ($scope.selectedEntry.title == '')
 		{
