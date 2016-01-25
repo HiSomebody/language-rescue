@@ -317,6 +317,62 @@ app.post('/insert/:table', function(req,res){
 	});
 });
 
+app.post('/deleteMedia', function(req,res){
+	var input = JSON.parse(JSON.stringify(req.body));
+	connectionpool.getConnection(function(err, connection) {
+		if (err) {
+			console.error('CONNECTION error: ', err);
+			res.statusCode = 503;
+			res.send({
+				result: 'error',
+				err: err.code
+			});
+		}
+		else
+		{
+			connection.query('UPDATE media_library SET show_entry = 0 WHERE id = \'' + input.id + '\'', function (err, result) {
+				if (err) throw err;
+			});
+/*
+			connection.query('UPDATE entries SET definition = \'' + input.definition + '\', last_contributed_user = \'' + input.last_contributed_user + '\' WHERE term = \'' + input.term + '\'', function (err, result) {
+				if (err) throw err;
+				res.send('User updated the database with ID: ' + result.insertID);
+				process.stdout.write("responded postively: ");
+			});
+*/
+		}
+	});
+});
+
+
+app.post('/updateMedia', function(req,res){
+	var input = JSON.parse(JSON.stringify(req.body));
+	connectionpool.getConnection(function(err, connection) {
+		if (err) {
+			console.error('CONNECTION error: ', err);
+			res.statusCode = 503;
+			res.send({
+				result: 'error',
+				err: err.code
+			});
+		}
+		else
+		{
+			connection.query('UPDATE media_library SET title = \'' + input.title + '\', ownerName = \'' + input.title + '\', description = \'' + input.description + '\'' + ' WHERE id = \'' + input.id + '\'', function (err, result) {
+				if (err) throw err;
+			});
+/*
+			connection.query('UPDATE entries SET definition = \'' + input.definition + '\', last_contributed_user = \'' + input.last_contributed_user + '\' WHERE term = \'' + input.term + '\'', function (err, result) {
+				if (err) throw err;
+				res.send('User updated the database with ID: ' + result.insertID);
+				process.stdout.write("responded postively: ");
+			});
+*/
+		}
+	});
+});
+
+
 app.post('/update/:entry', function(req,res){
 	var input = JSON.parse(JSON.stringify(req.body));
 	connectionpool.getConnection(function(err, connection) {

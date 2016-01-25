@@ -247,64 +247,96 @@ app.controller('libraryController',
 
 	}
 
+	$scope.removeEntry = function()
+	{
+				// Remove ENTRY
+				$http.post('http://104.236.169.62:'+port+'/deleteMedia',
+
+					{id: $scope.selectedEntry.id,
+					}).
+				success(function(data, status, headers, config) {
+
+					//$scope.successUpdate = true;
+						//alert("Successfully updated entry in database!");
+						$scope.selectedEntry = null;
+
+						$scope.editingMovieEntry = false;
+
+					}).
+				error(function(data, status, headers, config) {
+					alert("Failed to update entry in database.");
+				});
+
+
+
+			//}
+		}).error(function()
+		{
+			alert('failure');
+			console.error('Failed to retrieve whether entry already exists.');
+		});
+	}
+
 	$scope.editContribution = function()
 	{
 		$scope.successUpdate = false;
-		if ($scope.contribution == '')
+		if ($scope.selectedEntry.title == '')
 		{
-			alert("Please enter a definition.");
+			alert("Please enter a title.");
+		}
+		else if ($scope.selectedEntry.ownerName == '')
+		{
+			alert("Please enter a name.");
 		}
 		else
 		{
-			// CHECK IF ENTRY ALREADY EXISTS IN CURRENT LANGUAGE
-			$http.get('http://104.236.169.62:'+port+'/check/entries/term/'+ $scope.selectedEntry.term)
+			// CHECK IF ENTRY ALREADY EXISTS BY SAME OWNER
+			var changedString = change($scope.entryTitle);
+			console.log(changedString);
+			$http.get('http://104.236.169.62:'+port+'/check/media_library/title/'+changedString)
 			.success(function(data){
 
-				//var exists = data.exists;
+/*
 				var exists = false;
-				console.log(data.json.length);
 				for (var i = 0; i < data.json.length; i++)
 				{
-
-					if (data.json[i].language_id == $scope.selectedLanguage.id)
+					if (data.json[i].ownerName.toLowerCase() == change($scope.entryOwner.toLowerCase()))
 					{
 						exists = true;
 					}
 				}
-				if (!exists)
+				if (exists)
 				{
-					alert("That entry doesn't exist in the current language.");
+					alert("You've already entered that movie.");
 					return;
 				}
 				else
 				{
-					// UPDATE ENTRY INTO CURRENT LANGUAGE
-					$http.post('http://104.236.169.62:'+port+'/update/'+ $scope.selectedEntry.term,
+*/
 
-						{language_id: $scope.selectedLanguage.id,
-							term: $scope.selectedEntry.term,
-							definition: $scope.contribution,
-							last_contributed_user: $scope.user.username
+
+					// UPDATE ENTRY
+					$http.post('http://104.236.169.62:'+port+'/updateMedia',
+
+						{id: $scope.selectedEntry.id,
+							title: $scope.selectedEntry.title,
+							ownerName: $scope.ownerName,
+							description: $scope.selectedEntry.description
 						}).
 					success(function(data, status, headers, config) {
 
 						$scope.successUpdate = true;
 							//alert("Successfully updated entry in database!");
-							$scope.setSelectedLanguage($scope.selectedLanguage);
-							$scope.view = "mainView";
-							$scope.adding = false;
-							$scope.editing = false;
-							$scope.editingMovieEntry = false;
-							$scope.resetInput();
-							$scope.user.contributions++;
-
 							$scope.editingMovieEntry = false;
 
 						}).
 					error(function(data, status, headers, config) {
 						alert("Failed to update entry in database.");
 					});
-				}
+
+
+
+				//}
 			}).error(function()
 			{
 				alert('failure');
@@ -354,7 +386,6 @@ app.controller('libraryController',
 			console.log(changedString);
 			$http.get('http://104.236.169.62:'+port+'/check/media_library/title/'+changedString)
 			.success(function(data){
-				//var exists = data.exists;
 				var exists = false;
 				for (var i = 0; i < data.json.length; i++)
 				{
