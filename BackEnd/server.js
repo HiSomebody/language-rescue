@@ -99,11 +99,11 @@ app.get('/selectall/:table', function(req,res){
 				result: 'error',
 				err: err.code
 			});
-		} 
-		else 
+		}
+		else
 		{
-			connection.query('SELECT * FROM '+req.params.table+' ORDER BY id', req.params.id, function(err, rows, fields) 
-			{		
+			connection.query('SELECT * FROM '+req.params.table+' ORDER BY id', req.params.id, function(err, rows, fields)
+			{
 				if (err) {
 					console.error(err);
 					res.statusCode = 500;
@@ -198,7 +198,7 @@ app.get('/check/:table/:field/:field_value', function(req,res) {
 				});
 				connection.release();
 			});
-		}	
+		}
 	});
 });
 app.get('/login/:username/:password', function(req,res) {
@@ -247,21 +247,21 @@ app.get('/login/:username/:password', function(req,res) {
 			});
 		}
 	});
-});		
+});
 app.post('/insert/:table', function(req,res){
 	var input = JSON.parse(JSON.stringify(req.body));
 	connectionpool.getConnection(function(err, connection) {
 		var data = {};
 		if (req.params.table == 'users')
 		{
-			
+
 			data = {
 				username : input.username,
 				password : input.password,
 				email : input.email,
 				contributions : input.contributions,
 				abuse_strikes : input.abuse_strikes
-				
+
 			};
 		}
 		else if (req.params.table == 'languages')
@@ -289,7 +289,8 @@ app.post('/insert/:table', function(req,res){
 				type : input.type,
 				ownerID : input.ownerID,
 				ownerName: input.ownerName,
-				available: input.available
+				available: input.available,
+				show_entry: input.show_entry
 			};
 		}
 		if (err) {
@@ -332,7 +333,7 @@ app.post('/update/:entry', function(req,res){
 			connection.query('UPDATE users SET contributions = contributions+1 WHERE username = \'' + input.last_contributed_user + '\'', function (err, result) {
 				if (err) throw err;
 			});
-			
+
 			connection.query('UPDATE entries SET definition = \'' + input.definition + '\', last_contributed_user = \'' + input.last_contributed_user + '\' WHERE term = \'' + input.term + '\'', function (err, result) {
 				if (err) throw err;
 				res.send('User updated the database with ID: ' + result.insertID);
@@ -398,7 +399,7 @@ app.post('/increment/:game', function(req,res){
 					});
 				};
 
-			
+
 				process.stdout.write("responded postively: ");
 			});
 		}
@@ -406,19 +407,19 @@ app.post('/increment/:game', function(req,res){
 });
 
 app.get('/:folder/:filename', function(req,res){
-	res.sendFile(path.resolve(__dirname + '/../FrontEnd/' + req.params.folder + '/' + req.params.filename));	
+	res.sendFile(path.resolve(__dirname + '/../FrontEnd/' + req.params.folder + '/' + req.params.filename));
 });
 
 app.get('/GAMES/FriendsInABox/Avatars/:folder/:filename', function(req,res){
-	res.sendFile(path.resolve(__dirname + '/../FrontEnd/GAMES/FriendsInABox/Avatars/' + req.params.folder + '/' + req.params.filename));	
+	res.sendFile(path.resolve(__dirname + '/../FrontEnd/GAMES/FriendsInABox/Avatars/' + req.params.folder + '/' + req.params.filename));
 });
 
 app.get('/GAMES/FriendsInABox/Avatars/:folder1/:folder2/:filename', function(req,res){
-	res.sendFile(path.resolve(__dirname + '/../FrontEnd/GAMES/FriendsInABox/Avatars/' + req.params.folder1 + '/' + req.params.folder2 + '/' + req.params.filename));	
+	res.sendFile(path.resolve(__dirname + '/../FrontEnd/GAMES/FriendsInABox/Avatars/' + req.params.folder1 + '/' + req.params.folder2 + '/' + req.params.filename));
 });
 
 app.get('/GAMES/FriendsInABox/Backgrounds/:filename', function(req,res){
-	res.sendFile(path.resolve(__dirname + '/../FrontEnd/GAMES/FriendsInABox/Backgrounds/' + req.params.filename));	
+	res.sendFile(path.resolve(__dirname + '/../FrontEnd/GAMES/FriendsInABox/Backgrounds/' + req.params.filename));
 });
 
 app.post('/inbound', function(request, response) {

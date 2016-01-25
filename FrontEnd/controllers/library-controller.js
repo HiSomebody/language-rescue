@@ -377,7 +377,8 @@ app.controller('libraryController',
 							ownerName: change($scope.entryOwner),
 							description: change($scope.additionalInfo),
 							type: "movie",
-							available: 1
+							available: 1,
+							show_entry: 1
 						}).
 					success(function(data, status, headers, config) {
 						alert("Successfully added a new entry to the database!");
