@@ -166,10 +166,9 @@
 
 
 
+   <div class="details-scroll-pane">
+   <table ng-show="!editingMovieEntry && selectedEntry.ownerName != null" align="center">
 
-   <table ng-show="editingMovieEntry == false && selectedEntry.ownerName != null" align="center">
-
-     <div class="details-scroll-pane">
      <tr valign = "top">
        <td align = "center">
          <h2>{{selectedEntry.title}}</h2>
@@ -229,7 +228,7 @@
       </tr>
     </table>
 
-	<table align="center" ng-show="!editingMovieEntry">
+	   <table align="center" ng-show="!editingMovieEntry">
       <tr valign = "top">
 		      <td>
             <input style="font-size:24" type="text" ng-model="currentEntry" placeholder = "search entries">
