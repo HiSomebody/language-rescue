@@ -159,6 +159,9 @@ app.controller('libraryController',
 		$scope.entryDefinition = "";
 		$scope.loggedIn = false;
 
+
+		$scope.editingMovieEntry = false;
+
 		$scope.getAllLanguages = function()
 		{
 			$http.get('http://104.236.169.62:' + port + '/selectall/languages')
@@ -210,6 +213,7 @@ app.controller('libraryController',
 		$scope.adding = false;
 	}
 
+
 	$scope.startAdding = function()
 	{
 		$scope.successUpdate = false;
@@ -237,7 +241,13 @@ app.controller('libraryController',
 
 	}
 
-	$scope.contribute = function()
+	$scope.editMovieEntry = function()
+	{
+		$scope.editingMovieEntry = true;
+
+	}
+
+	$scope.editContribution = function()
 	{
 		$scope.successUpdate = false;
 		if ($scope.contribution == '')
@@ -284,6 +294,7 @@ app.controller('libraryController',
 							$scope.view = "mainView";
 							$scope.adding = false;
 							$scope.editing = false;
+							$scope.editingMovieEntry = false;
 							$scope.resetInput();
 							$scope.user.contributions++;
 						}).

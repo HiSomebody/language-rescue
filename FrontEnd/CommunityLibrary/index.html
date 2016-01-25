@@ -114,25 +114,81 @@
 <div ng-show="view=='mainView'">
    <div ng-show="successUpdate" class="alert alert-success" role="alert">Successfully updated entry!"</div>
 
+
+
+
    <table align="center">
-      <tr valign = "top">
-		<td align = "center">
-		<h2>{{selectedEntry.title}}</h2>
-		{{selectedEntry.description}}
-		</td>
-	  </tr>
-	  <tr>
-		<td align = "center">
-		<div ng-show="selectedEntry.ownerName != null" align="center">
-		<br>
-		Owner:&nbsp<strong>{{selectedEntry.ownerName}}</strong>
-    <br>
-    <a class="btn btn-danger btn-sm" role="button" ng-click="remove()">Remove</a>
-    <a class="btn btn-danger btn-sm" role="button" ng-click="editMovieEntry()">Edit</a>
-		</div>
-		</td>
-      </tr>
-	</table>
+
+     <div ng-show="!editingMovieEntry">
+
+       <tr valign = "top">
+         <td align = "center">
+           <h2>{{selectedEntry.title}}</h2>
+           {{selectedEntry.description}}
+         </td>
+       </tr>
+       <tr>
+         <td align = "center">
+           <div ng-show="selectedEntry.ownerName != null" align="center">
+             <br>
+             Owner:&nbsp<strong>{{selectedEntry.ownerName}}</strong>
+             <br>
+           </div>
+         </td>
+       </tr>
+     </div>
+
+     <div ng-show="editingMovieEntry">
+       <tr>
+          <td>
+             <h3>
+
+             </h3>
+             <input class="form-control" style="font-size:20" type="text" ng-model="entryTitle" placeholder = "movie title" required>
+          </td>
+       </tr>
+       <tr>
+          <td>
+             <h3>
+             </h3>
+             <input class="form-control" style="font-size:20" type="text" ng-model="entryOwner" placeholder = "your name" required>
+          </td>
+       </tr>
+       <tr>
+          <td>
+             <h3>
+             </h3>
+       <textarea class="form-control" rows="5" id="additionalInfo" ng-model="additionalInfo" placeholder = "additional info"></textarea>
+          </td>
+       </tr>
+     </div>
+
+
+
+     <tr>
+
+       <td align = "center">
+
+
+
+
+
+             <a ng-show ="!editingMovieEntry" class="btn btn-danger btn-sm" role="button" ng-click="remove()">Remove</a>
+             <a ng-show ="!editingMovieEntry" class="btn btn-danger btn-sm" role="button" ng-click="editMovieEntry()">Edit</a>
+             <a ng-show = "editingMovieEntry" class="btn btn-danger btn-sm" role="button" ng-click="editContribution()">Save</a>
+
+           </div>
+         </td>
+       </tr>
+    </div>
+  	</table>
+
+
+
+      
+
+
+
 	<table align="center">
       <tr valign = "top">
 		<td>
