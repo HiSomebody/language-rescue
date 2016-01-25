@@ -283,7 +283,7 @@ app.controller('libraryController',
 		else
 		{
 			// CHECK IF ENTRY ALREADY EXISTS BY SAME OWNER
-			var changedString = change($scope.entryTitle);
+			var changedString = change($scope.selectedEntry.title);
 			console.log(changedString);
 			$http.get('http://104.236.169.62:'+port+'/check/media_library/title/'+changedString)
 			.success(function(data){
