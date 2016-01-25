@@ -267,14 +267,6 @@ app.controller('libraryController',
 					alert("Failed to update entry in database.");
 				});
 
-
-
-			//}
-		}).error(function()
-		{
-			alert('failure');
-			console.error('Failed to retrieve whether entry already exists.');
-		});
 	}
 
 	$scope.editContribution = function()
