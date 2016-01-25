@@ -158,6 +158,7 @@ app.controller('libraryController',
 		$scope.entryTerm = "";
 		$scope.entryDefinition = "";
 		$scope.loggedIn = false;
+		$scope.showModal = false;
 
 		$scope.setMaxScrollPaneHeight = function()
 		{
@@ -230,7 +231,6 @@ app.controller('libraryController',
 	$scope.setSelectedEntry = function(e)
 	{
 		//update css
-		$scope.setMaxScrollPaneHeight();
 
 		$scope.successUpdate = false;
 		$scope.selectedEntry = e;
@@ -339,6 +339,17 @@ app.controller('libraryController',
 		}
 
 	}
+
+$scope.cancelModal = function()
+{
+	$scope.showModal = false;
+}
+
+$scope.openModal = function(entry)
+{
+	$scope.selectedEntry = e;
+	$scope.showModal = true;
+}
 
 	var change = function(inString)
 	{

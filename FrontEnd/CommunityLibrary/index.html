@@ -168,6 +168,20 @@
 
 
    <!--div class="details-scroll-pane"-->
+   <div modal="showModal" close="cancelModal()">
+    <div class="modal-header">
+        <h4>Modal Dialog</h4>
+    </div>
+    <div class="modal-body">
+        <p>Example paragraph with some text.</p>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-success" ng-click="ok()">Okay</button>
+      <button class="btn" ng-click="cancel()">Cancel</button>
+    </div>
+  </div>
+
+
    <table ng-show="!editingMovieEntry && selectedEntry.ownerName != null" align="center">
 
      <tr valign = "top">
@@ -235,7 +249,7 @@
             <input style="font-size:24" type="text" ng-model="currentEntry" placeholder = "search entries">
             <br>
             <div class="list-group" style="height: 90%" id="MediaListDiv">
-               <a ng-click ="setSelectedEntry(e)" class="{{(e == selectedEntry)? 'list-group-item active' : 'list-group-item'}}"
+               <a ng-click ="openModal(e)" class="{{(e == selectedEntry)? 'list-group-item active' : 'list-group-item'}}"
                ng-repeat="e in entries.listed | filter:currentEntry | orderBy: 'title'|limitTo:1000" ng-if="e.show_entry == 1">{{e.title}}</a>
             </div>
          </td>
