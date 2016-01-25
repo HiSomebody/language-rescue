@@ -160,6 +160,18 @@ app.controller('libraryController',
 		$scope.loggedIn = false;
 
 
+		$scope.getAllMediaEntries = function()
+		{
+			$http.get('http://104.236.169.62:' + port + '/selectall/media_library')
+			.success(function(data){
+				mediaList.listed = data.json;
+			}).error(function()
+			{
+				alert('failure');
+				console.error('failed to retrieve data');
+			});
+		}
+
 		$scope.editingMovieEntry = false;
 
 		$scope.getAllLanguages = function()
@@ -258,6 +270,7 @@ app.controller('libraryController',
 
 					//$scope.successUpdate = true;
 						//alert("Successfully updated entry in database!");
+						$scope.selectedEntry.show_entry = 0;
 						$scope.selectedEntry = null;
 
 						$scope.editingMovieEntry = false;
@@ -295,7 +308,7 @@ app.controller('libraryController',
 						}).
 					success(function(data, status, headers, config) {
 
-						$scope.successUpdate = true;
+						$scope.successMovieUpdate = true;
 							//alert("Successfully updated entry in database!");
 							$scope.editingMovieEntry = false;
 
@@ -376,6 +389,7 @@ app.controller('libraryController',
 						alert("Successfully added a new entry to the database!");
 						$scope.view = "splashPageView";
 						$scope.resetInput();
+						$scope.getAllMediaEntries();
 					}).
 					error(function(data, status, headers, config) {
 						alert("Failed to add entry to library.");
