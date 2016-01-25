@@ -159,6 +159,21 @@ app.controller('libraryController',
 		$scope.entryDefinition = "";
 		$scope.loggedIn = false;
 
+		$scope.setMaxScrollPaneHeight = function()
+		{
+			var h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+			h -= 125;
+			if ($scope.selectedEntry != null)
+			{
+
+			}
+
+			document.getElementById("MediaListDiv").style.maxHeight = h;
+
+		}
+
+		$scope.setMaxScrollPaneHeight();
+
 
 		$scope.getAllMediaEntries = function()
 		{
@@ -214,6 +229,9 @@ app.controller('libraryController',
 
 	$scope.setSelectedEntry = function(e)
 	{
+		//update css
+		$scope.setMaxScrollPaneHeight();
+
 		$scope.successUpdate = false;
 		$scope.selectedEntry = e;
 		$scope.editing = false;
