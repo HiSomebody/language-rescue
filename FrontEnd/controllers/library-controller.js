@@ -282,37 +282,12 @@ app.controller('libraryController',
 		}
 		else
 		{
-			// CHECK IF ENTRY ALREADY EXISTS BY SAME OWNER
-			var changedString = change($scope.selectedEntry.title);
-			console.log(changedString);
-			$http.get('http://104.236.169.62:'+port+'/check/media_library/title/'+changedString)
-			.success(function(data){
-
-/*
-				var exists = false;
-				for (var i = 0; i < data.json.length; i++)
-				{
-					if (data.json[i].ownerName.toLowerCase() == change($scope.entryOwner.toLowerCase()))
-					{
-						exists = true;
-					}
-				}
-				if (exists)
-				{
-					alert("You've already entered that movie.");
-					return;
-				}
-				else
-				{
-*/
-
-
 					// UPDATE ENTRY
 					$http.post('http://104.236.169.62:'+port+'/updateMedia',
 
 						{id: $scope.selectedEntry.id,
 							title: $scope.selectedEntry.title,
-							ownerName: $scope.ownerName,
+							ownerName: $scope.selectedEntry.ownerName,
 							description: $scope.selectedEntry.description
 						}).
 					success(function(data, status, headers, config) {
@@ -325,15 +300,6 @@ app.controller('libraryController',
 					error(function(data, status, headers, config) {
 						alert("Failed to update entry in database.");
 					});
-
-
-
-				//}
-			}).error(function()
-			{
-				alert('failure');
-				console.error('Failed to retrieve whether language already exists.');
-			});
 		}
 
 	}
