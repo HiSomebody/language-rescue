@@ -119,7 +119,7 @@
 
    <table align="center">
 
-     <div ng-show="!editingMovieEntry">
+     <div ng-hide="editingMovieEntry == true">
 
        <tr valign = "top">
          <td align = "center">
@@ -138,7 +138,7 @@
        </tr>
      </div>
 
-     <div ng-show="editingMovieEntry">
+     <div ng-show="editingMovieEntry == true">
        <tr>
           <td>
              <h3>
@@ -185,7 +185,7 @@
 
 
 
-      
+
 
 
 
