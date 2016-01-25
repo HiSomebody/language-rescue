@@ -273,11 +273,11 @@ app.controller('libraryController',
 	{
 		console.log($scope.selectedEntry);
 		$scope.successUpdate = false;
-		if ($scope.selectedEntry.title == '')
+		if ($scope.selectedEntry.title == '' || $scope.selectedEntry.title == null)
 		{
 			alert("Please enter a title.");
 		}
-		else if ($scope.selectedEntry.ownerName == '')
+		else if ($scope.selectedEntry.ownerName == '' || $scope.selectedEntry.ownerName == null)
 		{
 			alert("Please enter a name.");
 		}
