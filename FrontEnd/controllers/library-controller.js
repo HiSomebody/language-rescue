@@ -164,7 +164,8 @@ app.controller('libraryController',
 		{
 			$http.get('http://104.236.169.62:' + port + '/selectall/media_library')
 			.success(function(data){
-				mediaList.listed = data.json;
+				myFactory.mediaList.listed = data.json;
+				$scope.entries = myFactory.mediaList;
 			}).error(function()
 			{
 				alert('failure');
