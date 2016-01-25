@@ -258,6 +258,7 @@ app.controller('libraryController',
 
 	$scope.setView = function(view)
 	{
+		$scope.setMaxScrollPaneHeight();
 		$scope.badUsername = false;
 		$scope.badPassword = false;
 		if (view == "mainView" && !$scope.loggedIn)
