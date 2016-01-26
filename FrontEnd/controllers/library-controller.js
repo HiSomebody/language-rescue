@@ -176,15 +176,19 @@ app.controller('libraryController',
 		{
 			$scope.successMovieEntry = false;
 		}
-		if (expression == "failedToEnter")
+		else if (expression == "successMovieUpdate")
+		{
+			$scope.successMovieUpdate = false;
+		}
+		else if (expression == "failedToEnter")
 		{
 			$scope.failedToEnter = false;
 		}
-		if (expression == "failedToUpdate")
+		else if (expression == "failedToUpdate")
 		{
 			$scope.failedToUpdate = false;
 		}
-		if (expression == "somethingWentWrong")
+		else if (expression == "somethingWentWrong")
 		{
 			$scope.somethingWentWrong = false;
 		}

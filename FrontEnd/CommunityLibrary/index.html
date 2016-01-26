@@ -115,7 +115,12 @@
   </button>
   Successfully added movie to library!
 </div>
-<!--div ng-show="successMovieUpdate" class="alert alert-info alert-dismissible" role="alert">Successfully updated movie in library!</div-->
+<div ng-show="successMovieUpdate" class="alert alert-success alert-dismissible" role="alert">
+  <button type="button" class="close" ng-click="hideAlert('successMovieUpdate')" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  Successfully updated movie in library!
+</div>
 <div ng-show="failedToEnter" class="alert alert-danger alert-dismissible" role="alert">
   <button type="button" class="close" ng-click="hideAlert('failedToEnter')" aria-label="Close">
     <span aria-hidden="true">&times;</span>
@@ -205,7 +210,6 @@
 
 
 <div ng-show="view=='mainView'">
-   <div ng-show="successMovieUpdate" class="alert alert-info alert-dismissible" role="alert">Successfully updated entry!"</div>
 
 
 
