@@ -86,8 +86,9 @@ app.factory('myFactory', function($http){
 		mediaList.listed = data.json;
 	}).error(function()
 	{
-		alert('failed to retrieve data');
-		console.error('failed to retrieve data');
+		//$scope.somethingWentWrong = true;
+		//alert('failed to retrieve data');
+		console.error('failed to retrieve data initially from server');
 	});
 
 
@@ -146,8 +147,12 @@ app.controller('libraryController',
 		$scope.entries = myFactory.entries;
 		$scope.view = "splashPageView";
 		$scope.selectedEntry = $scope.entries.listed[0];
-
+		$scope.successMovieUpdate = false;
+		$scope.successMovieEntry = false;
+		$scope.failedToUpdate = false;
+		$scope.failedToEnter = false;
 		$scope.showModal = false;
+		$scope.somethingWentWrong = false;
 
 		$scope.getAllMediaEntries = function()
 		{
@@ -157,8 +162,9 @@ app.controller('libraryController',
 				$scope.entries = myFactory.entries;
 			}).error(function()
 			{
-				alert('failed to retrieve data');
-				console.error('failed to retrieve data');
+				$scope.somethingWentWrong = true;
+				//alert('failed to retrieve data');
+				console.error('failed to retrieve data from server');
 			});
 		}
 
@@ -202,6 +208,7 @@ app.controller('libraryController',
 
 					//$scope.successUpdate = true;
 						//alert("Successfully updated entry in database!");
+						console.log("Successfully removed (hid) entry in database!");
 						$scope.selectedEntry.show_entry = 0;
 						$scope.selectedEntry = null;
 
@@ -209,7 +216,9 @@ app.controller('libraryController',
 
 					}).
 				error(function(data, status, headers, config) {
-					alert("Failed to update entry in database.");
+					$scope.somethingWentWrong = true;
+					//alert("Failed to update entry in database.");
+					console.error("Failed to remove (hide) entry in database.");
 				});
 
 	}
@@ -242,11 +251,14 @@ app.controller('libraryController',
 
 						$scope.successMovieUpdate = true;
 							//alert("Successfully updated entry in database!");
+							console.log("Successfully updated entry in database!");
 							$scope.editingMovieEntry = false;
 
 						}).
 					error(function(data, status, headers, config) {
-						alert("Failed to update media entry in database.");
+						$scope.failedToUpdate = true;
+						//alert("Failed to update media entry in database.");
+						console.error("Failed to update media entry in database.");
 					});
 		}
 
@@ -293,10 +305,6 @@ $scope.openModal = function(entry)
 
 	$scope.unhide = function()
 	{
-
-
-			//$scope.successUpdate = true;
-				//alert("Successfully updated entry in database!");
 				for (var i = 0; i < $scope.entries.listed.length; i++)
 				{
 					if ($scope.entries.listed[i].title == $scope.entryTitle)
@@ -308,9 +316,13 @@ $scope.openModal = function(entry)
 							}).
 						success(function(data, status, headers, config) {
 								$scope.entries.listed[i].show_entry = 1;
+									//alert("Successfully updated entry in database!");
+									console.log("Successfully updated entry in database!");
 							}).
 						error(function(data, status, headers, config) {
-							alert("Failed to update entry in database.");
+							$scope.somethingWentWrong = true;
+							//alert("Failed to update entry in database.");
+							console.error("Failed to add entry (unhide entry) in database.");
 						});
 						return;
 					}
@@ -360,6 +372,7 @@ $scope.openModal = function(entry)
 				else if (exists && hidden)
 				{
 					$scope.unhide();
+					$scope.successMovieEntry = true;
 					return;
 				}
 				else
@@ -375,20 +388,24 @@ $scope.openModal = function(entry)
 							show_entry: 1
 						}).
 					success(function(data, status, headers, config) {
-						alert("Successfully added a new entry to the database!");
-
+						//alert("Successfully added a new entry to the database!");
+						console.log("successfully added a new entry")
+						$scope.successMovieEntry = true;
 						$scope.view = "splashPageView";
 						$scope.resetInput();
 						$scope.getAllMediaEntries();
 					}).
 					error(function(data, status, headers, config) {
-						alert("Failed to add entry to library.");
+						//alert("Failed to add entry to library.");
+						console.error("Failed to add entry to library.");
+						$scope.failedToEnter = true;
 					});
 				}
 			}).error(function()
 			{
-				alert('failure');
+				//alert('failure');
 				console.error('Failed to retrieve whether owner already entered that title.');
+				$scope.failedToEnter = true;
 			});
 		}
 	}
