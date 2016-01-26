@@ -170,6 +170,11 @@ app.controller('libraryController',
 
 		$scope.editingMovieEntry = false;
 
+	$scope.hideAlert = function(expression)
+	{
+		expression = false;
+	}
+
 
 	$scope.setSelectedEntry = function(e)
 	{
