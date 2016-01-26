@@ -307,11 +307,13 @@ app.post('/insert/:table', function(req,res){
 				connection.query('UPDATE users SET contributions = contributions+1 WHERE username = \'' + input.first_contributed_user + '\'', function (err, result) {
 					if (err) throw err;
 				//res.send('User contribution count has increased.');
+				connection.release();
 			});
 			}
 			connection.query('INSERT INTO ' + req.params.table + ' SET ?', data, function (err, result) {
 				if (err) throw err;
 				res.send('User added to the database with ID: ' + result.insertID);
+				connection.release();
 			});
 		}
 	});
@@ -334,14 +336,9 @@ app.post('/deleteMedia', function(req,res){
 				if (err) throw err;
 				res.send('User updated the database with ID: ' + result.insertID);
 				process.stdout.write("responded postively: ");
+				connection.release();
 			});
-/*
-			connection.query('UPDATE entries SET definition = \'' + input.definition + '\', last_contributed_user = \'' + input.last_contributed_user + '\' WHERE term = \'' + input.term + '\'', function (err, result) {
-				if (err) throw err;
-				res.send('User updated the database with ID: ' + result.insertID);
-				process.stdout.write("responded postively: ");
-			});
-*/
+
 		}
 	});
 });
@@ -363,14 +360,9 @@ app.post('/unhideMedia', function(req,res){
 				if (err) throw err;
 				res.send('User updated the database with ID: ' + result.insertID);
 				process.stdout.write("responded postively: ");
+				connection.release();
 			});
-/*
-			connection.query('UPDATE entries SET definition = \'' + input.definition + '\', last_contributed_user = \'' + input.last_contributed_user + '\' WHERE term = \'' + input.term + '\'', function (err, result) {
-				if (err) throw err;
-				res.send('User updated the database with ID: ' + result.insertID);
-				process.stdout.write("responded postively: ");
-			});
-*/
+
 		}
 	});
 });
@@ -389,18 +381,14 @@ app.post('/updateMedia', function(req,res){
 		}
 		else
 		{
-			connection.query('UPDATE media_library SET title = \'' + input.title + '\', ownerName = \'' + input.ownerName + '\', description = \'' + input.description + '\'' + ' WHERE id = \'' + input.id + '\'', function (err, result) {
+			connection.query('UPDATE media_library SET title = \'' + input.title + '\', ownerName = \'' + input.ownerName +
+				'\', description = \'' + input.description + '\'' + ' WHERE id = \'' + input.id + '\'', function (err, result) {
 				if (err) throw err;
 				res.send('User updated the database with ID: ' + result.insertID);
 				process.stdout.write("responded postively: ");
+				connection.release();
 			});
-/*
-			connection.query('UPDATE entries SET definition = \'' + input.definition + '\', last_contributed_user = \'' + input.last_contributed_user + '\' WHERE term = \'' + input.term + '\'', function (err, result) {
-				if (err) throw err;
-				res.send('User updated the database with ID: ' + result.insertID);
-				process.stdout.write("responded postively: ");
-			});
-*/
+
 		}
 	});
 });
@@ -421,12 +409,14 @@ app.post('/update/:entry', function(req,res){
 		{
 			connection.query('UPDATE users SET contributions = contributions+1 WHERE username = \'' + input.last_contributed_user + '\'', function (err, result) {
 				if (err) throw err;
+				connection.release();
 			});
 
 			connection.query('UPDATE entries SET definition = \'' + input.definition + '\', last_contributed_user = \'' + input.last_contributed_user + '\' WHERE term = \'' + input.term + '\'', function (err, result) {
 				if (err) throw err;
 				res.send('User updated the database with ID: ' + result.insertID);
 				process.stdout.write("responded postively: ");
+				connection.release();
 			});
 		}
 	});
@@ -449,6 +439,7 @@ app.post('/flag/:entry', function(req,res){
 				if (err) throw err;
 				res.send('User updated the database with ID: ' + result.insertID);
 				process.stdout.write("responded postively: ");
+				connection.release();
 			});
 		}
 	});
@@ -485,11 +476,13 @@ app.post('/increment/:game', function(req,res){
 						//res.send(
 						//rows[0].game_count
 						//);
+						connection.release();
 					});
 				};
 
 
 				process.stdout.write("responded postively: ");
+				connection.release();
 			});
 		}
 	});
