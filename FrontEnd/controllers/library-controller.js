@@ -151,8 +151,8 @@ app.controller('libraryController',
 		$scope.successMovieEntry = false;
 		$scope.failedToUpdate = false;
 		$scope.failedToEnter = false;
-		$scope.showModal = false;
 		$scope.somethingWentWrong = false;
+		$scope.showModal = false;
 
 		$scope.getAllMediaEntries = function()
 		{
@@ -208,7 +208,11 @@ app.controller('libraryController',
 			fixChars($scope.entries);
 		}
 		$scope.view = view;
-
+		$scope.successMovieUpdate = false;
+		$scope.successMovieEntry = false;
+		$scope.failedToUpdate = false;
+		$scope.failedToEnter = false;
+		$scope.somethingWentWrong = false;
 	}
 
 	$scope.editMovieEntry = function()
@@ -431,12 +435,11 @@ $scope.openModal = function(entry)
 	}
 
 
-	$scope.cancel = function()
+	$scope.skip = function()
 	{
 		$scope.editing = false;
 		$scope.adding = false;
-		fixChars($scope.entries);
-		$scope.view = "mainView";
+		$scope.setView("mainView");
 	}
 
 	$scope.cancelEdit = function()
