@@ -172,7 +172,22 @@ app.controller('libraryController',
 
 	$scope.hideAlert = function(expression)
 	{
-		expression = false;
+		if (expression == "successMovieEntry")
+		{
+			$scope.successMovieEntry = false;
+		}
+		if (expression == "failedToEnter")
+		{
+			$scope.failedToEnter = false;
+		}
+		if (expression == "failedToUpdate")
+		{
+			$scope.failedToUpdate = false;
+		}
+		if (expression == "somethingWentWrong")
+		{
+			$scope.somethingWentWrong = false;
+		}
 	}
 
 
