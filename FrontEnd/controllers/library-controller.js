@@ -272,6 +272,10 @@ $scope.openModal = function(entry)
 
 	var change = function(inString)
 	{
+		if (inString == null)
+		{
+			return "";
+		}
 		var changed = "";
 		for (var i = 0; i < inString.length; i++)
 		{
@@ -325,11 +329,11 @@ $scope.openModal = function(entry)
 	$scope.contributeEntry = function()
 	{
 		$scope.successUpdate = false;
-		if ($scope.entryTitle == '')
+		if ($scope.entryTitle == '' || $scope.entryTitle == null)
 		{
 			alert("Please enter a title.");
 		}
-		else if ($scope.entryOwner == '')
+		else if ($scope.entryOwner == '' || $scope.entryOwner == null)
 		{
 			alert("Please enter your name.");
 		}

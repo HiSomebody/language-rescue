@@ -11,12 +11,7 @@
     .list-group {
         overflow-y:auto;
         overflow-x: scroll;
-        max-height:430px;
         max-width: 300px;
-    }
-    .details-scroll-pane {
-        overflow-y: scroll;
-        max-height:150px;
     }
     .page-header {
         padding-bottom: 3px;
@@ -62,8 +57,7 @@
          <!-- Collect the nav links, forms, and other content for toggling -->
          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-center">
-			<!--<li class={{(view=='gamesView')?'active':''}}><a ng-click="setView('gamesView')">GAMES!</a></li>-->
-               <!--<li class={{(view=='loginView')?'active':''}}><a ng-click="setView('loginView')">Login</a></li>-->
+
                <li class={{(view=='splashPageView')?'active':''}}><a ng-click="setView('splashPageView')">Add Movie</a></li>
 			   <li class={{(view=='mainView')?'active':''}}><a ng-click="setView('mainView')">Library</a></li>
                <li class={{(view=='aboutView')?'active':''}}><a ng-click="setView('aboutView')">About</a></li>
@@ -179,7 +173,7 @@
 
 
 <div ng-show="view=='mainView'">
-   <!--div ng-show="successMovieUpdate" class="alert alert-success" role="alert">Successfully updated entry!"</div-->
+   <div ng-show="successMovieUpdate" class="alert alert-primary alert-dismissible" role="alert">Successfully updated entry!"</div>
 
 
 
@@ -319,10 +313,6 @@
    </table>
 
 
-
-   <div ng-show="editing">Please click and edit the entry in the text area. Then click contribute to submit.</div>
-   <div ng-show="editing">Remember to contribute responsibly. Abuse will be flagged and abusers recorded.</div>
-
 </div>
 
 
@@ -343,217 +333,6 @@
 
 
 
-<div ng-show="view=='loginView'">
-   <table align="center">
-      <tr>
-         <td>
-            <h3>
-               You may proceed as a Guest to view the Database.
-            </h3>
-         </td>
-         <td>
-         </td>
-      </tr>
-      <tr>
-         <td>
-            <h3>
-               <a class="btn btn-primary btn-sm" role="button" ng-click="nologin()">Continue as Guest</a>
-            </h3>
-         </td>
-         <td>
-         </td>
-      </tr>
-      <tr>
-         <td>
-            <h3>
-               Username
-            </h3>
-            <input style="font-size:20" type="text" ng-model="user.username" placeholder = "username" required>
-            <div ng-show="badUsername" class="alert alert-danger" role="alert">Username does not exist</div>
-         </td>
-      </tr>
-      <tr>
-         <td>
-            <h3>
-               Password
-            </h3>
-            <input style="font-size:20" type="password" ng-model="user.password" placeholder = "password" required>
-         </td>
-      </tr>
-      <tr valign = "top">
-         <td>
-            <div ng-show="badPassword" class="alert alert-danger" role="alert">Password is incorrect</div>
-         </td>
-      </tr>
-      <tr>
-         <td>
-            <h3>
-               <a class="btn btn-primary btn-sm" role="button" ng-click="login()">Login</a>
-            </h3>
-         </td>
-         <td>
-         </td>
-      </tr>
-      <td>
-         <h3>
-            <a class="btn btn-primary btn-sm" role="button" ng-click="createAccount()">Create Account?</a>
-         </h3>
-      </td>
-   </table>
-</div>
 
-
-
-<!------------------------------------------------------------------------------------------------------------------->
-
-
-
-
-<div ng-show="view=='createView'">
-   <table align="center">
-      <tr>
-         <td>
-            <h3>
-               Username
-            </h3>
-            <input style="font-size:20" type="text" ng-model="newUser" ng-minlength=5 placeholder = "Must be 5 characters" required>
-            <div ng-show="badCreateUsername" class="alert alert-danger" role="alert">Username is too short</div>
-         </td>
-      </tr>
-      <tr>
-         <td>
-            <h3>
-               Password
-            </h3>
-            <input style="font-size:20" type="password" ng-model="newPassword" ng-minlength=6 placeholder = "Must be 6 characters" required>
-            <div ng-show="passwordTooShort" class="alert alert-danger" role="alert">Password is too short</div>
-         </td>
-      </tr>
-      <tr>
-         <td>
-            <h3>
-               Confirm Password
-            </h3>
-            <input style="font-size:20" type="password" ng-model="confirmPassword" ng-minlength=5 placeholder = "Passwords must match" required>
-            <div ng-show="passwordNotMatch" class="alert alert-danger" role="alert">Passwords do not match</div>
-         </td>
-      </tr>
-      <tr>
-         <td>
-            <h3>
-               Email Address
-            </h3>
-            <input type = "email" style="font-size:20" type="text" ng-model="email" placeholder = "Enter a valid email" required>
-         </td>
-      </tr>
-      <tr valign = "top">
-         <td>
-         </td>
-      </tr>
-      <td>
-         <h3>
-            <a class="btn btn-primary btn-sm" role="button" ng-click="addUser()">Create Account</a>
-            <a class="btn btn-primary btn-sm" role="button" ng-click="cancelCreate()">Cancel</a>
-         </h3>
-      </td>
-   </table>
-</div>
-
-
-<!------------------------------------------------------------------------------------------------------------------->
-
-
-
-
-<div ng-show="view=='addingEntryView'">
-   <table align="center">
-      <tr>
-         <td>
-            Add a new entry to the {{selectedLanguage.language_name}} language!
-         </td>
-         <td>
-         </td>
-      </tr>
-      <tr>
-         <td>
-            <h3>
-               Term/Phrase:
-            </h3>
-            <input style="font-size:20" type="text" ng-model="entryTerm" placeholder = "Enter term" required>
-         </td>
-      </tr>
-      <tr>
-         <td>
-            <h3>
-               Definition:
-            </h3>
-            <input style="font-size:20" type="text" ng-model="entryDefinition" placeholder = "Enter definition" required>
-         </td>
-      </tr>
-      <tr>
-         <td>
-            <h3>
-               Part of speech:
-            </h3>
-            <input style="font-size:20" type="text" ng-model="entryType" placeholder = "Enter type" required>
-         </td>
-      </tr>
-      <tr valign = "top">
-         <td>
-         </td>
-      </tr>
-      <tr>
-         <td>
-            <h3>
-               <a class="btn btn-primary btn-sm" role="button" ng-click="contributeEntry()">Add Entry</a>
-               <a class="btn btn-primary btn-sm" role="button" ng-click="cancel()">Cancel</a>
-            </h3>
-         </td>
-         <td>
-         </td>
-      </tr>
-   </table>
-</div>
-
-
-<!------------------------------------------------------------------------------------------------------------------->
-
-
-
-
-<div ng-show="view=='addingLanguageView'">
-   <table align="center">
-      <tr>
-         <td>
-            Add a new language to our database!
-         </td>
-         <td>
-         </td>
-      </tr>
-      <tr>
-         <td>
-            <h3>
-               Language Name:
-            </h3>
-            <input style="font-size:20" type="text" ng-model="languageBeingAdded" placeholder = "Enter language" required>
-         </td>
-      </tr>
-      <tr valign = "top">
-         <td>
-         </td>
-      </tr>
-      <tr>
-         <td>
-            <h3>
-               <a class="btn btn-primary btn-lg" role="button" ng-click="addLanguage()">Add Language</a>
-               <a class="btn btn-primary btn-lg" role="button" ng-click="chooseLanguage()">Cancel</a>
-            </h3>
-         </td>
-         <td>
-         </td>
-      </tr>
-   </table>
-</div>
-<br>
 </body>
 </html>
