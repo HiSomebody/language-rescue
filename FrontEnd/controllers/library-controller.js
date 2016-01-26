@@ -177,18 +177,11 @@ app.controller('libraryController',
 
 	$scope.setView = function(view)
 	{
-		$scope.setMaxScrollPaneHeight();
-		$scope.badUsername = false;
-		$scope.badPassword = false;
-		if (view == "mainView" && !$scope.loggedIn)
+		if (view == "mainView")
 		{
 			fixChars($scope.entries);
-			$scope.view = view;
 		}
-		else
-		{
-			$scope.view = view;
-		}
+		$scope.view = view;
 
 	}
 
@@ -383,6 +376,7 @@ $scope.openModal = function(entry)
 						}).
 					success(function(data, status, headers, config) {
 						alert("Successfully added a new entry to the database!");
+
 						$scope.view = "splashPageView";
 						$scope.resetInput();
 						$scope.getAllMediaEntries();
