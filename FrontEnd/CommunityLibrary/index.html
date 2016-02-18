@@ -208,7 +208,7 @@
 				<div class="movieBorder">
 					<img src="{{movie.Poster}}" style="width: 200px; height: auto;">
 				</div>
-				<div class="movieTitle">{{ movie.title }}</div>
+				<div class="movieTitle">{{ changeRight(movie.title) }}</div>
 			</a>
 		  <div class="lenderName">{{ movie.ownerName}}</div>
 		</span>
@@ -490,7 +490,7 @@
             <div class="list-group" id="MediaListDiv">
                <a ng-click ="openModal(e)" class="{{(e == selectedEntry)? 'list-group-item active' : 'list-group-item'}}"
                ng-repeat="e in entries.listed | filter:currentEntry | orderBy: 'title'|limitTo:1000" ng-if="e.show_entry == 1"
-             		data-toggle="modal" data-target="#myModal2">{{e.title}}</a>
+             		data-toggle="modal" data-target="#myModal2">{{changeRight(e.title)}}</a>
             </div>
          </td>
          <td>
