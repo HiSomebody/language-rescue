@@ -8,6 +8,14 @@
    <style>
     body { text-align: center;
     }
+    .panel {
+	border-style: solid;
+	border-width: 5px;
+	border-color: #b3b3b3;
+	margin-left: 20px;
+	margin-right: 20px;
+	margin-top: 10px;
+    }
     .list-group {
         overflow-y:auto;
         overflow-x: scroll;
@@ -147,7 +155,7 @@
            </div>
    </div>
  </div>
- 
+ <div class="panel-body">
  <input style="font-size:24" type="text" ng-model="currentEntry" placeholder = "search (title,category,etc.)">
             <br>
 	<span class="movieSpan" ng-repeat="movie in entries.listed | filter:currentEntry | orderBy: 'title'|limitTo:1000" ng-if="movie.show_entry == 1">
@@ -157,7 +165,7 @@
 	  	</a>
 	  <div class="lenderName">{{ movie.ownerName}}</div>
 	</span>
- 
+ </div>
  
 </div>
 
