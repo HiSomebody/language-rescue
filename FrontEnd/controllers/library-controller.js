@@ -359,6 +359,34 @@ $scope.openModal = function(entry)
 	}
 
 
+	$scope.addPoster = function()
+	{
+		$scope.successUpdate = false;
+		if ($scope.posterURL == '')
+		{
+			alert("Please enter a url.");
+		}
+		else
+		{
+			// Update poster for movie
+			$http.post('http://104.236.169.62:'+port+'/addPoster',
+			{	
+				Poster: $scope.posterURL
+			}).
+			success(function(data, status, headers, config) {
+				//alert("Successfully added a new entry to the database!");
+				console.log("successfully added a poster")
+				$scope.resetInput();
+				$scope.getAllMediaEntries();
+			}).
+			error(function(data, status, headers, config) {
+				//alert("Failed to add entry to library.");
+				console.error("Failed to add poster to entry.");
+				$scope.failedToEnter = true;
+			});
+		}
+	}
+
 	$scope.contributeEntry = function()
 	{
 		$scope.successUpdate = false;
