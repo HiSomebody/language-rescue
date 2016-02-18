@@ -282,7 +282,7 @@
  </div>
  
  
-	<span class="movieSpan" ng-repeat="movie in entries.listed">
+	<span class="movieSpan" ng-repeat="movie in entries.listed | filter:currentEntry | orderBy: 'title'|limitTo:1000" ng-if="e.show_entry == 1">
 		<a ng-click ="openModal(movie)" data-toggle="modal" data-target="#myModal">
 			<img src="{{movie.Poster}}" style="width: 200px; height: auto;">
 	  		<div class="movieTitle">{{ movie.Title }}</div>
