@@ -331,6 +331,32 @@ $scope.openModal = function(entry)
 		}
 		return changed;
 	}
+	
+	$scope.changeRight = function(inString)
+	{
+		if (inString == null)
+		{
+			return "";
+		}
+		var changed = "";
+		for (var i = 0; i < inString.length; i++)
+		{
+			var c = inString[i];
+			if (c == '~')
+			{
+				changed += "\'";
+			}
+			else if (c == '`')
+			{
+				changed += "\"";
+			}
+			else
+			{
+				changed += c;
+			}
+		}
+		return changed;
+	}
 
 
 
