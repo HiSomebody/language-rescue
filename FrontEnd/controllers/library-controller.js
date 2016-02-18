@@ -225,6 +225,13 @@ app.controller('libraryController',
 
 	}
 
+	$scope.fixPosterURL = function(url)
+	{
+		var newURL = "";
+		console.log(url);
+		return newURL;
+	}
+
 	$scope.removeEntry = function()
 	{
 				// Remove ENTRY
