@@ -203,12 +203,13 @@
 	 <input style="font-size:24" type="text" ng-model="currentEntry" placeholder = "search (title,category,etc.)">
 	            <br>
 		<span class="movieSpan" ng-repeat="movie in entries.listed | filter:currentEntry | orderBy: 'title'|limitTo:1000" ng-if="movie.show_entry == 1">
-			<div class="movieBorder">	
-				<a ng-click ="openModal(movie)" data-toggle="modal" data-target="#myModal">
+				
+			<a ng-click ="openModal(movie)" data-toggle="modal" data-target="#myModal">
+				<div class="movieBorder">
 					<img src="{{movie.Poster}}" style="width: 200px; height: auto;">
-			  		<div class="movieTitle">{{ movie.Title }}</div>
-			  	</a>
-			</div>
+				</div>
+				<div class="movieTitle">{{ movie.Title }}</div>
+			</a>
 		  <div class="lenderName">{{ movie.ownerName}}</div>
 		</span>
 	 </div>
