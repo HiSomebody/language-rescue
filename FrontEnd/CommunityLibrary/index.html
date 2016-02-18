@@ -42,6 +42,11 @@
     .lenderName {
 	color: #8c8c8c;
     }
+    .movieBorder {
+    	border-style: solid;
+	border-width: 1px;
+	border-color: #b3b3b3;
+    }
     .movieSpan {
 	vertical-align:top;
 	text-align: center;
@@ -198,10 +203,12 @@
 	 <input style="font-size:24" type="text" ng-model="currentEntry" placeholder = "search (title,category,etc.)">
 	            <br>
 		<span class="movieSpan" ng-repeat="movie in entries.listed | filter:currentEntry | orderBy: 'title'|limitTo:1000" ng-if="movie.show_entry == 1">
-			<a ng-click ="openModal(movie)" data-toggle="modal" data-target="#myModal">
-				<img src="{{movie.Poster}}" style="width: 200px; height: auto;">
-		  		<div class="movieTitle">{{ movie.Title }}</div>
-		  	</a>
+			<div class="movieBorder">	
+				<a ng-click ="openModal(movie)" data-toggle="modal" data-target="#myModal">
+					<img src="{{movie.Poster}}" style="width: 200px; height: auto;">
+			  		<div class="movieTitle">{{ movie.Title }}</div>
+			  	</a>
+			</div>
 		  <div class="lenderName">{{ movie.ownerName}}</div>
 		</span>
 	 </div>
