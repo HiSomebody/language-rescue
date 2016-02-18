@@ -98,7 +98,37 @@
 
 
 <div ng-show="view=='catalogView'">
+<table ng-show="editingMovieEntry == true" align="center">
+      <tr>
+         <td>
+            <h3>
 
+            </h3>
+            <input class="form-control" style="font-size:20" type="text" ng-model="selectedEntry.title" placeholder = "movie title" required>
+         </td>
+      </tr>
+      <tr>
+         <td>
+            <h3>
+            </h3>
+            <input class="form-control" style="font-size:20" type="text" ng-model="selectedEntry.ownerName" placeholder = "owner name" required>
+         </td>
+      </tr>
+      <tr>
+         <td>
+            <h3>
+            </h3>
+      <textarea class="form-control" rows="5" id="additionalInfo" ng-model="selectedEntry.description" placeholder = "additional info (hint: the more info here, the more to search by. Example: Disney 1997 Danny DeVito Animated)"></textarea>
+         </td>
+      </tr>
+      <tr>
+        <td align="center">
+          <a class="btn btn-danger btn-sm" role="button" ng-click="editContribution()">Save</a>
+          <a class="btn btn-danger btn-sm" role="button" ng-click="cancelEdit()">Cancel</a>
+          <br>
+        </td>
+      </tr>
+    </table>
 
 
    <!--div class="details-scroll-pane"-->
@@ -155,7 +185,7 @@
            </div>
    </div>
  </div>
- <div class="panel panel-default">
+ <div class="panel panel-default" ng-show="!editingMovieEntry">
 	 <div class="panel-body">
 	 <input style="font-size:24" type="text" ng-model="currentEntry" placeholder = "search (title,category,etc.)">
 	            <br>
