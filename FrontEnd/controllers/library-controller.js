@@ -227,9 +227,12 @@ app.controller('libraryController',
 
 	$scope.fixPosterURL = function(url)
 	{
-		var newURL = "";
-		var index = url.search("MV5");
-		newURL = "MOVIEPOSTER" + "/" + url.substring(index);
+		var newURL = url;
+		if (url.search("ia.media-imdb.com/images/M/") != -1)
+		{
+			var index = url.search("MV5");
+			newURL = "MOVIEPOSTER" + "/" + url.substring(index);
+		}
 		return newURL;
 	}
 
