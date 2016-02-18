@@ -81,15 +81,15 @@
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                <span class="sr-only">Toggle navigation</span>
             </button>
-            <a class="navbar-brand" ng-click="setView('splashPageView')">Welcome</a>
+            <a class="navbar-brand" ng-click="setView('catalogView')">Welcome</a>
          </div>
          <!-- Collect the nav links, forms, and other content for toggling -->
          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-center">
 
                <li class={{(view=='splashPageView')?'active':''}}><a ng-click="setView('splashPageView')">Add Movie</a></li>
-		<li class={{(view=='mainView')?'active':''}}><a ng-click="setView('mainView')">Library</a></li>
-		<li class={{(view=='catalogView')?'active':''}}><a ng-click="setView('catalogView')">Catalog View</a></li>
+		<li class={{(view=='catalogView')?'active':''}}><a ng-click="setView('catalogView')">Library</a></li>
+		<li class={{(view=='mainView')?'active':''}}><a ng-click="setView('mainView')">List View</a></li>
                <li class={{(view=='aboutView')?'active':''}}><a ng-click="setView('aboutView')">About</a></li>
             </ul>
 
