@@ -225,6 +225,15 @@ app.controller('libraryController',
 
 	}
 
+	$scope.fixPosterURL = function(url)
+	{
+		var newURL = "";
+		console.log(url);
+		var index = url.search("MV5");
+		newURL = "MOVIEPOSTER" + "/" + url.substring(index);
+		return newURL;
+	}
+
 	$scope.removeEntry = function()
 	{
 				// Remove ENTRY

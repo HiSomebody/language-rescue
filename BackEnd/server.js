@@ -90,6 +90,10 @@ app.get('/BAND/:filename', function(req,res){
 res.sendFile(path.resolve(__dirname + '/../FrontEnd/band/BAND/MAINFILES/'+req.params.filename));
 });
 
+app.get('/MOVIEPOSTER/:filename', function(req,res){
+res.sendFile(path.resolve(__dirname + '/../FrontEnd/images/MoviePosters/'+req.params.filename));
+});
+
 app.get('/selectall/:table', function(req,res){
 	connectionpool.getConnection(function(err, connection) {
 		if (err) {
