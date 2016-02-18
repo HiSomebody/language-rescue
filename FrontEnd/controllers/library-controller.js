@@ -145,7 +145,7 @@ app.controller('libraryController',
 
 	function($scope, $http, myFactory) {
 		$scope.entries = myFactory.entries;
-		$scope.view = "splashPageView";
+		$scope.view = "catalogView";
 		$scope.selectedEntry = $scope.entries.listed[0];
 		$scope.successMovieUpdate = false;
 		$scope.successMovieEntry = false;
