@@ -8,6 +8,14 @@
    <style>
     body { text-align: center;
     }
+    .panel {
+	border-style: solid;
+	border-width: 5px;
+	border-color: #b3b3b3;
+	margin-left: 20px;
+	margin-right: 20px;
+	margin-top: 10px;
+    }
     .list-group {
         overflow-y:auto;
         overflow-x: scroll;
@@ -26,6 +34,27 @@
         /* To center vertically */
         display: table-cell;
         vertical-align: middle;
+    }
+    .movieTitle {
+	font-size: 14pt;
+	color: black;
+    }
+    .lenderName {
+	color: #8c8c8c;
+    }
+    .movieBorder {
+    	border-style: solid;
+	border-width: 1px;
+	border-color: #b3b3b3;
+    }
+    .movieSpan {
+	vertical-align:top;
+	text-align: center;
+	display: inline-block;
+	width: 202px;
+	margin-top: 30px;
+	margin-left: 50px;
+	margin-right: 50px;
     }
 
 }
@@ -59,17 +88,139 @@
             <ul class="nav navbar-nav navbar-center">
 
                <li class={{(view=='splashPageView')?'active':''}}><a ng-click="setView('splashPageView')">Add Movie</a></li>
-			   <li class={{(view=='mainView')?'active':''}}><a ng-click="setView('mainView')">Library</a></li>
+		<li class={{(view=='mainView')?'active':''}}><a ng-click="setView('mainView')">Library</a></li>
+		<li class={{(view=='catalogView')?'active':''}}><a ng-click="setView('catalogView')">Catalog View</a></li>
                <li class={{(view=='aboutView')?'active':''}}><a ng-click="setView('aboutView')">About</a></li>
             </ul>
 
-</div>
+	</div>
 <!-- /.navbar-collapse -->
-</div>
+     </div>
 <!-- /.container-fluid -->
-</nav>
+   </nav>
 
 <!------------------------------------------------------------------------------------------------------------------->
+
+
+<div ng-show="view=='catalogView'">
+<table ng-show="editingMovieEntry == true" align="center">
+      <tr>
+         <td>
+            <h3>
+
+            </h3>
+            <input class="form-control" style="font-size:20" type="text" ng-model="selectedEntry.title" placeholder = "movie title" required>
+         </td>
+      </tr>
+      <tr>
+         <td>
+            <h3>
+            </h3>
+            <input class="form-control" style="font-size:20" type="text" ng-model="selectedEntry.ownerName" placeholder = "owner name" required>
+         </td>
+      </tr>
+      <tr>
+         <td>
+            <h3>
+            </h3>
+      <textarea class="form-control" rows="5" id="additionalInfo" ng-model="selectedEntry.description" placeholder = "additional info (hint: the more info here, the more to search by. Example: Disney 1997 Danny DeVito Animated)"></textarea>
+         </td>
+      </tr>
+      <tr>
+         <td>
+            <h3>
+
+            </h3>
+            <input class="form-control" style="font-size:20" type="text" ng-model="selectedEntry.posterURL" placeholder = "Poster URL (optional)">
+         </td>
+      </tr>
+      <tr>
+        <td align="center">
+          <a class="btn btn-primary btn-sm" role="button" ng-click="editContribution()">Save</a>
+          <a class="btn btn-primary btn-sm" role="button" ng-click="cancelEdit()">Cancel</a>
+          <br>
+        </td>
+      </tr>
+    </table>
+
+
+   <!--div class="details-scroll-pane"-->
+   <!-- Modal -->
+ <div id="myModal1" class="modal" role="dialog">
+   <div class="modal-dialog">
+        <div class="vertical-alignment-helper">
+             <div class="modal-dialog vertical-align-center">
+                   <!-- Modal content-->
+                   <div class="modal-content">
+                     <button type="button" class="close" data-dismiss="modal" style="padding:6">&times;</button>
+                      <table align="center">
+
+                         <tr valign = "top">
+                           <td align = "center">
+                             <h2>{{selectedEntry.title}}</h2>
+                             {{selectedEntry.description}}
+                           </td>
+                         </tr>
+                         <tr>
+                           <td align = "center">
+                             <div ng-show="selectedEntry.ownerName != null" align="center">
+                               <br>
+                               Owner:&nbsp<strong>{{selectedEntry.ownerName}}</strong>
+                               <br>
+                             </div>
+                           </td>
+                         </tr>
+
+                         <tr>
+                           <td align = "center">
+                                <br>
+                                 <a class="btn btn-danger btn-sm" role="button" ng-click="removeEntry()" data-dismiss="modal">Remove</a>
+                                 <a class="btn btn-primary btn-sm" role="button" ng-click="editMovieEntry()" data-dismiss="modal">Edit</a>
+                                 <br>
+                                 <br>
+                             </td>
+                           </tr>
+                      	</table>
+                        <!--
+                     <div class="modal-header">
+                       <button type="button" class="close" data-dismiss="modal">&times;</button>
+                       <h4 class="modal-title">Modal Header</h4>
+                     </div>
+                     <div class="modal-body">
+                       <p>Some text in the modal.</p>
+                     </div>
+                     <div class="modal-footer">
+                       <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                     </div>
+                   -->
+                   </div>
+             </div>
+           </div>
+   </div>
+ </div>
+ <div class="panel panel-default" ng-show="!editingMovieEntry">
+	 <div class="panel-body">
+	 <input style="font-size:24" type="text" ng-model="currentEntry" placeholder = "search (title,category,etc.)">
+	            <br>
+		<span class="movieSpan" ng-repeat="movie in entries.listed | filter:currentEntry | orderBy: 'title'|limitTo:1000" ng-if="movie.show_entry == 1">
+				
+			<a ng-click ="openModal(movie)" data-toggle="modal" data-target="#myModal1">
+				<div class="movieBorder">
+					<img src="{{movie.Poster}}" style="width: 200px; height: auto;">
+				</div>
+				<div class="movieTitle">{{ changeRight(movie.title) }}</div>
+			</a>
+		  <div class="lenderName">{{ movie.ownerName}}</div>
+		</span>
+	 </div>
+ </div>
+ 
+</div>
+
+
+
+<!------------------------------------------------------------------------------------------------------------------->
+
 
 
 <div ng-show="view=='aboutView'">
@@ -83,7 +234,7 @@
    <tr>
       <td style="text-align:left">
         <p>
-			This is just a way for members of our ward to keep track of what movies are available for borrowing amongst ourselves because Netflix, VidAngel, Hulu, etc. don't have a lot of the greatest movies.
+	This is just a way for members of our ward to keep track of what movies are available for borrowing amongst ourselves because Netflix, VidAngel, Hulu, etc. don't have a lot of the greatest movies.
         </p>
       </td>
    </tr>
@@ -176,7 +327,7 @@
          <td>
             <h3>
             </h3>
-			<textarea class="form-control" rows="5" id="additionalInfo" ng-model="additionalInfo" placeholder = "additional info (hint: the more info here, the more to search by. Example: Disney 1997 Danny DeVito Animated)"></textarea>
+		<textarea class="form-control" rows="5" id="additionalInfo" ng-model="additionalInfo" placeholder = "additional info (hint: the more info here, the more to search by. Example: Disney 1997 Danny DeVito Animated)"></textarea>
          </td>
       </tr>
       <tr valign = "top">
@@ -186,8 +337,8 @@
       <tr>
          <td>
             <h3>
-               <a class="btn btn-danger btn-lg" role="button" ng-click="contributeEntry()">Add Movie</a>
-               <a class="btn btn-danger btn-lg" role="button" ng-click="skip()">Skip</a>
+               <a class="btn btn-primary btn-lg" role="button" ng-click="contributeEntry()">Add Movie</a>
+               <a class="btn btn-primary btn-lg" role="button" ng-click="skip()">Skip</a>
             </h3>
          </td>
          <td>
@@ -200,11 +351,11 @@
 
 
 
-
-
-
-
 <!------------------------------------------------------------------------------------------------------------------->
+
+
+
+
 
 
 
@@ -215,7 +366,7 @@
 
    <!--div class="details-scroll-pane"-->
    <!-- Modal -->
- <div id="myModal" class="modal" role="dialog">
+ <div id="myModal2" class="modal" role="dialog">
    <div class="modal-dialog">
         <div class="vertical-alignment-helper">
              <div class="modal-dialog vertical-align-center">
@@ -244,7 +395,7 @@
                            <td align = "center">
                                 <br>
                                  <a class="btn btn-danger btn-sm" role="button" ng-click="removeEntry()" data-dismiss="modal">Remove</a>
-                                 <a class="btn btn-danger btn-sm" role="button" ng-click="editMovieEntry()" data-dismiss="modal">Edit</a>
+                                 <a class="btn btn-primary btn-sm" role="button" ng-click="editMovieEntry()" data-dismiss="modal">Edit</a>
                                  <br>
                                  <br>
                              </td>
@@ -290,7 +441,7 @@
      <tr>
        <td align = "center">
              <a class="btn btn-danger btn-sm" role="button" ng-click="removeEntry()">Remove</a>
-             <a class="btn btn-danger btn-sm" role="button" ng-click="editMovieEntry()">Edit</a>
+             <a class="btn btn-primary btn-sm" role="button" ng-click="editMovieEntry()">Edit</a>
              <br>
          </td>
        </tr>
@@ -323,14 +474,14 @@
       </tr>
       <tr>
         <td align="center">
-          <a class="btn btn-danger btn-sm" role="button" ng-click="editContribution()">Save</a>
-          <a class="btn btn-danger btn-sm" role="button" ng-click="cancelEdit()">Cancel</a>
+          <a class="btn btn-primary btn-sm" role="button" ng-click="editContribution()">Save</a>
+          <a class="btn btn-primary btn-sm" role="button" ng-click="cancelEdit()">Cancel</a>
           <br>
         </td>
       </tr>
     </table>
-
-	   <table align="center" ng-show="!editingMovieEntry">
+	
+    <table align="center" ng-show="!editingMovieEntry">
       <tr valign = "top">
 		      <td>
             <input style="font-size:24" type="text" ng-model="currentEntry" placeholder = "search (title,category,etc.)">
@@ -339,7 +490,7 @@
             <div class="list-group" id="MediaListDiv">
                <a ng-click ="openModal(e)" class="{{(e == selectedEntry)? 'list-group-item active' : 'list-group-item'}}"
                ng-repeat="e in entries.listed | filter:currentEntry | orderBy: 'title'|limitTo:1000" ng-if="e.show_entry == 1"
-               data-toggle="modal" data-target="#myModal">{{e.title}}</a>
+             		data-toggle="modal" data-target="#myModal2">{{changeRight(e.title)}}</a>
             </div>
          </td>
          <td>

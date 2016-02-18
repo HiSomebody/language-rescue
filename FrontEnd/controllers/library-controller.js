@@ -289,7 +289,10 @@ app.controller('libraryController',
 						console.error("Failed to update media entry in database.");
 					});
 		}
-
+		if ($scope.selectedEntry.posterURL != '' && $scope.selectedEntry.posterURL != null)
+		{
+			$scope.addPoster();
+		}
 	}
 
 $scope.cancelModal = function()
@@ -328,6 +331,32 @@ $scope.openModal = function(entry)
 		}
 		return changed;
 	}
+	
+	$scope.changeRight = function(inString)
+	{
+		if (inString == null)
+		{
+			return "";
+		}
+		var changed = "";
+		for (var i = 0; i < inString.length; i++)
+		{
+			var c = inString[i];
+			if (c == '~')
+			{
+				changed += "\'";
+			}
+			else if (c == '`')
+			{
+				changed += "\"";
+			}
+			else
+			{
+				changed += c;
+			}
+		}
+		return changed;
+	}
 
 
 
@@ -335,7 +364,7 @@ $scope.openModal = function(entry)
 	{
 				for (var i = 0; i < $scope.entries.listed.length; i++)
 				{
-					if ($scope.entries.listed[i].title == $scope.entryTitle)
+					if ($scope.entries.listed[i].title == change($scope.entryTitle) || $scope.entries.listed[i].title == $scope.entryTitle)
 					{
 						$scope.selectedEntry = $scope.entries.listed[i];
 						$http.post('http://104.236.169.62:'+port+'/unhideMedia',
@@ -358,6 +387,37 @@ $scope.openModal = function(entry)
 				$scope.editingMovieEntry = false;
 	}
 
+
+	$scope.addPoster = function()
+	{
+		$scope.successUpdate = false;
+		if ($scope.selectedEntry.posterURL == '' || $scope.selectedEntry.posterURL == null)
+		{
+			// Do nothing
+		}
+		else
+		{
+			// Update poster for movie
+			$http.post('http://104.236.169.62:'+port+'/addPoster',
+			{	
+				id: $scope.selectedEntry.id,
+				Poster: $scope.selectedEntry.posterURL
+			}).
+			success(function(data, status, headers, config) {
+
+				//alert("Successfully added a new entry to the database!");
+				console.log("successfully added a poster")
+				$scope.resetInput();
+				$scope.getAllMediaEntries();
+			}).
+			error(function(data, status, headers, config) {
+
+				//alert("Failed to add entry to library.");
+				console.error("Failed to add poster to entry.");
+				$scope.failedToEnter = true;
+			});
+		}
+	}
 
 	$scope.contributeEntry = function()
 	{
