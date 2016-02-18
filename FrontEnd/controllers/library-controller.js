@@ -364,6 +364,7 @@ $scope.openModal = function(entry)
 
 	$scope.addPoster = function()
 	{
+		console.log("got to A");
 		$scope.successUpdate = false;
 		if ($scope.posterURL == '' || $scope.posterURL == null)
 		{
@@ -371,6 +372,7 @@ $scope.openModal = function(entry)
 		}
 		else
 		{
+			console.log("got to B");
 			// Update poster for movie
 			$http.post('http://104.236.169.62:'+port+'/addPoster',
 			{	
@@ -378,12 +380,16 @@ $scope.openModal = function(entry)
 				Poster: $scope.posterURL
 			}).
 			success(function(data, status, headers, config) {
+				console.log("got to C");
+
 				//alert("Successfully added a new entry to the database!");
 				console.log("successfully added a poster")
 				$scope.resetInput();
 				$scope.getAllMediaEntries();
 			}).
 			error(function(data, status, headers, config) {
+				console.log("got to D");
+
 				//alert("Failed to add entry to library.");
 				console.error("Failed to add poster to entry.");
 				$scope.failedToEnter = true;
