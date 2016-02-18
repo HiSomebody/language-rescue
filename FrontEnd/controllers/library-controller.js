@@ -230,7 +230,7 @@ app.controller('libraryController',
 		var newURL = "";
 		console.log(url);
 		var index = url.search("MV5");
-		newURL = url.substring(index);
+		newURL = "MOVIEPOSTER" + "/" + url.substring(index);
 		return newURL;
 	}
 
