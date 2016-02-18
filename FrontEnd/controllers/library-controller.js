@@ -374,6 +374,7 @@ $scope.openModal = function(entry)
 			// Update poster for movie
 			$http.post('http://104.236.169.62:'+port+'/addPoster',
 			{	
+				id: $scope.selectedEntry.id,
 				Poster: $scope.posterURL
 			}).
 			success(function(data, status, headers, config) {
