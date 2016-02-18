@@ -229,6 +229,8 @@ app.controller('libraryController',
 	{
 		var newURL = "";
 		console.log(url);
+		var index = url.search("MV5");
+		newURL = url.substring(index);
 		return newURL;
 	}
 
