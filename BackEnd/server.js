@@ -381,6 +381,7 @@ app.post('/addPoster', function(req,res){
 		}
 		else
 		{
+			console.log(input.Poster);
 			connection.query('UPDATE media_library SET Poster = \'' + input.Poster + '\' WHERE id = \'' + input.id + '\'', function (err, result) {
 				if (err) throw err;
 				res.send('User updated the database with ID: ' + result.insertID);
