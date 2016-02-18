@@ -289,7 +289,10 @@ app.controller('libraryController',
 						console.error("Failed to update media entry in database.");
 					});
 		}
-
+		if ($scope.posterURL != '' && $scope.posterURL != null)
+		{
+			$scope.addPoster();
+		}
 	}
 
 $scope.cancelModal = function()
@@ -362,9 +365,9 @@ $scope.openModal = function(entry)
 	$scope.addPoster = function()
 	{
 		$scope.successUpdate = false;
-		if ($scope.posterURL == '')
+		if ($scope.posterURL == '' || $scope.posterURL == null)
 		{
-			alert("Please enter a url.");
+			// Do nothing
 		}
 		else
 		{
