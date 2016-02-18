@@ -368,6 +368,31 @@ app.post('/unhideMedia', function(req,res){
 });
 
 
+app.post('/addPoster', function(req,res){
+	var input = JSON.parse(JSON.stringify(req.body));
+	connectionpool.getConnection(function(err, connection) {
+		if (err) {
+			console.error('CONNECTION error: ', err);
+			res.statusCode = 503;
+			res.send({
+				result: 'error',
+				err: err.code
+			});
+		}
+		else
+		{
+			connection.query('UPDATE media_library SET Poster = \'' + input.Poster + '\' WHERE id = \'' + input.id + '\'', function (err, result) {
+				if (err) throw err;
+				res.send('User updated the database with ID: ' + result.insertID);
+				process.stdout.write("responded postively: ");
+				connection.release();
+			});
+
+		}
+	});
+});
+
+
 app.post('/updateMedia', function(req,res){
 	var input = JSON.parse(JSON.stringify(req.body));
 	connectionpool.getConnection(function(err, connection) {
