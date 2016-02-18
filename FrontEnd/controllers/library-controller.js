@@ -338,7 +338,7 @@ $scope.openModal = function(entry)
 	{
 				for (var i = 0; i < $scope.entries.listed.length; i++)
 				{
-					if ($scope.entries.listed[i].title == change($scope.entryTitle))
+					if ($scope.entries.listed[i].title == change($scope.entryTitle) || $scope.entries.listed[i].title == $scope.entryTitle)
 					{
 						$scope.selectedEntry = $scope.entries.listed[i];
 						$http.post('http://104.236.169.62:'+port+'/unhideMedia',
