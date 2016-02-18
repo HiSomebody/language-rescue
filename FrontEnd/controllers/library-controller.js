@@ -289,7 +289,7 @@ app.controller('libraryController',
 						console.error("Failed to update media entry in database.");
 					});
 		}
-		if ($scope.posterURL != '' && $scope.posterURL != null)
+		if ($scope.selectedEntry.posterURL != '' && $scope.selectedEntry.posterURL != null)
 		{
 			console.log("got to 1");
 			$scope.addPoster();
@@ -371,7 +371,7 @@ $scope.openModal = function(entry)
 	{
 		console.log("got to A");
 		$scope.successUpdate = false;
-		if ($scope.posterURL == '' || $scope.posterURL == null)
+		if ($scope.selectedEntry.posterURL == '' || $scope.selectedEntry.posterURL == null)
 		{
 			// Do nothing
 		}
