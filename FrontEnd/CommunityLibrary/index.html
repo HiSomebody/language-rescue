@@ -93,11 +93,11 @@
                <li class={{(view=='aboutView')?'active':''}}><a ng-click="setView('aboutView')">About</a></li>
             </ul>
 
-</div>
+	</div>
 <!-- /.navbar-collapse -->
-</div>
+     </div>
 <!-- /.container-fluid -->
-</nav>
+   </nav>
 
 <!------------------------------------------------------------------------------------------------------------------->
 
@@ -146,7 +146,7 @@
 
    <!--div class="details-scroll-pane"-->
    <!-- Modal -->
- <div id="myModal" class="modal" role="dialog">
+ <div id="myModal1" class="modal" role="dialog">
    <div class="modal-dialog">
         <div class="vertical-alignment-helper">
              <div class="modal-dialog vertical-align-center">
@@ -204,7 +204,7 @@
 	            <br>
 		<span class="movieSpan" ng-repeat="movie in entries.listed | filter:currentEntry | orderBy: 'title'|limitTo:1000" ng-if="movie.show_entry == 1">
 				
-			<a ng-click ="openModal(movie)" data-toggle="modal" data-target="#myModal">
+			<a ng-click ="openModal(movie)" data-toggle="modal" data-target="#myModal1">
 				<div class="movieBorder">
 					<img src="{{movie.Poster}}" style="width: 200px; height: auto;">
 				</div>
@@ -366,7 +366,7 @@
 
    <!--div class="details-scroll-pane"-->
    <!-- Modal -->
- <div id="myModal" class="modal" role="dialog">
+ <div id="myModal2" class="modal" role="dialog">
    <div class="modal-dialog">
         <div class="vertical-alignment-helper">
              <div class="modal-dialog vertical-align-center">
@@ -480,8 +480,8 @@
         </td>
       </tr>
     </table>
-
-	   <table align="center" ng-show="!editingMovieEntry">
+	
+    <table align="center" ng-show="!editingMovieEntry">
       <tr valign = "top">
 		      <td>
             <input style="font-size:24" type="text" ng-model="currentEntry" placeholder = "search (title,category,etc.)">
@@ -490,7 +490,7 @@
             <div class="list-group" id="MediaListDiv">
                <a ng-click ="openModal(e)" class="{{(e == selectedEntry)? 'list-group-item active' : 'list-group-item'}}"
                ng-repeat="e in entries.listed | filter:currentEntry | orderBy: 'title'|limitTo:1000" ng-if="e.show_entry == 1"
-             		data-toggle="modal" data-target="#myModal">{{e.title}}</a>
+             		data-toggle="modal" data-target="#myModal2">{{e.title}}</a>
             </div>
          </td>
          <td>
