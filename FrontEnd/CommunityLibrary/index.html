@@ -206,7 +206,7 @@
 				
 			<a ng-click ="openModal(movie)" data-toggle="modal" data-target="#myModal1">
 				<div class="movieBorder">
-					<img src="{{movie.Poster}}" style="width: 200px; height: auto;">
+					<img src="{{fixPosterURL(movie.Poster)}}" style="width: 200px; height: auto;">
 				</div>
 				<div class="movieTitle">{{ changeRight(movie.title) }}</div>
 			</a>
