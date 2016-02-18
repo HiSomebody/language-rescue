@@ -382,7 +382,7 @@ $scope.openModal = function(entry)
 			$http.post('http://104.236.169.62:'+port+'/addPoster',
 			{	
 				id: $scope.selectedEntry.id,
-				Poster: $scope.posterURL
+				Poster: $scope.selectedEntry.posterURL
 			}).
 			success(function(data, status, headers, config) {
 				console.log("got to C");
