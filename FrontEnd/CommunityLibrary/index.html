@@ -30,11 +30,11 @@
     .movieTitle {
 	font-size: 14pt;
 	color: black;
-}
-.lenderName {
+    }
+    .lenderName {
 	color: #cccccc;
-}
-.movieSpan {
+    }
+    .movieSpan {
 	vertical-align:top;
 	text-align: center;
 	display: inline-block;
@@ -42,7 +42,7 @@
 	margin-top: 30px;
 	margin-left: 50px;
 	margin-right: 50px;
-}
+    }
 
 }
    </style>
@@ -100,7 +100,7 @@
    <tr>
       <td style="text-align:left">
         <p>
-			This is just a way for members of our ward to keep track of what movies are available for borrowing amongst ourselves because Netflix, VidAngel, Hulu, etc. don't have a lot of the greatest movies.
+	This is just a way for members of our ward to keep track of what movies are available for borrowing amongst ourselves because Netflix, VidAngel, Hulu, etc. don't have a lot of the greatest movies.
         </p>
       </td>
    </tr>
@@ -193,7 +193,7 @@
          <td>
             <h3>
             </h3>
-			<textarea class="form-control" rows="5" id="additionalInfo" ng-model="additionalInfo" placeholder = "additional info (hint: the more info here, the more to search by. Example: Disney 1997 Danny DeVito Animated)"></textarea>
+		<textarea class="form-control" rows="5" id="additionalInfo" ng-model="additionalInfo" placeholder = "additional info (hint: the more info here, the more to search by. Example: Disney 1997 Danny DeVito Animated)"></textarea>
          </td>
       </tr>
       <tr valign = "top">
@@ -283,7 +283,7 @@
  
  
 	<span class="movieSpan" ng-repeat="movie in entries.listed">
-		<a><img src="{{movie.Poster}}" style="width: 200px; height: auto;">
+		<a ng-click ="openModal(movie)"><img src="{{movie.Poster}}" style="width: 200px; height: auto;">
 	  <div class="movieTitle">{{ movie.Title }}</div></a>
 	  <div class="lenderName">{{ movie.LenderName}}</div>
 	</span>
