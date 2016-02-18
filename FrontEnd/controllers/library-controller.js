@@ -291,7 +291,12 @@ app.controller('libraryController',
 		}
 		if ($scope.posterURL != '' && $scope.posterURL != null)
 		{
+			console.log("got to 1");
 			$scope.addPoster();
+		}
+		else
+		{
+			console.log("got to 0");
 		}
 	}
 
