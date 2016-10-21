@@ -46,6 +46,14 @@ app.get('/ilonggo', function(req,res){
 res.sendFile(path.resolve(__dirname + '/../FrontEnd/The_Giant_Ilonggo_Phrasebook_Second_Edition.pdf'));
 });
 
+app.get('/how-will-they-know-medley', function(req,res){
+res.sendFile(path.resolve(__dirname + '/../SheetmusicDownload/___ How Will They Know - We\'ll Bring the World His Truth.pdf'));
+});
+
+app.get('/how-will-they-know-medley-midi', function(req,res){
+res.sendFile(path.resolve(__dirname + '/../SheetmusicDownload/___ How Will They Know - We\'ll Bring the World His Truth.mid'));
+});
+
 app.get('/doubleitrush/:filename', function(req,res){
 res.sendFile(path.resolve(__dirname + '/../FrontEnd/GAMES/DoubleItRush/'+req.params.filename));
 });
