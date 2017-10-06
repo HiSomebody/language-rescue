@@ -503,8 +503,10 @@
     <table align="center" ng-show="!editingMovieEntry">
       <tr valign = "top">
 		      <td>
+	<form id="nameForm">		      
             <input style="font-size:24" type="text" ng-model="currentEntry" placeholder = "add name">
-		 <a class="btn btn-danger btn-sm" role="button" ng-click="addNameToList()" data-dismiss="modal">Add</a>
+	</form>
+	<a class="btn btn-danger btn-sm" role="button" ng-click="addNameToList()" data-dismiss="modal">Add</a>
 			
             <br>
 			<br>
