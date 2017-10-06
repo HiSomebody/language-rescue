@@ -552,6 +552,16 @@ $scope.openModal = function(entry)
 	  $scope.passwordEntry = "";
 	});
 
+	$('#nameForm').submit(function(event){
+
+	  // prevent default browser behaviour
+	  event.preventDefault();
+
+	  //do stuff with your form here
+	  $scope.addNameToList();
+	  $scope.currentEntry = "";
+	});
+	
 	$scope.contributeEntry = function()
 	{
 		$scope.successUpdate = false;
