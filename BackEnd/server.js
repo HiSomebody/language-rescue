@@ -305,6 +305,13 @@ app.post('/insert/:table', function(req,res){
 				show_entry: input.show_entry
 			};
 		}
+		else if (req.params.table == 'help_list')
+		{
+			data = {
+				student_name : input.student_name,
+				show_entry: input.show_entry
+			};
+		}
 		if (err) {
 			console.error('CONNECTION error: ', err);
 			res.statusCode = 503;
