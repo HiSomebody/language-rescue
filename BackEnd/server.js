@@ -133,7 +133,8 @@ app.get('/selectall/:table', function(req,res){
 					err: '',
 					fields: fields,
 					json: rows,
-					length: rows.length
+					length: rows.length,
+					only: 'sand'
 				});
 				connection.release();
 			});
