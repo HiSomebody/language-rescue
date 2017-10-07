@@ -1,6 +1,7 @@
 //Define an angular module for our app
 var app = angular.module("helpListApp", ["ngRoute","ui.bootstrap.modal"])
 var port = 80;
+var only = "first sequence";
 
 var fixChars = function(entries)
 {
@@ -83,6 +84,7 @@ app.factory('myFactory', function($http){
 	var mediaList = {};
 	$http.get('http://104.236.169.62:' + port + '/selectall/help_list')
 	.success(function(data){
+		only = data.only;
 		for (var i = 0; i<data.json.length; i++)
 		{
 			var entry = data.json[i];
@@ -162,12 +164,13 @@ app.controller('helpListController',
 		$scope.failedToEnter = false;
 		$scope.somethingWentWrong = false;
 		$scope.showModal = false;
-		$scope.passwordEntry = "";
+		$scope.onlyEntry = "";
 
 		$scope.getAllMediaEntries = function()
 		{
 			$http.get('http://104.236.169.62:' + port + '/selectall/help_list')
 			.success(function(data){
+				only = data.only;
 				for (var i = 0; i<data.json.length; i++)
 				{
 					var entry = data.json[i];
@@ -343,9 +346,9 @@ app.controller('helpListController',
 
 	$scope.removeEntry = function()
 	{
-		if ($scope.passwordEntry !== "haha")
+		if ($scope.onlyEntry !== only)
 		{
-     	  	$scope.passwordEntry = "";
+     	  		$scope.onlyEntry = "";
 			return;
 		}
 		
@@ -370,7 +373,7 @@ app.controller('helpListController',
 					//alert("Failed to update entry in database.");
 					console.error("Failed to remove (hide) entry in database.");
 				});
-	     	  	$scope.passwordEntry = "";
+	     	  	$scope.onlyEntry = "";
 	}
 
 	$scope.editContribution = function()
@@ -549,7 +552,7 @@ $scope.openModal = function(entry)
 	  //do stuff with your form here
 	  $scope.removeEntry();
 	  $('#myModal2').modal('hide');
-	  $scope.passwordEntry = "";
+	  $scope.onlyEntry = "";
 	});
 
 	$('#nameForm').submit(function(event){
