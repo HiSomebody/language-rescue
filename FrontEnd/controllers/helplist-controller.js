@@ -101,7 +101,7 @@ app.factory('myFactory', function($http){
 		//alert('failed to retrieve data');
 		console.error('failed to retrieve data initially from server');
 	});
-
+	
 
 	languages.listed = [
 	{
@@ -156,6 +156,7 @@ app.controller('helpListController',
 
 	function($scope, $http, myFactory) {
 		$scope.entries = myFactory.entries;
+		$scope.comments = myFactory.comments;
 		$scope.view = "mainView";
 		$scope.selectedEntry = $scope.entries.listed[0];
 		$scope.successMovieUpdate = false;
@@ -188,6 +189,26 @@ app.controller('helpListController',
 				//alert('failed to retrieve data');
 				console.error('failed to retrieve data from server');
 			});
+			$http.get('http://104.236.169.62:' + port + '/selectall/discussion')
+			.success(function(data){
+				for (var i = 0; i<data.json.length; i++)
+				{
+					var entry = data.json[i];
+					if (entry.show_entry != 1)
+					{
+						data.json.splice(i,1);
+						i -= 1;
+					}
+				}
+				myFactory.comments.listed = data.json;
+				$scope.comments = myFactory.comments;
+			}).error(function()
+			{
+				$scope.somethingWentWrong = true;
+				//alert('failed to retrieve data');
+				console.error('failed to retrieve data from server');
+			});
+			
 		}
 
 		$scope.editingMovieEntry = false;
@@ -196,7 +217,7 @@ app.controller('helpListController',
 	
 			 $scope.getAllMediaEntries();
 
-		}, 30000);
+		}, 5000);
 
 	$scope.hideAlert = function(expression)
 	{
@@ -342,6 +363,43 @@ app.controller('helpListController',
 			});
 		}
 	}
+	
+	$scope.addToDiscussion = function()
+	{
+		$scope.successUpdate = false;
+		if ($scope.currentEntry == '' || $scope.currentEntry == null)
+		{
+			alert("Please enter your name.");
+		}
+		else
+		{
+			// CHECK IF ENTRY ALREADY EXISTS
+			var changedString = change($scope.currentEntry);
+			
+				{
+					// INSERT Comment INTO Discussion
+					$http.post('http://104.236.169.62:'+port+'/insert/discussion',
+						{	text: changedString,
+							show_entry: 1
+						}).
+					success(function(data, status, headers, config) {
+						//alert("Successfully added a new entry to the database!");
+						console.log("successfully added a new entry")
+						$scope.successMovieEntry = true;
+						//$scope.view = "mainView";
+						$scope.resetInput();
+						$scope.getAllMediaEntries();
+					}).
+					error(function(data, status, headers, config) {
+						//alert("Failed to add entry to library.");
+						console.error("Failed to add entry to library.");
+						$scope.failedToEnter = true;
+					});
+				}
+		}
+	}
+	
+	
 
 
 	$scope.removeEntry = function()
@@ -355,7 +413,7 @@ app.controller('helpListController',
 				// Remove ENTRY
 				$http.post('http://104.236.169.62:'+port+'/deleteNameFromHelpList',
 
-					{id: $scope.selectedEntry.id,
+					{id: $scope.selectedEntry.id
 					}).
 				success(function(data, status, headers, config) {
 
@@ -375,6 +433,39 @@ app.controller('helpListController',
 				});
 	     	  	$scope.onlyEntry = "";
 	}
+	
+	$scope.removeComment = function()
+	{
+		if ($scope.onlyEntry !== only)
+		{
+     	  		$scope.onlyEntry = "";
+			return;
+		}
+		
+				// Remove ENTRY
+				$http.post('http://104.236.169.62:'+port+'/deleteCommentFromDiscussion',
+
+					{id: $scope.selectedComment.id
+					}).
+				success(function(data, status, headers, config) {
+
+					//$scope.successUpdate = true;
+						//alert("Successfully updated entry in database!");
+						console.log("Successfully removed (hid) comment in database!");
+						$scope.selectedComment.show_entry = 0;
+						$scope.selectedComment = null;
+						$scope.getAllMediaEntries();
+						$scope.editingMovieEntry = false;
+
+					}).
+				error(function(data, status, headers, config) {
+					$scope.somethingWentWrong = true;
+					//alert("Failed to update entry in database.");
+					console.error("Failed to remove (hide) entry in database.");
+				});
+	     	  	$scope.onlyEntry = "";
+	}
+	
 
 	$scope.editContribution = function()
 	{
