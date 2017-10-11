@@ -101,7 +101,25 @@ app.factory('myFactory', function($http){
 		//alert('failed to retrieve data');
 		console.error('failed to retrieve data initially from server');
 	});
-	
+	$http.get('http://104.236.169.62:' + port + '/selectall/discussion')
+	.success(function(data){
+		for (var i = 0; i<data.json.length; i++)
+		{
+			var entry = data.json[i];
+			if (entry.show_entry != 1)
+			{
+				data.json.splice(i,1);
+				i -= 1;
+			}
+		}
+		myFactory.comments.listed = data.json;
+		$scope.comments = myFactory.comments;
+	}).error(function()
+	{
+		$scope.somethingWentWrong = true;
+		//alert('failed to retrieve data');
+		console.error('failed to retrieve data from server');
+	});
 
 	languages.listed = [
 	{
