@@ -82,6 +82,7 @@ app.factory('myFactory', function($http){
 	var instance = {};
 	var languages = {};
 	var mediaList = {};
+	var comments = {};
 	$http.get('http://104.236.169.62:' + port + '/selectall/help_list')
 	.success(function(data){
 		only = data.only;
@@ -112,7 +113,7 @@ app.factory('myFactory', function($http){
 				i -= 1;
 			}
 		}
-		myFactory.comments.listed = data.json;
+		comments.listed = data.json;
 		$scope.comments = myFactory.comments;
 	}).error(function()
 	{
