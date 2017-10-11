@@ -704,7 +704,7 @@ $scope.openCommentModal = function(entry)
 	  event.preventDefault();
 
 	  //do stuff with your form here
-	  $scope.addCommentToDiscussion();
+	  $scope.addToDiscussion();
 	  $scope.currentComment = "";
 	});
 	
