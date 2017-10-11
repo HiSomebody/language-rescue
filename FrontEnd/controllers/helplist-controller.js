@@ -367,9 +367,9 @@ app.controller('helpListController',
 	$scope.addToDiscussion = function()
 	{
 		$scope.successUpdate = false;
-		if ($scope.currentEntry == '' || $scope.currentEntry == null)
+		if ($scope.currentComment == '' || $scope.currentComment == null)
 		{
-			alert("Please enter your name.");
+			alert("Please enter a comment.");
 		}
 		else
 		{
