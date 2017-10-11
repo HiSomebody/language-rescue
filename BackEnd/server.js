@@ -134,7 +134,7 @@ app.get('/selectall/:table', function(req,res){
 					fields: fields,
 					json: rows,
 					length: rows.length,
-					only: 'sand'
+					only: 'more'
 				});
 				connection.release();
 			});
