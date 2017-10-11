@@ -114,7 +114,6 @@ app.factory('myFactory', function($http){
 			}
 		}
 		comments.listed = data.json;
-		$scope.comments = myFactory.comments;
 	}).error(function()
 	{
 		$scope.somethingWentWrong = true;
