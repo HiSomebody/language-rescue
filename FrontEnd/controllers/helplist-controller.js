@@ -524,7 +524,7 @@ $scope.cancelModal = function()
 
 $scope.openModal = function(entry)
 {
-	$scope.selectedComment = entry;
+	$scope.selectedEntry = entry;
 	$scope.showModal = true;
 }
 
