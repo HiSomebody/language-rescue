@@ -451,7 +451,7 @@
                            <tr>
                              <td align = "center">
                                   <br>
-  								 <form id="yourForm">
+  								 <form id="commentRemoveForm">
   								   <div class="col-lg-8">
   								 	<input align="center" class="form-control" ng-model="onlyEntry" style="font-size:20" type="password" placeholder="password" required>
   								   </div>
@@ -564,7 +564,10 @@
 		 			Discussion
 		  			</div>
 		 			 <br>
+				 	<form id="commentForm">		      
+					 
 		             <input style="font-size:24" type="text" ng-model="currentComment" placeholder = "enter comment">
+				 </form>
 					 <br>
 					 <br>
 		 		 	<a class="btn btn-danger btn-sm" role="button" ng-click="addToDiscussion()" data-dismiss="modal">Post</a>
@@ -572,7 +575,7 @@
 		             <br>
 		 			<br>
 		             <div class="list-group" id="CommentListDiv">
-		                <a ng-click ="openModal(c)" class="{{(c == selectedComment)? 'list-group-item active' : 'list-group-item'}}"
+		                <a ng-click ="openCommentModal(c)" class="{{(c == selectedComment)? 'list-group-item active' : 'list-group-item'}}"
 		                ng-repeat="c in comments.listed|limitTo:1000" ng-if="true"
 		              		data-toggle="modal" data-target="#myModal3">{{($index+1) + ".  " + changeRight(c.text)}}</a>
 		             </div>
