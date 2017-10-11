@@ -524,7 +524,13 @@ $scope.cancelModal = function()
 
 $scope.openModal = function(entry)
 {
-	$scope.selectedEntry = entry;
+	$scope.selectedComment = entry;
+	$scope.showModal = true;
+}
+
+$scope.openCommentModal = function(entry)
+{
+	$scope.selectedComment = entry;
 	$scope.showModal = true;
 }
 
@@ -660,6 +666,28 @@ $scope.openModal = function(entry)
 	  //do stuff with your form here
 	  $scope.addNameToList();
 	  $scope.currentEntry = "";
+	});
+	
+	
+	$('#commentRemoveForm').submit(function(event){
+
+	  // prevent default browser behaviour
+	  event.preventDefault();
+
+	  //do stuff with your form here
+	  $scope.removeComment();
+	  $('#myModal3').modal('hide');
+	  $scope.onlyEntry = "";
+	});
+	
+	$('#commentForm').submit(function(event){
+
+	  // prevent default browser behaviour
+	  event.preventDefault();
+
+	  //do stuff with your form here
+	  $scope.addCommentToDiscussion();
+	  $scope.currentComment = "";
 	});
 	
 	$scope.contributeEntry = function()
