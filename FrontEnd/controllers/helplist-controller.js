@@ -128,7 +128,7 @@ app.factory('myFactory', function($http){
 	}
 	];
 
-	instance.entries = entries;
+	instance.entries = mediaList;
 	instance.comments = comments;
 	fixChars(instance.entries);
 	instance.languages = languages;
@@ -380,7 +380,7 @@ app.controller('helpListController',
 		else
 		{
 			// CHECK IF ENTRY ALREADY EXISTS
-			var changedString = change($scope.currentEntry);
+			var changedString = change($scope.currentComment);
 			
 				{
 					// INSERT Comment INTO Discussion
