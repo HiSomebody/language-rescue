@@ -1,4 +1,3 @@
-
 <html>
 <head>
    <title>Mr. Soderquist's Help List</title>
@@ -69,7 +68,6 @@
 	margin-left: 25px;
 	margin-right: 25px;
     }
-
 }
    </style>
 <!--link rel="stylesheet" type="text/css" href="app.css"-->
@@ -435,8 +433,46 @@
  </div>
 
 
-   <!-- table ng-show="!editingMovieEntry && selectedEntry.ownerName != null" align="center">
+   <div id="myModal3" class="modal" role="dialog">
+     <div class="modal-dialog">
+          <div class="vertical-alignment-helper">
+               <div class="modal-dialog vertical-align-center">
+		   			<div class="modal-content">
+                       <a type="button" class="close" data-dismiss="modal" style="padding:6">&times;</a>
+  					  <table align="center">
 
+                           <tr valign = "top">
+                             <td align = "center">
+                               <h2>Remove comment from the list?</h2>
+                             </td>
+                           </tr>
+
+
+                           <tr>
+                             <td align = "center">
+                                  <br>
+  								 <form id="yourForm">
+  								   <div class="col-lg-8">
+  								 	<input align="center" class="form-control" ng-model="onlyEntry" style="font-size:20" type="password" placeholder="password" required>
+  								   </div>
+  								 </form>
+  								 <br/>
+  								 <br/>
+  								 <a class="btn btn-danger btn-sm" role="button" ng-click="removeComment()" data-dismiss="modal">Remove</a>
+                                   <br>
+                                   <br>
+                               </td>
+                             </tr>
+                        	</table>
+							</div>
+                          </div>
+               		 </div>
+             </div>
+     </div>
+</div>
+
+
+   <!-- table ng-show="!editingMovieEntry && selectedEntry.ownerName != null" align="center">
      <tr valign = "top">
        <td align = "center">
          <h2>{{selectedEntry.title}}</h2>
@@ -452,7 +488,6 @@
          </div>
        </td>
      </tr>
-
      <tr>
        <td align = "center">
              <a class="btn btn-danger btn-sm" role="button" ng-click="removeEntry()">Remove</a>
@@ -502,7 +537,11 @@
 	
     <table align="center" ng-show="!editingMovieEntry">
       <tr valign = "top">
-		      <td>
+		 <td>
+	  			<div align = "center">
+	 			Help List
+			</div>
+			<br>
 	<form id="nameForm">		      
             <input style="font-size:24" type="text" ng-model="currentEntry" placeholder = "add name">
 	</form>
@@ -515,10 +554,30 @@
                ng-repeat="e in entries.listed |limitTo:1000" ng-if="true"
              		data-toggle="modal" data-target="#myModal2">{{($index+1) + ".  " + changeRight(e.student_name)}}</a>
             </div>
-         </td>
-         <td>
-
-         </td>
+		 </td>
+		 
+		 <td>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</td>
+		 
+		 		 <!-- Discussion Board -->
+		 		 <td>
+		  			<div align = "center">
+		 			Discussion
+		  			</div>
+		 			 <br>
+		             <input style="font-size:24" type="text" ng-model="currentComment" placeholder = "enter comment">
+					 <br>
+					 <br>
+		 		 	<a class="btn btn-danger btn-sm" role="button" ng-click="addToDiscussion()" data-dismiss="modal">Post</a>
+			
+		             <br>
+		 			<br>
+		             <div class="list-group" id="CommentListDiv">
+		                <a ng-click ="openModal(c)" class="{{(c == selectedComment)? 'list-group-item active' : 'list-group-item'}}"
+		                ng-repeat="c in comments.listed|limitTo:1000" ng-if="true"
+		              		data-toggle="modal" data-target="#myModal3">{{($index+1) + ".  " + changeRight(c.text)}}</a>
+		             </div>
+		          </td>
+         
 	  </tr>
    </table>
 
