@@ -121,9 +121,15 @@ app.factory('myFactory', function($http){
 	}
 	];
 
+	var comments = {};
 
+	comments.listed = [
+	{
+	}
+	];
 
-	instance.entries = mediaList;
+	instance.entries = entries;
+	instance.comments = comments;
 	fixChars(instance.entries);
 	instance.languages = languages;
 
