@@ -1056,7 +1056,7 @@ app.controller('helpListController',
 	  $scope.addNameToLeaderBoard();
 	});
 	
-	$('#commentRemoveForm').submit(function(event){
+	$('#leaderRemoveForm').submit(function(event){
 
 	  // prevent default browser behaviour
 	  event.preventDefault();
