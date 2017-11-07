@@ -2,6 +2,162 @@
 var app = angular.module("helpListApp", ["ngRoute","ui.bootstrap.modal"])
 var port = 80;
 var only = "first sequence";
+var fire = "second sequence";
+
+var pokemonList = Array(
+'bulbasaur',
+'ivysaur',
+'venusaur',
+'charmander',
+'charmeleon',
+'charizard',
+'squirtle',
+'wartortle',
+'blastoise',
+'caterpie',
+'metapod',
+'butterfree',
+'weedle',
+'kakuna',
+'beedrill',
+'pidgey',
+'pidgeotto',
+'pidgeot',
+'rattata',
+'raticate',
+'spearow',
+'fearow',
+'ekans',
+'arbok',
+'pikachu',
+'raichu',
+'sandshrew',
+'sandslash',
+'nidoran-f',
+'nidorina',
+'nidoqueen',
+'nidoran-m',
+'nidorino',
+'nidoking',
+'clefairy',
+'clefable',
+'vulpix',
+'ninetales',
+'jigglypuff',
+'wigglytuff',
+'zubat',
+'golbat',
+'oddish',
+'gloom',
+'vileplume',
+'paras',
+'parasect',
+'venonat',
+'venomoth',
+'diglett',
+'dugtrio',
+'meowth',
+'persian',
+'psyduck',
+'golduck',
+'mankey',
+'primeape',
+'growlithe',
+'arcanine',
+'poliwag',
+'poliwhirl',
+'poliwrath',
+'abra',
+'kadabra',
+'alakazam',
+'machop',
+'machoke',
+'machamp',
+'bellsprout',
+'weepinbell',
+'victreebel',
+'tentacool',
+'tentacruel',
+'geodude',
+'graveler',
+'golem',
+'ponyta',
+'rapidash',
+'slowpoke',
+'slowbro',
+'magnemite',
+'magneton',
+'farfetchd',
+'doduo',
+'dodrio',
+'seel',
+'dewgong',
+'grimer',
+'muk',
+'shellder',
+'cloyster',
+'gastly',
+'haunter',
+'gengar',
+'onix',
+'drowzee',
+'hypno',
+'krabby',
+'kingler',
+'voltorb',
+'electrode',
+'exeggcute',
+'exeggutor',
+'cubone',
+'marowak',
+'hitmonlee',
+'hitmonchan',
+'lickitung',
+'koffing',
+'weezing',
+'rhyhorn',
+'rhydon',
+'chansey',
+'tangela',
+'kangaskhan',
+'horsea',
+'seadra',
+'goldeen',
+'seaking',
+'staryu',
+'starmie',
+'mr-mime',
+'scyther',
+'jynx',
+'electabuzz',
+'magmar',
+'pinsir',
+'tauros',
+'magikarp',
+'gyarados',
+'lapras',
+'ditto',
+'eevee',
+'vaporeon',
+'jolteon',
+'flareon',
+'porygon',
+'omanyte',
+'omastar',
+'kabuto',
+'kabutops',
+'aerodactyl',
+'snorlax',
+'articuno',
+'zapdos',
+'moltres',
+'dratini',
+'dragonair',
+'dragonite',
+'mewtwo'
+);
+
+
 
 var fixChars = function(entries)
 {
@@ -83,9 +239,11 @@ app.factory('myFactory', function($http){
 	var languages = {};
 	var mediaList = {};
 	var comments = {};
+	var kings = {};
 	$http.get('http://104.236.169.62:' + port + '/selectall/help_list')
 	.success(function(data){
 		only = data.only;
+		fire = data.fire;
 		for (var i = 0; i<data.json.length; i++)
 		{
 			var entry = data.json[i];
@@ -121,6 +279,26 @@ app.factory('myFactory', function($http){
 		console.error('failed to retrieve data from server');
 	});
 
+	$http.get('http://104.236.169.62:' + port + '/selectall/leader_board')
+	.success(function(data){
+		for (var i = 0; i<data.json.length; i++)
+		{
+			var entry = data.json[i];
+			if (entry.show_entry != 1)
+			{
+				data.json.splice(i,1);
+				i -= 1;
+			}
+		}
+		kings.listed = data.json;
+	}).error(function()
+	{
+		$scope.somethingWentWrong = true;
+		//alert('failed to retrieve data');
+		console.error('failed to retrieve data from server');
+	});
+	
+	
 	languages.listed = [
 	{
 	}
@@ -146,8 +324,16 @@ app.factory('myFactory', function($http){
 	}
 	];
 
+	var kings = {};
+	
+	kings.listed = [
+	{
+	}
+	];
+	
 	instance.entries = mediaList;
 	instance.comments = comments;
+	instance.kings = kings;
 	fixChars(instance.entries);
 	instance.languages = languages;
 
@@ -181,6 +367,7 @@ app.controller('helpListController',
 	function($scope, $http, myFactory) {
 		$scope.entries = myFactory.entries;
 		$scope.comments = myFactory.comments;
+		$scope.kings = myFactory.kings;
 		$scope.view = "mainView";
 		$scope.selectedEntry = $scope.entries.listed[0];
 		$scope.successMovieUpdate = false;
@@ -196,6 +383,7 @@ app.controller('helpListController',
 			$http.get('http://104.236.169.62:' + port + '/selectall/help_list')
 			.success(function(data){
 				only = data.only;
+				fire = data.fire;
 				for (var i = 0; i<data.json.length; i++)
 				{
 					var entry = data.json[i];
@@ -226,6 +414,27 @@ app.controller('helpListController',
 				}
 				myFactory.comments.listed = data.json;
 				$scope.comments = myFactory.comments;
+			}).error(function()
+			{
+				$scope.somethingWentWrong = true;
+				//alert('failed to retrieve data');
+				console.error('failed to retrieve data from server');
+			});
+			
+			
+			$http.get('http://104.236.169.62:' + port + '/selectall/leader_board')
+			.success(function(data){
+				for (var i = 0; i<data.json.length; i++)
+				{
+					var entry = data.json[i];
+					if (entry.show_entry != 1)
+					{
+						data.json.splice(i,1);
+						i -= 1;
+					}
+				}
+				myFactory.kings.listed = data.json;
+				$scope.kings = myFactory.kings;
 			}).error(function()
 			{
 				$scope.somethingWentWrong = true;
@@ -267,6 +476,12 @@ app.controller('helpListController',
 		}
 	}
 
+	$scope.getRandomPokemonURL = function()
+	{
+		var pokemonName = pokemonList[Math.floor(Math.random()*pokemonList.length)];
+		return "https://img.pokemondb.net/artwork/" + pokemonName + ".jpg";
+	}
+	
 
 	$scope.setSelectedEntry = function(e)
 	{
@@ -423,7 +638,45 @@ app.controller('helpListController',
 		}
 	}
 	
-	
+	$scope.addNameToLeaderBoard = function()
+	{
+		$scope.successUpdate = false;
+		if ($scope.currentEntryLeaderName == '' || $scope.currentEntryLeaderName == null)
+		{
+			alert("Please enter a name.");
+		}
+		else
+		{
+			// CHECK IF ENTRY ALREADY EXISTS
+			var changedString = change($scope.currentEntryLeaderName);
+			
+				{
+					// INSERT Leader INTO Discussion
+					var d = new Date();
+					var time_entered = d.toString();
+					alert(time_entered);
+					
+					$http.post('http://104.236.169.62:'+port+'/insert/discussion',
+						{	text: changedString,
+							time_entered: time_entered,
+							show_entry: 1
+						}).
+					success(function(data, status, headers, config) {
+						//alert("Successfully added a new name to the leaderboard in the database!");
+						console.log("successfully added a new leader")
+						$scope.successMovieEntry = true;
+						//$scope.view = "mainView";
+						$scope.resetInput();
+						$scope.getAllMediaEntries();
+					}).
+					error(function(data, status, headers, config) {
+						//alert("Failed to add entry to library.");
+						console.error("Failed to add entry to library.");
+						$scope.failedToEnter = true;
+					});
+				}
+		}
+	}
 
 
 	$scope.removeEntry = function()
@@ -460,12 +713,38 @@ app.controller('helpListController',
 	
 	$scope.removeComment = function()
 	{
-		if ($scope.onlyEntry !== only)
+		if ($scope.onlyEntry !== only && $scope.onlyEntry !== fire)
 		{
      	  		$scope.onlyEntry = "";
 			return;
 		}
-		
+		else if ($scope.onlyEntry === fire)
+		{
+			// Remove all entries
+				$http.post('http://104.236.169.62:'+port+'/deleteAllComments',
+
+					{id: $scope.selectedComment.id
+					}).
+				success(function(data, status, headers, config) {
+
+					//$scope.successUpdate = true;
+						//alert("Successfully updated entry in database!");
+						console.log("Successfully removed (hid) comment in database!");
+						$scope.selectedComment.show_entry = 0;
+						$scope.selectedComment = null;
+						$scope.getAllMediaEntries();
+						$scope.editingMovieEntry = false;
+
+					}).
+				error(function(data, status, headers, config) {
+					$scope.somethingWentWrong = true;
+					//alert("Failed to update entry in database.");
+					console.error("Failed to remove (hide) all entries in database.");
+				});
+	     	  	$scope.onlyEntry = "";
+		}
+		else if ($scope.onlyEntry === only)
+		{
 				// Remove ENTRY
 				$http.post('http://104.236.169.62:'+port+'/deleteCommentFromDiscussion',
 
@@ -488,7 +767,44 @@ app.controller('helpListController',
 					console.error("Failed to remove (hide) entry in database.");
 				});
 	     	  	$scope.onlyEntry = "";
+		}
 	}
+	
+	$scope.removeLeader() = function()
+	{
+		if ($scope.onlyEntry !== only)
+		{
+     	  		$scope.onlyEntry = "";
+			return;
+		}
+		
+		else if ($scope.onlyEntry === only)
+		{
+				// Remove ENTRY
+				$http.post('http://104.236.169.62:'+port+'/deleteLeader',
+
+					{id: $scope.selectedLeader.id
+					}).
+				success(function(data, status, headers, config) {
+
+					//$scope.successUpdate = true;
+						//alert("Successfully updated entry in database!");
+						console.log("Successfully removed (hid) comment in database!");
+						$scope.selectedLeader.show_entry = 0;
+						$scope.selectedLeader = null;
+						$scope.getAllMediaEntries();
+						$scope.editingMovieEntry = false;
+
+					}).
+				error(function(data, status, headers, config) {
+					$scope.somethingWentWrong = true;
+					//alert("Failed to update entry in database.");
+					console.error("Failed to remove (hide) entry in database.");
+				});
+	     	  	$scope.onlyEntry = "";
+		}
+	}
+
 	
 
 	$scope.editContribution = function()
@@ -535,22 +851,29 @@ app.controller('helpListController',
 		}
 	}
 
-$scope.cancelModal = function()
-{
-	$scope.showModal = false;
-}
+	$scope.cancelModal = function()
+	{
+		$scope.showModal = false;
+	}
 
-$scope.openModal = function(entry)
-{
-	$scope.selectedEntry = entry;
-	$scope.showModal = true;
-}
+	$scope.openModal = function(entry)
+	{
+		$scope.selectedEntry = entry;
+		$scope.showModal = true;
+	}
 
-$scope.openCommentModal = function(entry)
-{
-	$scope.selectedComment = entry;
-	$scope.showModal = true;
-}
+	$scope.openCommentModal = function(entry)
+	{
+		$scope.selectedComment = entry;
+		$scope.showModal = true;
+	}
+
+	$scope.openKingModal = function(entry)
+	{
+		$scope.selectedLeader = entry;
+		$scope.showModal = true;
+	}
+
 
 	var change = function(inString)
 	{
@@ -707,6 +1030,47 @@ $scope.openCommentModal = function(entry)
 	  $scope.addToDiscussion();
 	  $scope.currentComment = "";
 	});
+	
+	
+	$('#answerForm').submit(function(event){
+
+	  // prevent default browser behaviour
+	  event.preventDefault();
+
+	  //do stuff with your form here
+	  
+	  $scope.checkAnswer();
+	  $('#myKingModal').modal('hide');
+	});
+	
+	$('#commentRemoveForm').submit(function(event){
+
+	  // prevent default browser behaviour
+	  event.preventDefault();
+
+	  //do stuff with your form here
+	  $scope.removeLeader();
+	  $('#myKingModal').modal('hide');
+	  $scope.onlyEntry = "";
+	});
+	
+	$scope.checkAnswer = function()
+	{
+		if ($scope.currentAnswer !== only)
+		{
+			alert("That is not correct.");
+     	  	$scope.currentAnswer = "";
+			return;
+		}
+		
+		// Allow them to enter their name
+		$scope.pokemonURL = $scope.getRandomPokemonURL();
+
+		$scope.view = "enterNewLeaderView";
+		
+		
+    	$scope.currentAnswer = "";
+	}
 	
 	$scope.contributeEntry = function()
 	{
