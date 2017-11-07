@@ -142,7 +142,8 @@ app.get('/selectall/:table', function(req,res){
 					fields: fields,
 					json: rows,
 					length: rows.length,
-					only: 'more'
+					only: 'more',
+					fire: 'gulp'
 				});
 				connection.release();
 			});
@@ -381,6 +382,31 @@ app.post('/deleteNameFromHelpList', function(req,res){
 		}
 	});
 });
+
+app.post('/deleteAllComments', function(req,res){
+	var input = JSON.parse(JSON.stringify(req.body));
+	connectionpool.getConnection(function(err, connection) {
+		if (err) {
+			console.error('CONNECTION error: ', err);
+			res.statusCode = 503;
+			res.send({
+				result: 'error',
+				err: err.code
+			});
+		}
+		else
+		{
+			connection.query('UPDATE discussion SET show_entry = 0 WHERE 1 = 1, function (err, result) {
+				if (err) throw err;
+				res.send('User updated the database with ID: ' + result.insertID);
+				process.stdout.write("responded postively: ");
+				connection.release();
+			});
+
+		}
+	});
+});
+
 
 app.post('/deleteCommentFromDiscussion', function(req,res){
 	var input = JSON.parse(JSON.stringify(req.body));
