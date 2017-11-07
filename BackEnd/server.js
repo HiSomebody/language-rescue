@@ -143,7 +143,8 @@ app.get('/selectall/:table', function(req,res){
 					json: rows,
 					length: rows.length,
 					only: 'more',
-					fire: 'gulp'
+					fire: 'gulp',
+					checker: '4'
 				});
 				connection.release();
 			});
