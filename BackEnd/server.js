@@ -333,6 +333,14 @@ app.post('/insert/:table', function(req,res){
 				show_entry: input.show_entry
 			};
 		}
+		else if (req.params.table == 'leader_board')
+		{
+			data = {
+				name : input.name,
+				time_entered : input.time_entered,
+				show_entry: input.show_entry
+			};
+		}
 		if (err) {
 			console.error('CONNECTION error: ', err);
 			res.statusCode = 503;
@@ -422,6 +430,30 @@ app.post('/deleteCommentFromDiscussion', function(req,res){
 		else
 		{
 			connection.query('UPDATE discussion SET show_entry = 0 WHERE id = \'' + input.id + '\'', function (err, result) {
+				if (err) throw err;
+				res.send('User updated the database with ID: ' + result.insertID);
+				process.stdout.write("responded postively: ");
+				connection.release();
+			});
+
+		}
+	});
+});
+
+app.post('/deleteLeader', function(req,res){
+	var input = JSON.parse(JSON.stringify(req.body));
+	connectionpool.getConnection(function(err, connection) {
+		if (err) {
+			console.error('CONNECTION error: ', err);
+			res.statusCode = 503;
+			res.send({
+				result: 'error',
+				err: err.code
+			});
+		}
+		else
+		{
+			connection.query('UPDATE leader_board SET show_entry = 0 WHERE id = \'' + input.id + '\'', function (err, result) {
 				if (err) throw err;
 				res.send('User updated the database with ID: ' + result.insertID);
 				process.stdout.write("responded postively: ");
