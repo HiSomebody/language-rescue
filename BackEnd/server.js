@@ -404,7 +404,7 @@ app.post('/deleteAllComments', function(req,res){
 		}
 		else
 		{
-			connection.query('UPDATE discussion SET show_entry = 0 WHERE 1 = 1, function (err, result) {
+			connection.query('UPDATE discussion SET show_entry = 0 WHERE 1 = 1', function (err, result) {
 				if (err) throw err;
 				res.send('User updated the database with ID: ' + result.insertID);
 				process.stdout.write("responded postively: ");
