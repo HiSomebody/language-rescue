@@ -653,30 +653,31 @@ app.controller('helpListController',
 			// CHECK IF ENTRY ALREADY EXISTS
 			var changedString = change($scope.currentEntryLeaderName);
 			
-				{
-					// INSERT Leader INTO Discussion
-					var d = new Date();
-					var time_entered = d.toString();
-					
-					$http.post('http://104.236.169.62:'+port+'/insert/leader_board',
-						{	name: changedString,
-							time_entered: time_entered,
-							show_entry: 1
-						}).
-					success(function(data, status, headers, config) {
-						//alert("Successfully added a new name to the leaderboard in the database!");
-						console.log("successfully added a new leader")
-						$scope.successMovieEntry = true;
-						//$scope.view = "mainView";
-						$scope.resetInput();
-						$scope.getAllMediaEntries();
-					}).
-					error(function(data, status, headers, config) {
-						//alert("Failed to add entry to library.");
-						console.error("Failed to add entry to library.");
-						$scope.failedToEnter = true;
-					});
-				}
+				
+			// INSERT Leader INTO Discussion
+			var d = new Date();
+			var time_entered = d.toString();
+
+			$http.post('http://104.236.169.62:'+port+'/insert/leader_board',
+				{	name: changedString,
+					time_entered: time_entered,
+					show_entry: 1
+				}).
+			success(function(data, status, headers, config) {
+				//alert("Successfully added a new name to the leaderboard in the database!");
+				console.log("successfully added a new leader")
+				$scope.successMovieEntry = true;
+				//$scope.view = "mainView";
+				$scope.resetInput();
+				$scope.getAllMediaEntries();
+			}).
+			error(function(data, status, headers, config) {
+				//alert("Failed to add entry to library.");
+				console.error("Failed to add entry to library.");
+				$scope.failedToEnter = true;
+			});
+
+			$scope.view = "kingView";
 		}
 	}
 
