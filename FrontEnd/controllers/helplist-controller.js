@@ -770,7 +770,7 @@ app.controller('helpListController',
 		}
 	}
 	
-	$scope.removeLeader() = function()
+	$scope.removeLeader = function()
 	{
 		if ($scope.onlyEntry !== only)
 		{
