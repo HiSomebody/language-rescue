@@ -528,7 +528,7 @@
 		             <div class="list-group" id="KingListDiv" align="center">
 		                <a align="left" ng-click ="openKingModal(k)" class="{{(k == selectedLeader)? 'list-group-item active' : 'list-group-item'}}"
 		                ng-repeat="k in kings.listed|limitTo:1000" ng-if="true"
-		              		data-toggle="modal" data-target="#myKingModal">{{($index+1) + ".  " + changeRight(k.text)}}</a>
+		              		data-toggle="modal" data-target="#myKingModal">{{($index+1) + ".  " + changeRight(k.name)}}</a>
 		             </div>
 		</td>
     </table>
