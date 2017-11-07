@@ -659,7 +659,7 @@ app.controller('helpListController',
 					var time_entered = d.toString();
 					
 					$http.post('http://104.236.169.62:'+port+'/insert/leader_board',
-						{	text: changedString,
+						{	name: changedString,
 							time_entered: time_entered,
 							show_entry: 1
 						}).
