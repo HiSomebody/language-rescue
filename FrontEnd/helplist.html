@@ -105,8 +105,11 @@
 
                <!-- li class={{(view=='splashPageView')?'active':''}}><a ng-click="setView('splashPageView')">Add Movie</a></li -->
 		<!-- li class={{(view=='catalogView')?'active':''}}><a ng-click="setView('catalogView')">Library</a></li -->
-		<li class={{(view=='mainView')?'active':''}}><a ng-click="setView('mainView')">View List</a></li>
-               <li class={{(view=='aboutView')?'active':''}}><a ng-click="setView('aboutView')">About</a></li>
+		<li class={{(view=='mainView')?'active':''}}><a ng-click="setView('mainView')">Help List</a></li>
+		<li class={{(view=='discussionView')?'active':''}}><a ng-click="setView('discussionView')">Discussion</a></li>
+   		<li class={{(view=='kingView')?'active':''}}><a ng-click="setView('kingView')">King of the Hill</a></li>
+		<li class={{(view=='aboutView')?'active':''}}><a ng-click="setView('aboutView')">About</a></li>
+
             </ul>
 
 	</div>
@@ -365,13 +368,173 @@
 
 
 
+<!-- Discussion Board -->
+<div ng-show="view=='discussionView'">
 
+
+<div id="myModal3" class="modal" role="dialog">
+     <div class="modal-dialog">
+          <div class="vertical-alignment-helper">
+               <div class="modal-dialog vertical-align-center">
+		   			<div class="modal-content">
+                       <a type="button" class="close" data-dismiss="modal" style="padding:6">&times;</a>
+  					  <table align="center">
+
+                           <tr valign = "top">
+                             <td align = "center">
+                               <h2>Remove comment from the list?</h2>
+                             </td>
+                           </tr>
+
+
+                           <tr>
+                             <td align = "center">
+                                  <br>
+  								 <form id="commentRemoveForm">
+  								   <div class="col-lg-8">
+  								 	<input align="center" class="form-control" ng-model="onlyEntry" style="font-size:20" type="password" placeholder="password" required>
+  								   </div>
+  								 </form>
+  								 <br/>
+  								 <br/>
+  								 <a class="btn btn-danger btn-sm" role="button" ng-click="removeComment()" data-dismiss="modal">Remove</a>
+                                   <br>
+                                   <br>
+                               </td>
+                             </tr>
+                        	</table>
+							</div>
+                          </div>
+               		 </div>
+             </div>
+     </div>
+
+
+    <table align="center" ng-show="!editingMovieEntry">
+
+		<td>
+		  			<div align = "center">
+		 			Discussion
+		  			</div>
+		 			 <br>
+				 	<form id="commentForm">		      
+					 
+		             <input style="font-size:24" type="text" ng-model="currentComment" placeholder = "enter comment">
+					</form>
+		 		 	<a class="btn btn-danger btn-sm" role="button" ng-click="addToDiscussion()" data-dismiss="modal">Post</a>
+			
+		             <br>
+		 			<br>
+		             <div class="list-group" id="CommentListDiv" align="left">
+		                <a ng-click ="openCommentModal(c)" class="{{(c == selectedComment)? 'list-group-item active' : 'list-group-item'}}"
+		                ng-repeat="c in comments.listed|limitTo:1000" ng-if="true"
+		              		data-toggle="modal" data-target="#myModal3">{{changeRight(c.text)}}</a>
+		             </div>
+		</td>
+    </table>
+
+</div>
+
+				  
+<!-- Winner View -->
+
+<div ng-show="view=='enterNewLeaderView'">
+<table align="center" ng-show="!editingMovieEntry">
+
+		<td align="center">
+		  			
+					<br>
+					<div ng-init="pokemonURL = getRandomPokemonURL()">
+					<img ng-src="{{pokemonURL}}">
+					</div>
+					
+		 			<br>
+				 	<br>
+					<h2>Great Job! Enter your name and you can be on the leader board</h2>
+					
+					<form id="kingForm">		      
+					 
+						<input style="font-size:24" type="text" ng-model="currentEntryLeaderName" placeholder = "enter name">
+						<a class="btn btn-danger btn-sm" role="button" ng-click="addNameToLeaderBoard()" data-dismiss="modal">Submit</a>
+					</form>
+		</td>
+    </table>
+</div>
 
 <!-- --------------------------------------------------------------------------------------------------------------- -->
 
 
+<!-- King of the Hill List -->
+<div ng-show="view=='kingView'">
 
 
+<div id="myKingModal" class="modal" role="dialog">
+     <div class="modal-dialog">
+          <div class="vertical-alignment-helper">
+               <div class="modal-dialog vertical-align-center">
+		   			<div class="modal-content">
+                       <a type="button" class="close" data-dismiss="modal" style="padding:6">&times;</a>
+  					  <table align="center">
+
+                           <tr valign = "top">
+                             <td align = "center">
+                               <h2>Remove {{selectedLeader.text}} from the leader board?</h2>
+                             </td>
+                           </tr>
+
+
+                           <tr>
+                             <td align = "center">
+                                  <br>
+  								 <form id="leaderRemoveForm">
+  								   <div class="col-lg-8">
+  								 	<input align="center" class="form-control" ng-model="onlyEntry" style="font-size:20" type="password" placeholder="password" required>
+  								   </div>
+  								 </form>
+  								 <br/>
+  								 <br/>
+  								 <a class="btn btn-danger btn-sm" role="button" ng-click="removeLeader()" data-dismiss="modal">Remove</a>
+                                   <br>
+                                   <br>
+                               </td>
+                             </tr>
+                        	</table>
+							</div>
+                          </div>
+               		 </div>
+             </div>
+     </div>
+
+
+    <table align="center" ng-show="!editingMovieEntry">
+
+		<td align="center">
+		  			
+					<br>
+					Prove your programming superiority. Be the first to enter the answer and get your name on the leader board. New questions will be added regularly.
+		 			<br>
+				 	<br>
+					<h2>Question:</h2>
+					<h1>What is 2 + 2?</h1>
+					<form id="answerForm">		      
+					 
+		             <input style="font-size:24" type="text" ng-model="currentAnswer" placeholder = "enter answer">
+					 <a class="btn btn-danger btn-sm" role="button" ng-click="checkAnswer()" data-dismiss="modal">Submit</a>
+				 </form>
+		 		 	
+			
+		             <br>
+		 			<br>
+		             <div class="list-group" id="KingListDiv" align="center">
+		                <a align="left" ng-click ="openKingModal(k)" class="{{(k == selectedLeader)? 'list-group-item active' : 'list-group-item'}}"
+		                ng-repeat="k in kings.listed|limitTo:1000" ng-if="true"
+		              		data-toggle="modal" data-target="#myKingModal">{{($index+1) + ".  " + changeRight(k.text)}}</a>
+		             </div>
+		</td>
+    </table>
+
+				  </div>
+<!-- --------------------------------------------------------------------------------------------------------------- -->
 
 
 
@@ -434,109 +597,16 @@
  </div>
 
 
-   <div id="myModal3" class="modal" role="dialog">
-     <div class="modal-dialog">
-          <div class="vertical-alignment-helper">
-               <div class="modal-dialog vertical-align-center">
-		   			<div class="modal-content">
-                       <a type="button" class="close" data-dismiss="modal" style="padding:6">&times;</a>
-  					  <table align="center">
-
-                           <tr valign = "top">
-                             <td align = "center">
-                               <h2>Remove comment from the list?</h2>
-                             </td>
-                           </tr>
+   
 
 
-                           <tr>
-                             <td align = "center">
-                                  <br>
-  								 <form id="commentRemoveForm">
-  								   <div class="col-lg-8">
-  								 	<input align="center" class="form-control" ng-model="onlyEntry" style="font-size:20" type="password" placeholder="password" required>
-  								   </div>
-  								 </form>
-  								 <br/>
-  								 <br/>
-  								 <a class="btn btn-danger btn-sm" role="button" ng-click="removeComment()" data-dismiss="modal">Remove</a>
-                                   <br>
-                                   <br>
-                               </td>
-                             </tr>
-                        	</table>
-							</div>
-                          </div>
-               		 </div>
-             </div>
-     </div>
-</div>
+   
 
 
-   <!-- table ng-show="!editingMovieEntry && selectedEntry.ownerName != null" align="center">
-     <tr valign = "top">
-       <td align = "center">
-         <h2>{{selectedEntry.title}}</h2>
-         {{selectedEntry.description}}
-       </td>
-     </tr>
-     <tr>
-       <td align = "center">
-         <div ng-show="selectedEntry.ownerName != null" align="center">
-           <br>
-           Owner:&nbsp<strong>{{selectedEntry.ownerName}}</strong>
-           <br>
-         </div>
-       </td>
-     </tr>
-     <tr>
-       <td align = "center">
-             <a class="btn btn-danger btn-sm" role="button" ng-click="removeEntry()">Remove</a>
-             <a class="btn btn-primary btn-sm" role="button" ng-click="editMovieEntry()">Edit</a>
-             <br>
-         </td>
-       </tr>
-  	</table-->
-  <!--/div -->
-
-
-    <table ng-show="editingMovieEntry == true" align="center">
-      <tr>
-         <td>
-            <h3>
-
-            </h3>
-            <input class="form-control" style="font-size:20" type="text" ng-model="selectedEntry.title" placeholder = "movie title" required>
-         </td>
-      </tr>
-      <tr>
-         <td>
-            <h3>
-            </h3>
-            <input class="form-control" style="font-size:20" type="text" ng-model="selectedEntry.ownerName" placeholder = "owner name" required>
-         </td>
-      </tr>
-      <tr>
-         <td>
-            <h3>
-            </h3>
-      <textarea class="form-control" rows="5" id="additionalInfo" ng-model="selectedEntry.description" placeholder = "additional info (hint: the more info here, the more to search by. Example: Disney 1997 Danny DeVito Animated)"></textarea>
-         </td>
-      </tr>
-      <tr>
-        <td align="center">
-          <a class="btn btn-primary btn-sm" role="button" ng-click="editContribution()">Save</a>
-          <a class="btn btn-primary btn-sm" role="button" ng-click="cancelEdit()">Cancel</a>
-          <br>
-        </td>
-      </tr>
-    </table>
-	
 	
 	
 	<!-- main list view------------------ -->
-	
-    <table align="center" ng-show="!editingMovieEntry">
+    <table align="center" ng-show="!editingMovieEntry" >
       <tr valign = "top">
 		 <td>
 	  			<div align = "center">
@@ -557,28 +627,6 @@
             </div>
 		 </td>
 		 
-		 <td>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</td>
-		 
-		 		 <!-- Discussion Board -->
-		 		 <td>
-		  			<div align = "center">
-		 			Discussion
-		  			</div>
-		 			 <br>
-				 	<form id="commentForm">		      
-					 
-		             <input style="font-size:24" type="text" ng-model="currentComment" placeholder = "enter comment">
-				 </form>
-		 		 	<a class="btn btn-danger btn-sm" role="button" ng-click="addToDiscussion()" data-dismiss="modal">Post</a>
-			
-		             <br>
-		 			<br>
-		             <div class="list-group" id="CommentListDiv">
-		                <a ng-click ="openCommentModal(c)" class="{{(c == selectedComment)? 'list-group-item active' : 'list-group-item'}}"
-		                ng-repeat="c in comments.listed|limitTo:1000" ng-if="true"
-		              		data-toggle="modal" data-target="#myModal3">{{changeRight(c.text)}}</a>
-		             </div>
-		          </td>
          
 	  </tr>
    </table>
