@@ -3,6 +3,7 @@ var app = angular.module("helpListApp", ["ngRoute","ui.bootstrap.modal"])
 var port = 80;
 var only = "first sequence";
 var fire = "second sequence";
+var checker = "third sequence";
 
 var pokemonList = Array(
 'bulbasaur',
@@ -244,6 +245,7 @@ app.factory('myFactory', function($http){
 	.success(function(data){
 		only = data.only;
 		fire = data.fire;
+		checker = data.checker;
 		for (var i = 0; i<data.json.length; i++)
 		{
 			var entry = data.json[i];
@@ -384,6 +386,7 @@ app.controller('helpListController',
 			.success(function(data){
 				only = data.only;
 				fire = data.fire;
+				checker = data.checker;
 				for (var i = 0; i<data.json.length; i++)
 				{
 					var entry = data.json[i];
@@ -654,9 +657,8 @@ app.controller('helpListController',
 					// INSERT Leader INTO Discussion
 					var d = new Date();
 					var time_entered = d.toString();
-					alert(time_entered);
 					
-					$http.post('http://104.236.169.62:'+port+'/insert/discussion',
+					$http.post('http://104.236.169.62:'+port+'/insert/leader_board',
 						{	text: changedString,
 							time_entered: time_entered,
 							show_entry: 1
@@ -1043,6 +1045,16 @@ app.controller('helpListController',
 	  $('#myKingModal').modal('hide');
 	});
 	
+	$('#kingForm').submit(function(event){
+
+	  // prevent default browser behaviour
+	  event.preventDefault();
+
+	  //do stuff with your form here
+	  
+	  $scope.addNameToLeaderBoard();
+	});
+	
 	$('#commentRemoveForm').submit(function(event){
 
 	  // prevent default browser behaviour
@@ -1056,7 +1068,7 @@ app.controller('helpListController',
 	
 	$scope.checkAnswer = function()
 	{
-		if ($scope.currentAnswer !== only)
+		if ($scope.currentAnswer !== checker)
 		{
 			alert("That is not correct.");
      	  	$scope.currentAnswer = "";
