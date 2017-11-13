@@ -248,6 +248,8 @@ app.factory('myFactory', function($http){
 		only = data.only;
 		fire = data.fire;
 		checker = data.checker;
+		q1a = data.q1a;
+		q1b = data.q1b;
 		for (var i = 0; i<data.json.length; i++)
 		{
 			var entry = data.json[i];
