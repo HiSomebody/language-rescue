@@ -4,6 +4,8 @@ var port = 80;
 var only = "first sequence";
 var fire = "second sequence";
 var checker = "third sequence";
+var q1a = "fourth sequence";
+var q1b = "fifth sequence";
 
 var pokemonList = Array(
 'bulbasaur',
@@ -1069,7 +1071,7 @@ app.controller('helpListController',
 	
 	$scope.checkAnswer = function()
 	{
-		if ($scope.currentAnswer !== checker)
+		if ($scope.currentAnswer !== q1a && $scope.currentAnswer !== q1b)
 		{
 			alert("That is not correct.");
      	  	$scope.currentAnswer = "";
