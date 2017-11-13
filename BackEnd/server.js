@@ -144,7 +144,9 @@ app.get('/selectall/:table', function(req,res){
 					length: rows.length,
 					only: 'more',
 					fire: 'gulp',
-					checker: '55'
+					checker: '55',
+					q1a: '499275',
+					q2a: '499,275'
 				});
 				connection.release();
 			});
