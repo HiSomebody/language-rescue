@@ -146,7 +146,7 @@ app.get('/selectall/:table', function(req,res){
 					fire: 'gulp',
 					checker: '55',
 					q1a: '499275',
-					q2a: '499,275'
+					q1b: '499,275'
 				});
 				connection.release();
 			});
