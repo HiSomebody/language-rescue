@@ -688,12 +688,38 @@ app.controller('helpListController',
 
 	$scope.removeEntry = function()
 	{
-		if ($scope.onlyEntry !== only)
+		if ($scope.onlyEntry !== only && $scope.onlyEntry !== fire)
 		{
      	  		$scope.onlyEntry = "";
 			return;
 		}
-		
+		else if ($scope.onlyEntry === fire)
+		{
+			// Remove all entries
+				$http.post('http://104.236.169.62:'+port+'/deleteAllFromHelpList',
+
+					{id: $scope.selectedEntry.id
+					}).
+				success(function(data, status, headers, config) {
+
+					//$scope.successUpdate = true;
+						//alert("Successfully updated entry in database!");
+						console.log("Successfully removed (hid) comment in database!");
+						$scope.selectedComment.show_entry = 0;
+						$scope.selectedComment = null;
+						$scope.getAllMediaEntries();
+						$scope.editingMovieEntry = false;
+
+					}).
+				error(function(data, status, headers, config) {
+					$scope.somethingWentWrong = true;
+					//alert("Failed to update entry in database.");
+					console.error("Failed to remove (hide) all entries in database.");
+				});
+	     	  	$scope.onlyEntry = "";
+		}
+		else if ($scope.onlyEntry === only)
+		{
 				// Remove ENTRY
 				$http.post('http://104.236.169.62:'+port+'/deleteNameFromHelpList',
 
@@ -716,6 +742,7 @@ app.controller('helpListController',
 					console.error("Failed to remove (hide) entry in database.");
 				});
 	     	  	$scope.onlyEntry = "";
+		}
 	}
 	
 	$scope.removeComment = function()
