@@ -1102,7 +1102,7 @@ app.controller('helpListController',
 	
 	$scope.checkAnswer = function()
 	{
-		if ($scope.currentAnswer !== q2)
+		if (parseInt($scope.currentAnswer) !== q2)
 		{
 			alert("That is not correct.");
      	  	$scope.currentAnswer = "";
