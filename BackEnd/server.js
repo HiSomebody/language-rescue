@@ -148,7 +148,9 @@ app.get('/selectall/:table', function(req,res){
 					q1a: '499275',
 					q1b: '499,275',
 					q2a: '4603',
-					q2b: '4,603'
+					q2b: '4,603',
+					q3a: '1414',
+					q3b: '1,414'
 				});
 				connection.release();
 			});
