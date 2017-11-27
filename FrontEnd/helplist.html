@@ -108,6 +108,7 @@
 		<li class={{(view=='mainView')?'active':''}}><a ng-click="setView('mainView')">Help List</a></li>
 		<li class={{(view=='discussionView')?'active':''}}><a ng-click="setView('discussionView')">Discussion</a></li>
    		<li class={{(view=='kingView')?'active':''}}><a ng-click="setView('kingView')">King of the Hill</a></li>
+		<li class={{(view=='scoreView')?'active':''}}><a ng-click="setView('scoreView')">Scoreboard</a></li>
 		<li class={{(view=='aboutView')?'active':''}}><a ng-click="setView('aboutView')">About</a></li>
 
             </ul>
@@ -118,6 +119,125 @@
 <!-- /.container-fluid -->
    </nav>
 
+	
+<!-- --------------------------------------------------------------------------------------------------------------- -->
+
+	
+<div ng-show="view=='scoreView'">
+	<center>
+	<h1>SCORES</h1><br>
+	<h2>
+		4 pts - first to answer the question
+		<br>
+		3 pts - second to answer the question
+		<br>
+		2 pts - third to answer the question
+		<br>
+		1 pt - anyone else that answers the question
+	</h2>
+	<br>
+	
+	<table align="center">
+		<tr>
+			<th>
+				Score
+			</th>
+			<th>
+				Student
+			</th>
+		</tr>
+		<tr>
+			<td>
+				8
+			</td>
+			<td>
+				Ronald Mabbitt
+			</td>
+		</tr>
+		<tr>
+			<td>
+				5
+			</td>
+			<td>
+				Ray Wordelman
+			</td>
+		</tr>
+		<tr>
+			<td>
+				4
+			</td>
+			<td>
+				Nolan Hokanson
+			</td>
+		</tr>
+		<tr>
+			<td>
+				4
+			</td>
+			<td>
+				Luke Snyder
+			</td>
+		</tr>
+		<tr>
+			<td>
+				3
+			</td>
+			<td>
+				Hadden Smith
+			</td>
+		</tr>
+		<tr>
+			<td>
+				2
+			</td>
+			<td>
+				Caeden Fillerup
+			</td>
+		</tr>
+		<tr>
+			<td>
+				2
+			</td>
+			<td>
+				Nick Tweed
+			</td>
+		</tr>
+		<tr>
+			<td>
+				1
+			</td>
+			<td>
+				Taylor Brustad
+			</td>
+		</tr>
+		<tr>
+			<td>
+				1
+			</td>
+			<td>
+				Jaxon Steed
+			</td>
+		</tr>
+		<tr>
+			<td>
+				1
+			</td>
+			<td>
+				Max Livingston
+			</td>
+		</tr>
+		<tr>
+			<td>
+				1
+			</td>
+			<td>
+				Abrahan Gonzalez
+			</td>
+		</tr>
+	</table>
+	</center>
+</div>
+	
 <!-- --------------------------------------------------------------------------------------------------------------- -->
 
 
