@@ -10,6 +10,8 @@ var q2a = "sixth sequence";
 var q2b = "seventh sequence";
 var q3a = "eighth sequence";
 var q3b = "ninth sequence";
+var q4a = "tenth sequence";
+var q4b = "eleventh sequence";
 
 var pokemonList = Array(
 'bulbasaur',
@@ -258,6 +260,9 @@ app.factory('myFactory', function($http){
 		q2b = data.q2b;
 		q3a = data.q3a;
 		q3b = data.q3b;
+		q4a = data.q4a;
+		q4b = data.q4b;
+		
 		for (var i = 0; i<data.json.length; i++)
 		{
 			var entry = data.json[i];
@@ -1108,7 +1113,7 @@ app.controller('helpListController',
 	
 	$scope.checkAnswer = function()
 	{
-		if ($scope.currentAnswer !== q3a && $scope.currentAnswer !== q3b)
+		if ($scope.currentAnswer !== q4a && $scope.currentAnswer !== q4b)
 		{
 			alert("That is not correct.");
      	  		$scope.currentAnswer = "";
