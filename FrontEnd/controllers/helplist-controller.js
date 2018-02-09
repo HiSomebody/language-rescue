@@ -703,12 +703,8 @@ app.controller('helpListController',
 
 	$scope.removeEntry = function()
 	{	
-		$http.post('http://104.236.169.62:'+port+'/enterPassword',
-
-		{
-		 	password: $scope.onlyEntry
-		}).
-		success(function(data, status, headers, config) {
+		$http.get('http://104.236.169.62:'+port+'/enterPassword/'+$scope.onlyEntry)
+		.success(function(data) {
 
 			if (data.only == "1")
 			{
@@ -768,7 +764,7 @@ app.controller('helpListController',
 			
 
 		}).
-		error(function(data, status, headers, config) {
+		error(function() {
 			$scope.somethingWentWrong = true;
 			//alert("Failed to update entry in database.");
 			console.error("Failed to process password");
