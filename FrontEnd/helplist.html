@@ -559,7 +559,7 @@
 		 			<br>
 		             <div class="list-group" id="CommentListDiv" align="left">
 		                <a ng-click ="openCommentModal(c)" class="{{(c == selectedComment)? 'list-group-item active' : 'list-group-item'}}"
-		                ng-repeat="c in comments.listed|limitTo:1000" ng-if="true"
+		                ng-repeat="c in comments.listed|limitTo:1000 | reverse" ng-if="true"
 		              		data-toggle="modal" data-target="#myModal3">{{changeRight(c.text)}}</a>
 		             </div>
 		</td>
