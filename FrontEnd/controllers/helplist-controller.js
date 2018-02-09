@@ -774,38 +774,11 @@ app.controller('helpListController',
 	
 	$scope.removeComment = function()
 	{
-		if ($scope.onlyEntry !== only && $scope.onlyEntry !== fire)
-		{
-     	  		$scope.onlyEntry = "";
-			return;
-		}
-		else if ($scope.onlyEntry === fire)
-		{
-			// Remove all entries
-				$http.post('http://104.236.169.62:'+port+'/deleteAllComments',
+		$http.get('http://104.236.169.62:'+port+'/enterPassword/'+$scope.onlyEntry)
+		.success(function(data) {
 
-					{id: $scope.selectedComment.id
-					}).
-				success(function(data, status, headers, config) {
-
-					//$scope.successUpdate = true;
-						//alert("Successfully updated entry in database!");
-						console.log("Successfully removed (hid) comment in database!");
-						$scope.selectedComment.show_entry = 0;
-						$scope.selectedComment = null;
-						$scope.getAllMediaEntries();
-						$scope.editingMovieEntry = false;
-
-					}).
-				error(function(data, status, headers, config) {
-					$scope.somethingWentWrong = true;
-					//alert("Failed to update entry in database.");
-					console.error("Failed to remove (hide) all entries in database.");
-				});
-	     	  	$scope.onlyEntry = "";
-		}
-		else if ($scope.onlyEntry === only)
-		{
+			if (data.only == "1")
+			{
 				// Remove ENTRY
 				$http.post('http://104.236.169.62:'+port+'/deleteCommentFromDiscussion',
 
@@ -827,20 +800,57 @@ app.controller('helpListController',
 					//alert("Failed to update entry in database.");
 					console.error("Failed to remove (hide) entry in database.");
 				});
-	     	  	$scope.onlyEntry = "";
-		}
+	     	  		$scope.onlyEntry = "";
+			}
+			else if (data.only == "2")
+			{
+				// Remove all entries
+				$http.post('http://104.236.169.62:'+port+'/deleteAllComments',
+
+					{id: $scope.selectedComment.id
+					}).
+				success(function(data, status, headers, config) {
+
+					//$scope.successUpdate = true;
+						//alert("Successfully updated entry in database!");
+						console.log("Successfully removed (hid) comment in database!");
+						$scope.selectedComment.show_entry = 0;
+						$scope.selectedComment = null;
+						$scope.getAllMediaEntries();
+						$scope.editingMovieEntry = false;
+
+					}).
+				error(function(data, status, headers, config) {
+					$scope.somethingWentWrong = true;
+					//alert("Failed to update entry in database.");
+					console.error("Failed to remove (hide) all entries in database.");
+				});
+	     	  		$scope.onlyEntry = "";
+			}
+			else
+			{
+				$scope.onlyEntry = "";
+				return;
+			}
+			
+
+		}).
+		error(function() {
+			$scope.somethingWentWrong = true;
+			//alert("Failed to update entry in database.");
+			console.error("Failed to process password");
+		});
 	}
 	
+	
+	
 	$scope.removeLeader = function()
-	{
-		if ($scope.onlyEntry !== only)
-		{
-     	  		$scope.onlyEntry = "";
-			return;
-		}
-		
-		else if ($scope.onlyEntry === only)
-		{
+	{	
+		$http.get('http://104.236.169.62:'+port+'/enterPassword/'+$scope.onlyEntry)
+		.success(function(data) {
+
+			if (data.only == "1")
+			{
 				// Remove ENTRY
 				$http.post('http://104.236.169.62:'+port+'/deleteLeader',
 
@@ -862,8 +872,22 @@ app.controller('helpListController',
 					//alert("Failed to update entry in database.");
 					console.error("Failed to remove (hide) entry in database.");
 				});
-	     	  	$scope.onlyEntry = "";
-		}
+	     	  		$scope.onlyEntry = "";
+			}
+			else
+			{
+				$scope.onlyEntry = "";
+				return;
+			}
+			
+
+		}).
+		error(function() {
+			$scope.somethingWentWrong = true;
+			//alert("Failed to update entry in database.");
+			console.error("Failed to process password");
+		});
+		
 	}
 
 	
