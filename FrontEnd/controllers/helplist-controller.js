@@ -243,6 +243,12 @@ var fixChars = function(entries)
 	}
 }
 
+app.filter('reverse', function() {
+  return function(items) {
+    return items.slice().reverse();
+  };
+});
+
 app.factory('myFactory', function($http){
 
 	var instance = {};
