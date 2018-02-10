@@ -285,7 +285,7 @@ app.factory('myFactory', function($http){
 	{
 		//$scope.somethingWentWrong = true;
 		//alert('failed to retrieve data');
-		console.error('failed to retrieve data initially from server');
+		console.error('failed to retrieve helplist data initially from server in factory');
 	});
 	$http.get('http://104.236.169.62:' + port + '/selectall/discussion')
 	.success(function(data){
@@ -303,7 +303,7 @@ app.factory('myFactory', function($http){
 	{
 		$scope.somethingWentWrong = true;
 		//alert('failed to retrieve data');
-		console.error('failed to retrieve data from server');
+		console.error('failed to retrieve comment data from server in factory');
 	});
 
 	$http.get('http://104.236.169.62:' + port + '/selectall/leader_board')
@@ -322,7 +322,7 @@ app.factory('myFactory', function($http){
 	{
 		$scope.somethingWentWrong = true;
 		//alert('failed to retrieve data');
-		console.error('failed to retrieve data from server');
+		console.error('failed to retrieve leaderboard data from server in factory');
 	});
 	
 	
@@ -427,7 +427,7 @@ app.controller('helpListController',
 			{
 				$scope.somethingWentWrong = true;
 				//alert('failed to retrieve data');
-				console.error('failed to retrieve data from server');
+				console.error('failed to retrieve helplist data from server in controller');
 			});
 			$http.get('http://104.236.169.62:' + port + '/selectall/discussion')
 			.success(function(data){
@@ -446,7 +446,7 @@ app.controller('helpListController',
 			{
 				$scope.somethingWentWrong = true;
 				//alert('failed to retrieve data');
-				console.error('failed to retrieve data from server');
+				console.error('failed to retrieve comment data from server in controller');
 			});
 			
 			
@@ -467,7 +467,7 @@ app.controller('helpListController',
 			{
 				$scope.somethingWentWrong = true;
 				//alert('failed to retrieve data');
-				console.error('failed to retrieve data from server');
+				console.error('failed to retrieve leaderboard data from server in controller');
 			});
 			
 		}
@@ -733,7 +733,7 @@ app.controller('helpListController',
 				error(function(data, status, headers, config) {
 					$scope.somethingWentWrong = true;
 					//alert("Failed to update entry in database.");
-					console.error("Failed to remove (hide) entry in database.");
+					console.error("Failed to remove (hide) one help list entry in database.");
 				});
 	     	  		$scope.onlyEntry = "";
 			}
@@ -758,7 +758,7 @@ app.controller('helpListController',
 				error(function(data, status, headers, config) {
 					$scope.somethingWentWrong = true;
 					//alert("Failed to update entry in database.");
-					console.error("Failed to remove (hide) all entries in database.");
+					console.error("Failed to remove (hide) all help list entries in database.");
 				});
 	     	  		$scope.onlyEntry = "";
 			}
@@ -773,7 +773,7 @@ app.controller('helpListController',
 		error(function() {
 			$scope.somethingWentWrong = true;
 			//alert("Failed to update entry in database.");
-			console.error("Failed to process password");
+			console.error("Failed to process password while trying to delete person(s) from helplist");
 		});
 	}
 	
@@ -804,7 +804,7 @@ app.controller('helpListController',
 				error(function(data, status, headers, config) {
 					$scope.somethingWentWrong = true;
 					//alert("Failed to update entry in database.");
-					console.error("Failed to remove (hide) entry in database.");
+					console.error("Failed to remove (hide) one comment in database.");
 				});
 	     	  		$scope.onlyEntry = "";
 			}
@@ -829,7 +829,7 @@ app.controller('helpListController',
 				error(function(data, status, headers, config) {
 					$scope.somethingWentWrong = true;
 					//alert("Failed to update entry in database.");
-					console.error("Failed to remove (hide) all entries in database.");
+					console.error("Failed to remove (hide) all comments in database.");
 				});
 	     	  		$scope.onlyEntry = "";
 			}
@@ -844,7 +844,7 @@ app.controller('helpListController',
 		error(function() {
 			$scope.somethingWentWrong = true;
 			//alert("Failed to update entry in database.");
-			console.error("Failed to process password");
+			console.error("Failed to process password while trying to delete comment(s)");
 		});
 	}
 	
@@ -876,7 +876,7 @@ app.controller('helpListController',
 				error(function(data, status, headers, config) {
 					$scope.somethingWentWrong = true;
 					//alert("Failed to update entry in database.");
-					console.error("Failed to remove (hide) entry in database.");
+					console.error("Failed to remove (hide) leader in database.");
 				});
 	     	  		$scope.onlyEntry = "";
 			}
@@ -891,7 +891,7 @@ app.controller('helpListController',
 		error(function() {
 			$scope.somethingWentWrong = true;
 			//alert("Failed to update entry in database.");
-			console.error("Failed to process password");
+			console.error("Failed to process password while trying to remove leader from leaderboard");
 		});
 		
 	}
