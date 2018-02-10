@@ -117,47 +117,31 @@ res.sendFile(path.resolve(__dirname + '/../FrontEnd/images/MoviePosters/'+req.pa
 
 app.get('/enterPassword/:entry', function(req,res)
 {
-	connectionpool.getConnection(function(err, connection) 
+	var guess = req.params.entry;
+	if (guess == "toss")
 	{
-		if (err) {
-			console.error('CONNECTION error: ', err);
-			res.statusCode = 503;
-			res.send({
-				result: 'error',
-				err: err.code
-			});
-		}
-		else
-		{
-			var guess = req.params.entry;
-			if (guess == "toss")
-			{
-				res.send({
-					result: 'success',
-					err: '',
-					only: '1',
-				});
-			}
-			else if (guess == "spit")
-			{
-				res.send({
-					result: 'success',
-					err: '',
-					only: '2',
-				});
-			}
-			else
-			{
-				res.send({
-					result: 'success',
-					err: '',
-					only: 'nope',
-				});
-			}
-			
-		}
-	});
-
+		res.send({
+			result: 'success',
+			err: '',
+			only: '1'
+		});
+	}
+	else if (guess == "spit")
+	{
+		res.send({
+			result: 'success',
+			err: '',
+			only: '2'
+		});
+	}
+	else
+	{
+		res.send({
+			result: 'success',
+			err: '',
+			only: 'nope'
+		});
+	}
 });
 
 
