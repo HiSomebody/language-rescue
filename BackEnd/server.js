@@ -438,7 +438,7 @@ app.post('/deleteAllFromHelpList', function(req,res){
 		else
 		{
 			connection.query('UPDATE help_list SET show_entry = 0 WHERE 1 = 1', function (err, result) {
-				if (err) throw err;
+				if (err) console.error('delete all from helplist error: ', err);
 				res.send('User updated the database with ID: ' + result.insertID);
 				process.stdout.write("responded postively: ");
 				connection.release();
@@ -463,7 +463,7 @@ app.post('/deleteNameFromHelpList', function(req,res){
 		else
 		{
 			connection.query('UPDATE help_list SET show_entry = 0 WHERE id = \'' + input.id + '\'', function (err, result) {
-				if (err) throw err;
+				if (err) console.error('delete one from help list error: ', err);
 				res.send('User updated the database with ID: ' + result.insertID);
 				process.stdout.write("responded postively: ");
 				connection.release();
@@ -487,7 +487,7 @@ app.post('/deleteAllComments', function(req,res){
 		else
 		{
 			connection.query('UPDATE discussion SET show_entry = 0 WHERE 1 = 1', function (err, result) {
-				if (err) throw err;
+				if (err) console.error('delete all comments error: ', err);
 				res.send('User updated the database with ID: ' + result.insertID);
 				process.stdout.write("responded postively: ");
 				connection.release();
@@ -512,7 +512,7 @@ app.post('/deleteCommentFromDiscussion', function(req,res){
 		else
 		{
 			connection.query('UPDATE discussion SET show_entry = 0 WHERE id = \'' + input.id + '\'', function (err, result) {
-				if (err) throw err;
+				if (err) console.error('delete one comment error: ', err);
 				res.send('User updated the database with ID: ' + result.insertID);
 				process.stdout.write("responded postively: ");
 				connection.release();
@@ -536,7 +536,7 @@ app.post('/deleteLeader', function(req,res){
 		else
 		{
 			connection.query('UPDATE leader_board SET show_entry = 0 WHERE id = \'' + input.id + '\'', function (err, result) {
-				if (err) throw err;
+				if (err) console.error('delete a leader error', err);
 				res.send('User updated the database with ID: ' + result.insertID);
 				process.stdout.write("responded postively: ");
 				connection.release();
