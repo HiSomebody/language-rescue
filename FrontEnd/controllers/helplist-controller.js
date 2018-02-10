@@ -749,7 +749,10 @@ app.controller('helpListController',
 					//$scope.successUpdate = true;
 						//alert("Successfully updated entry in database!");
 						console.log("Successfully removed (hid) comment in database!");
-						$scope.selectedComment.show_entry = 0;
+						if ($scope.selectedComment != null)
+						{
+							$scope.selectedComment.show_entry = 0;
+						}
 						$scope.selectedComment = null;
 						$scope.getAllMediaEntries();
 						$scope.editingMovieEntry = false;
@@ -820,7 +823,10 @@ app.controller('helpListController',
 					//$scope.successUpdate = true;
 						//alert("Successfully updated entry in database!");
 						console.log("Successfully removed (hid) comment in database!");
-						$scope.selectedComment.show_entry = 0;
+						if ($scope.selectedComment != null)
+						{
+							$scope.selectedComment.show_entry = 0;
+						}
 						$scope.selectedComment = null;
 						$scope.getAllMediaEntries();
 						$scope.editingMovieEntry = false;
