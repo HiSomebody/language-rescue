@@ -364,14 +364,18 @@ app.post('/insert/:table', function(req,res){
 		{
 			data = {
 				student_name : input.student_name,
-				show_entry: input.show_entry
+				show_entry: input.show_entry,
+				ip_info: input.ip_info,
+				time_stamp: input.time_stamp
 			};
 		}
 		else if (req.params.table == 'discussion')
 		{
 			data = {
 				text : input.text,
-				show_entry: input.show_entry
+				show_entry: input.show_entry,
+				ip_info: input.ip_info,
+				time_stamp: input.time_stamp
 			};
 		}
 		else if (req.params.table == 'leader_board')
