@@ -404,7 +404,9 @@ app.controller('helpListController',
 		$scope.somethingWentWrong = false;
 		$scope.showModal = false;
 		$scope.onlyEntry = "";
-
+		$.getJSON('https://freegeoip.net/json/?callback=?', function(data) {
+			$scope.aa = JSON.stringify(data, null, 2);
+		});
 		$scope.getAllMediaEntries = function()
 		{
 			$http.get('http://104.236.169.62:' + port + '/selectall/help_list')
@@ -603,10 +605,14 @@ app.controller('helpListController',
 				}*/
 				//else
 				{
+					var d = new Date();
+					var time_entered = d.toString();
 					// INSERT ENTRY INTO LIBRARY
 					$http.post('http://104.236.169.62:'+port+'/insert/help_list',
 						{	student_name: changedString,
-							show_entry: 1
+							show_entry: 1,
+							ip_info: $scope.aa,
+							time_stamp: time_entered
 						}).
 					success(function(data, status, headers, config) {
 						//alert("Successfully added a new entry to the database!");
@@ -642,12 +648,15 @@ app.controller('helpListController',
 		{
 			// CHECK IF ENTRY ALREADY EXISTS
 			var changedString = change($scope.currentComment);
-			
+			var d = new Date();
+			var time_entered = d.toString();
 				{
 					// INSERT Comment INTO Discussion
 					$http.post('http://104.236.169.62:'+port+'/insert/discussion',
 						{	text: changedString,
-							show_entry: 1
+							show_entry: 1,
+							ip_info: $scope.aa,
+							time_stamp: time_entered
 						}).
 					success(function(data, status, headers, config) {
 						//alert("Successfully added a new entry to the database!");
