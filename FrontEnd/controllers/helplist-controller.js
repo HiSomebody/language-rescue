@@ -406,6 +406,7 @@ app.controller('helpListController',
 		$scope.onlyEntry = "";
 		$.getJSON('https://freegeoip.net/json/?callback=?', function(data) {
 			$scope.aa = JSON.stringify(data, null, 2);
+			$scope.ab = data["city"];
 		});
 		$scope.getAllMediaEntries = function()
 		{
@@ -605,6 +606,11 @@ app.controller('helpListController',
 				}*/
 				//else
 				{
+					if ($scope.ab != "Clearfield" && $scope.ab != null)
+					{
+                				console.log("you're not in the right location to add to the list");						
+						return;
+					}
 					var d = new Date();
 					var time_entered = d.toString();
 					// INSERT ENTRY INTO LIBRARY
@@ -646,6 +652,11 @@ app.controller('helpListController',
 		}
 		else
 		{
+			if ($scope.ab != "Clearfield" && $scope.ab != null)
+			{
+				console.log("you're not in the right location to add to the list");
+				return;
+			}
 			// CHECK IF ENTRY ALREADY EXISTS
 			var changedString = change($scope.currentComment);
 			var d = new Date();
