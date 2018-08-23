@@ -118,7 +118,7 @@ res.sendFile(path.resolve(__dirname + '/../FrontEnd/images/MoviePosters/'+req.pa
 app.get('/enterPassword/:entry', function(req,res)
 {
 	var guess = req.params.entry;
-	if (guess == "toss")
+	if (guess == "oman")
 	{
 		res.send({
 			result: 'success',
@@ -126,7 +126,7 @@ app.get('/enterPassword/:entry', function(req,res)
 			only: '1'
 		});
 	}
-	else if (guess == "spit")
+	else if (guess == "rile")
 	{
 		res.send({
 			result: 'success',
