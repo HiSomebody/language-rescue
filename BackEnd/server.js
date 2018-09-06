@@ -1,3 +1,9 @@
+// Note to self (and whoever else may be reading this):
+// Starting September 6, 2018 I've been making changes directly to the 
+// backend code on my server rather than committing and pulling from
+// this github repo. Therefore, passwords and usernames included here
+// are likely outdated.
+
 var express = require('express')
 var app = express();
 var mysql = require('mysql');
