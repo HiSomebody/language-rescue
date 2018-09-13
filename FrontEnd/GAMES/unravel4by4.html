@@ -167,7 +167,7 @@ var grids =
 
 ]
 
-var localGrids = JSON.parse(localStorage.getItem("gridsV2"));
+var localGrids = JSON.parse(localStorage.getItem("grids4x4"));
 var grid = grids[0]
 var gridDivs = [];
 var boardWidth = 500;
@@ -183,9 +183,9 @@ var shuffling = false;
 var shuffleStack = [];
 var currentStackIndex = 0;
 
-if (localStorage.currentIndexV2)
+if (localStorage.currentIndex4x4)
 {
-	currentIndex = parseInt(localStorage.currentIndexV2);
+	currentIndex = parseInt(localStorage.currentIndex4x4);
 }
 
 
@@ -199,7 +199,7 @@ window.onload = function()
 		//shuffleBoard();
 	}
 	localGrids[currentIndex] = grid;	
-	localStorage.setItem('gridsV2', JSON.stringify(localGrids));
+	localStorage.setItem('grids4x4', JSON.stringify(localGrids));
 }
 
 function loadBoard() {
@@ -341,7 +341,7 @@ setInterval(function() {
 		shuffling = false;
 		setDivSpeed(.25);
 		localGrids[currentIndex] = grid;
-		localStorage.setItem('gridsV2', JSON.stringify(localGrids));
+		localStorage.setItem('grids4x4', JSON.stringify(localGrids));
 	}
 }, 75);
  
@@ -407,7 +407,7 @@ function getClickPosition(e) {
 		localGrids = [];
 	}
 	localGrids[currentIndex] = grid;
-	localStorage.setItem('gridsV2', JSON.stringify(localGrids));
+	localStorage.setItem('grids4x4', JSON.stringify(localGrids));
  }
 
  function getNumNotWhite() {
@@ -659,9 +659,9 @@ function changeBackLevel() {
 	{
 		if (localGrids == null) { localGrids = []; }
 		localGrids[currentIndex] = grid;
-		localStorage.setItem('gridsV2', JSON.stringify(localGrids));
+		localStorage.setItem('grids4x4', JSON.stringify(localGrids));
 		currentIndex--;
-		localStorage.currentIndexV2 = currentIndex.toString();
+		localStorage.currentIndex4x4 = currentIndex.toString();
 		loadBoard();
 		if (localGrids[currentIndex] == null)
 		{
@@ -678,9 +678,9 @@ function changeForwardLevel() {
 	{
 		if (localGrids == null) { localGrids = []; }
 		localGrids[currentIndex] = grid;
-		localStorage.setItem('gridsV2', JSON.stringify(localGrids));
+		localStorage.setItem('grids4x4', JSON.stringify(localGrids));
 		currentIndex++;
-		localStorage.currentIndexV2 = currentIndex.toString();
+		localStorage.currentIndex4x4 = currentIndex.toString();
 		loadBoard();
 		if (localGrids[currentIndex] == null)
 		{
@@ -693,9 +693,9 @@ function changeForwardLevel() {
 	{
 		if (localGrids == null) { localGrids = []; }
 		localGrids[currentIndex] = grid;
-		localStorage.setItem('gridsV2', JSON.stringify(localGrids));
+		localStorage.setItem('grids4x4', JSON.stringify(localGrids));
 		currentIndex = 0;
-		localStorage.currentIndexV2 = currentIndex.toString();
+		localStorage.currentIndex4x4 = currentIndex.toString();
 		loadBoard();
 		if (localGrids[currentIndex] == null)
 		{
