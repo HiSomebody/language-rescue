@@ -202,7 +202,57 @@ var grids =
 [["red","red","red","red",'white'],["blue","white","white","white",'yellow'],["blue","white","white","white",'yellow'],["blue","white","white","white",'yellow'],['white','green','green','green','white']],
 [["red","red","red","red",'white'],["blue","white","white","white",'yellow'],["blue","white","white","white",'yellow'],["blue","white","white","white",'yellow'],['blue','green','green','green','white']],
 [["red","red","red","red",'yellow'],["blue","white","white","white",'yellow'],["blue","white","white","white",'yellow'],["blue","white","white","white",'yellow'],['blue','green','green','green','white']],
-[["red","red","red","red",'yellow'],["blue","white","white","white",'yellow'],["blue","white","white","white",'yellow'],["blue","white","white","white",'yellow'],['blue','green','green','green','green']]
+[["red","red","red","red",'yellow'],["blue","white","white","white",'yellow'],["blue","white","white","white",'yellow'],["blue","white","white","white",'yellow'],['blue','green','green','green','green']],
+	
+[["red","red","red","red",'yellow'],
+ ["blue","white","red","white",'yellow'],
+ ["blue","white","white","white",'yellow'],
+ ["blue","white","white","white",'yellow'],
+ ['blue','green','green','green','green']],
+	
+[["red","red","red","red",'yellow'],
+ ["blue","white","red","white",'yellow'],
+ ["blue","blue","white","white",'yellow'],
+ ["blue","white","white","white",'yellow'],
+ ['blue','green','green','green','green']],
+	
+[["red","red","red","red",'yellow'],
+ ["blue","white","red","white",'yellow'],
+ ["blue","blue","white","yellow",'yellow'],
+ ["blue","white","white","white",'yellow'],
+ ['blue','green','green','green','green']],
+	
+[["red","red","red","red",'yellow'],
+ ["blue","white","red","white",'yellow'],
+ ["blue","blue","white","yellow",'yellow'],
+ ["blue","white","green","white",'yellow'],
+ ['blue','green','green','green','green']],
+	
+
+	
+[["red","red","red","red",'yellow'],
+ ["blue","white","red","red",'yellow'],
+ ["blue","white","white","white",'yellow'],
+ ["blue","white","white","white",'yellow'],
+ ['blue','green','green','green','green']],
+	
+[["red","red","red","red",'yellow'],
+ ["blue","blue","red","red",'yellow'],
+ ["blue","blue","white","white",'yellow'],
+ ["blue","white","white","white",'yellow'],
+ ['blue','green','green','green','green']],
+	
+[["red","red","red","red",'yellow'],
+ ["blue","blue","red","red",'yellow'],
+ ["blue","blue","white","yellow",'yellow'],
+ ["blue","white","white","yellow",'yellow'],
+ ['blue','green','green','green','green']],
+	
+[["red","red","red","red",'yellow'],
+ ["blue","blue","red","red",'yellow'],
+ ["blue","blue","white","yellow",'yellow'],
+ ["blue","green","green","yellow",'yellow'],
+ ['blue','green','green','green','green']]
 
 
 ]
@@ -449,30 +499,118 @@ function getClickPosition(e) {
 	localStorage.setItem('gridsV2', JSON.stringify(localGrids));
  }
 
- function checkWin() {
-	for (var i = 0; i < gridDivs.length; i++)
+ function getNumNotWhite() {
+	 var counter = 0;
+ 	 for (var i = 0; i < gridDivs.length; i++)
 	{
 		for (var j = 0; j < gridDivs.length; j++)
 		{
 			var color = gridDivs[i][j].className;
-			if (color == 'red' && i != 0)
+			if (color != 'white')
 			{
-				return false;
+				counter += 1;
 			}
-			if (color == 'blue' && j != 0)
-			{
-				return false;
-			}
-			if (color == 'yellow' && j != grid.length-1)
-			{
-				return false;
-			}
-			if (color == 'green' && i != grid.length-1)
-			{
-				return false;
-			}
+			
 		}
 	}
+	 return counter;
+ }
+	
+function whiteOnPerimeter() {
+ 	for (var i = 0; i < gridDivs.length; i++)
+	{
+		for (var j = 0; j < gridDivs.length; j++)
+		{
+			var color = gridDivs[i][j].className;
+			if (color == 'white') 
+			{	
+				if (i == 0 || i == gridDivs.length-1 || j == 0 || j == gridDivs.length-1)
+				{
+					return true;
+				}
+			}
+			
+		}
+	}
+	 return false;
+ }
+	
+ function checkWin() {
+	 var numNotWhite = getNumNotWhite();
+	 var numPerimeter = (gridDivs.length - 1)*4;
+	 if (numNotWhite <= numPerimeter)
+	 {
+		for (var i = 0; i < gridDivs.length; i++)
+		{
+			for (var j = 0; j < gridDivs.length; j++)
+			{
+				var color = gridDivs[i][j].className;
+				if (color == 'red' && i != 0)
+				{
+					return false;
+				}
+				if (color == 'blue' && j != 0)
+				{
+					return false;
+				}
+				if (color == 'yellow' && j != grid.length-1)
+				{
+					return false;
+				}
+				if (color == 'green' && i != grid.length-1)
+				{
+					return false;
+				}
+			}
+		}
+	 }
+	 else
+	 {
+		 // if any white on perimeter return false
+		 if (whiteOnPerimeter()) return false;
+		 
+		 for (var i = 0; i < gridDivs.length; i++)
+		{
+			for (var j = 0; j < gridDivs.length; j++)
+			{
+				var color = gridDivs[i][j].className;
+				// red is only allowed on row 0 or if not edge column it can also be row 1
+				if (color == 'red' && i != 0)
+				{
+					if (i != 1 || j == 0 || j == gridDivs.length-1)
+					{	
+						return false;
+					}
+				}
+				// blue is only allowed on column 0 or if not edge row it can also be column 1
+				if (color == 'blue' && j != 0)
+				{
+					if (j != 1 || i == 0 || i == gridDivs.length-1)
+					{	
+						return false;
+					}
+				}
+				// yellow is only allowed on column length-1 or if not edge row it can also be column length-2
+		 		if (color == 'yellow' && j != grid.length-1)
+				{
+					if (j != gridDivs.length-2 || i == 0 || i == gridDivs.length-1)
+					{	
+						return false;
+					}
+				}
+				// green is only allowed on row length-1 or if not edge column it can also be row length-2
+				if (color == 'green' && i != grid.length-1)
+				{
+					if (i != gridDivs.length-2 || j == 0 || j == gridDivs.length-1)
+					{	
+						return false;
+					}
+				}
+			}
+		}
+		 
+		 
+	 }
 	
 	wonGame();
  }
