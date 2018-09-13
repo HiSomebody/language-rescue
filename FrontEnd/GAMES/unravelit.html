@@ -37,7 +37,7 @@ body {
 }
 	
 #button2 {
-    display: block;
+    display: none;
 	float: right;
     padding:7px 13px;
     background:#00ccff;
@@ -452,6 +452,8 @@ function getClickPosition(e) {
 		alert("You beat the final level! Go do something active now");
 		var winImage = document.getElementById("winImage");
         	winImage.style.display = "block";
+		var sortTitle = document.getElementById("sortit");
+        	sortTitle.style.display = "none";
 	}
 	else
 	{
@@ -649,7 +651,7 @@ function checkKey(e) {
 <body>
 <!-- input type="button" onclick="location.href='http://104.236.169.62/helplist';" value="Back to Helplist" /-->
 <h1 id="sortit" style="font-family:Calibri">Sort it!</h1>
-<img id="winImage" src="images/YouWin.png">
+<img hidden id="winImage" src="images/YouWin.png">
 <div class="one">
     <p><button id="button" value="Start Over" onclick="shuffleBoard()">Start Over</button>
 	<button hidden id="button2" value="Next Level" onclick="changeForwardLevel()">Next Level</button>
