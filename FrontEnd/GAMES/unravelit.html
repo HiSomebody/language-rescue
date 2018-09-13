@@ -593,12 +593,12 @@ function checkKey(e) {
     }
     else if (e.keyCode == '37') {
 		// left arrow
-		changeBackLevel();
+		//changeBackLevel();
 		
     }
     else if (e.keyCode == '39') {
 		// right arrow
-		changeForwardLevel();
+		//changeForwardLevel();
 	}
 
 }
@@ -609,7 +609,7 @@ function checkKey(e) {
 <h1 style="font-family:Calibri">Sort it!</h1>
 <div class="one">
     <p><button id="button" value="Start Over" onclick="shuffleBoard()">Start Over</button>
-	<button id="button2" value="Next Level" onclick="changeForwardLevel()">Next Level</button>
+	<button id="button2" hidden value="Next Level" onclick="changeForwardLevel()">Next Level</button>
 	</p>
 </div></body>
 </html>
