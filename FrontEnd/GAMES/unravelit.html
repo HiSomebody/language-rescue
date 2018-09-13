@@ -577,6 +577,19 @@ function changeForwardLevel() {
 			shuffleBoard();
 		}
 	}
+	else
+	{
+		if (localGrids == null) { localGrids = []; }
+		localGrids[currentIndex] = grid;
+		localStorage.setItem('grids', JSON.stringify(localGrids));
+		currentIndex = 0;
+		localStorage.currentIndex = currentIndex.toString();
+		loadBoard();
+		if (localGrids[currentIndex] == null)
+		{
+			shuffleBoard();
+		}
+	}
 }
 
 document.onkeydown = checkKey;
