@@ -2,7 +2,7 @@
 <html>
   
 <head>
-<title>Reorder It</title>
+<title>Sort It</title>
 <style type="text/css">
 html, body {
     height: 100%;
@@ -17,6 +17,36 @@ body {
     display: table-cell;
     vertical-align: middle;
 }
+
+
+
+
+#button {
+    display: block;
+	float: right;
+    padding:7px 13px;
+    background:#a2bb33;
+    font-size:20px;
+    font-family: 'Arial', sans-serif;
+    color:#ffffff;
+    white-space: nowrap;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+
+}
+
+#button:active {
+    vertical-align: top;
+    padding: 8px 13px 6px;
+}
+
+.one a {
+    text-decoration: none;
+}
+
+
+
 
 #contentContainer {
     overflow: hidden;
@@ -33,7 +63,7 @@ body {
     background: radial-gradient(#FFA2A2, red); /* Standard syntax (must be last) */
     /*background-color: red;*/
 	position: absolute;
-    transition: left .25s ease-in, top .25s ease-in;
+    transition: left .15s ease-in, top .15s ease-in;
 }
 .blue {
 	background: -webkit-radial-gradient(#AEC2FF, blue); /* Safari 5.1 to 6.0 */
@@ -42,7 +72,7 @@ body {
     background: radial-gradient(#AEC2FF, blue); /* Standard syntax (must be last) */
     /*background-color: blue;*/
 	position: absolute;
-    transition: left .25s ease-in, top .25s ease-in;
+    transition: left .15s ease-in, top .15s ease-in;
 }
 
 .yellow {
@@ -52,7 +82,7 @@ body {
     background: radial-gradient(#FFFFB2, #CCCC00); /* Standard syntax (must be last) */
     /*background-color: yellow;*/
 	position: absolute;
-    transition: left .25s ease-in, top .25s ease-in;
+    transition: left .15s ease-in, top .15s ease-in;
 }
 
 .green {
@@ -62,13 +92,13 @@ body {
     background: radial-gradient(#99CC99, green); /* Standard syntax (must be last) */
 	/*background-color: green;*/
 	position: absolute;
-    transition: left .25s ease-in, top .25s ease-in;
+    transition: left .15s ease-in, top .15s ease-in;
 }
 
 .white {
 	background-color: white;
 	position: absolute;
-    transition: left .25s ease-in, top .25s ease-in;
+    transition: left .15s ease-in, top .15s ease-in;
 }
 
 #redBorder {
@@ -95,6 +125,9 @@ body {
  
 
 <script>
+//localStorage.clear();
+var devMode = true;
+//var devMode = false;
 var grids = [
 [["white","red","white"],["blue","white","white"],["white","white","white"]],
 [["white","white","red","white"],["white","white","white","white"],["white","white","white","white"],["white","white","white","white"]],
@@ -117,6 +150,7 @@ var grids = [
 
 ]
 
+var localGrids = JSON.parse(localStorage.getItem("grids"));
 var grid = grids[0]
 var gridDivs = [];
 var boardWidth = 400;
@@ -128,19 +162,39 @@ var container;
 var boxDimension = (boardWidth-(((grid.length-1)*gap)+2*borderWidth))/grid.length;
 var moveAmount = boxDimension + gap;
 var currentIndex = 0;
+var shuffling = false;
+var shuffleStack = [];
+var currentStackIndex = 0;
+
+if (localStorage.currentIndex)
+{
+	currentIndex = parseInt(localStorage.currentIndex);
+}
 
 
 window.onload = function()
 {
 	loadBoard();
+	
+	if (localGrids == null || localGrids[currentIndex] == null)
+	{
+		shuffleBoard();
+	}
+	localGrids[currentIndex] = grid;	
+	localStorage.setItem('grids', JSON.stringify(localGrids));
 }
 
 function loadBoard() {
 	loadLevel();
 	grid = grids[currentIndex];
-	gridDivs = [];
+	if (localGrids != null && localGrids[currentIndex] != null) 
+	{ 
+		grid = localGrids[currentIndex]; 	
+	}
 	boxDimension = (boardWidth-(((grid.length-1)*gap)+2*borderWidth))/grid.length;
 	moveAmount = boxDimension + gap;
+	//console.log(moveAmount);
+	//console.log(gap);
 	
 	var parent = document.body;
 	var child = document.getElementById("contentContainer");
@@ -153,6 +207,8 @@ function loadBoard() {
 
 	conte.style.height = gridDimension+"px";
 	conte.style.width = gridDimension+"px";
+	
+	gridDivs = [];
 	for (var i = 0; i < grid.length; i++)
 	{
 		var listDivs = [];
@@ -169,6 +225,7 @@ function loadBoard() {
 		}
 		gridDivs.push(listDivs);
 	}
+	
 	var topBorder = document.createElement("div");
 	topBorder.setAttribute("id","redBorder");
 	topBorder.style.height = borderWidth+"px";
@@ -233,6 +290,55 @@ function loadBoard() {
 }
  
  
+function shuffleBoard() {
+	var shuffleCounter = 0;
+	currentStackIndex = 0;
+	shuffleStack = [];
+	
+	while (shuffleCounter < 30)
+	{
+		var randX = Math.floor(Math.random()*(gridDivs.length-2))+1;
+		var randY = Math.floor(Math.random()*(gridDivs.length-2))+1;
+		var numRotations = Math.floor(Math.random()*4)+1;
+		for (var i = 0; i < numRotations; i++)
+		{
+			shuffleStack.push({x:randX,y:randY});
+			shuffleCounter++;
+		}
+	}
+	setDivSpeed(.15);
+	shuffling = true;
+}
+ 
+setInterval(function() {
+	if (!shuffling){return;}
+	{
+		var randX = shuffleStack[currentStackIndex].x;
+		var randY = shuffleStack[currentStackIndex].y;
+		rotateLeft(randX,randY);
+		currentStackIndex++;
+	}
+	if (currentStackIndex >= shuffleStack.length-1)
+	{
+		shuffling = false;
+		setDivSpeed(.25);
+		localGrids[currentIndex] = grid;
+		localStorage.setItem('grids', JSON.stringify(localGrids));
+	}
+}, 75);
+ 
+function setDivSpeed(speed) {
+	for (var i = 0; i < grid.length; i++)
+	{
+		for (var j = 0; j < grid[i].length; j++)
+		{
+			var div = gridDivs[i][j];
+			div.style.transition = "left "+speed.toString()+"s ease-in, top "+speed.toString()+"s ease-in";
+		}
+	}
+	
+}
+ 
 function loadLevel() {
 
 	var level = document.getElementById("Level");
@@ -272,9 +378,19 @@ function getClickPosition(e) {
 		}
 	}
 	
-	rotateLeft(locX,locY);
+	rotateRight(locX,locY);
+	storeGridLocally();
 	checkWin();
 }
+
+ function storeGridLocally() {
+	if (localGrids == null)
+	{
+		localGrids = [];
+	}
+	localGrids[currentIndex] = grid;
+	localStorage.setItem('grids', JSON.stringify(localGrids));
+ }
 
  function checkWin() {
 	for (var i = 0; i < gridDivs.length; i++)
@@ -310,28 +426,28 @@ function getClickPosition(e) {
  
  function rotateRight(x,y) {
 	
-	moveDiv(gridDivs[y-1][x-1],moveAmount,0);
-	moveDiv(gridDivs[y-1][x],moveAmount,0);
-	moveDiv(gridDivs[y-1][x+1],0,moveAmount);
-	moveDiv(gridDivs[y][x+1],0,moveAmount);
-	moveDiv(gridDivs[y+1][x+1],-moveAmount,0);
-	moveDiv(gridDivs[y+1][x],-moveAmount,0);
-	moveDiv(gridDivs[y+1][x-1],0,-moveAmount);
-	moveDiv(gridDivs[y][x-1],0,-moveAmount);
+	moveDiv(y-1,x-1,1,0);
+	moveDiv(y-1,x,1,0);
+	moveDiv(y-1,x+1,0,1);
+	moveDiv(y,x+1,0,1);
+	moveDiv(y+1,x+1,-1,0);
+	moveDiv(y+1,x,-1,0);
+	moveDiv(y+1,x-1,0,-1);
+	moveDiv(y,x-1,0,-1);
 	
 	swapValuesAfterRotateRight(x,y);
  }
  
  function rotateLeft(x,y) {
 	
-	moveDiv(gridDivs[y-1][x-1],0,moveAmount);
-	moveDiv(gridDivs[y-1][x],-moveAmount,0);
-	moveDiv(gridDivs[y-1][x+1],-moveAmount,0);
-	moveDiv(gridDivs[y][x+1],0,-moveAmount);
-	moveDiv(gridDivs[y+1][x+1],0,-moveAmount);
-	moveDiv(gridDivs[y+1][x],moveAmount,0);
-	moveDiv(gridDivs[y+1][x-1],moveAmount,0);
-	moveDiv(gridDivs[y][x-1],0,moveAmount);
+	moveDiv(y-1,x-1,0,1);
+	moveDiv(y-1,x,-1,0);
+	moveDiv(y-1,x+1,-1,0);
+	moveDiv(y,x+1,0,-1);
+	moveDiv(y+1,x+1,0,-1);
+	moveDiv(y+1,x,1,0);
+	moveDiv(y+1,x-1,1,0);
+	moveDiv(y,x-1,0,1);
 	
 	swapValuesAfterRotateLeft(x,y);
  }
@@ -346,6 +462,15 @@ function getClickPosition(e) {
 	temp = swapElements(temp,y+1,x-1);
 	temp = swapElements(temp,y,x-1);
 	temp = swapElements(temp,y-1,x-1);
+	
+	var temp2 = swapGridElements(grid[y-1][x-1],y-1,x);
+	temp2 = swapGridElements(temp2,y-1,x+1);
+	temp2 = swapGridElements(temp2,y,x+1);
+	temp2 = swapGridElements(temp2,y+1,x+1);
+	temp2 = swapGridElements(temp2,y+1,x);
+	temp2 = swapGridElements(temp2,y+1,x-1);
+	temp2 = swapGridElements(temp2,y,x-1);
+	temp2 = swapGridElements(temp2,y-1,x-1);
  }
  
  function swapValuesAfterRotateLeft(x,y)
@@ -358,6 +483,15 @@ function getClickPosition(e) {
 	temp = swapElements(temp,y-1,x+1);
 	temp = swapElements(temp,y-1,x);
 	temp = swapElements(temp,y-1,x-1);
+	
+	var temp2 = swapGridElements(grid[y-1][x-1],y,x-1);
+	temp2 = swapGridElements(temp2,y+1,x-1);
+	temp2 = swapGridElements(temp2,y+1,x);
+	temp2 = swapGridElements(temp2,y+1,x+1);
+	temp2 = swapGridElements(temp2,y,x+1);
+	temp2 = swapGridElements(temp2,y-1,x+1);
+	temp2 = swapGridElements(temp2,y-1,x);
+	temp2 = swapGridElements(temp2,y-1,x-1);
  }
  
  function swapElements(div,y,x)
@@ -367,13 +501,24 @@ function getClickPosition(e) {
 	return temp;
  }
  
- function moveDiv(div,dx,dy) {
+ function swapGridElements(elem,y,x)
+ {
+ 	var temp = grid[y][x];
+	grid[y][x] = elem;
+	return temp;
+ }
+ 
+ function moveDiv(row,col,dx,dy) {
+	var div = gridDivs[row][col];
+
+	var dynMoveAmountHoriz = (borderWidth+(boxDimension+gap)*(col+dx));
+	var dynMoveAmountVert = (borderWidth+(boxDimension+gap)*(row+dy));
 	var leftStr = div.style.left;
 	var topStr = div.style.top;
 	var valueLeft = parseInt(leftStr.substring(0,leftStr.length-2));
 	var valueTop = parseInt(topStr.substring(0,topStr.length-2));
-	div.style.left = valueLeft + dx + "px";
-	div.style.top = valueTop + dy + "px";
+	div.style.left = dynMoveAmountHoriz + "px";//valueLeft + dx*dynMoveAmountHoriz + "px";
+	div.style.top = dynMoveAmountVert + "px";//valueTop + dy*dynMoveAmountVert + "px";
  }
  
 function getPosition(element) {
@@ -386,6 +531,38 @@ function getPosition(element) {
         element = element.offsetParent;
     }
     return { x: xPosition, y: yPosition };
+}
+
+function changeBackLevel() {
+	if (currentIndex > 0)
+	{
+		if (localGrids == null) { localGrids = []; }
+		localGrids[currentIndex] = grid;
+		localStorage.setItem('grids', JSON.stringify(localGrids));
+		currentIndex--;
+		localStorage.currentIndex = currentIndex.toString();
+		loadBoard();
+		if (localGrids[currentIndex] == null)
+		{
+			shuffleBoard();
+		}
+	}
+}
+
+function changeForwardLevel() {
+	if (currentIndex < grids.length-1)
+	{
+		if (localGrids == null) { localGrids = []; }
+		localGrids[currentIndex] = grid;
+		localStorage.setItem('grids', JSON.stringify(localGrids));
+		currentIndex++;
+		localStorage.currentIndex = currentIndex.toString();
+		loadBoard();
+		if (localGrids[currentIndex] == null)
+		{
+			shuffleBoard();
+		}
+	}
 }
 
 document.onkeydown = checkKey;
@@ -402,28 +579,18 @@ function checkKey(e) {
     }
     else if (e.keyCode == '37') {
 		// left arrow
-		if (currentIndex > 0)
-		{
-			currentIndex--;
-			loadBoard();
-		}
+		changeBackLevel();
+		
     }
     else if (e.keyCode == '39') {
 		// right arrow
-		if (currentIndex < grids.length-1)
-		{
-			currentIndex++;
-			loadBoard();
-		}
+		changeForwardLevel();
 	}
 
 }
 </script>
-</head>
-<body>
-<input type="button" onclick="location.href='http://104.236.169.62/helplist';" value="Back to Helplist" />
 <h1 style="font-family:Calibri">Sort it!</h1>
-
-</body>
-
+<div class="one">
+    <p><button id="button" value="Start Over" onclick="shuffleBoard()">Start Over</button></p>
+</div></body>
 </html>
