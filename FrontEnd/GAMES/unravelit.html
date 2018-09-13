@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html>
+  
+<head>
+<title>Reorder It</title>
+<style type="text/css">
+html, body {
+    height: 100%;
+}
+
+html {
+    display: table;
+    margin: auto;
+}
+
+body {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+#contentContainer {
+    overflow: hidden;
+    background-color: #F2F2F2;
+    cursor: pointer;
+	position: relative;
+	text-align: center;
+}
+
+.red {
+	background: -webkit-radial-gradient(#FFA2A2, red); /* Safari 5.1 to 6.0 */
+    background: -o-radial-gradient(#FFA2A2, red); /* For Opera 11.6 to 12.0 */
+    background: -moz-radial-gradient(#FFA2A2, red); /* For Firefox 3.6 to 15 */
+    background: radial-gradient(#FFA2A2, red); /* Standard syntax (must be last) */
+    /*background-color: red;*/
+	position: absolute;
+    transition: left .25s ease-in, top .25s ease-in;
+}
+.blue {
+	background: -webkit-radial-gradient(#AEC2FF, blue); /* Safari 5.1 to 6.0 */
+    background: -o-radial-gradient(#AEC2FF, blue); /* For Opera 11.6 to 12.0 */
+    background: -moz-radial-gradient(#AEC2FF, blue); /* For Firefox 3.6 to 15 */
+    background: radial-gradient(#AEC2FF, blue); /* Standard syntax (must be last) */
+    /*background-color: blue;*/
+	position: absolute;
+    transition: left .25s ease-in, top .25s ease-in;
+}
+
+.yellow {
+	background: -webkit-radial-gradient(#FFFFB2, #CCCC00); /* Safari 5.1 to 6.0 */
+    background: -o-radial-gradient(#FFFFB2, #CCCC00); /* For Opera 11.6 to 12.0 */
+    background: -moz-radial-gradient(#FFFFB2, #CCCC00); /* For Firefox 3.6 to 15 */
+    background: radial-gradient(#FFFFB2, #CCCC00); /* Standard syntax (must be last) */
+    /*background-color: yellow;*/
+	position: absolute;
+    transition: left .25s ease-in, top .25s ease-in;
+}
+
+.green {
+    background: -webkit-radial-gradient(#99CC99, green); /* Safari 5.1 to 6.0 */
+    background: -o-radial-gradient(#99CC99, green); /* For Opera 11.6 to 12.0 */
+    background: -moz-radial-gradient(#99CC99, green); /* For Firefox 3.6 to 15 */
+    background: radial-gradient(#99CC99, green); /* Standard syntax (must be last) */
+	/*background-color: green;*/
+	position: absolute;
+    transition: left .25s ease-in, top .25s ease-in;
+}
+
+.white {
+	background-color: white;
+	position: absolute;
+    transition: left .25s ease-in, top .25s ease-in;
+}
+
+#redBorder {
+    background-color: red;
+	position: absolute;
+}
+#blueBorder {
+    background-color: blue;
+	position: absolute;
+}
+
+#yellowBorder {
+    background-color: yellow;
+	position: absolute;
+}
+
+#greenBorder {
+    background-color: green;
+	position: absolute;
+}
+
+</style>
+</head>
+ 
+
+<script>
+var grids = [
+[["white","red","white"],["blue","white","white"],["white","white","white"]],
+[["white","white","red","white"],["white","white","white","white"],["white","white","white","white"],["white","white","white","white"]],
+[["white","white","red","white"],["blue","white","white","white"],["white","white","white","white"],["white","white","white","white"]],
+[["white","white","red","white"],["blue","white","white","white"],["white","white","white","yellow"],["white","white","white","white"]],
+[["white","white","red","white"],["blue","white","white","white"],["white","white","white","yellow"],["white","green","white","white"]],
+[["white","red","red","white"],["blue","white","white","white"],["white","white","white","yellow"],["white","green","white","white"]],
+[["white","red","red","white"],["blue","white","white","white"],["blue","white","white","yellow"],["white","green","white","white"]],
+[["white","red","red","white"],["blue","white","white","yellow"],["blue","white","white","yellow"],["white","green","white","white"]],
+[["white","red","red","white"],["blue","white","white","yellow"],["blue","white","white","yellow"],["white","green","green","white"]],
+
+
+[["red","red","red","white"],["blue","white","white","yellow"],["blue","white","white","yellow"],["white","green","green","white"]],
+[["red","red","red","white"],["blue","white","white","yellow"],["blue","white","white","yellow"],["blue","green","green","white"]],
+[["red","red","red","yellow"],["blue","white","white","yellow"],["blue","white","white","yellow"],["blue","green","green","white"]],
+[["red","red","red","yellow"],["blue","white","white","yellow"],["blue","white","white","yellow"],["blue","green","green","green"]],
+[["white","white","red","red",'white'],["blue","white","white","white",'white'],["blue","white","white","white",'yellow'],["white","white","white","white",'yellow'],['white','green','green','white','white']]
+
+
+
+]
+
+var grid = grids[0]
+var gridDivs = [];
+var boardWidth = 400;
+var gridDimension = boardWidth;
+var gap = boardWidth/50;
+var borderWidth = boardWidth/50;
+var borderLength = boardWidth-(2*borderWidth);
+var container;
+var boxDimension = (boardWidth-(((grid.length-1)*gap)+2*borderWidth))/grid.length;
+var moveAmount = boxDimension + gap;
+var currentIndex = 0;
+
+
+window.onload = function()
+{
+	loadBoard();
+}
+
+function loadBoard() {
+	loadLevel();
+	grid = grids[currentIndex];
+	gridDivs = [];
+	boxDimension = (boardWidth-(((grid.length-1)*gap)+2*borderWidth))/grid.length;
+	moveAmount = boxDimension + gap;
+	
+	var parent = document.body;
+	var child = document.getElementById("contentContainer");
+	if (child != null)
+	{
+		parent.removeChild(child);
+	}
+	var conte = document.createElement("div");
+	conte.setAttribute("id","contentContainer");
+
+	conte.style.height = gridDimension+"px";
+	conte.style.width = gridDimension+"px";
+	for (var i = 0; i < grid.length; i++)
+	{
+		var listDivs = [];
+		for (var j = 0; j < grid[i].length; j++)
+		{
+			var gradi = document.createElement("div");
+			gradi.setAttribute("class",grid[i][j]);
+			gradi.style.height = boxDimension+"px";
+			gradi.style.width = boxDimension+"px";
+			gradi.style.left = (borderWidth+(boxDimension+gap)*j)+"px";
+			gradi.style.top = (borderWidth+(boxDimension+gap)*i)+"px";
+			conte.appendChild(gradi);
+			listDivs.push(gradi);
+		}
+		gridDivs.push(listDivs);
+	}
+	var topBorder = document.createElement("div");
+	topBorder.setAttribute("id","redBorder");
+	topBorder.style.height = borderWidth+"px";
+	topBorder.style.width = borderLength+"px";
+	topBorder.style.left = borderWidth+"px";
+	topBorder.style.top = "0px";
+	
+	var leftBorder = document.createElement("div");
+	leftBorder.setAttribute("id","blueBorder");
+	leftBorder.style.height = borderLength+"px";
+	leftBorder.style.width = borderWidth+"px";
+	leftBorder.style.left = "0px";
+	leftBorder.style.top = borderWidth+"px";
+	
+	var rightBorder = document.createElement("div");
+	rightBorder.setAttribute("id","yellowBorder");
+	rightBorder.style.height = borderLength+"px";
+	rightBorder.style.width = borderWidth+"px";
+	rightBorder.style.left = (boardWidth-borderWidth)+"px";
+	rightBorder.style.top = borderWidth+"px";
+	
+	var bottomBorder = document.createElement("div");
+	bottomBorder.setAttribute("id","greenBorder");
+	bottomBorder.style.height = borderWidth+"px";
+	bottomBorder.style.width = borderLength+"px";
+	bottomBorder.style.left = borderWidth+"px";
+	bottomBorder.style.top = (boardWidth-borderWidth)+"px";	
+	
+	conte.appendChild(topBorder);
+	conte.appendChild(rightBorder);
+	conte.appendChild(leftBorder);
+	conte.appendChild(bottomBorder);
+
+	document.body.appendChild(conte);
+	
+	child = document.getElementById("tagLine");
+	if (child != null)
+	{
+		parent.removeChild(child);
+	}
+	child = document.getElementById("tagLineBreak");
+	if (child != null)
+	{
+		parent.removeChild(child);
+	}
+	
+	var tagLineDiv = document.createElement("div");
+	tagLineDiv.setAttribute("id","contentContainer");
+	var tagLineBreak = document.createElement("br");
+	tagLineBreak.setAttribute("id","tagLineBreak");
+
+	document.body.appendChild(tagLineBreak);
+	var tagLineDiv = document.createElement("div");
+	var tagLine = document.createTextNode("created by Paul Soderquist");
+	tagLineDiv.setAttribute("text-align","center");
+	tagLineDiv.setAttribute("id","tagLine");
+	tagLineDiv.appendChild(tagLine);
+	document.body.appendChild(tagLineDiv);
+	
+	container = document.querySelector("#contentContainer");
+	container.addEventListener("click", getClickPosition, false);
+}
+ 
+ 
+function loadLevel() {
+
+	var level = document.getElementById("Level");
+	if (level == null)
+	{
+		level = document.createElement("h1");
+		level.innerHTML = currentIndex;
+		level.setAttribute("id","Level");
+		document.body.appendChild(level);
+	}
+	level.innerHTML = currentIndex+1;
+}
+
+function getClickPosition(e) {
+    var parentPosition = getPosition(e.currentTarget);
+	var x = e.clientX;
+	var y = e.clientY;
+	var div = document.elementFromPoint(x, y);
+	
+	var locX = 1;
+	var locY = 1;
+	for (var i = 0; i < gridDivs.length; i++)
+	{
+		for (var j = 0; j < gridDivs[i].length; j++)
+		{
+			var currDiv = gridDivs[i][j];
+			if (currDiv == div)
+			{
+				if (i < 1 || i > gridDivs.length-2 || j < 1 || j > gridDivs[i].length-2)
+				{
+					return;
+				}
+				locX = j;
+				locY = i;
+				break;
+			}
+		}
+	}
+	
+	rotateLeft(locX,locY);
+	checkWin();
+}
+
+ function checkWin() {
+	for (var i = 0; i < gridDivs.length; i++)
+	{
+		for (var j = 0; j < gridDivs.length; j++)
+		{
+			var color = gridDivs[i][j].className;
+			if (color == 'red' && i != 0)
+			{
+				return false;
+			}
+			if (color == 'blue' && j != 0)
+			{
+				return false;
+			}
+			if (color == 'yellow' && j != grid.length-1)
+			{
+				return false;
+			}
+			if (color == 'green' && i != grid.length-1)
+			{
+				return false;
+			}
+		}
+	}
+	
+	wonGame();
+ }
+ 
+ function wonGame() {
+	alert("You win!");
+ }
+ 
+ function rotateRight(x,y) {
+	
+	moveDiv(gridDivs[y-1][x-1],moveAmount,0);
+	moveDiv(gridDivs[y-1][x],moveAmount,0);
+	moveDiv(gridDivs[y-1][x+1],0,moveAmount);
+	moveDiv(gridDivs[y][x+1],0,moveAmount);
+	moveDiv(gridDivs[y+1][x+1],-moveAmount,0);
+	moveDiv(gridDivs[y+1][x],-moveAmount,0);
+	moveDiv(gridDivs[y+1][x-1],0,-moveAmount);
+	moveDiv(gridDivs[y][x-1],0,-moveAmount);
+	
+	swapValuesAfterRotateRight(x,y);
+ }
+ 
+ function rotateLeft(x,y) {
+	
+	moveDiv(gridDivs[y-1][x-1],0,moveAmount);
+	moveDiv(gridDivs[y-1][x],-moveAmount,0);
+	moveDiv(gridDivs[y-1][x+1],-moveAmount,0);
+	moveDiv(gridDivs[y][x+1],0,-moveAmount);
+	moveDiv(gridDivs[y+1][x+1],0,-moveAmount);
+	moveDiv(gridDivs[y+1][x],moveAmount,0);
+	moveDiv(gridDivs[y+1][x-1],moveAmount,0);
+	moveDiv(gridDivs[y][x-1],0,moveAmount);
+	
+	swapValuesAfterRotateLeft(x,y);
+ }
+ 
+ function swapValuesAfterRotateRight(x,y)
+ {
+	var temp = swapElements(gridDivs[y-1][x-1],y-1,x);
+	temp = swapElements(temp,y-1,x+1);
+	temp = swapElements(temp,y,x+1);
+	temp = swapElements(temp,y+1,x+1);
+	temp = swapElements(temp,y+1,x);
+	temp = swapElements(temp,y+1,x-1);
+	temp = swapElements(temp,y,x-1);
+	temp = swapElements(temp,y-1,x-1);
+ }
+ 
+ function swapValuesAfterRotateLeft(x,y)
+ {
+	var temp = swapElements(gridDivs[y-1][x-1],y,x-1);
+	temp = swapElements(temp,y+1,x-1);
+	temp = swapElements(temp,y+1,x);
+	temp = swapElements(temp,y+1,x+1);
+	temp = swapElements(temp,y,x+1);
+	temp = swapElements(temp,y-1,x+1);
+	temp = swapElements(temp,y-1,x);
+	temp = swapElements(temp,y-1,x-1);
+ }
+ 
+ function swapElements(div,y,x)
+ {
+	var temp = gridDivs[y][x];
+	gridDivs[y][x] = div;
+	return temp;
+ }
+ 
+ function moveDiv(div,dx,dy) {
+	var leftStr = div.style.left;
+	var topStr = div.style.top;
+	var valueLeft = parseInt(leftStr.substring(0,leftStr.length-2));
+	var valueTop = parseInt(topStr.substring(0,topStr.length-2));
+	div.style.left = valueLeft + dx + "px";
+	div.style.top = valueTop + dy + "px";
+ }
+ 
+function getPosition(element) {
+    var xPosition = 0;
+    var yPosition = 0;
+      
+    while (element) {
+        xPosition += (element.offsetLeft - element.scrollLeft + element.clientLeft);
+        yPosition += (element.offsetTop - element.scrollTop + element.clientTop);
+        element = element.offsetParent;
+    }
+    return { x: xPosition, y: yPosition };
+}
+
+document.onkeydown = checkKey;
+
+function checkKey(e) {
+
+    e = e || window.event;
+
+    if (e.keyCode == '38') {
+        // up arrow
+    }
+    else if (e.keyCode == '40') {
+        // down arrow
+    }
+    else if (e.keyCode == '37') {
+		// left arrow
+		if (currentIndex > 0)
+		{
+			currentIndex--;
+			loadBoard();
+		}
+    }
+    else if (e.keyCode == '39') {
+		// right arrow
+		if (currentIndex < grids.length-1)
+		{
+			currentIndex++;
+			loadBoard();
+		}
+	}
+
+}
+</script>
+</head>
+<body>
+<input type="button" onclick="location.href='http://104.236.169.62/helplist';" value="Back to Helplist" />
+<h1 style="font-family:Calibri">Sort it!</h1>
+
+</body>
+
+</html>
