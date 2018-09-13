@@ -49,7 +49,7 @@ res.sendFile(path.resolve(__dirname + '/../FrontEnd/GAMES/unravel2.html'));
 });
 
 app.get('/unravel3', function(req,res){
-res.sendFile(path.resolve(__dirname + '/../FrontEnd/GAMES/unravel4x4.html'));
+res.sendFile(path.resolve(__dirname + '/../FrontEnd/GAMES/unravel4by4.html'));
 });
 
 app.get('/', function(req,res){
