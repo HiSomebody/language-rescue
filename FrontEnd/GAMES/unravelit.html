@@ -293,7 +293,7 @@ function loadBoard() {
 
 	document.body.appendChild(tagLineBreak);
 	var tagLineDiv = document.createElement("div");
-	var tagLine = document.createTextNode("created by Paul Soderquist");
+	var tagLine = document.createTextNode("created by Paul Soderquist (2015)");
 	tagLineDiv.setAttribute("text-align","center");
 	tagLineDiv.setAttribute("id","tagLine");
 	tagLineDiv.appendChild(tagLine);
@@ -622,7 +622,7 @@ function checkKey(e) {
 <h1 style="font-family:Calibri">Sort it!</h1>
 <div class="one">
     <p><button id="button" value="Start Over" onclick="shuffleBoard()">Start Over</button>
-	<button id="button2" hidden value="Next Level" onclick="changeForwardLevel()">Next Level</button>
+	<button hidden id="button2" value="Next Level" onclick="changeForwardLevel()">Next Level</button>
 	</p>
 </div></body>
 </html>
