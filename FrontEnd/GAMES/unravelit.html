@@ -144,10 +144,12 @@ var devMode = true;
 //var devMode = false;
 var grids = [
 [["white","red","white"],["blue","white","white"],["white","white","white"]],
+
 [["white","white","red","white"],["white","white","white","white"],["white","white","white","white"],["white","white","white","white"]],
 [["white","white","red","white"],["blue","white","white","white"],["white","white","white","white"],["white","white","white","white"]],
 [["white","white","red","white"],["blue","white","white","white"],["white","white","white","yellow"],["white","white","white","white"]],
 [["white","white","red","white"],["blue","white","white","white"],["white","white","white","yellow"],["white","green","white","white"]],
+
 [["white","red","red","white"],["blue","white","white","white"],["white","white","white","yellow"],["white","green","white","white"]],
 [["white","red","red","white"],["blue","white","white","white"],["blue","white","white","yellow"],["white","green","white","white"]],
 [["white","red","red","white"],["blue","white","white","yellow"],["blue","white","white","yellow"],["white","green","white","white"]],
@@ -158,8 +160,18 @@ var grids = [
 [["red","red","red","white"],["blue","white","white","yellow"],["blue","white","white","yellow"],["blue","green","green","white"]],
 [["red","red","red","yellow"],["blue","white","white","yellow"],["blue","white","white","yellow"],["blue","green","green","white"]],
 [["red","red","red","yellow"],["blue","white","white","yellow"],["blue","white","white","yellow"],["blue","green","green","green"]],
-[["white","white","red","red",'white'],["blue","white","white","white",'white'],["blue","white","white","white",'yellow'],["white","white","white","white",'yellow'],['white','green','green','white','white']]
 
+[["white","white","red","red",'white'],["blue","white","white","white",'white'],["blue","white","white","white",'yellow'],["white","white","white","white",'yellow'],['white','green','green','white','white']],
+
+[["white","red","red","red",'white'],["blue","white","white","white",'white'],["blue","white","white","white",'yellow'],["white","white","white","white",'yellow'],['white','green','green','white','white']],
+[["white","red","red","red",'white'],["blue","white","white","white",'white'],["blue","white","white","white",'yellow'],["blue","white","white","white",'yellow'],['white','green','green','white','white']],
+[["white","red","red","red",'white'],["blue","white","white","white",'yellow'],["blue","white","white","white",'yellow'],["blue","white","white","white",'yellow'],['white','green','green','white','white']],
+[["white","red","red","red",'white'],["blue","white","white","white",'yellow'],["blue","white","white","white",'yellow'],["blue","white","white","white",'yellow'],['white','green','green','green','white']],
+
+[["red","red","red","red",'white'],["blue","white","white","white",'yellow'],["blue","white","white","white",'yellow'],["blue","white","white","white",'yellow'],['white','green','green','green','white']],
+[["red","red","red","red",'white'],["blue","white","white","white",'yellow'],["blue","white","white","white",'yellow'],["blue","white","white","white",'yellow'],['blue','green','green','green','white']],
+[["red","red","red","red",'yellow'],["blue","white","white","white",'yellow'],["blue","white","white","white",'yellow'],["blue","white","white","white",'yellow'],['blue','green','green','green','white']],
+[["red","red","red","red",'yellow'],["blue","white","white","white",'yellow'],["blue","white","white","white",'yellow'],["blue","white","white","white",'yellow'],['blue','green','green','green','green']]
 
 
 ]
@@ -435,9 +447,17 @@ function getClickPosition(e) {
  }
  
  function wonGame() {
-	alert("You win!");
+	if (currentIndex == grids.length-1)
+	{
+		alert("You beat the final level! Go do something active now");
+		var winImage = document.getElementById("winImage");
+        	winImage.style.display = "block";
+	}
+	else
+	{
+		alert("Good job! Move on to the next level");
+	}
 	var buttonN = document.getElementById("button2");
-	
         buttonN.style.display = "block";
 	
 	
@@ -597,7 +617,8 @@ function changeForwardLevel() {
 		{
 			shuffleBoard();
 		}
-	}*/
+	}
+	*/
 }
 
 document.onkeydown = checkKey;
@@ -614,12 +635,12 @@ function checkKey(e) {
     }
     else if (e.keyCode == '37') {
 		// left arrow
-		//changeBackLevel();
+		changeBackLevel();
 		
     }
     else if (e.keyCode == '39') {
 		// right arrow
-		//changeForwardLevel();
+		changeForwardLevel();
 	}
 
 }
@@ -627,7 +648,8 @@ function checkKey(e) {
 </head>
 <body>
 <!-- input type="button" onclick="location.href='http://104.236.169.62/helplist';" value="Back to Helplist" /-->
-<h1 style="font-family:Calibri">Sort it!</h1>
+<h1 id="sortit" style="font-family:Calibri">Sort it!</h1>
+<img id="winImage" src="images/YouWin.png">
 <div class="one">
     <p><button id="button" value="Start Over" onclick="shuffleBoard()">Start Over</button>
 	<button hidden id="button2" value="Next Level" onclick="changeForwardLevel()">Next Level</button>
