@@ -285,7 +285,8 @@ window.onload = function()
 	
 	if (localGrids == null || localGrids[currentIndex] == null)
 	{
-		shuffleBoard();
+		window.setTimeout(shuffleBoard, 750);
+		//shuffleBoard();
 	}
 	localGrids[currentIndex] = grid;	
 	localStorage.setItem('gridsV2', JSON.stringify(localGrids));
@@ -754,7 +755,8 @@ function changeBackLevel() {
 		loadBoard();
 		if (localGrids[currentIndex] == null)
 		{
-			shuffleBoard();
+			window.setTimeout(shuffleBoard, 750);
+			//shuffleBoard();
 		}
 	}
 }
@@ -772,7 +774,8 @@ function changeForwardLevel() {
 		loadBoard();
 		if (localGrids[currentIndex] == null)
 		{
-			shuffleBoard();
+			window.setTimeout(shuffleBoard, 750);
+			//shuffleBoard();
 		}
 	}
 	/*
