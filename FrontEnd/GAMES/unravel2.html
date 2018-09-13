@@ -616,10 +616,20 @@ function whiteOnPerimeter() {
 	wonGame();
  }
  
+ function alertWon()
+ {
+	 alert("Good job! Move on to the next level");
+ }
+	
+ function alertWonFinal()
+ {
+	alert("You beat the final level! Go do something active now");
+ }
+	
  function wonGame() {
 	if (currentIndex == grids.length-1)
 	{
-		alert("You beat the final level! Go do something active now");
+		window.setTimeout(alertWonFinal, 300);
 		var winImage = document.getElementById("winImage");
         	winImage.style.display = "block";
 		var sortTitle = document.getElementById("sortit");
@@ -627,7 +637,7 @@ function whiteOnPerimeter() {
 	}
 	else
 	{
-		alert("Good job! Move on to the next level");
+		window.setTimeout(alertWon, 300);
 	}
 	var buttonN = document.getElementById("button2");
         buttonN.style.display = "block";
