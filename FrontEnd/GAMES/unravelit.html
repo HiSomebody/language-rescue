@@ -436,6 +436,11 @@ function getClickPosition(e) {
  
  function wonGame() {
 	alert("You win!");
+	var buttonN = document.getElementById("nextButton");
+	
+        buttonN.style.display = "block";
+	
+	
  }
  
  function rotateRight(x,y) {
@@ -564,6 +569,8 @@ function changeBackLevel() {
 }
 
 function changeForwardLevel() {
+	var buttonN = document.getElementById("nextButton");   
+	buttonN.style.display = "none";
 	if (currentIndex < grids.length-1)
 	{
 		if (localGrids == null) { localGrids = []; }
@@ -622,7 +629,7 @@ function checkKey(e) {
 <h1 style="font-family:Calibri">Sort it!</h1>
 <div class="one">
     <p><button id="button" value="Start Over" onclick="shuffleBoard()">Start Over</button>
-	<button value="Next Level" onclick="changeForwardLevel()">Next Level</button>
+	<button id="nextButton" value="Next Level" onclick="changeForwardLevel()">Next Level</button>
 	</p>
 </div></body>
 </html>
