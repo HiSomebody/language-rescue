@@ -182,7 +182,7 @@ var gridDivs = [];
 var boardWidth = 400;
 var gridDimension = boardWidth;
 var gap = boardWidth/50;
-var borderWidth = boardWidth/50;
+var borderWidth = boardWidth/25;
 var borderLength = boardWidth-(2*borderWidth);
 var container;
 var boxDimension = (boardWidth-(((grid.length-1)*gap)+2*borderWidth))/grid.length;
@@ -321,7 +321,7 @@ function shuffleBoard() {
 	currentStackIndex = 0;
 	shuffleStack = [];
 	
-	while (shuffleCounter < 40)
+	while (shuffleCounter < 30)
 	{
 		var randX = Math.floor(Math.random()*(gridDivs.length-2))+1;
 		var randY = Math.floor(Math.random()*(gridDivs.length-2))+1;
