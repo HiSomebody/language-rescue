@@ -85,6 +85,7 @@
 </head>
 
 
+
 <body ng-app="helpListApp" ng-controller="helpListController">
 
    <div class="page-header">
@@ -110,7 +111,7 @@
    		<li class={{(view=='kingView')?'active':''}}><a ng-click="setView('kingView')">King of the Hill</a></li>
 		<li class={{(view=='scoreView')?'active':''}}><a ng-click="setView('scoreView')">Scoreboard</a></li>
 		<li class={{(view=='aboutView')?'active':''}}><a ng-click="setView('aboutView')">About</a></li>
-
+		<li class={{(view=='gamesView')?'active':''}}><a ng-click="setView('gamesView')">Games</a></li>
             </ul>
 
 	</div>
@@ -119,6 +120,21 @@
 <!-- /.container-fluid -->
    </nav>
 
+	
+	
+<!-- -------------------------------------------------------------------------------------------------------------->
+
+	
+	
+<div ng-show="view=='gamesView'">
+	
+	<a href="http://104.236.169.62/unravel" class="button">Unravel It</a>
+	
+	
+</div>	
+
+	
+	
 	
 <!-- --------------------------------------------------------------------------------------------------------------- -->
 
