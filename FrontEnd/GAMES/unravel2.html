@@ -223,9 +223,9 @@ var shuffling = false;
 var shuffleStack = [];
 var currentStackIndex = 0;
 
-if (localStorage.currentIndex)
+if (localStorage.currentIndexV2)
 {
-	currentIndex = parseInt(localStorage.currentIndex);
+	currentIndex = parseInt(localStorage.currentIndexV2);
 }
 
 
@@ -380,7 +380,7 @@ setInterval(function() {
 		shuffling = false;
 		setDivSpeed(.25);
 		localGrids[currentIndex] = grid;
-		localStorage.setItem('grids', JSON.stringify(localGrids));
+		localStorage.setItem('gridsV2', JSON.stringify(localGrids));
 	}
 }, 75);
  
@@ -446,7 +446,7 @@ function getClickPosition(e) {
 		localGrids = [];
 	}
 	localGrids[currentIndex] = grid;
-	localStorage.setItem('grids', JSON.stringify(localGrids));
+	localStorage.setItem('gridsV2', JSON.stringify(localGrids));
  }
 
  function checkWin() {
@@ -610,9 +610,9 @@ function changeBackLevel() {
 	{
 		if (localGrids == null) { localGrids = []; }
 		localGrids[currentIndex] = grid;
-		localStorage.setItem('grids', JSON.stringify(localGrids));
+		localStorage.setItem('gridsV2', JSON.stringify(localGrids));
 		currentIndex--;
-		localStorage.currentIndex = currentIndex.toString();
+		localStorage.currentIndexV2 = currentIndex.toString();
 		loadBoard();
 		if (localGrids[currentIndex] == null)
 		{
@@ -628,9 +628,9 @@ function changeForwardLevel() {
 	{
 		if (localGrids == null) { localGrids = []; }
 		localGrids[currentIndex] = grid;
-		localStorage.setItem('grids', JSON.stringify(localGrids));
+		localStorage.setItem('gridsV2', JSON.stringify(localGrids));
 		currentIndex++;
-		localStorage.currentIndex = currentIndex.toString();
+		localStorage.currentIndexV2 = currentIndex.toString();
 		loadBoard();
 		if (localGrids[currentIndex] == null)
 		{
@@ -642,9 +642,9 @@ function changeForwardLevel() {
 	{
 		if (localGrids == null) { localGrids = []; }
 		localGrids[currentIndex] = grid;
-		localStorage.setItem('grids', JSON.stringify(localGrids));
+		localStorage.setItem('gridsV2', JSON.stringify(localGrids));
 		currentIndex = 0;
-		localStorage.currentIndex = currentIndex.toString();
+		localStorage.currentIndexV2 = currentIndex.toString();
 		loadBoard();
 		if (localGrids[currentIndex] == null)
 		{
