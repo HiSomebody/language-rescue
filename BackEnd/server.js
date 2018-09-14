@@ -44,12 +44,12 @@ app.get('/unravel', function(req,res){
 res.sendFile(path.resolve(__dirname + '/../FrontEnd/GAMES/unravelit.html'));
 });
 
-app.get('/unravel2', function(req,res){
-res.sendFile(path.resolve(__dirname + '/../FrontEnd/GAMES/unravel2.html'));
+app.get('/sortit4x4', function(req,res){
+res.sendFile(path.resolve(__dirname + '/../FrontEnd/GAMES/sortit4x4.html'));
 });
 
-app.get('/unravel3', function(req,res){
-res.sendFile(path.resolve(__dirname + '/../FrontEnd/GAMES/unravel4by4.html'));
+app.get('/sortit5x5', function(req,res){
+res.sendFile(path.resolve(__dirname + '/../FrontEnd/GAMES/sortit5x5.html'));
 });
 
 app.get('/', function(req,res){
