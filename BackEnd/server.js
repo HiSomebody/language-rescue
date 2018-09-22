@@ -127,7 +127,7 @@ app.get('/loadGameForClient/:code', function(req,res)
 	res.send({
 		result: 'success',
 		err: '',
-		players: playersWithThatCode;
+		players: playersWithThatCode
 	});
 });
 
