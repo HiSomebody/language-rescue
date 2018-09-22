@@ -20,6 +20,17 @@ var connectionpool = mysql.createPool({
 	password : 'nd888nd7',
 	database : 'language_rescue_database'
 });
+
+var playerGroups = {
+	3333:
+	[
+	{name:"Paul",text:"Hi there",image:"https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/300px-No_image_available.svg.png"},
+	{name:"Daniel",text:"Hi everyone",image:"https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/300px-No_image_available.svg.png"},
+	{name:"Rachel",text:"Is this working?",image:"https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/300px-No_image_available.svg.png"},
+	{name:"Amy",text:"I think so",image:"https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/300px-No_image_available.svg.png"}
+	]
+};
+
 app.use(bodyParser.json());
 fs.readFile('../FrontEnd/index.html', function(err, html){
 	if (err) {
@@ -102,8 +113,23 @@ app.get('/gamepage/:code/:username', function(req,res)
 		code: code,
 		username: username
 	});
-	
-});*/
+	*/
+});
+
+function getPlayersWithCode(code)
+{
+	return playerGroups[code];
+}
+
+app.get('/loadGameForClient/:code', function(req,res)
+{
+	var playersWithThatCode = getPlayersWithCode(req.params.code);
+	res.send({
+		result: 'success',
+		err: '',
+		players: playersWithThatCode;
+	});
+});
 
 
 app.get('/sortit4x4', function(req,res){
