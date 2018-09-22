@@ -55,9 +55,41 @@ res.sendFile(path.resolve(__dirname + '/../FrontEnd/GAMES/GameParticipantPage.ht
 });
 */
 
+const Transform = require('stream').Transform;
+	const parser = new Transform();
+	parser._transform = function(data, encoding, done) {
+	  const str = data.toString().replace('</body>', '<script>var data = {"foo": "bar"};</script></body>');
+	  this.push(str);
+	  done();
+	};
+/*
+app.use('/index.html', (req, res) => {
+	    res.write('<!-- Begin stream -->\n');
+	    fs
+	    .createReadStream('../public/index.html')
+	    .pipe(parser)
+	    .on('end', () => {
+		res.write('\n<!-- End stream -->')
+	    }).pipe(res);
+	});
+	*/
+
 app.get('/gamepage/:code/:username', function(req,res)
 {
+	
+	
 	console.log("entered gamepage with params");
+	res.write('<!-- Begin stream -->\n');
+	    fs
+	    .createReadStream('../public/index.html')
+	    .pipe(parser)
+	    .on('end', () => {
+		res.write('\n<!-- End stream -->')
+	    }).pipe(res);
+	});
+	
+	
+	/*
 	var code = req.params.code;
 	var username = req.params.username;
 	res.send({
@@ -66,7 +98,8 @@ app.get('/gamepage/:code/:username', function(req,res)
 		code: code,
 		username: username
 	});
-});
+	
+});*/
 
 
 app.get('/sortit4x4', function(req,res){
