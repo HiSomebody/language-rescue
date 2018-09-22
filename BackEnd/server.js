@@ -44,6 +44,14 @@ app.get('/unravel', function(req,res){
 res.sendFile(path.resolve(__dirname + '/../FrontEnd/GAMES/unravelit.html'));
 });
 
+app.get('/gamehub', function(req,res){
+res.sendFile(path.resolve(__dirname + '/../FrontEnd/GAMES/MultiplayerHub.html'));
+});
+
+app.get('/gamepage', function(req,res){
+res.sendFile(path.resolve(__dirname + '/../FrontEnd/GAMES/GameParticipantPage.html'));
+});
+
 app.get('/sortit4x4', function(req,res){
 res.sendFile(path.resolve(__dirname + '/../FrontEnd/GAMES/sortit4x4.html'));
 });
