@@ -2,6 +2,11 @@
 	<head>
 		<script>
 			//var port = 80;
+		window.onload = function()
+		{
+			console.log(window.location.href)
+		}
+		
 		function showCreateGameForm()
 		{
 			document.getElementById("gameCode").style.display = "none";
@@ -60,8 +65,9 @@
 		{
 			var code = document.getElementById("gameCodeEntryField").value;
 			var username = document.getElementById("nameEntryField").value;
-			window.location.href = "/gamepage/"+code+"/"+username;
+			//window.location.href = "/gamepage/"+code+"/"+username;
 			//window.location.href = "GameParticipantPage.html?gameCode="+code.toUpperCase()+"&username="+username;
+			window.location.href = "/gamepage?gameCode="+code.toUpperCase()+"&username="+username;
 		}
 		</script>
 		
