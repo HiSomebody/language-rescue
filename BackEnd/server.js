@@ -61,8 +61,8 @@ const Transform = require('stream').Transform;
 	const parser = new Transform();
 	parser._transform = function(data, encoding, done) {
 	//console.log(data.toString());
-	  const str = data.toString().replace('<head><script>', '<head><script>var importantData = {"code": "'+tempCode+'"; "username": "'+tempUsername+'"}');
-	  console.log("STARTING NEW HTML" + str.substring(0,200) + "ENDING NEW HTML");
+	  const str = data.toString().replace('<head><script>', '<head><script>var importantData = {"code": "'+tempCode+'", "username": "'+tempUsername+'"};');
+	  //console.log("STARTING NEW HTML" + str.substring(0,200) + "ENDING NEW HTML");
 	  this.push(str);
 	  done();
 	};
