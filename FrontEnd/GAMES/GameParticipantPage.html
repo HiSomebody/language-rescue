@@ -1,3 +1,4 @@
+<!-- Begin stream -->
 <html>
 	<head><script>
 		var username;
@@ -13,10 +14,10 @@
 		
 		window.onload = function()
 		{
-			code = imporantData.code;//GetURLParameter("gameCode");
+			code = importantData["code"];//GetURLParameter("gameCode");
 			
 			document.getElementById("GameCodeHeader").innerHTML = "Game Code: " + code;
-			username = importantData.username;//GetURLParameter("username");
+			username = importantData["username"];//GetURLParameter("username");
 			document.getElementById("NameHeader").innerHTML = "Name: " + username;
 			var playersDiv = document.getElementById("playersDiv");
 			
@@ -83,3 +84,5 @@
 		</div>
 	</body>
 </html>
+
+<!-- End stream -->
