@@ -1,0 +1,84 @@
+<html>
+	<head>
+		<script>
+		var username;
+		var players = [
+			{name:"Paul",text:"Hi there",image:"https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/300px-No_image_available.svg.png"},
+			{name:"Daniel",text:"Hi everyone",image:"https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/300px-No_image_available.svg.png"},
+			{name:"Rachel",text:"Is this working?",image:"https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/300px-No_image_available.svg.png"},
+			{name:"Amy",text:"I think so",image:"https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/300px-No_image_available.svg.png"}
+			
+		];
+		
+		
+		window.onload = function()
+		{
+			var code = GetURLParameter("gameCode");
+			document.getElementById("GameCodeHeader").innerHTML = "Game Code: " + code;
+			username = GetURLParameter("username");
+			document.getElementById("NameHeader").innerHTML = "Name: " + username;
+			var playersDiv = document.getElementById("playersDiv");
+			
+			for (var i = 0; i < players.length; i++)
+			{
+				var playerDiv = document.createElement("div");
+				var nameLbl = document.createTextNode(players[i].name + ": ");
+				var message = document.createTextNode(players[i].text);
+				playerDiv.setAttribute("id","player"+players[i].name);
+				var imgDiv = document.createElement("img");
+				imgDiv.height=50;
+				imgDiv.src = players[i].image;
+				//tagLineDiv.setAttribute("text-align","center");
+				imgDiv.setAttribute("id","img"+players[i].name);
+				playerDiv.appendChild(imgDiv);
+				playerDiv.appendChild(nameLbl);
+				playerDiv.appendChild(message);
+				playersDiv.appendChild(playerDiv);
+			}
+		}
+		
+		var GetURLParameter = function(sParam)
+		{
+			var sPageURL = window.location.search.substring(1);
+			var sURLVariables = sPageURL.split('&');
+			for (var i = 0; i < sURLVariables.length; i++) 
+			{
+				var sParameterName = sURLVariables[i].split('=');
+				if (sParameterName[0] == sParam) 
+				{
+					return sParameterName[1];
+				}
+			}
+		}
+		
+		function changeAvatar()
+		{
+			var src = document.getElementById("srcInputField").value;
+			document.getElementById("img"+username).src = src;
+		}
+		
+		function changeMessage()
+		{
+			var message = document.getElementById("chatInputField").value;
+			document.getElementById("player"+username).childNodes[2].nodeValue = message;
+		}
+		
+		
+		
+		</script>
+	</head>
+	<body>
+		<h2 id="GameCodeHeader">Game Code:</h2>
+		<h2 id="NameHeader">Name:</h2>
+		<div style="text-align:center" id="gameDiv">
+			<div id="playersDiv"></div>
+			<br>
+			<input placeholder="Type Message" id="chatInputField"/>
+			<button onclick="changeMessage()">Send</button>
+			<br><br>
+			<input placeholder="avatar img URL" id="srcInputField"/>
+			<button onclick="changeAvatar()">Change Avatar</button>
+			
+		</div>
+	</body>
+</html>

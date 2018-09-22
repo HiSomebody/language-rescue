@@ -1,0 +1,100 @@
+<html>
+	<head>
+		<script>
+		function showCreateGameForm()
+		{
+			document.getElementById("gameCode").style.display = "none";
+			document.getElementById("generateCodeButton").disabled = true;
+			var createGameForm = document.getElementById("createGameForm");
+			createGameForm.style.display = "block";
+		}
+		
+		function getRandomAlphaNumeric()
+		{
+			var index = Math.floor(Math.random()*36);
+			var char;
+			if (index <= 25)
+			{
+				char = String.fromCharCode(index+65);
+			}
+			else
+			{
+				index -= 26;
+				char = index.toString();
+			}
+			return char;
+		}
+		
+		function addGameToServer(choice)
+		{
+			// server call blah, blah
+			
+			var gameCode = "";
+			for (var i = 0; i < 4; i++)
+			{
+				gameCode += getRandomAlphaNumeric();
+			}
+			return gameCode;
+		}
+		
+		function createGame()
+		{
+			var gameCodeElement = document.getElementById("gameCode");
+			var selectOptions = document.getElementById("gameSelect");
+			var choice = selectOptions.options[selectOptions.selectedIndex].text;
+			
+			var gameCode = addGameToServer(choice);
+			gameCodeElement.innerHTML = "Game Code: " + gameCode.toUpperCase();
+			gameCodeElement.style.display = "block";
+			var createGameForm = document.getElementById("createGameForm");
+			createGameForm.style.display = "none";
+		}
+		
+		function enableGameSelectButton()
+		{
+			document.getElementById("generateCodeButton").disabled = false;
+		}
+		
+		function joinGame()
+		{
+			var code = document.getElementById("gameCodeEntryField").value;
+			var username = document.getElementById("nameEntryField").value;
+			window.location.href = "/gamepage";
+			//window.location.href = "GameParticipantPage.html?gameCode="+code.toUpperCase()+"&username="+username;
+		}
+		</script>
+		
+		<style>
+		
+		</style>
+	</head>
+	
+	<body style="text-align:center">
+		<h1>Multiplayer Game Hub</h1>
+		<input id="nameEntryField" placeholder="ENTER NAME"/><br>
+		<input id="gameCodeEntryField" style="text-transform:uppercase;" placeholder="ENTER GAME CODE"/><button id=joinGameButton onclick="joinGame()">Join</button>
+		<br><br>
+		or
+		<br><br>
+		<button onclick="showCreateGameForm()">Create New Game</button>
+		<br>
+		<div hidden id="createGameForm">
+			<br>
+			Choose Game
+			<br>
+			<select  id="gameSelect" size="3">
+			  <option onclick="enableGameSelectButton()">Test</option>
+			  <option onclick="enableGameSelectButton()">Uno</option>
+			  <option onclick="enableGameSelectButton()">Scum</option>
+			</select>
+			<br>
+			<br>
+			<button id="generateCodeButton" disabled onclick="createGame()">Generate Game Code</button>
+			<br>
+			<br>
+		</div>
+		<!-- div id="gameCode" hidden -->
+			<h2 hidden id="gameCode">Game Code: A30Q</h2>
+		<!-- /div -->
+	</body>
+</html>
