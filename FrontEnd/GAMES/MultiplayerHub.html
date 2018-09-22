@@ -65,7 +65,10 @@
 		{
 			var code = document.getElementById("gameCodeEntryField").value;
 			var username = document.getElementById("nameEntryField").value;
-			window.location.href = "/gamepage/"+code+"/"+username;
+			console.log(window.location.href);
+			var newPage = "/gamepage/"+code+"/"+username;
+			console.log(newPage);
+			window.location.href = newPage;
 			//window.location.href = "GameParticipantPage.html?gameCode="+code.toUpperCase()+"&username="+username;
 			//window.location.href = "/gamepage?gameCode="+code.toUpperCase()+"&username="+username;
 		}
