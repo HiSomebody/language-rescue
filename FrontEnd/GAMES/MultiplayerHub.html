@@ -1,6 +1,31 @@
 <html>
 	<head>
 		<script>
+			
+			var HttpClient = function() {
+			    this.get = function(aUrl, aCallback) {
+			        var anHttpRequest = new XMLHttpRequest();
+			        anHttpRequest.onreadystatechange = function() { 
+			            if (anHttpRequest.readyState == 4 && anHttpRequest.status == 200)
+			                aCallback(anHttpRequest.responseText);
+			        }
+
+			        anHttpRequest.open( "GET", aUrl, true );            
+			        anHttpRequest.send( null );
+			    }
+				
+				this.post = function(aUrl, aCallback) {
+				var xhttp = new XMLHttpRequest();
+				  xhttp.onreadystatechange = function() {
+				    if (this.readyState == 4 && this.status == 200) {
+				      	aCallback(xhttp.responseText);
+				    }
+				  };
+				  xhttp.open("POST", aURL, true);
+				  xhttp.send();
+			  }
+			}
+			
 			//var port = 80;
 		window.onload = function()
 		{
@@ -61,16 +86,39 @@
 			document.getElementById("generateCodeButton").disabled = false;
 		}
 		
-		function joinGame()
+		function enterGamePage(code,username)
 		{
-			var code = document.getElementById("gameCodeEntryField").value;
-			var username = document.getElementById("nameEntryField").value;
 			console.log(window.location.href);
 			var newPage = "/gamepage/"+code+"/"+username;
 			console.log(newPage);
 			window.location.href = newPage;
 			//window.location.href = "GameParticipantPage.html?gameCode="+code.toUpperCase()+"&username="+username;
 			//window.location.href = "/gamepage?gameCode="+code.toUpperCase()+"&username="+username;
+		}
+		
+		function joinGame()
+		{
+			var code = document.getElementById("gameCodeEntryField").value;
+			var username = document.getElementById("nameEntryField").value;
+			
+			var client = new HttpClient();
+			client.post('http://104.236.169.62:80/addClientToGame56/'+code+'/'+username, function(response) {
+				var parsedJSON = (JSON.parse(response));
+			    console.log(parsedJSON);
+				if (parsedJSON["result"] == "success")
+				{
+					enterGamePage(code,username);
+				}
+				else
+				{
+					var failedDiv = document.createElement("div");
+					var message = document.createTextNode(parsedJSON["err"]);
+					failedDiv.appendChild(message);
+					document.appendChild(failedDiv);
+				}
+			});	
+			
+			
 		}
 		</script>
 		
