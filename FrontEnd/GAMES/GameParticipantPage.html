@@ -61,12 +61,15 @@
 				{
 					var playerDiv = document.createElement("div");
 					playersDiv.appendChild(playerDiv);
-					var message = document.createTextNode(players[i].text);
-					playerDiv.appendChild(parsedJSON["err"]);
+					var message = document.createTextNode(parsedJSON["err"]);
+					playerDiv.appendChild(message);
 				}
 			});
+			
+			
+			
+			
 		}
-		
 		
 		var GetURLParameter = function(sParam)
 		{
