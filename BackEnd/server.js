@@ -52,6 +52,19 @@ app.get('/gamepage', function(req,res){
 res.sendFile(path.resolve(__dirname + '/../FrontEnd/GAMES/GameParticipantPage.html'));
 });
 
+app.get('/gamepage/:code/:username', function(req,res)
+{
+	var code = req.params.code;
+	var username = req.params.username;
+	res.send({
+		result: 'success',
+		err: '',
+		code: code,
+		username: username
+	});
+});
+
+
 app.get('/sortit4x4', function(req,res){
 res.sendFile(path.resolve(__dirname + '/../FrontEnd/GAMES/sortit4x4.html'));
 });
