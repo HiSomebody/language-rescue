@@ -141,10 +141,14 @@ app.get('/loadGameForClient/:code', function(req,res)
 app.post('/addClientToGame/:code/:username', function(req,res){
 	var gameCode = req.params.code;
 	var userName = req.params.username;
+	console.log("Game Code: " + gameCode);
+	console.log("user name: " + userName);
 	var playersWithThatCode = getPlayersWithCode(gameCode);
 	if (playersWithThatCode != undefined && playersWithThatCode != null)
 	{
-		playersWithThatCode.push({name:username,text:"I just joined",image:"https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/300px-No_image_available.svg.png"});
+		console.log("Number of players: " + playersWithThatCode.length);
+		playersWithThatCode.push({"name":username,"text":"I just joined","image":"https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/300px-No_image_available.svg.png"});
+		console.log("Number of players after adding " + userName + ": " + playersWithThatCode.length);
 		res.send({
 			result: 'success',
 			err: '',
@@ -153,6 +157,9 @@ app.post('/addClientToGame/:code/:username', function(req,res){
 	}
 	else
 	{
+		console.log("player group is undefined");
+		console.log("Here is what playerGroups looks like: ");
+		console.log(playerGroups);
 		res.send({
 			result: 'error',
 			err: 'There is no game open using that code'
