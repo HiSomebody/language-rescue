@@ -1,6 +1,5 @@
 <html>
-	<head>
-		<script>
+	<head><script>
 		var username;
 		var code;
 		var players = [
@@ -14,10 +13,10 @@
 		
 		window.onload = function()
 		{
-			code = data.code;//GetURLParameter("gameCode");
+			code = imporantData.code;//GetURLParameter("gameCode");
 			
 			document.getElementById("GameCodeHeader").innerHTML = "Game Code: " + code;
-			username = data.username;//GetURLParameter("username");
+			username = importantData.username;//GetURLParameter("username");
 			document.getElementById("NameHeader").innerHTML = "Name: " + username;
 			var playersDiv = document.getElementById("playersDiv");
 			
