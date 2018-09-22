@@ -86,7 +86,7 @@ app.get('/gamepage/:code/:username', function(req,res)
 	    fs
 	    .createReadStream(__dirname + '/../FrontEnd/GAMES/GameParticipantPage.html')
 	    .pipe(parser)
-	    .on('end', () => {
+	    .on('end', function() {
 		res.write('\n<!-- End stream -->')
 	    }).pipe(res);
 	});
