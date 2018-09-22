@@ -2,6 +2,7 @@
 	<head>
 		<script>
 		var username;
+		var code;
 		var players = [
 			{name:"Paul",text:"Hi there",image:"https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/300px-No_image_available.svg.png"},
 			{name:"Daniel",text:"Hi everyone",image:"https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/300px-No_image_available.svg.png"},
@@ -13,9 +14,10 @@
 		
 		window.onload = function()
 		{
-			var code = GetURLParameter("gameCode");
+			code = data.code;//GetURLParameter("gameCode");
+			
 			document.getElementById("GameCodeHeader").innerHTML = "Game Code: " + code;
-			username = GetURLParameter("username");
+			username = data.username;//GetURLParameter("username");
 			document.getElementById("NameHeader").innerHTML = "Name: " + username;
 			var playersDiv = document.getElementById("playersDiv");
 			
