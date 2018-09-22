@@ -102,7 +102,7 @@
 			var username = document.getElementById("nameEntryField").value;
 			
 			var client = new HttpClient();
-			client.post('http://104.236.169.62:80/addClientToGame56/'+code+'/'+username, function(response) {
+			client.post('http://104.236.169.62:80/addClientToGame/'+code+'/'+username, function(response) {
 				var parsedJSON = (JSON.parse(response));
 			    console.log(parsedJSON);
 				if (parsedJSON["result"] == "success")
