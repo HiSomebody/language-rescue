@@ -3,22 +3,25 @@
 	<head><script>
 		var username;
 		var code;
-		var players = [
-			{name:"Paul",text:"Hi there",image:"https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/300px-No_image_available.svg.png"},
-			{name:"Daniel",text:"Hi everyone",image:"https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/300px-No_image_available.svg.png"},
-			{name:"Rachel",text:"Is this working?",image:"https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/300px-No_image_available.svg.png"},
-			{name:"Amy",text:"I think so",image:"https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/300px-No_image_available.svg.png"}
-			
-		];
+		
+		var HttpClient = function() {
+		    this.get = function(aUrl, aCallback) {
+		        var anHttpRequest = new XMLHttpRequest();
+		        anHttpRequest.onreadystatechange = function() { 
+		            if (anHttpRequest.readyState == 4 && anHttpRequest.status == 200)
+		                aCallback(anHttpRequest.responseText);
+		        }
+
+		        anHttpRequest.open( "GET", aUrl, true );            
+		        anHttpRequest.send( null );
+		    }
+		}
+		
+		
 		window.history.replaceState('', 'Game Hub', '/test');
 		
-		window.onload = function()
+		function initializeGame(players)
 		{
-			code = importantData["code"];//GetURLParameter("gameCode");
-			
-			document.getElementById("GameCodeHeader").innerHTML = "Game Code: " + code;
-			username = importantData["username"];//GetURLParameter("username");
-			document.getElementById("NameHeader").innerHTML = "Name: " + username;
 			var playersDiv = document.getElementById("playersDiv");
 			
 			for (var i = 0; i < players.length; i++)
@@ -37,6 +40,23 @@
 				playerDiv.appendChild(message);
 				playersDiv.appendChild(playerDiv);
 			}
+		}
+		
+		window.onload = function()
+		{
+			code = importantData["code"];//GetURLParameter("gameCode");
+			document.getElementById("GameCodeHeader").innerHTML = "Game Code: " + code;
+			username = importantData["username"];//GetURLParameter("username");
+			document.getElementById("NameHeader").innerHTML = "Name: " + username;
+			
+			var client = new HttpClient();
+			client.get('http://104.236.169.62:80/loadGameForClient/'+code, function(response) {
+			    initializeGame(response.players);
+			});
+			
+			
+			
+			
 		}
 		
 		var GetURLParameter = function(sParam)
