@@ -122,11 +122,21 @@ function getPlayersWithCode(code)
 app.get('/loadGameForClient/:code', function(req,res)
 {
 	var playersWithThatCode = getPlayersWithCode(req.params.code);
-	res.send({
-		result: 'success',
-		err: '',
-		players: playersWithThatCode
-	});
+	if (playersWithThatCode != undefined && playersWithThatCode != null)
+	{
+		res.send({
+			result: 'success',
+			err: '',
+			players: playersWithThatCode
+		});
+	}
+	else
+	{
+		res.send({
+			result: 'error',
+			err: 'There is no game open using that code'
+		});
+	}
 });
 
 
