@@ -24,9 +24,9 @@ var connectionpool = mysql.createPool({
 var playerGroups = {
 	3333:
 	[
-	{name:"Daniel",text:"Hi everyone",image:"https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/300px-No_image_available.svg.png"},
-	{name:"Rachel",text:"Is this working?",image:"https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/300px-No_image_available.svg.png"},
-	{name:"Amy",text:"I think so",image:"https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/300px-No_image_available.svg.png"}
+		{name:"Daniel",text:"Hi everyone",image:"https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/300px-No_image_available.svg.png"},
+		{name:"Rachel",text:"Is this working?",image:"https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/300px-No_image_available.svg.png"},
+		{name:"Amy",text:"I think so",image:"https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/300px-No_image_available.svg.png"}
 	]
 };
 
@@ -138,6 +138,28 @@ app.get('/loadGameForClient/:code', function(req,res)
 	}
 });
 
+app.post('/addClientToGame/:code/:username', function(req,res){
+	var gameCode = req.params.code;
+	var userName = req.params.username;
+	var playersWithThatCode = getPlayersWithCode(gameCode);
+	if (playersWithThatCode != undefined && playersWithThatCode != null)
+	{
+		playersWithThatCode.push({name:username,text:"I just joined",image:"https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/300px-No_image_available.svg.png"});
+		res.send({
+			result: 'success',
+			err: '',
+			players: playersWithThatCode
+		});
+	}
+	else
+	{
+		res.send({
+			result: 'error',
+			err: 'There is no game open using that code'
+		});
+	}
+	
+});
 
 app.get('/sortit4x4', function(req,res){
 res.sendFile(path.resolve(__dirname + '/../FrontEnd/GAMES/sortit4x4.html'));
