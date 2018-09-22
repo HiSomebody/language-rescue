@@ -60,7 +60,7 @@ res.sendFile(path.resolve(__dirname + '/../FrontEnd/GAMES/GameParticipantPage.ht
 const Transform = require('stream').Transform;
 	const parser = new Transform();
 	parser._transform = function(data, encoding, done) {
-	  const str = data.toString().replace('<head><script>', '<head><script>var importantData = {"code": "'+tempCode+'"; "username": "'+tempUsername+'"};');
+	  const str = data.toString().replace('<head><script>', '<head><script>var importantData = {"code": "'+tempCode+'"; "username": "'+tempUsername+'"}');
 	  this.push(str);
 	  done();
 	};
