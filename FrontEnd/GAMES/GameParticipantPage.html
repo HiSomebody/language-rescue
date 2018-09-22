@@ -59,10 +59,8 @@
 				}
 				else
 				{
-					//var playerDiv = document.createElement("div");
 					document.removeChild(document.documentElement);
 					var playerDiv = document.createElement("div");
-					playersDiv.appendChild(playerDiv);
 					var message = document.createTextNode(parsedJSON["err"]);
 					playerDiv.appendChild(message);
 					document.appendChild(playerDiv);
