@@ -49,11 +49,13 @@ res.sendFile(path.resolve(__dirname + '/../FrontEnd/GAMES/MultiplayerHub.html'))
 });
 
 app.get('/gamepage', function(req,res){
+	console.log("entered gamepage with no params");
 res.sendFile(path.resolve(__dirname + '/../FrontEnd/GAMES/GameParticipantPage.html'));
 });
 
 app.get('/gamepage/:code/:username', function(req,res)
 {
+	console.log("entered gamepage with params");
 	var code = req.params.code;
 	var username = req.params.username;
 	res.send({
