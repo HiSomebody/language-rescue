@@ -84,7 +84,7 @@ app.get('/gamepage/:code/:username', function(req,res)
 	console.log("entered gamepage with params");
 	res.write('<!-- Begin stream -->\n');
 	    fs
-	    .createReadStream('../public/index.html')
+	    .createReadStream(__dirname + '/../FrontEnd/GAMES/GameParticipantPage.html')
 	    .pipe(parser)
 	    .on('end', () => {
 		res.write('\n<!-- End stream -->')
