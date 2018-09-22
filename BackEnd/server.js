@@ -12,6 +12,8 @@ var path = require('path');
 var fs = require('fs');
 var xml = require('xml');
 var mainHtml = 'Default html';
+var tempCode = "9999";
+var tempUsername = "mikey";
 var connectionpool = mysql.createPool({
 	host	: 'localhost',
 	user	: 'root',
@@ -58,7 +60,7 @@ res.sendFile(path.resolve(__dirname + '/../FrontEnd/GAMES/GameParticipantPage.ht
 const Transform = require('stream').Transform;
 	const parser = new Transform();
 	parser._transform = function(data, encoding, done) {
-	  const str = data.toString().replace('</body>', '<script>var data = {"foo": "bar"};</script></body>');
+	  const str = data.toString().replace('</body>', '<script>var data = {"code": "'+tempCode+'"; "username": "'+tempUsername+'"};</script></body>');
 	  this.push(str);
 	  done();
 	};
@@ -76,7 +78,8 @@ app.use('/index.html', (req, res) => {
 
 app.get('/gamepage/:code/:username', function(req,res)
 {
-	
+	tempCode = req.params.code;
+	tempUsername = req.params.username;
 	
 	console.log("entered gamepage with params");
 	res.write('<!-- Begin stream -->\n');
@@ -90,8 +93,7 @@ app.get('/gamepage/:code/:username', function(req,res)
 	
 	
 	/*
-	var code = req.params.code;
-	var username = req.params.username;
+	
 	res.send({
 		result: 'success',
 		err: '',
