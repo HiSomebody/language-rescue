@@ -53,13 +53,20 @@
 			client.get('http://104.236.169.62:80/loadGameForClient/'+code, function(response) {
 				var parsedJSON = (JSON.parse(response));
 			    console.log(parsedJSON["players"]);
-				initializeGame(parsedJSON['players']);
+				if (parsedJSON["result"] == "success")
+				{
+					initializeGame(parsedJSON['players']);
+				}
+				else
+				{
+					var playerDiv = document.createElement("div");
+					playersDiv.appendChild(playerDiv);
+					var message = document.createTextNode(players[i].text);
+					playerDiv.appendChild(parsedJSON["err"]);
+				}
 			});
-			
-			
-			
-			
 		}
+		
 		
 		var GetURLParameter = function(sParam)
 		{
