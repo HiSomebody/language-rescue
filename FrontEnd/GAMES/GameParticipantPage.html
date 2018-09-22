@@ -51,8 +51,9 @@
 			
 			var client = new HttpClient();
 			client.get('http://104.236.169.62:80/loadGameForClient/'+code, function(response) {
-			    console.log(response);
-				initializeGame(response["players"]);
+				var thePlayers = response["players"];
+			    console.log(thePlayers);
+				initializeGame(thePlayers);
 			});
 			
 			
