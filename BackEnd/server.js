@@ -148,7 +148,7 @@ app.post('/addClientToGame/:code/:username', function(req,res){
 	{
 		console.log("Number of players: " + playersWithThatCode.length);
 		playersWithThatCode.push({"name":userName,"text":"I just joined","image":"https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/300px-No_image_available.svg.png"});
-		console.log("Number of players after adding " + userName + ": " + playersWithThatCode.length);
+		console.log("Number of players after adding " + userName + ": " + playerGroups[gameCode].length);
 		res.send({
 			result: 'success',
 			err: '',
