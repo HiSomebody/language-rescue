@@ -168,6 +168,11 @@ app.post('/addClientToGame/:code/:username', function(req,res){
 	
 });
 
+app.get('/image4x4', function(req,res){
+res.sendFile(path.resolve(__dirname + '/../FrontEnd/GAMES/imageSort.html'));
+});
+
+
 app.get('/sortit4x4', function(req,res){
 res.sendFile(path.resolve(__dirname + '/../FrontEnd/GAMES/sortit4x4.html'));
 });
