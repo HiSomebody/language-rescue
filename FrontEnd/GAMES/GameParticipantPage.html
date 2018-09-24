@@ -44,9 +44,9 @@
 		
 		window.onload = function()
 		{
-			code = importantData["code"];//GetURLParameter("gameCode");
+			code = GetURLParameter("gameCode");
 			document.getElementById("GameCodeHeader").innerHTML = "Game Code: " + code;
-			username = importantData["username"];//GetURLParameter("username");
+			username = GetURLParameter("username");
 			document.getElementById("NameHeader").innerHTML = "Name: " + username;
 			
 			var client = new HttpClient();
