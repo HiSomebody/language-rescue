@@ -1,0 +1,1101 @@
+<style type="text/css">
+.container {
+  position: relative;
+}
+
+#clip1A {
+  position: absolute;
+  clip: rect(0, 125px, 125px, 0);
+  transition: left .15s ease-in, top .15s ease-in;
+  left:0;
+  top:0;
+  /* clip: shape(top, right, bottom, left); NB 'rect' is the only available option */
+}
+
+#clip1B {
+  position: absolute;
+  clip: rect(0, 250px, 125px, 125);
+  transition: left .15s ease-in, top .15s ease-in;
+  left:-125;
+  top:0;
+  /* clip: shape(top, right, bottom, left); NB 'rect' is the only available option */
+}
+
+#clip1C {
+  position: absolute;
+  clip: rect(0, 375px, 125px, 250);
+  transition: left .15s ease-in, top .15s ease-in;
+  top:0;
+  left:-250;
+  /* clip: shape(top, right, bottom, left); NB 'rect' is the only available option */
+}
+
+#clip1D {
+  position: absolute;
+  clip: rect(0, 500px, 125px, 375);
+  transition: left .15s ease-in, top .15s ease-in;
+  top:0;
+  left:-375;
+  /* clip: shape(top, right, bottom, left); NB 'rect' is the only available option */
+}
+
+#clip1E {
+  position: absolute;
+  clip: rect(0, 625px, 125px, 500);
+  transition: left .15s ease-in, top .15s ease-in;
+  top:0;
+  left:-500;
+  /* clip: shape(top, right, bottom, left); NB 'rect' is the only available option */
+}
+
+
+
+#clip2A {
+  position: absolute;
+  clip: rect(125, 125px, 250px, 0);
+  transition: left .15s ease-in, top .15s ease-in;
+  top:-125;
+  left:0;
+  /* clip: shape(top, right, bottom, left); NB 'rect' is the only available option */
+}
+
+#clip2B {
+  position: absolute;
+  clip: rect(125, 250px, 250px, 125);
+  transition: left .15s ease-in, top .15s ease-in;
+  left:-125;
+  top:-125;
+  /* clip: shape(top, right, bottom, left); NB 'rect' is the only available option */
+}
+
+#clip2C {
+  position: absolute;
+  clip: rect(125, 375px, 250px, 250);
+  transition: left .15s ease-in, top .15s ease-in;
+  left:-250;
+  top:-125;
+  /* clip: shape(top, right, bottom, left); NB 'rect' is the only available option */
+}
+
+#clip2D {
+  position: absolute;
+  clip: rect(125, 500px, 250px, 375);
+  transition: left .15s ease-in, top .15s ease-in;
+  top:-125;
+  left:-375;
+  /* clip: shape(top, right, bottom, left); NB 'rect' is the only available option */
+}
+
+#clip2E {
+  position: absolute;
+  clip: rect(125, 625px, 250px, 500);
+  transition: left .15s ease-in, top .15s ease-in;
+  top:-125;
+  left:-500;
+  /* clip: shape(top, right, bottom, left); NB 'rect' is the only available option */
+}
+
+
+
+
+#clip3A {
+  position: absolute;
+  clip: rect(250, 125px, 375px, 0);
+  transition: left .15s ease-in, top .15s ease-in;
+  top:-250;
+  left:0;
+  /* clip: shape(top, right, bottom, left); NB 'rect' is the only available option */
+}
+
+#clip3B {
+  position: absolute;
+  clip: rect(250, 250px, 375px, 125);
+  transition: left .15s ease-in, top .15s ease-in;
+  top:-250;
+  left:-125;
+  /* clip: shape(top, right, bottom, left); NB 'rect' is the only available option */
+}
+
+#clip3C {
+  position: absolute;
+  clip: rect(250, 375px, 375px, 250);
+  transition: left .15s ease-in, top .15s ease-in;
+  top:-250;
+  left:-250;
+  /* clip: shape(top, right, bottom, left); NB 'rect' is the only available option */
+}
+
+#clip3D {
+  position: absolute;
+  clip: rect(250, 500px, 375px, 375);
+  transition: left .15s ease-in, top .15s ease-in;
+  top:-250;
+  left:-375;
+  /* clip: shape(top, right, bottom, left); NB 'rect' is the only available option */
+}
+
+#clip3E {
+  position: absolute;
+  clip: rect(250, 625px, 375px, 500);
+  transition: left .15s ease-in, top .15s ease-in;
+  top:-250;
+  left:-500;
+  /* clip: shape(top, right, bottom, left); NB 'rect' is the only available option */
+}
+
+
+#clip4A {
+  position: absolute;
+  clip: rect(375, 125px, 500px, 0);
+  transition: left .15s ease-in, top .15s ease-in;
+  top:-375;
+  left:0;
+  /* clip: shape(top, right, bottom, left); NB 'rect' is the only available option */
+}
+
+#clip4B {
+  position: absolute;
+  clip: rect(375, 250px, 500px, 125);
+  transition: left .15s ease-in, top .15s ease-in;
+  top:-375;
+  left:-125;
+  /* clip: shape(top, right, bottom, left); NB 'rect' is the only available option */
+}
+
+#clip4C {
+  position: absolute;
+  clip: rect(375, 375px, 500px, 250);
+  transition: left .15s ease-in, top .15s ease-in;
+  top:-375;
+  left:-250;
+  /* clip: shape(top, right, bottom, left); NB 'rect' is the only available option */
+}
+
+#clip4D {
+  position: absolute;
+  clip: rect(375, 500px, 500px, 375);
+  transition: left .15s ease-in, top .15s ease-in;
+  top:-375;
+  left:-375;
+  /* clip: shape(top, right, bottom, left); NB 'rect' is the only available option */
+}
+
+#clip4E {
+  position: absolute;
+  clip: rect(375, 625px, 500px, 500);
+  transition: left .15s ease-in, top .15s ease-in;
+  top:-375;
+  left:-500;
+  /* clip: shape(top, right, bottom, left); NB 'rect' is the only available option */
+}
+
+
+
+
+
+
+
+#clip5A {
+  position: absolute;
+  clip: rect(500, 125px, 625px, 0);
+  transition: left .15s ease-in, top .15s ease-in;
+  top:-500;
+  left:0;
+  /* clip: shape(top, right, bottom, left); NB 'rect' is the only available option */
+}
+
+#clip5B {
+  position: absolute;
+  clip: rect(500, 250px, 625px, 125);
+  transition: left .15s ease-in, top .15s ease-in;
+  top:-500;
+  left:-125;
+  /* clip: shape(top, right, bottom, left); NB 'rect' is the only available option */
+}
+
+#clip5C {
+  position: absolute;
+  clip: rect(500, 375px, 625px, 250);
+  transition: left .15s ease-in, top .15s ease-in;
+  top:-500;
+  left:-250;
+  /* clip: shape(top, right, bottom, left); NB 'rect' is the only available option */
+}
+
+#clip5D {
+  position: absolute;
+  clip: rect(500, 500px, 625px, 375);
+  transition: left .15s ease-in, top .15s ease-in;
+  top:-500;
+  left:-375;
+  /* clip: shape(top, right, bottom, left); NB 'rect' is the only available option */
+}
+
+#clip5E {
+  position: absolute;
+  clip: rect(500, 625px, 625px, 500);
+  transition: left .15s ease-in, top .15s ease-in;
+  top:-500;
+  left:-500;
+  /* clip: shape(top, right, bottom, left); NB 'rect' is the only available option */
+}
+
+
+</style>
+
+<!-- div class="container">
+  <img src="goodCompany.jpg" width=500 />
+</div -->
+<!--div class="container">
+  <img id="clip1A" src="goodCompany2.jpg" width = 500/>
+  <img id="clip1B" src="goodCompany2.jpg" width = 500/>
+  <img id="clip1C" src="goodCompany2.jpg" width = 500/>
+  <img id="clip1D" src="goodCompany2.jpg" width = 500/>
+  
+  <img id="clip2A" src="goodCompany2.jpg" width = 500/>
+  <img id="clip2B" src="goodCompany2.jpg" width = 500/>
+  <img id="clip2C" src="goodCompany2.jpg" width = 500/>
+  <img id="clip2D" src="goodCompany2.jpg" width = 500/>
+  
+  <img id="clip3A" src="goodCompany2.jpg" width = 500/>
+  <img id="clip3B" src="goodCompany2.jpg" width = 500/>
+  <img id="clip3C" src="goodCompany2.jpg" width = 500/>
+  <img id="clip3D" src="goodCompany2.jpg" width = 500/>
+  
+  <img id="clip4A" src="goodCompany2.jpg" width = 500/>
+  <img id="clip4B" src="goodCompany2.jpg" width = 500/>
+  <img id="clip4C" src="goodCompany2.jpg" width = 500/>
+  <img id="clip4D" src="goodCompany2.jpg" width = 500/>
+  
+</div-->
+
+
+<!DOCTYPE html>
+<html>
+  
+<head>
+<title>Sort It</title>
+<style type="text/css">
+html, body {
+    height: 100%;
+}
+
+html {
+    display: table;
+    margin: auto;
+    -webkit-tap-highlight-color:transparent;
+
+}
+
+body {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+
+
+#button {
+    display: block;
+	float: right;
+    padding:7px 13px;
+    background:#ff3399;
+    font-size:20px;
+    font-family: 'Arial', sans-serif;
+    color:#ffffff;
+    white-space: nowrap;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+
+}
+	
+#button2 {
+    display: none;
+	float: right;
+    padding:7px 13px;
+    background:#00ccff;
+    font-size:20px;
+    font-family: 'Arial', sans-serif;
+    color:#000000;
+    white-space: nowrap;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+
+#button3 {
+    display: block;
+	float: right;
+    padding:7px 13px;
+    background:#ffae00;
+    font-size:20px;
+    font-family: 'Arial', sans-serif;
+    color:#ffffff;
+    white-space: nowrap;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+
+#button:active {
+    vertical-align: top;
+    padding: 8px 13px 6px;
+}
+
+.one a {
+    text-decoration: none;
+}
+
+
+
+
+#contentContainer {
+    overflow: hidden;
+    background-color: #F2F2F2;
+    cursor: pointer;
+	position: relative;
+	text-align: center;
+}
+
+.red {
+	background: -webkit-radial-gradient(#FFA2A2, red); /* Safari 5.1 to 6.0 */
+    background: -o-radial-gradient(#FFA2A2, red); /* For Opera 11.6 to 12.0 */
+    background: -moz-radial-gradient(#FFA2A2, red); /* For Firefox 3.6 to 15 */
+    background: radial-gradient(#FFA2A2, red); /* Standard syntax (must be last) */
+    /*background-color: red;*/
+	position: absolute;
+    transition: left .15s ease-in, top .15s ease-in;
+}
+.blue {
+	background: -webkit-radial-gradient(#AEC2FF, blue); /* Safari 5.1 to 6.0 */
+    background: -o-radial-gradient(#AEC2FF, blue); /* For Opera 11.6 to 12.0 */
+    background: -moz-radial-gradient(#AEC2FF, blue); /* For Firefox 3.6 to 15 */
+    background: radial-gradient(#AEC2FF, blue); /* Standard syntax (must be last) */
+    /*background-color: blue;*/
+	position: absolute;
+    transition: left .45s ease-in, top .45s ease-in;
+}
+
+.yellow {
+	background: -webkit-radial-gradient(#FFFFB2, #CCCC00); /* Safari 5.1 to 6.0 */
+    background: -o-radial-gradient(#FFFFB2, #CCCC00); /* For Opera 11.6 to 12.0 */
+    background: -moz-radial-gradient(#FFFFB2, #CCCC00); /* For Firefox 3.6 to 15 */
+    background: radial-gradient(#FFFFB2, #CCCC00); /* Standard syntax (must be last) */
+    /*background-color: yellow;*/
+	position: absolute;
+    transition: left .15s ease-in, top .15s ease-in;
+}
+
+.green {
+    background: -webkit-radial-gradient(#99CC99, green); /* Safari 5.1 to 6.0 */
+    background: -o-radial-gradient(#99CC99, green); /* For Opera 11.6 to 12.0 */
+    background: -moz-radial-gradient(#99CC99, green); /* For Firefox 3.6 to 15 */
+    background: radial-gradient(#99CC99, green); /* Standard syntax (must be last) */
+	/*background-color: green;*/
+	position: absolute;
+    transition: left .15s ease-in, top .15s ease-in;
+}
+
+.white {
+	background-color: white;
+	position: absolute;
+    transition: left .15s ease-in, top .15s ease-in;
+}
+
+#redBorder {
+    background-color: red;
+	position: absolute;
+}
+#blueBorder {
+    background-color: blue;
+	position: absolute;
+}
+
+#yellowBorder {
+    background-color: yellow;
+	position: absolute;
+}
+
+#greenBorder {
+    background-color: green;
+	position: absolute;
+}
+
+</style>
+</head>
+ 
+
+<script>
+localStorage.clear();
+var devMode = true;
+//var devMode = false;
+var grids;
+
+
+var localGrids;// = JSON.parse(localStorage.getItem("image4x4"));
+var grid;
+var gridDivs = [];
+var boardWidth = 625;
+var gridDimension = boardWidth;
+var gap = 0;//boardWidth/50;
+var borderWidth = 0;//boardWidth/15;
+var borderLength = boardWidth-(2*borderWidth);
+var container;
+var boxDimension;
+var moveAmount;
+var currentIndex = 0;
+var shuffling = false;
+var canClick = true;
+var shuffleStack = [];
+var currentStackIndex = 0;
+
+
+function initGrids() {
+grids =
+	[
+
+	[["clip1A","clip1B","clip1C","clip1D","clip1E"],["clip2A","clip2B","clip2C","clip2D","clip2E"],["clip3A","clip3B","clip3C","clip3D","clip3E"],["clip4A","clip4B","clip4C","clip4D","clip4E"],["clip5A","clip5B","clip5C","clip5D","clip5E"]],
+	[["white","white","red","white"],["blue","white","white","white"],["white","white","white","white"],["white","white","white","white"]],
+	[["white","white","red","white"],["blue","white","white","white"],["white","white","white","yellow"],["white","white","white","white"]],
+	[["white","white","red","white"],["blue","white","white","white"],["white","white","white","yellow"],["white","green","white","white"]],
+
+	[["white","red","red","white"],["blue","white","white","white"],["white","white","white","yellow"],["white","green","white","white"]],
+	[["white","red","red","white"],["blue","white","white","white"],["blue","white","white","yellow"],["white","green","white","white"]],
+	[["white","red","red","white"],["blue","white","white","yellow"],["blue","white","white","yellow"],["white","green","white","white"]],
+	[["white","red","red","white"],["blue","white","white","yellow"],["blue","white","white","yellow"],["white","green","green","white"]],
+
+	[["red","red","red","white"],["blue","white","white","yellow"],["blue","white","white","yellow"],["white","green","green","white"]],
+	[["red","red","red","white"],["blue","white","white","yellow"],["blue","white","white","yellow"],["blue","green","green","white"]],
+	[["red","red","red","yellow"],["blue","white","white","yellow"],["blue","white","white","yellow"],["blue","green","green","white"]],
+	[["red","red","red","yellow"],["blue","white","white","yellow"],["blue","white","white","yellow"],["blue","green","green","green"]],
+
+	[["red","red","red","yellow"],["blue","white","red","yellow"],["blue","white","white","yellow"],["blue","green","green","green"]],
+	[["red","red","red","yellow"],["blue","blue","red","yellow"],["blue","white","white","yellow"],["blue","green","green","green"]],
+	[["red","red","red","yellow"],["blue","blue","red","yellow"],["blue","white","yellow","yellow"],["blue","green","green","green"]],
+	[["red","red","red","yellow"],["blue","blue","red","yellow"],["blue","green","yellow","yellow"],["blue","green","green","green"]]
+
+	]
+
+}
+
+function init() {
+	initGrids();
+	grid = grids[0];
+	boxDimension = (boardWidth-(((grid.length-1)*gap)+2*borderWidth))/grid.length;
+
+	currentIndex = 0;
+	if (localStorage.currentIndex4x4 != null && localStorage.currentIndex4x4 > -1)
+	{
+		currentIndex = parseInt(localStorage.currentIndex4x4);
+	}
+	localGrids = JSON.parse(localStorage.getItem("image4x4"));
+	loadBoard();
+
+	if (localGrids == null || localGrids[currentIndex] == null)
+	{
+		canClick = false;
+		window.setTimeout(shuffleBoard, 750);
+		//shuffleBoard();
+	}
+	localGrids[currentIndex] = grid;
+	localStorage.setItem('image4x4', JSON.stringify(localGrids));
+
+}
+
+window.onload = function()
+{
+	init();
+}
+
+function loadBoard() {
+	//loadLevel();
+	grid = grids[currentIndex];
+	if (localGrids != null && localGrids[currentIndex] != null) 
+	{ 
+		grid = localGrids[currentIndex]; 	
+	}
+	console.log(currentIndex);
+	boxDimension = (boardWidth-(((grid.length-1)*gap)+2*borderWidth))/grid.length;
+	moveAmount = boxDimension + gap;
+	//console.log(moveAmount);
+	//console.log(gap);
+	
+	var parent = document.body;
+	var child = document.getElementById("contentContainer");
+	if (child != null)
+	{
+		parent.removeChild(child);
+	}
+	var conte = document.createElement("div");
+	conte.setAttribute("id","contentContainer");
+
+	conte.style.height = gridDimension+"px";
+	conte.style.width = gridDimension+"px";
+	
+	gridDivs = [];
+	for (var i = 0; i < grid.length; i++)
+	{
+		var listDivs = [];
+		for (var j = 0; j < grid[i].length; j++)
+		{
+			
+			var gradi;
+			if (grid[i][j] == "blue")
+			{
+				gradi = document.createElement("div");
+				gradi.setAttribute("class",grid[i][j]);
+				gradi.style.height = boxDimension+"px";
+				gradi.style.width = boxDimension+"px";
+				gradi.style.left = (borderWidth+(boxDimension+gap)*j)+"px";
+				gradi.style.top = (borderWidth+(boxDimension+gap)*i)+"px";
+				
+			}
+			else
+			{
+				gradi = document.createElement("img");
+				gradi.width = 625;
+				gradi.src = "images/lizard.jpg";
+				gradi.setAttribute("id",grid[i][j]);
+				gradi.style.left = Number((-125*j) + (borderWidth+(boxDimension+gap)*j));
+				gradi.style.top = Number((-125*i) + (borderWidth+(boxDimension+gap)*i));
+			}
+			
+			conte.appendChild(gradi);
+			listDivs.push(gradi);
+		}
+		gridDivs.push(listDivs);
+	}
+	
+	var topBorder = document.createElement("div");
+	topBorder.setAttribute("id","redBorder");
+	topBorder.style.height = borderWidth+"px";
+	topBorder.style.width = borderLength+"px";
+	topBorder.style.left = borderWidth+"px";
+	topBorder.style.top = "0px";
+	
+	var leftBorder = document.createElement("div");
+	leftBorder.setAttribute("id","blueBorder");
+	leftBorder.style.height = borderLength+"px";
+	leftBorder.style.width = borderWidth+"px";
+	leftBorder.style.left = "0px";
+	leftBorder.style.top = borderWidth+"px";
+	
+	var rightBorder = document.createElement("div");
+	rightBorder.setAttribute("id","yellowBorder");
+	rightBorder.style.height = borderLength+"px";
+	rightBorder.style.width = borderWidth+"px";
+	rightBorder.style.left = (boardWidth-borderWidth)+"px";
+	rightBorder.style.top = borderWidth+"px";
+	
+	var bottomBorder = document.createElement("div");
+	bottomBorder.setAttribute("id","greenBorder");
+	bottomBorder.style.height = borderWidth+"px";
+	bottomBorder.style.width = borderLength+"px";
+	bottomBorder.style.left = borderWidth+"px";
+	bottomBorder.style.top = (boardWidth-borderWidth)+"px";	
+	
+	conte.appendChild(topBorder);
+	conte.appendChild(rightBorder);
+	conte.appendChild(leftBorder);
+	conte.appendChild(bottomBorder);
+
+	document.body.appendChild(conte);
+	
+	child = document.getElementById("tagLine");
+	if (child != null)
+	{
+		parent.removeChild(child);
+	}
+	child = document.getElementById("tagLineBreak");
+	if (child != null)
+	{
+		parent.removeChild(child);
+	}
+	
+	var tagLineDiv = document.createElement("div");
+	tagLineDiv.setAttribute("id","contentContainer");
+	var tagLineBreak = document.createElement("br");
+	tagLineBreak.setAttribute("id","tagLineBreak");
+
+	document.body.appendChild(tagLineBreak);
+	var tagLineDiv = document.createElement("div");
+	var tagLine = document.createTextNode("created by Paul Soderquist");
+	tagLineDiv.setAttribute("text-align","center");
+	tagLineDiv.setAttribute("id","tagLine");
+	tagLineDiv.appendChild(tagLine);
+	document.body.appendChild(tagLineDiv);
+	
+	container = document.querySelector("#contentContainer");
+	container.addEventListener("click", getClickPosition, false);
+}
+ 
+ 
+function shuffleBoard() {
+	canClick = false;
+	var shuffleCounter = 0;
+	currentStackIndex = 0;
+	shuffleStack = [];
+	
+	while (shuffleCounter < 30)
+	{
+		var randX = Math.floor(Math.random()*(gridDivs.length-2))+1;
+		var randY = Math.floor(Math.random()*(gridDivs.length-2))+1;
+		var numRotations = Math.floor(Math.random()*4)+1;
+		for (var i = 0; i < numRotations; i++)
+		{
+			shuffleStack.push({x:randX,y:randY});
+			shuffleCounter++;
+		}
+	}
+	setDivSpeed(.15);
+	shuffling = true;
+}
+ 
+setInterval(function() {
+	if (!shuffling){return;}
+	if (currentStackIndex >= shuffleStack.length-1)
+	{
+		shuffling = false;
+		canClick = true;
+		setDivSpeed(.15);
+		localGrids[currentIndex] = grid;
+		localStorage.setItem('image4x4', JSON.stringify(localGrids));
+	}
+	else {
+		var randX = shuffleStack[currentStackIndex].x;
+		var randY = shuffleStack[currentStackIndex].y;
+		rotateLeft(randX,randY);
+		currentStackIndex++;
+	}
+	
+}, 75);
+ 
+function setDivSpeed(speed) {
+	for (var i = 0; i < grid.length; i++)
+	{
+		for (var j = 0; j < grid[i].length; j++)
+		{
+			var div = gridDivs[i][j];
+			div.style.transition = "left "+speed.toString()+"s ease-in, top "+speed.toString()+"s ease-in";
+		}
+	}
+	
+}
+ 
+function loadLevel() {
+
+	var level = document.getElementById("Level");
+	if (level == null)
+	{
+		level = document.createElement("h1");
+		level.innerHTML = currentIndex;
+		level.setAttribute("id","Level");
+		document.body.appendChild(level);
+	}
+	level.innerHTML = currentIndex+1;
+}
+
+function getClickPosition(e) {
+	if (canClick == false) return;
+    var parentPosition = getPosition(e.currentTarget);
+	var x = e.clientX;
+	var y = e.clientY;
+	var div = document.elementFromPoint(x, y);
+	console.log(div);
+	var locX = 1;
+	var locY = 1;
+	var foundDiv = false;
+	for (var i = 0; i < gridDivs.length; i++)
+	{
+		for (var j = 0; j < gridDivs[i].length; j++)
+		{
+			var currDiv = gridDivs[i][j];
+			if (currDiv == div)
+			{
+				foundDiv = true;
+				if (i < 1 || i > gridDivs.length-2 || j < 1 || j > gridDivs[i].length-2)
+				{
+					return;
+				}
+				locX = j;
+				locY = i;
+				break;
+			}
+		}
+	}
+	if (!foundDiv) return;
+	
+	rotateRight(locX,locY);
+	storeGridLocally();
+	//checkWin();
+	console.log(gridDivs);
+	console.log(grid);
+}
+
+ function storeGridLocally() {
+	if (localGrids == null)
+	{
+		localGrids = [];
+	}
+	localGrids[currentIndex] = grid;
+	localStorage.setItem('image4x4', JSON.stringify(localGrids));
+ }
+
+ function getNumNotWhite() {
+	 var counter = 0;
+ 	 for (var i = 0; i < gridDivs.length; i++)
+	{
+		for (var j = 0; j < gridDivs.length; j++)
+		{
+			var color = gridDivs[i][j].className;
+			if (color != 'white')
+			{
+				counter += 1;
+			}
+			
+		}
+	}
+	 return counter;
+ }
+	
+function whiteOnPerimeter() {
+ 	for (var i = 0; i < gridDivs.length; i++)
+	{
+		for (var j = 0; j < gridDivs.length; j++)
+		{
+			var color = gridDivs[i][j].className;
+			if (color == 'white') 
+			{	
+				if (i == 0 || i == gridDivs.length-1 || j == 0 || j == gridDivs.length-1)
+				{
+					return true;
+				}
+			}
+			
+		}
+	}
+	 return false;
+ }
+	
+ function checkWin() {
+	 var numNotWhite = getNumNotWhite();
+	 var numPerimeter = (gridDivs.length - 1)*4;
+	 if (numNotWhite <= numPerimeter)
+	 {
+		for (var i = 0; i < gridDivs.length; i++)
+		{
+			for (var j = 0; j < gridDivs.length; j++)
+			{
+				var color = gridDivs[i][j].className;
+				if (color == 'red' && i != 0)
+				{
+					return false;
+				}
+				if (color == 'blue' && j != 0)
+				{
+					return false;
+				}
+				if (color == 'yellow' && j != grid.length-1)
+				{
+					return false;
+				}
+				if (color == 'green' && i != grid.length-1)
+				{
+					return false;
+				}
+			}
+		}
+	 }
+	 else
+	 {
+		 // if any white on perimeter return false
+		 if (whiteOnPerimeter()) return false;
+		 
+		 for (var i = 0; i < gridDivs.length; i++)
+		{
+			for (var j = 0; j < gridDivs.length; j++)
+			{
+				var color = gridDivs[i][j].className;
+				// red is only allowed on row 0 or if not edge column it can also be row 1
+				if (color == 'red' && i != 0)
+				{
+					if (i != 1 || j == 0 || j == gridDivs.length-1)
+					{	
+						return false;
+					}
+				}
+				// blue is only allowed on column 0 or if not edge row it can also be column 1
+				if (color == 'blue' && j != 0)
+				{
+					if (j != 1 || i == 0 || i == gridDivs.length-1)
+					{	
+						return false;
+					}
+				}
+				// yellow is only allowed on column length-1 or if not edge row it can also be column length-2
+		 		if (color == 'yellow' && j != grid.length-1)
+				{
+					if (j != gridDivs.length-2 || i == 0 || i == gridDivs.length-1)
+					{	
+						return false;
+					}
+				}
+				// green is only allowed on row length-1 or if not edge column it can also be row length-2
+				if (color == 'green' && i != grid.length-1)
+				{
+					if (i != gridDivs.length-2 || j == 0 || j == gridDivs.length-1)
+					{	
+						return false;
+					}
+				}
+			}
+		}
+		 
+		 
+	 }
+	
+	wonGame();
+ }
+ 
+ function alertWon()
+ {
+	 //alert("Good job! Move on to the next level");
+ }
+	
+ function alertWonFinal()
+ {
+	//alert("You beat the final level! Go do something active now");
+ }
+	
+ function wonGame() {
+	if (currentIndex == grids.length-1)
+	{
+		window.setTimeout(alertWonFinal, 300);
+		var winImage = document.getElementById("winImage");
+        	winImage.style.display = "block";
+		var sortTitle = document.getElementById("sortit");
+        	sortTitle.style.display = "none";
+	}
+	else
+	{
+		window.setTimeout(alertWon, 300);
+		var buttonN = document.getElementById("button2");
+        buttonN.style.display = "block";
+	}
+
+	
+	
+ }
+ 
+ function rotateRight(x,y) {
+	
+	moveDiv(y-1,x-1,1,0);
+	moveDiv(y-1,x,1,0);
+	moveDiv(y-1,x+1,0,1);
+	moveDiv(y,x+1,0,1);
+	moveDiv(y+1,x+1,-1,0);
+	moveDiv(y+1,x,-1,0);
+	moveDiv(y+1,x-1,0,-1);
+	moveDiv(y,x-1,0,-1);
+	
+	swapValuesAfterRotateRight(x,y);
+ }
+ 
+ function rotateLeft(x,y) {
+	
+	moveDiv(y-1,x-1,0,1);
+	moveDiv(y-1,x,-1,0);
+	moveDiv(y-1,x+1,-1,0);
+	moveDiv(y,x+1,0,-1);
+	moveDiv(y+1,x+1,0,-1);
+	moveDiv(y+1,x,1,0);
+	moveDiv(y+1,x-1,1,0);
+	moveDiv(y,x-1,0,1);
+	
+	swapValuesAfterRotateLeft(x,y);
+ }
+ 
+ function swapValuesAfterRotateRight(x,y)
+ {
+	var temp = swapElements(gridDivs[y-1][x-1],y-1,x);
+	temp = swapElements(temp,y-1,x+1);
+	temp = swapElements(temp,y,x+1);
+	temp = swapElements(temp,y+1,x+1);
+	temp = swapElements(temp,y+1,x);
+	temp = swapElements(temp,y+1,x-1);
+	temp = swapElements(temp,y,x-1);
+	temp = swapElements(temp,y-1,x-1);
+	
+	var temp2 = swapGridElements(grid[y-1][x-1],y-1,x);
+	temp2 = swapGridElements(temp2,y-1,x+1);
+	temp2 = swapGridElements(temp2,y,x+1);
+	temp2 = swapGridElements(temp2,y+1,x+1);
+	temp2 = swapGridElements(temp2,y+1,x);
+	temp2 = swapGridElements(temp2,y+1,x-1);
+	temp2 = swapGridElements(temp2,y,x-1);
+	temp2 = swapGridElements(temp2,y-1,x-1);
+ }
+ 
+ function swapValuesAfterRotateLeft(x,y)
+ {
+	var temp = swapElements(gridDivs[y-1][x-1],y,x-1);
+	temp = swapElements(temp,y+1,x-1);
+	temp = swapElements(temp,y+1,x);
+	temp = swapElements(temp,y+1,x+1);
+	temp = swapElements(temp,y,x+1);
+	temp = swapElements(temp,y-1,x+1);
+	temp = swapElements(temp,y-1,x);
+	temp = swapElements(temp,y-1,x-1);
+	
+	var temp2 = swapGridElements(grid[y-1][x-1],y,x-1);
+	temp2 = swapGridElements(temp2,y+1,x-1);
+	temp2 = swapGridElements(temp2,y+1,x);
+	temp2 = swapGridElements(temp2,y+1,x+1);
+	temp2 = swapGridElements(temp2,y,x+1);
+	temp2 = swapGridElements(temp2,y-1,x+1);
+	temp2 = swapGridElements(temp2,y-1,x);
+	temp2 = swapGridElements(temp2,y-1,x-1);
+ }
+ 
+ function swapElements(div,y,x)
+ {
+	var temp = gridDivs[y][x];
+	gridDivs[y][x] = div;
+	return temp;
+ }
+ 
+ function swapGridElements(elem,y,x)
+ {
+ 	var temp = grid[y][x];
+	grid[y][x] = elem;
+	return temp;
+ }
+ 
+ function moveDiv(row,col,dx,dy) {
+	var div = gridDivs[row][col];
+
+	var dynMoveAmountHoriz = (borderWidth+(boxDimension+gap)*(dx));
+	var dynMoveAmountVert = (borderWidth+(boxDimension+gap)*(dy));
+	var leftStr = div.style.left;
+	var topStr = div.style.top;
+	var valueLeft = parseInt(leftStr.substring(0,leftStr.length-2));
+	var valueTop = parseInt(topStr.substring(0,topStr.length-2));
+	div.style.left = (valueLeft+dynMoveAmountHoriz) + "px";//valueLeft + dx*dynMoveAmountHoriz + "px";
+	div.style.top = (valueTop+dynMoveAmountVert) + "px";//valueTop + dy*dynMoveAmountVert + "px";
+ }
+ 
+function getPosition(element) {
+    var xPosition = 0;
+    var yPosition = 0;
+      
+    while (element) {
+        xPosition += (element.offsetLeft - element.scrollLeft + element.clientLeft);
+        yPosition += (element.offsetTop - element.scrollTop + element.clientTop);
+        element = element.offsetParent;
+    }
+    return { x: xPosition, y: yPosition };
+}
+
+function startOver() {
+	// Are you sure you want to delete all of your progress?
+	if (confirm("Are you sure you want to delete all of your progress?")) {
+		var buttonN = document.getElementById("button2");
+		buttonN.style.display = "none";
+		localStorage.setItem('image4x4', null);
+		localStorage.currentIndex4x4 = null;
+		init();
+
+	} else {
+
+	}
+}
+
+function changeBackLevel() {
+	if (currentIndex > 0)
+	{
+		if (localGrids == null) { localGrids = []; }
+		localGrids[currentIndex] = grid;
+		localStorage.setItem('image4x4', JSON.stringify(localGrids));
+		currentIndex--;
+		localStorage.currentIndex4x4 = currentIndex.toString();
+		loadBoard();
+		if (localGrids[currentIndex] == null)
+		{
+			window.setTimeout(shuffleBoard, 750);
+			//shuffleBoard();
+		}
+	}
+}
+
+function changeForwardLevel() {
+	var buttonN = document.getElementById("button2");   
+	buttonN.style.display = "none";
+	canClick = false;
+	if (currentIndex < grids.length-1)
+	{
+		if (localGrids == null) { localGrids = []; }
+		localGrids[currentIndex] = grid;
+		localStorage.setItem('image4x4', JSON.stringify(localGrids));
+		currentIndex++;
+		localStorage.currentIndex4x4 = currentIndex.toString();
+		loadBoard();
+		if (localGrids[currentIndex] == null)
+		{
+			window.setTimeout(shuffleBoard, 750);
+			//shuffleBoard();
+		}
+	}
+	/*
+	else
+	{
+		if (localGrids == null) { localGrids = []; }
+		localGrids[currentIndex] = grid;
+		localStorage.setItem('image4x4', JSON.stringify(localGrids));
+		currentIndex = 0;
+		localStorage.currentIndex4x4 = currentIndex.toString();
+		loadBoard();
+		if (localGrids[currentIndex] == null)
+		{
+			shuffleBoard();
+		}
+	}
+	*/
+}
+
+document.onkeydown = checkKey;
+
+function checkKey(e) {
+
+    e = e || window.event;
+
+    if (e.keyCode == '38') {
+        // up arrow
+    }
+    else if (e.keyCode == '40') {
+        // down arrow
+    }
+    else if (e.keyCode == '37') {
+		// left arrow
+		//changeBackLevel();
+		
+    }
+    else if (e.keyCode == '39') {
+		// right arrow
+		//changeForwardLevel();
+	}
+
+}
+</script>
+</head>
+<body>
+<!-- input type="button" onclick="location.href='http://104.236.169.62/helplist';" value="Back to Helplist" /-->
+<h1 id="sortit" style="font-family:Calibri">Sort it! (Image Version)</h1>
+<div class="one">
+    <p><button id="button" value="Shuffle" onclick="shuffleBoard()">Shuffle</button>
+	<p><button id="button3" value="Start Over" onclick="startOver()">Reset</button>
+	<button hidden id="button2" value="Next Level" onclick="changeForwardLevel()">Next Level</button>
+	</p>
+</div></body>
+</html>
+
+
