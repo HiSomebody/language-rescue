@@ -98,12 +98,13 @@ app.get('/gamepage/:code/:username', function(req,res)
 	res.write('<!-- Begin stream -->\n');
 	var readStream = fs.createReadStream(__dirname + '/../FrontEnd/GAMES/GameParticipantPage.html');
 	readStream.on('open', function() {
-		this.pipe(parser)
+		this.pipe(parser);
 	}
 	readStream.on('end', function() {
 		res.write('\n<!-- End stream -->');
-		this.pipe(res);
 	});
+	readStream.pipe(res);
+
 	/*
 
 	res.send({
