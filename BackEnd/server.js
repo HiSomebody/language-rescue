@@ -67,6 +67,7 @@ res.sendFile(path.resolve(__dirname + '/../FrontEnd/GAMES/GameParticipantPage.ht
 });
 */
 
+/*
 const Transform = require('stream').Transform;
 const parser = new Transform();
 parser._transform = function(data, encoding, done) {
@@ -76,6 +77,7 @@ parser._transform = function(data, encoding, done) {
 	this.push(str);
 	done();
 };
+*/
 
 /*
 app.use('/index.html', (req, res) => {
@@ -89,6 +91,7 @@ app.use('/index.html', (req, res) => {
 });
 */
 
+/*
 app.get('/gamepage/:code/:username', function(req,res)
 {
 	tempCode = req.params.code;
@@ -109,8 +112,9 @@ app.get('/gamepage/:code/:username', function(req,res)
 		code: code,
 		username: username
 	});
-	*/
+	
 });
+*/
 
 function getPlayersWithCode(code)
 {
