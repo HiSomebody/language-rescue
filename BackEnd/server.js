@@ -97,9 +97,7 @@ app.get('/gamepage/:code/:username', function(req,res)
 	console.log("entered gamepage with params");
 	var readStream = fs.createReadStream(__dirname + '/../FrontEnd/GAMES/GameParticipantPage.html');
 	readStream.on('open', function() {
-		res.write('<!-- Begin stream -->\n');
-		pipe(parser);
-		readStream.pipe(res);
+		
 	});
 	readStream.on('end', function() {
 		res.write('\n<!-- End stream -->');
@@ -108,7 +106,9 @@ app.get('/gamepage/:code/:username', function(req,res)
 	readStream.on('error', function(err) {
 		res.end(err);
 	});
-
+	res.write('<!-- Begin stream -->\n');
+	readStream.pipe(parser);
+	readStream.pipe(res);
 	/*
 
 	res.send({
