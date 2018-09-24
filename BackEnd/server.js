@@ -60,12 +60,12 @@ app.get('/gamehub', function(req,res){
 res.sendFile(path.resolve(__dirname + '/../FrontEnd/GAMES/MultiplayerHub.html'));
 });
 
-/*
+
 app.get('/gamepage', function(req,res){
 	console.log("entered gamepage with no params");
 res.sendFile(path.resolve(__dirname + '/../FrontEnd/GAMES/GameParticipantPage.html'));
 });
-*/
+
 
 /*
 const Transform = require('stream').Transform;
