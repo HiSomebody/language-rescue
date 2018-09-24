@@ -88,12 +88,12 @@
 		
 		function enterGamePage(code,username)
 		{
-			console.log(window.location.href);
-			var newPage = "/loadGameForClient/"+code;//+"/"+username;
-			console.log(newPage);
-			window.location.href = newPage;
+			//console.log(window.location.href);
+			//var newPage = "/loadGameForClient/"+code;//+"/"+username;
+			//console.log(newPage);
+			//window.location.href = newPage;
 			//window.location.href = "GameParticipantPage.html?gameCode="+code.toUpperCase()+"&username="+username;
-			//window.location.href = "/gamepage?gameCode="+code.toUpperCase()+"&username="+username;
+			window.location.href = "/gamepage?gameCode="+code.toUpperCase()+"&username="+username;
 		}
 		
 		function joinGame()
