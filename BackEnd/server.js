@@ -96,14 +96,10 @@ app.get('/gamepage/:code/:username', function(req,res)
 	console.log("entered gamepage with params");
 	res.write('<!-- Begin stream -->\n');
 	var readStream = fs.createReadStream(__dirname + '/../FrontEnd/GAMES/GameParticipantPage.html');
+	readStream.pipe(parser);
 	readStream.on('end', function() {
 		res.write('\n<!-- End stream -->');
 	});
-	// This catches any errors that happen while creating the readable stream (usually invalid names)
-	readStream.on('error', function(err) {
-		res.end(err);
-	});
-	readStream.pipe(parser);
 	readStream.pipe(res);
 	/*
 
