@@ -199,7 +199,7 @@ app.post('/setClientMessage/:code/:username/:message', function(req,res){
 	{
 		console.log("success");
 		var playerIndex = getIndexOfPlayerByName(gameCode,userName);
-		playersWithThatCode[playerIndex]['message'] = newMessage;
+		playersWithThatCode[playerIndex]['text'] = newMessage;
 		res.send({
 			result: 'success',
 			err: '',
