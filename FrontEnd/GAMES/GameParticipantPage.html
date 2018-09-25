@@ -128,9 +128,10 @@
 		{
 			var message = document.getElementById("chatInputField").value;
 			var client = new HttpClient();
+			console.log("posting: " + message);
 			client.post('http://104.236.169.62:80/setClientMessage/'+code+'/'+username+'/'+message, function(response) {
 				var parsedJSON = (JSON.parse(response));
-			    //console.log(parsedJSON);
+			    console.log(parsedJSON);
 				if (parsedJSON["result"] == "success")
 				{
 					document.getElementById("player"+username).childNodes[2].nodeValue = message;
