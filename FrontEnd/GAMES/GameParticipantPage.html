@@ -1,8 +1,18 @@
 <!-- Begin stream -->
 <html>
 	<head><script>
-		var username;
-		var code;
+		var username = "test";
+		var code = "test";
+		
+		var gameData = {
+			code: "test",
+			commentList: [{userName:"Amy",message:"First comment in main thread"},{userName:"Daniel",message:"Second comment in main thread"}],
+			players: [
+				{name:"Daniel",text:"Hi everyone",image:"https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/300px-No_image_available.svg.png"},
+				{name:"Rachel",text:"Is this working?",image:"https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/300px-No_image_available.svg.png"},
+				{name:"Amy",text:"I think so",image:"https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/300px-No_image_available.svg.png"}
+			]
+		}
 		
 		var HttpClient = function() {
 		    this.get = function(aUrl, aCallback) {
@@ -33,30 +43,68 @@
 		{
 			var playersDiv = document.getElementById("playersDiv");
 			
-			for (var i = 0; i < players.length; i++)
+			for (var i = 0; i < gameData['players'].length; i++)
 			{
 				var playerDiv = document.createElement("div");
-				var nameLbl = document.createTextNode(players[i].name + ": ");
-				var message = document.createTextNode(players[i].text);
-				playerDiv.setAttribute("id","player"+players[i].name);
+				var nameLbl = document.createTextNode(gameData['players'][i].name + ": ");
+				var message = document.createTextNode(gameData['players'][i].text);
+				playerDiv.setAttribute("id","player"+gameData['players'][i].name);
 				var imgDiv = document.createElement("img");
 				imgDiv.height=50;
-				imgDiv.src = players[i].image;
+				imgDiv.src = gameData['players'][i].image;
 				//tagLineDiv.setAttribute("text-align","center");
-				imgDiv.setAttribute("id","img"+players[i].name);
+				imgDiv.setAttribute("id","img"+gameData['players'][i].name);
 				playerDiv.appendChild(imgDiv);
 				playerDiv.appendChild(nameLbl);
 				playerDiv.appendChild(message);
 				playersDiv.appendChild(playerDiv);
 			}
+			
+			
+			for (var i = 0; i < gameData['players'].length; i++)
+			{
+				var color = getRandomColor();
+				gameData['players'][i]['color']=color;
+				var y = document.createElement("LI");
+				
+				var playerDiv = document.createElement("div");
+				var nameLbl = document.createTextNode(gameData['players'][i].name + ": ");
+				var message = document.createTextNode(gameData['players'][i].text);
+				playerDiv.setAttribute("id","player"+gameData['players'][i].name);
+				var imgDiv = document.createElement("img");
+				imgDiv.height=50;
+				imgDiv.src = gameData['players'][i].image;
+				//tagLineDiv.setAttribute("text-align","center");
+				imgDiv.setAttribute("id","img"+gameData['players'][i].name);
+				playerDiv.appendChild(imgDiv);
+				playerDiv.appendChild(nameLbl);
+				playerDiv.appendChild(message);
+				
+			    y.appendChild(playerDiv);
+			    document.getElementById("playersDiv").appendChild(y);
+			}
+			
+			updateGame(gameData);
+			
+		}
+		
+		function getRandomColor() {
+		  var letters = '0123456789ABCDEF';
+		  var color = '#';
+		  for (var i = 0; i < 6; i++) {
+		    color += letters[Math.floor(Math.random() * 16)];
+		  }
+		  return color;
 		}
 		
 		window.onload = function()
 		{
 			code = GetURLParameter("gameCode");
+			if (code == undefined || code == null) {code = "test"}
 			console.log("Code: " + code);
 			document.getElementById("GameCodeHeader").innerHTML = "Game Code: " + code;
 			username = GetURLParameter("username");
+			if (username = undefined || username == null) {username = "test"}
 			console.log("user name: " + username);
 			document.getElementById("NameHeader").innerHTML = "Name: " + username;
 			//ßwindow.history.replaceState('', 'Game Hub', '/test');
@@ -67,15 +115,17 @@
 			    console.log(parsedJSON["players"]);
 				if (parsedJSON["result"] == "success")
 				{
-					initializeGame(parsedJSON['players']);
+					initializeGame(parsedJSON['gameData']);
 				}
 				else
 				{
-					document.removeChild(document.documentElement);
+					//document.removeChild(document.documentElement);
+					initializeGame(gameData);
+					
 					var playerDiv = document.createElement("div");
 					var message = document.createTextNode(parsedJSON["err"]);
 					playerDiv.appendChild(message);
-					document.appendChild(playerDiv);
+					//document.appendChild(playerDiv);
 				}
 			});	
 		}
@@ -96,9 +146,39 @@
 			}
 		}
 		
-		function updateGame(players)
+		function getPlayerColor(username)
 		{
-			
+			for (var i = 0; i < gameData['players'].length; i++)
+			{
+				if (gameData['players'][i].name == username)
+				{
+					return gameData['players'][i].color;
+				}
+			}
+			return "#000000";
+		}
+		
+		function updateGame(gameData)
+		{
+			// update comment list
+			var x = document.getElementById("commentList");
+			for (var i = 0; i < gameData['commentList'].length; i++)
+			{
+				var y = document.createElement("LI");
+				
+				var commentDiv = document.createElement("div");
+				commentDiv.style.color = getPlayerColor(gameData['commentList'][i].name);
+				var nameLbl = document.createTextNode(gameData['commentList'][i].name + ": ");
+				var message = document.createTextNode(gameData['commentList'][i].text);
+				var imgDiv = document.createElement("img");
+				imgDiv.height=50;
+				//tagLineDiv.setAttribute("text-align","center");
+				commentDiv.appendChild(nameLbl);
+				commentDiv.appendChild(message);
+				
+			    y.appendChild(commentDiv);
+			    document.getElementById("commentList").appendChild(y);
+			}
 		}
 		
 		function changeAvatar()
@@ -112,8 +192,8 @@
 				{
 					var src = document.getElementById("srcInputField").value;
 					document.getElementById("img"+username).src = src;
-					var players = parsedJSON['players'];
-					updateGame(players);
+					var gameData = parsedJSON['gameData'];
+					updateGame(gameData);
 				}
 				else
 				{
@@ -137,8 +217,35 @@
 				{
 					var message = document.getElementById("chatInputField").value;
 					document.getElementById("player"+username).childNodes[2].nodeValue = message;
-					var players = parsedJSON['players'];
-					updateGame(players);
+					var gameData = parsedJSON['gameData'];
+					updateGame(gameData);
+				}
+				else
+				{
+					var failedDiv = document.createElement("div");
+					var message = document.createTextNode(parsedJSON["err"]);
+					failedDiv.appendChild(message);
+					document.appendChild(failedDiv);
+				}
+			});	
+			
+			
+		}
+		
+		function sendMessage()
+		{
+			var message = document.getElementById("chatInputField").value;
+			var client = new HttpClient();
+			console.log("posting: " + message);
+			client.post('http://104.236.169.62:80/addPlayerCommentToList/'+code+'/'+username+'/'+ encodeURIComponent(message), function(response) {
+				var parsedJSON = (JSON.parse(response));
+			    console.log(parsedJSON);
+				if (parsedJSON["result"] == "success")
+				{
+					var message = document.getElementById("chatInputField").value;
+					document.getElementById("player"+username).childNodes[2].nodeValue = message;
+					var gameData = parsedJSON['gameData'];
+					updateGame(gameData);
 				}
 				else
 				{
@@ -160,15 +267,21 @@
 		<h2 id="GameCodeHeader">Game Code:</h2>
 		<h2 id="NameHeader">Name:</h2>
 		<div style="text-align:center" id="gameDiv">
-			<div id="playersDiv"></div>
+			<div hidden id="playersDiv"></div>
+			<div id="ContinuousThread">
+				<ul id="commentList" style="list-style-type:none">
+				</ul>
+			</div>
 			<br>
 			<input placeholder="Type Message" id="chatInputField"/>
-			<button onclick="changeMessage()">Send</button>
+			<button onclick="sendMessage()">Send</button>
 			<br><br>
 			<input placeholder="avatar img URL" id="srcInputField"/>
-			<button onclick="changeAvatar()">Change Avatar</button>
+			<button hidden onclick="changeAvatar()">Change Avatar</button>
 			
 		</div>
+		
+		
 	</body>
 </html>
 
