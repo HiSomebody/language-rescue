@@ -173,7 +173,7 @@ app.post('/addClientToGame/:code/:username', function(req,res){
 
 function getIndexOfPlayerByName(code,name)
 {
-	var playersWithThatCode = getPlayersWithCode(gameCode);
+	var playersWithThatCode = getPlayersWithCode(code);
 	if (playersWithThatCode != undefined && playersWithThatCode != null)
 	{
 		for (var i = 0; i < playersWithThatCode.length; i++)
