@@ -15,6 +15,16 @@
 		        anHttpRequest.open( "GET", aUrl, true );            
 		        anHttpRequest.send( null );
 		    }
+			this.post = function(aUrl, aCallback) {
+			var xhttp = new XMLHttpRequest();
+			  xhttp.onreadystatechange = function() {
+			    if (this.readyState == 4 && this.status == 200) {
+			      	aCallback(xhttp.responseText);
+			    }
+			  };
+			  xhttp.open("POST", aUrl, true);
+			  xhttp.send();
+		  }
 		}
 		
 		
@@ -86,16 +96,57 @@
 			}
 		}
 		
+		function updateGame(players)
+		{
+			
+		}
+		
 		function changeAvatar()
 		{
 			var src = document.getElementById("srcInputField").value;
-			document.getElementById("img"+username).src = src;
+			var client = new HttpClient();
+			client.post('http://104.236.169.62:80/setClientImageUrl/'+code+'/'+username+'/'+src, function(response) {
+				var parsedJSON = (JSON.parse(response));
+			    //console.log(parsedJSON);
+				if (parsedJSON["result"] == "success")
+				{
+					document.getElementById("img"+username).src = src;
+					var players = parsedJSON['players'];
+					updateGame(players);
+				}
+				else
+				{
+					var failedDiv = document.createElement("div");
+					var message = document.createTextNode(parsedJSON["err"]);
+					failedDiv.appendChild(message);
+					document.appendChild(failedDiv);
+				}
+			});	
 		}
 		
 		function changeMessage()
 		{
 			var message = document.getElementById("chatInputField").value;
-			document.getElementById("player"+username).childNodes[2].nodeValue = message;
+			var client = new HttpClient();
+			client.post('http://104.236.169.62:80/setClientMessage/'+code+'/'+username+'/'+message, function(response) {
+				var parsedJSON = (JSON.parse(response));
+			    //console.log(parsedJSON);
+				if (parsedJSON["result"] == "success")
+				{
+					document.getElementById("player"+username).childNodes[2].nodeValue = message;
+					var players = parsedJSON['players'];
+					updateGame(players);
+				}
+				else
+				{
+					var failedDiv = document.createElement("div");
+					var message = document.createTextNode(parsedJSON["err"]);
+					failedDiv.appendChild(message);
+					document.appendChild(failedDiv);
+				}
+			});	
+			
+			
 		}
 		
 		
