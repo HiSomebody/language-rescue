@@ -18,7 +18,6 @@
 		}
 		
 		
-		//window.history.replaceState('', 'Game Hub', '/test');
 		
 		function initializeGame(players)
 		{
@@ -50,7 +49,8 @@
 			username = GetURLParameter("username");
 			console.log("user name: " + username);
 			document.getElementById("NameHeader").innerHTML = "Name: " + username;
-			
+			window.history.replaceState('', 'Game Hub', '/test');
+		
 			var client = new HttpClient();
 			client.get('http://104.236.169.62:80/loadGameForClient/'+code, function(response) {
 				var parsedJSON = (JSON.parse(response));
