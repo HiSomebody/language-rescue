@@ -167,9 +167,9 @@
 				var y = document.createElement("LI");
 				
 				var commentDiv = document.createElement("div");
-				commentDiv.style.color = getPlayerColor(gameData['commentList'][i].name);
-				var nameLbl = document.createTextNode(gameData['commentList'][i].name + ": ");
-				var message = document.createTextNode(gameData['commentList'][i].text);
+				commentDiv.style.color = getPlayerColor(gameData['commentList'][i].userName);
+				var nameLbl = document.createTextNode(gameData['commentList'][i].userName + ": ");
+				var message = document.createTextNode(gameData['commentList'][i].message);
 				var imgDiv = document.createElement("img");
 				imgDiv.height=50;
 				//tagLineDiv.setAttribute("text-align","center");
