@@ -105,11 +105,12 @@
 		{
 			var src = document.getElementById("srcInputField").value;
 			var client = new HttpClient();
-			client.post('http://104.236.169.62:80/setClientImageUrl/'+code+'/'+username+'/'+src, function(response) {
+			client.post('http://104.236.169.62:80/setClientImageUrl/'+code+'/'+username+'/'+ '&url=' + encodeURIComponent("http://a.com/?q=query&n=10"), function(response) {
 				var parsedJSON = (JSON.parse(response));
 			    //console.log(parsedJSON);
 				if (parsedJSON["result"] == "success")
 				{
+					var src = document.getElementById("srcInputField").value;
 					document.getElementById("img"+username).src = src;
 					var players = parsedJSON['players'];
 					updateGame(players);
