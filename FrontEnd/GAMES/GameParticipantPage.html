@@ -59,7 +59,7 @@
 			username = GetURLParameter("username");
 			console.log("user name: " + username);
 			document.getElementById("NameHeader").innerHTML = "Name: " + username;
-			//window.history.replaceState('', 'Game Hub', '/test');
+			//ßwindow.history.replaceState('', 'Game Hub', '/test');
 		
 			var client = new HttpClient();
 			client.get('http://104.236.169.62:80/loadGameForClient/'+code, function(response) {
@@ -134,6 +134,7 @@
 			    console.log(parsedJSON);
 				if (parsedJSON["result"] == "success")
 				{
+					var message = document.getElementById("chatInputField").value;
 					document.getElementById("player"+username).childNodes[2].nodeValue = message;
 					var players = parsedJSON['players'];
 					updateGame(players);
