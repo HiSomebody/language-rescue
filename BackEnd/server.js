@@ -197,6 +197,7 @@ app.post('/setClientMessage/:code/:username/:message', function(req,res){
 	var playersWithThatCode = getPlayersWithCode(gameCode);
 	if (playersWithThatCode != undefined && playersWithThatCode != null)
 	{
+		console.log("success");
 		var playerIndex = getIndexOfPlayerByName(gameCode,userName);
 		playersWithThatCode[playerIndex]['message'] = newMessage;
 		res.send({
