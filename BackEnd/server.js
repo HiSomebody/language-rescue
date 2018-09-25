@@ -171,6 +171,84 @@ app.post('/addClientToGame/:code/:username', function(req,res){
 	
 });
 
+function getIndexOfPlayerByName(code,name)
+{
+	var playersWithThatCode = getPlayersWithCode(gameCode);
+	if (playersWithThatCode != undefined && playersWithThatCode != null)
+	{
+		for (var i = 0; i < playersWithThatCode.length; i++)
+		{
+			var player = playersWithThatCode[i];
+			if (player['name'] == name)
+			{
+				return i;
+			}
+		}
+	}
+	return -1;
+}
+
+app.post('/setClientMessage/:code/:username/:message', function(req,res){
+	var gameCode = req.params.code;
+	var userName = req.params.username;
+	var newMessage = req.params.message;
+	console.log("Game Code: " + gameCode);
+	console.log("user name: " + userName);
+	var playersWithThatCode = getPlayersWithCode(gameCode);
+	if (playersWithThatCode != undefined && playersWithThatCode != null)
+	{
+		var playerIndex = getIndexOfPlayerByName(gameCode,userName);
+		playersWithThatCode[playerIndex]['message'] = newMessage;
+		res.send({
+			result: 'success',
+			err: '',
+			players: playersWithThatCode
+		});
+	}
+	else
+	{
+		console.log("player group is undefined");
+		console.log("Here is what playerGroups looks like: ");
+		console.log(playerGroups);
+		res.send({
+			result: 'error',
+			err: 'There is no game open using that code'
+		});
+	}
+	
+});
+
+app.post('/setClientImageUrl/:code/:username/:url', function(req,res){
+	var gameCode = req.params.code;
+	var userName = req.params.username;
+	var url = req.params.url;
+	console.log("Game Code: " + gameCode);
+	console.log("user name: " + userName);
+	var playersWithThatCode = getPlayersWithCode(gameCode);
+	if (playersWithThatCode != undefined && playersWithThatCode != null)
+	{
+		var playerIndex = getIndexOfPlayerByName(gameCode,userName);
+		playersWithThatCode[playerIndex]['image'] = url;
+		res.send({
+			result: 'success',
+			err: '',
+			players: playersWithThatCode
+		});
+	}
+	else
+	{
+		console.log("player group is undefined");
+		console.log("Here is what playerGroups looks like: ");
+		console.log(playerGroups);
+		res.send({
+			result: 'error',
+			err: 'There is no game open using that code'
+		});
+	}
+	
+});
+
+
 app.get('/image4x4', function(req,res){
 res.sendFile(path.resolve(__dirname + '/../FrontEnd/GAMES/imageSort.html'));
 });
