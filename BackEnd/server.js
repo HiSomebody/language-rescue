@@ -21,14 +21,19 @@ var connectionpool = mysql.createPool({
 	database : 'language_rescue_database'
 });
 
-var playerGroups = {
-	3333:
-	[
-		{name:"Daniel",text:"Hi everyone",image:"https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/300px-No_image_available.svg.png"},
-		{name:"Rachel",text:"Is this working?",image:"https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/300px-No_image_available.svg.png"},
-		{name:"Amy",text:"I think so",image:"https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/300px-No_image_available.svg.png"}
-	]
-};
+var playerGroups = [
+	{
+		code: 3333,
+		commentList:[],
+		players:
+		[
+			{name:"Daniel",text:"Hi everyone",image:"https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/300px-No_image_available.svg.png"},
+			{name:"Rachel",text:"Is this working?",image:"https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/300px-No_image_available.svg.png"},
+			{name:"Amy",text:"I think so",image:"https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/300px-No_image_available.svg.png"}
+		]
+	}
+];
+
 
 app.use(bodyParser.json());
 fs.readFile('../FrontEnd/index.html', function(err, html){
@@ -116,20 +121,27 @@ app.get('/gamepage/:code/:username', function(req,res)
 });
 */
 
-function getPlayersWithCode(code)
+function getGameDataForCode(code)
 {
-	return playerGroups[code];
+	for (var i = 0; i < playerGroups.length; i++)
+	{
+		if (playerGroups[i]['code']==code)
+		{
+			return playerGroups[code];
+		}
+	}
+	return null;
 }
 
 app.get('/loadGameForClient/:code', function(req,res)
 {
-	var playersWithThatCode = getPlayersWithCode(req.params.code);
-	if (playersWithThatCode != undefined && playersWithThatCode != null)
+	var gameDataForCode = getGameDataForCode(req.params.code);
+	if (gameDataForCode != undefined && gameDataForCode != null)
 	{
 		res.send({
 			result: 'success',
 			err: '',
-			players: playersWithThatCode
+			gameData: gameDataForCode
 		});
 	}
 	else
@@ -146,16 +158,16 @@ app.post('/addClientToGame/:code/:username', function(req,res){
 	var userName = req.params.username;
 	console.log("Game Code: " + gameCode);
 	console.log("user name: " + userName);
-	var playersWithThatCode = getPlayersWithCode(gameCode);
-	if (playersWithThatCode != undefined && playersWithThatCode != null)
+	var gameDataForCode = getGameDataForCode(gameCode);
+	if (gameDataForCode != undefined && gameDataForCode != null)
 	{
-		console.log("Number of players: " + playersWithThatCode.length);
-		playersWithThatCode.push({"name":userName,"text":"I just joined","image":"https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/300px-No_image_available.svg.png"});
-		console.log("Number of players after adding " + userName + ": " + playerGroups[gameCode].length);
+		console.log("Number of players: " + gameDataForCode['players'].length);
+		gameDataForCode['players'].push({"name":userName,"text":"I just joined","image":"https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/300px-No_image_available.svg.png"});
+		console.log("Number of players after adding " + userName + ": " + getGameDataForCode(gameCode)['players'].length);
 		res.send({
 			result: 'success',
 			err: '',
-			players: playersWithThatCode
+			gameData: gameDataForCode
 		});
 	}
 	else
@@ -173,12 +185,12 @@ app.post('/addClientToGame/:code/:username', function(req,res){
 
 function getIndexOfPlayerByName(code,name)
 {
-	var playersWithThatCode = getPlayersWithCode(code);
-	if (playersWithThatCode != undefined && playersWithThatCode != null)
+	var gameDataForCode = getGameDataForCode(code);
+	if (gameDataForCode != undefined && gameDataForCode != null)
 	{
-		for (var i = 0; i < playersWithThatCode.length; i++)
+		for (var i = 0; i < gameDataForCode['players'].length; i++)
 		{
-			var player = playersWithThatCode[i];
+			var player = gameDataForCode['players'][i];
 			if (player['name'] == name)
 			{
 				return i;
@@ -194,16 +206,16 @@ app.post('/setClientMessage/:code/:username/:message', function(req,res){
 	var newMessage = req.params.message;
 	console.log("Game Code: " + gameCode);
 	console.log("user name: " + userName);
-	var playersWithThatCode = getPlayersWithCode(gameCode);
-	if (playersWithThatCode != undefined && playersWithThatCode != null)
+	var gameDataForCode = getGameDataForCode(gameCode);
+	if (gameDataForCode != undefined && gameDataForCode != null)
 	{
 		console.log("success");
 		var playerIndex = getIndexOfPlayerByName(gameCode,userName);
-		playersWithThatCode[playerIndex]['text'] = newMessage;
+		gameDataForCode['players'][playerIndex]['text'] = newMessage;
 		res.send({
 			result: 'success',
 			err: '',
-			players: playersWithThatCode
+			gameData: gameDataForCode
 		});
 	}
 	else
@@ -225,15 +237,45 @@ app.post('/setClientImageUrl/:code/:username/:url', function(req,res){
 	var url = req.params.url;
 	console.log("Game Code: " + gameCode);
 	console.log("user name: " + userName);
-	var playersWithThatCode = getPlayersWithCode(gameCode);
-	if (playersWithThatCode != undefined && playersWithThatCode != null)
+	var gameDataForCode = getGameDataForCode(gameCode);
+	if (gameDataForCode != undefined && gameDataForCode != null)
 	{
 		var playerIndex = getIndexOfPlayerByName(gameCode,userName);
-		playersWithThatCode[playerIndex]['image'] = url;
+		gameDataForCode['players'][playerIndex]['image'] = url;
 		res.send({
 			result: 'success',
 			err: '',
-			players: playersWithThatCode
+			gameData: gameDataForCode
+		});
+	}
+	else
+	{
+		console.log("player group is undefined");
+		console.log("Here is what playerGroups looks like: ");
+		console.log(playerGroups);
+		res.send({
+			result: 'error',
+			err: 'There is no game open using that code'
+		});
+	}
+	
+});
+
+app.post('/addPlayerCommentToList/:code/:username/:message', function(req,res){
+	var gameCode = req.params.code;
+	var userName = req.params.username;
+	var message = req.params.message;
+	console.log("Game Code: " + gameCode);
+	console.log("user name: " + userName);
+	console.log("message: " + message);
+	var gameDataForCode = getGameDataForCode(gameCode);
+	if (gameDataForCode != undefined && gameDataForCode != null)
+	{
+		gameDataForCode['commentList'].push({userName:userName,message:message});
+		res.send({
+			result: 'success',
+			err: '',
+			gameData: gameDataForCode
 		});
 	}
 	else
