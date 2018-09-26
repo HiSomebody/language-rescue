@@ -215,6 +215,8 @@
 			    console.log(parsedJSON);
 				if (parsedJSON["result"] == "success")
 				{
+					var message = document.getElementById("chatInputField").value;
+					document.getElementById("player"+username).childNodes[2].nodeValue = message;
 					var gameData = parsedJSON['gameData'];
 					updateGame(gameData);
 				}
@@ -240,8 +242,6 @@
 			    console.log(parsedJSON);
 				if (parsedJSON["result"] == "success")
 				{
-					var message = document.getElementById("chatInputField").value;
-					document.getElementById("player"+username).childNodes[2].nodeValue = message;
 					var gameData = parsedJSON['gameData'];
 					updateGame(gameData);
 				}
