@@ -101,7 +101,6 @@
 			var client = new HttpClient();
 			client.get('http://104.236.169.62:80/loadGameForClient/'+code, function(response) {
 				var parsedJSON = (JSON.parse(response));
-			    console.log(parsedJSON["players"]);
 				if (parsedJSON["result"] == "success")
 				{
 					initializeGame(parsedJSON['gameData']);
@@ -233,7 +232,7 @@
 			console.log("posting: " + message);
 			client.post('http://104.236.169.62:80/setClientMessage/'+code+'/'+encodeURIComponent(username)+'/'+ encodeURIComponent(message), function(response) {
 				var parsedJSON = (JSON.parse(response));
-			    console.log(parsedJSON);
+			    //console.log(parsedJSON);
 				if (parsedJSON["result"] == "success")
 				{
 					var message = document.getElementById("chatInputField").value;
@@ -287,7 +286,7 @@
 		<h2 id="NameHeader">Name:</h2>
 		<div style="text-align:left" id="gameDiv">
 			<div hidden id="playersDiv"></div>
-			<div id="ContinuousThread">
+			<div id="ContinuousThread" style="overflow:scroll;">
 				<ul id="commentList" style="list-style-type:none">
 				</ul>
 			</div>
