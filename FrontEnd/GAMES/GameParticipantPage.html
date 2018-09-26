@@ -146,7 +146,7 @@
 			}
 		}
 		
-		function getPlayerColor(username)
+		function getPlayerColor(gameData, username)
 		{
 			for (var i = 0; i < gameData['players'].length; i++)
 			{
@@ -171,7 +171,7 @@
 				var y = document.createElement("LI");
 				
 				var commentDiv = document.createElement("div");
-				commentDiv.style.color = getPlayerColor(gameData['commentList'][i].userName);
+				commentDiv.style.color = getPlayerColor(gameData, gameData['commentList'][i].userName);
 				var nameLbl = document.createTextNode(gameData['commentList'][i].userName + ": ");
 				var message = document.createTextNode(gameData['commentList'][i].message);
 				var imgDiv = document.createElement("img");
