@@ -155,6 +155,15 @@ app.get('/loadGameForClient/:code', function(req,res)
 	}
 });
 
+function getRandomColor() {
+	var letters = '0123456789ABCDEF';
+	var color = '#';
+	for (var i = 0; i < 6; i++) {
+		color += letters[Math.floor(Math.random() * 16)];
+	}
+	return color;
+}
+
 app.post('/addClientToGame/:code/:username', function(req,res){
 	var gameCode = req.params.code;
 	var userName = req.params.username;
@@ -163,8 +172,10 @@ app.post('/addClientToGame/:code/:username', function(req,res){
 	var gameDataForCode = getGameDataForCode(gameCode);
 	if (gameDataForCode != undefined && gameDataForCode != null)
 	{
+		var color = getRandomColor();
+				//gameData['players'][i]['color']=color;
 		console.log("Number of players: " + gameDataForCode['players'].length);
-		gameDataForCode['players'].push({"name":userName,"text":"I just joined","image":"https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/300px-No_image_available.svg.png"});
+		gameDataForCode['players'].push({"name":userName,"text":"I just joined","image":"https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/300px-No_image_available.svg.png", "color":color});
 		console.log("Number of players after adding " + userName + ": " + getGameDataForCode(gameCode)['players'].length);
 		res.send({
 			result: 'success',
