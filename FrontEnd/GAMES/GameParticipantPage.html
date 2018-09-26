@@ -116,6 +116,25 @@
 					//document.appendChild(playerDiv);
 				}
 			});	
+			
+			var input = document.getElementById("chatInputField");
+			input.addEventListener("keyup", function(event)
+			{
+				event.preventDefault();
+				if (event.keyCode === 13) {
+					document.getElementById("sendMessageBtn").click();
+				}
+			});
+			
+			var input2 = document.getElementById("srcInputField");
+			input.addEventListener("keyup", function(event)
+			{
+				event.preventDefault();
+				if (event.keyCode === 13) {
+					document.getElementById("setImageBtn").click();
+				}
+			});
+			
 		}
 		
 		setInterval(function(){
@@ -295,10 +314,10 @@
 			</div>
 			<br>
 			<input placeholder="Type Message" id="chatInputField"/>
-			<button onclick="sendMessage()">Send</button>
+			<button id="sendMessageBtn" onclick="sendMessage()">Send</button>
 			<br><br>
 			<input placeholder="avatar img URL" id="srcInputField"/>
-			<button onclick="changeAvatar()">Change Avatar</button>
+			<button id="setImageBtn" onclick="changeAvatar()">Change Avatar</button>
 			
 		</div>
 		
