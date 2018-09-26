@@ -162,6 +162,18 @@
 			return "#000000";
 		}
 		
+		function getPlayerImage(gameData, username)
+		{
+			for (var i = 0; i < gameData['players'].length; i++)
+			{
+				if (gameData['players'][i].name == username)
+				{
+					return gameData['players'][i].image;
+				}
+			}
+			return "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/300px-No_image_available.svg.png";
+		}
+		
 		function updateGame(gameData)
 		{
 			// update comment list
@@ -180,7 +192,9 @@
 				var message = document.createTextNode(gameData['commentList'][i].message);
 				var imgDiv = document.createElement("img");
 				imgDiv.height=50;
+				imgDiv.src = getPlayerImage(gameData, gameData['commentList'][i].userName;
 				//tagLineDiv.setAttribute("text-align","center");
+				playerDiv.appendChild(imgDiv);
 				commentDiv.appendChild(nameLbl);
 				commentDiv.appendChild(message);
 				
@@ -193,7 +207,7 @@
 		{
 			var src = document.getElementById("srcInputField").value;
 			var client = new HttpClient();
-			client.post('http://104.236.169.62:80/setClientImageUrl/'+code+'/'+username+'/' + encodeURIComponent(src), function(response) {
+			client.post('http://104.236.169.62:80/setClientImageUrl/'+code+'/'+encodeURIComponent(username)+'/' + encodeURIComponent(src), function(response) {
 				var parsedJSON = (JSON.parse(response));
 			    //console.log(parsedJSON);
 				if (parsedJSON["result"] == "success")
@@ -218,7 +232,7 @@
 			var message = document.getElementById("chatInputField").value;
 			var client = new HttpClient();
 			console.log("posting: " + message);
-			client.post('http://104.236.169.62:80/setClientMessage/'+code+'/'+username+'/'+ encodeURIComponent(message), function(response) {
+			client.post('http://104.236.169.62:80/setClientMessage/'+code+'/'+encodeURIComponent(username)+'/'+ encodeURIComponent(message), function(response) {
 				var parsedJSON = (JSON.parse(response));
 			    console.log(parsedJSON);
 				if (parsedJSON["result"] == "success")
@@ -245,7 +259,7 @@
 			var message = document.getElementById("chatInputField").value;
 			var client = new HttpClient();
 			console.log("posting: " + message);
-			client.post('http://104.236.169.62:80/addPlayerCommentToList/'+code+'/'+username+'/'+ encodeURIComponent(message), function(response) {
+			client.post('http://104.236.169.62:80/addPlayerCommentToList/'+code+'/'+encodeURIComponent(username)+'/'+ encodeURIComponent(message), function(response) {
 				var parsedJSON = (JSON.parse(response));
 			    console.log(parsedJSON);
 				if (parsedJSON["result"] == "success")
