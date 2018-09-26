@@ -162,6 +162,10 @@
 		{
 			// update comment list
 			var x = document.getElementById("commentList");
+			while (x.firstChild) {
+			    x.removeChild(x.firstChild);
+			}
+			
 			for (var i = 0; i < gameData['commentList'].length; i++)
 			{
 				var y = document.createElement("LI");
