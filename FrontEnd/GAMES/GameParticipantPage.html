@@ -119,6 +119,20 @@
 			});	
 		}
 		
+		setInterval(function(){
+			client.get('http://104.236.169.62:80/loadGameForClient/'+code, function(response) {
+				var parsedJSON = (JSON.parse(response));
+			    console.log(parsedJSON["players"]);
+				if (parsedJSON["result"] == "success")
+				{
+					updateGame(parsedJSON['gameData']);
+				}
+				else
+				{
+					// unable to get data from server
+				}
+			});	
+		}, 3000);
 		
 		var GetURLParameter = function(sParam)
 		{
