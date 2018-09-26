@@ -8,9 +8,9 @@
 			code: "test",
 			commentList: [{userName:"Amy",message:"First comment in main thread"},{userName:"Daniel",message:"Second comment in main thread"}],
 			players: [
-				{name:"Daniel",text:"Hi everyone",image:"https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/300px-No_image_available.svg.png"},
-				{name:"Rachel",text:"Is this working?",image:"https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/300px-No_image_available.svg.png"},
-				{name:"Amy",text:"I think so",image:"https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/300px-No_image_available.svg.png"}
+				{name:"Daniel",text:"Hi everyone",image:"https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/300px-No_image_available.svg.png",color:"green"},
+				{name:"Rachel",text:"Is this working?",image:"https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/300px-No_image_available.svg.png",color:"red"},
+				{name:"Amy",text:"I think so",image:"https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/300px-No_image_available.svg.png",color:"blue"}
 			]
 		}
 		
@@ -63,8 +63,6 @@
 			
 			for (var i = 0; i < gameData['players'].length; i++)
 			{
-				var color = getRandomColor();
-				gameData['players'][i]['color']=color;
 				var y = document.createElement("LI");
 				
 				var playerDiv = document.createElement("div");
@@ -86,15 +84,6 @@
 			
 			updateGame(gameData);
 			
-		}
-		
-		function getRandomColor() {
-		  var letters = '0123456789ABCDEF';
-		  var color = '#';
-		  for (var i = 0; i < 6; i++) {
-		    color += letters[Math.floor(Math.random() * 16)];
-		  }
-		  return color;
 		}
 		
 		window.onload = function()
