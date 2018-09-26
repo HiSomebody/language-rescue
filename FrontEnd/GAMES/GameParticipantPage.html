@@ -199,6 +199,7 @@
 			    y.appendChild(commentDiv);
 			    document.getElementById("commentList").appendChild(y);
 			}
+			
 		}
 		
 		function changeAvatar()
@@ -274,7 +275,8 @@
 				}
 			});	
 			
-			
+			var objDiv = document.getElementById("ContinuousThread");
+			objDiv.scrollTop = objDiv.scrollHeight;
 		}
 		
 		
