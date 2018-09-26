@@ -35,37 +35,40 @@
 			
 			input.addEventListener("keyup", function(event)
 			{
-				if (input.value == "" || input.value == null || input.value == undefined)
+				event.preventDefault();
+				if (event.keyCode === 13) 
 				{
-					alert("please enter a game code")
-				}
-				else if (input2.value == "" || input2.value == null || input2.value == undefined)
-				{
-					alert("please enter a name")
-				}
-				else
-				{
-					event.preventDefault();
-					if (event.keyCode === 13) {
+					if (input.value == "" || input.value == null || input.value == undefined)
+					{
+						alert("please enter a game code")
+					}
+					else if (input2.value == "" || input2.value == null || input2.value == undefined)
+					{
+						alert("please enter a name")
+					}
+					else
+					{	
 						document.getElementById("joinGameButton").click();
 					}
 				}
 			});
 			input2.addEventListener("keyup", function(event)
 			{
-				if (input2.value == "" || input2.value == null || input2.value == undefined)
+				event.preventDefault();
+				if (event.keyCode === 13) 
 				{
-					alert("please enter a name")
-				}
-				else if (input.value == "" || input.value == null || input.value == undefined)
-				{
-					alert("please enter a game code")
-				}
-				else
-				{
-					event.preventDefault();
-					if (event.keyCode === 13) {
-						document.getElementById("joinGameButton").click();
+					if (input2.value == "" || input2.value == null || input2.value == undefined)
+					{
+						alert("please enter a name")
+					}
+					else if (input.value == "" || input.value == null || input.value == undefined)
+					{
+						alert("please enter a game code")
+					}
+					else
+					{
+					
+							document.getElementById("joinGameButton").click();
 					}
 				}
 			});
