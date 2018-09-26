@@ -123,7 +123,6 @@
 			var client = new HttpClient();
 			client.get('http://104.236.169.62:80/loadGameForClient/'+code, function(response) {
 				var parsedJSON = (JSON.parse(response));
-			    console.log(parsedJSON["players"]);
 				if (parsedJSON["result"] == "success")
 				{
 					updateGame(parsedJSON['gameData']);
@@ -286,7 +285,7 @@
 	<body>
 		<h2 id="GameCodeHeader">Game Code:</h2>
 		<h2 id="NameHeader">Name:</h2>
-		<div style="text-align:center" id="gameDiv">
+		<div style="text-align:left" id="gameDiv">
 			<div hidden id="playersDiv"></div>
 			<div id="ContinuousThread">
 				<ul id="commentList" style="list-style-type:none">
@@ -297,7 +296,7 @@
 			<button onclick="sendMessage()">Send</button>
 			<br><br>
 			<input placeholder="avatar img URL" id="srcInputField"/>
-			<button hidden onclick="changeAvatar()">Change Avatar</button>
+			<button onclick="changeAvatar()">Change Avatar</button>
 			
 		</div>
 		
