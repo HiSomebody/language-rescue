@@ -92,7 +92,7 @@
 			if (code == undefined || code == null) {code = "test"}
 			console.log("Code: " + code);
 			document.getElementById("GameCodeHeader").innerHTML = "Game Code: " + code;
-			username = GetURLParameter("username");
+			username = decodeURIComponent(GetURLParameter("username"));
 			if (username == undefined || username == null) {username = "test"}
 			console.log("user name: " + username);
 			document.getElementById("NameHeader").innerHTML = "Name: " + username;
