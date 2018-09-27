@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html>
+  
+<head>
+<title>Tic-Tac-Toe</title>
+<style type="text/css">
+html, body {
+    height: 100%;
+}
+
+html {
+    display: table;
+    margin: auto;
+}
+
+body {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+#button {
+    display: block;
+	float: right;
+    padding:7px 13px;
+    background:#f4425f;
+    font-size:20px;
+    font-family: 'Arial', sans-serif;
+    color:#ffffff;
+    white-space: nowrap;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+
+}
+
+#button:active {
+    vertical-align: top;
+    padding: 8px 13px 6px;
+}
+
+.one a {
+    text-decoration: none;
+}
+
+#contentContainer {
+    overflow: hidden;
+    background-color: #F2F2F2;
+    cursor: pointer;
+	position: relative;
+	text-align: center;
+}
+
+.blue {
+	background: -webkit-radial-gradient(#AEC2FF, blue); /* Safari 5.1 to 6.0 */
+    background: -o-radial-gradient(#AEC2FF, blue); /* For Opera 11.6 to 12.0 */
+    background: -moz-radial-gradient(#AEC2FF, blue); /* For Firefox 3.6 to 15 */
+    background: radial-gradient(#AEC2FF, blue); /* Standard syntax (must be last) */
+    /*background-color: blue;*/
+	position: absolute;
+    transition: left .15s ease-in, top .15s ease-in;
+}
+
+.white {
+	background: -webkit-radial-gradient(white, #DDEEFF); /* Safari 5.1 to 6.0 */
+    background: -o-radial-gradient(white, #DDEEFF); /* For Opera 11.6 to 12.0 */
+    background: -moz-radial-gradient(white, #DDEEFF); /* For Firefox 3.6 to 15 */
+    background: radial-gradient(white, #DDEEFF); /* Standard syntax (must be last) */
+    /*background-color: white;*/
+	position: absolute;
+    transition: left .15s ease-in, top .15s ease-in;
+}
+
+
+
+</style>
+</head>
+ 
+
+<script>
+
+var gameState = [["","",""],["","",""],["","",""]];
+var gridDivs = [];
+var boardWidth = 500;
+var gridDimension = boardWidth;
+var gap = boardWidth/50;
+var container;
+var boxDimension = (boardWidth-(((gameState.length-1)*gap)))/gameState.length;
+var gameOver = false;
+var timesPlayed = 0;
+
+
+window.onload = function()
+{
+	loadBoard();
+}
+
+function loadBoard() {
+	var parent = document.body;
+	var child = document.getElementById("contentContainer");
+	if (child != null)
+	{
+		parent.removeChild(child);
+	}
+	var conte = document.createElement("div");
+	conte.setAttribute("id","contentContainer");
+
+	conte.style.height = gridDimension+"px";
+	conte.style.width = gridDimension+"px";
+	conte.style.backgroundColor = "black";
+	
+	gridDivs = [];
+	for (var i = 0; i < gameState.length; i++)
+	{
+		var listDivs = [];
+		for (var j = 0; j < gameState[i].length; j++)
+		{
+			var gradi = document.createElement("div");
+			gradi.setAttribute("class","white");
+			
+			gradi.style.height = boxDimension+"px";
+			gradi.style.width = boxDimension+"px";
+			gradi.style.left = ((boxDimension+gap)*j)+"px";
+			gradi.style.top = ((boxDimension+gap)*i)+"px";
+			conte.appendChild(gradi);
+			listDivs.push(gradi);
+		}
+		gridDivs.push(listDivs);
+	}
+
+	document.body.appendChild(conte);
+	
+	child = document.getElementById("tagLine");
+	if (child != null)
+	{
+		parent.removeChild(child);
+	}
+	child = document.getElementById("tagLineBreak");
+	if (child != null)
+	{
+		parent.removeChild(child);
+	}
+	
+	var tagLineDiv = document.createElement("div");
+	tagLineDiv.setAttribute("id","contentContainer");
+	var tagLineBreak = document.createElement("br");
+	tagLineBreak.setAttribute("id","tagLineBreak");
+
+	document.body.appendChild(tagLineBreak);
+	var tagLineDiv = document.createElement("div");
+	var tagLine = document.createTextNode("created by Paul Soderquist");
+	tagLineDiv.setAttribute("text-align","center");
+	tagLineDiv.setAttribute("id","tagLine");
+	tagLineDiv.appendChild(tagLine);
+	document.body.appendChild(tagLineDiv);
+	
+	container = document.querySelector("#contentContainer");
+	container.addEventListener("click", getClickPosition, false);
+}
+ 
+ 
+
+
+
+
+function getClickPosition(e) {
+	if (gameOver) return;
+	var turnDiv = document.getElementById("turnTracker");
+	if (turnDiv.innerHTML[0] == "X")
+	{
+		// check if this player is X 
+			//if not return
+	}
+	if (turnDiv.innerHTML[0] == "O")
+	{
+		// check if this player is O 
+			//if not return
+	}
+    var parentPosition = getPosition(e.currentTarget);
+	var x = e.clientX;
+	var y = e.clientY;
+	var div = document.elementFromPoint(x, y);
+	
+	var locX = 1;
+	var locY = 1;
+	var foundDiv = false;
+	for (var i = 0; i < gridDivs.length; i++)
+	{
+		if (foundDiv) break;
+		for (var j = 0; j < gridDivs[i].length; j++)
+		{
+			var currDiv = gridDivs[i][j];
+			if (currDiv == div)
+			{
+				locX = j;
+				locY = i;
+				foundDiv = true;
+				break;
+			}
+		}
+	}
+	if (!foundDiv) return;
+	
+	setSquareValue(turnDiv.innerHTML[0],locX,locY,div);
+	
+}
+
+
+function setSquareValue(mark,locX,locY,div)
+{
+	console.log(gameState);
+	// check if spot is already taken
+	if (gameState[locY][locX] == "")
+	{
+		div.innerHTML = '<h1 style="font-size:55pt; font-family: Comic Sans MS, cursive, sans-serif; top:40; position:relative">'+mark+"</h1>";
+		gameState[locY][locX] = mark;
+		var turnDiv = document.getElementById("turnTracker");
+		if (mark == "X")
+		{
+			turnDiv.innerHTML = "O's turn";
+		}
+		else if (mark == "O")
+		{
+			turnDiv.innerHTML = "X's turn";
+		}
+		checkWin();
+	}
+}
+ 
+ 
+function checkWin()
+{
+	for (var i = 0; i < 3; i++)
+	{
+		if (gameState[i][0] != "" && gameState[i][0] == gameState[i][1] && gameState[i][0] == gameState[i][2])
+		{
+			// gameState[i][0] is winner on row i
+			winner(gameState[i][0], gridDivs[i][0],gridDivs[i][1],gridDivs[i][2]);
+		}
+		if (gameState[0][i] != "" && gameState[0][i] == gameState[1][i] && gameState[0][i] == gameState[2][i])
+		{
+			// gameState[0][i] is winner on column i
+			winner(gameState[0][i], gridDivs[0][i],gridDivs[1][i],gridDivs[2][i]);
+		}
+	}
+	if (gameState[0][0] != "" && gameState[0][0] == gameState[1][1] && gameState[0][0] == gameState[2][2])
+	{
+		// gameState[0][0] is down right winner
+		winner(gameState[0][0],gridDivs[0][0],gridDivs[1][1],gridDivs[2][2]);
+	}
+	if (gameState[2][0] != "" && gameState[2][0] == gameState[1][1] && gameState[2][0] == gameState[0][2])
+	{
+		// gameState[0][2] is down left winner
+		winner(gameState[0][2],gridDivs[0][2],gridDivs[1][1],gridDivs[2][0]);
+	}
+}
+
+function winner(mark,div1,div2,div3)
+{
+	var turnDiv = document.getElementById("turnTracker");
+	turnDiv.innerHTML = mark + " wins!";
+	console.log(div1);
+	console.log(div2);
+	console.log(div3);
+	div1.setAttribute("class","blue");
+	div2.setAttribute("class","blue");
+	div3.setAttribute("class","blue");
+	gameOver = true;
+}
+ 
+function getPosition(element) {
+    var xPosition = 0;
+    var yPosition = 0;
+      
+    while (element) {
+        xPosition += (element.offsetLeft - element.scrollLeft + element.clientLeft);
+        yPosition += (element.offsetTop - element.scrollTop + element.clientTop);
+        element = element.offsetParent;
+    }
+    return { x: xPosition, y: yPosition };
+}
+
+function restart()
+{
+	timesPlayed += 1;
+	gameOver = false;
+	gameState = [["","",""],["","",""],["","",""]];
+	var turnDiv = document.getElementById("turnTracker");
+	if (timesPlayed % 2 == 0)
+	{
+		turnDiv.innerHTML = "X's turn";
+	}
+	else
+	{
+		turnDiv.innerHTML = "O's turn";
+	}
+	loadBoard();
+}
+
+
+
+</script>
+<body bgcolor="33AADD">
+<h1 style="font-family:Calibri">Tic-Tac-Toe</h1>
+<h2 style="display:inline" id="turnTracker">X's turn</h2><button id="button" onclick="restart()">Restart</button>
+<div class="one">
+</div>
+</body>
+</html>
