@@ -24,6 +24,7 @@ var connectionpool = mysql.createPool({
 var playerGroups = [
 	{
 		code: 3333,
+		type: "discussion",
 		commentList:[],
 		players:
 		[
@@ -31,6 +32,13 @@ var playerGroups = [
 			{name:"Rachel",text:"Is this working?",image:"https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/300px-No_image_available.svg.png"},
 			{name:"Amy",text:"I think so",image:"https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/300px-No_image_available.svg.png"}
 		]
+	},
+	{
+		code: 4444,
+		type: "tictactoe",
+		gameState: [["","",""],["","",""]["","",""]],
+		currentTurn: "X",
+		players:[]
 	}
 ];
 
@@ -66,9 +74,20 @@ res.sendFile(path.resolve(__dirname + '/../FrontEnd/GAMES/MultiplayerHub.html'))
 });
 
 
-app.get('/gamepage', function(req,res){
+app.get('/gamepage/:code', function(req,res){
 	console.log("entered gamepage with no params");
-res.sendFile(path.resolve(__dirname + '/../FrontEnd/GAMES/GameParticipantPage.html'));
+	var type = getGameDataForCode(code).type;
+	if (type == "discussion")
+	{
+		res.sendFile(path.resolve(__dirname + '/../FrontEnd/GAMES/GameParticipantPage.html'));
+	}
+	else if (type == "tictactoe")
+	{
+		res.sendFile(path.resolve(__dirname + '/../FrontEnd/GAMES/tictactoe.html'));
+	}
+	else if (type == "uno")
+	{
+	}
 });
 
 
