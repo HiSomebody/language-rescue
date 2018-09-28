@@ -40,11 +40,11 @@
 				{
 					if (input.value == "" || input.value == null || input.value == undefined)
 					{
-						alert("please enter a game code")
+						alert("please enter a game code");
 					}
 					else if (input2.value == "" || input2.value == null || input2.value == undefined)
 					{
-						alert("please enter a name")
+						alert("please enter a name");
 					}
 					else
 					{	
@@ -68,7 +68,7 @@
 					else
 					{
 					
-							document.getElementById("joinGameButton").click();
+						document.getElementById("joinGameButton").click();
 					}
 				}
 			});
@@ -104,7 +104,7 @@
 				{
 					var failedDiv = document.createElement("div");
 					var message = document.createTextNode(parsedJSON["err"]);
-					failedDiv.appendChild(message);
+					failedDiv.appendChild(message);					
 					//document.appendChild(failedDiv);
 				}
 			});	
@@ -131,7 +131,7 @@
 			//console.log(newPage);
 			//window.location.href = newPage;
 			//window.location.href = "GameParticipantPage.html?gameCode="+code.toUpperCase()+"&username="+username;
-			window.location.href = "/gamepage/"+code+"?gameCode="+code.toUpperCase()+"&username="+encodeURIComponent(username);
+			window.location.href = "/gamepage/"+code.toUpperCase()+"?gameCode="+code.toUpperCase()+"&username="+encodeURIComponent(username);
 		}
 		
 		function joinGame()
@@ -153,6 +153,7 @@
 					var failedDiv = document.createElement("div");
 					var message = document.createTextNode(parsedJSON["err"]);
 					failedDiv.appendChild(message);
+					alert("There is no game open using that code");
 					//document.appendChild(failedDiv);
 				}
 			});	
