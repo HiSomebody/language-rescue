@@ -207,7 +207,7 @@ function updateGame(gameData)
 	if (hasMarks == false)
 	{
 		resetAllToWhite();
-		setTurn(gameData['currentTurn']);
+		gameOver = false;
 	}
 	setTurn(gameData['currentTurn']);
 	checkWin();
