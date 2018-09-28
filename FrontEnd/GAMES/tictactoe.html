@@ -121,12 +121,13 @@ window.onload = function()
 {
 	code = GetURLParameter("gameCode");
 	if (code == undefined || code == null) {code = "test"}
-	console.log("Code: " + code);
-	document.getElementById("GameCodeHeader").innerHTML = "Game Code: " + code;
+	//console.log("Code: " + code);
 	username = decodeURIComponent(GetURLParameter("username"));
 	if (username == undefined || username == null) {username = "test"}
-	console.log("user name: " + username);
-	document.getElementById("NameHeader").innerHTML = "Name: " + username;
+	//console.log("user name: " + username);
+	document.getElementById("GameNameHeader").innerHTML = "Code: " + code + "        Name: " + username;
+	
+	document.getElementById("ScoreHeader").innerHTML = "X: " + username + "        O: " + ;
 	//window.history.replaceState('', 'Game Hub', '/test');
 
 	var client = new HttpClient();
@@ -136,6 +137,17 @@ window.onload = function()
 		{
 			gameState = parsedJSON['gameData']['gameState'];
 			players = parsedJSON['gameData']['players'];
+			var p1 = players[0].name;
+			var wins1 = players[0].wins;
+			var p2 = "(waiting for another player to join)";
+			var wins2 = "0";
+			if (players.length > 1) 
+			{
+				p2 = players[1].name;
+				wins2 = players[1].wins;
+			}
+			document.getElementById("ScoreHeader").innerHTML = "X: " + p1 + " (" + wins1 + " wins)      O: " + p2 + " (" + wins2 + " wins)";
+			
 			//initializeGame(parsedJSON['gameData']);
 		}
 		else
@@ -172,25 +184,54 @@ setInterval(function(){
 
 function updateGame(gameData)
 {
+	hasMarks = false;
+	var players = gameData['players'];
+	var p1 = players[0].name;
+	var wins1 = players[0].wins;
+	var p2 = "(waiting for another player to join)";
+	var wins2 = "0";
+	if (players.length > 1) 
+	{
+		p2 = players[1].name;
+		wins2 = players[1].wins;
+	}
+	document.getElementById("ScoreHeader").innerHTML = "X: " + p1 + " (" + wins1 + " wins)      O: " + p2 + " (" + wins2 + " wins)";
 	for (var i = 0; i < 3; i++)
 	{
 		for (var j = 0; j < 3; j++)
 		{
-			//if (gameData['gameState'][i][j] != "")
+			if (gameData['gameState'][i][j] != "")
 			{
-				setSquareValue(gameData['gameState'][i][j],j,i,gridDivs[i][j]);
-				setTurn(gameData['currentTurn']);
-				checkWin();
+				hasMarks = true;
 			}
+			setSquareValue(gameData['gameState'][i][j],j,i,gridDivs[i][j]);
+			setTurn(gameData['currentTurn']);
+			checkWin();
+			
+		}
+	}
+	if (hasMarks == false)
+	{
+		resetAllToWhite();
+	}
+}
+
+function resetAllToWhite()
+{
+	for (var i = 0; i < 3; i++)
+	{
+		for (var j = 0; j < 3; j++)
+		{
+			var gradi = gridDivs[i][j];
+			gradi.setAttribute("class","white");
 		}
 	}
 }
 
-
 var GetURLParameter = function(sParam)
 {
 	var sPageURL = window.location.search.substring(1);
-	console.log("URL to check: " + sPageURL);
+	//console.log("URL to check: " + sPageURL);
 	var sURLVariables = sPageURL.split('&');
 	for (var i = 0; i < sURLVariables.length; i++) 
 	{
@@ -369,7 +410,7 @@ function setTurn(mark)
 
 function setSquareValue(mark,locX,locY,div)
 {
-	console.log(gameState);
+	//console.log(gameState);
 	// check if spot is already taken
 	//if (gameState[locY][locX] == "")
 	{
@@ -410,16 +451,36 @@ function checkWin()
 function winner(mark,div1,div2,div3)
 {
 	if (gameOver) return;
+	
+	if (mark == "X")
+	{
+		client.post('http://104.236.169.62:80/ticTacToeWin/'+code+'/'+mark, function(response) {
+		var parsedJSON = (JSON.parse(response));
+		//console.log(parsedJSON);
+		if (parsedJSON["result"] == "success")
+		{
+			var gameData = parsedJSON['gameData'];
+			updateGame(gameData);
+				//advanceTurn(gameData['currentTurn']);
+		}
+		else
+		{
+			var failedDiv = document.createElement("div");
+			var message = document.createTextNode(parsedJSON["err"]);
+			failedDiv.appendChild(message);
+			document.appendChild(failedDiv);
+		}
+	});	
+	
 	var turnDiv = document.getElementById("turnTracker");
 	turnDiv.innerHTML = mark + " wins!";
-	console.log(div1);
-	console.log(div2);
-	console.log(div3);
+	//console.log(div1);
+	//console.log(div2);
+	//console.log(div3);
 	div1.setAttribute("class","blue");
 	div2.setAttribute("class","blue");
 	div3.setAttribute("class","blue");
 	gameOver = true;
-	timesPlayed += 1;
 }
  
 function getPosition(element) {
@@ -438,6 +499,7 @@ function restart()
 {
 	//gameState = [["","",""],["","",""],["","",""]];
 	var mark;
+	timesPlayed += 1;
 	if (timesPlayed % 2 == 0)
 	{
 		mark = "X";
@@ -471,8 +533,8 @@ function restart()
 
 </script>
 <body bgcolor="33AADD">
-	<h2 hidden id="GameCodeHeader">Game Code:</h2>
-	<h2 hidden id="NameHeader">Name:</h2>
+	<h2 id="GameNameHeader">Code: Name:</h2>
+	<h2 id="ScoreHeader">X: (0 wins) O: (0 wins)</h2>
 <h1 style="font-family:Calibri">Tic-Tac-Toe</h1>
 <h2 style="display:inline" id="turnTracker">X's turn</h2><button id="button" onclick="restart()">Restart</button>
 <div class="one">
