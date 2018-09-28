@@ -449,7 +449,7 @@ function winner(mark,div1,div2,div3)
 {
 	if (gameOver) return;
 	
-	if (mark == "X")
+	if ((mark == "X" && players[0].name == username) || (mark == "O" && players[1] == username))
 	{
 		var client = new HttpClient();
 		client.post('http://104.236.169.62:80/ticTacToeWin/'+code+'/'+mark, function(response) {
