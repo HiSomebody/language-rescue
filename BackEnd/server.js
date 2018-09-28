@@ -36,7 +36,7 @@ var playerGroups = [
 	{
 		code: 4444,
 		type: "tictactoe",
-		gameState: [["","",""],["","",""]["","",""]],
+		gameState: [["","",""],["","",""],["","",""]],
 		currentTurn: "X",
 		players:[]
 	}
