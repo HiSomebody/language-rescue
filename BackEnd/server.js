@@ -269,10 +269,10 @@ app.post('/resetTicTacToe/:code/:mark', function(req,res){
 
 function getGameDataForCode(code)
 {
-	//console.log("input code: " + code);
+	console.log("input code: " + code);
 	for (var i = 0; i < playerGroups.length; i++)
 	{
-		//console.log("element code: " + playerGroups[i]['code']);
+		console.log("element code: " + playerGroups[i]['code']);
 		if (playerGroups[i]['code']==code)
 		{
 			return playerGroups[i];
