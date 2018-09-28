@@ -408,6 +408,7 @@ function checkWin()
 
 function winner(mark,div1,div2,div3)
 {
+	if (gameOver) return;
 	var turnDiv = document.getElementById("turnTracker");
 	turnDiv.innerHTML = mark + " wins!";
 	console.log(div1);
@@ -417,6 +418,7 @@ function winner(mark,div1,div2,div3)
 	div2.setAttribute("class","blue");
 	div3.setAttribute("class","blue");
 	gameOver = true;
+	timesPlayed += 1;
 }
  
 function getPosition(element) {
@@ -433,19 +435,35 @@ function getPosition(element) {
 
 function restart()
 {
-	timesPlayed += 1;
 	gameOver = false;
-	gameState = [["","",""],["","",""],["","",""]];
-	var turnDiv = document.getElementById("turnTracker");
+	//gameState = [["","",""],["","",""],["","",""]];
+	var mark;
 	if (timesPlayed % 2 == 0)
 	{
-		turnDiv.innerHTML = "X's turn";
+		mark = "X";
 	}
 	else
 	{
-		turnDiv.innerHTML = "O's turn";
+		mark = "O";
 	}
-	loadBoard();
+	var client = new HttpClient();
+	client.post('http://104.236.169.62:80/resetTicTacToe/'+code+'/'+mark, function(response) {
+		var parsedJSON = (JSON.parse(response));
+	    //console.log(parsedJSON);
+		if (parsedJSON["result"] == "success")
+		{
+			var gameData = parsedJSON['gameData'];
+			updateGame(gameData);
+			//advanceTurn(gameData['currentTurn']);
+		}
+		else
+		{
+			var failedDiv = document.createElement("div");
+			var message = document.createTextNode(parsedJSON["err"]);
+			failedDiv.appendChild(message);
+			document.appendChild(failedDiv);
+		}
+	});	
 }
 
 
