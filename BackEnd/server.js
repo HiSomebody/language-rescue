@@ -153,6 +153,14 @@ app.post('/setTicTacToeMark/:code/:mark/:locX/:locY', function(req,res){
 	{
 		console.log("success");
 		gameDataForCode['gameState'][locY][locX] = mark;
+		if (mark == "X")
+		{
+			gameDataForCode['currentTurn'] = "O";
+		}
+		else
+		{
+			gameDataForCode['currentTurn'] = "X";
+		}
 		res.send({
 			result: 'success',
 			err: '',
