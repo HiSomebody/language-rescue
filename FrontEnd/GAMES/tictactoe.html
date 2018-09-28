@@ -77,6 +77,31 @@ body {
  
 
 <script>
+	
+	var HttpClient = function() {
+	    this.get = function(aUrl, aCallback) {
+	        var anHttpRequest = new XMLHttpRequest();
+	        anHttpRequest.onreadystatechange = function() { 
+	            if (anHttpRequest.readyState == 4 && anHttpRequest.status == 200)
+	                aCallback(anHttpRequest.responseText);
+	        }
+
+	        anHttpRequest.open( "GET", aUrl, true );            
+	        anHttpRequest.send( null );
+	    }
+		
+		this.post = function(aUrl, aCallback) {
+		var xhttp = new XMLHttpRequest();
+		  xhttp.onreadystatechange = function() {
+		    if (this.readyState == 4 && this.status == 200) {
+		      	aCallback(xhttp.responseText);
+		    }
+		  };
+		  xhttp.open("POST", aUrl, true);
+		  xhttp.send();
+	  }
+	}
+
 
 var gameState = [["","",""],["","",""],["","",""]];
 var gridDivs = [];
@@ -87,12 +112,94 @@ var container;
 var boxDimension = (boardWidth-(((gameState.length-1)*gap)))/gameState.length;
 var gameOver = false;
 var timesPlayed = 0;
+var players;
+var code;
+var username;
 
 
 window.onload = function()
 {
+	code = GetURLParameter("gameCode");
+	if (code == undefined || code == null) {code = "test"}
+	console.log("Code: " + code);
+	document.getElementById("GameCodeHeader").innerHTML = "Game Code: " + code;
+	username = decodeURIComponent(GetURLParameter("username"));
+	if (username == undefined || username == null) {username = "test"}
+	console.log("user name: " + username);
+	document.getElementById("NameHeader").innerHTML = "Name: " + username;
+	//ßwindow.history.replaceState('', 'Game Hub', '/test');
+
+	var client = new HttpClient();
+	client.get('http://104.236.169.62:80/loadGameForClient/'+code, function(response) {
+		var parsedJSON = (JSON.parse(response));
+		if (parsedJSON["result"] == "success")
+		{
+			gameState = parsedJSON['gameData']['gameState'];
+			players = parsedJSON['gameData']['players'];
+			initializeGame(parsedJSON['gameData']);
+		}
+		else
+		{
+			//document.removeChild(document.documentElement);
+			initializeGame(gameData);
+			
+			var playerDiv = document.createElement("div");
+			var message = document.createTextNode(parsedJSON["err"]);
+			playerDiv.appendChild(message);
+			//document.appendChild(playerDiv);
+		}
+	});	
 	loadBoard();
 }
+
+setInterval(function(){
+	if (gameOver) return;
+	var client = new HttpClient();
+	client.get('http://104.236.169.62:80/loadGameForClient/'+code, function(response) {
+		var parsedJSON = (JSON.parse(response));
+		if (parsedJSON["result"] == "success")
+		{
+			updateGame(parsedJSON['gameData']);
+			checkWin();
+		}
+		else
+		{
+			// unable to get data from server
+		}
+	});	
+}, 3000);
+
+
+function updateGame(gameData)
+{
+	for (var i = 0; i < 3; i++)
+	{
+		for (var j = 0; j < 3; j++)
+		{
+			if (gameData['gameState'][i][j] != "")
+			{
+				setSquareValue(gameData['gameState'][i][j],j,i,gridDivs[i][j]);
+			}
+		}
+	}
+}
+
+
+var GetURLParameter = function(sParam)
+{
+	var sPageURL = window.location.search.substring(1);
+	console.log("URL to check: " + sPageURL);
+	var sURLVariables = sPageURL.split('&');
+	for (var i = 0; i < sURLVariables.length; i++) 
+	{
+		var sParameterName = sURLVariables[i].split('=');
+		if (sParameterName[0] == sParam) 
+		{
+			return sParameterName[1];
+		}
+	}
+}
+
 
 function loadBoard() {
 	var parent = document.body;
@@ -169,11 +276,19 @@ function getClickPosition(e) {
 	{
 		// check if this player is X 
 			//if not return
+		if (players[0].name != username)
+		{
+			return;
+		}
 	}
 	if (turnDiv.innerHTML[0] == "O")
 	{
 		// check if this player is O 
 			//if not return
+		if (players[1].name != username)
+		{
+			return;
+		}
 	}
     var parentPosition = getPosition(e.currentTarget);
 	var x = e.clientX;
@@ -200,7 +315,27 @@ function getClickPosition(e) {
 	}
 	if (!foundDiv) return;
 	
-	setSquareValue(turnDiv.innerHTML[0],locX,locY,div);
+	var mark = turnDiv.innerHTML[0];
+	// http post 
+	var client = new HttpClient();
+	client.post('http://104.236.169.62:80/setTicTacToeMark/'+code+'/'+mark+'/'+locX+'/'+locY, function(response) {
+		var parsedJSON = (JSON.parse(response));
+	    //console.log(parsedJSON);
+		if (parsedJSON["result"] == "success")
+		{
+			var gameData = parsedJSON['gameData'];
+			updateGame(gameData);
+		}
+		else
+		{
+			var failedDiv = document.createElement("div");
+			var message = document.createTextNode(parsedJSON["err"]);
+			failedDiv.appendChild(message);
+			document.appendChild(failedDiv);
+		}
+	});	
+	// if success do this
+	//setSquareValue(mark,locX,locY,div);
 	
 }
 
@@ -300,6 +435,8 @@ function restart()
 
 </script>
 <body bgcolor="33AADD">
+	<h2 hidden id="GameCodeHeader">Game Code:</h2>
+	<h2 hidden id="NameHeader">Name:</h2>
 <h1 style="font-family:Calibri">Tic-Tac-Toe</h1>
 <h2 style="display:inline" id="turnTracker">X's turn</h2><button id="button" onclick="restart()">Restart</button>
 <div class="one">

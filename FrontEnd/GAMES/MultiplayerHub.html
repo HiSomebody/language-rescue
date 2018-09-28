@@ -135,7 +135,7 @@
 			//console.log(newPage);
 			//window.location.href = newPage;
 			//window.location.href = "GameParticipantPage.html?gameCode="+code.toUpperCase()+"&username="+username;
-			window.location.href = "/gamepage?gameCode="+code.toUpperCase()+"&username="+encodeURIComponent(username);
+			window.location.href = "/gamepage/"+code+"?gameCode="+code.toUpperCase()+"&username="+encodeURIComponent(username);
 		}
 		
 		function joinGame()
@@ -187,8 +187,8 @@
 			<br>
 			<select  id="gameSelect" size="3">
 			  <option onclick="enableGameSelectButton()">Test</option>
+			  <option onclick="enableGameSelectButton()">Tic-Tac-Toe</option>
 			  <option onclick="enableGameSelectButton()">Uno</option>
-			  <option onclick="enableGameSelectButton()">Scum</option>
 			</select>
 			<br>
 			<br>
