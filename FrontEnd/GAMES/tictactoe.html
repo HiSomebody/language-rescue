@@ -170,7 +170,6 @@ setInterval(function(){
 		if (parsedJSON["result"] == "success")
 		{
 			updateGame(parsedJSON['gameData']);
-			checkWin();
 		}
 		else
 		{
@@ -208,6 +207,7 @@ function updateGame(gameData)
 	if (hasMarks == false)
 	{
 		resetAllToWhite();
+		setTurn(gameData['currentTurn']);
 	}
 	setTurn(gameData['currentTurn']);
 	checkWin();
