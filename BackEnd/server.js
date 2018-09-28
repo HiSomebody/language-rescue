@@ -167,6 +167,7 @@ app.post('/addGameToServer/:type', function(req,res){
 		{
 			gameCode += getRandomAlphaNumeric();
 		}
+		gameCode = gameCode.toUpperCase();
 	} while (getGameDataForCode(gameCode) != null && getGameDataForCode(gameCode) != undefined);
 	if (type == "Discussion")
 	{
