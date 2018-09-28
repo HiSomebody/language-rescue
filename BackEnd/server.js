@@ -76,6 +76,7 @@ res.sendFile(path.resolve(__dirname + '/../FrontEnd/GAMES/MultiplayerHub.html'))
 
 app.get('/gamepage/:code', function(req,res){
 	console.log("entered gamepage with no params");
+	var code = req.params.code;
 	var type = getGameDataForCode(code).type;
 	if (type == "discussion")
 	{
