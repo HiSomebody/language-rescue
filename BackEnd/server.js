@@ -281,7 +281,7 @@ app.post('/addClientToGame/:code/:username', function(req,res){
 		{
 			if (gameDataForCode['players'].length < 2)
 			{
-				gameDataForCode['players'].push({"name":userName});
+				gameDataForCode['players'].push({"name":userName,"wins":0});
 				res.send({
 					result: 'success',
 					err: '',
@@ -296,6 +296,44 @@ app.post('/addClientToGame/:code/:username', function(req,res){
 				});
 			}
 		}
+	}
+	else
+	{
+		console.log("player group is undefined");
+		console.log("Here is what playerGroups looks like: ");
+		console.log(playerGroups);
+		res.send({
+			result: 'error',
+			err: 'There is no game open using that code'
+		});
+	}
+	
+});
+
+app.post('/ticTacToeWin/:code/:mark', function(req,res){
+	var gameCode = req.params.code;
+	var mark = req.params.mark;
+	
+	console.log("Game Code: " + gameCode);
+	console.log("mark: " + mark);
+	var gameDataForCode = getGameDataForCode(gameCode);
+	if (gameDataForCode != undefined && gameDataForCode != null)
+	{
+		console.log("success");
+		if (mark == "X")
+		{
+			gameDataForCode['players'][0].wins += 1;
+		}
+		else if (mark == "O")
+		{
+			gameDataForCode['players'][1].wins += 1;
+		}
+		
+		res.send({
+			result: 'success',
+			err: '',
+			gameData: gameDataForCode
+		});
 	}
 	else
 	{
