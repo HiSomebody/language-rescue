@@ -316,6 +316,8 @@ app.post('/addClientToGame/:code/:username', function(req,res){
 	console.log("Game Code: " + gameCode);
 	console.log("user name: " + userName);
 	var gameDataForCode = getGameDataForCode(gameCode);
+	console.log(gameDataForCode);
+	console.log(playerGroups);
 	if (gameDataForCode != undefined && gameDataForCode != null)
 	{
 		if (gameDataForCode.type == "discussion")
