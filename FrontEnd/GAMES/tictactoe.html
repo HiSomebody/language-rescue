@@ -136,12 +136,12 @@ window.onload = function()
 		{
 			gameState = parsedJSON['gameData']['gameState'];
 			players = parsedJSON['gameData']['players'];
-			initializeGame(parsedJSON['gameData']);
+			//initializeGame(parsedJSON['gameData']);
 		}
 		else
 		{
 			//document.removeChild(document.documentElement);
-			initializeGame(gameData);
+			//initializeGame(gameData);
 			
 			var playerDiv = document.createElement("div");
 			var message = document.createTextNode(parsedJSON["err"]);
