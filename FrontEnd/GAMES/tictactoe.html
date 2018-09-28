@@ -203,15 +203,14 @@ function updateGame(gameData)
 				hasMarks = true;
 			}
 			setSquareValue(gameData['gameState'][i][j],j,i,gridDivs[i][j]);
-			setTurn(gameData['currentTurn']);
-			checkWin();
-			
 		}
 	}
 	if (hasMarks == false)
 	{
 		resetAllToWhite();
 	}
+	setTurn(gameData['currentTurn']);
+	checkWin();
 }
 
 function resetAllToWhite()
