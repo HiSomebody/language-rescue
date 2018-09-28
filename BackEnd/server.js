@@ -190,7 +190,7 @@ app.post('/resetTicTacToe/:code/:mark', function(req,res){
 	if (gameDataForCode != undefined && gameDataForCode != null)
 	{
 		console.log("success");
-		gameDataForCode['gameState'] = [["","",""],["","",""],["","",""];
+		gameDataForCode['gameState'] = [["","",""],["","",""],["","",""]];
 		
 		gameDataForCode['currentTurn'] = mark;
 		
