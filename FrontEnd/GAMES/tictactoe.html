@@ -402,7 +402,7 @@ function setTurn(mark)
 	{
 		turnDiv.innerHTML = "O's turn";
 	}
-	checkWin();
+	//checkWin();
 }
 
 function setSquareValue(mark,locX,locY,div)
@@ -420,6 +420,7 @@ function setSquareValue(mark,locX,locY,div)
  
 function checkWin()
 {
+	if (gameOver) return;
 	for (var i = 0; i < 3; i++)
 	{
 		if (gameState[i][0] != "" && gameState[i][0] == gameState[i][1] && gameState[i][0] == gameState[i][2])
@@ -448,6 +449,7 @@ function checkWin()
 function winner(mark,div1,div2,div3)
 {
 	if (gameOver) return;
+	gameOver = true;
 	
 	if ((mark == "X" && players[0].name == username) || (mark == "O" && players[1].name == username))
 	{
@@ -479,7 +481,6 @@ function winner(mark,div1,div2,div3)
 	div1.setAttribute("class","blue");
 	div2.setAttribute("class","blue");
 	div3.setAttribute("class","blue");
-	gameOver = true;
 }
  
 function getPosition(element) {
