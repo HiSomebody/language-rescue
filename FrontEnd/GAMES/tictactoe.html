@@ -179,6 +179,8 @@ function updateGame(gameData)
 			if (gameData['gameState'][i][j] != "")
 			{
 				setSquareValue(gameData['gameState'][i][j],j,i,gridDivs[i][j]);
+				setTurn(gameData['currentTurn']);
+				checkWin();
 			}
 		}
 	}
@@ -326,6 +328,7 @@ function getClickPosition(e) {
 		{
 			var gameData = parsedJSON['gameData'];
 			updateGame(gameData);
+			//advanceTurn(gameData['currentTurn']);
 		}
 		else
 		{
@@ -340,25 +343,38 @@ function getClickPosition(e) {
 	
 }
 
+function checkSquareEmpty(mark,locX,locY)
+{
+	if (gameState[locY][locX] == "")
+	{
+		return true;
+	}
+	return false;
+}
+
+function setTurn(mark)
+{
+	var turnDiv = document.getElementById("turnTracker");
+	if (mark == "X")
+	{
+		turnDiv.innerHTML = "X's turn";
+	}
+	else if (mark == "O")
+	{
+		turnDiv.innerHTML = "O's turn";
+	}
+	checkWin();
+}
 
 function setSquareValue(mark,locX,locY,div)
 {
 	console.log(gameState);
 	// check if spot is already taken
-	if (gameState[locY][locX] == "")
+	//if (gameState[locY][locX] == "")
 	{
 		div.innerHTML = '<h1 style="font-size:55pt; font-family: Comic Sans MS, cursive, sans-serif; top:40; position:relative">'+mark+"</h1>";
 		gameState[locY][locX] = mark;
-		var turnDiv = document.getElementById("turnTracker");
-		if (mark == "X")
-		{
-			turnDiv.innerHTML = "O's turn";
-		}
-		else if (mark == "O")
-		{
-			turnDiv.innerHTML = "X's turn";
-		}
-		checkWin();
+		
 	}
 }
  
