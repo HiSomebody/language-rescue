@@ -455,22 +455,23 @@ function winner(mark,div1,div2,div3)
 	if (mark == "X")
 	{
 		client.post('http://104.236.169.62:80/ticTacToeWin/'+code+'/'+mark, function(response) {
-		var parsedJSON = (JSON.parse(response));
-		//console.log(parsedJSON);
-		if (parsedJSON["result"] == "success")
-		{
-			var gameData = parsedJSON['gameData'];
-			updateGame(gameData);
-				//advanceTurn(gameData['currentTurn']);
-		}
-		else
-		{
-			var failedDiv = document.createElement("div");
-			var message = document.createTextNode(parsedJSON["err"]);
-			failedDiv.appendChild(message);
-			document.appendChild(failedDiv);
-		}
-	});	
+			var parsedJSON = (JSON.parse(response));
+			//console.log(parsedJSON);
+			if (parsedJSON["result"] == "success")
+			{
+				var gameData = parsedJSON['gameData'];
+				updateGame(gameData);
+					//advanceTurn(gameData['currentTurn']);
+			}
+			else
+			{
+				var failedDiv = document.createElement("div");
+				var message = document.createTextNode(parsedJSON["err"]);
+				failedDiv.appendChild(message);
+				document.appendChild(failedDiv);
+			}
+		});
+	}	
 	
 	var turnDiv = document.getElementById("turnTracker");
 	turnDiv.innerHTML = mark + " wins!";
