@@ -152,7 +152,6 @@ app.post('/setTicTacToeMark/:code/:mark/:locX/:locY', function(req,res){
 	if (gameDataForCode != undefined && gameDataForCode != null)
 	{
 		console.log("success");
-		var playerIndex = getIndexOfPlayerByName(gameCode,userName);
 		gameDataForCode['gameState'][locY][locX] = mark;
 		res.send({
 			result: 'success',
