@@ -452,6 +452,7 @@ function winner(mark,div1,div2,div3)
 	
 	if (mark == "X")
 	{
+		var client = new HttpClient();
 		client.post('http://104.236.169.62:80/ticTacToeWin/'+code+'/'+mark, function(response) {
 			var parsedJSON = (JSON.parse(response));
 			//console.log(parsedJSON);
