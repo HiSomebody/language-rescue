@@ -127,7 +127,7 @@ window.onload = function()
 	if (username == undefined || username == null) {username = "test"}
 	console.log("user name: " + username);
 	document.getElementById("NameHeader").innerHTML = "Name: " + username;
-	//ßwindow.history.replaceState('', 'Game Hub', '/test');
+	//window.history.replaceState('', 'Game Hub', '/test');
 
 	var client = new HttpClient();
 	client.get('http://104.236.169.62:80/loadGameForClient/'+code, function(response) {
@@ -283,6 +283,7 @@ function getClickPosition(e) {
 	}
 	if (turnDiv.innerHTML[0] == "O")
 	{
+		if (players.length < 2) return;
 		// check if this player is O 
 			//if not return
 		if (players[1].name != username)
