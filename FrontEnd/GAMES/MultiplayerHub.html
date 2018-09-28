@@ -81,33 +81,27 @@
 			var createGameForm = document.getElementById("createGameForm");
 			createGameForm.style.display = "block";
 		}
-		
-		function getRandomAlphaNumeric()
-		{
-			var index = Math.floor(Math.random()*36);
-			var char;
-			if (index <= 25)
-			{
-				char = String.fromCharCode(index+65);
-			}
-			else
-			{
-				index -= 26;
-				char = index.toString();
-			}
-			return char;
-		}
+
 		
 		function addGameToServer(choice)
 		{
 			// server call blah, blah
-			
-			var gameCode = "";
-			for (var i = 0; i < 4; i++)
-			{
-				gameCode += getRandomAlphaNumeric();
-			}
-			return gameCode;
+			var client = new HttpClient();
+			client.post('http://104.236.169.62:80/addGameToServer/'+choice, function(response) {
+				var parsedJSON = (JSON.parse(response));
+			    console.log(parsedJSON);
+				if (parsedJSON["result"] == "success")
+				{
+					return parsedJSON['gameCode'];
+				}
+				else
+				{
+					var failedDiv = document.createElement("div");
+					var message = document.createTextNode(parsedJSON["err"]);
+					failedDiv.appendChild(message);
+					document.appendChild(failedDiv);
+				}
+			});	
 		}
 		
 		function createGame()
@@ -186,7 +180,7 @@
 			Choose Game
 			<br>
 			<select  id="gameSelect" size="3">
-			  <option onclick="enableGameSelectButton()">Test</option>
+			  <option onclick="enableGameSelectButton()">Discussion</option>
 			  <option onclick="enableGameSelectButton()">Tic-Tac-Toe</option>
 			  <option onclick="enableGameSelectButton()">Uno</option>
 			</select>
