@@ -153,7 +153,7 @@ window.onload = function()
 }
 
 setInterval(function(){
-	if (gameOver) return;
+	//if (gameOver) return;
 	var client = new HttpClient();
 	client.get('http://104.236.169.62:80/loadGameForClient/'+code, function(response) {
 		var parsedJSON = (JSON.parse(response));
@@ -354,6 +354,7 @@ function checkSquareEmpty(mark,locX,locY)
 
 function setTurn(mark)
 {
+	if (gameOver) return;
 	var turnDiv = document.getElementById("turnTracker");
 	if (mark == "X")
 	{
@@ -435,7 +436,6 @@ function getPosition(element) {
 
 function restart()
 {
-	gameOver = false;
 	//gameState = [["","",""],["","",""],["","",""]];
 	var mark;
 	if (timesPlayed % 2 == 0)
@@ -453,6 +453,7 @@ function restart()
 		if (parsedJSON["result"] == "success")
 		{
 			var gameData = parsedJSON['gameData'];
+			gameOver = false;
 			updateGame(gameData);
 			//advanceTurn(gameData['currentTurn']);
 		}
