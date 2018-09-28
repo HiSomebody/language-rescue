@@ -141,6 +141,59 @@ app.get('/gamepage/:code/:username', function(req,res)
 });
 */
 
+function getRandomAlphaNumeric()
+{
+	var index = Math.floor(Math.random()*36);
+	var char;
+	if (index <= 25)
+	{
+		char = String.fromCharCode(index+65);
+	}
+	else
+	{
+		index -= 26;
+		char = index.toString();
+	}
+	return char;
+}
+
+app.post('/addGameToServer/:type', function(req,res){
+	var type = req.params.type;
+	var gameCode = "";
+	do
+	{
+		gameCode = "";
+		for (var i = 0; i < 4; i++)
+		{
+			gameCode += getRandomAlphaNumeric();
+		}
+	} while (getGameDataForCode(gameCode) != null && getGameDataForCode(gameCode) != undefined);
+	if (type == "Discussion")
+	{
+		playerGroups.push({
+			code: gameCode,
+			type: "discussion",
+			commentList:[],
+			players:[]
+		});
+	}
+	else if (type == "Tic-Tac-Toe")
+	{
+		playerGroups.push({
+			code: gameCode,
+			type: "tictactoe",
+			gameState: [["","",""],["","",""],["","",""]],
+			currentTurn: "X",
+			players:[]
+		});
+	}
+	res.send({
+		result: 'success',
+		err: '',
+		gameCode: gameCode
+	});
+});
+
 app.post('/setTicTacToeMark/:code/:mark/:locX/:locY', function(req,res){
 	var gameCode = req.params.code;
 	var mark = req.params.mark;
