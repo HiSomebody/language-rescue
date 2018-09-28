@@ -92,7 +92,12 @@
 			    console.log(parsedJSON);
 				if (parsedJSON["result"] == "success")
 				{
-					return parsedJSON['gameCode'];
+					var gameCode = parsedJSON['gameCode'];
+					gameCodeElement.innerHTML = "Game Code: " + gameCode.toUpperCase();
+					gameCodeElement.style.display = "block";
+					var createGameForm = document.getElementById("createGameForm");
+					createGameForm.style.display = "none";
+					return gameCode;
 				}
 				else
 				{
@@ -111,10 +116,7 @@
 			var choice = selectOptions.options[selectOptions.selectedIndex].text;
 			
 			var gameCode = addGameToServer(choice);
-			gameCodeElement.innerHTML = "Game Code: " + gameCode.toUpperCase();
-			gameCodeElement.style.display = "block";
-			var createGameForm = document.getElementById("createGameForm");
-			createGameForm.style.display = "none";
+			
 		}
 		
 		function enableGameSelectButton()
