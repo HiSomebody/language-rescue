@@ -373,7 +373,7 @@ function getClickPosition(e) {
 			var failedDiv = document.createElement("div");
 			var message = document.createTextNode(parsedJSON["err"]);
 			failedDiv.appendChild(message);
-			document.appendChild(failedDiv);
+			//document.appendChild(failedDiv);
 		}
 	});	
 	// if success do this
@@ -468,7 +468,7 @@ function winner(mark,div1,div2,div3)
 				var failedDiv = document.createElement("div");
 				var message = document.createTextNode(parsedJSON["err"]);
 				failedDiv.appendChild(message);
-				document.appendChild(failedDiv);
+				//document.appendChild(failedDiv);
 			}
 		});
 	}	
@@ -524,7 +524,7 @@ function restart()
 			var failedDiv = document.createElement("div");
 			var message = document.createTextNode(parsedJSON["err"]);
 			failedDiv.appendChild(message);
-			document.appendChild(failedDiv);
+			//document.appendChild(failedDiv);
 		}
 	});	
 }
