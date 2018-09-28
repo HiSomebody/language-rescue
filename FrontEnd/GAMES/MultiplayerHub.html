@@ -92,6 +92,7 @@
 			    console.log(parsedJSON);
 				if (parsedJSON["result"] == "success")
 				{
+					var gameCodeElement = document.getElementById("gameCode");
 					var gameCode = parsedJSON['gameCode'];
 					gameCodeElement.innerHTML = "Game Code: " + gameCode.toUpperCase();
 					gameCodeElement.style.display = "block";
@@ -111,7 +112,6 @@
 		
 		function createGame()
 		{
-			var gameCodeElement = document.getElementById("gameCode");
 			var selectOptions = document.getElementById("gameSelect");
 			var choice = selectOptions.options[selectOptions.selectedIndex].text;
 			
