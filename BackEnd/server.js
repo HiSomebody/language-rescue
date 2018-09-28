@@ -140,6 +140,38 @@ app.get('/gamepage/:code/:username', function(req,res)
 });
 */
 
+app.post('/setTicTacToeMark/:code/:mark/:locX/:locY', function(req,res){
+	var gameCode = req.params.code;
+	var mark = req.params.mark;
+	var locX = req.params.locX;
+	var locY = req.params.locY;
+	console.log("Game Code: " + gameCode);
+	console.log("mark: " + mark);
+	var gameDataForCode = getGameDataForCode(gameCode);
+	if (gameDataForCode != undefined && gameDataForCode != null)
+	{
+		console.log("success");
+		var playerIndex = getIndexOfPlayerByName(gameCode,userName);
+		gameDataForCode['gameState'][locY][locX] = mark;
+		res.send({
+			result: 'success',
+			err: '',
+			gameData: gameDataForCode
+		});
+	}
+	else
+	{
+		console.log("player group is undefined");
+		console.log("Here is what playerGroups looks like: ");
+		console.log(playerGroups);
+		res.send({
+			result: 'error',
+			err: 'There is no game open using that code'
+		});
+	}
+	
+});
+
 function getGameDataForCode(code)
 {
 	//console.log("input code: " + code);
