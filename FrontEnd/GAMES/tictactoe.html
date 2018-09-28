@@ -123,9 +123,9 @@ window.onload = function()
 	username = decodeURIComponent(GetURLParameter("username"));
 	if (username == undefined || username == null) {username = "test"}
 	//console.log("user name: " + username);
-	document.getElementById("GameNameHeader").innerHTML = "Code: " + code + "        Name: " + username;
+	document.getElementById("GameNameHeader").innerHTML = "CODE: " + code + " &nbsp&nbsp&nbsp&nbspNAME: " + username;
 	
-	document.getElementById("ScoreHeader").innerHTML = "X: " + username + "        O: ";
+	document.getElementById("ScoreHeader").innerHTML = "X: " + username + " &nbsp&nbsp&nbsp&nbspO: ";
 	//window.history.replaceState('', 'Game Hub', '/test');
 
 	var client = new HttpClient();
@@ -193,7 +193,7 @@ function updateGame(gameData)
 		p2 = players[1].name;
 		wins2 = players[1].wins;
 	}
-	document.getElementById("ScoreHeader").innerHTML = "X: " + p1 + " (" + wins1 + " wins)      O: " + p2 + " (" + wins2 + " wins)";
+	document.getElementById("ScoreHeader").innerHTML = "X: " + p1 + " (" + wins1 + " wins) &nbsp&nbsp&nbsp&nbspO: " + p2 + " (" + wins2 + " wins)";
 	for (var i = 0; i < 3; i++)
 	{
 		for (var j = 0; j < 3; j++)
@@ -531,8 +531,9 @@ function restart()
 
 
 </script>
-	<h2 id="GameNameHeader">Code: Name:</h2>
-	<h2 id="ScoreHeader">X: (0 wins) O: (0 wins)</h2>
+	<h2 style="text-align:left; display:block; position: absolute; left:0" id="GameNameHeader">Code: Name:</h2>
+	<br><br>
+	<h2 style="text-align:left; display:block; position: absolute; left:0" id="ScoreHeader">X: (0 wins) O: (0 wins)</h2>
 <body bgcolor="33AADD">
 	
 <h1 style="font-family:Calibri">Tic-Tac-Toe</h1>
