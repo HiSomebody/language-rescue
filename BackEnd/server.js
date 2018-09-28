@@ -275,6 +275,7 @@ function getGameDataForCode(code)
 		console.log("element code: " + playerGroups[i]['code']);
 		if (playerGroups[i]['code']==code)
 		{
+			console.log("found and returning it");
 			return playerGroups[i];
 		}
 	}
