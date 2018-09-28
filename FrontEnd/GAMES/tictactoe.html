@@ -167,7 +167,7 @@ setInterval(function(){
 			// unable to get data from server
 		}
 	});	
-}, 3000);
+}, 2000);
 
 
 function updateGame(gameData)
@@ -176,7 +176,7 @@ function updateGame(gameData)
 	{
 		for (var j = 0; j < 3; j++)
 		{
-			if (gameData['gameState'][i][j] != "")
+			//if (gameData['gameState'][i][j] != "")
 			{
 				setSquareValue(gameData['gameState'][i][j],j,i,gridDivs[i][j]);
 				setTurn(gameData['currentTurn']);
