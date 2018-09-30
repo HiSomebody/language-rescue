@@ -131,10 +131,9 @@ app.post('/schoolStore/modifySalePrice', function(req,res){
 });
 
 app.get('/schoolStore/getItemInfo/:barcode', function(req,res){
+	var barcode = req.params.barcode;
 	console.log("get item info barcode before decoded:");	
 	console.log(barcode);
-
-	var barcode = req.params.barcode;
 	barcode = barcode.replace(/\+/g, '%20');
 	barcode = decodeURIComponent(barcode);   
 	console.log("get item info barcode after decoded:");
