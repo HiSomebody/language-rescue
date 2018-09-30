@@ -63,7 +63,7 @@ fs.readFile('../FrontEnd/index.html', function(err, html){
 app.post('/schoolStore/sell', function(req,res){
 	var params = req.params;
 	var input = JSON.parse(JSON.stringify(req.body));
-	console.log("params: ");
+	console.log("sell params: ");
 	console.log(params);
 	console.log("input body: ");
 	console.log(input);
@@ -74,6 +74,61 @@ app.post('/schoolStore/sell', function(req,res){
 	});
 });
 
+app.post('/schoolStore/return', function(req,res){
+	var params = req.params;
+	var input = JSON.parse(JSON.stringify(req.body));
+	console.log("return params: ");
+	console.log(params);
+	console.log("input body: ");
+	console.log(input);
+
+	res.send({
+		result: 'success',
+		err: '',
+	});
+});
+
+app.post('/schoolStore/restock', function(req,res){
+	var params = req.params;
+	var input = JSON.parse(JSON.stringify(req.body));
+	console.log("restock params: ");
+	console.log(params);
+	console.log("input body: ");
+	console.log(input);
+
+	res.send({
+		result: 'success',
+		err: '',
+	});
+});
+
+app.post('/schoolStore/addProduct', function(req,res){
+	var params = req.params;
+	var input = JSON.parse(JSON.stringify(req.body));
+	console.log("add product params: ");
+	console.log(params);
+	console.log("input body: ");
+	console.log(input);
+
+	res.send({
+		result: 'success',
+		err: '',
+	});
+});
+
+app.post('/schoolStore/modifySalePrice', function(req,res){
+	var params = req.params;
+	var input = JSON.parse(JSON.stringify(req.body));
+	console.log("modify sale price params: ");
+	console.log(params);
+	console.log("input body: ");
+	console.log(input);
+
+	res.send({
+		result: 'success',
+		err: '',
+	});
+});
 
 app.use(function(req, res, next) {
 	res.header("Access-Control-Allow-Origin", "*");
