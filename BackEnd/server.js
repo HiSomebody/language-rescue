@@ -70,7 +70,7 @@ app.post('/schoolStore/sell', function(req,res){
 
 	res.send({
 		result: 'success',
-		err: '',
+		err: ''
 	});
 });
 
@@ -84,7 +84,7 @@ app.post('/schoolStore/return', function(req,res){
 
 	res.send({
 		result: 'success',
-		err: '',
+		err: ''
 	});
 });
 
@@ -98,7 +98,7 @@ app.post('/schoolStore/restock', function(req,res){
 
 	res.send({
 		result: 'success',
-		err: '',
+		err: ''
 	});
 });
 
@@ -112,7 +112,7 @@ app.post('/schoolStore/addProduct', function(req,res){
 
 	res.send({
 		result: 'success',
-		err: '',
+		err: ''
 	});
 });
 
@@ -126,8 +126,29 @@ app.post('/schoolStore/modifySalePrice', function(req,res){
 
 	res.send({
 		result: 'success',
-		err: '',
+		err: ''
 	});
+});
+
+app.get('/schoolStore/getItemInfo/:barcode', function(req,res){
+	console.log("get item info barcode:");
+	var barcode = req.params.barcode;
+	console.log(barcode);
+	if (barcode == "Vintage Karate - M - 15.00")
+	{
+		res.send({
+			result: 'success',
+			salePrice: 15.00,
+			err: ''
+		});
+	}
+	else
+	{
+		res.send({
+			result: 'error',
+			err: 'couldn\'t find an item by that barcode'
+		});
+	}
 });
 
 app.use(function(req, res, next) {
