@@ -148,6 +148,34 @@ app.get('/schoolStore/getItemInfo/:barcode', function(req,res){
 	}
 });
 
+app.get('/schoolStore/getInventory', function(req,res){
+	console.log("get current prices");	
+	
+	res.send({
+		items:
+		[
+			{ 
+				result: "success", 
+				barcode: "Vintage Karate - M - 15.00", 
+				productName: "Vintage Karate", 
+				size: "M", 
+				salePrice: 15.00, 
+				manufacturedPrice: 15.00, err: "",
+				quantity: 10
+			},
+			{ 
+				result: "success", 
+				barcode: "Falcons - L - 15.00", 
+				productName: "Falcons", 
+				size: "M", 
+				salePrice: 15.00, 
+				manufacturedPrice: 15.00, err: "",
+				quantity: 30
+			}
+		]
+	});
+});
+
 app.use(function(req, res, next) {
 	res.header("Access-Control-Allow-Origin", "*");
 	res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
