@@ -131,23 +131,21 @@ app.post('/schoolStore/modifySalePrice', function(req,res){
 });
 
 app.get('/schoolStore/getItemInfo/:barcode', function(req,res){
-	console.log("get item info barcode:");
+	console.log("get item info barcode before decoded:");	
+	console.log(barcode);
+
 	var barcode = req.params.barcode;
+	barcode = barcode.replace(/\+/g, '%20');
+	barcode = decodeURIComponent(barcode);   
+	console.log("get item info barcode after decoded:");
 	console.log(barcode);
 	if (barcode == "Vintage Karate - M - 15.00")
 	{
-		res.send({
-			result: 'success',
-			salePrice: 15.00,
-			err: ''
-		});
+		res.send('{ result: "success", salePrice: 15.00, err: "" }');
 	}
 	else
 	{
-		res.send({
-			result: 'error',
-			err: 'couldn\'t find an item by that barcode'
-		});
+		res.send('{ result: "error", err: "couldn\'t find an item by that barcode"}');
 	}
 });
 
