@@ -243,6 +243,8 @@ app.get('/schoolStore/getItemInfo/:barcode', function(req,res){
 	barcode = decodeURIComponent(barcode);   
 	console.log("get item info barcode after decoded:");
 	console.log(barcode);
+	console.log("inventory:");
+	console.log(schoolStoreInventory);
 	for (var i = 0; i < schoolStoreInventory.length; i++)
 	{
 		var item = schoolStoreInventory[i];
