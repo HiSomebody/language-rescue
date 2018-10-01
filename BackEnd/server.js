@@ -152,6 +152,7 @@ app.get('/schoolStore/getInventory', function(req,res){
 	console.log("get current prices");	
 	
 	res.send({
+		result: "success",
 		items:
 		[
 			{ 
