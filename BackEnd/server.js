@@ -21,6 +21,10 @@ var connectionpool = mysql.createPool({
 	database : 'language_rescue_database'
 });
 
+
+var schoolStoreInventory = [];
+
+
 var playerGroups = [
 	{
 		code: 3333,
