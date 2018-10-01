@@ -356,6 +356,11 @@ function getClickPosition(e) {
 	}
 	if (!foundDiv) return;
 	
+	if (gameState[locY][locX] != "")
+	{
+		return;
+	}
+	
 	var mark = turnDiv.innerHTML[0];
 	// http post 
 	var client = new HttpClient();
