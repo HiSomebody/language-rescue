@@ -65,6 +65,7 @@ fs.readFile('../FrontEnd/index.html', function(err, html){
 
 
 app.post('/schoolStore/sell', function(req,res){
+	console.log("Sell Params:");
 	var params = req.params;
 	var input = JSON.parse(JSON.stringify(req.body));
 	console.log("sell params: ");
