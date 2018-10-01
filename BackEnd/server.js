@@ -153,6 +153,7 @@ app.get('/schoolStore/getInventory', function(req,res){
 	
 	res.send({
 		result: "success",
+		err: "",
 		items:
 		[
 			{ 
