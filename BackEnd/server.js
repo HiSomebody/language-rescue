@@ -249,6 +249,7 @@ app.get('/schoolStore/getItemInfo/:barcode', function(req,res){
 		if (item['barcode'] == barcode)
 		{
 			res.send({result: "success", barcode: item['barcode'], productName: item['productName'], size: item['size'], salePrice: item['salePrice'], manufacturedPrice: item['manufacturedPrice'], err: "" });
+			return;
 		}    
 	}
 	if (barcode == "Vintage Karate - M - 15.00")
