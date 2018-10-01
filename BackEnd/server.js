@@ -72,10 +72,24 @@ app.post('/schoolStore/sell', function(req,res){
 	console.log("input body: ");
 	console.log(input);
 
-	res.send({
-		result: 'success',
-		err: ''
-	});
+	var numberToAdd = input['quantity'];
+	var barcode = input['barcode'];
+	var item = getItemByBarcode(barcode);
+	if (item != null)
+	{
+		var currentQuantity = item['quantity'];
+	
+		item['quantity'] = currentQuantity - numberToAdd;
+	
+		res.send({
+			result: 'success',
+			err: ''
+		});
+	}
+	else
+	{
+		res.send('{ result: "error", err: "couldn\'t find an item by that barcode"}');
+	}
 });
 
 app.post('/schoolStore/return', function(req,res){
@@ -85,11 +99,25 @@ app.post('/schoolStore/return', function(req,res){
 	console.log(params);
 	console.log("input body: ");
 	console.log(input);
-
-	res.send({
-		result: 'success',
-		err: ''
-	});
+	
+	var numberToAdd = input['quantity'];
+	var barcode = input['barcode'];
+	var item = getItemByBarcode(barcode);
+	if (item != null)
+	{
+		var currentQuantity = item['quantity'];
+	
+		item['quantity'] = currentQuantity + numberToAdd;
+	
+		res.send({
+			result: 'success',
+			err: ''
+		});
+	}
+	else
+	{
+		res.send('{ result: "error", err: "couldn\'t find an item by that barcode"}');
+	}
 });
 
 app.post('/schoolStore/restock', function(req,res){
@@ -100,11 +128,38 @@ app.post('/schoolStore/restock', function(req,res){
 	console.log("input body: ");
 	console.log(input);
 
-	res.send({
-		result: 'success',
-		err: ''
-	});
+	var numberToAdd = input['quantity'];
+	var barcode = input['barcode'];
+	var item = getItemByBarcode(barcode);
+	if (item != null)
+	{
+		var currentQuantity = item['quantity'];
+	
+		item['quantity'] = currentQuantity + numberToAdd;
+	
+		res.send({
+			result: 'success',
+			err: ''
+		});
+	}
+	else
+	{
+		res.send('{ result: "error", err: "couldn\'t find an item by that barcode"}');
+	}
 });
+
+function getItemByBarcode(barcode)
+{
+	for (var i = 0; i < schoolStoreInventory.length; i++)
+	{
+		var item = schoolStoreInventory[i];
+		if (item['barcode'] == barcode)
+		{
+			return item;
+		}
+	}
+	return null;
+}
 
 app.post('/schoolStore/addProduct', function(req,res){
 	var params = req.params;
@@ -113,12 +168,54 @@ app.post('/schoolStore/addProduct', function(req,res){
 	console.log(params);
 	console.log("input body: ");
 	console.log(input);
-
-	res.send({
-		result: 'success',
-		err: ''
-	});
+	
+	var foundBarcode = false;
+	for (var i = 0; i < schoolStoreInventory.length; i++)
+	{
+		var item = schoolStoreInventory[i];
+		if (item['barcode'] == barcode)
+		{
+			foundBarcode = true;
+		}
+	}
+	
+	if (!foundBarcode)
+	{
+		schoolStoreInventory.push({ 
+					barcode: input['barcode'], 
+					productName: input['productName'], 
+					size: input['size'], 
+					salePrice: input['salePrice'], 
+					manufacturedPrice: input['manufacturedPrice'],
+					quantity: input['quantity']
+				});
+		res.send({
+			result: 'success',
+			err: '',
+			items: schoolStoreInventory
+		});
+	}
+	else
+	{
+		res.send({
+			result: 'error',
+			err: 'There is already an item with that barcode'
+		});
+	}
 });
+
+
+function setSchoolStoreFieldValue(barcode,field,value)
+{
+	for (var i = 0; i < schoolStoreInventory.length; i++)
+	{
+		var item = schoolStoreInventory[i];
+		if (item['barcode'] == barcode)
+		{
+			schoolStoreInventory[i][field] = value;
+		}
+	}
+}
 
 app.post('/schoolStore/modifySalePrice', function(req,res){
 	var params = req.params;
@@ -127,7 +224,10 @@ app.post('/schoolStore/modifySalePrice', function(req,res){
 	console.log(params);
 	console.log("input body: ");
 	console.log(input);
-
+	var barcode = input['barcode'];
+	var newPrice = input['salePrice'];
+	setSchoolStoreFieldValue(barcode,'salePrice',newPrice);
+	
 	res.send({
 		result: 'success',
 		err: ''
@@ -142,6 +242,14 @@ app.get('/schoolStore/getItemInfo/:barcode', function(req,res){
 	barcode = decodeURIComponent(barcode);   
 	console.log("get item info barcode after decoded:");
 	console.log(barcode);
+	for (var i = 0; i < schoolStoreInventory.length; i++)
+	{
+		var item = schoolStoreInventory[i];
+		if (item['barcode'] == barcode)
+		{
+			res.send({result: "success", barcode: item['barcode'], productName: item['productName'], size: item['size'], salePrice: item['salePrice'], manufacturedPrice: item['manufacturedPrice'], err: "" });
+		}    
+	}
 	if (barcode == "Vintage Karate - M - 15.00")
 	{
 		res.send('{ result: "success", barcode: "' + barcode + '", productName: "Vintage Karate", size: "M", salePrice: 15.00, manufacturedPrice: 15.00, err: "" }');
@@ -154,32 +262,42 @@ app.get('/schoolStore/getItemInfo/:barcode', function(req,res){
 
 app.get('/schoolStore/getInventory', function(req,res){
 	console.log("get current prices");	
-	
-	res.send({
-		result: "success",
-		err: "",
-		items:
-		[
-			{ 
-				result: "success", 
-				barcode: "Vintage Karate - M - 15.00", 
-				productName: "Vintage Karate", 
-				size: "M", 
-				salePrice: 15.00, 
-				manufacturedPrice: 15.00, err: "",
-				quantity: 10
-			},
-			{ 
-				result: "success", 
-				barcode: "Falcons - L - 15.00", 
-				productName: "Falcons", 
-				size: "M", 
-				salePrice: 15.00, 
-				manufacturedPrice: 15.00, err: "",
-				quantity: 30
-			}
-		]
-	});
+	if (schoolStoreInventory.length > 0)
+	{
+	    res.send({
+			result: "success",
+			err: "",
+			items: schoolStoreInventory
+	    });
+	}
+	else
+	{
+		res.send({
+			result: "success",
+			err: "",
+			items:
+			[
+				{ 
+					result: "success", 
+					barcode: "Vintage Karate - M - 15.00", 
+					productName: "Vintage Karate", 
+					size: "M", 
+					salePrice: 15.00, 
+					manufacturedPrice: 15.00, err: "",
+					quantity: 10
+				},
+				{ 
+					result: "success", 
+					barcode: "Falcons - L - 15.00", 
+					productName: "Falcons", 
+					size: "M", 
+					salePrice: 15.00, 
+					manufacturedPrice: 15.00, err: "",
+					quantity: 30
+				}
+			]
+		});
+	}
 });
 
 app.use(function(req, res, next) {
