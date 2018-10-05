@@ -322,7 +322,7 @@
 		{	
 			// send http post distance percent
 			var increaseInPercent = 1/textToType.length;
-			var percent = distancePercent + increaseInPercent;
+			var percent = Number(distancePercent) + Number(increaseInPercent);
 			var client2 = new HttpClient();
 			client2.post('http://104.236.169.62:80/typing/setClientDistance/'+code+'/'+username+'/'+percent, function(response) {
 				var parsedJSON = (JSON.parse(response));
