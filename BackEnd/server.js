@@ -1013,6 +1013,27 @@ app.get('/enterPassword/:entry', function(req,res)
 	}
 });
 
+app.get('/checkHaddensPassword/:entry', function(req,res)
+{
+	var guess = req.params.entry;
+	if (guess == "nd888nd7")
+	{
+		res.send({
+			result: 'success',
+			err: '',
+			correct: true
+		});
+	}
+	else
+	{
+		res.send({
+			result: 'success',
+			err: '',
+			correct: false
+		});
+	}
+});
+
 
 app.get('/selectall/:table', function(req,res){
 	connectionpool.getConnection(function(err, connection) {
