@@ -196,7 +196,7 @@
 			playerDiv.style.color = getPlayerColor(gameData, gameData['players'][i].name);
 			var imgDiv = document.createElement("img");
 			imgDiv.height=30;
-			playerDiv.style.top = ((i * imgDiv.height) + 2) + "px";
+			playerDiv.style.top = ((i * (imgDiv.height+2)) + 100) + "px";
 			imgDiv.src = getPlayerImage(gameData, gameData['players'][i].name);
 			playerDiv.appendChild(imgDiv);	
 		    raceTrack.appendChild(playerDiv);
