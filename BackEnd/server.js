@@ -444,7 +444,7 @@ app.post('/addGameToServer/:type', function(req,res){
 			type: "typing race",
 			currentlyWinning: 0,
 			startedRace: false,
-			typingText: "",
+			typingText: "Ivysaur is a quadruped Pokemon similar to a dinosaur. It has blue-green skin with darker patches. On top of its head are pointed ears with black insides, and it has narrow red eyes. It has a short, rounded snout with a wide mouth. Two pointed teeth protrude from its upper jaw. Each of its feet has three claws on them. The bulb on its back has bloomed into a large pink bud. A short brown trunk surrounded by leafy green fronds supports the bud.",
 			players:[]
 		});
 	}
