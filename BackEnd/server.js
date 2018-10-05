@@ -334,6 +334,10 @@ app.get('/gamepage/:code', function(req,res){
 	else if (type == "uno")
 	{
 	}
+	else if (type == "typing race")
+	{
+		res.sendFile(path.resolve(__dirname + '/../FrontEnd/GAMES/MultiplayerTypingRace.html'));
+	}
 });
 
 
@@ -430,6 +434,17 @@ app.post('/addGameToServer/:type', function(req,res){
 			type: "tictactoe",
 			gameState: [["","",""],["","",""],["","",""]],
 			currentTurn: "X",
+			players:[]
+		});
+	}
+	else if (type == "Typing Race")
+	{
+		playerGroups.push({
+			code: gameCode,
+			type: "typing race",
+			currentlyWinning: 0,
+			startedRace: false,
+			typingText: "",
 			players:[]
 		});
 	}
@@ -579,7 +594,7 @@ app.post('/addClientToGame/:code/:username', function(req,res){
 				gameData: gameDataForCode
 			});
 		}
-		if (gameDataForCode.type == "tictactoe")
+		else if (gameDataForCode.type == "tictactoe")
 		{
 			if (gameDataForCode['players'].length < 2)
 			{
@@ -597,6 +612,22 @@ app.post('/addClientToGame/:code/:username', function(req,res){
 					err: 'There are already two players in that game'
 				});
 			}
+		}
+		else if (gameDataForCode.type == "typing race")
+		{
+			
+			var color = getRandomColor();
+			gameDataForCode['players'].push({"name":userName, 
+							 "distance":0, 
+							 "wpm":0, 
+							 "image":"https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/300px-No_image_available.svg.png",
+							 "wins":0,
+							 "color":color});
+			res.send({
+				result: 'success',
+				err: '',
+				gameData: gameDataForCode
+			});
 		}
 	}
 	else
@@ -665,6 +696,87 @@ function getIndexOfPlayerByName(code,name)
 		}
 	}
 	return -1;
+}
+
+app.post('/typing/startRace/:code', function(req,res){
+	var gameCode = req.params.code;
+	var gameDataForCode = getGameDataForCode(gameCode);
+	if (gameDataForCode != undefined && gameDataForCode != null)
+	{
+		console.log("success");
+		gameDataForCode['startedRace'] = true;
+		res.send({
+			result: 'success',
+			err: '',
+			gameData: gameDataForCode
+		});
+	}
+	else
+	{
+		console.log("player group is undefined");
+		res.send({
+			result: 'error',
+			err: 'There is no game open using that code'
+		});
+	}
+}
+	 
+app.post('/typing/restartRace/:code', function(req,res){
+	var gameCode = req.params.code;
+	var gameDataForCode = getGameDataForCode(gameCode);
+	if (gameDataForCode != undefined && gameDataForCode != null)
+	{
+		console.log("success");
+		gameDataForCode['startedRace'] = false;
+		var players = gameDataForCode['players'];
+		for (var i = 0; i < players.length; i++)
+		{
+			players[i]['distance'] = 0;
+			players[i]['wpm'] = 0;
+		}
+		res.send({
+			result: 'success',
+			err: '',
+			gameData: gameDataForCode
+		});
+	}
+	else
+	{
+		console.log("player group is undefined");
+		res.send({
+			result: 'error',
+			err: 'There is no game open using that code'
+		});
+	}
+}	 
+
+app.post('/typing/setClientDistance/:code/:username/:distance', function(req,res){
+	var gameCode = req.params.code;
+	var userName = req.params.username;
+	var distance = req.params.distance;
+	//console.log("Game Code: " + gameCode);
+	//console.log("user name: " + userName);
+	var gameDataForCode = getGameDataForCode(gameCode);
+	if (gameDataForCode != undefined && gameDataForCode != null)
+	{
+		console.log("success");
+		var playerIndex = getIndexOfPlayerByName(gameCode,userName);
+		gameDataForCode['players'][playerIndex]['distance'] = distance;
+		res.send({
+			result: 'success',
+			err: '',
+			gameData: gameDataForCode
+		});
+	}
+	else
+	{
+		console.log("player group is undefined");
+		res.send({
+			result: 'error',
+			err: 'There is no game open using that code'
+		});
+	}
+
 }
 
 app.post('/setClientMessage/:code/:username/:message', function(req,res){
