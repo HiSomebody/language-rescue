@@ -525,12 +525,19 @@
 			}
 		}
 		
+		
+		function parseFilename(absolutePath)
+		{
+			var filename = absolutePath.substring(absolutePath.indexOf('UnoCards/')+9);
+			return filename;
+		}
+		
 		function setCardIndex(card_img)
 		{
 			//Finds Card In Hand, Saves Index of that card as CardIndex			
 			for (var i = 0; i < Players[RealPlayer0].Cards.length; i++)
 			{
-				if (card_img.src == Players[RealPlayer0].Cards[i].filename || card_img.src == Players[RealPlayer0].Cards[i].filename) {
+				if (parseFilename(card_img.src) == Players[RealPlayer0].Cards[i].filename) {
 				CardIndex = i;
 				}
 			}
