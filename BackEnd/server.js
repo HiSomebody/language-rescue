@@ -725,7 +725,7 @@ app.post('/typing/startRace/:code', function(req,res){
 			err: 'There is no game open using that code'
 		});
 	}
-}
+});
 	 
 app.post('/typing/resetRace/:code', function(req,res){
 	var gameCode = req.params.code;
@@ -754,7 +754,7 @@ app.post('/typing/resetRace/:code', function(req,res){
 			err: 'There is no game open using that code'
 		});
 	}
-}	 
+});	 
 
 app.post('/typing/setClientDistance/:code/:username/:distancePercent', function(req,res){
 	var gameCode = req.params.code;
@@ -783,7 +783,7 @@ app.post('/typing/setClientDistance/:code/:username/:distancePercent', function(
 		});
 	}
 
-}
+});
 
 app.post('/setClientMessage/:code/:username/:message', function(req,res){
 	var gameCode = req.params.code;
