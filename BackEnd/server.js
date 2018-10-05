@@ -336,7 +336,7 @@ app.get('/gamepage/:code', function(req,res){
 	}
 	else if (type == "typing race")
 	{
-		res.sendFile(path.resolve(__dirname + '/../FrontEnd/GAMES/MultiplayerTypingRace.html'));
+		res.sendFile(path.resolve(__dirname + '/../FrontEnd/GAMES/typeRace.html'));
 	}
 });
 
