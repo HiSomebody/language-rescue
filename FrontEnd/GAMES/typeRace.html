@@ -141,6 +141,21 @@
 		countdown = setInterval(countInterval,1000);
 	}
 	
+	var GetURLParameter = function(sParam)
+	{
+		var sPageURL = window.location.search.substring(1);
+		console.log("URL to check: " + sPageURL);
+		var sURLVariables = sPageURL.split('&');
+		for (var i = 0; i < sURLVariables.length; i++) 
+		{
+			var sParameterName = sURLVariables[i].split('=');
+			if (sParameterName[0] == sParam) 
+			{
+				return sParameterName[1];
+			}
+		}
+	}
+	
 	function getPlayerColor(gameData, username)
 	{
 		for (var i = 0; i < gameData['players'].length; i++)
