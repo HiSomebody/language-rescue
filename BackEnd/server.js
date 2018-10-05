@@ -964,7 +964,7 @@ res.sendFile(path.resolve(__dirname + '/../FrontEnd/hannah/videos/'+req.params.f
 });
 
 app.get('/UnoCards/:cardname', function(req,res){
-res.sendFile(path.resolve(__dirname + '/../FrontEnd/GAMES/UnoCards/'+req.params.cardname));
+res.sendFile(path.resolve(__dirname + '/../FrontEnd/images/UnoCards/'+req.params.cardname));
 });
 
 app.get('/BAND/MAINFILES/:filename', function(req,res){
