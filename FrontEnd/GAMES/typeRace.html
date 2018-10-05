@@ -75,6 +75,7 @@
 		code = GetURLParameter("gameCode");
 		if (code == undefined || code == null) {code = "test"}
 		//console.log("Code: " + code);
+		document.getElementById("GameCodeHeader").innerHTML = "CODE: " + code;
 		username = decodeURIComponent(GetURLParameter("username"));
 		if (username == undefined || username == null) {username = "test"}
 		//var b = document.getElementById("player1");
@@ -203,7 +204,7 @@
 			var imgDiv = document.createElement("img");
 			imgDiv.src = gameData['players'][i].image;
 			imgDiv.height=30;
-			playerDiv.style.top = ((i * (imgDiv.height+2)) + 100) + "px";
+			playerDiv.style.top = ((i * (imgDiv.height+2)) + 120) + "px";
 			imgDiv.src = getPlayerImage(gameData, gameData['players'][i].name);
 			playerDiv.appendChild(imgDiv);	
 		    raceTrack.appendChild(playerDiv);
@@ -385,6 +386,7 @@
 </script>
 
 <body>
+	<h3 id="GameCodeHeader">Game Code:</h3>
 	<h3 id="textToType">
 		<span class="blueText" id="typedAlready"></span><span class="blackText" id="toTypeStill">Ready?</span>&nbsp&nbsp&nbsp&nbsp<button hidden id="startButton">Start Race</button>
 	</h3>
