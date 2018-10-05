@@ -280,10 +280,10 @@
 					}
 					var playerDiv = playerDivs[i];
 					var imgDiv = document.createElement("img");
-					var distancePercent2 = Number(player['distancePercent']);
 					var numChars = textToType.length;
+					var percentComplete = Number(player['charactersTyped'])/numChars;
 					var trackLength = screen.width-screen.width/40;
-					var xPos = distancePercent2*trackLength;
+					var xPos = percentComplete*trackLength;
 					playerDiv.style.left = xPos + "px";
 				}
 								
@@ -322,10 +322,9 @@
 		if (isCorrectKey(keyEvent.key))
 		{	
 			// send http post distance percent
-			var increaseInPercent = 1/textToType.length;
-			var percent = Number(distancePercent) + Number(increaseInPercent);
+			var charactersTyped = nextIndex;
 			var client2 = new HttpClient();
-			client2.post('http://104.236.169.62:80/typing/setClientDistance/'+code+'/'+username+'/'+percent, function(response) {
+			client2.post('http://104.236.169.62:80/typing/setClientDistance/'+code+'/'+username+'/'+charactersTyped, function(response) {
 				var parsedJSON = (JSON.parse(response));
 				//console.log(parsedJSON);
 			});
