@@ -196,6 +196,7 @@
 			playerDiv.style.color = getPlayerColor(gameData, gameData['players'][i].name);
 			var imgDiv = document.createElement("img");
 			imgDiv.height=30;
+			playerDiv.style.top = ((i * imgDiv.height) + 2) + "px";
 			imgDiv.src = getPlayerImage(gameData, gameData['players'][i].name);
 			playerDiv.appendChild(imgDiv);	
 		    raceTrack.appendChild(playerDiv);
@@ -358,9 +359,9 @@
 </script>
 
 <body>
-	<h2 id="textToType">
+	<h3 id="textToType">
 		<span class="blueText" id="typedAlready"></span><span class="blackText" id="toTypeStill">Ready?</span>&nbsp&nbsp&nbsp&nbsp<button hidden id="startButton">Start Race</button>
-	</h2>
+	</h3>
 	<div id="racetrack">
 		<div hidden class="player1">
 			<img src="https://vignette.wikia.nocookie.net/muppet/images/0/05/Beaker.jpg/revision/latest?cb=20101015151246" width=40/>
