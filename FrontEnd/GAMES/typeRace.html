@@ -68,6 +68,7 @@
 	var waitingPeriod;
 	var playerDivs = [];
 	var distancePercent = 0;
+	var playerIndex = -1;
 	
 	window.onload = function()
 	{
@@ -94,11 +95,16 @@
 			var parsedJSON = (JSON.parse(response));
 			if (parsedJSON["result"] == "success")
 			{
-				waitingPeriod = setInterval(waitInterval,1000);
+				waitingPeriod = setInterval(waitInterval,100);
 				
 				var gameData = parsedJSON['gameData'];
 				
-				if (gameData['players'][0]['name'] == username)
+				if (gameData['players'].length == 1)
+				{
+					playerIndex = 0;
+				}
+				
+				if (playerIndex == 0)
 				{
 					var btn = document.getElementById("startButton");
 					btn.style.display = "inline";
@@ -237,6 +243,11 @@
 		counter -= 1;
 		if (counter < 0)
 		{
+			if (playerIndex == 0)
+			{
+				var btn = document.getElementById("startButton");
+				btn.style.display = "none";
+			}
 			startedGame = true;
 			// send http post start game maybe?
 			startTime = Date.now();
@@ -331,6 +342,11 @@
 			if (nextIndex == textToType.length)
 			{
 				playerHasFinished = true;
+				if (playerIndex == 0)
+				{
+					var btn = document.getElementById("startButton");
+					btn.style.display = "inline";
+				}
 			}
 		}
 	});
