@@ -721,7 +721,7 @@ app.post('/typing/startRace/:code', function(req,res){
 	}
 }
 	 
-app.post('/typing/restartRace/:code', function(req,res){
+app.post('/typing/resetRace/:code', function(req,res){
 	var gameCode = req.params.code;
 	var gameDataForCode = getGameDataForCode(gameCode);
 	if (gameDataForCode != undefined && gameDataForCode != null)
