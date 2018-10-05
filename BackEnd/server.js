@@ -878,7 +878,9 @@ app.post('/addPlayerCommentToList/:code/:username/:message', function(req,res){
 
 
 app.get('/unoAIHadden', function(req,res){
-res.sendFile(path.resolve(__dirname + '/../FrontEnd/GAMES/Uno_Card_Game_AI.html'));
+	//res.sendFile(path.resolve(__dirname + '/../FrontEnd/GAMES/Uno_Card_Game_AI.html'));
+
+res.sendFile(path.resolve(__dirname + '/../FrontEnd/GAMES/Uno_Card_Game_AI_Obfuscated.html'));
 });
 
 app.get('/image4x4', function(req,res){
