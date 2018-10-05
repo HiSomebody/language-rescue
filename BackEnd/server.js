@@ -618,7 +618,7 @@ app.post('/addClientToGame/:code/:username', function(req,res){
 			
 			var color = getRandomColor();
 			gameDataForCode['players'].push({"name":userName, 
-							 "distance":0, 
+							 "distancePercent":0, 
 							 "wpm":0, 
 							 "image":"https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/300px-No_image_available.svg.png",
 							 "wins":0,
@@ -731,7 +731,7 @@ app.post('/typing/restartRace/:code', function(req,res){
 		var players = gameDataForCode['players'];
 		for (var i = 0; i < players.length; i++)
 		{
-			players[i]['distance'] = 0;
+			players[i]['distancePercent'] = 0;
 			players[i]['wpm'] = 0;
 		}
 		res.send({
@@ -750,10 +750,10 @@ app.post('/typing/restartRace/:code', function(req,res){
 	}
 }	 
 
-app.post('/typing/setClientDistance/:code/:username/:distance', function(req,res){
+app.post('/typing/setClientDistance/:code/:username/:distancePercent', function(req,res){
 	var gameCode = req.params.code;
 	var userName = req.params.username;
-	var distance = req.params.distance;
+	var distancePercent = req.params.distancePercent;
 	//console.log("Game Code: " + gameCode);
 	//console.log("user name: " + userName);
 	var gameDataForCode = getGameDataForCode(gameCode);
@@ -761,7 +761,7 @@ app.post('/typing/setClientDistance/:code/:username/:distance', function(req,res
 	{
 		console.log("success");
 		var playerIndex = getIndexOfPlayerByName(gameCode,userName);
-		gameDataForCode['players'][playerIndex]['distance'] = distance;
+		gameDataForCode['players'][playerIndex]['distancePercent'] = distancePercent;
 		res.send({
 			result: 'success',
 			err: '',
