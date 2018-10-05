@@ -94,6 +94,8 @@
 			var parsedJSON = (JSON.parse(response));
 			if (parsedJSON["result"] == "success")
 			{
+				waitingPeriod = setInterval(waitInterval,1000);
+				
 				var gameData = parsedJSON['gameData'];
 				
 				if (gameData['players'][0]['name'] == username)
@@ -118,7 +120,6 @@
 				// unable to get data from server
 			}
 		});
-		waitingPeriod = setInterval(waitInterval,1000);
 	}
 	
 	
