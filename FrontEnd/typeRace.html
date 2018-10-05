@@ -1,0 +1,372 @@
+<html>
+<style>
+
+.player {
+	position: absolute;
+    transition: left .08s ease-in, top .08s ease-in;
+}
+.blueText
+{
+    color:orange;
+}
+.blackText
+{
+    color:black;
+    font-weight:bold;
+}
+#wpm {
+	position: absolute;
+	top: 90%;
+	left: 40%;
+}
+</style>
+<script>
+	
+	var HttpClient = function() {
+	    this.get = function(aUrl, aCallback) {
+	        var anHttpRequest = new XMLHttpRequest();
+	        anHttpRequest.onreadystatechange = function() { 
+	            if (anHttpRequest.readyState == 4 && anHttpRequest.status == 200)
+	                aCallback(anHttpRequest.responseText);
+	        }
+
+	        anHttpRequest.open( "GET", aUrl, true );            
+	        anHttpRequest.send( null );
+	    }
+		
+		this.post = function(aUrl, aCallback) {
+		var xhttp = new XMLHttpRequest();
+		  xhttp.onreadystatechange = function() {
+		    if (this.readyState == 4 && this.status == 200) {
+		      	aCallback(xhttp.responseText);
+		    }
+		  };
+		  xhttp.open("POST", aUrl, true);
+		  xhttp.send();
+	  }
+	}
+	
+	var moveAmount;
+	var textToType = "Ivysaur is a quadruped Pokemon similar to a dinosaur. It has blue-green skin with darker patches. On top of its head are pointed ears with black insides, and it has narrow red eyes. It has a short, rounded snout with a wide mouth. Two pointed teeth protrude from its upper jaw. Each of its feet has three claws on them. The bulb on its back has bloomed into a large pink bud. A short brown trunk surrounded by leafy green fronds supports the bud.";
+	var nextIndex = 0;
+	var counter = 3;
+	var countdown;
+	var gameclock;
+	var pingCounter = 0;
+	var startedGame = false;
+	var gameOver = false;
+	var wordCount = 0;
+	var millisBetweenPing = 100;
+	var pingsPerSecond = 1000/millisBetweenPing;
+	var elapsedSeconds = 0;
+	var totalWords = 0;
+	var averageWordLength;
+	var playerHasFinished = false;
+	var startTime;
+	var code;
+	var username;
+	var waitingPeriod;
+	var playerDivs = [];
+	var distancePercent = 0;
+	
+	window.onload = function()
+	{
+		code = GetURLParameter("gameCode");
+		if (code == undefined || code == null) {code = "test"}
+		//console.log("Code: " + code);
+		username = decodeURIComponent(GetURLParameter("username"));
+		if (username == undefined || username == null) {username = "test"}
+		//var b = document.getElementById("player1");
+		//b.style.left = "0px";
+		moveAmount = (screen.width-100)/textToType.length;
+		
+		
+		totalWords = getTotalWords();
+		averageWordLength = textToType.length/totalWords;
+		
+		getGameDataFirstTime();
+	}
+	
+	function getGameDataFirstTime()
+	{
+		var client = new HttpClient();
+		client.get('http://104.236.169.62:80/loadGameForClient/'+code, function(response) {
+			var parsedJSON = (JSON.parse(response));
+			if (parsedJSON["result"] == "success")
+			{
+				var gameData = parsedJSON['gameData'];
+				
+				if (gameData['players'][0]['name'] == username)
+				{
+					var btn = document.getElementById("startButton");
+					btn.display = "inline";
+					btn.onclick = function()
+					{
+						var btnAgain = document.getElementById("startButton");
+						btnAgain.innerHTML = "Restart Race";
+						// send post to reset race
+						var client2 = new HttpClient();
+						client2.post('http://104.236.169.62:80/typing/startRace/'+code, function(response) {
+							var parsedJSON = (JSON.parse(response));
+							//console.log(parsedJSON);
+						});
+					}
+				}				
+			}
+			else
+			{
+				// unable to get data from server
+			}
+		});
+		waitingPeriod = setInterval(waitInterval,1000);
+	}
+	
+	
+	
+	function getTotalWords()
+	{
+		var numSpaces = 1;
+		for (var i = 0; i < textToType.length; i++)
+		{
+			if (textToType[i] == ' ')
+			{
+				numSpaces += 1;
+			}
+		}
+		return numSpaces;
+	}
+	
+	function startCountdown()
+	{		
+		countdown = setInterval(countInterval,1000);
+	}
+	
+	var GetURLParameter = function(sParam)
+	{
+		var sPageURL = window.location.search.substring(1);
+		console.log("URL to check: " + sPageURL);
+		var sURLVariables = sPageURL.split('&');
+		for (var i = 0; i < sURLVariables.length; i++) 
+		{
+			var sParameterName = sURLVariables[i].split('=');
+			if (sParameterName[0] == sParam) 
+			{
+				return sParameterName[1];
+			}
+		}
+	}
+	
+	function getPlayerColor(gameData, username)
+	{
+		for (var i = 0; i < gameData['players'].length; i++)
+		{
+			if (gameData['players'][i].name == username)
+			{
+				return gameData['players'][i].color;
+			}
+		}
+		return "#000000";
+	}
+	
+	function getPlayerImage(gameData, username)
+	{
+		for (var i = 0; i < gameData['players'].length; i++)
+		{
+			if (gameData['players'][i].name == username)
+			{
+				return gameData['players'][i].image;
+			}
+		}
+		return "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/300px-No_image_available.svg.png";
+	}
+	
+	function populateRacetrack()
+	{
+		var raceTrack = document.getElementById("racetrack");
+		while (raceTrack.firstChild) {
+		    raceTrack.removeChild(raceTrack.firstChild);
+		}
+		playerDivs = [];
+		
+		for (var i = 0; i < gameData['players'].length; i++)
+		{
+			var playerDiv = document.createElement("div");
+			playerDiv.setAttribute("class","player");
+			playerDiv.style.color = getPlayerColor(gameData, gameData['players'][i].name);
+			var imgDiv = document.createElement("img");
+			imgDiv.height=30;
+			imgDiv.src = getPlayerImage(gameData, gameData['players'][i].name);
+			playerDiv.appendChild(imgDiv);	
+		    raceTrack.appendChild(playerDiv);
+			playerDivs.push(playerDiv);
+		}
+	}
+	
+	function waitInterval()
+	{
+		// send http get game data
+		var client = new HttpClient();
+		client.get('http://104.236.169.62:80/loadGameForClient/'+code, function(response) {
+			var parsedJSON = (JSON.parse(response));
+			if (parsedJSON["result"] == "success")
+			{
+				// continuously clear the list of player divs and repopulate them
+				populateRacetrack();
+				var gameData = parsedJSON['gameData'];
+				if (gameData['startedRace'])
+				{
+					startedRace = true;
+					startCountdown();
+					clearInterval(waitingPeriod);
+				}
+			}
+			else
+			{
+				// unable to get data from server
+			}
+		});		
+	}
+	
+	function countInterval()
+	{	
+		console.log(counter);
+		document.getElementById("toTypeStill").innerHTML = counter;
+		
+		counter -= 1;
+		if (counter < 0)
+		{
+			startedGame = true;
+			// send http post start game maybe?
+			startTime = Date.now();
+			recolorText();
+			pingCounter = 0;
+			gameclock = setInterval(mainGameInterval,millisBetweenPing);
+			clearInterval(countdown);
+		}
+				
+	}
+	
+	function mainGameInterval()
+	{
+		// send http get player positions and set divs to have them
+		var client = new HttpClient();
+		client.get('http://104.236.169.62:80/loadGameForClient/'+code, function(response) {
+			var parsedJSON = (JSON.parse(response));
+			if (parsedJSON["result"] == "success")
+			{
+				var gameData = parsedJSON['gameData'];
+				
+				for (var i = 0; i < gameData['players'].length; i++)
+				{
+					var player = gameData['players'][i];
+					if (player['name'] == username)
+					{
+						distancePercent = player['distancePercent'];
+					}
+					var playerDiv = playerDivs[i];
+					var imgDiv = document.createElement("img");
+					var distancePercent2 = player['distancePercent'];
+					var numChars = textToType.length;
+					var trackLength = screen.width-100;
+					var xPos = distancePercent2*trackLength;
+					playerDiv.style.left = xPos + "px";
+				}
+								
+			}
+			else
+			{
+				// unable to get data from server
+			}
+		});
+		if (!playerHasFinished)
+		{
+			recalculateWPM();
+		}
+		pingCounter += 1;
+		elapsedSeconds = (Date.now() - startTime) / 1000;
+	}
+	
+	function isCorrectKey(key)
+	{
+		var nextKey = textToType[nextIndex];
+		if (nextKey == key)
+		{
+			if (key == ' ')
+			{
+				wordCount += 1;
+			}
+			return true;
+		}
+	}
+	
+	document.addEventListener("keypress", function(keyEvent)
+	{
+		if (!startedGame) {return;}
+		if (gameOver) {return;}
+		//alert("pressed a key");
+		if (isCorrectKey(keyEvent.key))
+		{	
+			// send http post distance percent
+			var increaseInPercent = 1/textToType.length;
+			var percent = distancePercent + increaseInPercent;
+			var client2 = new HttpClient();
+			client2.post('http://104.236.169.62:80/typing/setClientDistance/'+code+'/'+username+'/'+percent, function(response) {
+				var parsedJSON = (JSON.parse(response));
+				//console.log(parsedJSON);
+			});
+			
+			nextIndex += 1;
+			recolorText();
+			
+			// following code should be in main Game Interval update
+			/*
+			var b = document.getElementById("player1");
+			var currentXPos = b.style.left;
+			var parsedNum = currentXPos.substring(0,currentXPos.length - 2);
+			var castNum = Number(parsedNum);
+			b.style.left = (castNum + moveAmount) + "px";
+			*/
+			if (nextIndex == textToType.length)
+			{
+				playerHasFinished = true;
+			}
+		}
+	});
+	
+	function recolorText() 
+	{
+		var typedAlready = document.getElementById("typedAlready");
+		var toTypeStill = document.getElementById("toTypeStill");
+		typedAlready.innerHTML = textToType.substring(0,nextIndex);
+		toTypeStill.innerHTML = textToType.substring(nextIndex);
+		
+	}
+	
+	function recalculateWPM()
+	{
+		var elapsedMinutes = elapsedSeconds/60;
+		var averageWordsCompleted = nextIndex/averageWordLength;
+		var wpm = averageWordsCompleted / elapsedMinutes;
+		if (elapsedMinutes == 0)
+		{
+			wpm = 0;
+		}
+		document.getElementById("wpm").innerHTML = "Seconds: " + elapsedSeconds + "&nbsp&nbsp&nbsp&nbspwpm: " + wpm;
+	}
+	
+</script>
+
+<body>
+	<h2 id="textToType">
+		<span class="blueText" id="typedAlready"></span><span class="blackText" id="toTypeStill">Ready?</span>&nbsp&nbsp&nbsp&nbsp<button hidden id="startButton">Start Race</button>
+	</h2>
+	<div id="racetrack">
+		<div hidden class="player1">
+			<img src="https://vignette.wikia.nocookie.net/muppet/images/0/05/Beaker.jpg/revision/latest?cb=20101015151246" width=40/>
+			<p style="text-align:center">Paul</p>
+		</div>
+	</div>
+	<h2 id="wpm">Seconds: 0&nbsp&nbsp&nbsp&nbspwpm: 0</h2>
+</body>
+
+</htmL>
