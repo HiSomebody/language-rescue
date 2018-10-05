@@ -1,5 +1,30 @@
 <html>
 	<script>
+		
+		var HttpClient = function() {
+		    this.get = function(aUrl, aCallback) {
+		        var anHttpRequest = new XMLHttpRequest();
+		        anHttpRequest.onreadystatechange = function() { 
+		            if (anHttpRequest.readyState == 4 && anHttpRequest.status == 200)
+		                aCallback(anHttpRequest.responseText);
+		        }
+
+		        anHttpRequest.open( "GET", aUrl, true );            
+		        anHttpRequest.send( null );
+		    }
+		
+			this.post = function(aUrl, aCallback) {
+			var xhttp = new XMLHttpRequest();
+			  xhttp.onreadystatechange = function() {
+			    if (this.readyState == 4 && this.status == 200) {
+			      	aCallback(xhttp.responseText);
+			    }
+			  };
+			  xhttp.open("POST", aUrl, true);
+			  xhttp.send();
+		  }
+		}
+		
 		var totalCards;
 		var Players;
 		var Playable_Deck;
@@ -20,6 +45,7 @@
 		var AITIMER;
 		var AITimeInput;
 		var SomeOneWon = false;
+		
 	window.onload = function()
 	{		
 				//Makes Developer Buttons
@@ -812,35 +838,48 @@
 		function developerMode()
 		{
 			var passwordGuess = prompt("Please enter your admin password", "");
-			if (passwordGuess == "nd888nd7") {
-				document.getElementById("ta").style.display = "block";
-					DevloperMode = true;
-					var toggleShowData = document.getElementById("toggleShowData").disabled = true;
-					var DM = document.getElementById('DM');
-					var linebreak4 = document.createElement("br");
-					DM.appendChild(linebreak4);
-					var linebreak5 = document.createElement("br");
-					DM.appendChild(linebreak5);
+			var client = new HttpClient();
+			client.get('http://104.236.169.62:80/checkHaddensPassword/'+passwordGuess, function(response) {
+				var parsedJSON = (JSON.parse(response));
+				if (parsedJSON["result"] == "success")
+				{
+					var wasCorrect = parsedJSON['correct'];
+					if (wasCorrect)
+					{
+						document.getElementById("ta").style.display = "block";
+							DevloperMode = true;
+							var toggleShowData = document.getElementById("toggleShowData").disabled = true;
+							var DM = document.getElementById('DM');
+							var linebreak4 = document.createElement("br");
+							DM.appendChild(linebreak4);
+							var linebreak5 = document.createElement("br");
+							DM.appendChild(linebreak5);
 					
-					DM.appendChild(checkbox);
-					checkbox.checked = true;
-					DM.appendChild(label);
-					DM.appendChild(document.createTextNode("  ,  "));
-					DM.appendChild(checkbox2);
-					checkbox2.checked = true;
-					DM.appendChild(label2);
-					DM.appendChild(document.createTextNode("  ,  "));
-					DM.appendChild(checkbox3);
-					checkbox3.checked = true;
-					DM.appendChild(label3);
-					DM.appendChild(document.createTextNode("  ,  "))
-					DM.appendChild(AITimeInput);
-					DM.appendChild(button);
-					DM.appendChild(document.createTextNode("  ,  "))
-					DM.appendChild(button2);
-					AITime = 500;
-					Update_Cards();
-			}			
+							DM.appendChild(checkbox);
+							checkbox.checked = true;
+							DM.appendChild(label);
+							DM.appendChild(document.createTextNode("  ,  "));
+							DM.appendChild(checkbox2);
+							checkbox2.checked = true;
+							DM.appendChild(label2);
+							DM.appendChild(document.createTextNode("  ,  "));
+							DM.appendChild(checkbox3);
+							checkbox3.checked = true;
+							DM.appendChild(label3);
+							DM.appendChild(document.createTextNode("  ,  "))
+							DM.appendChild(AITimeInput);
+							DM.appendChild(button);
+							DM.appendChild(document.createTextNode("  ,  "))
+							DM.appendChild(button2);
+							AITime = 500;
+							Update_Cards();
+					}
+				}
+				else
+				{
+					// unable to get data from server
+				}
+			});				
 		}
 
 		function sayUno()
