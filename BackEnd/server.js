@@ -705,6 +705,12 @@ app.post('/typing/startRace/:code', function(req,res){
 	{
 		console.log("success");
 		gameDataForCode['startedRace'] = true;
+		var players = gameDataForCode['players'];
+		for (var i = 0; i < players.length; i++)
+		{
+			players[i]['distancePercent'] = 0;
+			players[i]['wpm'] = 0;
+		}
 		res.send({
 			result: 'success',
 			err: '',
