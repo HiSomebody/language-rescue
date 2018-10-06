@@ -709,7 +709,7 @@ app.post('/typing/startRace/:code', function(req,res){
 		var players = gameDataForCode['players'];
 		for (var i = 0; i < players.length; i++)
 		{
-			players[i]['distancePercent'] = 0;
+			players[i]['charactersTyped'] = 0;
 			players[i]['wpm'] = 0;
 		}
 		res.send({
@@ -738,7 +738,7 @@ app.post('/typing/resetRace/:code', function(req,res){
 		var players = gameDataForCode['players'];
 		for (var i = 0; i < players.length; i++)
 		{
-			players[i]['distancePercent'] = 0;
+			players[i]['charactersTyped'] = 0;
 			players[i]['wpm'] = 0;
 		}
 		res.send({
