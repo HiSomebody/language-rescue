@@ -288,8 +288,11 @@
 						var lbl = document.getElementById("winnerLabel");
 						lbl.innerHTML = "Winner: " + player.name;
 						lbl.style.display = "inline";
-						var btn = document.getElementById("startButton");
-						btn.style.display = "inline";
+						if (player['name'] == username)
+						{
+							var btn = document.getElementById("startButton");
+							btn.style.display = "inline";
+						}
 					}
 				}
 								
