@@ -105,6 +105,8 @@
 					playerIndex = 0;
 				}
 				
+				textToType = gameData['typingText'];
+				
 				if (playerIndex == 0)
 				{
 					var btn = document.getElementById("startButton");
@@ -282,10 +284,10 @@
 					var imgDiv = document.createElement("img");
 					var numChars = textToType.length;
 					var percentComplete = Number(player['charactersTyped'])/numChars;
-					var trackLength = screen.width-screen.width/40;
+					var trackLength = screen.width-screen.width/36;
 					var xPos = percentComplete*trackLength;
 					playerDiv.style.left = xPos + "px";
-					if (player.charactersTyped == numChars)
+					if (player.charactersTyped == numChars-1)
 					{
 						var lbl = document.getElementById("winnerLbl");
 						lbl.innerHTML = "Winner: " + player.name;
