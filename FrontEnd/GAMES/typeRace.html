@@ -113,12 +113,18 @@
 					btn.style.display = "inline";
 					btn.onclick = function()
 					{
+						
 						var btnAgain = document.getElementById("startButton");
 						btnAgain.innerHTML = "Restart Race";
 						// send post to reset race
 						var client2 = new HttpClient();
-						client2.post('http://104.236.169.62:80/typing/startRace/'+code, function(response) {
-							var parsedJSON = (JSON.parse(response));
+						client2.post('http://104.236.169.62:80/typing/resetRace/'+code, function(response) {
+							
+							var client3 = new HttpClient();
+							client3.post('http://104.236.169.62:80/typing/startRace/'+code, function(response) {
+								var parsedJSON = (JSON.parse(response));
+								//console.log(parsedJSON);
+							});
 							//console.log(parsedJSON);
 						});
 					}
@@ -289,7 +295,7 @@
 					playerDiv.style.left = xPos + "px";
 					if (player.charactersTyped == numChars-1)
 					{
-						var lbl = document.getElementById("winnerLbl");
+						var lbl = document.getElementById("winnerLabel");
 						lbl.innerHTML = "Winner: " + player.name;
 						lbl.style.display = "inline";
 					}
