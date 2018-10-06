@@ -228,6 +228,8 @@
 				{
 					startedRace = true;
 					startCountdown();
+					var btn = document.getElementById("startButton");
+					btn.style.display = "none";
 					clearInterval(waitingPeriod);
 				}
 			}
@@ -246,11 +248,6 @@
 		counter -= 1;
 		if (counter < 0)
 		{
-			if (playerIndex == 0)
-			{
-				var btn = document.getElementById("startButton");
-				btn.style.display = "none";
-			}
 			startedGame = true;
 			// send http post start game maybe?
 			startTime = Date.now();
@@ -291,6 +288,8 @@
 						var lbl = document.getElementById("winnerLabel");
 						lbl.innerHTML = "Winner: " + player.name;
 						lbl.style.display = "inline";
+						var btn = document.getElementById("startButton");
+						btn.style.display = "inline";
 					}
 				}
 								
@@ -349,13 +348,7 @@
 			*/
 			if (nextIndex == textToType.length)
 			{
-				playerHasFinished = true;
-				if (playerIndex == 0)
-				{
-					var btn = document.getElementById("startButton");
-					btn.style.display = "inline";
-				}
-				
+				playerHasFinished = true;			
 			}
 		}
 	});
