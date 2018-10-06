@@ -444,7 +444,8 @@ app.post('/addGameToServer/:type', function(req,res){
 			type: "typing race",
 			currentlyWinning: 0,
 			startedRace: false,
-			typingText: "Ivysaur is a quadruped Pokemon similar to a dinosaur. It has blue-green skin with darker patches. On top of its head are pointed ears with black insides, and it has narrow red eyes. It has a short, rounded snout with a wide mouth.",
+			typingText: "When the road looks rough ahead and you're miles and miles from your nice warm bed, you just remember what your old pal said, boy, you've got a friend in me",
+			typingText2: "Ivysaur is a quadruped Pokemon similar to a dinosaur. It has blue-green skin with darker patches. On top of its head are pointed ears with black insides, and it has narrow red eyes. It has a short, rounded snout with a wide mouth.",
 			players:[]
 		});
 	}
