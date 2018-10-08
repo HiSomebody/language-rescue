@@ -119,7 +119,8 @@
 						btnAgain.innerHTML = "Restart Race";
 						// send post to reset race
 						var client2 = new HttpClient();
-							client2.post('http://104.236.169.62:80/typing/startRace/'+code, function(response) {
+						client2.post('http://104.236.169.62:80/typing/startRace/'+code, function(response) {
+							console.log(response);
 						});
 					}
 				}				
@@ -247,10 +248,13 @@
 	{	
 		console.log(counter);
 		document.getElementById("toTypeStill").innerHTML = counter;
+		document.getElementById("typedAlready").innerHTML = "";
+
 		
 		counter -= 1;
 		if (counter < 0)
 		{
+			playerHasFinished = false;
 			startedGame = true;
 			// send http post start game maybe?
 			startTime = Date.now();
@@ -273,8 +277,10 @@
 				var gameData = parsedJSON['gameData'];
 				if (gameData['startedRace'] == false)
 				{
-					clearInterval(gameclock);
 					getGameDataFirstTime();
+					nextIndex = 0;
+					
+					clearInterval(gameclock);
 					return;
 				}
 				for (var i = 0; i < gameData['players'].length; i++)
@@ -306,7 +312,8 @@
 								btnAgain.innerHTML = "Restart Race";
 								// send post to reset race
 								var client2 = new HttpClient();
-									client2.post('http://104.236.169.62:80/typing/resetRace/'+code, function(response) {
+								client2.post('http://104.236.169.62:80/typing/resetRace/'+code, function(response) {
+									console.log(response);
 								});
 							}
 						}
