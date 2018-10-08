@@ -735,12 +735,6 @@ app.post('/typing/resetRace/:code', function(req,res){
 	{
 		console.log("success");
 		gameDataForCode['startedRace'] = false;
-		var players = gameDataForCode['players'];
-		for (var i = 0; i < players.length; i++)
-		{
-			players[i]['charactersTyped'] = 0;
-			players[i]['wpm'] = 0;
-		}
 		res.send({
 			result: 'success',
 			err: '',
