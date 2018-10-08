@@ -205,7 +205,7 @@
 			playerDiv.style.color = getPlayerColor(gameData, gameData['players'][i].name);
 			var imgDiv = document.createElement("img");
 			imgDiv.src = gameData['players'][i].image;
-			imgDiv.height = (.7 * screen.height) / numPlayers;
+			imgDiv.height = (.65 * screen.height) / numPlayers;
 			playerDiv.style.top = ((i * (imgDiv.height+2)) + 120) + "px";
 			imgDiv.src = getPlayerImage(gameData, gameData['players'][i].name);
 			playerDiv.appendChild(imgDiv);	
