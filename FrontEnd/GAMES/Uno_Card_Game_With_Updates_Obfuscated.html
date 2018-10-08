@@ -1,181 +1,181 @@
 <html>
 	<script>
 	var _0x23d8=['yellow_','blue_','green_','skip.png','reverse.png','+2.png','0.png','.png','ShuffleAndDealButton','numberPlayersTextField','Error','Only\x20a\x20maxumuim\x20of\x2010\x20people\x20and\x20a\x20minimum\x20of\x202\x20players','appendChild','random','length','splice','remove','\x20Players\x20will\x20be\x20dealt','color','red','block','hand','childNodes','src','OtherPlayers','Player\x20','OrginalNumber','Cards','UnoCards/back_of_card.png','hight','width','img','filename','close','target','UNO','deck','black','hasChildNodes','Color','Color_Of_Wild','Would\x20you\x20like\x20to\x20play\x20the\x20card\x20you\x20just\x20drew?','Yore\x20cards,\x20(Player\x20','\x20Turn)','You\x20have\x20been\x20delt\x202\x20extra\x20cards\x20for\x20not\x20clicking\x20Uno\x20Button','Value','Reverse','Size\x20Of\x20Playable\x20Deck:\x20','Size\x20Of\x20Total\x20Cards:\x20','You\x20Are\x20Player\x20','substring','indexOf','Wild\x20&\x20+\x204','Player\x202\x20has\x20been\x20delt\x204\x20extra\x20cards','\x20has\x20been\x20delt\x204\x20extra\x20cards','\x20has\x20been\x20delt\x204\x20extra\x20cards\x20because\x20player\x20','\x20put\x20down\x20a\x20+4\x20wild','Blue','Green','Yellow','\x20skiped\x20player\x20','\x20Skiped\x20Player\x20','Cannot\x20Play\x20Card','\x20has\x20given\x20player\x201,\x202\x20extra\x20cards',',\x202\x20extra\x20cards','\x20has\x20given\x20player\x20','\x20had\x20given\x20player\x20','reverse','Reversed\x20Order\x20Of\x20Players!','\x20Won!','Skip','Please\x20enter\x20your\x20admin\x20password','http://104.236.169.62:80/checkHaddensPassword/','parse','result','success','\x20\x20,\x20\x20','You\x20Sure?','location','reload','Wild','Red','Name','get','onreadystatechange','status','responseText','GET','send','post','readyState','open','onload','createElement','input','checkbox','Unlimited\x20Drawing','createTextNode','Can\x20Play\x20Any\x20Card','type','Dont\x20Have\x20to\x20Click\x20Uno','placeholder','#\x20Of\x20Seconds\x20In\x20AI\x20Timer','Button','innerHTML','Update','floor','value','onclick','Get\x20Out\x20Of\x20Devoloper\x20mode','getElementById','checked','style','display','none','removeChild','lastChild','toggleShowData','disabled','addEventListener','keyup','preventDefault','keyCode','click','UnoCards/black_wild','&+4','Black','push','UnoCards/','red_'];(function(_0x4f4126,_0x47c8ad){var _0x171d00=function(_0x195130){while(--_0x195130){_0x4f4126['push'](_0x4f4126['shift']());}};_0x171d00(++_0x47c8ad);}(_0x23d8,0x157));var _0x137c=function(_0x9443fe,_0x49037d){_0x9443fe=_0x9443fe-0x0;var _0x3ff45e=_0x23d8[_0x9443fe];return _0x3ff45e;};var HttpClient=function(){this[_0x137c('0x0')]=function(_0x351989,_0x243bb1){var _0x11bd0b=new XMLHttpRequest();_0x11bd0b[_0x137c('0x1')]=function(){if(_0x11bd0b['readyState']==0x4&&_0x11bd0b[_0x137c('0x2')]==0xc8)_0x243bb1(_0x11bd0b[_0x137c('0x3')]);};_0x11bd0b['open'](_0x137c('0x4'),_0x351989,!![]);_0x11bd0b[_0x137c('0x5')](null);};this[_0x137c('0x6')]=function(_0x48b1ea,_0x43c50c){var _0x42a88a=new XMLHttpRequest();_0x42a88a['onreadystatechange']=function(){if(this[_0x137c('0x7')]==0x4&&this[_0x137c('0x2')]==0xc8){_0x43c50c(_0x42a88a[_0x137c('0x3')]);}};_0x42a88a[_0x137c('0x8')]('POST',_0x48b1ea,!![]);_0x42a88a[_0x137c('0x5')]();};};var totalCards;var Players;var Playable_Deck;var Whos_Turn=-0x1;var CardIndex;var RealPlayer0=0x0;var NeedsToSayUno=![];var DevloperMode;var AITime=0x5dc;var checkbox;var checkbox2;var checkbox3;var button;var button2;var label;var label2;var label3;var AITIMER;var AITimeInput;var SomeOneWon=![];window[_0x137c('0x9')]=function(){checkbox=document[_0x137c('0xa')](_0x137c('0xb'));checkbox['type']=_0x137c('0xc');label=document['createTextNode'](_0x137c('0xd'));checkbox2=document[_0x137c('0xa')](_0x137c('0xb'));checkbox2['type']=_0x137c('0xc');label2=document[_0x137c('0xe')](_0x137c('0xf'));checkbox3=document[_0x137c('0xa')](_0x137c('0xb'));checkbox3[_0x137c('0x10')]='checkbox';label3=document['createTextNode'](_0x137c('0x11'));AITimeInput=document[_0x137c('0xa')](_0x137c('0xb'));AITimeInput[_0x137c('0x12')]=_0x137c('0x13');button=document[_0x137c('0xa')](_0x137c('0x14'));button[_0x137c('0x15')]=_0x137c('0x16');AITIMER=Math[_0x137c('0x17')](AITimeInput[_0x137c('0x18')]);button[_0x137c('0x19')]=function(){AITime=AITIMER*0x3e8;};button2=document[_0x137c('0xa')](_0x137c('0x14'));button2['innerHTML']=_0x137c('0x1a');button2['onclick']=function(){var _0x32df48=document[_0x137c('0x1b')]('DM');checkbox[_0x137c('0x1c')]=![];checkbox2[_0x137c('0x1c')]=![];checkbox3[_0x137c('0x1c')]=![];AITime=0x5dc;DevloperMode=![];document[_0x137c('0x1b')]('ta')[_0x137c('0x1d')][_0x137c('0x1e')]=_0x137c('0x1f');while(_0x32df48['hasChildNodes']()){_0x32df48[_0x137c('0x20')](_0x32df48[_0x137c('0x21')]);}var _0x4da57c=document[_0x137c('0x1b')](_0x137c('0x22'))[_0x137c('0x23')]=![];Update_Cards();};var _0x3beb6f=document['getElementById']('numberPlayersTextField');_0x3beb6f[_0x137c('0x24')](_0x137c('0x25'),function(_0x44c478){_0x44c478[_0x137c('0x26')]();if(_0x44c478[_0x137c('0x27')]===0xd){document[_0x137c('0x1b')]('ShuffleAndDealButton')[_0x137c('0x28')]();}});totalCards=[];for(var _0x389e17=0x0;_0x389e17<=0x3;_0x389e17++){for(var _0x2bbe58=0xd;_0x2bbe58<=0xe;_0x2bbe58++){var _0x85740c=_0x137c('0x29');if(_0x2bbe58==0xe)_0x85740c+=_0x137c('0x2a');_0x85740c+='.png';var _0x33dfda=new Card(_0x2bbe58,_0x137c('0x2b'),_0x85740c);totalCards[_0x137c('0x2c')](_0x33dfda);}}for(var _0x389e17=0xa;_0x389e17<=0xc;_0x389e17++){for(var _0x2bbe58=0x0;_0x2bbe58<0x8;_0x2bbe58++){var _0x85740c=_0x137c('0x2d');if(_0x2bbe58==0x0||_0x2bbe58==0x4)_0x85740c+=_0x137c('0x2e');if(_0x2bbe58==0x1||_0x2bbe58==0x5)_0x85740c+=_0x137c('0x2f');if(_0x2bbe58==0x2||_0x2bbe58==0x6)_0x85740c+=_0x137c('0x30');if(_0x2bbe58==0x3||_0x2bbe58==0x7)_0x85740c+=_0x137c('0x31');if(_0x389e17==0xa)_0x85740c+=_0x137c('0x32');if(_0x389e17==0xb)_0x85740c+=_0x137c('0x33');if(_0x389e17==0xc)_0x85740c+=_0x137c('0x34');var _0x33dfda=new Card(_0x389e17,_0x2bbe58,_0x85740c);totalCards[_0x137c('0x2c')](_0x33dfda);}}for(var _0x389e17=0x0;_0x389e17<0x4;_0x389e17++){var _0x85740c='UnoCards/';if(_0x389e17==0x0)_0x85740c+=_0x137c('0x2e');if(_0x389e17==0x1)_0x85740c+=_0x137c('0x2f');if(_0x389e17==0x2)_0x85740c+=_0x137c('0x30');if(_0x389e17==0x3)_0x85740c+=_0x137c('0x31');_0x85740c+=_0x137c('0x35');var _0x33dfda=new Card(0x0,_0x389e17,_0x85740c);totalCards['push'](_0x33dfda);}for(var _0x389e17=0x1;_0x389e17<=0x9;_0x389e17++){for(var _0x2bbe58=0x0;_0x2bbe58<0x8;_0x2bbe58++){var _0x85740c='UnoCards/';if(_0x2bbe58==0x0||_0x2bbe58==0x4)_0x85740c+=_0x137c('0x2e');if(_0x2bbe58==0x1||_0x2bbe58==0x5)_0x85740c+='yellow_';if(_0x2bbe58==0x2||_0x2bbe58==0x6)_0x85740c+='blue_';if(_0x2bbe58==0x3||_0x2bbe58==0x7)_0x85740c+='green_';_0x85740c+=_0x389e17+_0x137c('0x36');var _0x33dfda=new Card(_0x389e17,_0x2bbe58,_0x85740c);totalCards[_0x137c('0x2c')](_0x33dfda);}}};function ShuffleAndDealCards(){var _0x43c055=document[_0x137c('0x1b')](_0x137c('0x37'));var _0x365f42=document[_0x137c('0x1b')](_0x137c('0x38'));var _0x673a21=Math[_0x137c('0x17')](_0x365f42['value']);var _0x42851a=document[_0x137c('0x1b')]('controlPanel');var _0x23bd62=document[_0x137c('0x1b')](_0x137c('0x39'));var _0x23d747=document[_0x137c('0xe')](_0x137c('0x3a'));_0x42851a[_0x137c('0x3b')](_0x23bd62);var _0x20d530=totalCards;totalCards=[];for(var _0x5e38eb=0x0;_0x5e38eb<0x6c;_0x5e38eb++){var _0x270d02=Math[_0x137c('0x17')](Math[_0x137c('0x3c')]()*_0x20d530[_0x137c('0x3d')]);totalCards[_0x137c('0x2c')](_0x20d530[_0x270d02]);_0x20d530[_0x137c('0x3e')](_0x270d02,0x1);}Players=[];if(_0x673a21<=0xa&&_0x673a21>=0x2){_0x23bd62[_0x137c('0x1d')][_0x137c('0x1e')]='none';_0x43c055[_0x137c('0x3f')]();alert(_0x673a21+_0x137c('0x40'));for(var _0x5e38eb=0x0;_0x5e38eb<_0x673a21;_0x5e38eb++){var _0x3b213a=[];for(var _0x208604=0x1;_0x208604<=0x7;_0x208604++){var _0x2ce3d4=Math['floor'](Math[_0x137c('0x3c')]()*totalCards[_0x137c('0x3d')]);_0x3b213a[_0x137c('0x2c')](totalCards[_0x2ce3d4]);totalCards[_0x137c('0x3e')](_0x2ce3d4,0x1);if(_0x208604==0x7){var _0x47267e=new Player('P'+_0x5e38eb,_0x3b213a,_0x5e38eb);Players[_0x137c('0x2c')](_0x47267e);}}}Playable_Deck=[];Playable_Deck[_0x137c('0x2c')](totalCards[0x0]);totalCards['splice'](0x0,0x1);PlayGame();}else{_0x23bd62[_0x137c('0x1d')][_0x137c('0x41')]=_0x137c('0x42');_0x23bd62['style'][_0x137c('0x1e')]=_0x137c('0x43');}}function getCardDiv(_0x4cec34){var _0x472c0f=document[_0x137c('0x1b')](_0x137c('0x44'))[_0x137c('0x45')];for(var _0x3d2440=0x0;_0x3d2440<_0x472c0f[_0x137c('0x3d')];_0x3d2440++){var _0x150b4e=_0x472c0f[_0x3d2440];if(parseFilename(_0x150b4e[_0x137c('0x46')])==_0x4cec34){return _0x150b4e;}}return null;}function Update_Cards(){var _0x6fbb47=document['getElementById'](_0x137c('0x47'));while(_0x6fbb47['hasChildNodes']()){_0x6fbb47[_0x137c('0x20')](_0x6fbb47[_0x137c('0x21')]);}if(DevloperMode!=!![]){if(RealPlayer0==0x0){for(var _0x4bb0b5=0x1;_0x4bb0b5<Players['length'];_0x4bb0b5++){var _0xb511ea=_0x6fbb47[_0x137c('0x3b')](document[_0x137c('0xe')](_0x137c('0x48')+(Players[_0x4bb0b5][_0x137c('0x49')]+0x1)));var _0x1364d9=document[_0x137c('0xa')]('br');_0x6fbb47[_0x137c('0x3b')](_0x1364d9);for(var _0x553bf7=0x0;_0x553bf7<Players[_0x4bb0b5][_0x137c('0x4a')]['length'];_0x553bf7++){var _0x3cbdea=document[_0x137c('0xa')]('img');_0x3cbdea[_0x137c('0x46')]=_0x137c('0x4b');_0x3cbdea[_0x137c('0x4c')]='38';_0x3cbdea[_0x137c('0x4d')]='25';_0x6fbb47[_0x137c('0x3b')](_0x3cbdea);}var _0x1364d9=document[_0x137c('0xa')]('br');_0x6fbb47[_0x137c('0x3b')](_0x1364d9);}}else{for(var _0x4bb0b5=0x0;_0x4bb0b5<Players[_0x137c('0x3d')]-0x1;_0x4bb0b5++){var _0xb511ea=_0x6fbb47[_0x137c('0x3b')](document[_0x137c('0xe')](_0x137c('0x48')+(Players[_0x4bb0b5]['OrginalNumber']+0x1)));var _0x1364d9=document[_0x137c('0xa')]('br');_0x6fbb47[_0x137c('0x3b')](_0x1364d9);for(var _0x553bf7=0x0;_0x553bf7<Players[_0x4bb0b5][_0x137c('0x4a')][_0x137c('0x3d')];_0x553bf7++){var _0x3cbdea=document['createElement'](_0x137c('0x4e'));_0x3cbdea[_0x137c('0x46')]=_0x137c('0x4b');_0x3cbdea[_0x137c('0x4c')]='38';_0x3cbdea[_0x137c('0x4d')]='25';_0x6fbb47['appendChild'](_0x3cbdea);}var _0x1364d9=document['createElement']('br');_0x6fbb47[_0x137c('0x3b')](_0x1364d9);}}}else{if(RealPlayer0==0x0){for(var _0x4bb0b5=0x1;_0x4bb0b5<Players[_0x137c('0x3d')];_0x4bb0b5++){var _0xb511ea=_0x6fbb47[_0x137c('0x3b')](document[_0x137c('0xe')]('Player\x20'+(Players[_0x4bb0b5][_0x137c('0x49')]+0x1)));var _0x1364d9=document['createElement']('br');_0x6fbb47[_0x137c('0x3b')](_0x1364d9);for(var _0x553bf7=0x0;_0x553bf7<Players[_0x4bb0b5][_0x137c('0x4a')][_0x137c('0x3d')];_0x553bf7++){var _0x3cbdea=document[_0x137c('0xa')]('img');_0x3cbdea[_0x137c('0x46')]=Players[_0x4bb0b5]['Cards'][_0x553bf7][_0x137c('0x4f')];_0x3cbdea[_0x137c('0x4c')]='38';_0x3cbdea[_0x137c('0x4d')]='25';_0x6fbb47['appendChild'](_0x3cbdea);}var _0x1364d9=document[_0x137c('0xa')]('br');_0x6fbb47[_0x137c('0x3b')](_0x1364d9);}}else{for(var _0x4bb0b5=0x0;_0x4bb0b5<Players[_0x137c('0x3d')]-0x1;_0x4bb0b5++){var _0xb511ea=_0x6fbb47[_0x137c('0x3b')](document[_0x137c('0xe')](_0x137c('0x48')+(Players[_0x4bb0b5][_0x137c('0x49')]+0x1)));var _0x1364d9=document[_0x137c('0xa')]('br');_0x6fbb47[_0x137c('0x3b')](_0x1364d9);for(var _0x553bf7=0x0;_0x553bf7<Players[_0x4bb0b5][_0x137c('0x4a')][_0x137c('0x3d')];_0x553bf7++){var _0x3cbdea=document[_0x137c('0xa')]('img');_0x3cbdea[_0x137c('0x46')]=Players[_0x4bb0b5][_0x137c('0x4a')][_0x553bf7]['filename'];_0x3cbdea[_0x137c('0x4c')]='38';_0x3cbdea[_0x137c('0x4d')]='25';_0x6fbb47[_0x137c('0x3b')](_0x3cbdea);}var _0x1364d9=document[_0x137c('0xa')]('br');_0x6fbb47[_0x137c('0x3b')](_0x1364d9);}}}var _0x14a446=document['getElementsByClassName'](_0x137c('0x50'))[0x0];_0x14a446[_0x137c('0x19')]=function(){_0x589623[_0x137c('0x1d')]['display']=_0x137c('0x1f');};window[_0x137c('0x19')]=function(_0x1fb81b){if(_0x1fb81b[_0x137c('0x51')]==_0x589623){_0x589623['style'][_0x137c('0x1e')]=_0x137c('0x1f');}};var _0x589623=document[_0x137c('0x1b')]('myModal');var _0x4894c3=document[_0x137c('0x1b')](_0x137c('0x52'));var _0x87b857=document['getElementById'](_0x137c('0x53'));var _0x3f169f=document[_0x137c('0x1b')](_0x137c('0x44'));var _0x3bd94b=document[_0x137c('0x1b')]('ta');_0x3bd94b[_0x137c('0x1d')][_0x137c('0x41')]=_0x137c('0x54');while(_0x87b857[_0x137c('0x55')]()){_0x87b857[_0x137c('0x20')](_0x87b857[_0x137c('0x21')]);}while(_0x3f169f[_0x137c('0x55')]()){_0x3f169f[_0x137c('0x20')](_0x3f169f[_0x137c('0x21')]);}if(Playable_Deck[Playable_Deck[_0x137c('0x3d')]-0x1][_0x137c('0x56')]==_0x137c('0x2b')){var _0xfb3149=document[_0x137c('0xe')](Playable_Deck[Playable_Deck[_0x137c('0x3d')]-0x1][_0x137c('0x57')]);_0x87b857[_0x137c('0x3b')](_0xfb3149);}var _0x284084=document[_0x137c('0xa')]('br');_0x87b857[_0x137c('0x3b')](_0x284084);var _0x3cbdea=document[_0x137c('0xa')]('img');_0x3cbdea[_0x137c('0x46')]=Playable_Deck[Playable_Deck[_0x137c('0x3d')]-0x1][_0x137c('0x4f')];_0x87b857['appendChild'](_0x3cbdea);_0x3cbdea=document['createElement'](_0x137c('0x4e'));_0x3cbdea['src']='UnoCards/back_of_card.png';_0x87b857[_0x137c('0x3b')](_0x3cbdea);_0x3cbdea[_0x137c('0x19')]=function(){if(DevloperMode==!![]&&Whos_Turn!=RealPlayer0&&checkbox[_0x137c('0x1c')]==!![])Draw();if(Whos_Turn==RealPlayer0){var _0x8667b4=Draw();var _0x349c7b=getCardDiv(_0x8667b4);setCardIndex(_0x349c7b);if(CanPlayCard()){setTimeout(function(){var _0x326ea4=confirm(_0x137c('0x58'));if(_0x326ea4==!![]){_0x349c7b[_0x137c('0x19')]();}else{PlayGame();}},0x1f4);}else{PlayGame();}}};var _0xceefd0=document[_0x137c('0xa')]('br');_0x87b857[_0x137c('0x3b')](_0xceefd0);var _0x48a8f=document[_0x137c('0xa')]('br');_0x87b857[_0x137c('0x3b')](_0x48a8f);if(Whos_Turn==RealPlayer0){var _0x10d3e9=document[_0x137c('0xe')]('Yore\x20cards,\x20(Yore\x20Turn)');}else{if(Whos_Turn==-0x1){var _0x10d3e9=document[_0x137c('0xe')](_0x137c('0x59')+(Players[0x0][_0x137c('0x49')]+0x1)+_0x137c('0x5a'));}else{var _0x10d3e9=document['createTextNode'](_0x137c('0x59')+(Players[Whos_Turn][_0x137c('0x49')]+0x1)+'\x20Turn)');}}_0x87b857[_0x137c('0x3b')](_0x10d3e9);var _0xd62e16=document[_0x137c('0xa')]('br');_0x87b857[_0x137c('0x3b')](_0xd62e16);for(var _0x4bb0b5=0x0;_0x4bb0b5<Players[RealPlayer0][_0x137c('0x4a')][_0x137c('0x3d')];_0x4bb0b5++){_0x3cbdea=document[_0x137c('0xa')](_0x137c('0x4e'));_0x3cbdea[_0x137c('0x46')]=Players[RealPlayer0][_0x137c('0x4a')][_0x4bb0b5][_0x137c('0x4f')];if(Players[RealPlayer0]['Cards'][_0x4bb0b5]['Color']==_0x137c('0x2b')){_0x3cbdea[_0x137c('0x19')]=function(){if(Whos_Turn==RealPlayer0){if(Players[RealPlayer0][_0x137c('0x4a')][_0x137c('0x3d')]==0x2&&_0x4894c3[_0x137c('0x23')]==![]&&checkbox3[_0x137c('0x1c')]==![]){NeedsToSayUno=!![];alert(_0x137c('0x5b'));}else{NeedsToSayUno=![];_0x4894c3[_0x137c('0x23')]=![];}if(NeedsToSayUno){for(var _0x4bb0b5=0x0;_0x4bb0b5<0x2;_0x4bb0b5++){Players[RealPlayer0]['Cards'][_0x137c('0x2c')](totalCards[0x0]);totalCards['splice'](0x0,0x1);}}setCardIndex(this);_0x589623[_0x137c('0x1d')][_0x137c('0x1e')]=_0x137c('0x43');}};}else if(Players[RealPlayer0][_0x137c('0x4a')][_0x4bb0b5][_0x137c('0x5c')]=='Skip'){_0x3cbdea[_0x137c('0x19')]=function(){if(Whos_Turn==RealPlayer0){if(Players[RealPlayer0]['Cards'][_0x137c('0x3d')]==0x2&&_0x4894c3[_0x137c('0x23')]==![]&&checkbox3[_0x137c('0x1c')]==![]){NeedsToSayUno=!![];alert(_0x137c('0x5b'));}else{NeedsToSayUno=![];_0x4894c3[_0x137c('0x23')]=![];}if(NeedsToSayUno){for(var _0x4bb0b5=0x0;_0x4bb0b5<0x2;_0x4bb0b5++){Players[RealPlayer0]['Cards'][_0x137c('0x2c')](totalCards[0x0]);totalCards['splice'](0x0,0x1);}}setCardIndex(this);if(Skip()==!![])PlayGame();}};}else if(Players[RealPlayer0]['Cards'][_0x4bb0b5]['Value']==='+2'){_0x3cbdea[_0x137c('0x19')]=function(){if(Whos_Turn==RealPlayer0){if(Players[RealPlayer0]['Cards'][_0x137c('0x3d')]==0x2&&_0x4894c3[_0x137c('0x23')]==![]&&checkbox3['checked']==![]){NeedsToSayUno=!![];alert(_0x137c('0x5b'));}else{NeedsToSayUno=![];_0x4894c3[_0x137c('0x23')]=![];}if(NeedsToSayUno){for(var _0x4bb0b5=0x0;_0x4bb0b5<0x2;_0x4bb0b5++){Players[RealPlayer0][_0x137c('0x4a')][_0x137c('0x2c')](totalCards[0x0]);totalCards['splice'](0x0,0x1);}}setCardIndex(this);if(Plus2()==!![])PlayGame();}};}else if(Players[RealPlayer0][_0x137c('0x4a')][_0x4bb0b5][_0x137c('0x5c')]==_0x137c('0x5d')){_0x3cbdea[_0x137c('0x19')]=function(){if(Whos_Turn==RealPlayer0){if(Players[RealPlayer0][_0x137c('0x4a')][_0x137c('0x3d')]==0x2&&_0x4894c3[_0x137c('0x23')]==![]&&checkbox3[_0x137c('0x1c')]==![]){NeedsToSayUno=!![];alert(_0x137c('0x5b'));}else{NeedsToSayUno=![];_0x4894c3['disabled']=![];}if(NeedsToSayUno){for(var _0x4bb0b5=0x0;_0x4bb0b5<0x2;_0x4bb0b5++){Players[RealPlayer0][_0x137c('0x4a')][_0x137c('0x2c')](totalCards[0x0]);totalCards[_0x137c('0x3e')](0x0,0x1);}}setCardIndex(this);if(Reverse()==!![])PlayGame();}};}else{_0x3cbdea[_0x137c('0x19')]=function(){if(Whos_Turn==RealPlayer0){if(Players[RealPlayer0][_0x137c('0x4a')]['length']==0x2&&_0x4894c3[_0x137c('0x23')]==![]&&checkbox3[_0x137c('0x1c')]==![]){NeedsToSayUno=!![];alert(_0x137c('0x5b'));}else{NeedsToSayUno=![];_0x4894c3[_0x137c('0x23')]=![];}if(NeedsToSayUno){for(var _0x4bb0b5=0x0;_0x4bb0b5<0x2;_0x4bb0b5++){Players[RealPlayer0][_0x137c('0x4a')][_0x137c('0x2c')](totalCards[0x0]);totalCards[_0x137c('0x3e')](0x0,0x1);}}setCardIndex(this);if(removeCard()==!![])PlayGame();}};}_0x3f169f[_0x137c('0x3b')](_0x3cbdea);}_0x3bd94b[_0x137c('0x18')]='For\x20Real\x20List\x20Of\x20Players\x20Cards\x20\x0a\x0d';for(var _0x4bb0b5=0x0;_0x4bb0b5<=Players[_0x137c('0x3d')]-0x1;_0x4bb0b5++){_0x3bd94b[_0x137c('0x18')]+='Player\x20'+(_0x4bb0b5+0x1)+':\x20';for(var _0x553bf7=0x0;_0x553bf7<=Players[_0x4bb0b5][_0x137c('0x4a')][_0x137c('0x3d')]-0x1;_0x553bf7++){_0x3bd94b[_0x137c('0x18')]+=Players[_0x4bb0b5][_0x137c('0x4a')][_0x553bf7][_0x137c('0x56')]+'\x20'+Players[_0x4bb0b5][_0x137c('0x4a')][_0x553bf7][_0x137c('0x5c')]+',\x20';if(_0x553bf7==Players[_0x4bb0b5]['Cards'][_0x137c('0x3d')]-0x1)_0x3bd94b['value']+='\x20\x20SIZE:\x20'+Players[_0x4bb0b5][_0x137c('0x4a')][_0x137c('0x3d')]+'\x0a\x0d';}}_0x3bd94b['value']+='\x0a\x0d';_0x3bd94b[_0x137c('0x18')]+=_0x137c('0x5e')+Playable_Deck[_0x137c('0x3d')];_0x3bd94b[_0x137c('0x18')]+='\x0a\x0d';_0x3bd94b[_0x137c('0x18')]+=_0x137c('0x5f')+totalCards['length'];_0x3bd94b[_0x137c('0x18')]+='\x0a\x0d';_0x3bd94b[_0x137c('0x18')]+=_0x137c('0x60')+(RealPlayer0+0x1);}function removeCard(){if(CanPlayCard()==!![]){Playable_Deck[_0x137c('0x2c')](Players[RealPlayer0]['Cards'][CardIndex]);Players[RealPlayer0][_0x137c('0x4a')]['splice'](CardIndex,0x1);Update_Cards();return!![];}else{alert('Cannot\x20Play\x20Card');return![];}}function parseFilename(_0x3d9913){var _0x4f58d8=_0x3d9913[_0x137c('0x61')](_0x3d9913[_0x137c('0x62')]('UnoCards/'));return _0x4f58d8;}function setCardIndex(_0x40a129){for(var _0x355973=0x0;_0x355973<Players[RealPlayer0][_0x137c('0x4a')][_0x137c('0x3d')];_0x355973++){if(parseFilename(_0x40a129[_0x137c('0x46')])==Players[RealPlayer0][_0x137c('0x4a')][_0x355973][_0x137c('0x4f')]){CardIndex=_0x355973;}}}function Draw(_0x893ad9){var _0x4ef65f=totalCards[0x0];if(_0x893ad9==null){Players[RealPlayer0][_0x137c('0x4a')][_0x137c('0x2c')](_0x4ef65f);totalCards[_0x137c('0x3e')](0x0,0x1);}else{Players[Whos_Turn]['Cards']['push'](_0x4ef65f);totalCards['splice'](0x0,0x1);}Update_Cards();return _0x4ef65f['filename'];}function Wild(_0x58d570){var _0x5713f5=![];var _0x7fe880=document[_0x137c('0x1b')]('myModal');if(_0x58d570!=null){if(Players[RealPlayer0][_0x137c('0x4a')][CardIndex][_0x137c('0x5c')]==_0x137c('0x63')){_0x5713f5=!![];for(var _0x36cb67=0x0;_0x36cb67<=0x3;_0x36cb67++){if(RealPlayer0==Players[_0x137c('0x3d')]-0x1)Players[0x0][_0x137c('0x4a')][_0x137c('0x2c')](totalCards[0x0]);if(RealPlayer0!=Players[_0x137c('0x3d')]-0x1)Players[RealPlayer0+0x1][_0x137c('0x4a')]['push'](totalCards[0x0]);totalCards[_0x137c('0x3e')](0x0,0x1);}if(RealPlayer0==0x0){alert(_0x137c('0x64'));}else{alert(_0x137c('0x48')+Players[_0x137c('0x3d')]+_0x137c('0x65'));}}Players[RealPlayer0][_0x137c('0x4a')][CardIndex][_0x137c('0x57')]=_0x58d570;Playable_Deck['push'](Players[RealPlayer0][_0x137c('0x4a')][CardIndex]);Players[RealPlayer0]['Cards']['splice'](CardIndex,0x1);}else{if(Players[Whos_Turn][_0x137c('0x4a')][CardIndex][_0x137c('0x5c')]==_0x137c('0x63')){_0x5713f5=!![];if(Whos_Turn==Players[_0x137c('0x3d')]-0x1){for(var _0x36cb67=0x0;_0x36cb67<=0x3;_0x36cb67++){Players[RealPlayer0][_0x137c('0x4a')][_0x137c('0x2c')](totalCards[0x0]);totalCards['splice'](0x0,0x1);}}else{for(var _0x36cb67=0x0;_0x36cb67<=0x3;_0x36cb67++){Players[Whos_Turn+0x1]['Cards'][_0x137c('0x2c')](totalCards[0x0]);totalCards['splice'](0x0,0x1);}if(RealPlayer0==0x0){alert(_0x137c('0x48')+(Whos_Turn+0x2)+_0x137c('0x66')+(Whos_Turn+0x1)+_0x137c('0x67'));}else{alert(_0x137c('0x48')+(Players[Whos_Turn+0x1][_0x137c('0x49')]+0x1)+_0x137c('0x66')+(Players[Whos_Turn][_0x137c('0x49')]+0x1)+_0x137c('0x67'));}}}var _0x10c39c=Math[_0x137c('0x17')](Math[_0x137c('0x3c')]()*0x4);if(_0x10c39c==0x0)_0x10c39c='Red';if(_0x10c39c==0x1)_0x10c39c=_0x137c('0x68');if(_0x10c39c==0x2)_0x10c39c=_0x137c('0x69');if(_0x10c39c==0x3)_0x10c39c=_0x137c('0x6a');Players[Whos_Turn][_0x137c('0x4a')][CardIndex][_0x137c('0x57')]=_0x10c39c;Playable_Deck[_0x137c('0x2c')](Players[Whos_Turn][_0x137c('0x4a')][CardIndex]);Players[Whos_Turn]['Cards'][_0x137c('0x3e')](CardIndex,0x1);}if(_0x5713f5){if(Players[_0x137c('0x3d')]-0x1==Whos_Turn){if(RealPlayer0==0x0){Whos_Turn=RealPlayer0;}else{Whos_Turn=0x0;}}else{Whos_Turn++;}}_0x7fe880['style'][_0x137c('0x1e')]=_0x137c('0x1f');if(_0x58d570!=null)PlayGame();}function Skip(){if(CanPlayCard()==!![]){Playable_Deck['push'](Players[Whos_Turn]['Cards'][CardIndex]);Players[Whos_Turn][_0x137c('0x4a')][_0x137c('0x3e')](CardIndex,0x1);if(Players[_0x137c('0x3d')]-0x1==Whos_Turn){if(RealPlayer0==0x0){alert(_0x137c('0x48')+(Whos_Turn+0x1)+'\x20Skiped\x20Player\x201');Whos_Turn=RealPlayer0;}else{alert(_0x137c('0x48')+(Players[Whos_Turn]['OrginalNumber']+0x1)+_0x137c('0x6b')+(Whos_Turn+0x1));Whos_Turn=0x0;}}else{if(RealPlayer0==0x0){alert(_0x137c('0x48')+(Whos_Turn+0x1)+_0x137c('0x6c')+(Whos_Turn+0x2));}else{alert(_0x137c('0x48')+(Players[Whos_Turn][_0x137c('0x49')]+0x1)+_0x137c('0x6b')+(Players[Whos_Turn+0x1][_0x137c('0x49')]+0x1));}Whos_Turn++;}Update_Cards();return!![];}else{if(Whos_Turn==RealPlayer0)alert(_0x137c('0x6d'));return![];}}function Plus2(){if(CanPlayCard()==!![]){Playable_Deck[_0x137c('0x2c')](Players[Whos_Turn]['Cards'][CardIndex]);Players[Whos_Turn][_0x137c('0x4a')][_0x137c('0x3e')](CardIndex,0x1);if(Players[_0x137c('0x3d')]-0x1==Whos_Turn){if(RealPlayer0==0x0){alert('Player\x20'+(Whos_Turn+0x1)+_0x137c('0x6e'));for(var _0x1e7b8c=0x0;_0x1e7b8c<0x2;_0x1e7b8c++){Players[RealPlayer0][_0x137c('0x4a')][_0x137c('0x2c')](totalCards[0x0]);totalCards[_0x137c('0x3e')](0x0,0x1);}Whos_Turn=RealPlayer0;}else{alert(_0x137c('0x48')+(Players[Whos_Turn][_0x137c('0x49')]+0x1)+'\x20had\x20given\x20player\x20'+(Whos_Turn+0x1)+_0x137c('0x6f'));for(var _0x1e7b8c=0x0;_0x1e7b8c<0x2;_0x1e7b8c++){Players[0x0]['Cards']['push'](totalCards[0x0]);totalCards[_0x137c('0x3e')](0x0,0x1);}Whos_Turn=0x0;}}else{if(RealPlayer0==0x0){alert(_0x137c('0x48')+(Whos_Turn+0x1)+_0x137c('0x70')+(Whos_Turn+0x2)+_0x137c('0x6f'));}else{alert('Player\x20'+(Players[Whos_Turn]['OrginalNumber']+0x1)+_0x137c('0x71')+(Players[Whos_Turn+0x1][_0x137c('0x49')]+0x1)+_0x137c('0x6f'));}for(var _0x1e7b8c=0x0;_0x1e7b8c<0x2;_0x1e7b8c++){Players[Whos_Turn+0x1][_0x137c('0x4a')][_0x137c('0x2c')](totalCards[0x0]);totalCards[_0x137c('0x3e')](0x0,0x1);}Whos_Turn++;}Update_Cards();return!![];}if(Whos_Turn==RealPlayer0)alert(_0x137c('0x6d'));return![];}function Reverse(){if(CanPlayCard()==!![]){Playable_Deck[_0x137c('0x2c')](Players[Whos_Turn][_0x137c('0x4a')][CardIndex]);Players[Whos_Turn]['Cards'][_0x137c('0x3e')](CardIndex,0x1);Players[_0x137c('0x72')]();if(Players[_0x137c('0x3d')]==0x2){Whos_Turn=Players['length']-0x2-Whos_Turn;}else{Whos_Turn=Players[_0x137c('0x3d')]-0x1-Whos_Turn;}if(RealPlayer0==0x0){RealPlayer0=Players[_0x137c('0x3d')]-0x1;}else{RealPlayer0=0x0;}alert(_0x137c('0x73'));return!![];}else{if(Whos_Turn==RealPlayer0)alert('Cannot\x20Play\x20Card');return![];}}function PlayGame(){for(var _0x2ba15d=0x0;_0x2ba15d<Players['length'];_0x2ba15d++){if(Players[_0x2ba15d][_0x137c('0x4a')][_0x137c('0x3d')]==0x0){Winning();SomeOneWon=!![];break;}}if(Whos_Turn!=Players[_0x137c('0x3d')]-0x1){Whos_Turn++;}else{Whos_Turn=0x0;}if(Whos_Turn!=RealPlayer0&&SomeOneWon==![])setTimeout(function(){AI();},AITime);if(totalCards[_0x137c('0x3d')]-0x1<=0xa)ReShuffleTotalCards();if(SomeOneWon==![])Update_Cards();}function Winning(){alert('Player\x20'+(Players[Whos_Turn]['OrginalNumber']+0x1)+_0x137c('0x74'));while(deck['hasChildNodes']()){deck[_0x137c('0x20')](deck['lastChild']);}var _0x2c4fa0=document['getElementById'](_0x137c('0x47'));while(_0x2c4fa0[_0x137c('0x55')]()){_0x2c4fa0['removeChild'](_0x2c4fa0[_0x137c('0x21')]);}}function ReShuffleTotalCards(){var _0x123ede=Playable_Deck;var _0x1c970d=[];for(var _0x445b9b=0x1;_0x445b9b<=_0x123ede[_0x137c('0x3d')]-0x1;_0x445b9b++){var _0x140cee=Math[_0x137c('0x17')](Math[_0x137c('0x3c')]()*Playable_Deck[_0x137c('0x3d')]);_0x1c970d[_0x137c('0x2c')](Playable_Deck[_0x140cee]);Playable_Deck[_0x137c('0x3e')](_0x140cee,0x1);}for(var _0x445b9b=0x0;_0x445b9b<=_0x1c970d[_0x137c('0x3d')]-0x1;_0x445b9b++){totalCards[_0x137c('0x2c')](_0x1c970d[_0x445b9b]);}}function AI(){var _0x4c6099=!![];for(var _0x556724=0x0;_0x556724<=Players[Whos_Turn][_0x137c('0x4a')][_0x137c('0x3d')]-0x1;_0x556724++){if(Players[Whos_Turn][_0x137c('0x4a')][_0x556724][_0x137c('0x56')]==Playable_Deck[Playable_Deck[_0x137c('0x3d')]-0x1][_0x137c('0x56')]||Players[Whos_Turn][_0x137c('0x4a')][_0x556724][_0x137c('0x5c')]===Playable_Deck[Playable_Deck[_0x137c('0x3d')]-0x1][_0x137c('0x5c')]||Players[Whos_Turn][_0x137c('0x4a')][_0x556724][_0x137c('0x56')]==Playable_Deck[Playable_Deck['length']-0x1][_0x137c('0x57')]||Players[Whos_Turn][_0x137c('0x4a')][_0x556724][_0x137c('0x56')]==_0x137c('0x2b')){CardIndex=_0x556724;if(Players[Whos_Turn][_0x137c('0x4a')][_0x556724][_0x137c('0x56')]==_0x137c('0x2b')){Wild(null);}else{if(Players[Whos_Turn]['Cards'][_0x556724]['Value']==_0x137c('0x75')){Skip();}else{if(Players[Whos_Turn][_0x137c('0x4a')][_0x556724][_0x137c('0x5c')]==='+2'){Plus2();}else{if(Players[Whos_Turn][_0x137c('0x4a')][_0x556724][_0x137c('0x5c')]==_0x137c('0x5d')){Reverse();}else{Playable_Deck[_0x137c('0x2c')](Players[Whos_Turn][_0x137c('0x4a')][_0x556724]);Players[Whos_Turn][_0x137c('0x4a')]['splice'](_0x556724,0x1);}}}}_0x4c6099=![];break;}}if(_0x4c6099==!![])Draw(!![]);Update_Cards();PlayGame();}function developerMode(){var _0xef81b2=prompt(_0x137c('0x76'),'');var _0x6caaac=new HttpClient();_0x6caaac[_0x137c('0x0')](_0x137c('0x77')+_0xef81b2,function(_0x1c84ec){var _0x24d6d6=JSON[_0x137c('0x78')](_0x1c84ec);if(_0x24d6d6[_0x137c('0x79')]==_0x137c('0x7a')){var _0x57d73d=_0x24d6d6['correct'];if(_0x57d73d){document['getElementById']('ta')['style']['display']='block';DevloperMode=!![];var _0xfe9f8c=document[_0x137c('0x1b')](_0x137c('0x22'))[_0x137c('0x23')]=!![];var _0x5589f4=document[_0x137c('0x1b')]('DM');var _0x5c98f2=document[_0x137c('0xa')]('br');_0x5589f4[_0x137c('0x3b')](_0x5c98f2);var _0xcda976=document[_0x137c('0xa')]('br');_0x5589f4[_0x137c('0x3b')](_0xcda976);_0x5589f4['appendChild'](checkbox);checkbox[_0x137c('0x1c')]=!![];_0x5589f4[_0x137c('0x3b')](label);_0x5589f4['appendChild'](document[_0x137c('0xe')](_0x137c('0x7b')));_0x5589f4[_0x137c('0x3b')](checkbox2);checkbox2[_0x137c('0x1c')]=!![];_0x5589f4[_0x137c('0x3b')](label2);_0x5589f4[_0x137c('0x3b')](document[_0x137c('0xe')](_0x137c('0x7b')));_0x5589f4[_0x137c('0x3b')](checkbox3);checkbox3[_0x137c('0x1c')]=!![];_0x5589f4[_0x137c('0x3b')](label3);_0x5589f4[_0x137c('0x3b')](document[_0x137c('0xe')](_0x137c('0x7b')));_0x5589f4[_0x137c('0x3b')](AITimeInput);_0x5589f4[_0x137c('0x3b')](button);_0x5589f4[_0x137c('0x3b')](document[_0x137c('0xe')](_0x137c('0x7b')));_0x5589f4['appendChild'](button2);AITime=0x1f4;Update_Cards();}}else{}});}function sayUno(){var _0x215775=document[_0x137c('0x1b')](_0x137c('0x52'));if(Players[RealPlayer0][_0x137c('0x4a')]['length']==0x2&&Whos_Turn==RealPlayer0){NeedsToSayUno=![];_0x215775[_0x137c('0x23')]=!![];}}function CanPlayCard(){if(Players[Whos_Turn][_0x137c('0x4a')][CardIndex][_0x137c('0x56')]=='Black')return!![];if(Players[Whos_Turn][_0x137c('0x4a')][CardIndex][_0x137c('0x56')]==Playable_Deck[Playable_Deck[_0x137c('0x3d')]-0x1][_0x137c('0x56')]||Players[Whos_Turn][_0x137c('0x4a')][CardIndex][_0x137c('0x5c')]===Playable_Deck[Playable_Deck['length']-0x1]['Value']||Players[Whos_Turn][_0x137c('0x4a')][CardIndex][_0x137c('0x56')]==Playable_Deck[Playable_Deck['length']-0x1][_0x137c('0x57')]){return!![];}else{if(DevloperMode==!![]&&Whos_Turn==RealPlayer0&&checkbox2[_0x137c('0x1c')]==!![]){return!![];}else{return![];}}}function Reaload(){if(confirm(_0x137c('0x7c'))){document[_0x137c('0x7d')][_0x137c('0x7e')](!![]);}}function Card(_0x4b7e95,_0x846378,_0x3413d8){this['filename']=_0x3413d8;if(_0x4b7e95==0xa){this[_0x137c('0x5c')]='Skip';}else if(_0x4b7e95==0xb){this[_0x137c('0x5c')]='Reverse';}else if(_0x4b7e95==0xc){this[_0x137c('0x5c')]='+2';}else if(_0x4b7e95==0xd){this[_0x137c('0x5c')]=_0x137c('0x7f');this[_0x137c('0x57')]='Red';}else if(_0x4b7e95==0xe){this[_0x137c('0x5c')]=_0x137c('0x63');this[_0x137c('0x57')]=_0x137c('0x80');}else{this[_0x137c('0x5c')]=_0x4b7e95;}if(_0x846378==0x0||_0x846378==0x4){this[_0x137c('0x56')]='Red';}else if(_0x846378==0x1||_0x846378==0x5){this[_0x137c('0x56')]=_0x137c('0x6a');}else if(_0x846378==0x2||_0x846378==0x6){this['Color']='Blue';}else if(_0x846378==0x3||_0x846378==0x7){this[_0x137c('0x56')]=_0x137c('0x69');}else{this['Color']=_0x846378;}}function Player(_0x1de1fe,_0x31943e,_0x52e932){this[_0x137c('0x81')]=_0x1de1fe;this['Cards']=_0x31943e;this[_0x137c('0x49')]=_0x52e932;}
-	</script>
-	<body>
-		<div class="page-header"><h2>Uno Card Game&copy</h2></div>
-		<div id="tagline" style="text-align:left">A Project by Hadden Smith</div>
-		<br>
+		</script>
+		<body>
+			<div class="page-header"><h2>Uno Card Game&copy</h2></div>
+			<div id="tagline" style="text-align:left">A Project by Hadden Smith</div>
+			<br>
 		
-		<div id="controlPanel">
-			<input id="numberPlayersTextField" placeholder="Enter number of players">
-			<button id="ShuffleAndDealButton" onclick="ShuffleAndDealCards()">Shuffle and Deal</button>
-            <button id="UNO" onclick="sayUno()" style="color:red">Say Uno</button>
-			<button id="toggleShowData" onclick="developerMode()">Developer Mode</button>
-			<button id="Reload" onclick="Reaload()">Reset</button>
-			<p hidden id="Error">Only a maximum of 10 people and a minimum of 2 players</p>
-			<div id ="DM"></div>
-		</div>
-		<!--button><img src = "F:\Programming\Other Things\Soderquist Stuff\profile pic copy.png" height=100></button-->
-		</br>
-		<textarea hidden id="ta" rows="10" cols="50"></textarea>
-		</br>
-		<div align="center">
-		<div id="cardTable">
-			<div id="deck">
+			<div id="controlPanel">
+				<input id="numberPlayersTextField" placeholder="Enter number of players">
+				<button id="ShuffleAndDealButton" onclick="ShuffleAndDealCards()">Shuffle and Deal</button>
+	            <button id="UNO" onclick="sayUno()" style="color:red">Say Uno</button>
+				<button id="toggleShowData" onclick="developerMode()">Developer Mode</button>
+				<button id="Reload" onclick="Reaload()">Reset</button>
+				<p hidden id="Error">Only a maximum of 10 people and a minimum of 2 players</p>
+				<div id ="DM"></div>
 			</div>
-			<div id="hand">
+			<!--button><img src = "F:\Programming\Other Things\Soderquist Stuff\profile pic copy.png" height=100></button-->
+			</br>
+			<textarea hidden id="ta" rows="10" cols="50"></textarea>
+			</br>
+			<div align="center">
+			<div id="cardTable">
+				<div id="deck">
+				</div>
+				<div id="hand">
+				</div>
 			</div>
-		</div>
-		</div>
-		<div id="OtherPlayers" align="right"></div>
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-body {font-family: Arial, Helvetica, sans-serif;}
+			</div>
+			<div id="OtherPlayers" align="right"></div>
+	<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<style>
+	body {font-family: Arial, Helvetica, sans-serif;}
 
-/* The Modal (background) */
-.modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    padding-top: 100px; /* Location of the box */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-}
+	/* The Modal (background) */
+	.modal {
+	    display: none; /* Hidden by default */
+	    position: fixed; /* Stay in place */
+	    z-index: 1; /* Sit on top */
+	    padding-top: 100px; /* Location of the box */
+	    left: 0;
+	    top: 0;
+	    width: 100%; /* Full width */
+	    height: 100%; /* Full height */
+	    overflow: auto; /* Enable scroll if needed */
+	    background-color: rgb(0,0,0); /* Fallback color */
+	    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+	}
 
-/* Modal Content */
-.modal-content {
-    position: relative;
-    background-color: #fefefe;
-    margin: auto;
-    padding: 0;
-    border: 1px solid #888;
-    width: 30%;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
-    -webkit-animation-name: animatetop;
-    -webkit-animation-duration: 0.4s;
-    animation-name: animatetop;
-    animation-duration: 0.4s
-}
+	/* Modal Content */
+	.modal-content {
+	    position: relative;
+	    background-color: #fefefe;
+	    margin: auto;
+	    padding: 0;
+	    border: 1px solid #888;
+	    width: 40%;
+	    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+	    -webkit-animation-name: animatetop;
+	    -webkit-animation-duration: 0.4s;
+	    animation-name: animatetop;
+	    animation-duration: 0.4s
+	}
 
-.redbutton {
-    background-color: red;
-    border: none;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
-}
+	.redbutton {
+	    background-color: red;
+	    border: none;
+	    color: white;
+	    padding: 15px 32px;
+	    text-align: center;
+	    text-decoration: none;
+	    display: inline-block;
+	    font-size: 16px;
+	    margin: 4px 2px;
+	    cursor: pointer;
+	}
 
-.bluebutton {
-    background-color: blue;
-    border: none;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
-}
+	.bluebutton {
+	    background-color: blue;
+	    border: none;
+	    color: white;
+	    padding: 15px 32px;
+	    text-align: center;
+	    text-decoration: none;
+	    display: inline-block;
+	    font-size: 16px;
+	    margin: 4px 2px;
+	    cursor: pointer;
+	}
 
-.greenbutton {
-    background-color: green;
-    border: none;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
-}
+	.greenbutton {
+	    background-color: green;
+	    border: none;
+	    color: white;
+	    padding: 15px 32px;
+	    text-align: center;
+	    text-decoration: none;
+	    display: inline-block;
+	    font-size: 16px;
+	    margin: 4px 2px;
+	    cursor: pointer;
+	}
 
-.yellowbutton {
-    background-color: yellow;
-    border: none;
-    color: black;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
-}
+	.yellowbutton {
+	    background-color: yellow;
+	    border: none;
+	    color: black;
+	    padding: 15px 32px;
+	    text-align: center;
+	    text-decoration: none;
+	    display: inline-block;
+	    font-size: 16px;
+	    margin: 4px 2px;
+	    cursor: pointer;
+	}
 
-/* Add Animation */
-@-webkit-keyframes animatetop {
-    from {top:-300px; opacity:0} 
-    to {top:0; opacity:1}
-}
+	/* Add Animation */
+	@-webkit-keyframes animatetop {
+	    from {top:-300px; opacity:0} 
+	    to {top:0; opacity:1}
+	}
 
-@keyframes animatetop {
-    from {top:-300px; opacity:0}
-    to {top:0; opacity:1}
-}
+	@keyframes animatetop {
+	    from {top:-300px; opacity:0}
+	    to {top:0; opacity:1}
+	}
 
-/* The Close Button */
-.close {
-    color: white;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-}
+	/* The Close Button */
+	.close {
+	    color: white;
+	    float: right;
+	    font-size: 28px;
+	    font-weight: bold;
+	}
 
-.close:hover,
-.close:focus {
-    color: #000;
-    text-decoration: none;
-    cursor: pointer;
-}
+	.close:hover,
+	.close:focus {
+	    color: #000;
+	    text-decoration: none;
+	    cursor: pointer;
+	}
 
-.modal-header {
-    padding: 2px 16px;
-    background-color: #5cb85c;
-    color: white;
-}
+	.modal-header {
+	    padding: 2px 16px;
+	    background-color: #5cb85c;
+	    color: white;
+	}
 
-.modal-body {padding: 2px 16px;}
+	.modal-body {padding: 2px 16px;}
 
-#tagline {
-	font-size:12
-}
+	#tagline {
+		font-size:12
+	}
 
-</style>
-</head>
-<body>
+	</style>
+	</head>
+	<body>
 
 
-<!-- The Modal -->
-<div id="myModal" class="modal">
+	<!-- The Modal -->
+	<div id="myModal" class="modal">
 
-  <!-- Modal content -->
-  <div class="modal-content">
-    <div class="modal-header">
-      <span class="close">&times;</span>
-      <h2>Choose Color</h2>
-    </div>
-    <div class="modal-body">
-      <button class="redbutton" onclick="Wild('Red')">Red</button>
-      <button class="greenbutton" onclick="Wild('Green')">Green</button>
-      <button class="bluebutton" onclick="Wild('Blue')">Blue</button>
-      <button class="yellowbutton" onclick="Wild('Yellow')">Yellow</button>
-    </div>
-  </div>
+	  <!-- Modal content -->
+	  <div class="modal-content">
+	    <div class="modal-header">
+	      <span class="close">&times;</span>
+	      <h2>Choose Color</h2>
+	    </div>
+	    <div class="modal-body">
+	      <button class="redbutton" onclick="Wild('Red')">Red</button>
+	      <button class="greenbutton" onclick="Wild('Green')">Green</button>
+	      <button class="bluebutton" onclick="Wild('Blue')">Blue</button>
+	      <button class="yellowbutton" onclick="Wild('Yellow')">Yellow</button>
+	    </div>
+	  </div>
 
-</div>
-</body>
-</html>
+	</div>
+	</body>
+	</html>
