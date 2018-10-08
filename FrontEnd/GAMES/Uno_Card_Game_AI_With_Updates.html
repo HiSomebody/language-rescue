@@ -1029,6 +1029,7 @@
 		
 	function CanPlayCard()
 	{
+		if (Players[Whos_Turn].Cards[CardIndex].Color == "Black") return true;
 		if (Players[Whos_Turn].Cards[CardIndex].Color == Playable_Deck[Playable_Deck.length - 1].Color //If Same Color
 			|| Players[Whos_Turn].Cards[CardIndex].Value === Playable_Deck[Playable_Deck.length - 1].Value  //if Same number
 			|| Players[Whos_Turn].Cards[CardIndex].Color == Playable_Deck[Playable_Deck.length - 1].Color_Of_Wild) //if wild already there
@@ -1169,7 +1170,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
     margin: auto;
     padding: 0;
     border: 1px solid #888;
-    width: 30%;
+    width: 40%;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
     -webkit-animation-name: animatetop;
     -webkit-animation-duration: 0.4s;
