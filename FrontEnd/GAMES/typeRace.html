@@ -99,8 +99,8 @@
 				waitingPeriod = setInterval(waitInterval,1000);
 				
 				var gameData = parsedJSON['gameData'];
-				
-				if (gameData['players'].length == 1)
+				playerIndex = -1;
+				if (gameData['players'][0].name == username)
 				{
 					playerIndex = 0;
 				}
@@ -111,6 +111,7 @@
 				{
 					var btn = document.getElementById("startButton");
 					btn.style.display = "inline";
+					btn.innerHTML = "Start Race";
 					btn.onclick = function()
 					{
 						
@@ -118,7 +119,7 @@
 						btnAgain.innerHTML = "Restart Race";
 						// send post to reset race
 						var client2 = new HttpClient();
-						client2.post('http://104.236.169.62:80/typing/startRace/'+code, function(response) {
+							client2.post('http://104.236.169.62:80/typing/startRace/'+code, function(response) {
 						});
 					}
 				}				
@@ -209,7 +210,7 @@
 			playerDiv.style.top = ((i * (imgDiv.height+2)) + 120) + "px";
 			imgDiv.src = getPlayerImage(gameData, gameData['players'][i].name);
 			playerDiv.appendChild(imgDiv);	
-		    raceTrack.appendChild(playerDiv);
+		    	raceTrack.appendChild(playerDiv);
 			playerDivs.push(playerDiv);
 		}
 	}
@@ -269,7 +270,12 @@
 			if (parsedJSON["result"] == "success")
 			{
 				var gameData = parsedJSON['gameData'];
-				
+				if (gameData['startedRace'] == false)
+				{
+					clearInterval(gameclock);
+					getGameDataFirstTime();
+					return;
+				}
 				for (var i = 0; i < gameData['players'].length; i++)
 				{
 					var player = gameData['players'][i];
@@ -293,6 +299,15 @@
 						{
 							var btn = document.getElementById("startButton");
 							btn.style.display = "inline";
+							btn.onclick = function()
+							{
+								var btnAgain = document.getElementById("startButton");
+								btnAgain.innerHTML = "Restart Race";
+								// send post to reset race
+								var client2 = new HttpClient();
+									client2.post('http://104.236.169.62:80/typing/resetRace/'+code, function(response) {
+								});
+							}
 						}
 					}
 				}
@@ -392,14 +407,10 @@
 <body>
 	<h3 id="GameCodeHeader">Game Code:</h3>
 	<h3 id="textToType">
-		<span class="blueText" id="typedAlready"></span><span class="blackText" id="toTypeStill">Ready?</span>&nbsp&nbsp&nbsp&nbsp<button hidden id="startButton">Start Race</button>
+		<span class="blueText" id="typedAlready"></span><span class="blackText" id="toTypeStill">Ready?</span>&nbsp&nbsp&nbsp&nbsp
+		<button hidden id="startButton">Start Race</button>
 	</h3>
-	<div id="racetrack">
-		<div hidden class="player1">
-			<img src="https://vignette.wikia.nocookie.net/muppet/images/0/05/Beaker.jpg/revision/latest?cb=20101015151246" width=40/>
-			<p style="text-align:center">Paul</p>
-		</div>
-	</div>
+	<div id="racetrack"></div>
 	<h2 id="wpm">Seconds: 0&nbsp&nbsp&nbsp&nbspwpm: 0</h2>
 	<br><br>
 	<div id="footer" style="position:absolute; top:90%">
