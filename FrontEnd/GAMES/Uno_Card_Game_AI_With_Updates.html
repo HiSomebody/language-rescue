@@ -8,7 +8,6 @@
 		            if (anHttpRequest.readyState == 4 && anHttpRequest.status == 200)
 		                aCallback(anHttpRequest.responseText);
 		        }
-
 		        anHttpRequest.open( "GET", aUrl, true );            
 		        anHttpRequest.send( null );
 		    }
@@ -37,11 +36,15 @@
 		var checkbox;
 		var checkbox2;
 		var checkbox3;
+		var checkbox4;
+		var checkbox5;
 		var button;
 		var button2;
 		var label;
 		var label2;
 		var label3;
+		var label4;
+		var label5;
 		var AITIMER;
 		var AITimeInput;
 		var SomeOneWon = false;
@@ -63,7 +66,17 @@
 		checkbox3 = document.createElement('input');
 		checkbox3.type = 'checkbox';
 				
-		label3 = document.createTextNode('Dont Have to Click Uno')
+		label3 = document.createTextNode('Dont Have to Click Uno');
+		
+		checkbox4 = document.createElement('input');
+		checkbox4.type = 'checkbox';
+				
+		label4 = document.createTextNode('AI Can Play Any Card');
+		
+		checkbox5 = document.createElement('input');
+		checkbox5.type = 'checkbox';
+				
+		label5 = document.createTextNode('No Alerts');
 					
 		AITimeInput = document.createElement('input');
 		AITimeInput.placeholder = ("# Of Seconds In AI Timer");
@@ -84,6 +97,8 @@
 			checkbox.checked = false;
 			checkbox2.checked = false;
 			checkbox3.checked = false;
+			checkbox4.checked = false;
+			checkbox5.checked = false;
 			AITime = 1500;
 			DevloperMode = false;
 			document.getElementById("ta").style.display = "none";
@@ -193,7 +208,7 @@
 		{		
 			Error.style.display = "none";
 			ShuffleAndDealButton.remove();
-			alert(numberPlayers + " Players will be dealt");
+			if (checkbox5.checked == false) alert(numberPlayers + " Players will be dealt");
 			for (var i = 0; i < numberPlayers; i++)
 			{
 				var List_Of_Cards = [];
@@ -323,12 +338,10 @@
 		}
 		// Get the <span> element that closes the modal
 		var span = document.getElementsByClassName("close")[0];
-
 		// When the user clicks on <span> (x), close the modal
 		span.onclick = function() {
 			modal.style.display = "none";
 		}
-
 		// When the user clicks anywhere outside of the modal, close it
 		window.onclick = function(event) {
 			if (event.target == modal) {
@@ -435,7 +448,7 @@
 						if (Players[RealPlayer0].Cards.length == 2 && UNObutton.disabled == false && checkbox3.checked == false)
 						{
 							NeedsToSayUno = true;
-							alert("You have been delt 2 extra cards for not clicking Uno Button");
+							if (checkbox5.checked == false) alert("You have been delt 2 extra cards for not clicking Uno Button");
 						}
 						else 
 						{
@@ -464,7 +477,7 @@
 						if (Players[RealPlayer0].Cards.length == 2 && UNObutton.disabled == false && checkbox3.checked == false)
 						{
 							NeedsToSayUno = true;
-							alert("You have been delt 2 extra cards for not clicking Uno Button");
+							if (checkbox5.checked == false) alert("You have been delt 2 extra cards for not clicking Uno Button");
 						}
 						else 
 						{
@@ -493,7 +506,7 @@
 						if (Players[RealPlayer0].Cards.length == 2 && UNObutton.disabled == false && checkbox3.checked == false)
 						{
 							NeedsToSayUno = true;
-							alert("You have been delt 2 extra cards for not clicking Uno Button");
+							if (checkbox5.checked == false) alert("You have been delt 2 extra cards for not clicking Uno Button");
 						}
 						else
 						{
@@ -522,7 +535,7 @@
 						if (Players[RealPlayer0].Cards.length == 2 && UNObutton.disabled == false && checkbox3.checked == false)
 						{
 							NeedsToSayUno = true;
-							alert("You have been delt 2 extra cards for not clicking Uno Button");
+							if (checkbox5.checked == false) alert("You have been delt 2 extra cards for not clicking Uno Button");
 						}
 						else
 						{
@@ -551,7 +564,7 @@
 						if (Players[RealPlayer0].Cards.length == 2 && UNObutton.disabled == false && checkbox3.checked == false)
 						{
 							NeedsToSayUno = true;
-							alert("You have been delt 2 extra cards for not clicking Uno Button");
+							if (checkbox5.checked == false) alert("You have been delt 2 extra cards for not clicking Uno Button");
 						}
 						else
 						{
@@ -574,7 +587,6 @@
 			}
 		
 	
-
 			hand.appendChild(DOM_img);
 		}
 		//PRINTS OUT PlAYERS HANDS
@@ -594,7 +606,6 @@
 		textArea.value += "Size Of Total Cards: " + totalCards.length;
 		textArea.value += "\n\r";
 		textArea.value += "You Are Player " + (RealPlayer0 + 1);
-
 	}
 		
 	function removeCard()
@@ -668,11 +679,11 @@
 				}
 				if (RealPlayer0 == 0)
 				{  //If Not Reversed
-					alert("Player 2 has been delt 4 extra cards");
+					if (checkbox5.checked == false) alert("Player 2 has been delt 4 extra cards");
 				}
 				else
 				{
-					alert("Player " + Players.length + " has been delt 4 extra cards");
+					if (checkbox5.checked == false) alert("Player " + Players.length + " has been delt 4 extra cards");
 				}
 			}
 			Players[RealPlayer0].Cards[CardIndex].Color_Of_Wild = Color;
@@ -704,11 +715,11 @@
 					}
 					if (RealPlayer0 == 0)
 					{  //If Not Reversed
-						alert("Player " + (Whos_Turn + 2) + " has been delt 4 extra cards because player " + (Whos_Turn + 1) + " put down a +4 wild");
+						if (checkbox5.checked == false) alert("Player " + (Whos_Turn + 2) + " has been delt 4 extra cards because player " + (Whos_Turn + 1) + " put down a +4 wild");
 					}
 					else
 					{
-						alert("Player " + (Players[Whos_Turn + 1].OrginalNumber + 1) + " has been delt 4 extra cards because player " 
+						if (checkbox5.checked == false) alert("Player " + (Players[Whos_Turn + 1].OrginalNumber + 1) + " has been delt 4 extra cards because player " 
 						+ (Players[Whos_Turn].OrginalNumber + 1) + " put down a +4 wild");
 					}
 				}
@@ -758,12 +769,12 @@
 			{
 				if (RealPlayer0 == 0)
 				{  //If Not Reversed
-					alert("Player " + (Whos_Turn + 1) + " Skiped Player 1");
+					if (checkbox5.checked == false) alert("Player " + (Whos_Turn + 1) + " Skiped Player 1");
 					Whos_Turn = RealPlayer0;
 				}
 				else
 				{
-					alert("Player " + (Players[Whos_Turn].OrginalNumber + 1) + " skiped player " + (Whos_Turn + 1));
+					if (checkbox5.checked == false) alert("Player " + (Players[Whos_Turn].OrginalNumber + 1) + " skiped player " + (Whos_Turn + 1));
 					Whos_Turn = 0;
 				}
 			}
@@ -771,11 +782,11 @@
 			{
 				if (RealPlayer0 == 0) 
 				{   //If Not Reversed
-					alert("Player " + (Whos_Turn + 1) + " Skiped Player "+ (Whos_Turn + 2));
+					if (checkbox5.checked == false) alert("Player " + (Whos_Turn + 1) + " Skiped Player "+ (Whos_Turn + 2));
 				}
 				else
 				{
-					alert("Player " + (Players[Whos_Turn].OrginalNumber + 1) + " skiped player " + (Players[Whos_Turn + 1].OrginalNumber + 1));
+					if (checkbox5.checked == false) alert("Player " + (Players[Whos_Turn].OrginalNumber + 1) + " skiped player " + (Players[Whos_Turn + 1].OrginalNumber + 1));
 				}
 				Whos_Turn++;
 			}
@@ -799,7 +810,7 @@
 			{
 				if (RealPlayer0 == 0)
 				{  //If Not Reversed
-					alert("Player " + (Whos_Turn + 1) + " has given player 1, 2 extra cards");
+					if (checkbox5.checked == false) alert("Player " + (Whos_Turn + 1) + " has given player 1, 2 extra cards");
 					for (var i = 0; i < 2; i++)
 					{
 						Players[RealPlayer0].Cards.push(totalCards[0]);
@@ -809,7 +820,7 @@
 				}
 				else
 				{
-					alert("Player " + (Players[Whos_Turn].OrginalNumber + 1) + " had given player " + (Whos_Turn + 1) + ", 2 extra cards");
+					if (checkbox5.checked == false) alert("Player " + (Players[Whos_Turn].OrginalNumber + 1) + " had given player " + (Whos_Turn + 1) + ", 2 extra cards");
 					for (var i = 0; i < 2; i++)
 					{
 						Players[0].Cards.push(totalCards[0]);
@@ -822,11 +833,11 @@
 			{
 				if (RealPlayer0 == 0)
 				{  //If Not Reversed
-					alert("Player " + (Whos_Turn + 1) + " has given player " + (Whos_Turn + 2) + ", 2 extra cards");
+					if (checkbox5.checked == false) alert("Player " + (Whos_Turn + 1) + " has given player " + (Whos_Turn + 2) + ", 2 extra cards");
 				}
 				else
 				{
-					alert("Player " + (Players[Whos_Turn].OrginalNumber + 1) + " had given player " + (Players[Whos_Turn + 1].OrginalNumber + 1) + ", 2 extra cards");
+					if (checkbox5.checked == false) alert("Player " + (Players[Whos_Turn].OrginalNumber + 1) + " had given player " + (Players[Whos_Turn + 1].OrginalNumber + 1) + ", 2 extra cards");
 				}
 				for (var i = 0; i < 2; i++)
 				{
@@ -866,7 +877,7 @@
 			{
 				RealPlayer0 = 0;
 			}
-			alert("Reversed Order Of Players!");
+			if (checkbox5.checked == false) alert("Reversed Order Of Players!");
 			return true;
 		}
 		else
@@ -937,7 +948,7 @@
 			if (Players[Whos_Turn].Cards[i].Color == Playable_Deck[Playable_Deck.length - 1].Color //If Same Color
 				|| Players[Whos_Turn].Cards[i].Value === Playable_Deck[Playable_Deck.length - 1].Value  //if Same number
 				|| Players[Whos_Turn].Cards[i].Color == Playable_Deck[Playable_Deck.length - 1].Color_Of_Wild //if wild already there
-				|| Players[Whos_Turn].Cards[i].Color == "Black") //if wild card
+				|| Players[Whos_Turn].Cards[i].Color == "Black" || checkbox4.checked == true) //if wild card or if AI can plat any card is checked
 			{
 				CardIndex = i;
 				if (Players[Whos_Turn].Cards[i].Color == "Black")
@@ -1011,6 +1022,13 @@
 					checkbox3.checked = true;
 					DM.appendChild(label3);
 					DM.appendChild(document.createTextNode("  ,  "))
+					DM.appendChild(checkbox4);
+					DM.appendChild(label4);
+					DM.appendChild(document.createTextNode("  ,  "))
+					DM.appendChild(checkbox5);
+					checkbox5.checked = true;
+					DM.appendChild(label5);
+					DM.appendChild(document.createTextNode("  ,  "))
 					DM.appendChild(AITimeInput);
 					DM.appendChild(button);
 					DM.appendChild(document.createTextNode("  ,  "))
@@ -1025,7 +1043,6 @@
 			}
 		});				
 	}
-
 	function sayUno()
 	{
 		var button = document.getElementById("UNO");
@@ -1047,12 +1064,10 @@
 		}
 		else
 		{
-			if (DevloperMode == true && Whos_Turn == RealPlayer0 && checkbox2.checked == true)
+			if (DevloperMode == true && Whos_Turn == RealPlayer0 && checkbox2.checked == true)   //IF I CAN PLAY ANY CARD IS CHECKED AND IS MY TURN
 			{
 				return true;
-			}
-			else
-			{
+			} else {
 				return false;
 			}
 		}
@@ -1156,7 +1171,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
 body {font-family: Arial, Helvetica, sans-serif;}
-
 /* The Modal (background) */
 .modal {
     display: none; /* Hidden by default */
@@ -1171,7 +1185,6 @@ body {font-family: Arial, Helvetica, sans-serif;}
     background-color: rgb(0,0,0); /* Fallback color */
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
-
 /* Modal Content */
 .modal-content {
     position: relative;
@@ -1186,7 +1199,6 @@ body {font-family: Arial, Helvetica, sans-serif;}
     animation-name: animatetop;
     animation-duration: 0.4s
 }
-
 .redbutton {
     background-color: red;
     border: none;
@@ -1199,7 +1211,6 @@ body {font-family: Arial, Helvetica, sans-serif;}
     margin: 4px 2px;
     cursor: pointer;
 }
-
 .bluebutton {
     background-color: blue;
     border: none;
@@ -1212,7 +1223,6 @@ body {font-family: Arial, Helvetica, sans-serif;}
     margin: 4px 2px;
     cursor: pointer;
 }
-
 .greenbutton {
     background-color: green;
     border: none;
@@ -1225,7 +1235,6 @@ body {font-family: Arial, Helvetica, sans-serif;}
     margin: 4px 2px;
     cursor: pointer;
 }
-
 .yellowbutton {
     background-color: yellow;
     border: none;
@@ -1238,18 +1247,15 @@ body {font-family: Arial, Helvetica, sans-serif;}
     margin: 4px 2px;
     cursor: pointer;
 }
-
 /* Add Animation */
 @-webkit-keyframes animatetop {
     from {top:-300px; opacity:0} 
     to {top:0; opacity:1}
 }
-
 @keyframes animatetop {
     from {top:-300px; opacity:0}
     to {top:0; opacity:1}
 }
-
 /* The Close Button */
 .close {
     color: white;
@@ -1257,26 +1263,21 @@ body {font-family: Arial, Helvetica, sans-serif;}
     font-size: 28px;
     font-weight: bold;
 }
-
 .close:hover,
 .close:focus {
     color: #000;
     text-decoration: none;
     cursor: pointer;
 }
-
 .modal-header {
     padding: 2px 16px;
     background-color: #5cb85c;
     color: white;
 }
-
 .modal-body {padding: 2px 16px;}
-
 #tagline {
 	font-size:12
 }
-
 </style>
 </head>
 <body>
