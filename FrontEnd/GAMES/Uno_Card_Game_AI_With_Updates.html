@@ -375,7 +375,16 @@
 						var r = confirm("Would you like to play the card you just drew?")
 						if (r == true)
 						{
-							card_div.onclick();
+							if (document.getElementById("hand").childNodes.length == 2)
+							{
+								setTimeout(function() {
+									card_div.onclick();
+								},2500);
+							}
+							else
+							{
+								card_div.onclick();
+							}
 						}
 						else
 						{
