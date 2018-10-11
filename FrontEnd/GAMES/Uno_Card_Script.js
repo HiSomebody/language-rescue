@@ -275,7 +275,24 @@
 		}
 	}
 	
-	function getCardDiv(card_filename)
+	function getOtherPlayerCardDiv(card_filename)
+	{
+		var playerDeckId = "Player " + (Players[Whos_Turn].OrginalNumber + 1);
+		var cardDivs = document.getElementById(playerDeckId).childNodes;
+		var cardDiv = cardDivs[CardIndex]
+		return cardDiv;
+		/*for (var i = 0; i < cardDivs.length; i++)
+		{
+			var cardDiv = cardDivs[i];
+			if (parseFilename(cardDiv.src) == card_filename)
+			{
+				return cardDiv;
+			}
+		}*/
+		return null;
+	}
+	
+	function getMyCardDiv(card_filename)
 	{
 		var cardDivs = document.getElementById("hand").childNodes;
 		for (var i = 0; i < cardDivs.length; i++)
@@ -299,6 +316,7 @@
 		
 		for (var i = 0; i < Players.length-1; i++)
 		{
+			
 			var aPlayer;
 			var highlightedIndex = i;
 			if (RealPlayer0 == 0)        //If not reversed start drawing other players with index 1
@@ -311,23 +329,21 @@
 				aPlayer = Players[i];
 			}
 			
-			var turnIndicator;
+			var otherPlayerHand = document.createElement("div");
+			otherPlayerHand.setAttribute("id","Player " + (aPlayer.OrginalNumber + 1));
 			var PlayerLabel = document.createTextNode("Player " + (aPlayer.OrginalNumber + 1));
+			
 			var linebreak6 = document.createElement("br");
 
+			otherPlayerHand.style.display = 'inline';
+						
 			if (highlightedIndex == Whos_Turn)
 			{
-				turnIndicator = document.createElement("div");
-				turnIndicator.style.display = "inline";
-				turnIndicator.style.backgroundColor = 'yellow';
-				turnIndicator.appendChild(PlayerLabel);
-				turnIndicator.appendChild(linebreak6);
+				otherPlayerHand.style.border = 'solid 5px';
 			}
-			else
-			{
-				OtherPlayersDecks.appendChild(PlayerLabel);
-				OtherPlayersDecks.appendChild(linebreak6);
-			}
+			
+			OtherPlayersDecks.appendChild(PlayerLabel);
+			OtherPlayersDecks.appendChild(linebreak6);
 			
 			for(var j = 0; j < aPlayer.Cards.length; j++)
 			{
@@ -342,21 +358,16 @@
 				}
 				DOM_img.hight = "38";
 				DOM_img.width = "25";
-				if (highlightedIndex == Whos_Turn)
-				{
-					turnIndicator.appendChild(DOM_img);
-				}
-				else
-				{
-					OtherPlayersDecks.appendChild(DOM_img);
-				}
+				
+				otherPlayerHand.appendChild(DOM_img);
 			}
-			if (highlightedIndex == Whos_Turn)
-			{
-				OtherPlayersDecks.appendChild(turnIndicator);
-			}
+			
+			OtherPlayersDecks.appendChild(otherPlayerHand);
 			var linebreak6 = document.createElement("br");
+			var linebreak7 = document.createElement("br");
+			
 			OtherPlayersDecks.appendChild(linebreak6);
+			OtherPlayersDecks.appendChild(linebreak7);
 		}
 		
 	}
@@ -393,7 +404,7 @@
 			if (DevloperMode == true && Whos_Turn != RealPlayer0 && checkbox.checked == true) Draw();
 			if (Whos_Turn == RealPlayer0){
 				var card_filename = Draw();
-				var card_div = getCardDiv(card_filename);
+				var card_div = getMyCardDiv(card_filename);
 				setCardIndex(card_div);
 				if (CanPlayCard())
 				{
@@ -578,68 +589,72 @@
 		return topCard.filename;
 	}
 	
-	function playCard(cardType,calledByAI)
+	function playCard(cardType,calledByOtherPlayer)
 	{
 		if (CanPlayCard() == true)
 		{	
 			var function1;
-			if (cardType == 'Skip')
-			{
-				function1 = doSkip;
-			}
-			if (cardType == 'Plus2')
-			{
-				function1 = doPlus2;
-			}
-			if (cardType == 'Reverse')
-			{
-				function1 = doReverse;
-			}
-			if (cardType == 'Number')
-			{
-				function1 = doNumber;
-			}
-			if (cardType == "Red" || cardType == "Blue" || cardType == "Green" || cardType == "Yellow" || cardType == null)
-			{
-				function1 = doWild;
-			}
+			if (cardType == 'Skip')	function1 = doSkip;
+			else if (cardType == 'Plus2') function1 = doPlus2;
+			else if (cardType == 'Reverse') function1 = doReverse;
+			else if (cardType == 'Number') function1 = doNumber;
+			else if (cardType == "Red" || cardType == "Blue" || cardType == "Green" || cardType == "Yellow" || cardType == null)
+				{ function1 = doWild; }
 			
-			if (!calledByAI)
+			var filename = Players[Whos_Turn].Cards[CardIndex].filename;
+			var cardImgDiv;
+			
+			if (!calledByOtherPlayer)
 			{
-				var filename = Players[Whos_Turn].Cards[CardIndex].filename;
-				var cardImgDiv = getCardDiv(filename);
-				var deckElement = document.getElementById("playableDeck");
-				var rectOrigin = cardImgDiv.getBoundingClientRect();
-				var rectDestination = deckElement.getBoundingClientRect();
-				cardImgDiv.setAttribute("class","playable");
-				cardImgDiv.style.left = rectOrigin.left +"px";
-				cardImgDiv.style.top = rectOrigin.top-5 +"px";
-				setTimeout(function() {
-					cardImgDiv.style.left = rectDestination.left +"px";
-					cardImgDiv.style.top = rectDestination.top-10 +"px";
-					setTimeout(function() {
-						if (function1 == doWild)
-						{
-							doWild(cardType);
-						}
-						else
-						{
-							function1();
-						}
-					},500)
-				},500);
+				cardImgDiv = getMyCardDiv(filename);
 			}
 			else
 			{
-				if (function1 == doWild)
-				{
-					doWild(cardType);
-				}
-				else
-				{
-					function1();
-				}
+			 	// IF OTHER PLAYER, THIS NEEDS TO GRAB THE BACKWARD FACING
+				// DIV ACCORDING TO THE INDEX
+				cardImgDiv = getOtherPlayerCardDiv(filename);
 			}
+			 
+												    
+			var deckElement = document.getElementById("playableDeck");
+			var rectDestination = deckElement.getBoundingClientRect();
+			cardImgDiv.setAttribute("class","playable");
+			
+			var rectOrigin = cardImgDiv.getBoundingClientRect();
+			
+			var startPointX = rectOrigin.left;
+			var startPointY = rectOrigin.top-5;	
+			
+			var endPointX = rectDestination.left;
+			var endPointY = rectDestination.top-10;
+			
+			cardImgDiv.style.left = startPointX +"px";
+			cardImgDiv.style.top = startPointY +"px";
+			
+			setTimeout(function() {
+				
+				// IF OTHER PLAYER, THIS SHOULD CHANGE IT TO BE FACE FORWARD SRC
+				if (calledByOtherPlayer)
+				{
+					cardImgDiv.src = filename;
+				}
+				
+				cardImgDiv.style.left = endPointX +"px";
+				cardImgDiv.style.top = endPointY +"px";
+				cardImgDiv.hight = "75";
+				cardImgDiv.width = "51";
+				setTimeout(function() {
+					if (function1 == doWild)
+					{
+						doWild(cardType);
+					}
+					else
+					{
+						function1();
+					}
+				},500)
+			},500);
+			
 			return true;				
 		}
 		else
@@ -945,8 +960,10 @@
 			}
 		}
 		if (NeedToDraw == true) Draw(true);
-		Update_Cards();
-		PlayGame();
+		setTimeout(function() {
+			Update_Cards();
+			PlayGame()
+		},1500);
 	}
 		
 	function developerMode()

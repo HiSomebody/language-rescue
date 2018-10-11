@@ -1,1 +1,1114 @@
-var _0x1043=['post','POST','onload','createElement','input','type','createTextNode','Unlimited\x20Drawing','checkbox','Can\x20Play\x20Any\x20Card','Don\x27t\x20Have\x20to\x20Click\x20Uno','placeholder','#\x20Of\x20Seconds\x20In\x20AI\x20Timer','Button','innerHTML','Update','floor','value','Get\x20Out\x20Of\x20Devoloper\x20mode','onclick','checked','hasChildNodes','lastChild','getElementById','disabled','addEventListener','keyup','preventDefault','keyCode','&+4','.png','Black','UnoCards/','red_','yellow_','blue_','skip.png','reverse.png','+2.png','green_','0.png','push','getElementsByClassName','close','style','display','none','target','myModal','UNO','deck','hand','NoPopUps','color','black','ShuffleAndDealButton','numberPlayersTextField','Error','Only\x20a\x20maxumuim\x20of\x2010\x20people\x20and\x20a\x20minimum\x20of\x202\x20players','appendChild','random','length','\x20Players\x20will\x20be\x20dealt','splice','red','childNodes','src','removeChild','div','inline','backgroundColor','yellow','Cards','img','UnoCards/back_of_card.png','hight','width','Color','Color_Of_Wild','setAttribute','playableDeck','filename','Would\x20you\x20like\x20to\x20play\x20the\x20card\x20you\x20just\x20drew?','Yore\x20cards,\x20(Player\x20','OrginalNumber','\x20Turn)','You\x20have\x20been\x20dealt\x202\x20extra\x20cards\x20for\x20not\x20clicking\x20Uno\x20Button','block','Skip','Plus2','Reverse','Number','For\x20Real\x20List\x20Of\x20Players\x20Cards\x20\x0a\x0d','Player\x20','\x20\x20SIZE:\x20','Size\x20Of\x20Playable\x20Deck:\x20','Size\x20Of\x20Total\x20Cards:\x20','You\x20Are\x20Player\x20','substring','Red','Blue','Green','Yellow','getBoundingClientRect','playable','left','top','Value','Wild\x20&\x20+\x204','Player\x202\x20has\x20been\x20delt\x204\x20extra\x20cards','\x20has\x20been\x20delt\x204\x20extra\x20cards','\x20has\x20been\x20delt\x204\x20extra\x20cards\x20because\x20player\x20','\x20put\x20down\x20a\x20+4\x20wild','\x20skipped\x20Player\x201','\x20skipped\x20Player\x20','\x20skipped\x20player\x20','\x20has\x20given\x20player\x201,\x202\x20extra\x20cards','\x20had\x20given\x20player\x20',',\x202\x20extra\x20cards','\x20has\x20given\x20player\x20','reverse','Reversed\x20Order\x20Of\x20Players!','\x20Won!','Please\x20enter\x20your\x20admin\x20password','http://104.236.169.62:80/checkHaddensPassword/','parse','result','success','correct','\x20\x20,\x20\x20','You\x20Sure?','Wild','Name','get','onreadystatechange','status','responseText','open','GET','send'];(function(_0x430c71,_0x1acae4){var _0x393ed5=function(_0x24ead5){while(--_0x24ead5){_0x430c71['push'](_0x430c71['shift']());}};_0x393ed5(++_0x1acae4);}(_0x1043,0x85));var _0x5339=function(_0x4d63e8,_0x52a603){_0x4d63e8=_0x4d63e8-0x0;var _0x54ba93=_0x1043[_0x4d63e8];return _0x54ba93;};var HttpClient=function(){this[_0x5339('0x0')]=function(_0x247265,_0x4cd7e0){var _0x14c63c=new XMLHttpRequest();_0x14c63c[_0x5339('0x1')]=function(){if(_0x14c63c['readyState']==0x4&&_0x14c63c[_0x5339('0x2')]==0xc8)_0x4cd7e0(_0x14c63c[_0x5339('0x3')]);};_0x14c63c[_0x5339('0x4')](_0x5339('0x5'),_0x247265,!![]);_0x14c63c[_0x5339('0x6')](null);};this[_0x5339('0x7')]=function(_0x4a05e6,_0x2205ff){var _0x37c1f5=new XMLHttpRequest();_0x37c1f5[_0x5339('0x1')]=function(){if(this['readyState']==0x4&&this[_0x5339('0x2')]==0xc8){_0x2205ff(_0x37c1f5[_0x5339('0x3')]);}};_0x37c1f5[_0x5339('0x4')](_0x5339('0x8'),_0x4a05e6,!![]);_0x37c1f5['send']();};};var totalCards;var Players;var Playable_Deck;var Whos_Turn=-0x1;var CardIndex;var RealPlayer0=0x0;var NeedsToSayUno=![];var DevloperMode;var AITime=0x5dc;var checkbox;var checkbox2;var checkbox3;var checkbox4;var checkbox5;var button;var button2;var label;var label2;var label3;var label4;var label5;var AITIMER;var AITimeInput;var SomeOneWon=![];var modal;var deck;var hand;var UNObutton;var textArea;window[_0x5339('0x9')]=function(){setUpDevControls();addNumberPlayersListener();makeDeck();configureColorChooserModal();getElements();};function setUpDevControls(){checkbox=document[_0x5339('0xa')](_0x5339('0xb'));checkbox[_0x5339('0xc')]='checkbox';label=document[_0x5339('0xd')](_0x5339('0xe'));checkbox2=document[_0x5339('0xa')](_0x5339('0xb'));checkbox2[_0x5339('0xc')]=_0x5339('0xf');label2=document[_0x5339('0xd')](_0x5339('0x10'));checkbox3=document[_0x5339('0xa')](_0x5339('0xb'));checkbox3['type']='checkbox';label3=document[_0x5339('0xd')](_0x5339('0x11'));checkbox4=document[_0x5339('0xa')](_0x5339('0xb'));checkbox4[_0x5339('0xc')]='checkbox';label4=document['createTextNode']('AI\x20Can\x20Play\x20Any\x20Card');AITimeInput=document[_0x5339('0xa')]('input');AITimeInput[_0x5339('0x12')]=_0x5339('0x13');button=document[_0x5339('0xa')](_0x5339('0x14'));button[_0x5339('0x15')]=_0x5339('0x16');AITIMER=Math[_0x5339('0x17')](AITimeInput[_0x5339('0x18')]);button['onclick']=function(){AITime=AITIMER*0x3e8;};button2=document[_0x5339('0xa')](_0x5339('0x14'));button2[_0x5339('0x15')]=_0x5339('0x19');button2[_0x5339('0x1a')]=function(){var _0x26d033=document['getElementById']('DM');checkbox['checked']=![];checkbox2['checked']=![];checkbox3[_0x5339('0x1b')]=![];checkbox4[_0x5339('0x1b')]=![];AITime=0x5dc;DevloperMode=![];document['getElementById']('ta')['style']['display']='none';while(_0x26d033[_0x5339('0x1c')]()){_0x26d033['removeChild'](_0x26d033[_0x5339('0x1d')]);}var _0x174a8b=document[_0x5339('0x1e')]('toggleShowData')[_0x5339('0x1f')]=![];Update_Cards();};}function addNumberPlayersListener(){var _0x5bfd95=document[_0x5339('0x1e')]('numberPlayersTextField');_0x5bfd95[_0x5339('0x20')](_0x5339('0x21'),function(_0x17a538){_0x17a538[_0x5339('0x22')]();if(_0x17a538[_0x5339('0x23')]===0xd){document[_0x5339('0x1e')]('ShuffleAndDealButton')['click']();}});}function makeDeck(){totalCards=[];for(var _0x15f006=0x0;_0x15f006<=0x3;_0x15f006++){for(var _0x1f50dc=0xd;_0x1f50dc<=0xe;_0x1f50dc++){var _0x5d5871='UnoCards/black_wild';if(_0x1f50dc==0xe)_0x5d5871+=_0x5339('0x24');_0x5d5871+=_0x5339('0x25');var _0x4f82bb=new Card(_0x1f50dc,_0x5339('0x26'),_0x5d5871);totalCards['push'](_0x4f82bb);}}for(var _0x15f006=0xa;_0x15f006<=0xc;_0x15f006++){for(var _0x1f50dc=0x0;_0x1f50dc<0x8;_0x1f50dc++){var _0x5d5871=_0x5339('0x27');if(_0x1f50dc==0x0||_0x1f50dc==0x4)_0x5d5871+=_0x5339('0x28');if(_0x1f50dc==0x1||_0x1f50dc==0x5)_0x5d5871+=_0x5339('0x29');if(_0x1f50dc==0x2||_0x1f50dc==0x6)_0x5d5871+=_0x5339('0x2a');if(_0x1f50dc==0x3||_0x1f50dc==0x7)_0x5d5871+='green_';if(_0x15f006==0xa)_0x5d5871+=_0x5339('0x2b');if(_0x15f006==0xb)_0x5d5871+=_0x5339('0x2c');if(_0x15f006==0xc)_0x5d5871+=_0x5339('0x2d');var _0x4f82bb=new Card(_0x15f006,_0x1f50dc,_0x5d5871);totalCards['push'](_0x4f82bb);}}for(var _0x15f006=0x0;_0x15f006<0x4;_0x15f006++){var _0x5d5871=_0x5339('0x27');if(_0x15f006==0x0)_0x5d5871+='red_';if(_0x15f006==0x1)_0x5d5871+=_0x5339('0x29');if(_0x15f006==0x2)_0x5d5871+=_0x5339('0x2a');if(_0x15f006==0x3)_0x5d5871+=_0x5339('0x2e');_0x5d5871+=_0x5339('0x2f');var _0x4f82bb=new Card(0x0,_0x15f006,_0x5d5871);totalCards[_0x5339('0x30')](_0x4f82bb);}for(var _0x15f006=0x1;_0x15f006<=0x9;_0x15f006++){for(var _0x1f50dc=0x0;_0x1f50dc<0x8;_0x1f50dc++){var _0x5d5871='UnoCards/';if(_0x1f50dc==0x0||_0x1f50dc==0x4)_0x5d5871+=_0x5339('0x28');if(_0x1f50dc==0x1||_0x1f50dc==0x5)_0x5d5871+=_0x5339('0x29');if(_0x1f50dc==0x2||_0x1f50dc==0x6)_0x5d5871+=_0x5339('0x2a');if(_0x1f50dc==0x3||_0x1f50dc==0x7)_0x5d5871+=_0x5339('0x2e');_0x5d5871+=_0x15f006+_0x5339('0x25');var _0x4f82bb=new Card(_0x15f006,_0x1f50dc,_0x5d5871);totalCards['push'](_0x4f82bb);}}}function configureColorChooserModal(){var _0xc6f9b6=document[_0x5339('0x31')](_0x5339('0x32'))[0x0];_0xc6f9b6['onclick']=function(){modal[_0x5339('0x33')][_0x5339('0x34')]=_0x5339('0x35');};window['onclick']=function(_0x4e9296){if(_0x4e9296[_0x5339('0x36')]==modal){modal[_0x5339('0x33')][_0x5339('0x34')]=_0x5339('0x35');}};}function getElements(){modal=document[_0x5339('0x1e')](_0x5339('0x37'));UNObutton=document[_0x5339('0x1e')](_0x5339('0x38'));deck=document[_0x5339('0x1e')](_0x5339('0x39'));hand=document['getElementById'](_0x5339('0x3a'));checkbox5=document[_0x5339('0x1e')](_0x5339('0x3b'));textArea=document[_0x5339('0x1e')]('ta');textArea[_0x5339('0x33')][_0x5339('0x3c')]=_0x5339('0x3d');}function ShuffleAndDealCards(){var _0x116cf5=document[_0x5339('0x1e')](_0x5339('0x3e'));var _0x3e4cb8=document[_0x5339('0x1e')](_0x5339('0x3f'));var _0x206f2a=Math['floor'](_0x3e4cb8[_0x5339('0x18')]);var _0x2e67c7=document[_0x5339('0x1e')]('controlPanel');var _0x5f6506=document[_0x5339('0x1e')](_0x5339('0x40'));var _0x13c0fe=document[_0x5339('0xd')](_0x5339('0x41'));_0x2e67c7[_0x5339('0x42')](_0x5f6506);var _0x55d29c=totalCards;totalCards=[];for(var _0x2311f2=0x0;_0x2311f2<0x6c;_0x2311f2++){var _0x462e25=Math[_0x5339('0x17')](Math[_0x5339('0x43')]()*_0x55d29c[_0x5339('0x44')]);totalCards['push'](_0x55d29c[_0x462e25]);_0x55d29c['splice'](_0x462e25,0x1);}Players=[];if(_0x206f2a<=0xa&&_0x206f2a>=0x2){_0x5f6506[_0x5339('0x33')][_0x5339('0x34')]=_0x5339('0x35');_0x116cf5['remove']();if(checkbox5[_0x5339('0x1b')]==![])alert(_0x206f2a+_0x5339('0x45'));for(var _0x2311f2=0x0;_0x2311f2<_0x206f2a;_0x2311f2++){var _0x44e6bd=[];for(var _0x13b5a6=0x1;_0x13b5a6<=0x7;_0x13b5a6++){var _0x36faaa=Math[_0x5339('0x17')](Math[_0x5339('0x43')]()*totalCards['length']);_0x44e6bd['push'](totalCards[_0x36faaa]);totalCards[_0x5339('0x46')](_0x36faaa,0x1);if(_0x13b5a6==0x7){var _0xffa507=new Player('P'+_0x2311f2,_0x44e6bd,_0x2311f2);Players[_0x5339('0x30')](_0xffa507);}}}Playable_Deck=[];Playable_Deck[_0x5339('0x30')](totalCards[0x0]);totalCards[_0x5339('0x46')](0x0,0x1);PlayGame();}else{_0x5f6506[_0x5339('0x33')][_0x5339('0x3c')]=_0x5339('0x47');_0x5f6506['style']['display']='block';}}function getCardDiv(_0x42771f){var _0x316316=document[_0x5339('0x1e')](_0x5339('0x3a'))[_0x5339('0x48')];for(var _0x4bacc7=0x0;_0x4bacc7<_0x316316['length'];_0x4bacc7++){var _0x5ecd87=_0x316316[_0x4bacc7];if(parseFilename(_0x5ecd87[_0x5339('0x49')])==_0x42771f){return _0x5ecd87;}}return null;}function drawOtherPlayersCards(){var _0x2f405a=document[_0x5339('0x1e')]('OtherPlayers');while(_0x2f405a[_0x5339('0x1c')]()){_0x2f405a[_0x5339('0x4a')](_0x2f405a['lastChild']);}for(var _0x55897a=0x0;_0x55897a<Players['length']-0x1;_0x55897a++){var _0x2211f5;var _0x1b3d57=_0x55897a;if(RealPlayer0==0x0){_0x2211f5=Players[_0x55897a+0x1];_0x1b3d57=_0x55897a+0x1;}else{_0x2211f5=Players[_0x55897a];}var _0x12a6ba;var _0x2c9e17=document['createTextNode']('Player\x20'+(_0x2211f5['OrginalNumber']+0x1));var _0x32b642=document[_0x5339('0xa')]('br');if(_0x1b3d57==Whos_Turn){_0x12a6ba=document[_0x5339('0xa')](_0x5339('0x4b'));_0x12a6ba[_0x5339('0x33')][_0x5339('0x34')]=_0x5339('0x4c');_0x12a6ba[_0x5339('0x33')][_0x5339('0x4d')]=_0x5339('0x4e');_0x12a6ba[_0x5339('0x42')](_0x2c9e17);_0x12a6ba[_0x5339('0x42')](_0x32b642);}else{_0x2f405a[_0x5339('0x42')](_0x2c9e17);_0x2f405a[_0x5339('0x42')](_0x32b642);}for(var _0x15c85a=0x0;_0x15c85a<_0x2211f5[_0x5339('0x4f')][_0x5339('0x44')];_0x15c85a++){var _0x2e5d9b=document[_0x5339('0xa')](_0x5339('0x50'));if(DevloperMode!=!![]){_0x2e5d9b[_0x5339('0x49')]=_0x5339('0x51');}else{_0x2e5d9b['src']=_0x2211f5['Cards'][_0x15c85a]['filename'];}_0x2e5d9b[_0x5339('0x52')]='38';_0x2e5d9b[_0x5339('0x53')]='25';if(_0x1b3d57==Whos_Turn){_0x12a6ba[_0x5339('0x42')](_0x2e5d9b);}else{_0x2f405a[_0x5339('0x42')](_0x2e5d9b);}}if(_0x1b3d57==Whos_Turn){_0x2f405a[_0x5339('0x42')](_0x12a6ba);}var _0x32b642=document['createElement']('br');_0x2f405a['appendChild'](_0x32b642);}}function drawDrawAndDiscardPile(){while(deck[_0x5339('0x1c')]()){deck[_0x5339('0x4a')](deck[_0x5339('0x1d')]);}while(hand[_0x5339('0x1c')]()){hand[_0x5339('0x4a')](hand[_0x5339('0x1d')]);}if(Playable_Deck[Playable_Deck[_0x5339('0x44')]-0x1][_0x5339('0x54')]=='Black'){var _0x4a992e=document['createTextNode'](Playable_Deck[Playable_Deck[_0x5339('0x44')]-0x1][_0x5339('0x55')]);deck['appendChild'](_0x4a992e);}var _0x58c952=document[_0x5339('0xa')]('br');deck[_0x5339('0x42')](_0x58c952);var _0x58ce1b=document[_0x5339('0xa')]('img');_0x58ce1b[_0x5339('0x56')]('id',_0x5339('0x57'));_0x58ce1b[_0x5339('0x49')]=Playable_Deck[Playable_Deck[_0x5339('0x44')]-0x1][_0x5339('0x58')];deck[_0x5339('0x42')](_0x58ce1b);_0x58ce1b=document[_0x5339('0xa')]('img');_0x58ce1b[_0x5339('0x49')]=_0x5339('0x51');deck[_0x5339('0x42')](_0x58ce1b);_0x58ce1b[_0x5339('0x1a')]=function(){if(DevloperMode==!![]&&Whos_Turn!=RealPlayer0&&checkbox[_0x5339('0x1b')]==!![])Draw();if(Whos_Turn==RealPlayer0){var _0x17f29b=Draw();var _0x5675c0=getCardDiv(_0x17f29b);setCardIndex(_0x5675c0);if(CanPlayCard()){setTimeout(function(){var _0xbf485=confirm(_0x5339('0x59'));if(_0xbf485==!![]){if(document['getElementById']('hand')[_0x5339('0x48')][_0x5339('0x44')]==0x2){setTimeout(function(){_0x5675c0['onclick']();},0x9c4);}else{_0x5675c0[_0x5339('0x1a')]();}}else{PlayGame();}},0x1f4);}else{PlayGame();}}};var _0x323bc1=document[_0x5339('0xa')]('br');deck[_0x5339('0x42')](_0x323bc1);var _0x549740=document[_0x5339('0xa')]('br');deck[_0x5339('0x42')](_0x549740);if(Whos_Turn==RealPlayer0){var _0x4c1066=document[_0x5339('0xd')]('Yore\x20cards,\x20(Yore\x20Turn)');}else{if(Whos_Turn==-0x1){var _0x4c1066=document[_0x5339('0xd')](_0x5339('0x5a')+(Players[0x0][_0x5339('0x5b')]+0x1)+_0x5339('0x5c'));}else{var _0x4c1066=document['createTextNode'](_0x5339('0x5a')+(Players[Whos_Turn][_0x5339('0x5b')]+0x1)+_0x5339('0x5c'));}}deck[_0x5339('0x42')](_0x4c1066);var _0x4daced=document[_0x5339('0xa')]('br');deck[_0x5339('0x42')](_0x4daced);}function unoPenaltyCheck(_0x3dc8f1){if(_0x3dc8f1['Cards']['length']==0x2&&UNObutton[_0x5339('0x1f')]==![]&&checkbox3[_0x5339('0x1b')]==![]){NeedsToSayUno=!![];if(checkbox5[_0x5339('0x1b')]==![])alert(_0x5339('0x5d'));}else{NeedsToSayUno=![];UNObutton[_0x5339('0x1f')]=![];}if(NeedsToSayUno){for(var _0x1b968b=0x0;_0x1b968b<0x2;_0x1b968b++){_0x3dc8f1[_0x5339('0x4f')][_0x5339('0x30')](totalCards[0x0]);totalCards[_0x5339('0x46')](0x0,0x1);}}}function configureCardClick(_0x280826,_0x5d7dc8,_0x264bcf){var _0x18087c=_0x280826['Value'];_0x5d7dc8[_0x5339('0x1a')]=function(){if(Whos_Turn==RealPlayer0){unoPenaltyCheck(_0x264bcf);setCardIndex(this);if(_0x280826['Color']==_0x5339('0x26')){modal['style'][_0x5339('0x34')]=_0x5339('0x5e');}else if(_0x18087c==_0x5339('0x5f')){if(playCard(_0x5339('0x5f'),![])==!![])setTimeout(function(){PlayGame();},0x5dc);}else if(_0x18087c==='+2'){if(playCard(_0x5339('0x60'),![])==!![])setTimeout(function(){PlayGame();},0x5dc);}else if(_0x18087c==_0x5339('0x61')){if(playCard(_0x5339('0x61'),![])==!![])setTimeout(function(){PlayGame();},0x5dc);}else{if(playCard(_0x5339('0x62'),![])==!![])setTimeout(function(){PlayGame();},0x5dc);}}};return _0x5d7dc8;}function Update_Cards(){drawOtherPlayersCards();drawDrawAndDiscardPile();var _0x225e60=Players[RealPlayer0];for(var _0x1731fe=0x0;_0x1731fe<_0x225e60['Cards'][_0x5339('0x44')];_0x1731fe++){DOM_img=document['createElement'](_0x5339('0x50'));DOM_img[_0x5339('0x49')]=_0x225e60['Cards'][_0x1731fe][_0x5339('0x58')];var _0x138b4a=_0x225e60[_0x5339('0x4f')][_0x1731fe];DOM_img=configureCardClick(_0x138b4a,DOM_img,_0x225e60);hand[_0x5339('0x42')](DOM_img);}textArea[_0x5339('0x18')]=_0x5339('0x63');for(var _0x1731fe=0x0;_0x1731fe<=Players[_0x5339('0x44')]-0x1;_0x1731fe++){textArea[_0x5339('0x18')]+=_0x5339('0x64')+(_0x1731fe+0x1)+':\x20';for(var _0x521772=0x0;_0x521772<=Players[_0x1731fe][_0x5339('0x4f')]['length']-0x1;_0x521772++){textArea[_0x5339('0x18')]+=Players[_0x1731fe][_0x5339('0x4f')][_0x521772][_0x5339('0x54')]+'\x20'+Players[_0x1731fe]['Cards'][_0x521772]['Value']+',\x20';if(_0x521772==Players[_0x1731fe]['Cards'][_0x5339('0x44')]-0x1)textArea[_0x5339('0x18')]+=_0x5339('0x65')+Players[_0x1731fe][_0x5339('0x4f')]['length']+'\x0a\x0d';}}textArea[_0x5339('0x18')]+='\x0a\x0d';textArea[_0x5339('0x18')]+=_0x5339('0x66')+Playable_Deck[_0x5339('0x44')];textArea[_0x5339('0x18')]+='\x0a\x0d';textArea[_0x5339('0x18')]+=_0x5339('0x67')+totalCards[_0x5339('0x44')];textArea[_0x5339('0x18')]+='\x0a\x0d';textArea[_0x5339('0x18')]+=_0x5339('0x68')+(RealPlayer0+0x1);}function parseFilename(_0x444de2){var _0xf8bd31=_0x444de2[_0x5339('0x69')](_0x444de2['indexOf'](_0x5339('0x27')));return _0xf8bd31;}function setCardIndex(_0x39f7ec){for(var _0x1205dc=0x0;_0x1205dc<Players[RealPlayer0][_0x5339('0x4f')][_0x5339('0x44')];_0x1205dc++){if(parseFilename(_0x39f7ec[_0x5339('0x49')])==Players[RealPlayer0][_0x5339('0x4f')][_0x1205dc][_0x5339('0x58')]){CardIndex=_0x1205dc;}}}function Draw(_0x234bac){var _0x365673=totalCards[0x0];if(_0x234bac==null){Players[RealPlayer0][_0x5339('0x4f')][_0x5339('0x30')](_0x365673);totalCards[_0x5339('0x46')](0x0,0x1);}else{Players[Whos_Turn][_0x5339('0x4f')][_0x5339('0x30')](_0x365673);totalCards[_0x5339('0x46')](0x0,0x1);}Update_Cards();return _0x365673[_0x5339('0x58')];}function playCard(_0x389385,_0x45932d){if(CanPlayCard()==!![]){var _0x1b5dda;if(_0x389385==_0x5339('0x5f')){_0x1b5dda=doSkip;}if(_0x389385==_0x5339('0x60')){_0x1b5dda=doPlus2;}if(_0x389385==_0x5339('0x61')){_0x1b5dda=doReverse;}if(_0x389385==_0x5339('0x62')){_0x1b5dda=doNumber;}if(_0x389385==_0x5339('0x6a')||_0x389385==_0x5339('0x6b')||_0x389385==_0x5339('0x6c')||_0x389385==_0x5339('0x6d')||_0x389385==null){_0x1b5dda=doWild;}if(!_0x45932d){var _0x6b23e9=Players[Whos_Turn][_0x5339('0x4f')][CardIndex]['filename'];var _0x2dafb9=getCardDiv(_0x6b23e9);var _0x1b0f58=document[_0x5339('0x1e')](_0x5339('0x57'));var _0x1c7d45=_0x2dafb9[_0x5339('0x6e')]();var _0x293add=_0x1b0f58[_0x5339('0x6e')]();_0x2dafb9[_0x5339('0x56')]('class',_0x5339('0x6f'));_0x2dafb9[_0x5339('0x33')]['left']=_0x1c7d45[_0x5339('0x70')]+'px';_0x2dafb9[_0x5339('0x33')]['top']=_0x1c7d45[_0x5339('0x71')]-0x5+'px';setTimeout(function(){_0x2dafb9[_0x5339('0x33')][_0x5339('0x70')]=_0x293add[_0x5339('0x70')]+'px';_0x2dafb9[_0x5339('0x33')]['top']=_0x293add[_0x5339('0x71')]-0xa+'px';setTimeout(function(){if(_0x1b5dda==doWild){doWild(_0x389385);}else{_0x1b5dda();}},0x1f4);},0x1f4);}else{if(_0x1b5dda==doWild){doWild(_0x389385);}else{_0x1b5dda();}}return!![];}else{if(Whos_Turn==RealPlayer0)alert('Cannot\x20Play\x20Card');return![];}}function doWild(_0x56f86b){var _0x23960b=![];var _0x2b8fc9=document[_0x5339('0x1e')](_0x5339('0x37'));if(_0x56f86b!=null){if(Players[RealPlayer0][_0x5339('0x4f')][CardIndex][_0x5339('0x72')]==_0x5339('0x73')){_0x23960b=!![];for(var _0x4d85ca=0x0;_0x4d85ca<=0x3;_0x4d85ca++){if(RealPlayer0==Players[_0x5339('0x44')]-0x1)Players[0x0][_0x5339('0x4f')][_0x5339('0x30')](totalCards[0x0]);if(RealPlayer0!=Players[_0x5339('0x44')]-0x1)Players[RealPlayer0+0x1]['Cards']['push'](totalCards[0x0]);totalCards[_0x5339('0x46')](0x0,0x1);}if(RealPlayer0==0x0){if(checkbox5[_0x5339('0x1b')]==![])alert(_0x5339('0x74'));}else{if(checkbox5[_0x5339('0x1b')]==![])alert('Player\x20'+Players[_0x5339('0x44')]+_0x5339('0x75'));}}Players[RealPlayer0][_0x5339('0x4f')][CardIndex][_0x5339('0x55')]=_0x56f86b;Playable_Deck[_0x5339('0x30')](Players[RealPlayer0]['Cards'][CardIndex]);Players[RealPlayer0]['Cards']['splice'](CardIndex,0x1);}else{if(Players[Whos_Turn]['Cards'][CardIndex][_0x5339('0x72')]=='Wild\x20&\x20+\x204'){_0x23960b=!![];if(Whos_Turn==Players[_0x5339('0x44')]-0x1){for(var _0x4d85ca=0x0;_0x4d85ca<=0x3;_0x4d85ca++){Players[RealPlayer0][_0x5339('0x4f')][_0x5339('0x30')](totalCards[0x0]);totalCards[_0x5339('0x46')](0x0,0x1);}}else{for(var _0x4d85ca=0x0;_0x4d85ca<=0x3;_0x4d85ca++){Players[Whos_Turn+0x1][_0x5339('0x4f')]['push'](totalCards[0x0]);totalCards['splice'](0x0,0x1);}if(RealPlayer0==0x0){if(checkbox5[_0x5339('0x1b')]==![])alert('Player\x20'+(Whos_Turn+0x2)+_0x5339('0x76')+(Whos_Turn+0x1)+'\x20put\x20down\x20a\x20+4\x20wild');}else{if(checkbox5[_0x5339('0x1b')]==![])alert(_0x5339('0x64')+(Players[Whos_Turn+0x1][_0x5339('0x5b')]+0x1)+'\x20has\x20been\x20delt\x204\x20extra\x20cards\x20because\x20player\x20'+(Players[Whos_Turn]['OrginalNumber']+0x1)+_0x5339('0x77'));}}}var _0x5133e4=Math['floor'](Math[_0x5339('0x43')]()*0x4);if(_0x5133e4==0x0)_0x5133e4=_0x5339('0x6a');if(_0x5133e4==0x1)_0x5133e4=_0x5339('0x6b');if(_0x5133e4==0x2)_0x5133e4=_0x5339('0x6c');if(_0x5133e4==0x3)_0x5133e4=_0x5339('0x6d');Players[Whos_Turn][_0x5339('0x4f')][CardIndex]['Color_Of_Wild']=_0x5133e4;Playable_Deck['push'](Players[Whos_Turn][_0x5339('0x4f')][CardIndex]);Players[Whos_Turn][_0x5339('0x4f')][_0x5339('0x46')](CardIndex,0x1);}if(_0x23960b){if(Players[_0x5339('0x44')]-0x1==Whos_Turn){if(RealPlayer0==0x0){Whos_Turn=RealPlayer0;}else{Whos_Turn=0x0;}}else{Whos_Turn++;}}_0x2b8fc9[_0x5339('0x33')][_0x5339('0x34')]=_0x5339('0x35');if(_0x56f86b!=null)PlayGame();}function doSkip(){Playable_Deck[_0x5339('0x30')](Players[Whos_Turn][_0x5339('0x4f')][CardIndex]);Players[Whos_Turn][_0x5339('0x4f')][_0x5339('0x46')](CardIndex,0x1);if(Players[_0x5339('0x44')]-0x1==Whos_Turn){if(RealPlayer0==0x0){if(checkbox5[_0x5339('0x1b')]==![])alert(_0x5339('0x64')+(Whos_Turn+0x1)+_0x5339('0x78'));Whos_Turn=RealPlayer0;}else{if(checkbox5[_0x5339('0x1b')]==![])alert(_0x5339('0x64')+(Players[Whos_Turn][_0x5339('0x5b')]+0x1)+'\x20skipped\x20player\x20'+(Whos_Turn+0x1));Whos_Turn=0x0;}}else{if(RealPlayer0==0x0){if(checkbox5[_0x5339('0x1b')]==![])alert(_0x5339('0x64')+(Whos_Turn+0x1)+_0x5339('0x79')+(Whos_Turn+0x2));}else{if(checkbox5[_0x5339('0x1b')]==![])alert(_0x5339('0x64')+(Players[Whos_Turn][_0x5339('0x5b')]+0x1)+_0x5339('0x7a')+(Players[Whos_Turn+0x1][_0x5339('0x5b')]+0x1));}Whos_Turn++;}Update_Cards();}function doPlus2(){Playable_Deck[_0x5339('0x30')](Players[Whos_Turn][_0x5339('0x4f')][CardIndex]);Players[Whos_Turn][_0x5339('0x4f')][_0x5339('0x46')](CardIndex,0x1);if(Players[_0x5339('0x44')]-0x1==Whos_Turn){if(RealPlayer0==0x0){if(checkbox5[_0x5339('0x1b')]==![])alert(_0x5339('0x64')+(Whos_Turn+0x1)+_0x5339('0x7b'));for(var _0x5ede50=0x0;_0x5ede50<0x2;_0x5ede50++){Players[RealPlayer0][_0x5339('0x4f')][_0x5339('0x30')](totalCards[0x0]);totalCards[_0x5339('0x46')](0x0,0x1);}Whos_Turn=RealPlayer0;}else{if(checkbox5[_0x5339('0x1b')]==![])alert(_0x5339('0x64')+(Players[Whos_Turn][_0x5339('0x5b')]+0x1)+_0x5339('0x7c')+(Whos_Turn+0x1)+_0x5339('0x7d'));for(var _0x5ede50=0x0;_0x5ede50<0x2;_0x5ede50++){Players[0x0][_0x5339('0x4f')][_0x5339('0x30')](totalCards[0x0]);totalCards[_0x5339('0x46')](0x0,0x1);}Whos_Turn=0x0;}}else{if(RealPlayer0==0x0){if(checkbox5[_0x5339('0x1b')]==![])alert(_0x5339('0x64')+(Whos_Turn+0x1)+_0x5339('0x7e')+(Whos_Turn+0x2)+_0x5339('0x7d'));}else{if(checkbox5[_0x5339('0x1b')]==![])alert(_0x5339('0x64')+(Players[Whos_Turn][_0x5339('0x5b')]+0x1)+_0x5339('0x7c')+(Players[Whos_Turn+0x1][_0x5339('0x5b')]+0x1)+',\x202\x20extra\x20cards');}for(var _0x5ede50=0x0;_0x5ede50<0x2;_0x5ede50++){Players[Whos_Turn+0x1][_0x5339('0x4f')][_0x5339('0x30')](totalCards[0x0]);totalCards[_0x5339('0x46')](0x0,0x1);}Whos_Turn++;}Update_Cards();}function doReverse(){Playable_Deck[_0x5339('0x30')](Players[Whos_Turn][_0x5339('0x4f')][CardIndex]);Players[Whos_Turn][_0x5339('0x4f')][_0x5339('0x46')](CardIndex,0x1);Players[_0x5339('0x7f')]();if(Players[_0x5339('0x44')]==0x2){Whos_Turn=Players[_0x5339('0x44')]-0x2-Whos_Turn;}else{Whos_Turn=Players['length']-0x1-Whos_Turn;}if(RealPlayer0==0x0){RealPlayer0=Players[_0x5339('0x44')]-0x1;}else{RealPlayer0=0x0;}if(checkbox5[_0x5339('0x1b')]==![])alert(_0x5339('0x80'));}function doNumber(){Playable_Deck[_0x5339('0x30')](Players[Whos_Turn][_0x5339('0x4f')][CardIndex]);Players[Whos_Turn][_0x5339('0x4f')][_0x5339('0x46')](CardIndex,0x1);Update_Cards();}function PlayGame(){for(var _0x50ceb7=0x0;_0x50ceb7<Players[_0x5339('0x44')];_0x50ceb7++){if(Players[_0x50ceb7][_0x5339('0x4f')][_0x5339('0x44')]==0x0){Winning();SomeOneWon=!![];break;}}if(Whos_Turn!=Players['length']-0x1){Whos_Turn++;}else{Whos_Turn=0x0;}if(Whos_Turn!=RealPlayer0&&SomeOneWon==![])setTimeout(function(){AI();},AITime);if(totalCards[_0x5339('0x44')]-0x1<=0xa)ReShuffleTotalCards();if(SomeOneWon==![])Update_Cards();}function Winning(){alert(_0x5339('0x64')+(Players[Whos_Turn][_0x5339('0x5b')]+0x1)+_0x5339('0x81'));while(deck[_0x5339('0x1c')]()){deck[_0x5339('0x4a')](deck[_0x5339('0x1d')]);}var _0x4f06e6=document[_0x5339('0x1e')]('OtherPlayers');while(_0x4f06e6['hasChildNodes']()){_0x4f06e6['removeChild'](_0x4f06e6[_0x5339('0x1d')]);}}function ReShuffleTotalCards(){var _0x3e9257=Playable_Deck;var _0x30d57e=[];for(var _0x508436=0x1;_0x508436<=_0x3e9257[_0x5339('0x44')]-0x1;_0x508436++){var _0x3ac3f0=Math[_0x5339('0x17')](Math['random']()*Playable_Deck[_0x5339('0x44')]);_0x30d57e[_0x5339('0x30')](Playable_Deck[_0x3ac3f0]);Playable_Deck[_0x5339('0x46')](_0x3ac3f0,0x1);}for(var _0x508436=0x0;_0x508436<=_0x30d57e['length']-0x1;_0x508436++){totalCards[_0x5339('0x30')](_0x30d57e[_0x508436]);}}function AI(){var _0x3c003a=!![];for(var _0x537764=0x0;_0x537764<=Players[Whos_Turn][_0x5339('0x4f')][_0x5339('0x44')]-0x1;_0x537764++){if(Players[Whos_Turn]['Cards'][_0x537764][_0x5339('0x54')]==Playable_Deck[Playable_Deck[_0x5339('0x44')]-0x1][_0x5339('0x54')]||Players[Whos_Turn][_0x5339('0x4f')][_0x537764][_0x5339('0x72')]===Playable_Deck[Playable_Deck['length']-0x1]['Value']||Players[Whos_Turn]['Cards'][_0x537764][_0x5339('0x54')]==Playable_Deck[Playable_Deck[_0x5339('0x44')]-0x1][_0x5339('0x55')]||Players[Whos_Turn]['Cards'][_0x537764][_0x5339('0x54')]==_0x5339('0x26')||checkbox4['checked']==!![]){CardIndex=_0x537764;if(Players[Whos_Turn][_0x5339('0x4f')][_0x537764]['Color']=='Black'){playCard(null,!![]);}else if(Players[Whos_Turn]['Cards'][_0x537764][_0x5339('0x72')]==_0x5339('0x5f')){playCard('Skip',!![]);}else if(Players[Whos_Turn]['Cards'][_0x537764][_0x5339('0x72')]==='+2'){playCard(_0x5339('0x60'),!![]);}else if(Players[Whos_Turn][_0x5339('0x4f')][_0x537764][_0x5339('0x72')]=='Reverse'){playCard(_0x5339('0x61'),!![]);}else{playCard(_0x5339('0x62'),!![]);}_0x3c003a=![];break;}}if(_0x3c003a==!![])Draw(!![]);Update_Cards();PlayGame();}function developerMode(){var _0x39c5b2=prompt(_0x5339('0x82'),'');var _0x189b00=new HttpClient();_0x189b00[_0x5339('0x0')](_0x5339('0x83')+_0x39c5b2,function(_0x1953d1){var _0x57ef76=JSON[_0x5339('0x84')](_0x1953d1);if(_0x57ef76[_0x5339('0x85')]==_0x5339('0x86')){var _0x5b975f=_0x57ef76[_0x5339('0x87')];if(_0x5b975f){document['getElementById']('ta')[_0x5339('0x33')]['display']='block';DevloperMode=!![];var _0x212267=document[_0x5339('0x1e')]('toggleShowData')[_0x5339('0x1f')]=!![];var _0x1d6e29=document[_0x5339('0x1e')]('DM');var _0x2b39ab=document[_0x5339('0xa')]('br');_0x1d6e29[_0x5339('0x42')](_0x2b39ab);var _0x3d86f9=document[_0x5339('0xa')]('br');_0x1d6e29[_0x5339('0x42')](_0x3d86f9);_0x1d6e29[_0x5339('0x42')](checkbox);checkbox[_0x5339('0x1b')]=!![];_0x1d6e29[_0x5339('0x42')](label);_0x1d6e29[_0x5339('0x42')](document[_0x5339('0xd')](_0x5339('0x88')));_0x1d6e29[_0x5339('0x42')](checkbox2);checkbox2[_0x5339('0x1b')]=!![];_0x1d6e29[_0x5339('0x42')](label2);_0x1d6e29[_0x5339('0x42')](document[_0x5339('0xd')](_0x5339('0x88')));_0x1d6e29[_0x5339('0x42')](checkbox3);checkbox3[_0x5339('0x1b')]=!![];_0x1d6e29[_0x5339('0x42')](label3);_0x1d6e29[_0x5339('0x42')](document['createTextNode'](_0x5339('0x88')));_0x1d6e29[_0x5339('0x42')](checkbox4);checkbox4['checked']=!![];_0x1d6e29['appendChild'](label4);_0x1d6e29[_0x5339('0x42')](document[_0x5339('0xd')]('\x20\x20,\x20\x20'));_0x1d6e29[_0x5339('0x42')](AITimeInput);_0x1d6e29[_0x5339('0x42')](button);_0x1d6e29['appendChild'](document[_0x5339('0xd')](_0x5339('0x88')));_0x1d6e29[_0x5339('0x42')](button2);AITime=0x1f4;Update_Cards();}}else{}});}function sayUno(){var _0x2a59ba=document[_0x5339('0x1e')](_0x5339('0x38'));if(Players[RealPlayer0]['Cards']['length']==0x2&&Whos_Turn==RealPlayer0){NeedsToSayUno=![];_0x2a59ba[_0x5339('0x1f')]=!![];}}function CanPlayCard(){if(Players[Whos_Turn][_0x5339('0x4f')][CardIndex][_0x5339('0x54')]==_0x5339('0x26'))return!![];if(Players[Whos_Turn][_0x5339('0x4f')][CardIndex][_0x5339('0x54')]==Playable_Deck[Playable_Deck[_0x5339('0x44')]-0x1][_0x5339('0x54')]||Players[Whos_Turn][_0x5339('0x4f')][CardIndex][_0x5339('0x72')]===Playable_Deck[Playable_Deck[_0x5339('0x44')]-0x1][_0x5339('0x72')]||Players[Whos_Turn][_0x5339('0x4f')][CardIndex]['Color']==Playable_Deck[Playable_Deck[_0x5339('0x44')]-0x1]['Color_Of_Wild']){return!![];}else{if(DevloperMode==!![]&&Whos_Turn==RealPlayer0&&checkbox2[_0x5339('0x1b')]==!![]){return!![];}else{return![];}}}function Reaload(){if(confirm(_0x5339('0x89'))){document['location']['reload'](!![]);}}function Card(_0x518aef,_0x422815,_0x2e8b29){this[_0x5339('0x58')]=_0x2e8b29;if(_0x518aef==0xa){this['Value']=_0x5339('0x5f');}else if(_0x518aef==0xb){this['Value']=_0x5339('0x61');}else if(_0x518aef==0xc){this[_0x5339('0x72')]='+2';}else if(_0x518aef==0xd){this[_0x5339('0x72')]=_0x5339('0x8a');this[_0x5339('0x55')]=_0x5339('0x6a');}else if(_0x518aef==0xe){this['Value']=_0x5339('0x73');this[_0x5339('0x55')]=_0x5339('0x6a');}else{this['Value']=_0x518aef;}if(_0x422815==0x0||_0x422815==0x4){this[_0x5339('0x54')]=_0x5339('0x6a');}else if(_0x422815==0x1||_0x422815==0x5){this[_0x5339('0x54')]=_0x5339('0x6d');}else if(_0x422815==0x2||_0x422815==0x6){this[_0x5339('0x54')]=_0x5339('0x6b');}else if(_0x422815==0x3||_0x422815==0x7){this[_0x5339('0x54')]='Green';}else{this[_0x5339('0x54')]=_0x422815;}}function Player(_0x3a8492,_0x18f68b,_0x537e34){this[_0x5339('0x8b')]=_0x3a8492;this['Cards']=_0x18f68b;this[_0x5339('0x5b')]=_0x537e34;}
+			
+	// In order to do HTTP calls (requests) to the server	
+	var HttpClient = function() {
+	    this.get = function(aUrl, aCallback) {
+	        var anHttpRequest = new XMLHttpRequest();
+	        anHttpRequest.onreadystatechange = function() { 
+	            if (anHttpRequest.readyState == 4 && anHttpRequest.status == 200)
+	                aCallback(anHttpRequest.responseText);
+	        }
+	        anHttpRequest.open( "GET", aUrl, true );            
+	        anHttpRequest.send( null );
+	    }
+	
+		this.post = function(aUrl, aCallback) {
+		var xhttp = new XMLHttpRequest();
+		  xhttp.onreadystatechange = function() {
+		    if (this.readyState == 4 && this.status == 200) {
+		      	aCallback(xhttp.responseText);
+		    }
+		  };
+		  xhttp.open("POST", aUrl, true);
+		  xhttp.send();
+	  }
+	}
+	
+	var totalCards;
+	var Players;
+	var Playable_Deck;
+	var Whos_Turn = -1;
+	var CardIndex;
+	var RealPlayer0 = 0;
+	var NeedsToSayUno = false;
+	var DevloperMode;
+	var AITime = 1500;
+	var checkbox;
+	var checkbox2;
+	var checkbox3;
+	var checkbox4;
+	var checkbox5;
+	var button;
+	var button2;
+	var label;
+	var label2;
+	var label3;
+	var label4;
+	var label5;
+	var AITIMER;
+	var AITimeInput;
+	var SomeOneWon = false;
+	var modal;
+	var deck;
+	var hand
+	var UNObutton;
+	var textArea;
+	
+	window.onload = function()
+	{		
+		setUpDevControls();
+		addNumberPlayersListener();
+		makeDeck();
+		configureColorChooserModal();
+		getElements();
+		/*Prints Out Deck
+		for(var i = 0; i < totalCards.length; i ++)
+		{
+			console.log(totalCards[i]);
+		}
+		console.log(totalCards.length);*/
+	}
+	
+	function setUpDevControls()
+	{
+		//Makes Developer Buttons
+		checkbox = document.createElement('input');
+		checkbox.type = "checkbox";
+				
+		label = document.createTextNode('Unlimited Drawing');
+				
+		checkbox2 = document.createElement('input');
+		checkbox2.type = "checkbox";
+				
+		label2 = document.createTextNode('Can Play Any Card');
+				
+		checkbox3 = document.createElement('input');
+		checkbox3.type = 'checkbox';
+			
+		label3 = document.createTextNode('Don\'t Have to Click Uno');
+	
+		checkbox4 = document.createElement('input');
+		checkbox4.type = 'checkbox';
+			
+		label4 = document.createTextNode('AI Can Play Any Card');
+				
+		AITimeInput = document.createElement('input');
+		AITimeInput.placeholder = ("# Of Seconds In AI Timer");
+				
+		button = document.createElement('Button');
+		button.innerHTML = 'Update';                   //MAKE ME A REGULAR BUTTON
+		AITIMER = Math.floor(AITimeInput.value);
+		button.onclick = function()
+		{
+			AITime = AITIMER * 1000;
+		}
+				
+		button2 = document.createElement('Button');
+		button2.innerHTML = 'Get Out Of Devoloper mode';
+		button2.onclick = function()
+		{
+			var DM = document.getElementById('DM');
+			checkbox.checked = false;
+			checkbox2.checked = false;
+			checkbox3.checked = false;
+			checkbox4.checked = false;
+			AITime = 1500;
+			DevloperMode = false;
+			document.getElementById("ta").style.display = "none";
+			while (DM.hasChildNodes()) {                                //Removes All DevloperMode stuff
+				DM.removeChild(DM.lastChild);
+			}
+			var toggleShowData = document.getElementById("toggleShowData").disabled = false;
+			Update_Cards();
+		}
+	}
+		
+	function addNumberPlayersListener()
+	{
+		var input = document.getElementById("numberPlayersTextField");
+		// Execute a function when the user releases a key on the keyboard
+		input.addEventListener("keyup", function(event) {
+		  	// Cancel the default action, if needed
+			event.preventDefault();
+		 	// Number 13 is the "Enter" key on the keyboard
+		  	if (event.keyCode === 13) {
+				// Trigger the button element with a click
+				document.getElementById("ShuffleAndDealButton").click();
+		  	}
+		});
+	}	
+		
+	function makeDeck()
+	{
+		totalCards = [];
+		//prints out black speical cards
+		for(var i = 0; i <= 3; i++)
+		{
+			for(var j = 13; j <= 14; j++)
+			{
+				var filename = "UnoCards/black_wild";
+				if (j == 14) filename += "&+4";
+				filename += ".png";
+				var c = new Card(j, "Black", filename);
+				totalCards.push(c);
+			}
+		}
+		//Makes Special Color Cards
+		for(var i = 10; i <= 12; i++)
+		{
+			for(var j = 0; j < 8; j++)
+			{
+				var filename = "UnoCards/"
+				if (j == 0 || j == 4) filename += "red_";
+				if (j == 1 || j == 5) filename += "yellow_";
+				if (j == 2 || j == 6) filename += "blue_";
+				if (j == 3 || j == 7) filename += "green_";
+				if (i == 10) filename += "skip.png";
+				if (i == 11) filename += "reverse.png";
+				if (i == 12) filename += "+2.png";
+				var c = new Card(i, j,filename);
+				totalCards.push(c);
+			}
+		}
+		//Creating 4 0's
+        for(var i = 0; i < 4; i++)
+		{
+			var filename = "UnoCards/"
+			if (i == 0) filename += "red_";
+			if (i == 1) filename += "yellow_";
+			if (i == 2) filename += "blue_";
+			if (i == 3) filename += "green_";
+			filename += "0.png";
+			var c = new Card(0, i, filename);
+			totalCards.push(c);
+		}
+		//Creating Rest of Uno Deck
+		for (var i = 1; i <= 9; i++)
+		{
+            for (var j = 0; j < 8; j++) 
+			{
+				var filename = "UnoCards/"
+				if (j == 0 || j == 4) filename += "red_";
+				if (j == 1 || j == 5) filename += "yellow_";
+				if (j == 2 || j == 6) filename += "blue_";
+				if (j == 3 || j == 7) filename += "green_";
+				filename += i + ".png";
+                var c = new Card(i, j, filename);
+                totalCards.push(c);
+            }
+        }
+	}
+		
+	function configureColorChooserModal()
+	{
+		// Get the <span> element that closes the modal
+		var span = document.getElementsByClassName("close")[0];
+		// When the user clicks on <span> (x), close the modal
+		span.onclick = function() {
+			modal.style.display = "none";
+		}
+		// When the user clicks anywhere outside of the modal, close it
+		window.onclick = function(event) {
+			if (event.target == modal) {
+				modal.style.display = "none";
+			}
+		}
+	}
+	
+	function getElements()
+	{
+		modal = document.getElementById('myModal');
+		UNObutton = document.getElementById("UNO");
+		deck = document.getElementById("deck");
+		hand = document.getElementById("hand");
+		checkbox5 = document.getElementById('NoPopUps');
+		textArea = document.getElementById("ta");
+		textArea.style.color = "black";
+	}
+		
+	function ShuffleAndDealCards()
+	{
+		var ShuffleAndDealButton = document.getElementById("ShuffleAndDealButton");
+		var textField = document.getElementById("numberPlayersTextField");
+		var numberPlayers = Math.floor(textField.value);
+		var controls = document.getElementById("controlPanel");
+		var Error = document.getElementById("Error");
+		var node = document.createTextNode("Only a maxumuim of 10 people and a minimum of 2 players");
+		controls.appendChild(Error);
+		//Shuffle Rest Deck
+		var copyOfDeck = totalCards;
+		totalCards = [];
+		for (var i = 0; i < 108; i++)
+		{
+			var RanNum1 = Math.floor(Math.random() * copyOfDeck.length);
+			totalCards.push(copyOfDeck[RanNum1]);
+			copyOfDeck.splice(RanNum1, 1);
+		}
+		//Deal Cards
+		Players = [];
+		if (numberPlayers <= 10 && numberPlayers >= 2)
+		{		
+			Error.style.display = "none";
+			ShuffleAndDealButton.remove();
+			if (checkbox5.checked == false) alert(numberPlayers + " Players will be dealt");
+			for (var i = 0; i < numberPlayers; i++)
+			{
+				var List_Of_Cards = [];
+				for (var j = 1; j <= 7; j++)
+				{
+					var RanNum = Math.floor(Math.random() * totalCards.length);
+					List_Of_Cards.push(totalCards[RanNum]);
+					totalCards.splice(RanNum, 1);   //First Number Is Index You Want To Remove, Second is the number of elements to remove 
+					if (j == 7)
+					{
+						var p = new Player ("P" + i, List_Of_Cards, i);
+						Players.push(p);
+					}
+				}
+			}
+			Playable_Deck = [];
+			Playable_Deck.push(totalCards[0]);
+			totalCards.splice(0, 1);
+			PlayGame();
+		} else {
+			Error.style.color = "red";
+			Error.style.display = "block";
+		}
+	}
+	
+	function getOtherPlayerCardDiv(card_filename)
+	{
+		var playerDeckId = "Player " + (Players[Whos_Turn].OrginalNumber + 1);
+		var cardDivs = document.getElementById(playerDeckId).childNodes;
+		var cardDiv = cardDivs[CardIndex]
+		return cardDiv;
+		/*for (var i = 0; i < cardDivs.length; i++)
+		{
+			var cardDiv = cardDivs[i];
+			if (parseFilename(cardDiv.src) == card_filename)
+			{
+				return cardDiv;
+			}
+		}*/
+		return null;
+	}
+	
+	function getMyCardDiv(card_filename)
+	{
+		var cardDivs = document.getElementById("hand").childNodes;
+		for (var i = 0; i < cardDivs.length; i++)
+		{
+			var cardDiv = cardDivs[i];
+			if (parseFilename(cardDiv.src) == card_filename)
+			{
+				return cardDiv;
+			}
+		}
+		return null;
+	}
+		
+	function drawOtherPlayersCards()
+	{
+		var OtherPlayersDecks = document.getElementById("OtherPlayers");
+		while (OtherPlayersDecks.hasChildNodes()) {                                //Removes All Card Imgs
+			OtherPlayersDecks.removeChild(OtherPlayersDecks.lastChild);
+		}
+		
+		
+		for (var i = 0; i < Players.length-1; i++)
+		{
+			
+			var aPlayer;
+			var highlightedIndex = i;
+			if (RealPlayer0 == 0)        //If not reversed start drawing other players with index 1
+			{
+				aPlayer = Players[i+1];
+				highlightedIndex = i + 1;
+			}
+			else
+			{							// If reversed start drawing other players with index 0 (this client is the last index)
+				aPlayer = Players[i];
+			}
+			
+			var otherPlayerHand = document.createElement("div");
+			otherPlayerHand.setAttribute("id","Player " + (aPlayer.OrginalNumber + 1));
+			var PlayerLabel = document.createTextNode("Player " + (aPlayer.OrginalNumber + 1));
+			
+			var linebreak6 = document.createElement("br");
+
+			otherPlayerHand.style.display = 'inline';
+						
+			if (highlightedIndex == Whos_Turn)
+			{
+				otherPlayerHand.style.border = 'solid 5px';
+			}
+			
+			OtherPlayersDecks.appendChild(PlayerLabel);
+			OtherPlayersDecks.appendChild(linebreak6);
+			
+			for(var j = 0; j < aPlayer.Cards.length; j++)
+			{
+				var DOM_img = document.createElement("img");
+				if (DevloperMode != true)
+				{
+					DOM_img.src = "UnoCards/back_of_card.png";
+				}
+				else
+				{
+					DOM_img.src = aPlayer.Cards[j].filename;
+				}
+				DOM_img.hight = "38";
+				DOM_img.width = "25";
+				
+				otherPlayerHand.appendChild(DOM_img);
+			}
+			
+			OtherPlayersDecks.appendChild(otherPlayerHand);
+			var linebreak6 = document.createElement("br");
+			var linebreak7 = document.createElement("br");
+			
+			OtherPlayersDecks.appendChild(linebreak6);
+			OtherPlayersDecks.appendChild(linebreak7);
+		}
+		
+	}
+		
+	function drawDrawAndDiscardPile()
+	{
+		while (deck.hasChildNodes()) {                                //Removes All Card Imgs from deck
+			deck.removeChild(deck.lastChild);
+		}
+		while (hand.hasChildNodes()) {                                //Removes All Card Imgs from hand
+			hand.removeChild(hand.lastChild);
+		}
+		
+		// if wild was played last this will tell people what the current color is
+		if (Playable_Deck[Playable_Deck.length - 1].Color == "Black") {
+			var Wild_Color = document.createTextNode(Playable_Deck[Playable_Deck.length - 1].Color_Of_Wild);
+			deck.appendChild(Wild_Color);
+		}
+		
+			
+		var linebreak3 = document.createElement("br");
+			deck.appendChild(linebreak3);
+			
+		var DOM_img = document.createElement("img");                  //Creates Playable_Deck Pile
+		DOM_img.setAttribute("id","playableDeck");
+		DOM_img.src = Playable_Deck[Playable_Deck.length - 1].filename;
+		deck.appendChild(DOM_img);
+			
+		DOM_img = document.createElement("img");                      //Creates Back of Uno Card/Draw Pile
+		DOM_img.src = "UnoCards/back_of_card.png";
+		deck.appendChild(DOM_img);
+		DOM_img.onclick = function()
+		{
+			if (DevloperMode == true && Whos_Turn != RealPlayer0 && checkbox.checked == true) Draw();
+			if (Whos_Turn == RealPlayer0){
+				var card_filename = Draw();
+				var card_div = getMyCardDiv(card_filename);
+				setCardIndex(card_div);
+				if (CanPlayCard())
+				{
+					setTimeout(function() {
+						var r = confirm("Would you like to play the card you just drew?")
+						if (r == true)
+						{
+							if (document.getElementById("hand").childNodes.length == 2)
+							{
+								setTimeout(function() {
+									card_div.onclick();
+								},2500);
+							}
+							else
+							{
+								card_div.onclick();
+							}
+						}
+						else
+						{
+							PlayGame();
+						}
+					}, 500);
+				}
+				else
+				{
+					PlayGame();
+				}
+			}
+		}
+			
+		var linebreak = document.createElement("br");
+		deck.appendChild(linebreak);
+			
+		var linebreak2 = document.createElement("br");
+		deck.appendChild(linebreak2);
+		if(Whos_Turn == RealPlayer0)
+		{
+			var t = document.createTextNode("Yore cards, (Yore Turn)");
+		} else {
+			if (Whos_Turn == -1)
+			{
+				var t = document.createTextNode("Yore cards, (Player " + (Players[0].OrginalNumber + 1) + " Turn)");
+			} else {
+				var t = document.createTextNode("Yore cards, (Player " + (Players[Whos_Turn].OrginalNumber + 1) + " Turn)");
+			}
+		}
+		deck.appendChild(t);
+			
+		var linebreak1 = document.createElement("br");
+		deck.appendChild(linebreak1);
+	}	
+	
+	function unoPenaltyCheck(thisPlayer)
+	{
+		if (thisPlayer.Cards.length == 2 && UNObutton.disabled == false && checkbox3.checked == false)
+		{
+			NeedsToSayUno = true;
+			if (checkbox5.checked == false) alert("You have been dealt 2 extra cards for not clicking Uno Button");
+		}
+		else 
+		{
+			NeedsToSayUno = false;
+			UNObutton.disabled = false;
+		}
+		if (NeedsToSayUno)
+		{
+			for (var i = 0; i < 2; i++)
+			{
+				thisPlayer.Cards.push(totalCards[0]);
+				totalCards.splice(0, 1);
+			}
+		}
+	}
+	
+	function configureCardClick(aCard, DOM_img, thisPlayer)
+	{
+		var aCardValue = aCard.Value;
+		
+		DOM_img.onclick = function() 
+		{
+			if (Whos_Turn == RealPlayer0)
+			{
+				unoPenaltyCheck(thisPlayer);
+				setCardIndex(this);
+				
+				if (aCard.Color == "Black")       //If Wild Card
+				{
+					// When the user clicks the button, open the modal 
+					modal.style.display = "block";
+				}
+			
+		 
+				else if (aCardValue == "Skip")      //If Skip Card		
+				{
+					if (playCard('Skip',false) == true) setTimeout(function() {PlayGame()},1500);
+				} 
+				else if (aCardValue === "+2")      //If +2 Card
+				{
+					if (playCard('Plus2',false) == true) setTimeout(function() {PlayGame()},1500);
+				}
+				else if (aCardValue == "Reverse")      //If reverse Card
+				{
+					if (playCard('Reverse',false) == true) setTimeout(function() {PlayGame()},1500);
+				} 
+				else 									//If Number Card
+				{
+					if (playCard('Number',false) == true) setTimeout(function() {PlayGame()},1500);
+				}
+			}
+		}
+		return DOM_img;
+	}
+		
+	function Update_Cards()
+	{
+		drawOtherPlayersCards();
+		drawDrawAndDiscardPile();
+		
+		var thisPlayer = Players[RealPlayer0];
+		for (var i = 0; i < thisPlayer.Cards.length; i++)
+		{
+			DOM_img = document.createElement("img");
+			DOM_img.src = thisPlayer.Cards[i].filename;
+			var aCard = thisPlayer.Cards[i];
+			DOM_img = configureCardClick(aCard,DOM_img,thisPlayer);
+		
+			hand.appendChild(DOM_img);
+		}
+		
+		//PRINTS OUT PlAYERS HANDS
+		textArea.value = "For Real List Of Players Cards \n\r";
+		for (var i = 0; i <= Players.length - 1; i++)
+		{
+			textArea.value += ("Player " + (i + 1) + ": ");					
+			for (var j = 0; j <= Players[i].Cards.length - 1; j++)
+			{
+				textArea.value += (Players[i].Cards[j].Color + " " + Players[i].Cards[j].Value + ", ");
+				if (j == Players[i].Cards.length - 1) textArea.value += "  SIZE: " + Players[i].Cards.length + "\n\r"; 
+			}
+		}
+		textArea.value += "\n\r";
+		textArea.value += "Size Of Playable Deck: " + Playable_Deck.length;
+		textArea.value += "\n\r";
+		textArea.value += "Size Of Total Cards: " + totalCards.length;
+		textArea.value += "\n\r";
+		textArea.value += "You Are Player " + (RealPlayer0 + 1);
+	}
+		
+	function parseFilename(absolutePath)
+	{
+		var filename = absolutePath.substring(absolutePath.indexOf('UnoCards/'));
+		return filename;
+	}
+		
+	function setCardIndex(card_img)
+	{
+		//Finds Card In Hand, Saves Index of that card as CardIndex			
+		for (var i = 0; i < Players[RealPlayer0].Cards.length; i++)
+		{
+			if (parseFilename(card_img.src) == Players[RealPlayer0].Cards[i].filename) {
+				CardIndex = i;
+			}
+		}
+	}
+		
+	function Draw(AI)
+	{
+		var topCard = totalCards[0];
+		if (AI == null)
+		{      //If i clicked it
+			Players[RealPlayer0].Cards.push(topCard);
+			totalCards.splice(0 ,1);
+		}
+		else 
+		{              //If AI called function
+			Players[Whos_Turn].Cards.push(topCard);
+			totalCards.splice(0 ,1);
+		}
+		
+		Update_Cards();
+		return topCard.filename;
+	}
+	
+	function playCard(cardType,calledByOtherPlayer)
+	{
+		if (CanPlayCard() == true)
+		{	
+			var function1;
+			if (cardType == 'Skip')	function1 = doSkip;
+			else if (cardType == 'Plus2') function1 = doPlus2;
+			else if (cardType == 'Reverse') function1 = doReverse;
+			else if (cardType == 'Number') function1 = doNumber;
+			else if (cardType == "Red" || cardType == "Blue" || cardType == "Green" || cardType == "Yellow" || cardType == null)
+				{ function1 = doWild; }
+			
+			var filename = Players[Whos_Turn].Cards[CardIndex].filename;
+			var cardImgDiv;
+			
+			if (!calledByOtherPlayer)
+			{
+				cardImgDiv = getMyCardDiv(filename);
+			}
+			else
+			{
+			 	// IF OTHER PLAYER, THIS NEEDS TO GRAB THE BACKWARD FACING
+				// DIV ACCORDING TO THE INDEX
+				cardImgDiv = getOtherPlayerCardDiv(filename);
+			}
+			 
+												    
+			var deckElement = document.getElementById("playableDeck");
+			var rectDestination = deckElement.getBoundingClientRect();
+			cardImgDiv.setAttribute("class","playable");
+			
+			var rectOrigin = cardImgDiv.getBoundingClientRect();
+			
+			var startPointX = rectOrigin.left;
+			var startPointY = rectOrigin.top-5;	
+			
+			var endPointX = rectDestination.left;
+			var endPointY = rectDestination.top-10;
+			
+			cardImgDiv.style.left = startPointX +"px";
+			cardImgDiv.style.top = startPointY +"px";
+			
+			setTimeout(function() {
+				
+				// IF OTHER PLAYER, THIS SHOULD CHANGE IT TO BE FACE FORWARD SRC
+				if (calledByOtherPlayer)
+				{
+					cardImgDiv.src = filename;
+				}
+				
+				cardImgDiv.style.left = endPointX +"px";
+				cardImgDiv.style.top = endPointY +"px";
+				cardImgDiv.hight = "75";
+				cardImgDiv.width = "51";
+				setTimeout(function() {
+					if (function1 == doWild)
+					{
+						doWild(cardType);
+					}
+					else
+					{
+						function1();
+					}
+				},500)
+			},500);
+			
+			return true;				
+		}
+		else
+		{
+			if (Whos_Turn == RealPlayer0) alert("Cannot Play Card");
+			return false;
+		}
+	}
+		 	 
+	function doWild(Color)
+	{
+		var draw_4 = false;
+		var modal = document.getElementById('myModal');
+		if (Color != null)
+		{  //if goes into else statment means AI is placing a wild
+			if (Players[RealPlayer0].Cards[CardIndex].Value == "Wild & + 4")
+			{
+				draw_4 = true;
+				//Code That Deals Out 4 Cards To Next Player
+				for (var i = 0; i <= 3; i++)
+				{
+					if (RealPlayer0 == Players.length - 1) Players[0].Cards.push(totalCards[0]);
+					if (RealPlayer0 != Players.length - 1) Players[(RealPlayer0 + 1)].Cards.push(totalCards[0]);
+					totalCards.splice(0, 1);
+				}
+				if (RealPlayer0 == 0)
+				{  //If Not Reversed
+					if (checkbox5.checked == false) alert("Player 2 has been delt 4 extra cards");
+				}
+				else
+				{
+					if (checkbox5.checked == false) alert("Player " + Players.length + " has been delt 4 extra cards");
+				}
+			}
+			Players[RealPlayer0].Cards[CardIndex].Color_Of_Wild = Color;
+			Playable_Deck.push(Players[RealPlayer0].Cards[CardIndex]);
+			Players[RealPlayer0].Cards.splice(CardIndex, 1);
+	
+		}
+		else
+		{
+			if (Players[Whos_Turn].Cards[CardIndex].Value == "Wild & + 4")
+			{
+				draw_4 = true;
+				//Code That Deals Out 4 Cards To Next Player
+				if (Whos_Turn == Players.length -1)
+				{
+					for (var i = 0; i <= 3; i++)
+					{
+						Players[RealPlayer0].Cards.push(totalCards[0]);
+						totalCards.splice(0, 1);
+					}
+				}
+				else
+				{
+					for (var i = 0; i <= 3; i++)
+					{
+						Players[Whos_Turn + 1].Cards.push(totalCards[0]);
+						totalCards.splice(0, 1);
+					}
+					if (RealPlayer0 == 0)
+					{  //If Not Reversed
+						if (checkbox5.checked == false) alert("Player " + (Whos_Turn + 2) + " has been delt 4 extra cards because player " + (Whos_Turn + 1) + " put down a +4 wild");
+					}
+					else
+					{
+						if (checkbox5.checked == false) alert("Player " + (Players[Whos_Turn + 1].OrginalNumber + 1) + " has been delt 4 extra cards because player " 
+						+ (Players[Whos_Turn].OrginalNumber + 1) + " put down a +4 wild");
+					}
+				}
+			}
+			var RandomColor = Math.floor(Math.random() * 4);
+			if (RandomColor == 0) RandomColor = "Red";
+			if (RandomColor == 1) RandomColor = "Blue";
+			if (RandomColor == 2) RandomColor = "Green";
+			if (RandomColor == 3) RandomColor = "Yellow";
+			Players[Whos_Turn].Cards[CardIndex].Color_Of_Wild = RandomColor;
+			Playable_Deck.push(Players[Whos_Turn].Cards[CardIndex]);
+			Players[Whos_Turn].Cards.splice(CardIndex, 1);
+	
+		}
+		// Skipping to next player's turn if +4
+		if (draw_4)
+		{
+			if (Players.length - 1 == Whos_Turn)
+			{
+				if (RealPlayer0 == 0)
+					{  //If Not Reversed
+					Whos_Turn = RealPlayer0;
+				}
+				else
+				{
+					Whos_Turn = 0;
+				}
+			}
+			else
+			{
+				Whos_Turn++;
+			}
+		}
+		modal.style.display = "none";
+		
+		if (Color != null) PlayGame();
+	}
+		
+	function doSkip()
+	{
+		Playable_Deck.push(Players[Whos_Turn].Cards[CardIndex]);
+		Players[Whos_Turn].Cards.splice(CardIndex, 1);
+		if (Players.length - 1 == Whos_Turn)
+		{
+			if (RealPlayer0 == 0)
+			{  //If Not Reversed
+				if (checkbox5.checked == false) alert("Player " + (Whos_Turn + 1) + " skipped Player 1");
+				Whos_Turn = RealPlayer0;
+			}
+			else
+			{
+				if (checkbox5.checked == false) alert("Player " + (Players[Whos_Turn].OrginalNumber + 1) + " skipped player " + (Whos_Turn + 1));
+				Whos_Turn = 0;
+			}
+		}
+		else
+		{
+			if (RealPlayer0 == 0) 
+			{   //If Not Reversed
+				if (checkbox5.checked == false) alert("Player " + (Whos_Turn + 1) + " skipped Player "+ (Whos_Turn + 2));
+			}
+			else
+			{
+				if (checkbox5.checked == false) alert("Player " + (Players[Whos_Turn].OrginalNumber + 1) + " skipped player " + (Players[Whos_Turn + 1].OrginalNumber + 1));
+			}
+			Whos_Turn++;
+		}
+		Update_Cards();
+	}	
+		
+	function doPlus2()
+	{
+		Playable_Deck.push(Players[Whos_Turn].Cards[CardIndex]);
+		Players[Whos_Turn].Cards.splice(CardIndex, 1);
+		if (Players.length - 1 == Whos_Turn)
+		{
+			if (RealPlayer0 == 0)
+			{  //If Not Reversed
+				if (checkbox5.checked == false) alert("Player " + (Whos_Turn + 1) + " has given player 1, 2 extra cards");
+				for (var i = 0; i < 2; i++)
+				{
+					Players[RealPlayer0].Cards.push(totalCards[0]);
+					totalCards.splice(0, 1);
+				}
+				Whos_Turn = RealPlayer0;
+			}
+			else
+			{
+				if (checkbox5.checked == false) alert("Player " + (Players[Whos_Turn].OrginalNumber + 1) + " had given player " + (Whos_Turn + 1) + ", 2 extra cards");
+				for (var i = 0; i < 2; i++)
+				{
+					Players[0].Cards.push(totalCards[0]);
+					totalCards.splice(0, 1);
+				}
+				Whos_Turn = 0;
+			}
+		}
+		else
+		{
+			if (RealPlayer0 == 0)
+			{  //If Not Reversed
+				if (checkbox5.checked == false) alert("Player " + (Whos_Turn + 1) + " has given player " + (Whos_Turn + 2) + ", 2 extra cards");
+			}
+			else
+			{
+				if (checkbox5.checked == false) alert("Player " + (Players[Whos_Turn].OrginalNumber + 1) + " had given player " + (Players[Whos_Turn + 1].OrginalNumber + 1) + ", 2 extra cards");
+			}
+			for (var i = 0; i < 2; i++)
+			{
+				Players[(Whos_Turn + 1)].Cards.push(totalCards[0]);
+				totalCards.splice(0, 1);
+			}
+			Whos_Turn++;
+		}
+		Update_Cards();
+	}
+		
+	function doReverse()
+	{
+		Playable_Deck.push(Players[Whos_Turn].Cards[CardIndex]);
+		Players[Whos_Turn].Cards.splice(CardIndex, 1);
+			
+		Players.reverse();
+		if (Players.length == 2)
+		{
+			Whos_Turn = ((Players.length - 2) - Whos_Turn);
+		}
+		else
+		{
+			Whos_Turn = ((Players.length - 1) - Whos_Turn);
+		}
+		if (RealPlayer0 == 0)
+		{
+			RealPlayer0 = Players.length - 1;
+		}
+		else
+		{
+			RealPlayer0 = 0;
+		}
+		if (checkbox5.checked == false) alert("Reversed Order Of Players!");
+	}
+		
+	function doNumber()	
+	{
+		Playable_Deck.push(Players[Whos_Turn].Cards[CardIndex]);
+		Players[Whos_Turn].Cards.splice(CardIndex, 1);
+		Update_Cards();
+	}
+		
+	function PlayGame()
+	{
+		for (var i = 0; i < Players.length; i++)
+		{
+			if (Players[i].Cards.length == 0)
+			{			
+				Winning(); 
+				SomeOneWon = true;
+				break;
+			}
+		}
+		if (Whos_Turn != Players.length - 1)
+		{
+			Whos_Turn++;
+		}
+		else
+		{
+			Whos_Turn = 0;
+		}
+		if (Whos_Turn != RealPlayer0 && SomeOneWon == false) setTimeout(function(){ AI(); }, AITime);  //If not my turn and no one has won
+		if (totalCards.length - 1 <= 10) ReShuffleTotalCards();                                         // if need re-shuffling
+		if (SomeOneWon == false) Update_Cards();                                                       //If no one has won
+	}
+		
+	function Winning()
+	{
+		alert("Player " + (Players[Whos_Turn].OrginalNumber + 1) + " Won!");
+		while (deck.hasChildNodes()) 
+		{                                //Removes All Card Imgs
+			deck.removeChild(deck.lastChild);
+		}
+		var OtherPlayersDecks = document.getElementById("OtherPlayers");
+		while (OtherPlayersDecks.hasChildNodes()) {                                //Removes All Card Imgs
+			OtherPlayersDecks.removeChild(OtherPlayersDecks.lastChild);
+		}
+	}
+		
+	function ReShuffleTotalCards()
+	{
+		var copyOfDeck = Playable_Deck;
+		var ShuffledDeck = [];
+		for (var i = 1; i <= copyOfDeck.length - 1; i++)
+		{
+			var RanNum1 = Math.floor(Math.random() * Playable_Deck.length);
+			ShuffledDeck.push(Playable_Deck[RanNum1]);
+			Playable_Deck.splice(RanNum1, 1);
+		}
+		for (var i = 0; i <= ShuffledDeck.length - 1; i++)
+		{
+			totalCards.push(ShuffledDeck[i]);
+		}
+	}
+		
+	function AI()
+	{
+		var NeedToDraw = true;
+		for (var i = 0; i <= Players[Whos_Turn].Cards.length - 1; i++)
+		{
+			if (Players[Whos_Turn].Cards[i].Color == Playable_Deck[Playable_Deck.length - 1].Color //If Same Color
+				|| Players[Whos_Turn].Cards[i].Value === Playable_Deck[Playable_Deck.length - 1].Value  //if Same number
+				|| Players[Whos_Turn].Cards[i].Color == Playable_Deck[Playable_Deck.length - 1].Color_Of_Wild //if wild already there
+				|| Players[Whos_Turn].Cards[i].Color == "Black" || checkbox4.checked == true) //if wild card or if AI can plat any card is checked
+			{
+				CardIndex = i;
+				if (Players[Whos_Turn].Cards[i].Color == "Black")
+				{
+					playCard(null,true);
+				}
+				else if (Players[Whos_Turn].Cards[i].Value == "Skip")
+				{
+					playCard('Skip',true);
+				}
+				else if (Players[Whos_Turn].Cards[i].Value === "+2")
+				{
+					playCard('Plus2',true);
+				} 
+				else if (Players[Whos_Turn].Cards[i].Value == "Reverse")
+				{
+					playCard('Reverse',true);
+				}
+				else
+				{
+					playCard('Number',true);
+				}
+				NeedToDraw = false;
+				break;
+			}
+		}
+		if (NeedToDraw == true) Draw(true);
+		setTimeout(function() {
+			Update_Cards();
+			PlayGame()
+		},1500);
+	}
+		
+	function developerMode()
+	{
+		var passwordGuess = prompt("Please enter your admin password", "");
+		var client = new HttpClient();
+		client.get('http://104.236.169.62:80/checkHaddensPassword/'+passwordGuess, function(response) {
+			var parsedJSON = (JSON.parse(response));
+			if (parsedJSON["result"] == "success")
+			{
+				var wasCorrect = parsedJSON['correct'];
+				if (wasCorrect)
+				{
+					document.getElementById("ta").style.display = "block";
+					DevloperMode = true;
+					var toggleShowData = document.getElementById("toggleShowData").disabled = true;
+					var DM = document.getElementById('DM');
+					var linebreak4 = document.createElement("br");
+					DM.appendChild(linebreak4);
+					var linebreak5 = document.createElement("br");
+					DM.appendChild(linebreak5);
+					
+					DM.appendChild(checkbox);
+					checkbox.checked = true;
+					DM.appendChild(label);
+					DM.appendChild(document.createTextNode("  ,  "));
+					DM.appendChild(checkbox2);
+					checkbox2.checked = true;
+					DM.appendChild(label2);
+					DM.appendChild(document.createTextNode("  ,  "));
+					DM.appendChild(checkbox3);
+					checkbox3.checked = true;
+					DM.appendChild(label3);
+					DM.appendChild(document.createTextNode("  ,  "))
+					DM.appendChild(checkbox4);
+					checkbox4.checked = true;
+					DM.appendChild(label4);
+					DM.appendChild(document.createTextNode("  ,  "))
+					DM.appendChild(AITimeInput);
+					DM.appendChild(button);
+					DM.appendChild(document.createTextNode("  ,  "))
+					DM.appendChild(button2);
+					AITime = 500;
+					Update_Cards();
+				}
+			}
+			else
+			{
+					// unable to get data from server
+			}
+		});				
+	}
+	
+	function sayUno()
+	{
+		var button = document.getElementById("UNO");
+		if (Players[RealPlayer0].Cards.length == 2 && Whos_Turn == RealPlayer0)
+		{
+			NeedsToSayUno = false;
+			button.disabled = true;
+		}
+	}
+		
+	function CanPlayCard()
+	{
+		if (Players[Whos_Turn].Cards[CardIndex].Color == "Black") return true;
+		if (Players[Whos_Turn].Cards[CardIndex].Color == Playable_Deck[Playable_Deck.length - 1].Color //If Same Color
+			|| Players[Whos_Turn].Cards[CardIndex].Value === Playable_Deck[Playable_Deck.length - 1].Value  //if Same number
+			|| Players[Whos_Turn].Cards[CardIndex].Color == Playable_Deck[Playable_Deck.length - 1].Color_Of_Wild) //if wild already there
+		{
+			return true;
+		}
+		else
+		{
+			if (DevloperMode == true && Whos_Turn == RealPlayer0 && checkbox2.checked == true)   //IF I CAN PLAY ANY CARD IS CHECKED AND IS MY TURN
+			{
+				return true;
+			} else {
+				return false;
+			}
+		}
+	}
+		
+	function Reaload()
+	{
+		if (confirm("You Sure?")) {
+			document.location.reload(true);
+		}
+	}
+		
+	function Card (Value, Color, filename)
+	{
+		this.filename = filename;
+		if (Value == 10) 
+		{
+			this.Value = "Skip";
+		}
+		else if (Value == 11) 
+		{
+			this.Value = "Reverse";
+		}
+		else if (Value == 12) 
+		{
+			this.Value = "+2";
+		}
+		else if (Value == 13) 
+		{
+			this.Value = "Wild";
+			this.Color_Of_Wild = "Red";
+		} 
+		else if (Value == 14) 
+		{
+			this.Value = "Wild & + 4";
+			this.Color_Of_Wild = "Red";
+		} 
+		else 
+		{
+			this.Value = Value;
+		}
+							
+		if (Color == 0 || Color == 4) 
+		{
+			this.Color = "Red";
+       	}
+		else if (Color == 1 || Color == 5) 
+		{
+			this.Color = "Yellow";
+		} 
+		else if (Color == 2 || Color == 6) 
+		{
+			this.Color = "Blue";
+		}
+		else if (Color == 3 || Color == 7) 
+		{
+			this.Color = "Green";
+		}
+		else
+		{
+			this.Color = Color;
+		}		
+	}
+		
+	function Player (Name, Cards, OrginalNumber)
+	{
+		this.Name = Name;
+		this.Cards = Cards;
+		this.OrginalNumber = OrginalNumber;
+	}
