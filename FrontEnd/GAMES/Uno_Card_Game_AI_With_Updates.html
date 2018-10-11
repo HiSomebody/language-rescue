@@ -1,86 +1,90 @@
 <html>
 	<script>
-		
-		var HttpClient = function() {
-		    this.get = function(aUrl, aCallback) {
-		        var anHttpRequest = new XMLHttpRequest();
-		        anHttpRequest.onreadystatechange = function() { 
-		            if (anHttpRequest.readyState == 4 && anHttpRequest.status == 200)
-		                aCallback(anHttpRequest.responseText);
-		        }
-		        anHttpRequest.open( "GET", aUrl, true );            
-		        anHttpRequest.send( null );
+			
+	// In order to do HTTP calls (requests) to the server	
+	var HttpClient = function() {
+	    this.get = function(aUrl, aCallback) {
+	        var anHttpRequest = new XMLHttpRequest();
+	        anHttpRequest.onreadystatechange = function() { 
+	            if (anHttpRequest.readyState == 4 && anHttpRequest.status == 200)
+	                aCallback(anHttpRequest.responseText);
+	        }
+	        anHttpRequest.open( "GET", aUrl, true );            
+	        anHttpRequest.send( null );
+	    }
+	
+		this.post = function(aUrl, aCallback) {
+		var xhttp = new XMLHttpRequest();
+		  xhttp.onreadystatechange = function() {
+		    if (this.readyState == 4 && this.status == 200) {
+		      	aCallback(xhttp.responseText);
 		    }
-		
-			this.post = function(aUrl, aCallback) {
-			var xhttp = new XMLHttpRequest();
-			  xhttp.onreadystatechange = function() {
-			    if (this.readyState == 4 && this.status == 200) {
-			      	aCallback(xhttp.responseText);
-			    }
-			  };
-			  xhttp.open("POST", aUrl, true);
-			  xhttp.send();
-		  }
-		}
-		
-		var totalCards;
-		var Players;
-		var Playable_Deck;
-		var Whos_Turn = -1;
-		var CardIndex;
-		var RealPlayer0 = 0;
-		var NeedsToSayUno = false;
-		var DevloperMode;
-		var AITime = 1500;
-		var checkbox;
-		var checkbox2;
-		var checkbox3;
-		var checkbox4;
-		var checkbox5;
-		var button;
-		var button2;
-		var label;
-		var label2;
-		var label3;
-		var label4;
-		var label5;
-		var AITIMER;
-		var AITimeInput;
-		var SomeOneWon = false;
-		
-	window.onload = function()
-	{		
-		//console.log("+2" === 2);
+		  };
+		  xhttp.open("POST", aUrl, true);
+		  xhttp.send();
+	  }
+	}
+	
+	var totalCards;
+	var Players;
+	var Playable_Deck;
+	var Whos_Turn = -1;
+	var CardIndex;
+	var RealPlayer0 = 0;
+	var NeedsToSayUno = false;
+	var DevloperMode;
+	var AITime = 1500;
+	var checkbox;
+	var checkbox2;
+	var checkbox3;
+	var checkbox4;
+	var checkbox5;
+	var button;
+	var button2;
+	var label;
+	var label2;
+	var label3;
+	var label4;
+	var label5;
+	var AITIMER;
+	var AITimeInput;
+	var SomeOneWon = false;
+	var modal;
+	var deck;
+	var hand
+	var UNObutton;
+	var textArea;
+	
+	function setUpDevControls() {
 		//Makes Developer Buttons
 		checkbox = document.createElement('input');
 		checkbox.type = "checkbox";
-					
+				
 		label = document.createTextNode('Unlimited Drawing');
-					
+				
 		checkbox2 = document.createElement('input');
 		checkbox2.type = "checkbox";
-					
+				
 		label2 = document.createTextNode('Can Play Any Card');
-					
+				
 		checkbox3 = document.createElement('input');
 		checkbox3.type = 'checkbox';
-				
-		label3 = document.createTextNode('Dont Have to Click Uno');
-		
+			
+		label3 = document.createTextNode('Don\'t Have to Click Uno');
+	
 		checkbox4 = document.createElement('input');
 		checkbox4.type = 'checkbox';
-				
+			
 		label4 = document.createTextNode('AI Can Play Any Card');
-		
+	
 		checkbox5 = document.createElement('input');
 		checkbox5.type = 'checkbox';
-				
+			
 		label5 = document.createTextNode('No Alerts');
-					
+				
 		AITimeInput = document.createElement('input');
 		AITimeInput.placeholder = ("# Of Seconds In AI Timer");
-					
+				
 		button = document.createElement('Button');
 		button.innerHTML = 'Update';                   //MAKE ME A REGULAR BUTTON
 		AITIMER = Math.floor(AITimeInput.value);
@@ -88,7 +92,7 @@
 		{
 			AITime = AITIMER * 1000;
 		}
-					
+				
 		button2 = document.createElement('Button');
 		button2.innerHTML = 'Get Out Of Devoloper mode';
 		button2.onclick = function()
@@ -108,6 +112,10 @@
 			var toggleShowData = document.getElementById("toggleShowData").disabled = false;
 			Update_Cards();
 		}
+	}
+		
+	function addNumberPlayersListener()
+	{
 		var input = document.getElementById("numberPlayersTextField");
 		// Execute a function when the user releases a key on the keyboard
 		input.addEventListener("keyup", function(event) {
@@ -119,6 +127,10 @@
 				document.getElementById("ShuffleAndDealButton").click();
 		  	}
 		});
+	}	
+		
+	function loadDeck()
+	{
 		totalCards = [];
 		//prints out black speical cards
 		for(var i = 0; i <= 3; i++)
@@ -176,6 +188,41 @@
                 totalCards.push(c);
             }
         }
+	}
+		
+	function configureColorChooserModal()
+	{
+		// Get the <span> element that closes the modal
+		var span = document.getElementsByClassName("close")[0];
+		// When the user clicks on <span> (x), close the modal
+		span.onclick = function() {
+			modal.style.display = "none";
+		}
+		// When the user clicks anywhere outside of the modal, close it
+		window.onclick = function(event) {
+			if (event.target == modal) {
+				modal.style.display = "none";
+			}
+		}
+	}
+	
+	function getElements()
+	{
+		modal = document.getElementById('myModal');
+		UNObutton = document.getElementById("UNO");
+		deck = document.getElementById("deck");
+		hand = document.getElementById("hand");
+		textArea = document.getElementById("ta");
+		textArea.style.color = "black";
+	}
+		
+	window.onload = function()
+	{		
+		setUpDevControls();
+		addNumberPlayersListener();
+		loadDeck();
+		configureColorChooserModal();
+		getElements();
 		//Prints Out Deck
 		/*for(var i = 0; i < totalCards.length; i ++)
 		{
@@ -248,129 +295,72 @@
 		return null;
 	}
 		
-	function Update_Cards()
+	function drawOtherPlayersCards()
 	{
 		var OtherPlayersDecks = document.getElementById("OtherPlayers");
 		while (OtherPlayersDecks.hasChildNodes()) {                                //Removes All Card Imgs
 			OtherPlayersDecks.removeChild(OtherPlayersDecks.lastChild);
 		}
-		if (DevloperMode != true)
+		
+		
+		for (var i = 0; i < Players.length-1; i++)
 		{
-			if (RealPlayer0 == 0)        //If not reversed
+			var aPlayer;
+			if (RealPlayer0 == 0)        //If not reversed start drawing other players with index 1
 			{
-				for (var i = 1; i < Players.length; i++)
-				{
-					var PlayerLabel = OtherPlayersDecks.appendChild(document.createTextNode("Player " + (Players[i].OrginalNumber + 1)));
-					var linebreak6 = document.createElement("br");
-					OtherPlayersDecks.appendChild(linebreak6);
-					for(var j = 0; j < Players[i].Cards.length; j++)
-					{
-						var DOM_img = document.createElement("img");
-						DOM_img.src = "UnoCards/back_of_card.png";
-						DOM_img.hight = "38";
-						DOM_img.width = "25";
-						OtherPlayersDecks.appendChild(DOM_img);
-					}
-					var linebreak6 = document.createElement("br");
-					OtherPlayersDecks.appendChild(linebreak6);
-				}
-			}
-			else 
-			{
-				for (var i = 0; i < Players.length - 1; i++)
-				{
-					var PlayerLabel = OtherPlayersDecks.appendChild(document.createTextNode("Player " + (Players[i].OrginalNumber + 1)));
-					var linebreak6 = document.createElement("br");
-					OtherPlayersDecks.appendChild(linebreak6);
-					for(var j = 0; j < Players[i].Cards.length ; j++)
-					{
-						var DOM_img = document.createElement("img");
-						DOM_img.src = "UnoCards/back_of_card.png";
-						DOM_img.hight = "38";
-						DOM_img.width = "25";
-						OtherPlayersDecks.appendChild(DOM_img);
-					}
-					var linebreak6 = document.createElement("br");
-					OtherPlayersDecks.appendChild(linebreak6);
-				}
-			}
-		}
-		else
-		{
-			if (RealPlayer0 == 0)        //If not reversed
-			{
-				for (var i = 1; i < Players.length; i++)
-				{
-					var PlayerLabel = OtherPlayersDecks.appendChild(document.createTextNode("Player " + (Players[i].OrginalNumber + 1)));
-					var linebreak6 = document.createElement("br");
-					OtherPlayersDecks.appendChild(linebreak6);
-					for(var j = 0; j < Players[i].Cards.length; j++)
-					{
-						var DOM_img = document.createElement("img");
-						DOM_img.src = Players[i].Cards[j].filename;
-						DOM_img.hight = "38";
-						DOM_img.width = "25";
-						OtherPlayersDecks.appendChild(DOM_img);
-					}
-					var linebreak6 = document.createElement("br");
-					OtherPlayersDecks.appendChild(linebreak6);
-				}
+				aPlayer = Players[i+1];
 			}
 			else
+			{							// If reversed start drawing other players with index 0 (this client is the last index)
+				aPlayer = Players[i];
+			}
+			var PlayerLabel = OtherPlayersDecks.appendChild(document.createTextNode("Player " + (aPlayer.OrginalNumber + 1)));
+			var linebreak6 = document.createElement("br");
+			OtherPlayersDecks.appendChild(linebreak6);
+			for(var j = 0; j < aPlayer.Cards.length; j++)
 			{
-				for (var i = 0; i < Players.length - 1; i++)
+				var DOM_img = document.createElement("img");
+				if (DevloperMode != true)
 				{
-					var PlayerLabel = OtherPlayersDecks.appendChild(document.createTextNode("Player " + (Players[i].OrginalNumber + 1)));
-					var linebreak6 = document.createElement("br");
-					OtherPlayersDecks.appendChild(linebreak6);
-					for(var j = 0; j < Players[i].Cards.length ; j++)
-					{
-						var DOM_img = document.createElement("img");
-						DOM_img.src = Players[i].Cards[j].filename;
-						DOM_img.hight = "38";
-						DOM_img.width = "25";
-						OtherPlayersDecks.appendChild(DOM_img);
-					}
-					var linebreak6 = document.createElement("br");
-					OtherPlayersDecks.appendChild(linebreak6);
+					DOM_img.src = "UnoCards/back_of_card.png";
 				}
+				else
+				{
+					DOM_img.src = aPlayer.Cards[j].filename;
+				}
+				DOM_img.hight = "38";
+				DOM_img.width = "25";
+				OtherPlayersDecks.appendChild(DOM_img);
 			}
+			var linebreak6 = document.createElement("br");
+			OtherPlayersDecks.appendChild(linebreak6);
 		}
-		// Get the <span> element that closes the modal
-		var span = document.getElementsByClassName("close")[0];
-		// When the user clicks on <span> (x), close the modal
-		span.onclick = function() {
-			modal.style.display = "none";
-		}
-		// When the user clicks anywhere outside of the modal, close it
-		window.onclick = function(event) {
-			if (event.target == modal) {
-				modal.style.display = "none";
-			}
-		}
-		var modal = document.getElementById('myModal');
-		var UNObutton = document.getElementById("UNO");
-		var deck = document.getElementById("deck");
-		var hand = document.getElementById("hand");
-		var textArea = document.getElementById("ta");
-		textArea.style.color = "black";
-		while (deck.hasChildNodes()) {                                //Removes All Card Imgs
+		
+	}
+		
+	function drawDrawAndDiscardPile()
+	{
+		while (deck.hasChildNodes()) {                                //Removes All Card Imgs from deck
 			deck.removeChild(deck.lastChild);
 		}
-		while (hand.hasChildNodes()) {                                //Removes All Card Imgs
+		while (hand.hasChildNodes()) {                                //Removes All Card Imgs from hand
 			hand.removeChild(hand.lastChild);
 		}
+		
+		// if wild was played last this will tell people what the current color is
 		if (Playable_Deck[Playable_Deck.length - 1].Color == "Black") {
-			var Wild_Color = document.createTextNode(Playable_Deck[Playable_Deck.length - 1].Color_Of_Wild); //Creates text that will display color of wild
+			var Wild_Color = document.createTextNode(Playable_Deck[Playable_Deck.length - 1].Color_Of_Wild);
 			deck.appendChild(Wild_Color);
 		}
+		
 			
 		var linebreak3 = document.createElement("br");
 			deck.appendChild(linebreak3);
 			
 		var DOM_img = document.createElement("img");                  //Creates Playable_Deck Pile
+		DOM_img.setAttribute("id","playableDeck");
 		DOM_img.src = Playable_Deck[Playable_Deck.length - 1].filename;
-		deck.appendChild(DOM_img)
+		deck.appendChild(DOM_img);
 			
 		DOM_img = document.createElement("img");                      //Creates Back of Uno Card/Draw Pile
 		DOM_img.src = "UnoCards/back_of_card.png";
@@ -432,163 +422,86 @@
 			
 		var linebreak1 = document.createElement("br");
 		deck.appendChild(linebreak1);
+	}	
+	
+	function unoPenaltyCheck(thisPlayer)
+	{
+		if (thisPlayer.Cards.length == 2 && UNObutton.disabled == false && checkbox3.checked == false)
+		{
+			NeedsToSayUno = true;
+			if (checkbox5.checked == false) alert("You have been dealt 2 extra cards for not clicking Uno Button");
+		}
+		else 
+		{
+			NeedsToSayUno = false;
+			UNObutton.disabled = false;
+		}
+		if (NeedsToSayUno)
+		{
+			for (var i = 0; i < 2; i++)
+			{
+				thisPlayer.Cards.push(totalCards[0]);
+				totalCards.splice(0, 1);
+			}
+		}
+	}
+	
+	function configureCardClick(aCard, DOM_img, thisPlayer)
+	{
+		var aCardValue = aCard.Value;
+		
+		DOM_img.onclick = function() 
+		{
+			if (Whos_Turn == RealPlayer0)
+			{
+				unoPenaltyCheck(thisPlayer);
+				setCardIndex(this);
+				
+				if (aCard.Color == "Black")       //If Wild Card
+				{
+					// When the user clicks the button, open the modal 
+					modal.style.display = "block";
+				}
 			
-		for (var i = 0; i < Players[RealPlayer0].Cards.length; i++)
+		 
+				else if (aCardValue == "Skip")      //If Skip Card		
+				{
+					if (playCard('Skip',false) == true) setTimeout(function() {PlayGame()},1500);
+				} 
+				else if (aCardValue === "+2")      //If +2 Card
+				{
+					if (playCard('Plus2',false) == true) setTimeout(function() {PlayGame()},1500);
+				}
+				else if (aCardValue == "Reverse")      //If reverse Card
+				{
+					if (playCard('Reverse',false) == true) setTimeout(function() {PlayGame()},1500);
+				} 
+				else 									//If Number Card
+				{
+					if (playCard('Number',false) == true) setTimeout(function() {PlayGame()},1500);
+				}
+			}
+		}
+		return DOM_img;
+	}
+		
+	function Update_Cards()
+	{
+		drawOtherPlayersCards();
+		drawDrawAndDiscardPile();
+		
+		var thisPlayer = Players[RealPlayer0];
+		for (var i = 0; i < thisPlayer.Cards.length; i++)
 		{
 			DOM_img = document.createElement("img");
-			DOM_img.src = Players[RealPlayer0].Cards[i].filename;
-			if (Players[RealPlayer0].Cards[i].Color == "Black")       //If Wild Card
-			{
-				// When the user clicks the button, open the modal 
-				DOM_img.onclick = function() 
-				{
-						
-					if (Whos_Turn == RealPlayer0)
-					{
-						if (Players[RealPlayer0].Cards.length == 2 && UNObutton.disabled == false && checkbox3.checked == false)
-						{
-							NeedsToSayUno = true;
-							if (checkbox5.checked == false) alert("You have been delt 2 extra cards for not clicking Uno Button");
-						}
-						else 
-						{
-							NeedsToSayUno = false;
-							UNObutton.disabled = false;
-						}
-						if (NeedsToSayUno)
-						{
-							for (var i = 0; i < 2; i++)
-							{
-								Players[RealPlayer0].Cards.push(totalCards[0]);
-								totalCards.splice(0, 1);
-							}
-						}
-						setCardIndex(this);
-						modal.style.display = "block";
-					}
-				}
-			} 
-			else if (Players[RealPlayer0].Cards[i].Value == "Skip")      //If Skip Card		
-			{
-				DOM_img.onclick = function()
-				{
-					if (Whos_Turn == RealPlayer0)
-					{
-						if (Players[RealPlayer0].Cards.length == 2 && UNObutton.disabled == false && checkbox3.checked == false)
-						{
-							NeedsToSayUno = true;
-							if (checkbox5.checked == false) alert("You have been delt 2 extra cards for not clicking Uno Button");
-						}
-						else 
-						{
-							NeedsToSayUno = false;
-							UNObutton.disabled = false;
-						}
-						if (NeedsToSayUno)
-						{
-							for (var i = 0; i < 2; i++)
-							{
-								Players[RealPlayer0].Cards.push(totalCards[0]);
-								totalCards.splice(0, 1);
-							}
-						}
-						setCardIndex(this);
-						if (Skip() == true) PlayGame();
-					}
-				}
-			} 
-			else if (Players[RealPlayer0].Cards[i].Value === "+2")      //If +2 Card
-			{
-				DOM_img.onclick = function()
-				{
-					if (Whos_Turn == RealPlayer0)
-					{
-						if (Players[RealPlayer0].Cards.length == 2 && UNObutton.disabled == false && checkbox3.checked == false)
-						{
-							NeedsToSayUno = true;
-							if (checkbox5.checked == false) alert("You have been delt 2 extra cards for not clicking Uno Button");
-						}
-						else
-						{
-							NeedsToSayUno = false;
-							UNObutton.disabled = false;
-						}
-						if (NeedsToSayUno)
-						{
-							for (var i = 0; i < 2; i++)
-							{
-								Players[RealPlayer0].Cards.push(totalCards[0]);
-								totalCards.splice(0, 1);
-							}
-						}
-						setCardIndex(this);
-						if (Plus2() == true) PlayGame();
-					}
-				}
-			}
-			else if (Players[RealPlayer0].Cards[i].Value == "Reverse")      //If reverse Card
-			{
-				DOM_img.onclick = function()
-				{
-					if (Whos_Turn == RealPlayer0)
-					{
-						if (Players[RealPlayer0].Cards.length == 2 && UNObutton.disabled == false && checkbox3.checked == false)
-						{
-							NeedsToSayUno = true;
-							if (checkbox5.checked == false) alert("You have been delt 2 extra cards for not clicking Uno Button");
-						}
-						else
-						{
-							NeedsToSayUno = false;
-							UNObutton.disabled = false;
-						}
-						if (NeedsToSayUno)
-						{
-							for (var i = 0; i < 2; i++)
-							{
-								Players[RealPlayer0].Cards.push(totalCards[0]);
-								totalCards.splice(0, 1);
-							}
-						}
-						setCardIndex(this);
-						if (Reverse() == true) PlayGame();
-					}
-				}
-			} 
-			else
-			{
-				DOM_img.onclick = function()              //If Number Card
-				{
-					if (Whos_Turn == RealPlayer0)
-					{
-						if (Players[RealPlayer0].Cards.length == 2 && UNObutton.disabled == false && checkbox3.checked == false)
-						{
-							NeedsToSayUno = true;
-							if (checkbox5.checked == false) alert("You have been delt 2 extra cards for not clicking Uno Button");
-						}
-						else
-						{
-							NeedsToSayUno = false;
-							UNObutton.disabled = false;
-						}
-						//DOM_img.style.top = "-500px"; 
-						if (NeedsToSayUno)
-						{
-							for (var i = 0; i < 2; i++)
-							{
-								Players[RealPlayer0].Cards.push(totalCards[0]);
-								totalCards.splice(0, 1);
-							}
-						}
-						setCardIndex(this);
-						if (removeCard() == true) PlayGame();
-					}
-				}
-			}
+			DOM_img.src = thisPlayer.Cards[i].filename;
+			var aCard = thisPlayer.Cards[i];
+
+			DOM_img = configureCardClick(aCard,DOM_img,thisPlayer);
 		
-	
 			hand.appendChild(DOM_img);
 		}
+		
 		//PRINTS OUT PlAYERS HANDS
 		textArea.value = "For Real List Of Players Cards \n\r";
 		for (var i = 0; i <= Players.length - 1; i++)
@@ -607,24 +520,6 @@
 		textArea.value += "\n\r";
 		textArea.value += "You Are Player " + (RealPlayer0 + 1);
 	}
-		
-	function removeCard()
-	{
-		//var deck = document.getElementById("deck");
-		if (CanPlayCard() == true) //if wild already there
-		{
-			Playable_Deck.push(Players[RealPlayer0].Cards[CardIndex]);
-			Players[RealPlayer0].Cards.splice(CardIndex, 1);
-			Update_Cards();
-			return true;
-		}
-		else 
-		{
-			alert("Cannot Play Card");
-			return false;
-		}
-	}
-		
 		
 	function parseFilename(absolutePath)
 	{
@@ -660,8 +555,81 @@
 		Update_Cards();
 		return topCard.filename;
 	}
+	
+	
+	function playCard(cardType,calledByAI)
+	{
+		if (CanPlayCard() == true)
+		{	
+			var function1;
+			if (cardType == 'Skip')
+			{
+				function1 = doSkip;
+			}
+			if (cardType == 'Plus2')
+			{
+				function1 = doPlus2;
+			}
+			if (cardType == 'Reverse')
+			{
+				function1 = doReverse;
+			}
+			if (cardType == 'Number')
+			{
+				function1 = doNumber;
+			}
+			if (cardType == "Red" || cardType == "Blue" || cardType == "Green" || cardType == "Yellow")
+			{
+				function1 = doWild;
+			}
+			
+			if (!calledByAI)
+			{
+				var filename = Players[Whos_Turn].Cards[CardIndex].filename;
+				var cardImgDiv = getCardDiv(filename);
+				var deckElement = document.getElementById("playableDeck");
+				var rectOrigin = cardImgDiv.getBoundingClientRect();
+				var rectDestination = deckElement.getBoundingClientRect();
+				cardImgDiv.setAttribute("class","playable");
+				cardImgDiv.style.left = rectOrigin.left +"px";
+				cardImgDiv.style.top = rectOrigin.top-5 +"px";
+				setTimeout(function() {
+					cardImgDiv.style.left = rectDestination.left +"px";
+					cardImgDiv.style.top = rectDestination.top-10 +"px";
+					setTimeout(function() {
+						if (function1 == doWild)
+						{
+							doWild(cardType);
+						}
+						else
+						{
+							function1();
+						}
+					},500)
+				},500);
+			}
+			else
+			{
+				if (function1 == doWild)
+				{
+					doWild(cardType);
+				}
+				else
+				{
+					function1();
+				}
+			}
+			return true;				
+		}
+		else
+		{
+			if (Whos_Turn == RealPlayer0) alert("Cannot Play Card");
+			return false;
+		}
+	}
 		 
-	function Wild(Color)
+		 
+	function doWild(Color)
 	{
 		var draw_4 = false;
 		var modal = document.getElementById('myModal');
@@ -689,9 +657,9 @@
 			Players[RealPlayer0].Cards[CardIndex].Color_Of_Wild = Color;
 			Playable_Deck.push(Players[RealPlayer0].Cards[CardIndex]);
 			Players[RealPlayer0].Cards.splice(CardIndex, 1);
-			
+	
 		}
-		
+
 		else
 		{
 			if (Players[Whos_Turn].Cards[CardIndex].Value == "Wild & + 4")
@@ -732,16 +700,16 @@
 			Players[Whos_Turn].Cards[CardIndex].Color_Of_Wild = RandomColor;
 			Playable_Deck.push(Players[Whos_Turn].Cards[CardIndex]);
 			Players[Whos_Turn].Cards.splice(CardIndex, 1);
-			
+	
 		}
-		
+
 		// Skipping to next player's turn if +4
 		if (draw_4)
 		{
 			if (Players.length - 1 == Whos_Turn)
 			{
 				if (RealPlayer0 == 0)
-				{  //If Not Reversed
+					{  //If Not Reversed
 					Whos_Turn = RealPlayer0;
 				}
 				else
@@ -754,139 +722,126 @@
 				Whos_Turn++;
 			}
 		}
-		
 		modal.style.display = "none";
+		
 		if (Color != null) PlayGame();
 	}
 		
-	function Skip()
+	function doSkip()
 	{
-		if (CanPlayCard() == true)
+		Playable_Deck.push(Players[Whos_Turn].Cards[CardIndex]);
+		Players[Whos_Turn].Cards.splice(CardIndex, 1);
+		if (Players.length - 1 == Whos_Turn)
 		{
-			Playable_Deck.push(Players[Whos_Turn].Cards[CardIndex]);
-			Players[Whos_Turn].Cards.splice(CardIndex, 1);
-			if (Players.length - 1 == Whos_Turn)
-			{
-				if (RealPlayer0 == 0)
-				{  //If Not Reversed
-					if (checkbox5.checked == false) alert("Player " + (Whos_Turn + 1) + " Skiped Player 1");
-					Whos_Turn = RealPlayer0;
-				}
-				else
-				{
-					if (checkbox5.checked == false) alert("Player " + (Players[Whos_Turn].OrginalNumber + 1) + " skiped player " + (Whos_Turn + 1));
-					Whos_Turn = 0;
-				}
+			if (RealPlayer0 == 0)
+			{  //If Not Reversed
+				if (checkbox5.checked == false) alert("Player " + (Whos_Turn + 1) + " skipped Player 1");
+				Whos_Turn = RealPlayer0;
 			}
 			else
 			{
-				if (RealPlayer0 == 0) 
-				{   //If Not Reversed
-					if (checkbox5.checked == false) alert("Player " + (Whos_Turn + 1) + " Skiped Player "+ (Whos_Turn + 2));
-				}
-				else
-				{
-					if (checkbox5.checked == false) alert("Player " + (Players[Whos_Turn].OrginalNumber + 1) + " skiped player " + (Players[Whos_Turn + 1].OrginalNumber + 1));
-				}
-				Whos_Turn++;
+				if (checkbox5.checked == false) alert("Player " + (Players[Whos_Turn].OrginalNumber + 1) + " skipped player " + (Whos_Turn + 1));
+				Whos_Turn = 0;
 			}
-			Update_Cards();
-			return true;
 		}
 		else
 		{
-			if (Whos_Turn == RealPlayer0) alert("Cannot Play Card");
-			return false;
-		}
-	}
-		
-	function Plus2()
-	{
-		if (CanPlayCard() == true)
-		{
-			Playable_Deck.push(Players[Whos_Turn].Cards[CardIndex]);
-			Players[Whos_Turn].Cards.splice(CardIndex, 1);
-			if (Players.length - 1 == Whos_Turn)
-			{
-				if (RealPlayer0 == 0)
-				{  //If Not Reversed
-					if (checkbox5.checked == false) alert("Player " + (Whos_Turn + 1) + " has given player 1, 2 extra cards");
-					for (var i = 0; i < 2; i++)
-					{
-						Players[RealPlayer0].Cards.push(totalCards[0]);
-						totalCards.splice(0, 1);
-					}
-					Whos_Turn = RealPlayer0;
-				}
-				else
-				{
-					if (checkbox5.checked == false) alert("Player " + (Players[Whos_Turn].OrginalNumber + 1) + " had given player " + (Whos_Turn + 1) + ", 2 extra cards");
-					for (var i = 0; i < 2; i++)
-					{
-						Players[0].Cards.push(totalCards[0]);
-						totalCards.splice(0, 1);
-					}
-					Whos_Turn = 0;
-				}
+			if (RealPlayer0 == 0) 
+			{   //If Not Reversed
+				if (checkbox5.checked == false) alert("Player " + (Whos_Turn + 1) + " skipped Player "+ (Whos_Turn + 2));
 			}
 			else
 			{
-				if (RealPlayer0 == 0)
-				{  //If Not Reversed
-					if (checkbox5.checked == false) alert("Player " + (Whos_Turn + 1) + " has given player " + (Whos_Turn + 2) + ", 2 extra cards");
-				}
-				else
-				{
-					if (checkbox5.checked == false) alert("Player " + (Players[Whos_Turn].OrginalNumber + 1) + " had given player " + (Players[Whos_Turn + 1].OrginalNumber + 1) + ", 2 extra cards");
-				}
+				if (checkbox5.checked == false) alert("Player " + (Players[Whos_Turn].OrginalNumber + 1) + " skipped player " + (Players[Whos_Turn + 1].OrginalNumber + 1));
+			}
+			Whos_Turn++;
+		}
+		Update_Cards();
+	}	
+		
+
+	function doPlus2()
+	{
+		Playable_Deck.push(Players[Whos_Turn].Cards[CardIndex]);
+		Players[Whos_Turn].Cards.splice(CardIndex, 1);
+		if (Players.length - 1 == Whos_Turn)
+		{
+			if (RealPlayer0 == 0)
+			{  //If Not Reversed
+				if (checkbox5.checked == false) alert("Player " + (Whos_Turn + 1) + " has given player 1, 2 extra cards");
 				for (var i = 0; i < 2; i++)
 				{
-					Players[(Whos_Turn + 1)].Cards.push(totalCards[0]);
+					Players[RealPlayer0].Cards.push(totalCards[0]);
 					totalCards.splice(0, 1);
 				}
-				Whos_Turn++;
-			}
-			Update_Cards();
-			return true;
-		}
-		if (Whos_Turn == RealPlayer0) alert("Cannot Play Card");
-		return false;
-	}
-		
-	function Reverse()
-	{
-		if (CanPlayCard() == true)
-		{
-			Playable_Deck.push(Players[Whos_Turn].Cards[CardIndex]);
-			Players[Whos_Turn].Cards.splice(CardIndex, 1);
-				
-			Players.reverse();
-			if (Players.length == 2)
-			{
-				Whos_Turn = ((Players.length - 2) - Whos_Turn);
+				Whos_Turn = RealPlayer0;
 			}
 			else
 			{
-				Whos_Turn = ((Players.length - 1) - Whos_Turn);
+				if (checkbox5.checked == false) alert("Player " + (Players[Whos_Turn].OrginalNumber + 1) + " had given player " + (Whos_Turn + 1) + ", 2 extra cards");
+				for (var i = 0; i < 2; i++)
+				{
+					Players[0].Cards.push(totalCards[0]);
+					totalCards.splice(0, 1);
+				}
+				Whos_Turn = 0;
 			}
-			if (RealPlayer0 == 0)
-			{
-				RealPlayer0 = Players.length - 1;
-			}
-			else
-			{
-				RealPlayer0 = 0;
-			}
-			if (checkbox5.checked == false) alert("Reversed Order Of Players!");
-			return true;
 		}
 		else
 		{
-			if (Whos_Turn == RealPlayer0) alert("Cannot Play Card");
-			return false;
+			if (RealPlayer0 == 0)
+			{  //If Not Reversed
+				if (checkbox5.checked == false) alert("Player " + (Whos_Turn + 1) + " has given player " + (Whos_Turn + 2) + ", 2 extra cards");
+			}
+			else
+			{
+				if (checkbox5.checked == false) alert("Player " + (Players[Whos_Turn].OrginalNumber + 1) + " had given player " + (Players[Whos_Turn + 1].OrginalNumber + 1) + ", 2 extra cards");
+			}
+			for (var i = 0; i < 2; i++)
+			{
+				Players[(Whos_Turn + 1)].Cards.push(totalCards[0]);
+				totalCards.splice(0, 1);
+			}
+			Whos_Turn++;
 		}
+		Update_Cards();
 	}
 		
+		
+	function doReverse()
+	{
+		Playable_Deck.push(Players[Whos_Turn].Cards[CardIndex]);
+		Players[Whos_Turn].Cards.splice(CardIndex, 1);
+			
+		Players.reverse();
+		if (Players.length == 2)
+		{
+			Whos_Turn = ((Players.length - 2) - Whos_Turn);
+		}
+		else
+		{
+			Whos_Turn = ((Players.length - 1) - Whos_Turn);
+		}
+		if (RealPlayer0 == 0)
+		{
+			RealPlayer0 = Players.length - 1;
+		}
+		else
+		{
+			RealPlayer0 = 0;
+		}
+		if (checkbox5.checked == false) alert("Reversed Order Of Players!");
+	}
+		
+	
+	function doNumber()	
+	{
+		Playable_Deck.push(Players[Whos_Turn].Cards[CardIndex]);
+		Players[Whos_Turn].Cards.splice(CardIndex, 1);
+		Update_Cards();
+	}
+		
+	
 	function PlayGame()
 	{
 		for (var i = 0; i < Players.length; i++)
@@ -953,33 +908,23 @@
 				CardIndex = i;
 				if (Players[Whos_Turn].Cards[i].Color == "Black")
 				{
-					Wild(null);
+					playCard(null,true);
+				}
+				else if (Players[Whos_Turn].Cards[i].Value == "Skip")
+				{
+					playCard('Skip',true);
+				}
+				else if (Players[Whos_Turn].Cards[i].Value === "+2")
+				{
+					playCard('Plus2',true);
+				} 
+				else if (Players[Whos_Turn].Cards[i].Value == "Reverse")
+				{
+					playCard('Reverse',true);
 				}
 				else
 				{
-					if (Players[Whos_Turn].Cards[i].Value == "Skip")
-					{
-						Skip();
-					}
-					else
-					{
-						if (Players[Whos_Turn].Cards[i].Value === "+2")
-						{
-							Plus2();
-						} 
-						else
-						{
-							if (Players[Whos_Turn].Cards[i].Value == "Reverse")
-							{
-								Reverse();
-							}
-							else
-							{
-								Playable_Deck.push(Players[Whos_Turn].Cards[i])
-								Players[Whos_Turn].Cards.splice(i, 1);
-							}
-						}
-					}
+					playCard('Number',true);
 				}
 				NeedToDraw = false;
 				break;
@@ -1043,6 +988,7 @@
 			}
 		});				
 	}
+	
 	function sayUno()
 	{
 		var button = document.getElementById("UNO");
@@ -1278,6 +1224,13 @@ body {font-family: Arial, Helvetica, sans-serif;}
 #tagline {
 	font-size:12
 }
+
+.playable {
+	position:absolute;
+	-webkit-transition: all .25s ease-in;
+	transition: all .25s ease-in;
+}
+
 </style>
 </head>
 <body>
@@ -1293,10 +1246,10 @@ body {font-family: Arial, Helvetica, sans-serif;}
       <h2>Choose Color</h2>
     </div>
     <div class="modal-body">
-      <button class="redbutton" onclick="Wild('Red')">Red</button>
-      <button class="greenbutton" onclick="Wild('Green')">Green</button>
-      <button class="bluebutton" onclick="Wild('Blue')">Blue</button>
-      <button class="yellowbutton" onclick="Wild('Yellow')">Yellow</button>
+      <button class="redbutton" onclick="playCard('Red',false)">Red</button>
+      <button class="greenbutton" onclick="playCard('Green',false)">Green</button>
+      <button class="bluebutton" onclick="playCard('Blue',false)">Blue</button>
+      <button class="yellowbutton" onclick="playCard('Yellow',false)">Yellow</button>
     </div>
   </div>
 
