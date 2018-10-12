@@ -37,6 +37,7 @@
 	var checkbox3;
 	var checkbox4;
 	var checkbox5;
+	var checkbox6;
 	var button;
 	var button2;
 	var label;
@@ -222,6 +223,7 @@
 		deck = document.getElementById("deck");
 		hand = document.getElementById("hand");
 		checkbox5 = document.getElementById('NoPopUps');
+		checkbox6 = document.getElementById('No_Animation');
 		textArea = document.getElementById("ta");
 		textArea.style.color = "black";
 	}
@@ -600,68 +602,81 @@
 	{
 		var topCard = totalCards[0];
 		
-		
-		var filename = topCard.filename;
-		var cardImgDiv = document.createElement("img"); // Create a new div
-		
-		if (!calledByOtherPlayer)
+		if (checkbox6.checked == false)
 		{
-			cardImgDiv.src = filename;
-		}
-		else
-		{
-		 	cardImgDiv.src = "UnoCards/back_of_card.png";
-		}
-		
-		deck.appendChild(cardImgDiv);
-		cardImgDiv.setAttribute("class","playable");
-											    
-		var deckElement = document.getElementById("drawPile");
-		var rectOrigin = deckElement.getBoundingClientRect();		
-		var rectDestination = getCurrentPlayerLastCardDiv().getBoundingClientRect();
-		
-		var startPointX = rectOrigin.left;
-		var startPointY = rectOrigin.top-5;	
-		
-		var endPointX = rectDestination.left;
-		var endPointY = rectDestination.top-10;
-		
-		cardImgDiv.style.left = startPointX +"px";
-		cardImgDiv.style.top = startPointY +"px";
-		
-		setTimeout(function() {
+			var filename = topCard.filename;
+			var cardImgDiv = document.createElement("img"); // Create a new div
 			
 			if (!calledByOtherPlayer)
 			{
 				cardImgDiv.src = filename;
 			}
-			
-			cardImgDiv.style.left = endPointX +"px";
-			cardImgDiv.style.top = endPointY +"px";
-			if (calledByOtherPlayer)
+			else
 			{
-				cardImgDiv.width = "38";
+				cardImgDiv.src = "UnoCards/back_of_card.png";
 			}
 			
+			deck.appendChild(cardImgDiv);
+			cardImgDiv.setAttribute("class","playable");
+													
+			var deckElement = document.getElementById("drawPile");
+			var rectOrigin = deckElement.getBoundingClientRect();		
+			var rectDestination = getCurrentPlayerLastCardDiv().getBoundingClientRect();
+			
+			var startPointX = rectOrigin.left;
+			var startPointY = rectOrigin.top-5;	
+			
+			var endPointX = rectDestination.left;
+			var endPointY = rectDestination.top-10;
+			
+			cardImgDiv.style.left = startPointX +"px";
+			cardImgDiv.style.top = startPointY +"px";
+			
 			setTimeout(function() {
+				
 				if (!calledByOtherPlayer)
-				{      //If i clicked it
-					Players[RealPlayer0].Cards.push(topCard);
-					totalCards.splice(0 ,1);
+				{
+					cardImgDiv.src = filename;
 				}
-				else 
-				{              //If AI called function
-					Players[Whos_Turn].Cards.push(topCard);
-					totalCards.splice(0 ,1);
+				
+				cardImgDiv.style.left = endPointX +"px";
+				cardImgDiv.style.top = endPointY +"px";
+				if (calledByOtherPlayer)
+				{
+					cardImgDiv.width = "38";
 				}
-		
-				Update_Cards();
-			},playDelay/3)
-		},playDelay/3);
-		
-		//return true;
-		
-		
+				
+				setTimeout(function() {
+					if (!calledByOtherPlayer)
+					{      //If i clicked it
+						Players[RealPlayer0].Cards.push(topCard);
+						totalCards.splice(0 ,1);
+					}
+					else 
+					{              //If AI called function
+						Players[Whos_Turn].Cards.push(topCard);
+						totalCards.splice(0 ,1);
+					}
+			
+					Update_Cards();
+				},playDelay/3)
+			},playDelay/3);
+		}
+		else
+		{
+			if (!calledByOtherPlayer)
+			{      //If i clicked it
+				Players[RealPlayer0].Cards.push(topCard);
+				totalCards.splice(0 ,1);
+			}
+			else 
+			{              //If AI called function
+				Players[Whos_Turn].Cards.push(topCard);
+				totalCards.splice(0 ,1);
+			}
+
+			Update_Cards();
+		}
 		
 		
 		return topCard.filename;
@@ -693,45 +708,57 @@
 				cardImgDiv = getOtherPlayerCardDiv(filename);
 			}
 			 
-												    
-			var deckElement = document.getElementById("playableDeck");
-			var rectDestination = deckElement.getBoundingClientRect();
-			cardImgDiv.setAttribute("class","playable");
-			
-			var rectOrigin = cardImgDiv.getBoundingClientRect();
-			
-			var startPointX = rectOrigin.left;
-			var startPointY = rectOrigin.top-5;	
-			
-			var endPointX = rectDestination.left;
-			var endPointY = rectDestination.top-10;
-			
-			cardImgDiv.style.left = startPointX +"px";
-			cardImgDiv.style.top = startPointY +"px";
-			
-			setTimeout(function() {
+			if (checkbox6.checked == false)
+			{				
+				var deckElement = document.getElementById("playableDeck");
+				var rectDestination = deckElement.getBoundingClientRect();
+				cardImgDiv.setAttribute("class","playable");
 				
-				// IF OTHER PLAYER, THIS SHOULD CHANGE IT TO BE FACE FORWARD SRC
-				if (calledByOtherPlayer)
-				{
-					cardImgDiv.src = filename;
-				}
+				var rectOrigin = cardImgDiv.getBoundingClientRect();
 				
-				cardImgDiv.style.left = endPointX +"px";
-				cardImgDiv.style.top = endPointY +"px";
-				cardImgDiv.width = "51";
+				var startPointX = rectOrigin.left;
+				var startPointY = rectOrigin.top-5;	
+				
+				var endPointX = rectDestination.left;
+				var endPointY = rectDestination.top-10;
+				
+				cardImgDiv.style.left = startPointX +"px";
+				cardImgDiv.style.top = startPointY +"px";
+				
 				setTimeout(function() {
-					if (function1 == doWild)
+					
+					// IF OTHER PLAYER, THIS SHOULD CHANGE IT TO BE FACE FORWARD SRC
+					if (calledByOtherPlayer)
 					{
-						doWild(cardType);
+						cardImgDiv.src = filename;
 					}
-					else
-					{
-						function1();
-					}
-				},playDelay/3)
-			},playDelay/3);
-			
+					
+					cardImgDiv.style.left = endPointX +"px";
+					cardImgDiv.style.top = endPointY +"px";
+					cardImgDiv.width = "51";
+					setTimeout(function() {
+						if (function1 == doWild)
+						{
+							doWild(cardType);
+						}
+						else
+						{
+							function1();
+						}
+					},playDelay/3)
+				},playDelay/3);
+			}
+			else
+			{
+				if (function1 == doWild)
+				{
+					doWild(cardType);
+				}
+				else
+				{
+					function1();
+				}
+			}
 			return true;				
 		}
 		else
@@ -1009,7 +1036,7 @@
 			if (Players[Whos_Turn].Cards[i].Color == Playable_Deck[Playable_Deck.length - 1].Color //If Same Color
 				|| Players[Whos_Turn].Cards[i].Value === Playable_Deck[Playable_Deck.length - 1].Value  //if Same number
 				|| Players[Whos_Turn].Cards[i].Color == Playable_Deck[Playable_Deck.length - 1].Color_Of_Wild //if wild already there
-				|| Players[Whos_Turn].Cards[i].Color == "Black" || checkbox4.checked == true) //if wild card or if AI can plat any card is checked
+				|| Players[Whos_Turn].Cards[i].Color == "Black" || checkbox4.checked == true) //if wild card or if AI can play any card is checked
 			{
 				CardIndex = i;
 				if (Players[Whos_Turn].Cards[i].Color == "Black")
@@ -1076,7 +1103,6 @@
 					DM.appendChild(label3);
 					DM.appendChild(document.createTextNode("  ,  "))
 					DM.appendChild(checkbox4);
-					checkbox4.checked = true;
 					DM.appendChild(label4);
 					DM.appendChild(document.createTextNode("  ,  "))
 					DM.appendChild(AITimeInput);
@@ -1115,11 +1141,16 @@
 		}
 		else
 		{
-			if (DevloperMode == true && Whos_Turn == RealPlayer0 && checkbox2.checked == true)   //IF I CAN PLAY ANY CARD IS CHECKED AND IS MY TURN
+			if (Whos_Turn == RealPlayer0 && checkbox2.checked == true)   //IF I CAN PLAY ANY CARD IS CHECKED AND IS MY TURN
 			{
 				return true;
 			} else {
-				return false;
+				if (checkbox4.checked == true && Whos_Turn != RealPlayer0) //If AI can play any card is checked and not my turn
+				{
+					return true;
+				} else {
+					return false;
+				}
 			}
 		}
 	}
