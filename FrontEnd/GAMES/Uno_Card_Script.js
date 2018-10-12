@@ -52,6 +52,7 @@
 	var hand
 	var UNObutton;
 	var textArea;
+	var playDelay = 1500
 	
 	window.onload = function()
 	{		
@@ -356,7 +357,6 @@
 				{
 					DOM_img.src = aPlayer.Cards[j].filename;
 				}
-				DOM_img.hight = "38";
 				DOM_img.width = "25";
 				
 				otherPlayerHand.appendChild(DOM_img);
@@ -398,41 +398,47 @@
 			
 		DOM_img = document.createElement("img");                      //Creates Back of Uno Card/Draw Pile
 		DOM_img.src = "UnoCards/back_of_card.png";
+		DOM_img.setAttribute("id", "drawPile");
 		deck.appendChild(DOM_img);
 		DOM_img.onclick = function()
 		{
-			if (DevloperMode == true && Whos_Turn != RealPlayer0 && checkbox.checked == true) Draw();
+			if (DevloperMode == true && Whos_Turn != RealPlayer0 && checkbox.checked == true) 
+			{
+				Draw(false);
+			}
 			if (Whos_Turn == RealPlayer0){
-				var card_filename = Draw();
-				var card_div = getMyCardDiv(card_filename);
-				setCardIndex(card_div);
-				if (CanPlayCard())
-				{
-					setTimeout(function() {
-						var r = confirm("Would you like to play the card you just drew?")
-						if (r == true)
-						{
-							if (document.getElementById("hand").childNodes.length == 2)
+				var card_filename = Draw(false);
+				setTimeout(function(){
+					var card_div = getMyCardDiv(card_filename);
+					setCardIndex(card_div);
+					if (CanPlayCard())
+					{
+						setTimeout(function() {
+							var r = confirm("Would you like to play the card you just drew?")
+							if (r == true)
 							{
-								setTimeout(function() {
+								if (document.getElementById("hand").childNodes.length == 2)
+								{
+									setTimeout(function() {
+										card_div.onclick();
+									},2500);
+								}
+								else
+								{
 									card_div.onclick();
-								},2500);
+								}
 							}
 							else
 							{
-								card_div.onclick();
+								PlayGame();
 							}
-						}
-						else
-						{
-							PlayGame();
-						}
-					}, 500);
-				}
-				else
-				{
-					PlayGame();
-				}
+						}, 500);
+					}
+					else
+					{
+						PlayGame();
+					}
+				},playDelay);
 			}
 		}
 			
@@ -443,13 +449,13 @@
 		deck.appendChild(linebreak2);
 		if(Whos_Turn == RealPlayer0)
 		{
-			var t = document.createTextNode("Yore cards, (Yore Turn)");
+			var t = document.createTextNode("Yore Turn");//"Yore cards, (Yore Turn)");
 		} else {
 			if (Whos_Turn == -1)
 			{
-				var t = document.createTextNode("Yore cards, (Player " + (Players[0].OrginalNumber + 1) + " Turn)");
+				var t = document.createTextNode("");//Yore cards, (Player " + (Players[0].OrginalNumber + 1) + " Turn)");
 			} else {
-				var t = document.createTextNode("Yore cards, (Player " + (Players[Whos_Turn].OrginalNumber + 1) + " Turn)");
+				var t = document.createTextNode("");//Yore cards, (Player " + (Players[Whos_Turn].OrginalNumber + 1) + " Turn)");
 			}
 		}
 		deck.appendChild(t);
@@ -500,19 +506,19 @@
 		 
 				else if (aCardValue == "Skip")      //If Skip Card		
 				{
-					if (playCard('Skip',false) == true) setTimeout(function() {PlayGame()},1500);
+					if (playCard('Skip',false) == true) setTimeout(function() {PlayGame()},playDelay);
 				} 
 				else if (aCardValue === "+2")      //If +2 Card
 				{
-					if (playCard('Plus2',false) == true) setTimeout(function() {PlayGame()},1500);
+					if (playCard('Plus2',false) == true) setTimeout(function() {PlayGame()},playDelay);
 				}
 				else if (aCardValue == "Reverse")      //If reverse Card
 				{
-					if (playCard('Reverse',false) == true) setTimeout(function() {PlayGame()},1500);
+					if (playCard('Reverse',false) == true) setTimeout(function() {PlayGame()},playDelay);
 				} 
 				else 									//If Number Card
 				{
-					if (playCard('Number',false) == true) setTimeout(function() {PlayGame()},1500);
+					if (playCard('Number',false) == true) setTimeout(function() {PlayGame()},playDelay);
 				}
 			}
 		}
@@ -571,21 +577,93 @@
 		}
 	}
 		
-	function Draw(AI)
+	function getCurrentPlayerLastCardDiv()
+	{
+		if (Whos_Turn == RealPlayer0)
+		{
+			// it's me
+			var hand = document.getElementById("hand");
+			var children = hand.childNodes;
+			return children[children.length-1];
+		}
+		else
+		{
+			// it's someone else
+			var deckId = "Player " + (Players[Whos_Turn].OrginalNumber + 1);
+			var hand = document.getElementById(deckId);
+			var children = hand.childNodes;
+			return children[children.length-1];
+		}
+	}
+		
+	function Draw(calledByOtherPlayer)
 	{
 		var topCard = totalCards[0];
-		if (AI == null)
-		{      //If i clicked it
-			Players[RealPlayer0].Cards.push(topCard);
-			totalCards.splice(0 ,1);
+		
+		
+		var filename = topCard.filename;
+		var cardImgDiv = document.createElement("img"); // Create a new div
+		
+		if (!calledByOtherPlayer)
+		{
+			cardImgDiv.src = filename;
 		}
-		else 
-		{              //If AI called function
-			Players[Whos_Turn].Cards.push(topCard);
-			totalCards.splice(0 ,1);
+		else
+		{
+		 	cardImgDiv.src = "UnoCards/back_of_card.png";
 		}
 		
-		Update_Cards();
+		deck.appendChild(cardImgDiv);
+		cardImgDiv.setAttribute("class","playable");
+											    
+		var deckElement = document.getElementById("drawPile");
+		var rectOrigin = deckElement.getBoundingClientRect();		
+		var rectDestination = getCurrentPlayerLastCardDiv().getBoundingClientRect();
+		
+		var startPointX = rectOrigin.left;
+		var startPointY = rectOrigin.top-5;	
+		
+		var endPointX = rectDestination.left;
+		var endPointY = rectDestination.top-10;
+		
+		cardImgDiv.style.left = startPointX +"px";
+		cardImgDiv.style.top = startPointY +"px";
+		
+		setTimeout(function() {
+			
+			if (!calledByOtherPlayer)
+			{
+				cardImgDiv.src = filename;
+			}
+			
+			cardImgDiv.style.left = endPointX +"px";
+			cardImgDiv.style.top = endPointY +"px";
+			if (calledByOtherPlayer)
+			{
+				cardImgDiv.width = "38";
+			}
+			
+			setTimeout(function() {
+				if (!calledByOtherPlayer)
+				{      //If i clicked it
+					Players[RealPlayer0].Cards.push(topCard);
+					totalCards.splice(0 ,1);
+				}
+				else 
+				{              //If AI called function
+					Players[Whos_Turn].Cards.push(topCard);
+					totalCards.splice(0 ,1);
+				}
+		
+				Update_Cards();
+			},playDelay/3)
+		},playDelay/3);
+		
+		//return true;
+		
+		
+		
+		
 		return topCard.filename;
 	}
 	
@@ -641,7 +719,6 @@
 				
 				cardImgDiv.style.left = endPointX +"px";
 				cardImgDiv.style.top = endPointY +"px";
-				cardImgDiv.hight = "75";
 				cardImgDiv.width = "51";
 				setTimeout(function() {
 					if (function1 == doWild)
@@ -652,8 +729,8 @@
 					{
 						function1();
 					}
-				},500)
-			},500);
+				},playDelay/3)
+			},playDelay/3);
 			
 			return true;				
 		}
@@ -963,7 +1040,7 @@
 		setTimeout(function() {
 			Update_Cards();
 			PlayGame()
-		},1500);
+		},playDelay);
 	}
 		
 	function developerMode()
