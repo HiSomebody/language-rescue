@@ -191,16 +191,19 @@ function dealUnoDeck(gameData,totalPlayers)
 			gameData['totalCards'].splice(RanNum, 1);   //First Number Is Index You Want To Remove, Second is the number of elements to remove 
 			if (j == 7)
 			{
+				var isAI = false;
 				var playerName;
 				if (i < realPlayers.length)
 				{
 					playerName = realPlayers[i];
+					isAI = false;
 				}
 				else
 				{
 					playerName = "A.I. " + getRandomName();
+					isAI = true;
 				}
-				var p = new Player (playerName, List_Of_Cards, i);
+				var p = new Player (playerName, List_Of_Cards, i, isAI);
 				gameData['players'].push(p);
 			}
 		}
@@ -262,11 +265,12 @@ function Card (Value, Color, filename)
 	}		
 }
 
-function Player (Name, Cards, OrginalNumber)
+function Player (Name, Cards, OrginalNumber, isAI)
 {
 	this.Name = Name;
 	this.Cards = Cards;
 	this.OrginalNumber = OrginalNumber;
+	this.isAI = isAI;
 }
 
 app.post('/schoolStore/sell', function(req,res){
