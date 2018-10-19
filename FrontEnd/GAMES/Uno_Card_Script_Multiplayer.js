@@ -280,13 +280,21 @@
 		var Error = document.getElementById("Error");
 		Error.style.display = "none";
 		Players = gameData['players'];
+		var shiftAmount = 0;
 		for (var i = 0; i < Players.length; i++)
 		{
 			if (Players[i].Name == username)
 			{
-				RealPlayer0 = i;
+				shiftAmount = i;
 			}
 		}
+		for (var i = 0; i < shiftAmount; i++)
+		{
+			var firstElement = Players.shift();
+			Players.push(firstElement);
+		}
+		
+		
 		if (checkbox5.checked == false) alert(Players.length + " Players will be dealt");
 		totalCards = gameData['totalCards'];
 		Playable_Deck = gameData['Playable_Deck'];
