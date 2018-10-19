@@ -197,7 +197,7 @@ function dealUnoDeck(gameData,totalPlayers)
 				}
 				else
 				{
-					playerName = "AI " + getRandomName();
+					playerName = "A.I. " + getRandomName();
 				}
 				var p = new Player (playerName, List_Of_Cards, i);
 				gameData['players'].push(p);
