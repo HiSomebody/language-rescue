@@ -166,7 +166,7 @@ app.post('/dealUnoCards/:code/:numPlayers', function(req,res){
 function getRandomName()
 {
 	var randIndex = Math.floor(Math.random() * randomNames.length);
-	console.log(randomNames[randIndex];
+	console.log(randomNames[randIndex]);
 	return randomNames[randIndex];
 }
 
