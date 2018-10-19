@@ -82,7 +82,7 @@
 		
 		setUpDevControls();
 		addNumberPlayersListener();
-		makeDeck();
+		//makeDeck(); // server task
 		configureColorChooserModal();
 		getElements();
 		/*Prints Out Deck
@@ -225,70 +225,6 @@
 		});
 	}	
 		
-	// *Server code	
-	function makeDeck()
-	{
-		// following code should be run once immediately when the game is created in the hub
-		// instead of this code here we should simply GET the totalCards list
-		
-		totalCards = [];
-		//prints out black speical cards
-		for(var i = 0; i <= 3; i++)
-		{
-			for(var j = 13; j <= 14; j++)
-			{
-				var filename = "http://104.236.169.62/UnoCards/black_wild";
-				if (j == 14) filename += "&+4";
-				filename += ".png";
-				var c = new Card(j, "Black", filename);
-				totalCards.push(c);
-			}
-		}
-		//Makes Special Color Cards
-		for(var i = 10; i <= 12; i++)
-		{
-			for(var j = 0; j < 8; j++)
-			{
-				var filename = "http://104.236.169.62/UnoCards/"
-				if (j == 0 || j == 4) filename += "red_";
-				if (j == 1 || j == 5) filename += "yellow_";
-				if (j == 2 || j == 6) filename += "blue_";
-				if (j == 3 || j == 7) filename += "green_";
-				if (i == 10) filename += "skip.png";
-				if (i == 11) filename += "reverse.png";
-				if (i == 12) filename += "+2.png";
-				var c = new Card(i, j,filename);
-				totalCards.push(c);
-			}
-		}
-		//Creating 4 0's
-        for(var i = 0; i < 4; i++)
-		{
-			var filename = "http://104.236.169.62/UnoCards/"
-			if (i == 0) filename += "red_";
-			if (i == 1) filename += "yellow_";
-			if (i == 2) filename += "blue_";
-			if (i == 3) filename += "green_";
-			filename += "0.png";
-			var c = new Card(0, i, filename);
-			totalCards.push(c);
-		}
-		//Creating Rest of Uno Deck
-		for (var i = 1; i <= 9; i++)
-		{
-            for (var j = 0; j < 8; j++) 
-			{
-				var filename = "http://104.236.169.62/UnoCards/"
-				if (j == 0 || j == 4) filename += "red_";
-				if (j == 1 || j == 5) filename += "yellow_";
-				if (j == 2 || j == 6) filename += "blue_";
-				if (j == 3 || j == 7) filename += "green_";
-				filename += i + ".png";
-                var c = new Card(i, j, filename);
-                totalCards.push(c);
-            }
-        }
-	}
 		
 	// Keep with Client	
 	function configureColorChooserModal()
@@ -336,26 +272,9 @@
 		// Server code. But players should already be initialized as they join in waiting period before anything is dealt  
 		
 		// Instead here there should be GET code to retrieve up-to-date gameData object
-		
-		//SERVER -------------
-		//Shuffle Rest Deck
-		var copyOfDeck = totalCards;
-		totalCards = [];
-		for (var i = 0; i < 108; i++)
-		{
-			var RanNum1 = Math.floor(Math.random() * copyOfDeck.length);
-			totalCards.push(copyOfDeck[RanNum1]);
-			copyOfDeck.splice(RanNum1, 1);
-		}
-		
-		
-		
-		
-		//Deal Cards
-		Players = [];
 		var totalPlayers = numPlayers + numberAIs;
 		if (totalPlayers <= 10 && totalPlayers >= 2)
-		{	
+		{
 			var gameControls = document.getElementById('gameControls');
 			gameControls.style.display = "block";
 			var gameConfig= document.getElementById('gameConfig');
@@ -363,28 +282,30 @@
 			Error.style.display = "none";
 			ShuffleAndDealButton.remove();
 			if (checkbox5.checked == false) alert(totalPlayers + " Players will be dealt");
-			for (var i = 0; i < numberAIs; i++)
-			{
-				var List_Of_Cards = [];
-				for (var j = 1; j <= 7; j++)
+			
+			//SERVER Call -------------
+			// POST DealUnoCards
+			var client = new HttpClient();
+			client.post('http://104.236.169.62:80/dealUnoCards/'+code+'/'+totalPlayers, function(response) {
+				var parsedJSON = (JSON.parse(response));
+			    //console.log(parsedJSON);
+				if (parsedJSON["result"] == "success")
 				{
-					var RanNum = Math.floor(Math.random() * totalCards.length);
-					List_Of_Cards.push(totalCards[RanNum]);
-					totalCards.splice(RanNum, 1);   //First Number Is Index You Want To Remove, Second is the number of elements to remove 
-					if (j == 7)
-					{
-						var p = new Player ("P" + i, List_Of_Cards, i);
-						Players.push(p);
-					}
+					var gameData = parsedJSON['gameData'];
+					Players = gameData['players'];
+					totalCards = gameData['totalCards'];
+					Playable_Deck = gameData['Playable_Deck'];
+					PlayGame();
 				}
-			}
-			Playable_Deck = [];
-			Playable_Deck.push(totalCards[0]);
-			totalCards.splice(0, 1);
+				else
+				{
+					console.log("failed to deal cards");
+					//document.appendChild(failedDiv);
+				}
+			});		
 			
 			//END SERVER ---------
 			
-			PlayGame();
 		} else {
 			Error.style.color = "red";
 			Error.style.display = "block";
