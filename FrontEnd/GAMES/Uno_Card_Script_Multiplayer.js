@@ -98,20 +98,29 @@
 		// get gamedata from server to update players list
 		getGameData(function(gameData){
 			// on success
-			var waitingDiv = document.getElementById("waitingText");
-			waitingDiv.innerHTML = "Waiting for Other Players to Join with Game Code: " + code;
-			var joinedDiv = document.getElementById("joined");
-			var players = gameData['players'];
-			joinedDiv.innerHTML = "JOINED: ";
-			numPlayers = players.length;
-			for (var i = 0; i < players.length; i++)
+			
+			if (gameData.startedGame == true)
 			{
-				var p = players[i];
-				var playerName = p.name;
-				joinedDiv.innerHTML += playerName;
-				if (i < players.length-1)
+				startGame(gameData);
+				return;
+			}
+			else
+			{
+				var waitingDiv = document.getElementById("waitingText");
+				waitingDiv.innerHTML = "Waiting for Other Players to Join with Game Code: " + code;
+				var joinedDiv = document.getElementById("joined");
+				var players = gameData['players'];
+				joinedDiv.innerHTML = "JOINED: ";
+				numPlayers = players.length;
+				for (var i = 0; i < players.length; i++)
 				{
-					joinedDiv.innerHTML += ", "
+					var p = players[i];
+					var playerName = p.name;
+					joinedDiv.innerHTML += playerName;
+					if (i < players.length-1)
+					{
+						joinedDiv.innerHTML += ", "
+					}
 				}
 			}
 		});
@@ -256,6 +265,21 @@
 		textArea.style.color = "black";
 	}
 	
+	function startGame(gameData)
+	{
+		var gameControls = document.getElementById('gameControls');
+		gameControls.style.display = "block";
+		var gameConfig= document.getElementById('gameConfig');
+		gameConfig.style.display = "none";	
+		Error.style.display = "none";
+		ShuffleAndDealButton.remove();
+		if (checkbox5.checked == false) alert(totalPlayers + " Players will be dealt");
+		Players = gameData['players'];
+		totalCards = gameData['totalCards'];
+		Playable_Deck = gameData['Playable_Deck'];
+		PlayGame();
+	}
+	
 	// Both Client and Server mix	
 	function ShuffleAndDealCards()
 	{
@@ -275,14 +299,6 @@
 		var totalPlayers = numPlayers + numberAIs;
 		if (totalPlayers <= 10 && totalPlayers >= 2)
 		{
-			var gameControls = document.getElementById('gameControls');
-			gameControls.style.display = "block";
-			var gameConfig= document.getElementById('gameConfig');
-			gameConfig.style.display = "none";	
-			Error.style.display = "none";
-			ShuffleAndDealButton.remove();
-			if (checkbox5.checked == false) alert(totalPlayers + " Players will be dealt");
-			
 			//SERVER Call -------------
 			// POST DealUnoCards
 			var client = new HttpClient();
@@ -292,10 +308,7 @@
 				if (parsedJSON["result"] == "success")
 				{
 					var gameData = parsedJSON['gameData'];
-					Players = gameData['players'];
-					totalCards = gameData['totalCards'];
-					Playable_Deck = gameData['Playable_Deck'];
-					PlayGame();
+					startGame(gameData);
 				}
 				else
 				{
