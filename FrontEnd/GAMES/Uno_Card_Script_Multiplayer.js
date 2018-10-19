@@ -371,7 +371,7 @@
 			
 			var otherPlayerHand = document.createElement("div");
 			otherPlayerHand.setAttribute("id","Player " + (aPlayer.OrginalNumber + 1));
-			var PlayerLabel = document.createTextNode("Player " + (aPlayer.OrginalNumber + 1));
+			var PlayerLabel = document.createTextNode(aPlayer.Name);
 			
 			var linebreak6 = document.createElement("br");
 
@@ -590,7 +590,7 @@
 		textArea.value = "For Real List Of Players Cards \n\r";
 		for (var i = 0; i <= Players.length - 1; i++)
 		{
-			textArea.value += ("Player " + (i + 1) + ": ");					
+			textArea.value += (Players[i].Name + ": ");					
 			for (var j = 0; j <= Players[i].Cards.length - 1; j++)
 			{
 				textArea.value += (Players[i].Cards[j].Color + " " + Players[i].Cards[j].Value + ", ");
@@ -833,7 +833,7 @@
 				}
 				else
 				{
-					if (checkbox5.checked == false) alert("Player " + Players.length + " has been delt 4 extra cards");
+					if (checkbox5.checked == false) alert(Players[Players.length-1].Name + " has been delt 4 extra cards");
 				}
 			}
 			Players[RealPlayer0].Cards[CardIndex].Color_Of_Wild = Color;
@@ -864,12 +864,13 @@
 					}
 					if (RealPlayer0 == 0)
 					{  //If Not Reversed
-						if (checkbox5.checked == false) alert("Player " + (Whos_Turn + 2) + " has been delt 4 extra cards because player " + (Whos_Turn + 1) + " put down a +4 wild");
+						if (checkbox5.checked == false) alert(Players[Whos_Turn + 1].Name + " has been delt 4 extra cards because player "
+							 + Players[Whos_Turn].Name + " put down a +4 wild");
 					}
 					else
 					{
-						if (checkbox5.checked == false) alert("Player " + (Players[Whos_Turn + 1].OrginalNumber + 1) + " has been delt 4 extra cards because player " 
-						+ (Players[Whos_Turn].OrginalNumber + 1) + " put down a +4 wild");
+						if (checkbox5.checked == false) alert(Players[Whos_Turn + 1].Name + " has been delt 4 extra cards because player " 
+							 + Players[Whos_Turn].Name + " put down a +4 wild");
 					}
 				}
 			}
@@ -915,12 +916,12 @@
 		{
 			if (RealPlayer0 == 0)
 			{  //If Not Reversed
-				if (checkbox5.checked == false) alert("Player " + (Whos_Turn + 1) + " skipped Player 1");
+				if (checkbox5.checked == false) alert(Players[Whos_Turn].Name + " skipped Player 1");
 				Whos_Turn = RealPlayer0;
 			}
 			else
 			{
-				if (checkbox5.checked == false) alert("Player " + (Players[Whos_Turn].OrginalNumber + 1) + " skipped player " + (Whos_Turn + 1));
+				if (checkbox5.checked == false) alert(Players[Whos_Turn].OrginalNumber + 1) + " skipped player " + (Whos_Turn + 1));
 				Whos_Turn = 0;
 			}
 		}
