@@ -274,8 +274,8 @@
 		var Error = document.getElementById("Error");
 		Error.style.display = "none";
 		ShuffleAndDealButton.remove();
-		if (checkbox5.checked == false) alert(totalPlayers + " Players will be dealt");
 		Players = gameData['players'];
+		if (checkbox5.checked == false) alert(Players.length + " Players will be dealt");
 		totalCards = gameData['totalCards'];
 		Playable_Deck = gameData['Playable_Deck'];
 		PlayGame();
