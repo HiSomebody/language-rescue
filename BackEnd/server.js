@@ -144,6 +144,7 @@ app.post('/dealUnoCards/:code/:numPlayers', function(req,res){
 	if (gameDataForCode != undefined && gameDataForCode != null)
 	{
 		dealUnoDeck(gameDataForCode,totalPlayers);
+		gameDataForCode.startedGame = true;
 		res.send({
 			result: 'success',
 			err: '',
