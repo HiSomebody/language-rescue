@@ -63,6 +63,7 @@
 	var code;
 	var username;
 	var numPlayers = 1;
+	var startedGame = false;
 
 
 	
@@ -98,11 +99,14 @@
 		// get gamedata from server to update players list
 		getGameData(function(gameData){
 			// on success
-			
+			if (startedGame)
+			{
+				return;
+			}
 			if (gameData.startedGame == true)
 			{
+				startedGame = true;
 				startGame(gameData);
-				return;
 			}
 			else
 			{
@@ -265,6 +269,7 @@
 		textArea.style.color = "black";
 	}
 	
+	// Ideally this only runs once per client
 	function startGame(gameData)
 	{
 		var gameControls = document.getElementById('gameControls');
@@ -273,8 +278,14 @@
 		gameConfig.style.display = "none";	
 		var Error = document.getElementById("Error");
 		Error.style.display = "none";
-		ShuffleAndDealButton.remove();
 		Players = gameData['players'];
+		for (var i = 0; i < Players.length; i++)
+		{
+			if (Players[i].Name == username)
+			{
+				RealPlayer0 = i;
+			}
+		}
 		if (checkbox5.checked == false) alert(Players.length + " Players will be dealt");
 		totalCards = gameData['totalCards'];
 		Playable_Deck = gameData['Playable_Deck'];
