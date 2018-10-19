@@ -64,6 +64,8 @@
 	var username;
 	var numPlayers = 1;
 	var startedGame = false;
+	var shiftAmount = 0;
+	
 
 
 	
@@ -280,7 +282,7 @@
 		var Error = document.getElementById("Error");
 		Error.style.display = "none";
 		Players = gameData['players'];
-		var shiftAmount = 0;
+		Whos_Turn = gameData['currentTurn'];
 		for (var i = 0; i < Players.length; i++)
 		{
 			if (Players[i].Name == username)
@@ -1053,8 +1055,10 @@
 		Update_Cards();
 	}
 		
+		
 	function PlayGame()
 	{
+		
 		for (var i = 0; i < Players.length; i++)
 		{
 			if (Players[i].Cards.length == 0)
@@ -1072,7 +1076,7 @@
 		{
 			Whos_Turn = 0;
 		}
-		if (Whos_Turn != RealPlayer0 && SomeOneWon == false) setTimeout(function(){ AI(); }, AITime);  //If not my turn and no one has won
+		//if (Whos_Turn != RealPlayer0 && SomeOneWon == false) setTimeout(function(){ AI(); }, AITime);  //If not my turn and no one has won
 		if (totalCards.length - 1 <= 10) ReShuffleTotalCards();                                         // if need re-shuffling
 		if (SomeOneWon == false) Update_Cards();                                                       //If no one has won
 	}
