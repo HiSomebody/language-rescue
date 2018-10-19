@@ -63,6 +63,129 @@ fs.readFile('../FrontEnd/index.html', function(err, html){
 	}
 });
 
+function makeDeck(code)
+{
+	// following code should be run once immediately when the game is created in the hub
+	// instead of this code here we should simply GET the totalCards list
+	var gameDataForCode = getGameDataForCode(code);
+	
+	gameDataForCode['totalCards'] = [];
+	//prints out black speical cards
+	for(var i = 0; i <= 3; i++)
+	{
+		for(var j = 13; j <= 14; j++)
+		{
+			var filename = "http://104.236.169.62/UnoCards/black_wild";
+			if (j == 14) filename += "&+4";
+			filename += ".png";
+			var c = new Card(j, "Black", filename);
+			gameDataForCode['totalCards'].push(c);
+		}
+	}
+	//Makes Special Color Cards
+	for(var i = 10; i <= 12; i++)
+	{
+		for(var j = 0; j < 8; j++)
+		{
+			var filename = "http://104.236.169.62/UnoCards/"
+			if (j == 0 || j == 4) filename += "red_";
+			if (j == 1 || j == 5) filename += "yellow_";
+			if (j == 2 || j == 6) filename += "blue_";
+			if (j == 3 || j == 7) filename += "green_";
+			if (i == 10) filename += "skip.png";
+			if (i == 11) filename += "reverse.png";
+			if (i == 12) filename += "+2.png";
+			var c = new Card(i, j,filename);
+			gameDataForCode['totalCards'].push(c);
+		}
+	}
+	//Creating 4 0's
+	for(var i = 0; i < 4; i++)
+	{
+		var filename = "http://104.236.169.62/UnoCards/"
+		if (i == 0) filename += "red_";
+		if (i == 1) filename += "yellow_";
+		if (i == 2) filename += "blue_";
+		if (i == 3) filename += "green_";
+		filename += "0.png";
+		var c = new Card(0, i, filename);
+		gameDataForCode['totalCards'].push(c);
+	}
+	//Creating Rest of Uno Deck
+	for (var i = 1; i <= 9; i++)
+	{
+		for (var j = 0; j < 8; j++) 
+		{
+			var filename = "http://104.236.169.62/UnoCards/"
+			if (j == 0 || j == 4) filename += "red_";
+			if (j == 1 || j == 5) filename += "yellow_";
+			if (j == 2 || j == 6) filename += "blue_";
+			if (j == 3 || j == 7) filename += "green_";
+			filename += i + ".png";
+			var c = new Card(i, j, filename);
+			gameDataForCode['totalCards'].push(c);
+		}
+	}
+}
+
+function Card (Value, Color, filename)
+{
+	this.filename = filename;
+	if (Value == 10) 
+	{
+		this.Value = "Skip";
+	}
+	else if (Value == 11) 
+	{
+		this.Value = "Reverse";
+	}
+	else if (Value == 12) 
+	{
+		this.Value = "+2";
+	}
+	else if (Value == 13) 
+	{
+		this.Value = "Wild";
+		this.Color_Of_Wild = "Red";
+	} 
+	else if (Value == 14) 
+	{
+		this.Value = "Wild & + 4";
+		this.Color_Of_Wild = "Red";
+	} 
+	else 
+	{
+		this.Value = Value;
+	}
+
+	if (Color == 0 || Color == 4) 
+	{
+		this.Color = "Red";
+}
+	else if (Color == 1 || Color == 5) 
+	{
+		this.Color = "Yellow";
+	} 
+	else if (Color == 2 || Color == 6) 
+	{
+		this.Color = "Blue";
+	}
+	else if (Color == 3 || Color == 7) 
+	{
+		this.Color = "Green";
+	}
+	else
+	{
+		this.Color = Color;
+	}		
+}
+
+function Player (Name, Cards, OrginalNumber)
+{
+	this.Name = Name;
+	this.Cards = Cards;
+	this.OrginalNumber = OrginalNumber;
+}
 
 app.post('/schoolStore/sell', function(req,res){
 	console.log("Sell Params:");
@@ -445,6 +568,7 @@ app.post('/addGameToServer/:type', function(req,res){
 			type: "uno",
 			players:[]
 		});
+		makeDeck(gameCode);
 	}
 	else if (type == "Typing Race")
 	{
