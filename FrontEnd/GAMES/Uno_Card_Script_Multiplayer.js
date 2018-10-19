@@ -98,6 +98,8 @@
 		// get gamedata from server to update players list
 		getGameData(function(gameData){
 			// on success
+			var waitingDiv = document.getElementById("waitingText");
+			waitingDiv.innerHTML = "Waiting for Other Players to Join with Game Code: " + code;
 			var joinedDiv = document.getElementById("joined");
 			var players = gameData['players'];
 			joinedDiv.innerHTML = "JOINED: ";
@@ -322,10 +324,6 @@
 	function ShuffleAndDealCards()
 	{
 		// Client
-		var gameControls = document.getElementById('gameControls');
-		gameControls.style.display = "block";
-		var gameConfig= document.getElementById('gameConfig');
-		gameConfig.style.display = "none";
 		var ShuffleAndDealButton = document.getElementById("ShuffleAndDealButton");
 		var textField = document.getElementById("numberPlayersTextField");
 		var numberAIs = Math.floor(textField.value);
@@ -357,7 +355,11 @@
 		Players = [];
 		var totalPlayers = numPlayers + numberAIs;
 		if (totalPlayers <= 10 && totalPlayers >= 2)
-		{		
+		{	
+			var gameControls = document.getElementById('gameControls');
+			gameControls.style.display = "block";
+			var gameConfig= document.getElementById('gameConfig');
+			gameConfig.style.display = "none";	
 			Error.style.display = "none";
 			ShuffleAndDealButton.remove();
 			if (checkbox5.checked == false) alert(totalPlayers + " Players will be dealt");
