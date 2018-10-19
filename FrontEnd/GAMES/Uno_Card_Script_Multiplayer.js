@@ -271,6 +271,7 @@
 		gameControls.style.display = "block";
 		var gameConfig= document.getElementById('gameConfig');
 		gameConfig.style.display = "none";	
+		var Error = document.getElementById("Error");
 		Error.style.display = "none";
 		ShuffleAndDealButton.remove();
 		if (checkbox5.checked == false) alert(totalPlayers + " Players will be dealt");
