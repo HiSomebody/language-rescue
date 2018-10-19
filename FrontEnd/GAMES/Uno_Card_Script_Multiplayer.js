@@ -237,7 +237,7 @@
 		{
 			for(var j = 13; j <= 14; j++)
 			{
-				var filename = "http://104.236.169.62:80/UnoCards/black_wild";
+				var filename = "http://104.236.169.62/UnoCards/black_wild";
 				if (j == 14) filename += "&+4";
 				filename += ".png";
 				var c = new Card(j, "Black", filename);
@@ -249,7 +249,7 @@
 		{
 			for(var j = 0; j < 8; j++)
 			{
-				var filename = "http://104.236.169.62:80/UnoCards/"
+				var filename = "http://104.236.169.62/UnoCards/"
 				if (j == 0 || j == 4) filename += "red_";
 				if (j == 1 || j == 5) filename += "yellow_";
 				if (j == 2 || j == 6) filename += "blue_";
@@ -264,7 +264,7 @@
 		//Creating 4 0's
         for(var i = 0; i < 4; i++)
 		{
-			var filename = "http://104.236.169.62:80/UnoCards/"
+			var filename = "http://104.236.169.62/UnoCards/"
 			if (i == 0) filename += "red_";
 			if (i == 1) filename += "yellow_";
 			if (i == 2) filename += "blue_";
@@ -278,7 +278,7 @@
 		{
             for (var j = 0; j < 8; j++) 
 			{
-				var filename = "http://104.236.169.62:80/UnoCards/"
+				var filename = "http://104.236.169.62/UnoCards/"
 				if (j == 0 || j == 4) filename += "red_";
 				if (j == 1 || j == 5) filename += "yellow_";
 				if (j == 2 || j == 6) filename += "blue_";
@@ -469,7 +469,7 @@
 				var DOM_img = document.createElement("img");
 				if (DevloperMode != true)
 				{
-					DOM_img.src = "http://104.236.169.62:80/UnoCards/back_of_card.png";
+					DOM_img.src = "http://104.236.169.62/UnoCards/back_of_card.png";
 				}
 				else
 				{
@@ -516,7 +516,7 @@
 		deck.appendChild(DOM_img);
 			
 		DOM_img = document.createElement("img");                      //Creates Back of Uno Card/Draw Pile
-		DOM_img.src = "http://104.236.169.62:80/UnoCards/back_of_card.png";
+		DOM_img.src = "http://104.236.169.62/UnoCards/back_of_card.png";
 		DOM_img.setAttribute("id", "drawPile");
 		deck.appendChild(DOM_img);
 		DOM_img.onclick = function()
@@ -695,7 +695,7 @@
 		//Finds Card In Hand, Saves Index of that card as CardIndex			
 		for (var i = 0; i < Players[RealPlayer0].Cards.length; i++)
 		{
-			if (parseFilename(card_img.src) == Players[RealPlayer0].Cards[i].filename) {
+			if (parseFilename(card_img.src) == parseFilename(Players[RealPlayer0].Cards[i].filename)) {
 				CardIndex = i;
 			}
 		}
@@ -735,7 +735,7 @@
 			}
 			else
 			{
-				cardImgDiv.src = "http://104.236.169.62:80/UnoCards/back_of_card.png";
+				cardImgDiv.src = "http://104.236.169.62/UnoCards/back_of_card.png";
 			}
 			
 			deck.appendChild(cardImgDiv);
