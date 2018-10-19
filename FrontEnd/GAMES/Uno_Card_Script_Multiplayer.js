@@ -416,7 +416,7 @@
 		for (var i = 0; i < cardDivs.length; i++)
 		{
 			var cardDiv = cardDivs[i];
-			if (parseFilename(cardDiv.src) == card_filename)
+			if (parseFilename(cardDiv.src) == parseFilename(card_filename))
 			{
 				return cardDiv;
 			}
