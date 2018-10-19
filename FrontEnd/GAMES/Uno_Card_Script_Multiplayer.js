@@ -282,7 +282,6 @@
 		var Error = document.getElementById("Error");
 		Error.style.display = "none";
 		Players = gameData['players'];
-		Whos_Turn = gameData['currentTurn'];
 		for (var i = 0; i < Players.length; i++)
 		{
 			if (Players[i].Name == username)
@@ -295,6 +294,7 @@
 			var firstElement = Players.shift();
 			Players.push(firstElement);
 		}
+		Whos_Turn = gameData['currentTurn'] + shiftAmount;
 		
 		
 		if (checkbox5.checked == false) alert(Players.length + " Players will be dealt");
