@@ -272,6 +272,7 @@
 	// Ideally this only runs once per client
 	function startGame(gameData)
 	{
+		startedGame = true;
 		var gameControls = document.getElementById('gameControls');
 		gameControls.style.display = "block";
 		var gameConfig= document.getElementById('gameConfig');
