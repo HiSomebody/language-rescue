@@ -921,7 +921,7 @@
 			}
 			else
 			{
-				if (checkbox5.checked == false) alert(Players[Whos_Turn].OrginalNumber + 1) + " skipped player " + (Whos_Turn + 1));
+				if (checkbox5.checked == false) alert("Player " + (Players[Whos_Turn].OrginalNumber + 1) + " skipped player " + (Whos_Turn + 1));
 				Whos_Turn = 0;
 			}
 		}
