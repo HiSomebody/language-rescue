@@ -910,6 +910,10 @@ app.get('/Uno_Card_Script.js', function(req,res){
 	res.sendFile(path.resolve(__dirname + '/../FrontEnd/GAMES/Uno_Card_Script_Obfuscated.js'));
 });
 
+app.get('/Uno_Card_Script_Multiplayer.js', function(req,res){
+	res.sendFile(path.resolve(__dirname + '/../FrontEnd/GAMES/Uno_Card_Script_Multiplayer.js'));
+});
+
 app.get('/image4x4', function(req,res){
 res.sendFile(path.resolve(__dirname + '/../FrontEnd/GAMES/imageSort.html'));
 });
