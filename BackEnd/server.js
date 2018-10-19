@@ -126,6 +126,79 @@ function makeDeck(code)
 			gameDataForCode['totalCards'].push(c);
 		}
 	}
+	var copyOfDeck = gameDataForCode['totalCards'];
+	gameDataForCode['totalCards'] = [];
+	for (var i = 0; i < 108; i++)
+	{
+		var RanNum1 = Math.floor(Math.random() * copyOfDeck.length);
+		gameDataForCode['totalCards'].push(copyOfDeck[RanNum1]);
+		copyOfDeck.splice(RanNum1, 1);
+	}
+}
+
+app.post('/dealUnoCards/:code/:numPlayers', function(req,res){
+	var gameCode = req.params.code;
+	var totalPlayers = req.params.numPlayers;
+	var gameDataForCode = getGameDataForCode(gameCode);
+	if (gameDataForCode != undefined && gameDataForCode != null)
+	{
+		dealUnoDeck(gameDataForCode,totalPlayers);
+		res.send({
+			result: 'success',
+			err: '',
+			gameData: gameDataForCode
+		});
+	}
+	else
+	{
+		console.log("player group is undefined");
+		console.log("Here is what playerGroups looks like: ");
+		console.log(playerGroups);
+		res.send({
+			result: 'error',
+			err: 'There is no game open using that code'
+		});
+	}
+	
+});
+
+function dealUnoDeck(gameData,totalPlayers)
+{
+	var realPlayers = [];
+	for (var i = 0; i < gameData['players'].length; i++)
+	{
+		realPlayers.push(gameData['players'][i].name);
+	}
+	gameData['players'] = [];
+	
+	
+	for (var i = 0; i < totalPlayers; i++)
+	{
+		var List_Of_Cards = [];
+		for (var j = 1; j <= 7; j++)
+		{
+			var RanNum = Math.floor(Math.random() * gameData['totalCards'].length);
+			List_Of_Cards.push(gameData['totalCards'][RanNum]);
+			gameData['totalCards'].splice(RanNum, 1);   //First Number Is Index You Want To Remove, Second is the number of elements to remove 
+			if (j == 7)
+			{
+				var playerName;
+				if (i < realPlayers.length)
+				{
+					playerName = realPlayers[i];
+				}
+				else
+				{
+					playerName = "AI " + getRandomName();
+				}
+				var p = new Player (playerName, List_Of_Cards, i);
+				gameData['players'].push(p);
+			}
+		}
+	}
+	gameData['Playable_Deck'] = [];
+	gameData['Playable_Deck'].push(gameData['totalCards'][0]);
+	gameData['totalCards'].splice(0, 1);
 }
 
 function Card (Value, Color, filename)
@@ -161,7 +234,7 @@ function Card (Value, Color, filename)
 	if (Color == 0 || Color == 4) 
 	{
 		this.Color = "Red";
-}
+	}
 	else if (Color == 1 || Color == 5) 
 	{
 		this.Color = "Yellow";
