@@ -333,6 +333,7 @@ app.get('/gamepage/:code', function(req,res){
 	}
 	else if (type == "uno")
 	{
+		res.sendFile(path.resolve(__dirname + '/../FrontEnd/GAMES/Uno_Card_Game_Multiplayer.html'));
 	}
 	else if (type == "typing race")
 	{
@@ -434,6 +435,14 @@ app.post('/addGameToServer/:type', function(req,res){
 			type: "tictactoe",
 			gameState: [["","",""],["","",""],["","",""]],
 			currentTurn: "X",
+			players:[]
+		});
+	}
+	else if (type == "UNO")
+	{
+		playerGroups.push({
+			code: gameCode,
+			type: "uno",
 			players:[]
 		});
 	}
@@ -600,6 +609,25 @@ app.post('/addClientToGame/:code/:username', function(req,res){
 			if (gameDataForCode['players'].length < 2)
 			{
 				gameDataForCode['players'].push({"name":userName,"wins":0});
+				res.send({
+					result: 'success',
+					err: '',
+					gameData: gameDataForCode
+				});
+			}
+			else
+			{
+				res.send({
+					result: 'error',
+					err: 'There are already two players in that game'
+				});
+			}
+		}
+		else if (gameDataForCode.type == "uno")
+		{
+			if (gameDataForCode['players'].length < 10)
+			{
+				gameDataForCode['players'].push({"name":userName});
 				res.send({
 					result: 'success',
 					err: '',
