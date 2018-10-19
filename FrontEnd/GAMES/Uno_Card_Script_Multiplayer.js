@@ -62,6 +62,7 @@
 	var playDelay = 1500 // *
 	var code;
 	var username;
+	var numPlayers = 1;
 
 
 	
@@ -100,6 +101,7 @@
 			var joinedDiv = document.getElementById("joined");
 			var players = gameData['players'];
 			joinedDiv.innerHTML = "JOINED: ";
+			numPlayers = players.length;
 			for (var i = 0; i < players.length; i++)
 			{
 				var p = players[i];
@@ -320,9 +322,13 @@
 	function ShuffleAndDealCards()
 	{
 		// Client
+		var gameControls = document.getElementById('gameControls');
+		gameControls.style.display = "block";
+		var gameConfig= document.getElementById('gameConfig');
+		gameConfig.style.display = "none";
 		var ShuffleAndDealButton = document.getElementById("ShuffleAndDealButton");
 		var textField = document.getElementById("numberPlayersTextField");
-		var numberPlayers = Math.floor(textField.value);
+		var numberAIs = Math.floor(textField.value);
 		var controls = document.getElementById("controlPanel");
 		var Error = document.getElementById("Error");
 		var node = document.createTextNode("Only a maxumuim of 10 people and a minimum of 2 players");
@@ -349,12 +355,13 @@
 		
 		//Deal Cards
 		Players = [];
-		if (numberPlayers <= 10 && numberPlayers >= 2)
+		var totalPlayers = numPlayers + numberAIs;
+		if (totalPlayers <= 10 && totalPlayers >= 2)
 		{		
 			Error.style.display = "none";
 			ShuffleAndDealButton.remove();
-			if (checkbox5.checked == false) alert(numberPlayers + " Players will be dealt");
-			for (var i = 0; i < numberPlayers; i++)
+			if (checkbox5.checked == false) alert(totalPlayers + " Players will be dealt");
+			for (var i = 0; i < numberAIs; i++)
 			{
 				var List_Of_Cards = [];
 				for (var j = 1; j <= 7; j++)

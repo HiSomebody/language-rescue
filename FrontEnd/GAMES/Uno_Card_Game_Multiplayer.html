@@ -1,22 +1,30 @@
 <html>
 	<script src="http://104.236.169.62:80/Uno_Card_Script_Multiplayer.js"></script>		
+	<!--script src="Uno_Card_Script_Multiplayer.js"></script-->		
 	<body>
 		<div class="page-header"><h2>Uno Card Game&copy</h2></div>
 		<div id="tagline" style="text-align:left">A Project by Hadden Smith</div>
 		<br>
 		
 		<div id="controlPanel">
-			<div id="waitingText">Waiting for Other Players to Join</div><br>
-			<div id="joined">JOINED:</div>
-			<input id="numberPlayersTextField" placeholder="Enter number of AIs to Add">
-			<button id="ShuffleAndDealButton" onclick="ShuffleAndDealCards()">Shuffle and Deal</button>
-            <button id="UNO" onclick="sayUno()" style="color:red">Say Uno</button>
-			<button id="toggleShowData" onclick="developerMode()">Developer Mode</button>
-			<button id="Reload" onclick="Reaload()">Reset</button>
-			<input type="checkbox" id="NoPopUps"> No Pop-Ups
-			<input type="checkbox" id="No_Animation"> No Animation
-			<p hidden id="Error">Only a maximum of 10 people and a minimum of 2 players</p>
-			<div id ="DM"></div>
+			<div id="gameConfig">
+				<div id="waitingText">Waiting for Other Players to Join</div><br>
+				<div id="joined">JOINED:</div>
+				<br>
+				<input id="numberPlayersTextField" size=2>
+				<span>(Optional) Number of AI's to Add</span>
+				<br><br>
+				<button id="ShuffleAndDealButton" onclick="ShuffleAndDealCards()">Start Game</button>
+			</div>
+			<div id="gameControls" hidden>
+	            <button id="UNO" onclick="sayUno()" style="color:red">Say Uno</button>
+				<button id="toggleShowData" onclick="developerMode()">Developer Mode</button>
+				<button id="Reload" onclick="Reaload()">Reset</button>
+				<input type="checkbox" id="NoPopUps"> No Pop-Ups
+				<input type="checkbox" id="No_Animation"> No Animation
+				<p hidden id="Error">Only a maximum of 10 people and a minimum of 2 players</p>
+				<div id ="DM"></div>
+			</div>
 		</div>
 		<!--button><img src = "F:\Programming\Other Things\Soderquist Stuff\profile pic copy.png" height=100></button-->
 		</br>
