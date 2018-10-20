@@ -248,6 +248,7 @@ app.post('/unoAction/:code/:action/:CardIndex/:color', function(req,res){
 				var currentTurn = gameDataForCode['currentTurn'];
 				gameDataForCode['players'][currentTurn].Cards.push(topCard);
 				gameDataForCode['totalCards'].splice(0 ,1);
+				gameDataForCode['currentTurn'] += 1;
 			}
 			
 			if (gameDataForCode['totalCards'].length - 1 <= 10)
