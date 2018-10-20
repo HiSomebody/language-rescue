@@ -137,7 +137,7 @@
 					SomeOneWon = gameData['SomeOneWon'];
 					
 					// redraw game with updates
-					Update_Cards;
+					Update_Cards();
 				}
 				return;
 			}
