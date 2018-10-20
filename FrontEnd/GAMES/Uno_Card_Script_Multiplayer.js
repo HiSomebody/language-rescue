@@ -523,8 +523,8 @@
 						//document.appendChild(failedDiv);
 					}
 				});		
-				var card_filename = Draw(false);
 				/*
+				var card_filename = Draw(false);
 				setTimeout(function(){
 					
 					var card_div = getMyCardDiv(card_filename);
@@ -682,12 +682,12 @@
 				cardImgDiv.style.top = endPointY +"px";
 				cardImgDiv.width = "51";
 				setTimeout(function() {
-					if (function1 == doWild)
+					//if (function1 == doWild)
 					{
 						//doWild(cardType);
 						// ADD Post here to do the real action of the card
 					}
-					else
+					//else
 					{
 						//function1();
 						// ADD POST here
@@ -697,12 +697,12 @@
 		}
 		else
 		{
-			if (function1 == doWild)
+			//if (function1 == doWild)
 			{
 				//doWild(cardType);
 				// ADD POST HERE
 			}
-			else
+			//else
 			{
 				//function1();
 				// ADD POST HERE
@@ -818,51 +818,52 @@
 				//unoPenaltyCheck(thisPlayer);
 				setCardIndex(this);
 				
-				
-				
-				if (aCard.Color == "Black")       //If Wild Card
-				{
-					// When the user clicks the button, open the modal 
-					modal.style.display = "block";
-				}
+				if (CanPlayCard() == true)
+				{				
+					if (aCard.Color == "Black")       //If Wild Card
+					{
+						// When the user clicks the button, open the modal 
+						modal.style.display = "block";
+					}
 			
-				else
-				{
-					// post "play" and card index (the server should already know whose turn it is, and therefore who is playing the card)
-					// This should increase the number of actions taken, also update the cardIndex
-					var client = new HttpClient();
-					client.post('http://104.236.169.62:80/unoAction/'+code+'/play/'+CardIndex+"/NA", function(response) {
-						var parsedJSON = (JSON.parse(response));
-						if (parsedJSON["result"] == "success")
-						{
-							console.log("succeeded in adding action");
-						}
-						else
-						{
-							console.log("failed to deal cards");
-							//document.appendChild(failedDiv);
-						}
-					});		
-				}
+					else
+					{
+						// post "play" and card index (the server should already know whose turn it is, and therefore who is playing the card)
+						// This should increase the number of actions taken, also update the cardIndex
+						var client = new HttpClient();
+						client.post('http://104.236.169.62:80/unoAction/'+code+'/play/'+CardIndex+"/NA", function(response) {
+							var parsedJSON = (JSON.parse(response));
+							if (parsedJSON["result"] == "success")
+							{
+								console.log("succeeded in adding action");
+							}
+							else
+							{
+								console.log("failed to deal cards");
+								//document.appendChild(failedDiv);
+							}
+						});		
+					}
 		 
-				/*
-				if (aCardValue == "Skip")      //If Skip Card		
-				{
-					if (playCard('Skip',false) == true) setTimeout(function() {PlayGame()},playDelay); // call server
-				} 
-				else if (aCardValue === "+2")      //If +2 Card
-				{
-					if (playCard('Plus2',false) == true) setTimeout(function() {PlayGame()},playDelay); // call server
+					/*
+					if (aCardValue == "Skip")      //If Skip Card		
+					{
+						if (playCard('Skip',false) == true) setTimeout(function() {PlayGame()},playDelay); // call server
+					} 
+					else if (aCardValue === "+2")      //If +2 Card
+					{
+						if (playCard('Plus2',false) == true) setTimeout(function() {PlayGame()},playDelay); // call server
+					}
+					else if (aCardValue == "Reverse")      //If reverse Card
+					{
+						if (playCard('Reverse',false) == true) setTimeout(function() {PlayGame()},playDelay); // call server
+					} 
+					else 									//If Number Card
+					{
+						if (playCard('Number',false) == true) setTimeout(function() {PlayGame()},playDelay); // call server
+					}
+					*/
 				}
-				else if (aCardValue == "Reverse")      //If reverse Card
-				{
-					if (playCard('Reverse',false) == true) setTimeout(function() {PlayGame()},playDelay); // call server
-				} 
-				else 									//If Number Card
-				{
-					if (playCard('Number',false) == true) setTimeout(function() {PlayGame()},playDelay); // call server
-				}
-				*/
 			}
 		}
 		return DOM_img;
