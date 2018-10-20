@@ -105,9 +105,10 @@
 			if (startedGame)
 			{
 				var newNumActions = gameData['numActions'];
+				var tempLastWhos_Turn = Whos_Turn;
 				Whos_Turn = (gameData['currentTurn'] + shiftAmount)%gameData['players'].length;
 				
-				if (newNumActions != numActionsHappened)
+				if (newNumActions != numActionsHappened || tempLastWhos_Turn != Whos_Turn)
 				{
 					numActionsHappened = newNumActions;
 					Players = gameData['players'];
