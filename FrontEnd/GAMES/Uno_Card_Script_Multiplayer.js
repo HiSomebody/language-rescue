@@ -104,7 +104,7 @@
 			// on success
 			if (startedGame)
 			{
-				Whos_Turn = (gameData['currentTurn'] + shiftAmount)%gameDate['players'].length;
+				Whos_Turn = (gameData['currentTurn'] + shiftAmount)%gameData['players'].length;
 				var newNumActions = gameData['numActions'];
 				if (newNumActions != numActionsHappened)
 				{
@@ -306,7 +306,7 @@
 			var firstElement = Players.shift();
 			Players.push(firstElement);
 		}
-		Whos_Turn = (gameData['currentTurn'] + shiftAmount)%gameDate['players'].length;
+		Whos_Turn = (gameData['currentTurn'] + shiftAmount)%gameData['players'].length;
 		
 		
 		if (checkbox5.checked == false) alert(Players.length + " Players will be dealt");
