@@ -49,6 +49,7 @@ var playerGroups = [
 		code: 'JJJJ',
 		type: "uno",
 		numActions: 0,
+		numAnimations: 0,
 		players:[],
 		currentTurn: 0
 	}
@@ -173,6 +174,7 @@ app.post('/dealUnoCards/:code/:numPlayers', function(req,res){
 	
 });
 
+/*
 app.post('/unoChangeTurn/:code/:turnChanges', function(req,res){
 	var gameCode = req.params.code;
 	var turnChanges = req.params.turnChanges;
@@ -204,6 +206,7 @@ app.post('/unoChangeTurn/:code/:turnChanges', function(req,res){
 	}
 	
 });
+*/
 
 
 app.post('/unoAction/:code/:action/:CardIndex/:color', function(req,res){
@@ -218,24 +221,37 @@ app.post('/unoAction/:code/:action/:CardIndex/:color', function(req,res){
 	console.log(color);
 	if (gameDataForCode != undefined && gameDataForCode != null)
 	{
-		gameDataForCode['numActions'] += 1;
-		if (action == 'playWild')
-		{
-			gameDataForCode['color'] = color;
-		}
-		if (action == 'draw')
-		{
-			setTimeout(function() {
-				var topCard = gameDataForCode['totalCards'][0];
-				var currentTurn = gameDataForCode['currentTurn'];
-				gameDataForCode['players'][currentTurn].Cards.push(topCard);
-				gameDataForCode['totalCards'].splice(0 ,1);
-				//gameDataForCode['numActions'] += 1;
-
-			},1000);
-		}
+		// set up card and action for animation to be done on all clients
 		gameDataForCode['CardIndex'] = CardIndex;
 		gameDataForCode['action'] = action;
+		
+		// trigger animation event on all clients
+		gameDataForCode['numAnimations'] += 1;
+		
+		// in 1000 milis, let clients know they should update
+		setTimeout(function() {
+
+			
+			if (action == 'playWild')
+			{
+				gameDataForCode['color'] = color;
+			}
+			if (action == 'draw')
+			{
+				
+			}
+			
+			
+			gameDataForCode['numActions'] += 1;
+
+			var topCard = gameDataForCode['totalCards'][0];
+			var currentTurn = gameDataForCode['currentTurn'];
+			gameDataForCode['players'][currentTurn].Cards.push(topCard);
+			gameDataForCode['totalCards'].splice(0 ,1);
+			//gameDataForCode['numActions'] += 1;
+
+		},1000);
+		
 		res.send({
 			result: 'success',
 			err: '',
