@@ -312,7 +312,7 @@
 		if (checkbox5.checked == false) alert(Players.length + " Players will be dealt");
 		totalCards = gameData['totalCards'];
 		Playable_Deck = gameData['Playable_Deck'];
-		PlayGame();
+		//PlayGame();
 	}
 	
 	// Both Client and Server mix	
@@ -626,6 +626,7 @@
 		{
 			calledByOtherPlayer = true;
 		}
+		CardIndex = gameData['CardIndex'];
 		var filename = Players[Whos_Turn].Cards[CardIndex].filename;
 		var cardImgDiv;
 		
