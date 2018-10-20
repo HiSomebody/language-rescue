@@ -244,7 +244,7 @@ function dealUnoDeck(gameData,totalPlayers)
 		}
 	}
 	gameData['Playable_Deck'] = [];
-	gameData['currentTurn'] = -1;
+	gameData['currentTurn'] = 0;
 	gameData['Playable_Deck'].push(gameData['totalCards'][0]);
 	gameData['totalCards'].splice(0, 1);
 }
