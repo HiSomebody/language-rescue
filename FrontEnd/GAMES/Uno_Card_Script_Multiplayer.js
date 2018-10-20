@@ -65,6 +65,7 @@
 	var numPlayers = 1;
 	var startedGame = false;
 	var shiftAmount = 0;
+	var numActionsHappened = 0;
 	
 
 
@@ -103,9 +104,20 @@
 			// on success
 			if (startedGame)
 			{
+				Whos_Turn = (gameData['currentTurn'] + shiftAmount)%gameDate['players'].length;
+				var newNumActions = gameData['numActions'];
+				if (newNumActions != numActionsHappened)
+				{
+					numActionsHappened = newNumActions;
+					Players = gameData['players'];
+					total_cards = gameData['total_cards'];
+					Playable_Deck = gameData['Playable_Deck'];
+					SomeOneWon = gameData['SomeOneWon'];
+					doAnimationAction(gameData);
+				}
 				return;
 			}
-			if (gameData.startedGame == true)
+			else if (gameData.startedGame == true)
 			{
 				startedGame = true;
 				startGame(gameData);
@@ -294,7 +306,7 @@
 			var firstElement = Players.shift();
 			Players.push(firstElement);
 		}
-		Whos_Turn = gameData['currentTurn'] + shiftAmount;
+		Whos_Turn = (gameData['currentTurn'] + shiftAmount)%gameDate['players'].length;
 		
 		
 		if (checkbox5.checked == false) alert(Players.length + " Players will be dealt");
@@ -484,7 +496,23 @@
 				Draw(false);
 			}
 			if (Whos_Turn == RealPlayer0){
+				// post "play" and card index (the server should already know whose turn it is, and therefore who is playing the card)
+				// This should increase the number of actions taken, also update the cardIndex
+				var client = new HttpClient();
+				client.post('http://104.236.169.62:80/unoAction/'+code+'/draw/-1/NA', function(response) {
+					var parsedJSON = (JSON.parse(response));
+					if (parsedJSON["result"] == "success")
+					{
+						console.log("succeeded in adding action");
+					}
+					else
+					{
+						console.log("failed to deal cards");
+						//document.appendChild(failedDiv);
+					}
+				});		
 				var card_filename = Draw(false);
+				/*
 				setTimeout(function(){
 					
 					var card_div = getMyCardDiv(card_filename);
@@ -518,6 +546,7 @@
 						PlayGame(); // send notification for next turn
 					}
 				},playDelay);
+				*/
 			}
 		}
 			
@@ -566,6 +595,204 @@
 		}
 	}
 	
+	
+	function doAnimationAction(gameData)
+	{
+		var card_index = gameData['CardIndex'];
+		var action = gameData['action'];
+		
+		if (action == 'draw')
+		{
+			// I draw a card
+			drawAnimation(gameData);
+		}
+		else if (action == 'play')
+		{
+			// I play a card
+			playAnimation(gameData);
+		}		
+	}
+	
+	
+	
+	function playAnimation(gameData)
+	{
+		var calledByOtherPlayer = true;
+		if (gameData['currentTurn'] == shiftAmount) // It's this client's turn
+		{
+			calledByOtherPlayer = false;
+		}
+		else
+		{
+			calledByOtherPlayer = true;
+		}
+		var filename = Players[Whos_Turn].Cards[CardIndex].filename;
+		var cardImgDiv;
+		
+		if (!calledByOtherPlayer)
+		{
+			cardImgDiv = getMyCardDiv(filename);
+		}
+		else
+		{
+		 	// IF OTHER PLAYER, THIS NEEDS TO GRAB THE BACKWARD FACING
+			// DIV ACCORDING TO THE INDEX
+			cardImgDiv = getOtherPlayerCardDiv(filename);
+		}
+		 
+		if (checkbox6.checked == false)
+		{				
+			var deckElement = document.getElementById("playableDeck");
+			var rectDestination = deckElement.getBoundingClientRect();
+			cardImgDiv.setAttribute("class","playable");
+			
+			var rectOrigin = cardImgDiv.getBoundingClientRect();
+			
+			var startPointX = rectOrigin.left;
+			var startPointY = rectOrigin.top-5;	
+			
+			var endPointX = rectDestination.left;
+			var endPointY = rectDestination.top-10;
+			
+			cardImgDiv.style.left = startPointX +"px";
+			cardImgDiv.style.top = startPointY +"px";
+			
+			setTimeout(function() {
+				
+				// IF OTHER PLAYER, THIS SHOULD CHANGE IT TO BE FACE FORWARD SRC
+				if (calledByOtherPlayer)
+				{
+					cardImgDiv.src = filename;
+				}
+				
+				cardImgDiv.style.left = endPointX +"px";
+				cardImgDiv.style.top = endPointY +"px";
+				cardImgDiv.width = "51";
+				setTimeout(function() {
+					if (function1 == doWild)
+					{
+						//doWild(cardType);
+						// ADD Post here to do the real action of the card
+					}
+					else
+					{
+						//function1();
+						// ADD POST here
+					}
+				},playDelay/3)
+			},playDelay/3);
+		}
+		else
+		{
+			if (function1 == doWild)
+			{
+				//doWild(cardType);
+				// ADD POST HERE
+			}
+			else
+			{
+				//function1();
+				// ADD POST HERE
+			}
+		}
+		return true;	
+	}
+	
+	function drawAnimation(gameData)
+	{
+		var calledByOtherPlayer = true;
+		if (gameData['currentTurn'] == shiftAmount) // It's this client's turn
+		{
+			calledByOtherPlayer = false;
+		}
+		else
+		{
+			calledByOtherPlayer = true;
+		}
+		var topCard = totalCards[0];
+		
+		
+		
+		if (checkbox6.checked == false)
+		{
+			var filename = topCard.filename;
+			var cardImgDiv = document.createElement("img"); // Create a new div
+			
+			if (!calledByOtherPlayer)
+			{
+				cardImgDiv.src = filename;
+			}
+			else
+			{
+				cardImgDiv.src = "http://104.236.169.62/UnoCards/back_of_card.png";
+			}
+			
+			deck.appendChild(cardImgDiv);
+			cardImgDiv.setAttribute("class","playable");
+													
+			var deckElement = document.getElementById("drawPile");
+			var rectOrigin = deckElement.getBoundingClientRect();		
+			var rectDestination = getCurrentPlayerLastCardDiv().getBoundingClientRect();
+			
+			var startPointX = rectOrigin.left;
+			var startPointY = rectOrigin.top-5;	
+			
+			var endPointX = rectDestination.left;
+			var endPointY = rectDestination.top-10;
+			
+			cardImgDiv.style.left = startPointX +"px";
+			cardImgDiv.style.top = startPointY +"px";
+			
+			setTimeout(function() {
+				
+				if (!calledByOtherPlayer)
+				{
+					cardImgDiv.src = filename;
+				}
+				
+				cardImgDiv.style.left = endPointX +"px";
+				cardImgDiv.style.top = endPointY +"px";
+				if (calledByOtherPlayer)
+				{
+					cardImgDiv.width = "38";
+				}
+				
+				setTimeout(function() {
+					if (!calledByOtherPlayer)
+					{      //If i clicked it
+						Players[RealPlayer0].Cards.push(topCard);
+						totalCards.splice(0 ,1);
+					}
+					else 
+					{              //If AI called function
+						Players[Whos_Turn].Cards.push(topCard);
+						totalCards.splice(0 ,1);
+					}
+			
+					Update_Cards();
+				},playDelay/3)
+			},playDelay/3);
+		}
+		else
+		{
+			if (!calledByOtherPlayer)
+			{      //If i clicked it
+				Players[RealPlayer0].Cards.push(topCard);
+				totalCards.splice(0 ,1);
+			}
+			else 
+			{              //If AI called function
+				Players[Whos_Turn].Cards.push(topCard);
+				totalCards.splice(0 ,1);
+			}
+
+			Update_Cards();
+		}
+		
+		
+		return topCard.filename;
+	}
+	
 	// mostly client with server calls
 	function configureCardClick(aCard, DOM_img, thisPlayer)
 	{
@@ -575,8 +802,10 @@
 		{
 			if (Whos_Turn == RealPlayer0)
 			{
-				unoPenaltyCheck(thisPlayer);
+				//unoPenaltyCheck(thisPlayer);
 				setCardIndex(this);
+				
+				
 				
 				if (aCard.Color == "Black")       //If Wild Card
 				{
@@ -584,8 +813,27 @@
 					modal.style.display = "block";
 				}
 			
+				else
+				{
+					// post "play" and card index (the server should already know whose turn it is, and therefore who is playing the card)
+					// This should increase the number of actions taken, also update the cardIndex
+					var client = new HttpClient();
+					client.post('http://104.236.169.62:80/unoAction/'+code+'/play/'+CardIndex+"/NA", function(response) {
+						var parsedJSON = (JSON.parse(response));
+						if (parsedJSON["result"] == "success")
+						{
+							console.log("succeeded in adding action");
+						}
+						else
+						{
+							console.log("failed to deal cards");
+							//document.appendChild(failedDiv);
+						}
+					});		
+				}
 		 
-				else if (aCardValue == "Skip")      //If Skip Card		
+				/*
+				if (aCardValue == "Skip")      //If Skip Card		
 				{
 					if (playCard('Skip',false) == true) setTimeout(function() {PlayGame()},playDelay); // call server
 				} 
@@ -601,10 +849,31 @@
 				{
 					if (playCard('Number',false) == true) setTimeout(function() {PlayGame()},playDelay); // call server
 				}
+				*/
 			}
 		}
 		return DOM_img;
 	}
+	
+	function clickedColor(color)
+	{
+		// post "play" and card index (the server should already know whose turn it is, and therefore who is playing the card)
+		// This should increase the number of actions taken, also update the cardIndex
+		var client = new HttpClient();
+		client.post('http://104.236.169.62:80/unoAction/'+code+'/playWild/'+CardIndex+"/"+color, function(response) {
+			var parsedJSON = (JSON.parse(response));
+			if (parsedJSON["result"] == "success")
+			{
+				console.log("succeeded in adding action");
+			}
+			else
+			{
+				console.log("failed to deal cards");
+				//document.appendChild(failedDiv);
+			}
+		});		
+	}
+	
 		
 	function Update_Cards()
 	{
@@ -677,7 +946,8 @@
 		}
 	}
 		
-	function Draw(calledByOtherPlayer)
+	/*	
+	function Draw(gameData,calledByOtherPlayer)
 	{
 		var topCard = totalCards[0];
 		
@@ -760,6 +1030,7 @@
 		
 		return topCard.filename;
 	}
+	*/
 	
 	function playCard(cardType,calledByOtherPlayer)
 	{
