@@ -164,6 +164,41 @@ app.post('/dealUnoCards/:code/:numPlayers', function(req,res){
 	
 });
 
+app.post('/unoAction/:code/:action/:CardIndex/:color', function(req,res){
+	var gameCode = req.params.code;
+	var action = req.params.action;
+	var CardIndex = req.params.CardIndex;
+	var color = req.params.color;
+	var gameDataForCode = getGameDataForCode(gameCode);
+	if (gameDataForCode != undefined && gameDataForCode != null)
+	{
+		gameDataForCode['numActions'] += 1;
+		if (action == 'playWild')
+		{
+			gameDataForCode['color'] = color;
+		}
+		gameDataForCode['CardIndex'] = CardIndex;
+		gameDataForCode['action'] = action;
+		res.send({
+			result: 'success',
+			err: '',
+			gameData: gameDataForCode
+		});
+	}
+	else
+	{
+		console.log("player group is undefined");
+		console.log("Here is what playerGroups looks like: ");
+		console.log(playerGroups);
+		res.send({
+			result: 'error',
+			err: 'There is no game open using that code'
+		});
+	}
+	
+});
+
+
 function getRandomName()
 {
 	var randIndex = Math.floor(Math.random() * randomNames.length);
@@ -653,6 +688,7 @@ app.post('/addGameToServer/:type', function(req,res){
 		playerGroups.push({
 			code: gameCode,
 			type: "uno",
+			numActions: 0,
 			players:[]
 		});
 		makeDeck(gameCode);
