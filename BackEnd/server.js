@@ -170,6 +170,10 @@ app.post('/unoAction/:code/:action/:CardIndex/:color', function(req,res){
 	var CardIndex = req.params.CardIndex;
 	var color = req.params.color;
 	var gameDataForCode = getGameDataForCode(gameCode);
+	console.log(gameCode);
+	console.log(action);
+	console.log(CardIndex);
+	console.log(color);
 	if (gameDataForCode != undefined && gameDataForCode != null)
 	{
 		gameDataForCode['numActions'] += 1;
