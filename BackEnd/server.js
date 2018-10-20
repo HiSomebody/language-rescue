@@ -234,22 +234,28 @@ app.post('/unoAction/:code/:action/:CardIndex/:color', function(req,res){
 			
 			if (action == 'playWild')
 			{
+				// We'll do this part later
 				gameDataForCode['color'] = color;
+				gameDataForCode['players']['currentTurn'][CardIndex]['Color_Of_Wild'] = color;
 			}
-			if (action == 'draw')
+			else if (action == 'play')
 			{
-				
+				// We'll do this part later
+			}
+			else  //if (action == 'draw')
+			{
+				var topCard = gameDataForCode['totalCards'][0];
+				var currentTurn = gameDataForCode['currentTurn'];
+				gameDataForCode['players'][currentTurn].Cards.push(topCard);
+				gameDataForCode['totalCards'].splice(0 ,1);
 			}
 			
+			if (gameDataForCode['totalCards'].length - 1 <= 10)
+			{
+				ReShuffleTotalCards(gameDataForCode);
+			}
 			
 			gameDataForCode['numActions'] += 1;
-
-			var topCard = gameDataForCode['totalCards'][0];
-			var currentTurn = gameDataForCode['currentTurn'];
-			gameDataForCode['players'][currentTurn].Cards.push(topCard);
-			gameDataForCode['totalCards'].splice(0 ,1);
-			//gameDataForCode['numActions'] += 1;
-
 		},1000);
 		
 		res.send({
@@ -271,6 +277,21 @@ app.post('/unoAction/:code/:action/:CardIndex/:color', function(req,res){
 	
 });
 
+function ReShuffleTotalCards(gameData)
+{
+	var Playable_Deck = gameData['Playable_Deck'];
+	var ShuffledDeck = [];
+	for (var i = 1; i <= copyOfDeck.length - 1; i++)
+	{
+		var RanNum1 = Math.floor(Math.random() * Playable_Deck.length);
+		ShuffledDeck.push(Playable_Deck[RanNum1]);
+		Playable_Deck.splice(RanNum1, 1);
+	}
+	for (var i = 0; i <= ShuffledDeck.length - 1; i++)
+	{
+		gameData['totalCards'].push(ShuffledDeck[i]);
+	}
+}
 
 function getRandomName()
 {
