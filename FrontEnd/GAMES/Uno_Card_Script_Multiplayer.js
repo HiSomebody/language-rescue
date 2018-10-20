@@ -335,7 +335,7 @@
 		Whos_Turn = (gameData['currentTurn'] + shiftAmount)%gameData['players'].length;
 		
 		
-		if (checkbox5.checked == false) //alert(Players.length + " Players will be dealt");
+		//if (checkbox5.checked == false) //alert(Players.length + " Players will be dealt");
 		totalCards = gameData['totalCards'];
 		Playable_Deck = gameData['Playable_Deck'];
 		Update_Cards();
@@ -604,7 +604,7 @@
 		if (thisPlayer.Cards.length == 2 && UNObutton.disabled == false && checkbox3.checked == false)
 		{
 			NeedsToSayUno = true;
-			if (checkbox5.checked == false) //alert("You have been dealt 2 extra cards for not clicking Uno Button");
+			//if (checkbox5.checked == false) alert("You have been dealt 2 extra cards for not clicking Uno Button");
 		}
 		else 
 		{
@@ -1171,7 +1171,7 @@
 		}
 		else
 		{
-			if (Whos_Turn == RealPlayer0) //alert("Cannot Play Card");
+			//if (Whos_Turn == RealPlayer0) //alert("Cannot Play Card");
 			return false;
 		}
 	}
@@ -1195,11 +1195,11 @@
 				}
 				if (RealPlayer0 == 0)
 				{  //If Not Reversed
-					if (checkbox5.checked == false) //alert("Player 2 has been delt 4 extra cards");
+					//if (checkbox5.checked == false) //alert("Player 2 has been delt 4 extra cards");
 				}
 				else
 				{
-					if (checkbox5.checked == false) //alert(Players[Players.length-1].Name + " has been delt 4 extra cards");
+					//if (checkbox5.checked == false) //alert(Players[Players.length-1].Name + " has been delt 4 extra cards");
 				}
 			}
 			Players[RealPlayer0].Cards[CardIndex].Color_Of_Wild = Color;
@@ -1230,13 +1230,13 @@
 					}
 					if (RealPlayer0 == 0)
 					{  //If Not Reversed
-						if (checkbox5.checked == false) //alert(Players[Whos_Turn + 1].Name + " has been delt 4 extra cards because player "
-							 + Players[Whos_Turn].Name + " put down a +4 wild");
+						//if (checkbox5.checked == false) //alert(Players[Whos_Turn + 1].Name + " has been delt 4 extra cards because player "
+						//	 + Players[Whos_Turn].Name + " put down a +4 wild");
 					}
 					else
 					{
-						if (checkbox5.checked == false) //alert(Players[Whos_Turn + 1].Name + " has been delt 4 extra cards because player " 
-							 + Players[Whos_Turn].Name + " put down a +4 wild");
+						//if (checkbox5.checked == false) //alert(Players[Whos_Turn + 1].Name + " has been delt 4 extra cards because player " 
+						//	 + Players[Whos_Turn].Name + " put down a +4 wild");
 					}
 				}
 			}
@@ -1282,12 +1282,12 @@
 		{
 			if (RealPlayer0 == 0)
 			{  //If Not Reversed
-				if (checkbox5.checked == false) //alert(Players[Whos_Turn].Name + " skipped Player 1");
+				//if (checkbox5.checked == false) //alert(Players[Whos_Turn].Name + " skipped Player 1");
 				Whos_Turn = RealPlayer0;
 			}
 			else
 			{
-				if (checkbox5.checked == false) //alert("Player " + (Players[Whos_Turn].OrginalNumber + 1) + " skipped player " + (Whos_Turn + 1));
+				//if (checkbox5.checked == false) //alert("Player " + (Players[Whos_Turn].OrginalNumber + 1) + " skipped player " + (Whos_Turn + 1));
 				Whos_Turn = 0;
 			}
 		}
@@ -1295,11 +1295,11 @@
 		{
 			if (RealPlayer0 == 0) 
 			{   //If Not Reversed
-				if (checkbox5.checked == false) //alert("Player " + (Whos_Turn + 1) + " skipped Player "+ (Whos_Turn + 2));
+				//if (checkbox5.checked == false) //alert("Player " + (Whos_Turn + 1) + " skipped Player "+ (Whos_Turn + 2));
 			}
 			else
 			{
-				if (checkbox5.checked == false) //alert("Player " + (Players[Whos_Turn].OrginalNumber + 1) + " skipped player " + (Players[Whos_Turn + 1].OrginalNumber + 1));
+				//if (checkbox5.checked == false) //alert("Player " + (Players[Whos_Turn].OrginalNumber + 1) + " skipped player " + (Players[Whos_Turn + 1].OrginalNumber + 1));
 			}
 			Whos_Turn++;
 		}
@@ -1314,7 +1314,7 @@
 		{
 			if (RealPlayer0 == 0)
 			{  //If Not Reversed
-				if (checkbox5.checked == false) //alert("Player " + (Whos_Turn + 1) + " has given player 1, 2 extra cards");
+				//if (checkbox5.checked == false) //alert("Player " + (Whos_Turn + 1) + " has given player 1, 2 extra cards");
 				for (var i = 0; i < 2; i++)
 				{
 					Players[RealPlayer0].Cards.push(totalCards[0]);
@@ -1324,7 +1324,7 @@
 			}
 			else
 			{
-				if (checkbox5.checked == false) //alert("Player " + (Players[Whos_Turn].OrginalNumber + 1) + " had given player " + (Whos_Turn + 1) + ", 2 extra cards");
+				//if (checkbox5.checked == false) //alert("Player " + (Players[Whos_Turn].OrginalNumber + 1) + " had given player " + (Whos_Turn + 1) + ", 2 extra cards");
 				for (var i = 0; i < 2; i++)
 				{
 					Players[0].Cards.push(totalCards[0]);
@@ -1337,11 +1337,11 @@
 		{
 			if (RealPlayer0 == 0)
 			{  //If Not Reversed
-				if (checkbox5.checked == false) //alert("Player " + (Whos_Turn + 1) + " has given player " + (Whos_Turn + 2) + ", 2 extra cards");
+				//if (checkbox5.checked == false) //alert("Player " + (Whos_Turn + 1) + " has given player " + (Whos_Turn + 2) + ", 2 extra cards");
 			}
 			else
 			{
-				if (checkbox5.checked == false) //alert("Player " + (Players[Whos_Turn].OrginalNumber + 1) + " had given player " + (Players[Whos_Turn + 1].OrginalNumber + 1) + ", 2 extra cards");
+				//if (checkbox5.checked == false) //alert("Player " + (Players[Whos_Turn].OrginalNumber + 1) + " had given player " + (Players[Whos_Turn + 1].OrginalNumber + 1) + ", 2 extra cards");
 			}
 			for (var i = 0; i < 2; i++)
 			{
@@ -1375,7 +1375,7 @@
 		{
 			RealPlayer0 = 0;
 		}
-		if (checkbox5.checked == false) //alert("Reversed Order Of Players!");
+		//if (checkbox5.checked == false) //alert("Reversed Order Of Players!");
 	}
 		
 	function doNumber()	
