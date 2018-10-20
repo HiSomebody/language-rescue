@@ -104,12 +104,24 @@
 			// on success
 			if (startedGame)
 			{
-				Whos_Turn = (gameData['currentTurn'] + shiftAmount)%gameData['players'].length;
 				var newNumActions = gameData['numActions'];
 				if (newNumActions != numActionsHappened)
 				{
 					numActionsHappened = newNumActions;
 					Players = gameData['players'];
+					for (var i = 0; i < Players.length; i++)
+					{
+						if (Players[i].Name == username)
+						{
+							shiftAmount = i;
+						}
+					}
+					for (var i = 0; i < shiftAmount; i++)
+					{
+						var firstElement = Players.shift();
+						Players.push(firstElement);
+					}
+					Whos_Turn = (gameData['currentTurn'] + shiftAmount)%gameData['players'].length;
 					total_cards = gameData['total_cards'];
 					Playable_Deck = gameData['Playable_Deck'];
 					SomeOneWon = gameData['SomeOneWon'];
