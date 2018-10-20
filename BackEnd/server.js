@@ -44,8 +44,16 @@ var playerGroups = [
 		gameState: [["","",""],["","",""],["","",""]],
 		currentTurn: "X",
 		players:[]
+	},
+	{
+		code: 'JJJJ',
+		type: "uno",
+		numActions: 0,
+		players:[]
 	}
 ];
+
+makeDeck('JJJJ');
 
 
 app.use(bodyParser.json());
@@ -604,54 +612,6 @@ app.get('/gamepage/:code', function(req,res){
 });
 
 
-/*
-const Transform = require('stream').Transform;
-const parser = new Transform();
-parser._transform = function(data, encoding, done) {
-	//console.log(data.toString());
-	const str = data.toString().replace('<head><script>', '<head><script>var importantData = {"code": "'+tempCode+'", "username": "'+tempUsername+'"};');
-	//console.log("STARTING NEW HTML" + str.substring(0,200) + "ENDING NEW HTML");
-	this.push(str);
-	done();
-};
-*/
-
-/*
-app.use('/index.html', (req, res) => {
-	res.write('<!-- Begin stream -->\n');
-	fs
-	.createReadStream('../public/index.html')
-	.pipe(parser)
-	.on('end', () => {
-	res.write('\n<!-- End stream -->')
-	}).pipe(res);
-});
-*/
-
-/*
-app.get('/gamepage/:code/:username', function(req,res)
-{
-	tempCode = req.params.code;
-	tempUsername = req.params.username;
-	console.log("entered gamepage with params");
-	res.write('<!-- Begin stream -->\n');
-	var readStream = fs.createReadStream(__dirname + '/../FrontEnd/GAMES/GameParticipantPage.html');
-	readStream.pipe(parser);
-	readStream.on('end', function() {
-		res.write('\n<!-- End stream -->');
-	});
-	readStream.pipe(res);
-	/*
-
-	res.send({
-		result: 'success',
-		err: '',
-		code: code,
-		username: username
-	});
-	
-});
-*/
 
 function getRandomAlphaNumeric()
 {
