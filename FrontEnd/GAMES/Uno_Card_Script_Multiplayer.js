@@ -312,7 +312,7 @@
 		if (checkbox5.checked == false) alert(Players.length + " Players will be dealt");
 		totalCards = gameData['totalCards'];
 		Playable_Deck = gameData['Playable_Deck'];
-		//PlayGame();
+		Update_Cards();
 	}
 	
 	// Both Client and Server mix	
