@@ -248,7 +248,7 @@ app.post('/unoAction/:code/:action/:CardIndex/:color', function(req,res){
 				var currentTurn = gameDataForCode['currentTurn'];
 				gameDataForCode['players'][currentTurn].Cards.push(topCard);
 				gameDataForCode['totalCards'].splice(0 ,1);
-				gameDataForCode['currentTurn'] += 1;
+				changeUnoTurn(gameDataForCode,1);
 			}
 			
 			if (gameDataForCode['totalCards'].length - 1 <= 10)
@@ -277,6 +277,15 @@ app.post('/unoAction/:code/:action/:CardIndex/:color', function(req,res){
 	}
 	
 });
+
+function changeUnoTurn(gameData,turnChanges)
+{
+	gameData['currentTurn'] += turnChanges;
+	if (gameData['currentTurn'] >= gameData['currentTurn'].length)
+	{
+		gameData['currentTurn'] -= gameData['currentTurn'].length;
+	}
+}
 
 function ReShuffleTotalCards(gameData)
 {
