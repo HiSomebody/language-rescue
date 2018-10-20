@@ -105,6 +105,8 @@
 			if (startedGame)
 			{
 				var newNumActions = gameData['numActions'];
+				Whos_Turn = (gameData['currentTurn'] + shiftAmount)%gameData['players'].length;
+				
 				if (newNumActions != numActionsHappened)
 				{
 					numActionsHappened = newNumActions;
@@ -516,11 +518,11 @@
 					var parsedJSON = (JSON.parse(response));
 					if (parsedJSON["result"] == "success")
 					{
-						console.log("succeeded in adding action");
+						console.log("succeeded in adding draw card action");
 					}
 					else
 					{
-						console.log("failed to deal cards");
+						console.log("failed to add play card action");
 						//document.appendChild(failedDiv);
 					}
 				});		
@@ -776,6 +778,8 @@
 					{      //If i clicked it
 						Players[RealPlayer0].Cards.push(topCard);
 						totalCards.splice(0 ,1);
+						// Client that drew card sends post to change turn
+						changeTurnOnServer(1);
 					}
 					else 
 					{              //If AI called function
@@ -807,6 +811,23 @@
 		return topCard.filename;
 	}
 	
+	function changeTurnOnServer(turnChanges)
+	{
+		var client = new HttpClient();
+		client.post('http://104.236.169.62:80/unoChangeTurn/'+code+'/'+turnChanges, function(response) {
+			var parsedJSON = (JSON.parse(response));
+			if (parsedJSON["result"] == "success")
+			{
+				console.log("succeeded in changing turn on server " + turnChanges + " times");
+			}
+			else
+			{
+				console.log("failed to change turn");
+				//document.appendChild(failedDiv);
+			}
+		});		
+	}
+	
 	// mostly client with server calls
 	function configureCardClick(aCard, DOM_img, thisPlayer)
 	{
@@ -836,11 +857,11 @@
 							var parsedJSON = (JSON.parse(response));
 							if (parsedJSON["result"] == "success")
 							{
-								console.log("succeeded in adding action");
+								console.log("succeeded in adding play card action");
 							}
 							else
 							{
-								console.log("failed to deal cards");
+								console.log("failed to add play card action");
 								//document.appendChild(failedDiv);
 							}
 						});		
