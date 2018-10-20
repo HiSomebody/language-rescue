@@ -49,7 +49,8 @@ var playerGroups = [
 		code: 'JJJJ',
 		type: "uno",
 		numActions: 0,
-		players:[]
+		players:[],
+		currentTurn: 0
 	}
 ];
 
@@ -180,7 +181,7 @@ app.post('/unoChangeTurn/:code/:turnChanges', function(req,res){
 	console.log(turnChanges);
 	if (gameDataForCode != undefined && gameDataForCode != null)
 	{
-		gameDataForCode['currentTurn'] += turnChanges;
+		gameDataForCode['currentTurn'] += Number(turnChanges);
 		if (gameDataForCode['currentTurn'] > gameDataForCode['players'].length)
 		{
 			gameDataForCode['currentTurn'] -= gameDataForCode['players'].length;
