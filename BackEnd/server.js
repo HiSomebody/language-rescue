@@ -183,6 +183,7 @@ app.post('/unoAction/:code/:action/:CardIndex/:color', function(req,res){
 		}
 		if (action == 'draw')
 		{
+			/*
 			setTimeout(function() {
 				var topCard = gameDataForCode['totalCards'][0];
 				var currentTurn = gameDataForCode['currentTurn'];
@@ -191,6 +192,7 @@ app.post('/unoAction/:code/:action/:CardIndex/:color', function(req,res){
 				gameDataForCode['numActions'] += 1;
 
 			},500);
+			*/
 		}
 		gameDataForCode['CardIndex'] = CardIndex;
 		gameDataForCode['action'] = action;
