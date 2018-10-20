@@ -126,7 +126,6 @@
 					Playable_Deck = gameData['Playable_Deck'];
 					SomeOneWon = gameData['SomeOneWon'];
 					doAnimationAction(gameData);
-					Update_Cards();
 				}
 				return;
 			}
