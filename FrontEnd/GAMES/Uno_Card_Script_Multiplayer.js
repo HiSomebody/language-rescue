@@ -66,6 +66,7 @@
 	var startedGame = false;
 	var shiftAmount = 0;
 	var numActionsHappened = 0;
+	var numAnimationsHappened = 0;
 	
 
 
@@ -97,20 +98,24 @@
 		console.log(totalCards.length);*/
 	}
 	
-	// Check if others have joined
 	setInterval(function(){
-		// get gamedata from server to update players list
 		getGameData(function(gameData){
-			// on success
 			if (startedGame)
 			{
+				// get gamedata from server to update players list			
 				var newNumActions = gameData['numActions'];
-				var tempLastWhos_Turn = Whos_Turn;
-				Whos_Turn = (gameData['currentTurn'] + shiftAmount)%gameData['players'].length;
+				var newNumAnimations = gameData['numAnimations'];
 				
-				if (newNumActions != numActionsHappened || tempLastWhos_Turn != Whos_Turn)
+				if (newNumAnimations != numAnimationsHappened) // Server says there's an animation to do
+				{
+					numAnimationsHappened = newNumAnimations;	
+					doAnimationAction(gameData);
+				}
+				if (newNumActions != numActionsHappened) // Server says the master deck and hands changed
 				{
 					numActionsHappened = newNumActions;
+
+					// Shift this client to be front of list in this view only
 					Players = gameData['players'];
 					for (var i = 0; i < Players.length; i++)
 					{
@@ -124,22 +129,27 @@
 						var firstElement = Players.shift();
 						Players.push(firstElement);
 					}
+					
+					// Update game state variables from server
 					Whos_Turn = (gameData['currentTurn'] + shiftAmount)%gameData['players'].length;
 					total_cards = gameData['total_cards'];
 					Playable_Deck = gameData['Playable_Deck'];
 					SomeOneWon = gameData['SomeOneWon'];
-					doAnimationAction(gameData);
-					setTimeout(Update_Cards,1000);
+					
+					// redraw game with updates
+					Update_Cards;
 				}
 				return;
 			}
 			else if (gameData.startedGame == true)
 			{
+				// Starting game
 				startedGame = true;
 				startGame(gameData);
 			}
 			else
 			{
+				// Checking if others have joined before we start
 				var waitingDiv = document.getElementById("waitingText");
 				waitingDiv.innerHTML = "Waiting for Other Players to Join with Game Code: " + code;
 				var joinedDiv = document.getElementById("joined");
@@ -325,7 +335,7 @@
 		Whos_Turn = (gameData['currentTurn'] + shiftAmount)%gameData['players'].length;
 		
 		
-		if (checkbox5.checked == false) alert(Players.length + " Players will be dealt");
+		if (checkbox5.checked == false) //alert(Players.length + " Players will be dealt");
 		totalCards = gameData['totalCards'];
 		Playable_Deck = gameData['Playable_Deck'];
 		Update_Cards();
@@ -594,7 +604,7 @@
 		if (thisPlayer.Cards.length == 2 && UNObutton.disabled == false && checkbox3.checked == false)
 		{
 			NeedsToSayUno = true;
-			if (checkbox5.checked == false) alert("You have been dealt 2 extra cards for not clicking Uno Button");
+			if (checkbox5.checked == false) //alert("You have been dealt 2 extra cards for not clicking Uno Button");
 		}
 		else 
 		{
@@ -619,12 +629,12 @@
 		
 		if (action == 'draw')
 		{
-			// I draw a card
+			// someone drew a card
 			drawAnimation(gameData);
 		}
-		else if (action == 'play')
+		else //if (action == 'play' || action == 'playWild')
 		{
-			// I play a card
+			// someone played a card
 			playAnimation(gameData);
 		}		
 	}
@@ -774,13 +784,14 @@
 					cardImgDiv.width = "38";
 				}
 				
+				/*
 				setTimeout(function() {
 					if (!calledByOtherPlayer)
 					{      //If i clicked it
 						Players[RealPlayer0].Cards.push(topCard);
 						totalCards.splice(0 ,1);
 						// Client that drew card sends post to change turn
-						changeTurnOnServer(1);
+						//changeTurnOnServer(1); I'll just let the server do this after all
 					}
 					else 
 					{              //If AI called function
@@ -789,11 +800,13 @@
 					}
 			
 					Update_Cards();
-				},playDelay/3)
+				},playDelay/3);
+				*/
 			},playDelay/3);
 		}
 		else
 		{
+			/*
 			if (!calledByOtherPlayer)
 			{      //If i clicked it
 				Players[RealPlayer0].Cards.push(topCard);
@@ -806,12 +819,14 @@
 			}
 
 			Update_Cards();
+			*/
 		}
 		
 		
 		return topCard.filename;
 	}
 	
+	/*
 	function changeTurnOnServer(turnChanges)
 	{
 		var client = new HttpClient();
@@ -828,6 +843,7 @@
 			}
 		});		
 	}
+	*/
 	
 	// mostly client with server calls
 	function configureCardClick(aCard, DOM_img, thisPlayer)
@@ -886,6 +902,10 @@
 						if (playCard('Number',false) == true) setTimeout(function() {PlayGame()},playDelay); // call server
 					}
 					*/
+				}
+				else
+				{
+					alert("Cannot Play Card");
 				}
 			}
 		}
@@ -1069,6 +1089,7 @@
 	}
 	*/
 	
+	/*
 	function playCard(cardType,calledByOtherPlayer)
 	{
 		if (CanPlayCard() == true)
@@ -1150,10 +1171,11 @@
 		}
 		else
 		{
-			if (Whos_Turn == RealPlayer0) alert("Cannot Play Card");
+			if (Whos_Turn == RealPlayer0) //alert("Cannot Play Card");
 			return false;
 		}
 	}
+	*/
 		 	 
 	function doWild(Color)
 	{
@@ -1173,11 +1195,11 @@
 				}
 				if (RealPlayer0 == 0)
 				{  //If Not Reversed
-					if (checkbox5.checked == false) alert("Player 2 has been delt 4 extra cards");
+					if (checkbox5.checked == false) //alert("Player 2 has been delt 4 extra cards");
 				}
 				else
 				{
-					if (checkbox5.checked == false) alert(Players[Players.length-1].Name + " has been delt 4 extra cards");
+					if (checkbox5.checked == false) //alert(Players[Players.length-1].Name + " has been delt 4 extra cards");
 				}
 			}
 			Players[RealPlayer0].Cards[CardIndex].Color_Of_Wild = Color;
@@ -1208,12 +1230,12 @@
 					}
 					if (RealPlayer0 == 0)
 					{  //If Not Reversed
-						if (checkbox5.checked == false) alert(Players[Whos_Turn + 1].Name + " has been delt 4 extra cards because player "
+						if (checkbox5.checked == false) //alert(Players[Whos_Turn + 1].Name + " has been delt 4 extra cards because player "
 							 + Players[Whos_Turn].Name + " put down a +4 wild");
 					}
 					else
 					{
-						if (checkbox5.checked == false) alert(Players[Whos_Turn + 1].Name + " has been delt 4 extra cards because player " 
+						if (checkbox5.checked == false) //alert(Players[Whos_Turn + 1].Name + " has been delt 4 extra cards because player " 
 							 + Players[Whos_Turn].Name + " put down a +4 wild");
 					}
 				}
@@ -1260,12 +1282,12 @@
 		{
 			if (RealPlayer0 == 0)
 			{  //If Not Reversed
-				if (checkbox5.checked == false) alert(Players[Whos_Turn].Name + " skipped Player 1");
+				if (checkbox5.checked == false) //alert(Players[Whos_Turn].Name + " skipped Player 1");
 				Whos_Turn = RealPlayer0;
 			}
 			else
 			{
-				if (checkbox5.checked == false) alert("Player " + (Players[Whos_Turn].OrginalNumber + 1) + " skipped player " + (Whos_Turn + 1));
+				if (checkbox5.checked == false) //alert("Player " + (Players[Whos_Turn].OrginalNumber + 1) + " skipped player " + (Whos_Turn + 1));
 				Whos_Turn = 0;
 			}
 		}
@@ -1273,11 +1295,11 @@
 		{
 			if (RealPlayer0 == 0) 
 			{   //If Not Reversed
-				if (checkbox5.checked == false) alert("Player " + (Whos_Turn + 1) + " skipped Player "+ (Whos_Turn + 2));
+				if (checkbox5.checked == false) //alert("Player " + (Whos_Turn + 1) + " skipped Player "+ (Whos_Turn + 2));
 			}
 			else
 			{
-				if (checkbox5.checked == false) alert("Player " + (Players[Whos_Turn].OrginalNumber + 1) + " skipped player " + (Players[Whos_Turn + 1].OrginalNumber + 1));
+				if (checkbox5.checked == false) //alert("Player " + (Players[Whos_Turn].OrginalNumber + 1) + " skipped player " + (Players[Whos_Turn + 1].OrginalNumber + 1));
 			}
 			Whos_Turn++;
 		}
@@ -1292,7 +1314,7 @@
 		{
 			if (RealPlayer0 == 0)
 			{  //If Not Reversed
-				if (checkbox5.checked == false) alert("Player " + (Whos_Turn + 1) + " has given player 1, 2 extra cards");
+				if (checkbox5.checked == false) //alert("Player " + (Whos_Turn + 1) + " has given player 1, 2 extra cards");
 				for (var i = 0; i < 2; i++)
 				{
 					Players[RealPlayer0].Cards.push(totalCards[0]);
@@ -1302,7 +1324,7 @@
 			}
 			else
 			{
-				if (checkbox5.checked == false) alert("Player " + (Players[Whos_Turn].OrginalNumber + 1) + " had given player " + (Whos_Turn + 1) + ", 2 extra cards");
+				if (checkbox5.checked == false) //alert("Player " + (Players[Whos_Turn].OrginalNumber + 1) + " had given player " + (Whos_Turn + 1) + ", 2 extra cards");
 				for (var i = 0; i < 2; i++)
 				{
 					Players[0].Cards.push(totalCards[0]);
@@ -1315,11 +1337,11 @@
 		{
 			if (RealPlayer0 == 0)
 			{  //If Not Reversed
-				if (checkbox5.checked == false) alert("Player " + (Whos_Turn + 1) + " has given player " + (Whos_Turn + 2) + ", 2 extra cards");
+				if (checkbox5.checked == false) //alert("Player " + (Whos_Turn + 1) + " has given player " + (Whos_Turn + 2) + ", 2 extra cards");
 			}
 			else
 			{
-				if (checkbox5.checked == false) alert("Player " + (Players[Whos_Turn].OrginalNumber + 1) + " had given player " + (Players[Whos_Turn + 1].OrginalNumber + 1) + ", 2 extra cards");
+				if (checkbox5.checked == false) //alert("Player " + (Players[Whos_Turn].OrginalNumber + 1) + " had given player " + (Players[Whos_Turn + 1].OrginalNumber + 1) + ", 2 extra cards");
 			}
 			for (var i = 0; i < 2; i++)
 			{
@@ -1353,7 +1375,7 @@
 		{
 			RealPlayer0 = 0;
 		}
-		if (checkbox5.checked == false) alert("Reversed Order Of Players!");
+		if (checkbox5.checked == false) //alert("Reversed Order Of Players!");
 	}
 		
 	function doNumber()	
@@ -1391,7 +1413,7 @@
 		
 	function Winning()
 	{
-		alert("Player " + (Players[Whos_Turn].OrginalNumber + 1) + " Won!");
+		//alert("Player " + (Players[Whos_Turn].OrginalNumber + 1) + " Won!");
 		while (deck.hasChildNodes()) 
 		{                                //Removes All Card Imgs
 			deck.removeChild(deck.lastChild);
@@ -1402,6 +1424,7 @@
 		}
 	}
 		
+	/*	
 	function ReShuffleTotalCards()
 	{
 		var copyOfDeck = Playable_Deck;
@@ -1417,6 +1440,7 @@
 			totalCards.push(ShuffledDeck[i]);
 		}
 	}
+	*/
 		
 	function AI()
 	{
@@ -1551,7 +1575,8 @@
 			document.location.reload(true);
 		}
 	}
-		
+	
+	/*	
 	function Card (Value, Color, filename)
 	{
 		this.filename = filename;
@@ -1610,3 +1635,4 @@
 		this.Cards = Cards;
 		this.OrginalNumber = OrginalNumber;
 	}
+	*/
