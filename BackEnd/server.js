@@ -172,6 +172,39 @@ app.post('/dealUnoCards/:code/:numPlayers', function(req,res){
 	
 });
 
+app.post('/unoChangeTurn/:code/:turnChanges', function(req,res){
+	var gameCode = req.params.code;
+	var turnChanges = req.params.turnChanges;
+	var gameDataForCode = getGameDataForCode(gameCode);
+	console.log(gameCode);
+	console.log(turnChanges);
+	if (gameDataForCode != undefined && gameDataForCode != null)
+	{
+		gameDataForCode['currentTurn'] += turnChanges;
+		if (gameDataForCode['currentTurn'] > gameDataForCode['players'].length)
+		{
+			gameDataForCode['currentTurn'] -= gameDataForCode['players'].length;
+		}
+		res.send({
+			result: 'success',
+			err: '',
+			gameData: gameDataForCode
+		});
+	}
+	else
+	{
+		console.log("player group is undefined");
+		console.log("Here is what playerGroups looks like: ");
+		console.log(playerGroups);
+		res.send({
+			result: 'error',
+			err: 'There is no game open using that code'
+		});
+	}
+	
+});
+
+
 app.post('/unoAction/:code/:action/:CardIndex/:color', function(req,res){
 	var gameCode = req.params.code;
 	var action = req.params.action;
