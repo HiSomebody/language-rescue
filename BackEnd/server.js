@@ -188,7 +188,9 @@ app.post('/unoAction/:code/:action/:CardIndex/:color', function(req,res){
 				var currentTurn = gameDataForCode['currentTurn'];
 				gameDataForCode['Players'][currentTurn].Cards.push(topCard);
 				gameDataForCode['totalCards'].splice(0 ,1);
-			},500)
+				gameDataForCode['numActions'] += 1;
+
+			},500);
 		}
 		gameDataForCode['CardIndex'] = CardIndex;
 		gameDataForCode['action'] = action;
