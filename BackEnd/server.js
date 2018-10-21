@@ -362,7 +362,12 @@ function changeUnoTurn(gameData,turnChanges)
 	{
 		var currentTurn = gameData['currentTurn'];
 		var numPlayers = gameData['players'].length;
-		var newTurn = (currentTurn + turnChanges)%numPlayers;
+		console.log("numPlayers:");
+		console.log(numPlayers);
+		var newTurnBeforeMod = currentTurn + turnChanges;
+		console.log("before Mod:");
+		console.log(newTurnBeforeMod);
+		var newTurn = newTurnBeforeMod%numPlayers;
 		console.log("new Turn:");
 		console.log(newTurn);
 		gameData['currentTurn'] = newTurn;
