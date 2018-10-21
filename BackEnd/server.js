@@ -257,18 +257,21 @@ app.post('/unoChangeTurn/:code/:turnChanges', function(req,res){
 	{
 		changeUnoTurn(gameDataForCode,turnChanges);
 		gameDataForCode['numActions'] += 1;
-		res.send({
-			result: 'success',
-			err: ''//,
-			//gameData: gameDataForCode
-		});
 		var currentTurn = gameDataForCode['currentTurn'];
+		console.log("Checking if following player is AI:");
+		console.log(gameDataForCode['players'][currentTurn]);
 		if (gameDataForCode['players'][currentTurn].isAI)
 		{
 			setTimeout(function(){
 				doAITurn(gameDataForCode);
 			},500);
 		}
+		res.send({
+			result: 'success',
+			err: ''//,
+			//gameData: gameDataForCode
+		});
+		
 	}
 	else
 	{
