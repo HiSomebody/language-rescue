@@ -347,6 +347,9 @@
 	function displayMessage(text)
 	{
 		document.getElementById("messageBoard").innerHTML = text;
+		setTimeout(function(){
+			document.getElementById("messageBoard").innerHTML = "&nbsp";
+		},1000);
 	}
 	
 	// Both Client and Server mix	
