@@ -550,11 +550,12 @@
 						var gameData = parsedJSON['gameData'];
 						
 						var card_filename = gameData['totalCards'][0].filename;
+						var card = gameData['totalCards'][0];
 						setTimeout(function(){
 					
 							var card_div = getMyCardDiv(card_filename);
 							setCardIndex(card_div);
-							if (CanPlayCard())
+							if (CanPlayCard2(card))
 							{
 								setTimeout(function() {
 									var waitTime = 0;
@@ -1633,6 +1634,31 @@
 			}
 		}
 	}
+		
+	function CanPlayCard2(card)
+	{
+		if (card.Color == "Black") return true;
+		if (card.Color == Playable_Deck[Playable_Deck.length - 1].Color //If Same Color
+			|| card.Value === Playable_Deck[Playable_Deck.length - 1].Value  //if Same number
+			|| card.Color == Playable_Deck[Playable_Deck.length - 1].Color_Of_Wild) //if wild already there
+		{
+			return true;
+		}
+		else
+		{
+			if (Whos_Turn == RealPlayer0 && checkbox2.checked == true)   //IF I CAN PLAY ANY CARD IS CHECKED AND IS MY TURN
+			{
+				return true;
+			} else {
+				if (checkbox4.checked == true && Whos_Turn != RealPlayer0) //If AI can play any card is checked and not my turn
+				{
+					return true;
+				} else {
+					return false;
+				}
+			}
+		}
+	}	
 		
 	function Reaload()
 	{
