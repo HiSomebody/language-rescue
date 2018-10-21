@@ -250,7 +250,7 @@ app.post('/unoAction/:code/:action/:CardIndex/:color', function(req,res){
 				{
 					changeUnoTurn(gameDataForCode,2);
 				}
-				else if (card.Value == "+2")
+				else if (card.Value === "+2")
 				{
 					var nextIndex;
 					if (gameDataForCode['isReversed'])
