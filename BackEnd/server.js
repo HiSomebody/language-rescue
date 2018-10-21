@@ -211,7 +211,7 @@ function doAITurn(gameData)
 
 				//playCard(null,true);
 			}
-
+			gameData['action'] = action;
 			doAction(gameData,action,CardIndex,color);
 
 
@@ -240,6 +240,7 @@ function doAITurn(gameData)
 	if (NeedToDraw == true)
 	{
 		//Draw(true);
+		gameData['action'] = "draw";
 		doAction(gameData,"draw",-1,"NA");
 	}
 }
