@@ -558,22 +558,23 @@
 							if (CanPlayCard2(card))
 							{
 								setTimeout(function() {
-									var waitTime = 0;
 									var r = confirm("Would you like to play the card you just drew?")
 									if (r == true)
 									{	
 										card_div.onclick();
-										waitTime = 500;
 									}
-									setTimeout(function(){
-										client.post('http://104.236.169.62:80/unoChangeTurn/'+code+'/1', function(response) {
-											var parsedJSON = (JSON.parse(response));
-											if (parsedJSON["result"] == "success")
-											{
-												// successfully changed turn
-											}
-										});
-									},waitTime);
+									else
+									{
+										setTimeout(function(){
+											client.post('http://104.236.169.62:80/unoChangeTurn/'+code+'/1', function(response) {
+												var parsedJSON = (JSON.parse(response));
+												if (parsedJSON["result"] == "success")
+												{
+													// successfully changed turn
+												}
+											});
+										},0);
+									}
 								}, 500);
 							}
 							else
