@@ -236,12 +236,34 @@ app.post('/unoAction/:code/:action/:CardIndex/:color', function(req,res){
 			
 			if (action == 'playWild')
 			{
-				// We'll do this part later
 				gameDataForCode['players'][currentTurn]['Cards'][CardIndex]['Color_Of_Wild'] = color;
 			}
-			else if (action == 'play')
+			if (action == 'play' || action == 'playWild')
 			{
-				// We'll do this part later
+				var Playable_Deck = gameDataForCode['Playable_Deck'];
+				var Players = gameDataForCode['players'];
+				
+				if (card.Value == "Skip")
+				{
+				}
+				else if (card.Value == "+2")
+				{
+				}
+				else if (card.Value == "Reverse")
+				{
+				}
+				else if (card.Value == "Wild")
+				{
+				}
+				else if (card.Value == "Wild & + 4")
+				{
+				}
+				else // number card
+				{
+					Playable_Deck.push(Players[currentTurn].Cards[CardIndex]);
+					Players[currentTurn].Cards.splice(CardIndex, 1);
+					changeUnoTurn(gameDataForCode,1);
+				}
 			}
 			else  //if (action == 'draw')
 			{
