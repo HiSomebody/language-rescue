@@ -234,10 +234,6 @@ app.post('/unoAction/:code/:action/:CardIndex/:color', function(req,res){
 			var currentTurn = gameDataForCode['currentTurn'];
 
 			
-			if (action == 'playWild')
-			{
-				gameDataForCode['players'][currentTurn]['Cards'][CardIndex]['Color_Of_Wild'] = color;
-			}
 			if (action == 'play' || action == 'playWild')
 			{
 				var Playable_Deck = gameDataForCode['Playable_Deck'];
@@ -255,9 +251,18 @@ app.post('/unoAction/:code/:action/:CardIndex/:color', function(req,res){
 				}
 				else if (card.Value == "Wild")
 				{
+					Players[currentTurn].Cards[CardIndex].Color_Of_Wild = color;
+					Playable_Deck.push(Players[currentTurn].Cards[CardIndex]);
+					Players[currentTurn].Cards.splice(CardIndex, 1);
+					changeUnoTurn(gameDataForCode,1);
 				}
 				else if (card.Value == "Wild & + 4")
 				{
+					// DO MORE HERE
+					Players[currentTurn].Cards[CardIndex].Color_Of_Wild = color;
+					Playable_Deck.push(Players[currentTurn].Cards[CardIndex]);
+					Players[currentTurn].Cards.splice(CardIndex, 1);
+					// DO MORE HERE
 				}
 				else // number card
 				{
