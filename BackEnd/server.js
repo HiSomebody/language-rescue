@@ -304,8 +304,6 @@ app.post('/unoAction/:code/:action/:CardIndex/:color', function(req,res){
 				}
 				else // number card
 				{
-					Playable_Deck.push(Players[currentTurn].Cards[CardIndex]);
-					Players[currentTurn].Cards.splice(CardIndex, 1);
 					changeUnoTurn(gameDataForCode,1);
 				}
 			}
