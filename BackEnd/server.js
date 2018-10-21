@@ -175,7 +175,7 @@ app.post('/dealUnoCards/:code/:numPlayers', function(req,res){
 	
 });
 
-/*
+
 app.post('/unoChangeTurn/:code/:turnChanges', function(req,res){
 	var gameCode = req.params.code;
 	var turnChanges = req.params.turnChanges;
@@ -184,11 +184,8 @@ app.post('/unoChangeTurn/:code/:turnChanges', function(req,res){
 	console.log(turnChanges);
 	if (gameDataForCode != undefined && gameDataForCode != null)
 	{
-		gameDataForCode['currentTurn'] += Number(turnChanges);
-		if (gameDataForCode['currentTurn'] > gameDataForCode['players'].length)
-		{
-			gameDataForCode['currentTurn'] -= gameDataForCode['players'].length;
-		}
+		changeUnoTurn(gameDataForCode,turnChanges);
+		gameDataForCode['numActions'] += 1;
 		res.send({
 			result: 'success',
 			err: '',
@@ -207,7 +204,7 @@ app.post('/unoChangeTurn/:code/:turnChanges', function(req,res){
 	}
 	
 });
-*/
+
 
 
 app.post('/unoAction/:code/:action/:CardIndex/:color', function(req,res){
