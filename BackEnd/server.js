@@ -257,21 +257,12 @@ app.post('/unoChangeTurn/:code/:turnChanges', function(req,res){
 	{
 		changeUnoTurn(gameDataForCode,turnChanges);
 		gameDataForCode['numActions'] += 1;
-		var currentTurn = gameDataForCode['currentTurn'];
-		console.log("Checking if following player is AI:");
-		console.log(gameDataForCode['players'][currentTurn]);
-		if (gameDataForCode['players'][currentTurn].isAI)
-		{
-			setTimeout(function(){
-				doAITurn(gameDataForCode);
-			},500);
-		}
+		
 		res.send({
 			result: 'success',
 			err: ''//,
 			//gameData: gameDataForCode
 		});
-		
 	}
 	else
 	{
@@ -430,11 +421,11 @@ app.post('/unoAction/:code/:action/:CardIndex/:color', function(req,res){
 
 function changeUnoTurn(gameData,turnChanges)
 {
-	console.log("now really changing turn");
-	console.log("turn argument:");
-	console.log(turnChanges);
-	console.log("current turn started as:");
-	console.log(gameData['currentTurn']);
+	//console.log("now really changing turn");
+	//console.log("turn argument:");
+	//console.log(turnChanges);
+	//console.log("current turn started as:");
+	//console.log(gameData['currentTurn']);
 	if (gameData['isReversed'])
 	{
 		gameData['currentTurn'] = (Number(gameData['currentTurn']) + Number(gameData['players'].length)-Number(turnChanges))%gameData['players'].length;
@@ -443,18 +434,28 @@ function changeUnoTurn(gameData,turnChanges)
 	{
 		var currentTurn = gameData['currentTurn'];
 		var numPlayers = gameData['players'].length;
-		console.log("numPlayers:");
-		console.log(numPlayers);
+		//console.log("numPlayers:");
+		//console.log(numPlayers);
 		var newTurnBeforeMod = Number(currentTurn) + Number(turnChanges);
-		console.log("before Mod:");
-		console.log(newTurnBeforeMod);
+		//console.log("before Mod:");
+		//console.log(newTurnBeforeMod);
 		var newTurn = newTurnBeforeMod%numPlayers;
-		console.log("new Turn:");
-		console.log(newTurn);
+		//console.log("new Turn:");
+		//console.log(newTurn);
 		gameData['currentTurn'] = newTurn;
 	}
-	console.log("changed to:");
-	console.log(gameData['currentTurn']);
+	
+	var currentTurn = gameData['currentTurn'];
+	console.log("Checking if following player is AI:");
+	console.log(gameData['players'][currentTurn]);
+	if (gameData['players'][currentTurn].isAI)
+	{
+		setTimeout(function(){
+			doAITurn(gameData);
+		},500);
+	}
+	//console.log("changed to:");
+	//console.log(gameData['currentTurn']);
 }
 
 function ReShuffleTotalCards(gameData)
