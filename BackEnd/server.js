@@ -330,8 +330,8 @@ app.post('/unoAction/:code/:action/:CardIndex/:color', function(req,res){
 		
 		res.send({
 			result: 'success',
-			err: ''//,
-			//gameData: gameDataForCode
+			err: '',
+			gameData: gameDataForCode
 		});
 	}
 	else
