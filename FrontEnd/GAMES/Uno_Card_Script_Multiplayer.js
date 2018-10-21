@@ -109,10 +109,7 @@
 				if (newNumAnimations != numAnimationsHappened) // Server says there's an animation to do
 				{
 					numAnimationsHappened = newNumAnimations;	
-					if (gameData[currentTurn] != shiftAmount)
-					{
-						doAnimationAction(gameData);
-					}
+					doAnimationAction(gameData);
 				}
 				if (newNumActions != numActionsHappened) // Server says the master deck and hands changed
 				{
@@ -537,14 +534,13 @@
 				// post "play" and card index (the server should already know whose turn it is, and therefore who is playing the card)
 				// This should increase the number of actions taken, also update the cardIndex
 				var client = new HttpClient();
-				
 				client.post('http://104.236.169.62:80/unoAction/'+code+'/draw/-1/NA', function(response) {
 					var parsedJSON = (JSON.parse(response));
 					if (parsedJSON["result"] == "success")
 					{
 						console.log("succeeded in adding draw card action");
+						
 						var gameData = parsedJSON['gameData'];
-						drawAnimation(gameData);
 						
 						var card_filename = gameData['totalCards'][0].filename;
 						var card = gameData['totalCards'][0];
