@@ -309,7 +309,6 @@ app.post('/unoAction/:code/:action/:CardIndex/:color', function(req,res){
 				var topCard = gameDataForCode['totalCards'][0];
 				gameDataForCode['players'][currentTurn].Cards.push(topCard);
 				gameDataForCode['totalCards'].splice(0 ,1);
-				changeUnoTurn(gameDataForCode,1);
 			}
 			
 			if (gameDataForCode['totalCards'].length - 1 <= 10)
