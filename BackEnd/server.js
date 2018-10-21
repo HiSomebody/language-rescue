@@ -178,22 +178,27 @@ app.post('/dealUnoCards/:code/:numPlayers', function(req,res){
 function doAITurn(gameData)
 {
 	var Players = gameData['players'];
-	var Whos_Turn = gameData['currentTurn'];
+	var currentTurn = gameData['currentTurn'];
 	var Playable_Deck = gameData['Playable_Deck'];
+	console.log("Starting turn for " + Players[currentTurn].name);
+
 	
 	var NeedToDraw = true;
-	for (var i = 0; i <= Players[Whos_Turn].Cards.length - 1; i++)
+	for (var i = 0; i <= Players[currentTurn].Cards.length - 1; i++)
 	{
-		if (Players[Whos_Turn].Cards[i].Color == Playable_Deck[Playable_Deck.length - 1].Color //If Same Color
-			|| Players[Whos_Turn].Cards[i].Value === Playable_Deck[Playable_Deck.length - 1].Value  //if Same number
-			|| Players[Whos_Turn].Cards[i].Color == Playable_Deck[Playable_Deck.length - 1].Color_Of_Wild //if wild already there
-			|| Players[Whos_Turn].Cards[i].Color == "Black") //if wild card or if AI can play any card is checked
+		var card = Players[currentTurn].Cards[i];
+		if (card.Color == Playable_Deck[Playable_Deck.length - 1].Color //If Same Color
+			|| card.Value === Playable_Deck[Playable_Deck.length - 1].Value  //if Same number
+			|| card.Color == Playable_Deck[Playable_Deck.length - 1].Color_Of_Wild //if wild already there
+			|| card.Color == "Black") //if wild card or if AI can play any card is checked
 		{
+			console.log("found card to play:");
+			console.log(card);
 			gameData['CardIndex'] = i;
 			var CardIndex = i;
 			var action = "play"
 			var color = "NA";
-			if (Players[Whos_Turn].Cards[i].Color == "Black")
+			if (card.Color == "Black")
 			{
 				action = "playWild";
 				var RandomColor = Math.floor(Math.random() * 4);
@@ -201,7 +206,7 @@ function doAITurn(gameData)
 				if (RandomColor == 1) RandomColor = "Blue";
 				if (RandomColor == 2) RandomColor = "Green";
 				if (RandomColor == 3) RandomColor = "Yellow";
-				Players[Whos_Turn].Cards[CardIndex].Color_Of_Wild = RandomColor;
+				card.Color_Of_Wild = RandomColor;
 				color = RandomColor;
 
 				//playCard(null,true);
