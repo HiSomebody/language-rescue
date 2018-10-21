@@ -175,6 +175,69 @@ app.post('/dealUnoCards/:code/:numPlayers', function(req,res){
 	
 });
 
+function doAITurn(gameData)
+{
+	var Players = gameData['players'];
+	var Whos_Turn = gameData['currentTurn'];
+	var Playable_Deck = gameData['Playable_Deck'];
+	
+	var NeedToDraw = true;
+	for (var i = 0; i <= Players[Whos_Turn].Cards.length - 1; i++)
+	{
+		if (Players[Whos_Turn].Cards[i].Color == Playable_Deck[Playable_Deck.length - 1].Color //If Same Color
+			|| Players[Whos_Turn].Cards[i].Value === Playable_Deck[Playable_Deck.length - 1].Value  //if Same number
+			|| Players[Whos_Turn].Cards[i].Color == Playable_Deck[Playable_Deck.length - 1].Color_Of_Wild //if wild already there
+			|| Players[Whos_Turn].Cards[i].Color == "Black") //if wild card or if AI can play any card is checked
+		{
+			gameData['CardIndex'] = i;
+			var CardIndex = i;
+			var action = "play"
+			var color = "NA";
+			if (Players[Whos_Turn].Cards[i].Color == "Black")
+			{
+				action = "playWild";
+				var RandomColor = Math.floor(Math.random() * 4);
+				if (RandomColor == 0) RandomColor = "Red";
+				if (RandomColor == 1) RandomColor = "Blue";
+				if (RandomColor == 2) RandomColor = "Green";
+				if (RandomColor == 3) RandomColor = "Yellow";
+				Players[Whos_Turn].Cards[CardIndex].Color_Of_Wild = RandomColor;
+				color = RandomColor;
+
+				//playCard(null,true);
+			}
+
+			doAction(gameData,action,CardIndex,color);
+
+
+			/*
+			else if (Players[Whos_Turn].Cards[i].Value == "Skip")
+			{
+				playCard('Skip',true);
+			}
+			else if (Players[Whos_Turn].Cards[i].Value === "+2")
+			{
+				playCard('Plus2',true);
+			} 
+			else if (Players[Whos_Turn].Cards[i].Value == "Reverse")
+			{
+				playCard('Reverse',true);
+			}
+			else
+			{
+				playCard('Number',true);
+			}
+			NeedToDraw = false;
+			*/
+			break;
+		}
+	}
+	if (NeedToDraw == true)
+	{
+		//Draw(true);
+		doAction(gameData,"draw",-1,"NA");
+	}
+}
 
 app.post('/unoChangeTurn/:code/:turnChanges', function(req,res){
 	
@@ -194,6 +257,13 @@ app.post('/unoChangeTurn/:code/:turnChanges', function(req,res){
 			err: ''//,
 			//gameData: gameDataForCode
 		});
+		var currentTurn = gameDataForCode['currentTurn'];
+		if (gameDataForCode['players'][currentTurn].isAI)
+		{
+			setTimeout(function(){
+				doAITurn(gameDataForCode);
+			},500);
+		}
 	}
 	else
 	{
@@ -208,7 +278,110 @@ app.post('/unoChangeTurn/:code/:turnChanges', function(req,res){
 	
 });
 
+function doAction(gameDataForCode,action,CardIndex,color)
+{
+	// set up card and action for animation to be done on all clients
+	gameDataForCode['CardIndex'] = CardIndex;
+	gameDataForCode['action'] = action;
 
+	// trigger animation event on all clients
+	gameDataForCode['numAnimations'] += 1;
+
+	// in 1000 milis, let clients know they should update
+	setTimeout(function() {
+
+		var currentTurn = gameDataForCode['currentTurn'];
+
+
+		if (action == 'play' || action == 'playWild')
+		{
+			var Playable_Deck = gameDataForCode['Playable_Deck'];
+			var Players = gameDataForCode['players'];
+			var card = Players[currentTurn].Cards[CardIndex];
+			var totalCards = gameDataForCode['totalCards'];
+
+			Players[currentTurn].Cards[CardIndex].Color_Of_Wild = color;
+			Playable_Deck.push(Players[currentTurn].Cards[CardIndex]);
+			Players[currentTurn].Cards.splice(CardIndex, 1);
+
+			if (card.Value == "Skip")
+			{
+				changeUnoTurn(gameDataForCode,2);
+			}
+			else if (card.Value === "+2")
+			{
+				var nextIndex;
+				if (gameDataForCode['isReversed'])
+				{
+					nextIndex = (currentTurn+(Players.length-1))%Players.length;
+				}
+				else
+				{
+					nextIndex = (currentTurn+1)%Players.length;
+				}
+				for (var i = 0; i < 2; i++)
+				{
+					Players[nextIndex].Cards.push(totalCards[0]);
+					totalCards.splice(0, 1);
+				}
+				changeUnoTurn(gameDataForCode,2);
+			}
+			else if (card.Value == "Reverse")
+			{
+				if (Players.length == 2)
+				{
+					changeUnoTurn(gameDataForCode,2);
+				}
+				else
+				{
+					gameDataForCode['isReversed'] = !gameDataForCode['isReversed'];
+					changeUnoTurn(gameDataForCode,1);
+				}
+			}
+			else if (card.Value == "Wild")
+			{
+				changeUnoTurn(gameDataForCode,1);
+			}
+			else if (card.Value == "Wild & + 4")
+			{
+				var nextIndex;
+				if (gameDataForCode['isReversed'])
+				{
+					nextIndex = (currentTurn+(Players.length-1))%Players.length;
+				}
+				else
+				{
+					nextIndex = (currentTurn+1)%Players.length;
+				}
+				for (var i = 0; i < 4; i++)
+				{
+					Players[nextIndex].Cards.push(totalCards[0]);
+					totalCards.splice(0, 1);
+				}
+				changeUnoTurn(gameDataForCode,2);
+			}
+			else // number card
+			{
+				changeUnoTurn(gameDataForCode,1);
+			}
+		}
+		else  //if (action == 'draw')
+		{
+			var topCard = gameDataForCode['totalCards'][0];
+			gameDataForCode['players'][currentTurn].Cards.push(topCard);
+			gameDataForCode['totalCards'].splice(0 ,1);
+		}
+
+		if (gameDataForCode['totalCards'].length - 1 <= 10)
+		{
+			ReShuffleTotalCards(gameDataForCode);
+		}
+
+		gameDataForCode['numActions'] += 1;
+		//console.log("when updated");
+		//console.log(gameDataForCode);
+	},1000);
+}
 
 app.post('/unoAction/:code/:action/:CardIndex/:color', function(req,res){
 	var gameCode = req.params.code;
@@ -222,109 +395,9 @@ app.post('/unoAction/:code/:action/:CardIndex/:color', function(req,res){
 	console.log(color);
 	if (gameDataForCode != undefined && gameDataForCode != null)
 	{
-		// set up card and action for animation to be done on all clients
-		gameDataForCode['CardIndex'] = CardIndex;
-		gameDataForCode['action'] = action;
 		
-		// trigger animation event on all clients
-		gameDataForCode['numAnimations'] += 1;
-		
-		// in 1000 milis, let clients know they should update
-		setTimeout(function() {
+		doAction(gameDataForCode,action,CardIndex,color);
 
-			var currentTurn = gameDataForCode['currentTurn'];
-
-			
-			if (action == 'play' || action == 'playWild')
-			{
-				var Playable_Deck = gameDataForCode['Playable_Deck'];
-				var Players = gameDataForCode['players'];
-				var card = Players[currentTurn].Cards[CardIndex];
-				var totalCards = gameDataForCode['totalCards'];
-				
-				Players[currentTurn].Cards[CardIndex].Color_Of_Wild = color;
-				Playable_Deck.push(Players[currentTurn].Cards[CardIndex]);
-				Players[currentTurn].Cards.splice(CardIndex, 1);
-				
-				if (card.Value == "Skip")
-				{
-					changeUnoTurn(gameDataForCode,2);
-				}
-				else if (card.Value === "+2")
-				{
-					var nextIndex;
-					if (gameDataForCode['isReversed'])
-					{
-						nextIndex = (currentTurn+(Players.length-1))%Players.length;
-					}
-					else
-					{
-						nextIndex = (currentTurn+1)%Players.length;
-					}
-					for (var i = 0; i < 2; i++)
-					{
-						Players[nextIndex].Cards.push(totalCards[0]);
-						totalCards.splice(0, 1);
-					}
-					changeUnoTurn(gameDataForCode,2);
-				}
-				else if (card.Value == "Reverse")
-				{
-					if (Players.length == 2)
-					{
-						changeUnoTurn(gameDataForCode,2);
-					}
-					else
-					{
-						gameDataForCode['isReversed'] = !gameDataForCode['isReversed'];
-						changeUnoTurn(gameDataForCode,1);
-					}
-				}
-				else if (card.Value == "Wild")
-				{
-					changeUnoTurn(gameDataForCode,1);
-				}
-				else if (card.Value == "Wild & + 4")
-				{
-					var nextIndex;
-					if (gameDataForCode['isReversed'])
-					{
-						nextIndex = (currentTurn+(Players.length-1))%Players.length;
-					}
-					else
-					{
-						nextIndex = (currentTurn+1)%Players.length;
-					}
-					for (var i = 0; i < 4; i++)
-					{
-						Players[nextIndex].Cards.push(totalCards[0]);
-						totalCards.splice(0, 1);
-					}
-					changeUnoTurn(gameDataForCode,2);
-				}
-				else // number card
-				{
-					changeUnoTurn(gameDataForCode,1);
-				}
-			}
-			else  //if (action == 'draw')
-			{
-				var topCard = gameDataForCode['totalCards'][0];
-				gameDataForCode['players'][currentTurn].Cards.push(topCard);
-				gameDataForCode['totalCards'].splice(0 ,1);
-			}
-			
-			if (gameDataForCode['totalCards'].length - 1 <= 10)
-			{
-				ReShuffleTotalCards(gameDataForCode);
-			}
-			
-			gameDataForCode['numActions'] += 1;
-			//console.log("when updated");
-			//console.log(gameDataForCode);
-		},1000);
-		
-		
 		//console.log("when animating");
 		//console.log(gameDataForCode);
 		
