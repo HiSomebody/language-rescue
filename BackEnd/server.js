@@ -242,6 +242,7 @@ app.post('/unoAction/:code/:action/:CardIndex/:color', function(req,res){
 			{
 				var Playable_Deck = gameDataForCode['Playable_Deck'];
 				var Players = gameDataForCode['players'];
+				var card = Players[currentTurn].Cards[CardIndex];
 				
 				if (card.Value == "Skip")
 				{
