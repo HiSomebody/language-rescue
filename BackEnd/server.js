@@ -51,7 +51,8 @@ var playerGroups = [
 		numActions: 0,
 		numAnimations: 0,
 		players:[],
-		currentTurn: 0
+		currentTurn: 0,
+		isReversed: false
 	}
 ];
 
@@ -239,30 +240,67 @@ app.post('/unoAction/:code/:action/:CardIndex/:color', function(req,res){
 				var Playable_Deck = gameDataForCode['Playable_Deck'];
 				var Players = gameDataForCode['players'];
 				var card = Players[currentTurn].Cards[CardIndex];
+				var totalCards = gameDataForCode['totalCards'];
+				
+				Players[currentTurn].Cards[CardIndex].Color_Of_Wild = color;
+				Playable_Deck.push(Players[currentTurn].Cards[CardIndex]);
+				Players[currentTurn].Cards.splice(CardIndex, 1);
 				
 				if (card.Value == "Skip")
 				{
+					changeUnoTurn(gameDataForCode,2);
 				}
 				else if (card.Value == "+2")
 				{
+					var nextIndex;
+					if (gameDataForCode['isReversed'])
+					{
+						nextIndex = (currentTurn+(Players.length-1))%Players.length;
+					}
+					else
+					{
+						nextIndex = (currentTurn+1)%Players.length;
+					}
+					for (var i = 0; i < 2; i++)
+					{
+						Players[nextIndex].Cards.push(totalCards[0]);
+						totalCards.splice(0, 1);
+					}
+					changeUnoTurn(gameDataForCode,2);
 				}
 				else if (card.Value == "Reverse")
 				{
+					if (Players.length == 2)
+					{
+						changeUnoTurn(gameDataForCode,2);
+					}
+					else
+					{
+						gameDataForCode['isReversed'] = !gameDataForCode['isReversed'];
+						changeUnoTurn(gameDataForCode,1);
+					}
 				}
 				else if (card.Value == "Wild")
 				{
-					Players[currentTurn].Cards[CardIndex].Color_Of_Wild = color;
-					Playable_Deck.push(Players[currentTurn].Cards[CardIndex]);
-					Players[currentTurn].Cards.splice(CardIndex, 1);
 					changeUnoTurn(gameDataForCode,1);
 				}
 				else if (card.Value == "Wild & + 4")
 				{
-					// DO MORE HERE
-					Players[currentTurn].Cards[CardIndex].Color_Of_Wild = color;
-					Playable_Deck.push(Players[currentTurn].Cards[CardIndex]);
-					Players[currentTurn].Cards.splice(CardIndex, 1);
-					// DO MORE HERE
+					var nextIndex;
+					if (gameDataForCode['isReversed'])
+					{
+						nextIndex = (currentTurn+(Players.length-1))%Players.length;
+					}
+					else
+					{
+						nextIndex = (currentTurn+1)%Players.length;
+					}
+					for (var i = 0; i < 4; i++)
+					{
+						Players[nextIndex].Cards.push(totalCards[0]);
+						totalCards.splice(0, 1);
+					}
+					changeUnoTurn(gameDataForCode,2);
 				}
 				else // number card
 				{
@@ -308,10 +346,13 @@ app.post('/unoAction/:code/:action/:CardIndex/:color', function(req,res){
 
 function changeUnoTurn(gameData,turnChanges)
 {
-	gameData['currentTurn'] += turnChanges;
-	if (gameData['currentTurn'] >= gameData['players'].length)
+	if (gameData['isReversed'])
 	{
-		gameData['currentTurn'] -= gameData['players'].length;
+		gameData['currentTurn'] = (gameData['currentTurn'] + gameData['Players'].length-turnChanges)%gameData['Players'].length;
+	}
+	else
+	{
+		gameData['currentTurn'] = (gameData['currentTurn'] + turnChanges)%gameData['Players'].length;
 	}
 }
 
@@ -773,7 +814,10 @@ app.post('/addGameToServer/:type', function(req,res){
 			code: gameCode,
 			type: "uno",
 			numActions: 0,
-			players:[]
+			players:[],
+			numAnimations: 0,
+			currentTurn: 0,
+			isReversed: false
 		});
 		makeDeck(gameCode);
 	}
