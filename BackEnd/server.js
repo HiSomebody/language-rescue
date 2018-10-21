@@ -360,7 +360,12 @@ function changeUnoTurn(gameData,turnChanges)
 	}
 	else
 	{
-		gameData['currentTurn'] = (gameData['currentTurn'] + turnChanges)%gameData['players'].length;
+		var currentTurn = gameData['currentTurn'];
+		var numPlayers = gameData['players'].length;
+		var newTurn = (currentTurn + turnChanges)%numPlayers;
+		console.log("new Turn:");
+		console.log(newTurn);
+		gameData['currentTurn'] = newTurn;
 	}
 	console.log("changed to:");
 	console.log(gameData['currentTurn']);
