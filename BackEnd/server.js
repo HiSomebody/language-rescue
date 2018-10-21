@@ -281,7 +281,7 @@ app.post('/unoAction/:code/:action/:CardIndex/:color', function(req,res){
 function changeUnoTurn(gameData,turnChanges)
 {
 	gameData['currentTurn'] += turnChanges;
-	if (gameData['currentTurn'] >= gameData['currentTurn'].length)
+	if (gameData['currentTurn'] >= gameData['players'].length)
 	{
 		gameData['currentTurn'] -= gameData['players'].length;
 	}
