@@ -356,7 +356,7 @@ function changeUnoTurn(gameData,turnChanges)
 	console.log(gameData['currentTurn']);
 	if (gameData['isReversed'])
 	{
-		gameData['currentTurn'] = (gameData['currentTurn'] + gameData['players'].length-turnChanges)%gameData['players'].length;
+		gameData['currentTurn'] = (Number(gameData['currentTurn']) + Number(gameData['players'].length)-Number(turnChanges))%gameData['players'].length;
 	}
 	else
 	{
@@ -364,7 +364,7 @@ function changeUnoTurn(gameData,turnChanges)
 		var numPlayers = gameData['players'].length;
 		console.log("numPlayers:");
 		console.log(numPlayers);
-		var newTurnBeforeMod = currentTurn + turnChanges;
+		var newTurnBeforeMod = Number(currentTurn) + Number(turnChanges);
 		console.log("before Mod:");
 		console.log(newTurnBeforeMod);
 		var newTurn = newTurnBeforeMod%numPlayers;
