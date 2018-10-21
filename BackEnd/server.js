@@ -177,8 +177,11 @@ app.post('/dealUnoCards/:code/:numPlayers', function(req,res){
 
 
 app.post('/unoChangeTurn/:code/:turnChanges', function(req,res){
+	
 	var gameCode = req.params.code;
 	var turnChanges = req.params.turnChanges;
+	console.log("changing turn");
+	console.log(turnChanges);
 	var gameDataForCode = getGameDataForCode(gameCode);
 	console.log(gameCode);
 	console.log(turnChanges);
@@ -346,6 +349,11 @@ app.post('/unoAction/:code/:action/:CardIndex/:color', function(req,res){
 
 function changeUnoTurn(gameData,turnChanges)
 {
+	console.log("now really changing turn");
+	console.log("turn argument:");
+	console.log(turnChanges);
+	console.log("current turn started as:");
+	console.log(gameData['currentTurn']);
 	if (gameData['isReversed'])
 	{
 		gameData['currentTurn'] = (gameData['currentTurn'] + gameData['players'].length-turnChanges)%gameData['players'].length;
@@ -354,6 +362,8 @@ function changeUnoTurn(gameData,turnChanges)
 	{
 		gameData['currentTurn'] = (gameData['currentTurn'] + turnChanges)%gameData['players'].length;
 	}
+	console.log("changed to:");
+	console.log(gameData['currentTurn']);
 }
 
 function ReShuffleTotalCards(gameData)
