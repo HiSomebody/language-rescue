@@ -109,7 +109,10 @@
 				if (newNumAnimations != numAnimationsHappened) // Server says there's an animation to do
 				{
 					numAnimationsHappened = newNumAnimations;	
-					doAnimationAction(gameData);
+					if (gameData[currentTurn] != shiftAmount)
+					{
+						doAnimationAction(gameData);
+					}
 				}
 				if (newNumActions != numActionsHappened) // Server says the master deck and hands changed
 				{
@@ -168,7 +171,7 @@
 				}
 			}
 		});
-	},50);
+	},500);
 	
 	
 	function mod(n, m) {
@@ -409,14 +412,7 @@
 		var cardDivs = document.getElementById(playerDeckId).childNodes;
 		var cardDiv = cardDivs[CardIndex]
 		return cardDiv;
-		/*for (var i = 0; i < cardDivs.length; i++)
-		{
-			var cardDiv = cardDivs[i];
-			if (parseFilename(cardDiv.src) == card_filename)
-			{
-				return cardDiv;
-			}
-		}*/
+		
 		return null;
 	}
 	
@@ -541,13 +537,14 @@
 				// post "play" and card index (the server should already know whose turn it is, and therefore who is playing the card)
 				// This should increase the number of actions taken, also update the cardIndex
 				var client = new HttpClient();
+				
 				client.post('http://104.236.169.62:80/unoAction/'+code+'/draw/-1/NA', function(response) {
 					var parsedJSON = (JSON.parse(response));
 					if (parsedJSON["result"] == "success")
 					{
 						console.log("succeeded in adding draw card action");
-						
 						var gameData = parsedJSON['gameData'];
+						drawAnimation(gameData);
 						
 						var card_filename = gameData['totalCards'][0].filename;
 						var card = gameData['totalCards'][0];
@@ -721,33 +718,10 @@
 				cardImgDiv.style.left = endPointX +"px";
 				cardImgDiv.style.top = endPointY +"px";
 				cardImgDiv.width = "51";
-				setTimeout(function() {
-					//if (function1 == doWild)
-					{
-						//doWild(cardType);
-						// ADD Post here to do the real action of the card
-					}
-					//else
-					{
-						//function1();
-						// ADD POST here
-					}
-				},playDelay/3)
+				
 			},playDelay/3);
 		}
-		else
-		{
-			//if (function1 == doWild)
-			{
-				//doWild(cardType);
-				// ADD POST HERE
-			}
-			//else
-			{
-				//function1();
-				// ADD POST HERE
-			}
-		}
+		
 		return true;	
 	}
 	
@@ -810,66 +784,17 @@
 					cardImgDiv.width = "38";
 				}
 				
-				/*
-				setTimeout(function() {
-					if (!calledByOtherPlayer)
-					{      //If i clicked it
-						Players[RealPlayer0].Cards.push(topCard);
-						totalCards.splice(0 ,1);
-						// Client that drew card sends post to change turn
-						//changeTurnOnServer(1); I'll just let the server do this after all
-					}
-					else 
-					{              //If AI called function
-						Players[Whos_Turn].Cards.push(topCard);
-						totalCards.splice(0 ,1);
-					}
-			
-					Update_Cards();
-				},playDelay/3);
-				*/
+				
 			},playDelay/3);
 		}
 		else
 		{
-			/*
-			if (!calledByOtherPlayer)
-			{      //If i clicked it
-				Players[RealPlayer0].Cards.push(topCard);
-				totalCards.splice(0 ,1);
-			}
-			else 
-			{              //If AI called function
-				Players[Whos_Turn].Cards.push(topCard);
-				totalCards.splice(0 ,1);
-			}
-
-			Update_Cards();
-			*/
+			
 		}
 		
 		
 		return topCard.filename;
 	}
-	
-	/*
-	function changeTurnOnServer(turnChanges)
-	{
-		var client = new HttpClient();
-		client.post('http://104.236.169.62:80/unoChangeTurn/'+code+'/'+turnChanges, function(response) {
-			var parsedJSON = (JSON.parse(response));
-			if (parsedJSON["result"] == "success")
-			{
-				console.log("succeeded in changing turn on server " + turnChanges + " times");
-			}
-			else
-			{
-				console.log("failed to change turn");
-				//document.appendChild(failedDiv);
-			}
-		});		
-	}
-	*/
 	
 	// mostly client with server calls
 	function configureCardClick(aCard, DOM_img, thisPlayer)
@@ -910,24 +835,7 @@
 						});		
 					}
 		 
-					/*
-					if (aCardValue == "Skip")      //If Skip Card		
-					{
-						if (playCard('Skip',false) == true) setTimeout(function() {PlayGame()},playDelay); // call server
-					} 
-					else if (aCardValue === "+2")      //If +2 Card
-					{
-						if (playCard('Plus2',false) == true) setTimeout(function() {PlayGame()},playDelay); // call server
-					}
-					else if (aCardValue == "Reverse")      //If reverse Card
-					{
-						if (playCard('Reverse',false) == true) setTimeout(function() {PlayGame()},playDelay); // call server
-					} 
-					else 									//If Number Card
-					{
-						if (playCard('Number',false) == true) setTimeout(function() {PlayGame()},playDelay); // call server
-					}
-					*/
+					
 				}
 				else
 				{
@@ -1030,180 +938,7 @@
 			return children[children.length-1];
 		}
 	}
-		
-	/*	
-	function Draw(gameData,calledByOtherPlayer)
-	{
-		var topCard = totalCards[0];
-		
-		if (checkbox6.checked == false)
-		{
-			var filename = topCard.filename;
-			var cardImgDiv = document.createElement("img"); // Create a new div
-			
-			if (!calledByOtherPlayer)
-			{
-				cardImgDiv.src = filename;
-			}
-			else
-			{
-				cardImgDiv.src = "http://104.236.169.62/UnoCards/back_of_card.png";
-			}
-			
-			deck.appendChild(cardImgDiv);
-			cardImgDiv.setAttribute("class","playable");
-													
-			var deckElement = document.getElementById("drawPile");
-			var rectOrigin = deckElement.getBoundingClientRect();		
-			var rectDestination = getCurrentPlayerLastCardDiv().getBoundingClientRect();
-			
-			var startPointX = rectOrigin.left;
-			var startPointY = rectOrigin.top-5;	
-			
-			var endPointX = rectDestination.left;
-			var endPointY = rectDestination.top-10;
-			
-			cardImgDiv.style.left = startPointX +"px";
-			cardImgDiv.style.top = startPointY +"px";
-			
-			setTimeout(function() {
-				
-				if (!calledByOtherPlayer)
-				{
-					cardImgDiv.src = filename;
-				}
-				
-				cardImgDiv.style.left = endPointX +"px";
-				cardImgDiv.style.top = endPointY +"px";
-				if (calledByOtherPlayer)
-				{
-					cardImgDiv.width = "38";
-				}
-				
-				setTimeout(function() {
-					if (!calledByOtherPlayer)
-					{      //If i clicked it
-						Players[RealPlayer0].Cards.push(topCard);
-						totalCards.splice(0 ,1);
-					}
-					else 
-					{              //If AI called function
-						Players[Whos_Turn].Cards.push(topCard);
-						totalCards.splice(0 ,1);
-					}
-			
-					Update_Cards();
-				},playDelay/3)
-			},playDelay/3);
-		}
-		else
-		{
-			if (!calledByOtherPlayer)
-			{      //If i clicked it
-				Players[RealPlayer0].Cards.push(topCard);
-				totalCards.splice(0 ,1);
-			}
-			else 
-			{              //If AI called function
-				Players[Whos_Turn].Cards.push(topCard);
-				totalCards.splice(0 ,1);
-			}
 
-			Update_Cards();
-		}
-		
-		
-		return topCard.filename;
-	}
-	*/
-	
-	/*
-	function playCard(cardType,calledByOtherPlayer)
-	{
-		if (CanPlayCard() == true)
-		{	
-			var function1;
-			if (cardType == 'Skip')	function1 = doSkip;
-			else if (cardType == 'Plus2') function1 = doPlus2;
-			else if (cardType == 'Reverse') function1 = doReverse;
-			else if (cardType == 'Number') function1 = doNumber;
-			else if (cardType == "Red" || cardType == "Blue" || cardType == "Green" || cardType == "Yellow" || cardType == null)
-				{ function1 = doWild; }
-			
-			var filename = Players[Whos_Turn].Cards[CardIndex].filename;
-			var cardImgDiv;
-			
-			if (!calledByOtherPlayer)
-			{
-				cardImgDiv = getMyCardDiv(filename);
-			}
-			else
-			{
-			 	// IF OTHER PLAYER, THIS NEEDS TO GRAB THE BACKWARD FACING
-				// DIV ACCORDING TO THE INDEX
-				cardImgDiv = getOtherPlayerCardDiv(filename);
-			}
-			 
-			if (checkbox6.checked == false)
-			{				
-				var deckElement = document.getElementById("playableDeck");
-				var rectDestination = deckElement.getBoundingClientRect();
-				cardImgDiv.setAttribute("class","playable");
-				
-				var rectOrigin = cardImgDiv.getBoundingClientRect();
-				
-				var startPointX = rectOrigin.left;
-				var startPointY = rectOrigin.top-5;	
-				
-				var endPointX = rectDestination.left;
-				var endPointY = rectDestination.top-10;
-				
-				cardImgDiv.style.left = startPointX +"px";
-				cardImgDiv.style.top = startPointY +"px";
-				
-				setTimeout(function() {
-					
-					// IF OTHER PLAYER, THIS SHOULD CHANGE IT TO BE FACE FORWARD SRC
-					if (calledByOtherPlayer)
-					{
-						cardImgDiv.src = filename;
-					}
-					
-					cardImgDiv.style.left = endPointX +"px";
-					cardImgDiv.style.top = endPointY +"px";
-					cardImgDiv.width = "51";
-					setTimeout(function() {
-						if (function1 == doWild)
-						{
-							doWild(cardType);
-						}
-						else
-						{
-							function1();
-						}
-					},playDelay/3)
-				},playDelay/3);
-			}
-			else
-			{
-				if (function1 == doWild)
-				{
-					doWild(cardType);
-				}
-				else
-				{
-					function1();
-				}
-			}
-			return true;				
-		}
-		else
-		{
-			//if (Whos_Turn == RealPlayer0) //alert("Cannot Play Card");
-			return false;
-		}
-	}
-	*/
 		 	 
 	function doWild(Color)
 	{
@@ -1491,23 +1226,7 @@
 		}
 	}
 		
-	/*	
-	function ReShuffleTotalCards()
-	{
-		var copyOfDeck = Playable_Deck;
-		var ShuffledDeck = [];
-		for (var i = 1; i <= copyOfDeck.length - 1; i++)
-		{
-			var RanNum1 = Math.floor(Math.random() * Playable_Deck.length);
-			ShuffledDeck.push(Playable_Deck[RanNum1]);
-			Playable_Deck.splice(RanNum1, 1);
-		}
-		for (var i = 0; i <= ShuffledDeck.length - 1; i++)
-		{
-			totalCards.push(ShuffledDeck[i]);
-		}
-	}
-	*/
+
 		
 	function AI()
 	{
@@ -1668,63 +1387,3 @@
 		}
 	}
 	
-	/*	
-	function Card (Value, Color, filename)
-	{
-		this.filename = filename;
-		if (Value == 10) 
-		{
-			this.Value = "Skip";
-		}
-		else if (Value == 11) 
-		{
-			this.Value = "Reverse";
-		}
-		else if (Value == 12) 
-		{
-			this.Value = "+2";
-		}
-		else if (Value == 13) 
-		{
-			this.Value = "Wild";
-			this.Color_Of_Wild = "Red";
-		} 
-		else if (Value == 14) 
-		{
-			this.Value = "Wild & + 4";
-			this.Color_Of_Wild = "Red";
-		} 
-		else 
-		{
-			this.Value = Value;
-		}
-							
-		if (Color == 0 || Color == 4) 
-		{
-			this.Color = "Red";
-       	}
-		else if (Color == 1 || Color == 5) 
-		{
-			this.Color = "Yellow";
-		} 
-		else if (Color == 2 || Color == 6) 
-		{
-			this.Color = "Blue";
-		}
-		else if (Color == 3 || Color == 7) 
-		{
-			this.Color = "Green";
-		}
-		else
-		{
-			this.Color = Color;
-		}		
-	}
-		
-	function Player (Name, Cards, OrginalNumber)
-	{
-		this.Name = Name;
-		this.Cards = Cards;
-		this.OrginalNumber = OrginalNumber;
-	}
-	*/
