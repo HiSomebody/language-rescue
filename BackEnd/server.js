@@ -321,7 +321,13 @@ app.post('/unoAction/:code/:action/:CardIndex/:color', function(req,res){
 			}
 			
 			gameDataForCode['numActions'] += 1;
+			console.log("when updated");
+			console.log(gameDataForCode);
 		},1000);
+		
+		
+		console.log("when animating");
+		console.log(gameDataForCode);
 		
 		res.send({
 			result: 'success',
