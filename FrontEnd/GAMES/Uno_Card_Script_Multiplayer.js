@@ -132,7 +132,7 @@
 					
 					// Update game state variables from server
 					Whos_Turn = (gameData['currentTurn'] + shiftAmount)%gameData['players'].length;
-					total_cards = gameData['total_cards'];
+					totalCards = gameData['totalCards'];
 					Playable_Deck = gameData['Playable_Deck'];
 					SomeOneWon = gameData['SomeOneWon'];
 					
