@@ -283,7 +283,7 @@ function changeUnoTurn(gameData,turnChanges)
 	gameData['currentTurn'] += turnChanges;
 	if (gameData['currentTurn'] >= gameData['currentTurn'].length)
 	{
-		gameData['currentTurn'] -= gameData['currentTurn'].length;
+		gameData['currentTurn'] -= gameData['players'].length;
 	}
 }
 
