@@ -546,6 +546,47 @@
 					if (parsedJSON["result"] == "success")
 					{
 						console.log("succeeded in adding draw card action");
+						
+						var gameData = parsedJSON['gameData'];
+						
+						var card_filename = gameData['totalCards'][0].filename;
+						setTimeout(function(){
+					
+							var card_div = getMyCardDiv(card_filename);
+							setCardIndex(card_div);
+							if (CanPlayCard())
+							{
+								setTimeout(function() {
+									var waitTime = 0;
+									var r = confirm("Would you like to play the card you just drew?")
+									if (r == true)
+									{	
+										card_div.onclick();
+										waitTime = 500;
+									}
+									setTimeout(function(){
+										client.post('http://104.236.169.62:80/unoChangeTurn/'+code+'/1', function(response) {
+											var parsedJSON = (JSON.parse(response));
+											if (parsedJSON["result"] == "success")
+											{
+												// successfully changed turn
+											}
+										});
+									},waitTime);
+								}, 500);
+							}
+							else
+							{
+								client.post('http://104.236.169.62:80/unoChangeTurn/'+code+'/1', function(response) {
+									var parsedJSON = (JSON.parse(response));
+									if (parsedJSON["result"] == "success")
+									{
+										// successfully changed turn
+									}
+								});
+								//PlayGame(); // send notification for next turn
+							}
+						},playDelay);
 					}
 					else
 					{
@@ -553,42 +594,6 @@
 						//document.appendChild(failedDiv);
 					}
 				});		
-				/*
-				var card_filename = Draw(false);
-				setTimeout(function(){
-					
-					var card_div = getMyCardDiv(card_filename);
-					setCardIndex(card_div);
-					if (CanPlayCard())
-					{
-						setTimeout(function() {
-							var r = confirm("Would you like to play the card you just drew?")
-							if (r == true)
-							{
-								if (document.getElementById("hand").childNodes.length == 2)
-								{
-									// remove most of this surrounding check stuff and make say uno depend on other players' click rather than number cards
-									setTimeout(function() {
-										card_div.onclick();
-									},2500);
-								}
-								else
-								{
-									card_div.onclick();
-								}
-							}
-							else
-							{
-								PlayGame(); // send notification for next turn
-							}
-						}, 500);
-					}
-					else
-					{
-						PlayGame(); // send notification for next turn
-					}
-				},playDelay);
-				*/
 			}
 		}
 			
