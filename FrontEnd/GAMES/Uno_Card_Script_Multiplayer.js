@@ -131,7 +131,7 @@
 					}
 					
 					// Update game state variables from server
-					Whos_Turn = (gameData['currentTurn'] - shiftAmount)%gameData['players'].length;
+					Whos_Turn = mod(gameData['currentTurn'] - shiftAmount,gameData['players'].length);
 					totalCards = gameData['totalCards'];
 					Playable_Deck = gameData['Playable_Deck'];
 					SomeOneWon = gameData['SomeOneWon'];
@@ -169,6 +169,11 @@
 			}
 		});
 	},1000);
+	
+	
+	function mod(n, m) {
+	  return ((n % m) + m) % m;
+	}
 	
 	
 	var GetURLParameter = function(sParam)
@@ -332,7 +337,7 @@
 			var firstElement = Players.shift();
 			Players.push(firstElement);
 		}
-		Whos_Turn = (gameData['currentTurn'] - shiftAmount)%gameData['players'].length;
+		Whos_Turn = mod(gameData['currentTurn'] - shiftAmount,gameData['players'].length);
 		
 		
 		if (checkbox5.checked == false) //alert(Players.length + " Players will be dealt");
