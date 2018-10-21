@@ -231,12 +231,13 @@ app.post('/unoAction/:code/:action/:CardIndex/:color', function(req,res){
 		// in 1000 milis, let clients know they should update
 		setTimeout(function() {
 
+			var currentTurn = gameDataForCode['currentTurn'];
+
 			
 			if (action == 'playWild')
 			{
 				// We'll do this part later
-				gameDataForCode['color'] = color;
-				gameDataForCode['players']['currentTurn'][CardIndex]['Color_Of_Wild'] = color;
+				gameDataForCode['players'][currentTurn]['Cards'][CardIndex]['Color_Of_Wild'] = color;
 			}
 			else if (action == 'play')
 			{
@@ -245,7 +246,6 @@ app.post('/unoAction/:code/:action/:CardIndex/:color', function(req,res){
 			else  //if (action == 'draw')
 			{
 				var topCard = gameDataForCode['totalCards'][0];
-				var currentTurn = gameDataForCode['currentTurn'];
 				gameDataForCode['players'][currentTurn].Cards.push(topCard);
 				gameDataForCode['totalCards'].splice(0 ,1);
 				changeUnoTurn(gameDataForCode,1);
