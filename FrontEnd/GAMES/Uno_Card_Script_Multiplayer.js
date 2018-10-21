@@ -928,7 +928,8 @@
 				console.log("failed to deal cards");
 				//document.appendChild(failedDiv);
 			}
-		});		
+		});	
+		modal.style.display = "none";
 	}
 	
 		
