@@ -352,11 +352,11 @@ function changeUnoTurn(gameData,turnChanges)
 {
 	if (gameData['isReversed'])
 	{
-		gameData['currentTurn'] = (gameData['currentTurn'] + gameData['Players'].length-turnChanges)%gameData['Players'].length;
+		gameData['currentTurn'] = (gameData['currentTurn'] + gameData['players'].length-turnChanges)%gameData['players'].length;
 	}
 	else
 	{
-		gameData['currentTurn'] = (gameData['currentTurn'] + turnChanges)%gameData['Players'].length;
+		gameData['currentTurn'] = (gameData['currentTurn'] + turnChanges)%gameData['players'].length;
 	}
 }
 
