@@ -135,22 +135,20 @@
 							shiftAmount = i;
 						}
 					}
-					if (shiftAmount != -1)
+
+					for (var i = 0; i < shiftAmount; i++)
 					{
-						for (var i = 0; i < shiftAmount; i++)
-						{
-							var firstElement = Players.shift();
-							Players.push(firstElement);
-						}
-					
-						// Update game state variables from server
-						Whos_Turn = mod(gameData['currentTurn'] - shiftAmount,gameData['players'].length);
-						totalCards = gameData['totalCards'];
-						Playable_Deck = gameData['Playable_Deck'];
-						SomeOneWon = gameData['SomeOneWon'];
-					
-						// redraw game with updates
+						var firstElement = Players.shift();
+						Players.push(firstElement);
 					}
+				
+					// Update game state variables from server
+					Whos_Turn = mod(gameData['currentTurn'] - shiftAmount,gameData['players'].length);
+					totalCards = gameData['totalCards'];
+					Playable_Deck = gameData['Playable_Deck'];
+					SomeOneWon = gameData['SomeOneWon'];
+				
+					// redraw game with updates
 					Update_Cards();
 					
 				}
@@ -886,7 +884,7 @@
 		
 	function Update_Cards()
 	{
-		if (shiftAmount != -1)
+		if (shiftAmount == -1)
 		{
 			while (hand.hasChildNodes()) {                                //Removes All Card Imgs from hand
 				hand.removeChild(hand.lastChild);
