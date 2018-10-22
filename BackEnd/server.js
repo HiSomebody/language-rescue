@@ -52,7 +52,8 @@ var playerGroups = [
 		numAnimations: 0,
 		players:[],
 		currentTurn: 0,
-		isReversed: false
+		isReversed: false,
+		message: "none"
 	}
 ];
 
@@ -292,7 +293,7 @@ function doAction(gameDataForCode,action,CardIndex,color)
 
 		var currentTurn = gameDataForCode['currentTurn'];
 
-
+		var message = "none";
 		if (action == 'play' || action == 'playWild')
 		{
 			var Playable_Deck = gameDataForCode['Playable_Deck'];
@@ -303,28 +304,33 @@ function doAction(gameDataForCode,action,CardIndex,color)
 			Players[currentTurn].Cards[CardIndex].Color_Of_Wild = color;
 			Playable_Deck.push(Players[currentTurn].Cards[CardIndex]);
 			Players[currentTurn].Cards.splice(CardIndex, 1);
-
+			var nextIndex;
+			if (gameDataForCode['isReversed'])
+			{
+				nextIndex = (currentTurn+(Players.length-1))%Players.length;
+			}
+			else
+			{
+				nextIndex = (currentTurn+1)%Players.length;
+			}
+			var actorName = Players[currentTurn].Name;
+			var receiverName = Players[nextIndex].Name;
 			if (card.Value == "Skip")
 			{
 				changeUnoTurn(gameDataForCode,2);
+				
+				message = actorName + " skipped " + receiverName + "!";
 			}
 			else if (card.Value === "+2")
 			{
-				var nextIndex;
-				if (gameDataForCode['isReversed'])
-				{
-					nextIndex = (currentTurn+(Players.length-1))%Players.length;
-				}
-				else
-				{
-					nextIndex = (currentTurn+1)%Players.length;
-				}
+				
 				for (var i = 0; i < 2; i++)
 				{
 					Players[nextIndex].Cards.push(totalCards[0]);
 					totalCards.splice(0, 1);
 				}
 				changeUnoTurn(gameDataForCode,2);
+				message = actorName + " played a Draw 2 on " + receiverName + "!";
 			}
 			else if (card.Value == "Reverse")
 			{
@@ -337,10 +343,14 @@ function doAction(gameDataForCode,action,CardIndex,color)
 					gameDataForCode['isReversed'] = !gameDataForCode['isReversed'];
 					changeUnoTurn(gameDataForCode,1);
 				}
+				message = actorName + " played a Reverse!";
+
 			}
 			else if (card.Value == "Wild")
 			{
 				changeUnoTurn(gameDataForCode,1);
+				message = actorName + " changed the color to " + color + "!";
+
 			}
 			else if (card.Value == "Wild & + 4")
 			{
@@ -359,6 +369,7 @@ function doAction(gameDataForCode,action,CardIndex,color)
 					totalCards.splice(0, 1);
 				}
 				changeUnoTurn(gameDataForCode,2);
+				message = actorName + " played a Draw 4 on " + receiverName + " and changed the color to " + color + "!";
 			}
 			else // number card
 			{
@@ -376,6 +387,8 @@ function doAction(gameDataForCode,action,CardIndex,color)
 		{
 			ReShuffleTotalCards(gameDataForCode);
 		}
+		
+		gameDataForCode['message'] = message;
 
 		gameDataForCode['numActions'] += 1;
 		//console.log("when updated");
@@ -920,7 +933,8 @@ app.post('/addGameToServer/:type', function(req,res){
 			players:[],
 			numAnimations: 0,
 			currentTurn: 0,
-			isReversed: false
+			isReversed: false,
+			message: "none"
 		});
 		makeDeck(gameCode);
 	}
