@@ -67,6 +67,7 @@
 	var shiftAmount = 0;
 	var numActionsHappened = 0;
 	var numAnimationsHappened = 0;
+	var lastCall;
 	
 
 
@@ -74,6 +75,7 @@
 	// Keep on client
 	window.onload = function()
 	{		
+		lastCall = Date.now();
 		code = GetURLParameter("gameCode");
 		username = decodeURIComponent(GetURLParameter("username"));
 		
@@ -355,10 +357,15 @@
 	
 	function displayMessage(text)
 	{
+		lastCall = Date.now();
 		document.getElementById("messageBoard").innerHTML = text;
 		setTimeout(function(){
-			document.getElementById("messageBoard").innerHTML = "&nbsp";
-		},1000);
+			if (Date.now() - lastCall >= 1900)
+			{
+				document.getElementById("messageBoard").innerHTML = "&nbsp";
+			}
+			
+		},2000);
 	}
 	
 	// Both Client and Server mix	
