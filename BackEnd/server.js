@@ -410,7 +410,7 @@ function doAction(gameDataForCode,action,CardIndex,color)
 
 		//console.log("when updated");
 		//console.log(gameDataForCode);
-	},1500);
+	},1000);
 }
 
 app.post('/unoAction/:code/:action/:CardIndex/:color', function(req,res){
