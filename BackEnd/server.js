@@ -1117,21 +1117,40 @@ app.post('/addClientToGame/:code/:username', function(req,res){
 		}
 		else if (gameDataForCode.type == "uno")
 		{
-			if (gameDataForCode['players'].length < 10)
+			if (gameDataForCode['players'].length > 9)
 			{
-				gameDataForCode['players'].push({"name":userName});
 				res.send({
-					result: 'success',
-					err: '',
-					gameData: gameDataForCode
+					result: 'error',
+					err: 'There are already ten players in that game'
 				});
 			}
 			else
 			{
-				res.send({
-					result: 'error',
-					err: 'There are already two players in that game'
-				});
+				var Players = gameDataForCode['players'];
+				var nameExistsInGame = false;
+				for (var i = 0; i < Players.length; i++)
+				{
+					if (Players[i].Name == userName)
+					{
+						nameExistsInGame = true;
+					}
+				}
+				if (nameExistsInGame)
+				{
+					res.send({
+						result: 'error',
+						err: 'There is already someone with that name in that game'
+					});
+				}
+				else
+				{
+					gameDataForCode['players'].push({"name":userName});
+					res.send({
+						result: 'success',
+						err: '',
+						gameData: gameDataForCode
+					});
+				}
 			}
 		}
 		else if (gameDataForCode.type == "typing race")
