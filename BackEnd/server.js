@@ -181,7 +181,7 @@ function doAITurn(gameData)
 	var Players = gameData['players'];
 	var currentTurn = gameData['currentTurn'];
 	var Playable_Deck = gameData['Playable_Deck'];
-	console.log("Starting turn for " + Players[currentTurn].name);
+	console.log("Starting turn for " + Players[currentTurn].Name);
 
 	
 	var NeedToDraw = true;
