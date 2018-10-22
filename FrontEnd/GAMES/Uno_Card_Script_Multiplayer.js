@@ -891,6 +891,7 @@
 			}
 			return;
 		}
+		drawOtherPlayersCards();
 		drawDrawAndDiscardPile();
 		
 		var thisPlayer = Players[RealPlayer0];
