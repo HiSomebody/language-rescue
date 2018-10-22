@@ -141,7 +141,7 @@
 			var client = new HttpClient();
 			client.post('http://104.236.169.62:80/addClientToGame/'+code.toUpperCase()+'/'+encodeURIComponent(username), function(response) {
 				var parsedJSON = (JSON.parse(response));
-			    console.log(parsedJSON);
+			    	console.log(parsedJSON);
 				if (parsedJSON["result"] == "success")
 				{
 					document.getElementById("gameCodeEntryField").value = "";
@@ -153,7 +153,7 @@
 					var failedDiv = document.createElement("div");
 					var message = document.createTextNode(parsedJSON["err"]);
 					failedDiv.appendChild(message);
-					alert("There is no game open using that code");
+					alert(message);
 					//document.appendChild(failedDiv);
 				}
 			});	
