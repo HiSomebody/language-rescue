@@ -475,7 +475,7 @@ function ReShuffleTotalCards(gameData)
 {
 	var Playable_Deck = gameData['Playable_Deck'];
 	var ShuffledDeck = [];
-	for (var i = 1; i <= copyOfDeck.length - 1; i++)
+	for (var i = 1; i <= Playable_Deck.length - 1; i++)
 	{
 		var RanNum1 = Math.floor(Math.random() * Playable_Deck.length);
 		ShuffledDeck.push(Playable_Deck[RanNum1]);
