@@ -178,7 +178,7 @@
 				for (var i = 0; i < players.length; i++)
 				{
 					var p = players[i];
-					var playerName = p.name;
+					var playerName = p.Name;
 					joinedDiv.innerHTML += playerName;
 					if (i < players.length-1)
 					{
