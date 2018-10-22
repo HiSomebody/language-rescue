@@ -151,7 +151,7 @@
 				else
 				{
 					var failedDiv = document.createElement("div");
-					var message = document.createTextNode(parsedJSON["err"]);
+					var message = String(parsedJSON["err"]);
 					failedDiv.appendChild(message);
 					alert(message);
 					//document.appendChild(failedDiv);
