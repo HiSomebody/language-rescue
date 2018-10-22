@@ -102,6 +102,10 @@
 	
 	setInterval(function(){
 		getGameData(function(gameData){
+			if (gameData == null)
+			{
+				console.log("Problem. Game Data is Null in interval");
+			}
 			if (shiftAmount == -1)
 			{
 				return;
@@ -115,6 +119,8 @@
 				if (newNumAnimations != numAnimationsHappened) // Server says there's an animation to do
 				{
 					numAnimationsHappened = newNumAnimations;
+					console.log("In Interval: Action:");
+					console.log(gameData['action']);
 					doAnimationAction(gameData);
 				}
 				if (newNumActions != numActionsHappened) // Server says the master deck and hands changed
@@ -215,6 +221,10 @@
 			if (parsedJSON["result"] == "success")
 			{
 				var gameData = parsedJSON['gameData'];
+				if (gameData == null)
+				{
+					console.log("Problem. Game Data is Null in getGameData");
+				}
 				callback(gameData);
 			}
 			else
@@ -661,8 +671,14 @@
 	
 	function doAnimationAction(gameData)
 	{
+		if (gameData == null)
+		{
+			console.log("Problem. Game Data is Null in doAnimationAction");
+		}
 		var card_index = gameData['CardIndex'];
 		var action = gameData['action'];
+		console.log("Action:");
+		console.log(action);
 		
 		if (action == 'draw')
 		{
