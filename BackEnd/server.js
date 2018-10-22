@@ -499,7 +499,7 @@ function dealUnoDeck(gameData,totalPlayers)
 	var realPlayers = [];
 	for (var i = 0; i < gameData['players'].length; i++)
 	{
-		realPlayers.push(gameData['players'][i].name);
+		realPlayers.push(gameData['players'][i].Name);
 	}
 	gameData['players'] = [];
 	
@@ -1144,7 +1144,7 @@ app.post('/addClientToGame/:code/:username', function(req,res){
 				}
 				else
 				{
-					gameDataForCode['players'].push({"name":userName});
+					gameDataForCode['players'].push({"Name":userName});
 					res.send({
 						result: 'success',
 						err: '',
