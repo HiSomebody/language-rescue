@@ -567,7 +567,6 @@
 					if (parsedJSON["result"] == "success")
 					{
 						console.log("succeeded in adding draw card action");
-						/*
 						var gameData = parsedJSON['gameData'];
 						
 						var card_filename = gameData['totalCards'][0].filename;
@@ -609,7 +608,7 @@
 								});
 								//PlayGame(); // send notification for next turn
 							}
-						},playDelay);*/
+						},playDelay);
 					}
 					else
 					{
