@@ -232,8 +232,8 @@ function doAITurn(gameData)
 			{
 				playCard('Number',true);
 			}
-			NeedToDraw = false;
 			*/
+			NeedToDraw = false;
 			break;
 		}
 	}
@@ -453,7 +453,7 @@ function changeUnoTurn(gameData,turnChanges)
 	{
 		setTimeout(function(){
 			doAITurn(gameData);
-		},1050);
+		},500);
 	}
 	//console.log("changed to:");
 	//console.log(gameData['currentTurn']);
