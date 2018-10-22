@@ -388,9 +388,26 @@ function doAction(gameDataForCode,action,CardIndex,color)
 			ReShuffleTotalCards(gameDataForCode);
 		}
 		
+		var isWinner = false;
+		for (var i = 0; i < Players.length; i++)
+		{
+			if (Players[i].Cards.length == 0)
+			{		
+				isWinner = true;
+				message = Players[i].Name + " won!";
+				setTimeout(function(){
+					Players.splice(i,1);
+					gameDataForCode['numActions'] += 1;
+				},500);
+				break;
+			}
+		}
 		gameDataForCode['message'] = message;
 
-		gameDataForCode['numActions'] += 1;
+		if (isWinner == false)
+		{
+			gameDataForCode['numActions'] += 1;
+		}
 		//console.log("when updated");
 		//console.log(gameDataForCode);
 	},1000);
