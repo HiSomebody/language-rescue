@@ -234,6 +234,7 @@ function doAITurn(gameData)
 		//Draw(true);
 		gameData['action'] = "draw";
 		doAction(gameData,"draw",-1,"NA");
+		changeUnoTurn(gameData,1);
 	}
 }
 
