@@ -66,20 +66,6 @@ makeDeck('JJJJ');
 
 
 app.use(bodyParser.json());
-fs.readFile('../FrontEnd/index.html', function(err, html){
-	if (err) {
-		console.error('COULDN\'T OPEN FILE', err);
-		res.send({
-			result: 'error',
-			err: err.code
-		});
-		mainHtml = 'THERE WAS AN ERROR RETRIEVING THE FILE';
-	}
-	else
-	{
-		mainHtml = html;
-	}
-});
 
 function makeDeck(code)
 {
@@ -398,7 +384,7 @@ function doAction(gameDataForCode,action,CardIndex,color)
 		{
 			ReShuffleTotalCards(gameDataForCode);
 		}
-		
+		var Players = gameDataForCode['players'];
 		for (var i = 0; i < Players.length; i++)
 		{
 			if (Players[i].Cards.length == 0)
