@@ -102,6 +102,10 @@
 	
 	setInterval(function(){
 		getGameData(function(gameData){
+			if (shiftAmount == -1)
+			{
+				return;
+			}
 			if (startedGame)
 			{
 				// get gamedata from server to update players list			
@@ -123,6 +127,7 @@
 					}	
 					// Shift this client to be front of list in this view only
 					Players = gameData['players'];
+					shiftAmount = -1;
 					for (var i = 0; i < Players.length; i++)
 					{
 						if (Players[i].Name == username)
@@ -130,20 +135,24 @@
 							shiftAmount = i;
 						}
 					}
-					for (var i = 0; i < shiftAmount; i++)
+					if (shiftAmount != -1)
 					{
-						var firstElement = Players.shift();
-						Players.push(firstElement);
+						for (var i = 0; i < shiftAmount; i++)
+						{
+							var firstElement = Players.shift();
+							Players.push(firstElement);
+						}
+					
+						// Update game state variables from server
+						Whos_Turn = mod(gameData['currentTurn'] - shiftAmount,gameData['players'].length);
+						totalCards = gameData['totalCards'];
+						Playable_Deck = gameData['Playable_Deck'];
+						SomeOneWon = gameData['SomeOneWon'];
+					
+						// redraw game with updates
 					}
-					
-					// Update game state variables from server
-					Whos_Turn = mod(gameData['currentTurn'] - shiftAmount,gameData['players'].length);
-					totalCards = gameData['totalCards'];
-					Playable_Deck = gameData['Playable_Deck'];
-					SomeOneWon = gameData['SomeOneWon'];
-					
-					// redraw game with updates
 					Update_Cards();
+					
 				}
 				return;
 			}
@@ -877,7 +886,13 @@
 		
 	function Update_Cards()
 	{
-		drawOtherPlayersCards();
+		if (shiftAmount != -1)
+		{
+			while (hand.hasChildNodes()) {                                //Removes All Card Imgs from hand
+				hand.removeChild(hand.lastChild);
+			}
+			return;
+		}
 		drawDrawAndDiscardPile();
 		
 		var thisPlayer = Players[RealPlayer0];
