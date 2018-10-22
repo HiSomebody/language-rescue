@@ -52,6 +52,7 @@ var playerGroups = [
 		numAnimations: 0,
 		players:[],
 		currentTurn: 0,
+		CardIndex: -1,
 		isReversed: false,
 		message: "none"
 	}
@@ -282,9 +283,9 @@ app.post('/unoChangeTurn/:code/:turnChanges', function(req,res){
 function doAction(gameDataForCode,action,CardIndex,color)
 {
 	// set up card and action for animation to be done on all clients
-	gameDataForCode['CardIndex'] = CardIndex;
+	gameDataForCode['CardIndex'] = Number(CardIndex);
 	gameDataForCode['action'] = action;
-
+	
 	// trigger animation event on all clients
 	gameDataForCode['numAnimations'] += 1;
 
@@ -417,7 +418,7 @@ function doAction(gameDataForCode,action,CardIndex,color)
 app.post('/unoAction/:code/:action/:CardIndex/:color', function(req,res){
 	var gameCode = req.params.code;
 	var action = req.params.action;
-	var CardIndex = req.params.CardIndex;
+	var CardIndex = Number(req.params.CardIndex);
 	var color = req.params.color;
 	var gameDataForCode = getGameDataForCode(gameCode);
 	console.log(gameCode);
@@ -939,6 +940,7 @@ app.post('/addGameToServer/:type', function(req,res){
 			numAnimations: 0,
 			currentTurn: 0,
 			isReversed: false,
+			CardIndex: -1,
 			message: "none"
 		});
 		makeDeck(gameCode);
