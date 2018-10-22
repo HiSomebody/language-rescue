@@ -453,7 +453,7 @@ function changeUnoTurn(gameData,turnChanges)
 	{
 		setTimeout(function(){
 			doAITurn(gameData);
-		},500);
+		},1050);
 	}
 	//console.log("changed to:");
 	//console.log(gameData['currentTurn']);
