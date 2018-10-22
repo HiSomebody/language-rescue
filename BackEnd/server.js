@@ -388,12 +388,10 @@ function doAction(gameDataForCode,action,CardIndex,color)
 			ReShuffleTotalCards(gameDataForCode);
 		}
 		
-		var isWinner = false;
 		for (var i = 0; i < Players.length; i++)
 		{
 			if (Players[i].Cards.length == 0)
 			{		
-				isWinner = true;
 				message = Players[i].Name + " won!";
 				setTimeout(function(){
 					Players.splice(i,1);
@@ -403,6 +401,7 @@ function doAction(gameDataForCode,action,CardIndex,color)
 			}
 		}
 		gameDataForCode['message'] = message;
+		gameDataForCode['numActions'] += 1;
 
 		//console.log("when updated");
 		//console.log(gameDataForCode);
@@ -460,9 +459,6 @@ function changeUnoTurn(gameData,turnChanges)
 		var newTurn = newTurnBeforeMod%numPlayers;
 		gameData['currentTurn'] = newTurn;
 	}
-	
-	gameDataForCode['numActions'] += 1;
-
 	
 	var currentTurn = gameData['currentTurn'];
 	
