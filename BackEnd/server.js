@@ -376,11 +376,16 @@ function doAction(gameDataForCode,action,CardIndex,color)
 				changeUnoTurn(gameDataForCode,1);
 			}
 		}
-		else  //if (action == 'draw')
+		else if (action == 'draw')
 		{
 			var topCard = gameDataForCode['totalCards'][0];
 			gameDataForCode['players'][currentTurn].Cards.push(topCard);
 			gameDataForCode['totalCards'].splice(0 ,1);
+		}
+		else
+		{
+			console.log("Shouldnt get here");
+			console.log(action);
 		}
 
 		if (gameDataForCode['totalCards'].length - 1 <= 10)
@@ -405,7 +410,7 @@ function doAction(gameDataForCode,action,CardIndex,color)
 
 		//console.log("when updated");
 		//console.log(gameDataForCode);
-	},1000);
+	},1500);
 }
 
 app.post('/unoAction/:code/:action/:CardIndex/:color', function(req,res){
