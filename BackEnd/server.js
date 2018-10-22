@@ -235,8 +235,8 @@ function doAITurn(gameData)
 		gameData['action'] = "draw";
 		doAction(gameData,"draw",-1,"NA");
 		setTimeout(function(){
-		changeUnoTurn(gameData,1);
-		},300);
+			changeUnoTurn(gameData,1);
+		},1200);
 	}
 }
 
