@@ -108,13 +108,17 @@
 				
 				if (newNumAnimations != numAnimationsHappened) // Server says there's an animation to do
 				{
-					numAnimationsHappened = newNumAnimations;	
+					numAnimationsHappened = newNumAnimations;
 					doAnimationAction(gameData);
 				}
 				if (newNumActions != numActionsHappened) // Server says the master deck and hands changed
 				{
 					numActionsHappened = newNumActions;
-
+					var message = gameData['message'];
+					if (message != "none")
+					{
+						displayMessage(message);
+					}	
 					// Shift this client to be front of list in this view only
 					Players = gameData['players'];
 					for (var i = 0; i < Players.length; i++)
