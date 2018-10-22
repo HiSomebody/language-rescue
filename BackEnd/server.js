@@ -404,10 +404,6 @@ function doAction(gameDataForCode,action,CardIndex,color)
 		}
 		gameDataForCode['message'] = message;
 
-		if (isWinner == false)
-		{
-			gameDataForCode['numActions'] += 1;
-		}
 		//console.log("when updated");
 		//console.log(gameDataForCode);
 	},1000);
