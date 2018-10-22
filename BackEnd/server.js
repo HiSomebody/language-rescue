@@ -381,6 +381,7 @@ function doAction(gameDataForCode,action,CardIndex,color)
 			var topCard = gameDataForCode['totalCards'][0];
 			gameDataForCode['players'][currentTurn].Cards.push(topCard);
 			gameDataForCode['totalCards'].splice(0 ,1);
+			changeUnoTurn(gameDataForCode,1);
 		}
 		else
 		{
