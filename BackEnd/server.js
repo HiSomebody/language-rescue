@@ -1507,6 +1507,10 @@ app.get('/videos/:filename', function(req,res){
 res.sendFile(path.resolve(__dirname + '/../FrontEnd/hannah/videos/'+req.params.filename));
 });
 
+app.get('/:filename', function(req,res){
+res.sendFile(path.resolve(__dirname + '/' + req.params.filename));
+});
+
 app.get('/UnoCards/:cardname', function(req,res){
 res.sendFile(path.resolve(__dirname + '/../FrontEnd/images/UnoCards/'+req.params.cardname));
 });
