@@ -1517,7 +1517,7 @@ app.get('/UnoCards/:cardname', function(req,res){
 res.sendFile(path.resolve(__dirname + '/../FrontEnd/images/UnoCards/'+req.params.cardname));
 });
 
-app.get('/ScumCards/:cardname', function(req,res){
+app.get('/JPEG/:cardname', function(req,res){
 res.sendFile(path.resolve(__dirname + '/../FrontEnd/images/JPEG/'+req.params.cardname));
 });
 
