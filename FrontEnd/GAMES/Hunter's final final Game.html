@@ -1,0 +1,1281 @@
+<!DOCTYPE html>
+<html>
+
+<style type="text/css">
+div.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+
+    width: 50%;
+}
+
+#ourHand{
+	width: 650px;
+	height: 300px;
+
+	position: absolute;
+	top:0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	
+	margin: auto;
+}
+#blow{
+	height:20px;
+	position: absolute;
+	top:100px;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	
+	margin: auto;
+}
+#blowright{
+	height:20px;
+	position: absolute;
+	top:100px;
+	bottom: 0;
+	left: 80px;
+	right: 0;
+	
+	margin: auto;
+}
+
+
+.highlighted{
+	border: 5px solid yellow;
+}
+</style>
+
+
+
+
+<div id="numberofpeople">
+
+<input id="amount" placeholder="Enter number of People"></input>
+<br>
+
+<button id="start" onclick="Question()">
+Start game
+</button>
+</div>
+
+
+
+
+
+<button id="btn1" onclick="Develope()">
+Developer's mode
+</button>
+<button id="trade" onclick="Playertrade()">
+Trade
+</button>
+<div id="text">
+</div>
+<div id="nextext">
+</div>
+
+<div id="deck" class="center">
+</div>
+</br>
+</br>
+<div id >
+<div id="ourHand" class="center">
+</div>
+<div id="thereHand" class="center">
+</div>
+<div class="center">
+<button id="blow" onclick="Play_toPush()" >
+Play Hand
+</button>
+<button id="blowright" onclick="Play_toPass()">
+Pass
+</button>
+</div>
+
+
+
+
+
+
+<script>
+	//https://www.freeformatter.com/javascript-beautifier.html#ad-output
+	var number_ofplayers;
+var cards;
+var what_am;
+var is_there;
+var turn;
+var templist;
+var highlight_list;
+var Playerlist;
+var if_clicked;
+var im_high;
+var what_im_high;
+var is_pass;
+var number_card;
+var last_val;
+var list_pass;
+var i_played;
+var done;
+var texted;
+var win;
+var second_check;
+var first_check;
+var this_went;
+var stack;
+var Stacklist;
+var Shufflemy;
+var win_list;
+var trade;
+var ready_tomove;
+var Canresetturn = false;
+
+
+function hideElements() {
+
+	var x = document.getElementById("blow");
+
+	var z = document.getElementById("btn1");
+	var q = document.getElementById("blowright");
+	var t = document.getElementById("trade");
+
+
+	x.style.display = "none";
+
+	z.style.display = "none";
+	q.style.display = "none";
+	t.style.display = "none";
+}
+
+window.onload = function () {
+
+	hideElements();
+	initializeGame();
+
+}
+
+function Question() {
+
+	number_ofplayers = document.getElementById("amount").value;
+	hide();
+	createDeck();
+
+	ShuffleAllCards();
+	//number_ofplayers = document
+	//var Game = new Main_Funtion();
+
+}
+
+function hide() {
+	var getride = document.getElementById("numberofpeople");
+	getride.style.display = "none";
+
+	var x = document.getElementById("blow");
+
+	var z = document.getElementById("btn1");
+	var q = document.getElementById("blowright");
+
+
+	x.style.display = "initial";
+
+	z.style.display = "initial";
+	q.style.display = "initial";
+
+}
+
+function initializeGame() {
+	cards = [];
+
+	is_there = false;
+	turn = 0;
+	templist = [];
+	highlight_list = [];
+	Playerlist = [];
+	if_clicked = 0;
+	is_pass = 0;
+	last_val = 0;
+	list_pass = [];
+	done = false;
+	second_check = 1;
+	first_check = 0;
+	stack = [];
+	Stacklist = [];
+	Shufflemy = true;
+	win_list = [];
+	trade = false;
+
+
+}
+
+function createDeck() {
+	var k = 0;
+
+	for (var j = 0; j < number_ofplayers; j++) {
+		for (var i = 1; i < 14; i++) {
+			var suit = "red";
+			if (k == 0) {
+				suit = "H";
+			}
+			if (k == 1) {
+				suit = "S"
+			}
+			if (k == 2) {
+				suit = "D"
+			}
+			if (k == 3) {
+				suit = "C"
+			}
+			var c = new Card(i, suit);
+			cards.push(c);
+		}
+		k++;
+		if (k > 3) {
+			k = 0
+		}
+	}
+
+
+}
+
+function Card(number, suit) {
+	var value = number;
+	if (number == 1) {
+		value = 'A';
+	}
+	if (number == 11) {
+		value = 'J';
+	}
+	if (number == 12) {
+		value = 'Q';
+	}
+	if (number == 13) {
+		value = 'K';
+	}
+	this.value = value;
+	this.suit = suit;
+
+	this.filename = value + suit + ".jpg";
+
+}
+
+
+function ShuffleAllCards() {
+	if (Shufflemy) {
+		var rand = [];
+		while (!(rand.length >= cards.length)) {
+			var ran = Math.floor(Math.random() * cards.length);
+
+			var n = rand.includes(ran);
+			if (!(n)) {
+				rand.push(ran);
+			}
+		}
+
+		for (var i = 0; i < cards.length; i++) {
+			var randIndex = rand[i];
+			var temp = cards[i]
+			cards[randIndex];
+			cards[i] = cards[randIndex];
+			cards[randIndex] = temp;
+		}
+
+
+		for (var i = 0; i < number_ofplayers; i++) {
+			var player = [];
+			for (var j = 0; j < 13; j++) {
+				var playerindex1 = cards[i * 13 + j];
+				player.push(playerindex1);
+			}
+
+			Playerlist.push(player);
+
+		}
+
+		for (var j = 0; j < number_ofplayers; j++) {
+			for (var i = 0; i < 13; i++) {
+				var c = Playerlist[j][i];
+				if (c.value == "A") {
+					c.value = 14;
+				}
+				if (c.value == "K") {
+					c.value = 13;
+				}
+				if (c.value == "Q") {
+					c.value = 12;
+				}
+				if (c.value == "J") {
+					c.value = 11;
+				}
+			}
+		}
+
+		ShuffleAllCards_2()
+	}
+}
+
+function ShuffleAllCards_2() {
+	for (var j = 0; j < number_ofplayers; j++) {
+		var isSorted = false;
+		while (isSorted == false) {
+			isSorted = true;
+			for (var i = 0; i < 12; i++) {
+				if (Playerlist[j][i].value > Playerlist[j][i + 1].value) {
+					var tempt = Playerlist[j][i];
+					Playerlist[j][i] = Playerlist[j][i + 1];
+					Playerlist[j][i + 1] = tempt;
+					isSorted = false;
+
+				}
+
+			}
+		}
+
+	}
+	for (var i = 1; i < number_ofplayers; i++) {
+		stack = [];
+		find_pare(Playerlist[i]);
+
+		Stacklist.push(stack);
+		//("It went through " + i);
+	}
+	//(Stacklist);
+	Shufflemy = false;
+	showHand();
+}
+
+
+function Ai() {
+	//(turn);
+	//(Stacklist[turn - 1]);
+	//(null);
+	//(Stacklist[turn - 1] == 0);
+	//(Stacklist);
+	if (!(turn >= number_ofplayers) && !(turn == 0) && (!(Stacklist[turn - 1].length == 0))) {
+		var abovedeck = document.getElementById("nextext");
+		while (abovedeck.firstChild) {
+			abovedeck.removeChild(abovedeck.firstChild);
+		}
+		var howturn = turn + 1;
+		var texted = document.createTextNode("Player: " + howturn);
+		abovedeck.appendChild(texted);
+		var deckElement = document.getElementById("deck");
+		templist = [];
+
+		for (var i = 0; i < Playerlist[turn].length; i++) {
+
+			var card = Playerlist[turn][i];
+			var img1 = document.createElement("img");
+			img1.src = "JPEG/" + card.filename;
+
+
+			img1.height = 80;
+			img1.width = 52;
+			img1.setAttribute("class", "none");
+
+
+			//deckElement.appendChild(img1);
+			templist.push(img1);
+			//deckElement.removeChild(img1);
+
+
+		}
+		//(templist);
+		//(is_there);
+		if (is_there) {
+			Ai_second_Play();
+		} else {
+			Ai_play();
+		}
+	} else {
+		//("Went pass Ai and went to Pass");
+		Pass();
+
+	}
+}
+
+
+function Ai_second_Play() {
+	var could_find = false;
+	var thisIslist = [];
+	//(turn);
+	for (var i = 0; i < Playerlist[turn].length; i++) {
+		thisIslist.push(Playerlist[turn][i].value);
+
+	}
+	for (var i = 0; i < Stacklist[turn - 1].length; i++) {
+		if (Stacklist[turn - 1][i].stack >= number_card) {
+			if (Stacklist[turn - 1][i].value > last_val) {
+				could_find = true;
+				for (var j = 0; j < number_card; j++) {
+					var holder_ofthis = Stacklist[turn - 1][i].value;
+					var this_isindex = thisIslist.indexOf(holder_ofthis);
+					//(this_isindex);
+					//var useful = thisIslist[this_isindex + j];
+
+					templist[this_isindex + j].setAttribute("class", "highlighted");
+					if (Stacklist[turn - 1][i].stack == 1) {
+						Stacklist[turn - 1].splice(i, 1);
+					} else {
+						Stacklist[turn - 1][i].stack -= 1;
+					}
+					//(Stacklist);
+
+				}
+				break;
+			}
+		}
+	}
+	if (could_find) {
+		//("this is before it went into Push_card");
+		//(templist);
+		Push_Card();
+	} else {
+		//("I Passed");
+		Pass();
+	}
+}
+
+function Ai_play() {
+	//(turn);
+	//(templist);
+	//(Stacklist);
+
+	var useful;
+	var thisIslist = [];
+	for (var i = 0; i < Playerlist[turn].length; i++) {
+		thisIslist.push(Playerlist[turn][i].value);
+
+	}
+	//(thisIslist);
+	Main: for (var i = number_ofplayers; i > 0; i--) {
+		for (var j = 0; j < Stacklist[turn - 1].length; j++) {
+			if (Stacklist[turn - 1][j].stack == i) {
+				for (var k = 0; k < i; k++) {
+					//(j);
+					//(k);
+					//(Stacklist[turn - 1][j].value);
+					useful = thisIslist.indexOf(Stacklist[turn - 1][j].value);
+					//(useful);
+					templist[useful + k].setAttribute("class", "highlighted");
+					if (Stacklist[turn - 1][j].stack == 1) {
+						Stacklist[turn - 1].splice(j, 1);
+					} else {
+						Stacklist[turn - 1][j].stack -= 1;
+					}
+					//(Stacklist);
+
+				}
+				break Main;
+			}
+
+		}
+	}
+
+	//(templist);
+
+
+	Push_Card();
+
+
+}
+
+/*
+
+	function aiPlay (numCardsToPlay,LastNumberPlayed)
+	{
+		for each card (because they are sorted)
+			if higher than last num played
+				start an inner for loop from 0 to numCardsToPlay and check if you can find 
+				the same value in each card for this entire inner loops
+	}
+
+*/
+function find_pare(list) {
+	var tempreally = [];
+	//("this kind of went");
+	//(list);
+	var did_it = true;
+
+	for (var i = 0; i < 13; i++) {
+		if (i + j + 1 > 13) {
+			break;
+		}
+		var j = 0;
+		while (i + j + 1 < 13 && list[i + j].value == list[i + 1 + j].value) {
+
+			//(list[i + j].value);
+			//(list[i + 1 + j].value);
+			j++
+			//(j);
+
+		}
+
+
+		if (did_it || (!(tempreally.includes(list[i + j].value, 0)))) {
+
+			var s = new Stack(list[i + j].value, j);
+			stack.push(s);
+
+			did_it = false;
+
+		}
+		tempreally.push(list[i].value);
+
+	}
+
+
+}
+
+function Stack(value, stack_number) {
+	this.value = value;
+	this.stack = stack_number + 1;
+}
+
+
+function showHand() {
+	//(list_pass);
+
+
+	var abovedeck = document.getElementById("nextext");
+	while (abovedeck.firstChild) {
+		abovedeck.removeChild(abovedeck.firstChild);
+	}
+	var howturn = turn + 1;
+	var texted = document.createTextNode("Player: " + howturn);
+	abovedeck.appendChild(texted);
+
+
+	//(turn);
+	var deckElement = document.getElementById("deck");
+	var divElement = document.getElementById("ourHand");
+	while (divElement.firstChild) {
+		divElement.removeChild(divElement.firstChild);
+	}
+	var lengthtemp = Playerlist[turn];
+	//for (var j = 0; j < 4; j++){
+	//(Playerlist[turn]);
+
+	//(list_pass);
+	if (turn == 0) {
+		for (var i = 0; i < Playerlist[turn].length; i++) {
+
+			var card = Playerlist[turn][i];
+
+			var img = document.createElement("img");
+			img.src = "JPEG/" + card.filename;
+
+			//img.style.border = "5px solid yellow";
+			img.height = 80;
+			img.setAttribute("class", "none");
+			img.onclick = function () {
+				if (Canresetturn) {
+					turn = 0;
+				}
+				//(turn);
+				//(Playerlist);
+				//(templist);
+				//(this);
+				im_high = Playerlist[turn][templist.indexOf(this)].value;
+				//(im_high);
+				if (if_clicked == 0 || what_im_high == im_high || Canresetturn) {
+
+					if (this.getAttribute("class") == "none") {
+						this.setAttribute("class", "highlighted");
+					} else {
+						this.setAttribute("class", "none");
+					}
+					if (if_clicked == 0) {
+						if_clicked = 1;
+					}
+
+					what_im_high = Playerlist[turn][templist.indexOf(this)].value;
+				}
+				if_clicked = 0;
+				for (var i = 0; i < Playerlist[turn].length; i++) {
+
+					if (templist[i].getAttribute("class") == "highlighted") {
+						if_clicked += 1;
+					}
+
+				}
+
+			}
+			divElement.appendChild(img);
+			templist[i] = img;
+
+		}
+
+
+		//}
+
+	}
+}
+
+
+function Push_Card() {
+	var thisendsgame = false;
+	var amount_ofcard = 0;
+	var deckElement = document.getElementById("deck");
+	var abovedeck = document.getElementById("text");
+	var divElement = document.getElementById("ourHand");
+	for (var i = 0; i < Playerlist[turn].length; i++) {
+		if (templist[i].getAttribute("class") == "highlighted") {
+			amount_ofcard += 1;
+			var this_val = Playerlist[turn][i].value;
+		}
+	}
+	//(this_val);
+	//(last_val);
+	//(is_pass);
+	if ((is_pass == 0 || amount_ofcard == number_card) && last_val < this_val) {
+		//("It went");
+
+
+		breack: for (var i = 0; i < Playerlist[turn].length; i++) {
+
+			if (templist[i].getAttribute("class") == "highlighted") {
+				var Play_card = templist[i];
+
+				if (!(is_there)) {
+					if (turn == 0) {
+						divElement.removeChild(Play_card);
+					}
+					deckElement.appendChild(Play_card);
+					is_there = true;
+					what_am = Play_card;
+				} else {
+					deckElement.removeChild(what_am);
+					if (turn == 0) {
+						divElement.removeChild(Play_card);
+						deckElement.appendChild(Play_card);
+						what_am = Play_card
+					} else {
+						deckElement.appendChild(Play_card);
+						what_am = Play_card;
+					}
+				}
+				if (done == false) {
+					if (Playerlist[turn][i].value == 14) {
+						done = true;
+					}
+				}
+				//(Playerlist[turn][i].value);
+				last_val = Playerlist[turn][i].value;
+				var delet = templist.indexOf(Play_card);
+				templist.splice(delet, 1);
+				Playerlist[turn].splice(delet, 1);
+				i--;
+				i_played = turn;
+				if (Playerlist[turn].length == 0) {
+					endGame();
+					break breack;
+				}
+			}
+		}
+
+
+		if (is_pass == 0) {
+			texted = document.createTextNode(amount_ofcard);
+			abovedeck.appendChild(texted);
+		}
+		//(Playerlist.length);
+		if (win_list.length == Playerlist.length) {
+			//("This should end all game");
+			thisendsgame = true;
+			reallyendgame();
+		}
+
+
+		//(list_pass);
+		turn += 1;
+		if (turn >= number_ofplayers) {
+			turn = 0;
+		}
+		//(turn);
+		var t = 0;
+		while (list_pass.includes(turn)) {
+			if (list_pass.length == number_ofplayers || t > 50) {
+				break;
+				if (t > 40) {
+					turn = 0;
+				}
+			}
+			turn++;
+			if (turn >= number_ofplayers) {
+				turn = 0;
+			}
+			//(turn);
+			t++;
+		}
+		if (is_pass == 0) {
+			is_pass = 1;
+			number_card = amount_ofcard;
+
+			//(turn);
+			this_went = true;
+		} else {
+			this_went = false;
+		}
+		im_high = null;
+		what_im_high = null;
+		if_clicked = 0;
+		if (win_list.length == Playerlist.length) {
+			//("This should end all game");
+			thisendsgame = true;
+			reallyendgame();
+		}
+		//("This is end game" + thisendsgame);
+		if (!thisendsgame) {
+			if (done) {
+				Rest();
+			} else {
+				if (turn == 0) {
+					showHand();
+				} else {
+					setTimeout(Ai, 500);
+				}
+			}
+		}
+	}
+}
+
+
+function Pass() {
+	list_pass.push(turn);
+	turn += 1;
+	if (turn >= number_ofplayers) {
+		turn = 0;
+	}
+
+	var t = 0;
+	while (list_pass.includes(turn)) {
+		if (list_pass.length == number_ofplayers || t > 50) {
+			break;
+			if (t > 40) {
+				turn = 0;
+			}
+		}
+		turn++;
+		if (turn >= number_ofplayers) {
+			turn = 0;
+		}
+		//(turn);
+		t++;
+	}
+	var checkthis = 0;
+	for (var i = 0; i < Stacklist.length; i++) {
+		if (Stacklist[i].length > 0) {
+			checkthis++;
+		}
+	}
+	//|| checkthis == 0
+	//(turn);
+	if (list_pass.length >= number_ofplayers) {
+		Rest();
+	} else if (turn == 0) {
+		//("I showed Hand");
+		showHand();
+	} else {
+		//(turn);
+		//("I AIed");
+		setTimeout(Ai, 100);
+
+
+	}
+}
+
+function Rest() {
+	//(turn + " I rest");
+	turn = i_played;
+	im_high = null;
+	what_im_high = null;
+	if_clicked = 0;
+	list_pass = [];
+
+
+	for (var i = 0; i < Playerlist.length; i++) {
+		if (win_list.includes(i)) {
+			list_pass.push(i);
+			//("this should have pushed a win");
+		}
+	}
+	//(turn);
+	if (win_list.includes(turn)) {
+		for (var i = 0; win_list.includes(turn); i++) {
+			if (win_list.includes(i)) {
+				turn++
+				//(turn);
+				if (turn >= number_ofplayers) {
+					turn = 0;
+				}
+			}
+		}
+	}
+	if (win_list.length == Playerlist.length) {
+		//("This should end all game");
+		thisendsgame = true;
+		reallyendgame();
+	}
+
+	if (turn > number_ofplayers) {
+		//("Card is higher than number_ofplayers")
+		var did_thisthing = false;
+		for (var i = 0; i < Playerlist.length; i++) {
+			if (Playerlist[i].length > 0) {
+				turn = i;
+				did_thisthing = true;
+			}
+		}
+		if (did_thisthing = false) {
+			reallyendgame();
+		}
+	}
+	//(turn);
+
+	var deckElement = document.getElementById("deck");
+	//("Child length " + deckElement.children.length);
+	if (deckElement.children.length > 0) {
+		deckElement.removeChild(what_am);
+	}
+	is_pass = 0;
+	is_there = false;
+	done = false;
+	last_val = 0;
+	amount_ofcard = 0;
+	number_card = null;
+	var abovedeck = document.getElementById("text");
+	//(abovedeck.childNodes.length);
+	while (abovedeck.childNodes.length > 0) {
+		abovedeck.removeChild(abovedeck.firstChild);
+	}
+	if (win_list.length == Playerlist.length) {
+		//("This should end all game");
+		thisendsgame = true;
+		reallyendgame();
+	}
+	if (turn == 0) {
+		showHand();
+	} else {
+		Ai();
+	}
+}
+
+function endGame() {
+	var divElement = document.getElementById("ourHand");
+	/*while (divElement.firstChild) {
+		divElement.removeChild(divElement.firstChild);
+	}*/
+	//("I win");
+	win = true;
+	/*var divElement = document.getElementById("ourHand");
+	var you = document.createElement("img");
+	you.scr = "JPEG/Youwin.png"
+	you.height = 200;
+	
+	divElement.appendChild(you);*/
+	win_list.push(turn);
+	list_pass.push(turn);
+
+}
+
+function Develope() {
+	var person = prompt("What is the password?");
+	if (person == "1234") {
+		win_list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 0];
+		Rest();
+	} else {
+		alert("Wrong password");
+	}
+}
+
+function Play_toPush() {
+
+	if (turn == 0) {
+		Push_Card();
+	}
+}
+
+function Play_toPass() {
+	// || win_list.length == (Playerlist.length - 1)
+	var checkme = 0;
+	for (var i = 1; i < number_ofplayers; i++) {
+		if (Playerlist[i].length == 0) {
+			checkme++;
+		}
+	}
+
+	var deckElement = document.getElementById("deck");
+	if (turn == 0 && (!(checkme == number_ofplayers - 1) || (deckElement.firstChild))) {
+		Pass();
+	}
+
+}
+/*function hide(){
+var x = document.getElementById("blow");
+var y = document.getElementById("btn");
+var z = document.getElementById("btn1");
+var q = document.getElementById("blowright");
+//(x.style.display);
+if(x.style.display == "none"){
+x.style.display = "initial";
+y.style.display = "initial";
+z.style.display = "initial";
+q.style.display = "initial";
+}else{
+
+
+x.style.display = "none";
+y.style.display = "none";
+z.style.display = "none";
+q.style.display = "none";
+}
+}*/
+function reallyendgame() {
+	Shufflemy = true;
+	Playerlist = [];
+	cards = [];
+	Stacklist = [];
+	list_pass = [];
+	turn = 0;
+	is_pass = 0;
+	var x = document.getElementById("blow");
+	var z = document.getElementById("btn1");
+	var q = document.getElementById("blowright");
+	x.style.display = "none";
+	z.style.display = "none";
+	q.style.display = "none";
+
+
+	tradeing1();
+}
+
+function tradeing1() {
+	ready_tomove = false;
+	showTrade();
+	var deckElement = document.getElementById("deck");
+	if (deckElement.children.length > 0) {
+		deckElement.removeChild(what_am);
+	}
+	turn = 0;
+	Canresetturn = true;
+	createDeck();
+	ShuffleAllCards();
+	trade1();
+}
+
+function trade1() {
+	//(win_list);
+	//(test_ifPlayer);
+	if (!test_ifPlayer()) {
+		Aitrade();
+
+	} else {
+		var deckElement = document.getElementById("deck");
+		while (deckElement.firstChild) {
+			deckElement.removeChild(deckElement.firstChild);
+		}
+		var added = 0;
+		for (var i = 0; i < win_list.length; i++) {
+			added += win_list[i];
+			//("it is adding");
+		}
+		var meanofmean = added / win_list.length;
+		var thisisme = win_list.indexOf(0);
+
+		//(thisisme);
+		var buffer = 0;
+		var where_amI = win_list.indexOf(0);
+
+		if (Math.floor(meanofmean) >= 5) {
+			var bound = (number_ofplayers - 5) - meanofmean;
+		} else {
+			var bound = 1;
+		}
+		if (thisisme < meanofmean - 1 && thisisme <= 5) {
+			//("got through the thiswin");
+			if (meanofmean >= 5) {
+				buffer = Math.abs(where_amI - Math.floor(5));
+			} else {
+				buffer = Math.abs(where_amI - Math.floor(meanofmean))
+			}
+			var texted = document.createTextNode("Trade " + Math.floor(buffer) + " card(s) of what you like");
+			deckElement.appendChild(texted);
+		}
+
+
+		if (thisisme >= meanofmean + bound) {
+			//("got through the this");
+			if (meanofmean >= 5) {
+				//(where_amI);
+				buffer = Math.abs(where_amI - Math.floor(number_ofplayers - 6));
+			} else {
+				buffer = Math.abs(where_amI - Math.floor(meanofmean))
+			}
+			var texted = document.createTextNode("Trade " + Math.floor(buffer) + " card(s) of your highest card");
+			deckElement.appendChild(texted);
+		}
+
+		//("Should have appendChild");
+	}
+
+	//(Playerlist);
+	showHand();
+	//(ready_tomove);
+	if (ready_tomove) {
+		//("It moved");
+		Stacklist = [];
+		ShuffleAllCards_2();
+
+		thisendsgame = false;
+		Canresetturn = false;
+		var x = document.getElementById("blow");
+		var z = document.getElementById("btn1");
+		var q = document.getElementById("blowright");
+		x.style.display = "initial";
+		z.style.display = "initial";
+		q.style.display = "initial";
+		var t = document.getElementById("trade");
+		t.style.display = "none";
+
+
+		is_there = false;
+		turn = win_list[0];
+		highlight_list = [];
+		if_clicked = 0;
+		is_pass = 0;
+		last_val = 0;
+		list_pass = [];
+		done = false;
+		second_check = 1;
+		first_check = 0;
+		win_list = [];
+		trade = false;
+		im_high = 0;
+		var abovedeck = document.getElementById("text");
+		var deckElement = document.getElementById("deck");
+		while (deckElement.firstChild) {
+			deckElement.removeChild(deckElement.firstChild);
+		}
+		while (deckElement.firstChild) {
+			abovedeck.removeChild(abovedeck.firstChild);
+		}
+		if (turn == 0) {
+			showHand();
+		} else {
+			Ai();
+		}
+
+	}
+
+}
+
+function showTrade() {
+	if (test_ifPlayer()) {
+		var t = document.getElementById("trade");
+		//("trading");
+		t.style.display = "initial";
+	}
+}
+
+function test_ifPlayer() {
+	var added = 0;
+	for (var i = 0; i < win_list.length; i++) {
+		added += win_list[i];
+		//("it is adding");
+	}
+	var meanofmean = added / win_list.length;
+	var where_amI = win_list.indexOf(0);
+	if (Math.floor(meanofmean) >= 5) {
+		var bound = (number_ofplayers - 5) - meanofmean;
+	} else {
+		var bound = 1;
+	}
+	//(bound);
+	if ((where_amI < meanofmean - 1) || (where_amI > meanofmean + bound)) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
+
+function Aitrade() {
+	var i_did_trade = [];
+	var added = 0;
+	for (var i = 0; i < win_list.length; i++) {
+		added += win_list[i];
+		//("AI is adding");
+	}
+
+	var meanofmean = added / win_list.length;
+	//(meanofmean);
+	if (Math.floor(meanofmean) >= 5) {
+		var bound = (number_ofplayers - 6) - meanofmean;
+	} else {
+		var bound = 1;
+	}
+	for (var j = 1; j < Playerlist.length; j++) {
+		var added = 0;
+		for (var i = 0; i < win_list.length; i++) {
+			added += win_list[i];
+			//("AI is adding");
+		}
+		var meanofmean = added / win_list.length;
+		var where_amI = win_list.indexOf(j);
+		var extractmean = win_list.length - 5;
+		//(bound);
+		if ((where_amI > meanofmean + bound) && where_amI >= number_ofplayers - 5) {
+			if (meanofmean >= 5) {
+				meanofmean = number_ofplayers - 6;
+			}
+			i_did_trade.push(j);
+			//(Math.abs(where_amI - Math.floor(meanofmean)));
+			for (var i = 0; i < Math.abs(where_amI - Math.ceil(meanofmean)) && i <= 5; i++) {
+				//(Playerlist[j]);
+				//(j);
+				//(Playerlist[j].length - i);
+				var goodthingto = ((Playerlist[j].length - i) - 1);
+				//(Playerlist[j][goodthingto]);
+				Playerlist[win_list[(win_list.length - where_amI) - 1]].push(Playerlist[j][Playerlist[j].length - 1]);
+				Playerlist[j].splice(Playerlist[j].length - 1, 1);
+				//(win_list[(win_list.length - where_amI) - 1]);
+			}
+		}
+		if ((where_amI < meanofmean - 1) && where_amI < 5) {
+			if (meanofmean >= 5) {
+				meanofmean = 5;
+			}
+			i_did_trade.push(j);
+			for (var i = 0; i < Math.abs(where_amI - Math.floor(meanofmean)) && i <= 5; i++) {
+				//(Playerlist[j]);
+				//(j);
+				//(Playerlist[j].length - i);
+				//(Playerlist[j][0]);
+				Playerlist[win_list[(win_list.length - where_amI) - 1]].push(Playerlist[j][0]);
+				Playerlist[j].splice(0, 1);
+				//(win_list[(win_list.length - where_amI) - 1]);
+			}
+		}
+		Organize();
+	}
+
+
+	//(i_did_trade);
+
+	ready_tomove = true;
+
+}
+
+
+function Playertrade() {
+	hide: { //(win_list);
+
+		var added = 0;
+		for (var i = 0; i < win_list.length; i++) {
+			added += win_list[i];
+			//("it is adding");
+		}
+		var meanofmean = added / win_list.length;
+		var where_amI = win_list.indexOf(0);
+
+		//(added);
+		//(where_amI);
+		//(meanofmean);
+
+
+		var splice_list = [];
+		var tick = 0;
+		for (var i = 0; i < Playerlist[1].length; i++) {
+			if (templist[i].getAttribute("class") == "highlighted") {
+				//("Got through class");
+				var goodtogood = true;
+				var buffer = 0;
+				if ((where_amI > meanofmean + 1)) {
+					if (meanofmean >= 5) {
+						buffer = Math.abs(where_amI - Math.floor(number_ofplayers - 6));
+					} else {
+						buffer = Math.abs(where_amI - Math.floor(meanofmean));
+					}
+
+
+					goodtogood = false;
+					var lengthofmean = Playerlist.length;
+					if (i >= (lengthofmean - Math.floor(meanofmean))) {
+						goodtogood = true;
+					}
+					if (i >= (where_amI - Math.floor(number_ofplayers - 5))) {
+						goodtogood = true;
+					}
+
+
+				} else {
+					if (meanofmean >= 5) {
+						buffer = Math.abs(where_amI - Math.floor(5));
+					} else {
+						buffer = Math.abs(where_amI - Math.floor(meanofmean));
+					}
+				}
+				//(buffer);
+				//(goodtogood);
+
+				if (goodtogood) {
+					//((where_amI < meanofmean - 1));
+					//((where_amI > meanofmean + 1));
+
+					var tardcard = Playerlist[1][i];
+
+
+					//((win_list.length - where_amI) - 1);
+					Playerlist[win_list[(win_list.length - where_amI) - 1]].push(tardcard);
+					//(win_list.indexOf(0));
+
+					splice_list.push(i);
+					tick++;
+					//(tick);
+					//(test_ifPlayer());
+					//(buffer);
+					if (test_ifPlayer && tick == buffer) {
+						//(splice_list);
+						for (var j = 0; j < splice_list.length; j++) {
+							Playerlist[0].splice(splice_list[j], 1);
+						}
+						Aitrade();
+						ready_tomove = true;
+						//("Before trade");
+						trade1();
+						break hide;
+					}
+
+				} else {
+					alert("Not your highest card. Try agian");
+				}
+			}
+		}
+		//(Playerlist);
+		Organize();
+	}
+}
+
+function Organize() {
+	for (var j = 0; j < number_ofplayers; j++) {
+		var isSorted = false;
+		while (isSorted == false) {
+			isSorted = true;
+			for (var i = 0; i < Playerlist[j].length - 1; i++) {
+				if (Playerlist[j][i].value > Playerlist[j][i + 1].value) {
+					var tempt = Playerlist[j][i];
+					Playerlist[j][i] = Playerlist[j][i + 1];
+					Playerlist[j][i + 1] = tempt;
+					isSorted = false;
+					//("it went");
+				}
+
+			}
+		}
+		//("it changed");
+	}
+} 
+</script>
+</html>
