@@ -734,7 +734,7 @@ function Push_Card() {
 				if (turn == 0) {
 					showHand();
 				} else {
-					setTimeout(Ai, 500);
+					setTimeout(Ai, 250);
 				}
 			}
 		}
@@ -1058,7 +1058,7 @@ function trade1() {
 		while (deckElement.firstChild) {
 			deckElement.removeChild(deckElement.firstChild);
 		}
-		while (deckElement.firstChild) {
+		while (abovedeck.firstChild) {
 			abovedeck.removeChild(abovedeck.firstChild);
 		}
 		if (turn == 0) {
