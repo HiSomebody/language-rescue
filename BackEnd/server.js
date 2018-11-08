@@ -1498,12 +1498,9 @@ function incrementHitCountOnFile(filename)
 	
 }
 
-app.get('/', function(req,res){
-	
-res.sendFile(path.resolve(__dirname + '/../Front End/StudentProjectLandingPage.html'));
+app.get('/analytics', function(req,res){
+	res.sendFile(path.resolve(__dirname + '/../FrontEnd/analytics.html'));
 });
-
-
 
 app.get('/ilonggo', function(req,res){
 	incrementHitCountOnFile("TimesVisitedMyPages/The_Giant_Ilonggo_Phrasebook_Second_Edition.txt");
