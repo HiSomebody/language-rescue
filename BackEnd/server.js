@@ -1442,6 +1442,7 @@ res.sendFile(path.resolve(__dirname + '/../FrontEnd/GAMES/sortit4x4.html'));
 });
 
 app.get('/sortit5x5', function(req,res){
+	incrementHitCountOnFile("TimesVisitedMyPages/SortIt5x5.txt");		
 res.sendFile(path.resolve(__dirname + '/../FrontEnd/GAMES/sortit5x5.html'));
 });
 
@@ -1453,88 +1454,144 @@ app.get('/doubleit', function(req,res){
 res.sendFile(path.resolve(__dirname + '/../FrontEnd/GAMES/DoubleIt/index.html'));
 });
 
+
+function incrementHitCountOnFile(filename)
+{
+	var hits;
+	var fs = require('fs');
+	fs. readFile(filename, 'utf8', function(err, contents) {
+		if (err)
+		{
+			return console.log(err);
+		}
+			
+		console.log(contents);		
+
+		var arrayOfLines = contents.match(/[^\r\n]+/g);
+		
+		hits = Number(arrayOfLines[0]);
+		hits += 1;
+		
+		console.log("times visited " + filename + ": " + hits);
+		
+		var toWrite = hits + "\n";
+		for (var i = 1; i < arrayOfLines.length; i++)
+		{
+			toWrite += arrayOfLines[i];
+			toWrite += "\n";
+		}
+		
+		toWrite += new Date().toUTCString() + "\n";
+		
+		fs.writeFile('DataBase/hitcounter.txt', toWrite, function(err) {
+			if(err) {
+				return console.log(err);
+			}
+			console.log("The file was saved!");
+		}); 
+	
+	
+		
+		
+	});
+	
+	
+}
+
+app.get('/', function(req,res){
+	
+res.sendFile(path.resolve(__dirname + '/../Front End/StudentProjectLandingPage.html'));
+});
+
+
+
 app.get('/ilonggo', function(req,res){
-res.sendFile(path.resolve(__dirname + '/../FrontEnd/The_Giant_Ilonggo_Phrasebook_Second_Edition.pdf'));
+	incrementHitCountOnFile("TimesVisitedMyPages/The_Giant_Ilonggo_Phrasebook_Second_Edition.txt");
+	res.sendFile(path.resolve(__dirname + '/../FrontEnd/The_Giant_Ilonggo_Phrasebook_Second_Edition.pdf'));
 });
 
 app.get('/ilonggo3', function(req,res){
-res.sendFile(path.resolve(__dirname + '/../FrontEnd/The Giant Ilonggo Phrasebook Third Edition.pdf'));
+	incrementHitCountOnFile("TimesVisitedMyPages/The Giant Ilonggo Phrasebook Third Edition.txt");	
+	res.sendFile(path.resolve(__dirname + '/../FrontEnd/The Giant Ilonggo Phrasebook Third Edition.pdf'));
 });
 
 app.get('/how-will-they-know-medley', function(req,res){
-res.sendFile(path.resolve(__dirname + '/../SheetmusicDownload/___ How Will They Know - We\'ll Bring the World His Truth.pdf'));
+	incrementHitCountOnFile("TimesVisitedMyPages/HowWillTheyKnowMedleySheetMusic.txt");		
+	res.sendFile(path.resolve(__dirname + '/../SheetmusicDownload/___ How Will They Know - We\'ll Bring the World His Truth.pdf'));
 });
 
 app.get('/how-will-they-know-medley-midi', function(req,res){
-res.sendFile(path.resolve(__dirname + '/../SheetmusicDownload/___ How Will They Know - We\'ll Bring the World His Truth.mid'));
+	res.sendFile(path.resolve(__dirname + '/../SheetmusicDownload/___ How Will They Know - We\'ll Bring the World His Truth.mid'));
 });
 
 app.get('/doubleitrush/:filename', function(req,res){
-res.sendFile(path.resolve(__dirname + '/../FrontEnd/GAMES/DoubleItRush/'+req.params.filename));
+	res.sendFile(path.resolve(__dirname + '/../FrontEnd/GAMES/DoubleItRush/'+req.params.filename));
 });
 
 app.get('/doubleitrush', function(req,res){
-res.sendFile(path.resolve(__dirname + '/../FrontEnd/GAMES/DoubleItRush/index.html'));
+	res.sendFile(path.resolve(__dirname + '/../FrontEnd/GAMES/DoubleItRush/index.html'));
 });
 
 app.get('/doubleiteasy', function(req,res){
-res.sendFile(path.resolve(__dirname + '/../FrontEnd/GAMES/DoubleEasy/index.html'));
+	res.sendFile(path.resolve(__dirname + '/../FrontEnd/GAMES/DoubleEasy/index.html'));
 });
 
 app.get('/friendsinabox', function(req,res){
-res.sendFile(path.resolve(__dirname + '/../FrontEnd/GAMES/FriendsInABox/index.html'));
+	res.sendFile(path.resolve(__dirname + '/../FrontEnd/GAMES/FriendsInABox/index.html'));
 });
 
 app.get('/band', function(req,res){
-res.sendFile(path.resolve(__dirname + '/../FrontEnd/band/index.html'));
+	res.sendFile(path.resolve(__dirname + '/../FrontEnd/band/index.html'));
 });
 
 app.get('/hannah', function(req,res){
-res.sendFile(path.resolve(__dirname + '/../FrontEnd/hannah/index.html'));
+	res.sendFile(path.resolve(__dirname + '/../FrontEnd/hannah/index.html'));
 });
 
 app.get('/library', function(req,res){
-res.sendFile(path.resolve(__dirname + '/../FrontEnd/CommunityLibrary/index.html'));
+	res.sendFile(path.resolve(__dirname + '/../FrontEnd/CommunityLibrary/index.html'));
 });
 
 app.get('/helplist', function(req,res){
-res.sendFile(path.resolve(__dirname + '/../FrontEnd/helplist.html'));
+	incrementHitCountOnFile("TimesVisitedMyPages/helplist.txt");			
+	res.sendFile(path.resolve(__dirname + '/../FrontEnd/helplist.html'));
 });
 
 app.get('/giant-ilonggo-phrasebook', function(req,res){
-res.sendFile(path.resolve(__dirname + '/../FrontEnd/Ilonggo.html'));
+	incrementHitCountOnFile("TimesVisitedMyPages/giantIlonggoLandingPage.txt");			
+	res.sendFile(path.resolve(__dirname + '/../FrontEnd/Ilonggo.html'));
 });
 
 app.get('/videos/:filename', function(req,res){
-res.sendFile(path.resolve(__dirname + '/../FrontEnd/hannah/videos/'+req.params.filename));
+	res.sendFile(path.resolve(__dirname + '/../FrontEnd/hannah/videos/'+req.params.filename));
 });
 
 app.get('/:filename', function(req,res){
-res.sendFile(path.resolve(__dirname + '/' + req.params.filename));
+	res.sendFile(path.resolve(__dirname + '/' + req.params.filename));
 });
 
 app.get('/UnoCards/:cardname', function(req,res){
-res.sendFile(path.resolve(__dirname + '/../FrontEnd/images/UnoCards/'+req.params.cardname));
+	res.sendFile(path.resolve(__dirname + '/../FrontEnd/images/UnoCards/'+req.params.cardname));
 });
 
 app.get('/JPEG/:cardname', function(req,res){
-res.sendFile(path.resolve(__dirname + '/../FrontEnd/images/JPEG/'+req.params.cardname));
+	res.sendFile(path.resolve(__dirname + '/../FrontEnd/images/JPEG/'+req.params.cardname));
 });
 
 app.get('/BAND/MAINFILES/:filename', function(req,res){
-res.sendFile(path.resolve(__dirname + '/../FrontEnd/band/BAND/MAINFILES/'+req.params.filename));
+	res.sendFile(path.resolve(__dirname + '/../FrontEnd/band/BAND/MAINFILES/'+req.params.filename));
 });
 
 app.get('/BAND/:filename', function(req,res){
-res.sendFile(path.resolve(__dirname + '/../FrontEnd/band/BAND/'+req.params.filename));
+	res.sendFile(path.resolve(__dirname + '/../FrontEnd/band/BAND/'+req.params.filename));
 });
 
 app.get('/BAND/:filename', function(req,res){
-res.sendFile(path.resolve(__dirname + '/../FrontEnd/band/BAND/MAINFILES/'+req.params.filename));
+	res.sendFile(path.resolve(__dirname + '/../FrontEnd/band/BAND/MAINFILES/'+req.params.filename));
 });
 
 app.get('/MOVIEPOSTER/:filename', function(req,res){
-res.sendFile(path.resolve(__dirname + '/../FrontEnd/images/MoviePosters/'+req.params.filename));
+	res.sendFile(path.resolve(__dirname + '/../FrontEnd/images/MoviePosters/'+req.params.filename));
 });
 
 
