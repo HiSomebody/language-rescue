@@ -1484,7 +1484,7 @@ function incrementHitCountOnFile(filename)
 		
 		toWrite += new Date().toUTCString() + "\n";
 		
-		fs.writeFile('DataBase/hitcounter.txt', toWrite, function(err) {
+		fs.writeFile(filename, toWrite, function(err) {
 			if(err) {
 				return console.log(err);
 			}
