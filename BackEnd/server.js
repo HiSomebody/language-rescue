@@ -1411,6 +1411,7 @@ app.post('/addPlayerCommentToList/:code/:username/:message', function(req,res){
 });
 
 
+
 app.get('/unoAIHadden', function(req,res){
 	res.sendFile(path.resolve(__dirname + '/../FrontEnd/GAMES/Uno_Card_Game_AI_With_Updates.html'));
 });
@@ -1497,6 +1498,11 @@ function incrementHitCountOnFile(filename)
 	
 	
 }
+
+app.get('/textFiles/:filename', function(req,res){
+	var fname = req.params.filename;
+	res.sendFile(path.resolve('TimesVisitedMyPages/'+fname));
+});
 
 app.get('/analytics', function(req,res){
 	res.sendFile(path.resolve(__dirname + '/../FrontEnd/analytics.html'));
