@@ -1565,6 +1565,11 @@ app.get('/giant-ilonggo-phrasebook', function(req,res){
 	res.sendFile(path.resolve(__dirname + '/../FrontEnd/Ilonggo.html'));
 });
 
+app.get('/pauls-coloring-studio', function(req,res){
+	incrementHitCountOnFile("TimesVisitedMyPages/paulsColoringStudioLandingPage.txt");			
+	res.sendFile(path.resolve(__dirname + '/../FrontEnd/PaulsColoringStudio.html'));
+});
+
 app.get('/videos/:filename', function(req,res){
 	res.sendFile(path.resolve(__dirname + '/../FrontEnd/hannah/videos/'+req.params.filename));
 });
