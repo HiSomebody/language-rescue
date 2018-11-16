@@ -1567,7 +1567,7 @@ app.get('/giant-ilonggo-phrasebook', function(req,res){
 
 app.get('/pauls-coloring-studio', function(req,res){
 	incrementHitCountOnFile("TimesVisitedMyPages/paulsColoringStudioLandingPage.txt");			
-	res.sendFile(path.resolve(__dirname + '/../FrontEnd/PaulsColoringStudio.html'));
+	res.sendFile(path.resolve(__dirname + '/../FrontEnd/pauls-coloring-studio.html'));
 });
 
 app.get('/videos/:filename', function(req,res){
