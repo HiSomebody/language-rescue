@@ -68,7 +68,7 @@ makeDeck('JJJJ');
 app.use(bodyParser.json());
 
 
-app.get('/snakeHighScores/', function(req,res){
+app.get('/snakeHighScoresList/', function(req,res){
 	
 	var fs = require('fs');
 	var filename = "snakeHighScores.txt";
