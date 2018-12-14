@@ -1,30 +1,5 @@
 <html>
 	<script>
-	var HttpClient = function() {
-	    this.get = function(aUrl, aCallback) {
-	        var anHttpRequest = new XMLHttpRequest();
-	        anHttpRequest.onreadystatechange = function() { 
-	            if (anHttpRequest.readyState == 4 && anHttpRequest.status == 200)
-	                aCallback(anHttpRequest.responseText);
-	        }
-	        anHttpRequest.open( "GET", aUrl, true );            
-	        anHttpRequest.send( null );
-	    }
-	
-		this.post = function(aUrl, aCallback) {
-		var xhttp = new XMLHttpRequest();
-		  xhttp.onreadystatechange = function() {
-		    if (this.readyState == 4 && this.status == 200) {
-		      	aCallback(xhttp.responseText);
-		    }
-		  };
-		  xhttp.open("POST", aUrl, true);
-		  xhttp.send();
-	  }
-	}
-	
-	
-	
 	
 	var grid;             //the playing feild
 	var snake = [];       //us
@@ -141,10 +116,10 @@
 	
 	function pressedKey(event)
 	{
-		if (event.key == "w" || event.keyCode == 38 && (direction != "down" || snake.length == 1)) directionRequest = "up";
-		if (event.key == "a" || event.keyCode == 37 && (direction != "right" || snake.length == 1)) directionRequest = "left";
-		if (event.key == "s" || event.keyCode == 40 && (direction != "up" || snake.length == 1)) directionRequest = "down";
-		if (event.key == "d" || event.keyCode == 39 && (direction != "left" || snake.length == 1)) directionRequest = "right";
+		if ((event.key == "w" || event.keyCode == 38) && (direction != "down" || snake.length == 1)) directionRequest = "up";
+		if ((event.key == "a" || event.keyCode == 37) && (direction != "right" || snake.length == 1)) directionRequest = "left";
+		if ((event.key == "s" || event.keyCode == 40) && (direction != "up" || snake.length == 1)) directionRequest = "down";
+		if ((event.key == "d" || event.keyCode == 39) && (direction != "left" || snake.length == 1)) directionRequest = "right";
 		if (moving == null)  //if i have not started my snake
 		{		
 		moving = setInterval( function(){ 
@@ -166,7 +141,7 @@
 			if(grid.childNodes[randHeight].childNodes[randWidth].style.backgroundColor == "blue" && isNoFuits == true)
 			{
 			grid.childNodes[randHeight].childNodes[randWidth].style.backgroundColor = "red";
-			isNoFuits = false; //breaks when it finds a spot i can place a fruit
+			isNoFuits = false;
 			}
 		}
 	}
@@ -184,34 +159,42 @@
 		}
 		if (direction == "up")
 		{
-			if (grid.childNodes[snake[snake.length - 1][1] - 1].childNodes[snake[snake.length - 1][0]].style.backgroundColor == "red") EatFruit();
-			if (grid.childNodes[snake[snake.length - 1][1] - 1].childNodes[snake[snake.length - 1][0]].style.backgroundColor == "yellow") Dead(grid.childNodes[snake[snake.length - 1][1] - 1].childNodes[snake[snake.length - 1][0]]);
-			grid.childNodes[snake[snake.length - 1][1] - 1].childNodes[snake[snake.length - 1][0]].style.backgroundColor = "yellow";
-			X_YList = [snake[snake.length - 1][0] , snake[snake.length - 1][1] - 1];
+			var x = snake[snake.length - 1][0];
+			var y = grid.childNodes[snake[snake.length - 1][1] - 1] == undefined ? 39 : snake[snake.length - 1][1] - 1;
+			if (grid.childNodes[y].childNodes[x].style.backgroundColor == "red") EatFruit();
+			if (grid.childNodes[y].childNodes[x].style.backgroundColor == "yellow") Dead(grid.childNodes[y].childNodes[x]);
+			grid.childNodes[y].childNodes[x].style.backgroundColor = "yellow";
+			X_YList = [x , y];
 			snake.push(X_YList);		
 		}
 		if (direction == "left")
 		{
-			if (grid.childNodes[snake[snake.length - 1][1]].childNodes[snake[snake.length - 1][0] - 1].style.backgroundColor == "red") EatFruit();
-			if (grid.childNodes[snake[snake.length - 1][1]].childNodes[snake[snake.length - 1][0] - 1].style.backgroundColor == "yellow") Dead(grid.childNodes[snake[snake.length - 1][1]].childNodes[snake[snake.length - 1][0] - 1]);
-			grid.childNodes[snake[snake.length - 1][1]].childNodes[snake[snake.length - 1][0] - 1].style.backgroundColor = "yellow";
-			X_YList = [snake[snake.length - 1][0] - 1, snake[snake.length - 1][1]];
+			var x = grid.childNodes[snake[snake.length - 1][1]].childNodes[snake[snake.length - 1][0] - 1] == undefined ? 79 : snake[snake.length - 1][0] - 1;
+			var y = snake[snake.length - 1][1];
+			if (grid.childNodes[y].childNodes[x].style.backgroundColor == "red") EatFruit();
+			if (grid.childNodes[y].childNodes[x].style.backgroundColor == "yellow") Dead(grid.childNodes[y].childNodes[x]);
+			grid.childNodes[y].childNodes[x].style.backgroundColor = "yellow";
+			X_YList = [x, y];
 			snake.push(X_YList);		
 		}
 		if (direction == "down")
 		{
-			if (grid.childNodes[snake[snake.length - 1][1] + 1].childNodes[snake[snake.length - 1][0]].style.backgroundColor == "red") EatFruit();
-			if (grid.childNodes[snake[snake.length - 1][1] + 1].childNodes[snake[snake.length - 1][0]].style.backgroundColor == "yellow") Dead(grid.childNodes[snake[snake.length - 1][1] + 1].childNodes[snake[snake.length - 1][0]]);
-			grid.childNodes[snake[snake.length - 1][1] + 1].childNodes[snake[snake.length - 1][0]].style.backgroundColor = "yellow";
-			X_YList = [snake[snake.length - 1][0] , snake[snake.length - 1][1] + 1];		
+			var x = snake[snake.length - 1][0];
+			var y = grid.childNodes[snake[snake.length - 1][1] + 1] == undefined ? 0 : snake[snake.length - 1][1] + 1;
+			if (grid.childNodes[y].childNodes[x].style.backgroundColor == "red") EatFruit();
+			if (grid.childNodes[y].childNodes[x].style.backgroundColor == "yellow") Dead(grid.childNodes[y].childNodes[x]);
+			grid.childNodes[y].childNodes[x].style.backgroundColor = "yellow";
+			X_YList = [x , y];		
 			snake.push(X_YList);
 		}
 		if (direction == "right")
 		{
-			if (grid.childNodes[snake[snake.length - 1][1]].childNodes[snake[snake.length - 1][0] + 1].style.backgroundColor == "red") EatFruit();
-			if (grid.childNodes[snake[snake.length - 1][1]].childNodes[snake[snake.length - 1][0] + 1].style.backgroundColor == "yellow") Dead(grid.childNodes[snake[snake.length - 1][1]].childNodes[snake[snake.length - 1][0] + 1]);
-			grid.childNodes[snake[snake.length - 1][1]].childNodes[snake[snake.length - 1][0] + 1].style.backgroundColor = "yellow";
-			X_YList = [snake[snake.length - 1][0] + 1 ,snake[snake.length - 1][1]];
+			var x = grid.childNodes[snake[snake.length - 1][1]].childNodes[snake[snake.length - 1][0] + 1] == undefined ? 0 : snake[snake.length - 1][0] + 1;
+			var y = snake[snake.length - 1][1];
+			if (grid.childNodes[y].childNodes[x].style.backgroundColor == "red") EatFruit();
+			if (grid.childNodes[y].childNodes[x].style.backgroundColor == "yellow") Dead(grid.childNodes[y].childNodes[x]);
+			grid.childNodes[y].childNodes[x].style.backgroundColor = "yellow";
+			X_YList = [x ,y];
 			snake.push(X_YList);		
 		}
 	if (growing == false) snake.splice(0, 1);
@@ -252,6 +235,29 @@
 			}				
 			document.location.reload(true);
 		}
+	}
+	
+	var HttpClient = function() {
+	    this.get = function(aUrl, aCallback) {
+	        var anHttpRequest = new XMLHttpRequest();
+	        anHttpRequest.onreadystatechange = function() { 
+	            if (anHttpRequest.readyState == 4 && anHttpRequest.status == 200)
+	                aCallback(anHttpRequest.responseText);
+	        }
+	        anHttpRequest.open( "GET", aUrl, true );            
+	        anHttpRequest.send( null );
+	    }
+	
+		this.post = function(aUrl, aCallback) {
+		var xhttp = new XMLHttpRequest();
+		  xhttp.onreadystatechange = function() {
+		    if (this.readyState == 4 && this.status == 200) {
+		      	aCallback(xhttp.responseText);
+		    }
+		  };
+		  xhttp.open("POST", aUrl, true);
+		  xhttp.send();
+	  }
 	}
 	
 	</script>
