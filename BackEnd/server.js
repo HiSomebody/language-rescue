@@ -79,6 +79,12 @@ app.get('/snakeHighScoresList/', function(req,res){
 	fs. readFile(filename, 'utf8', function(err, contents) {
 		if (err)
 		{
+			res.send(
+				{ 
+					result: "error",
+					err: "error reading high scores file on server"
+				}
+			);
 			return console.log(err);
 		}
 
@@ -94,15 +100,11 @@ app.get('/snakeHighScoresList/', function(req,res){
 			highScoresList.push({name: nameEntry, score: scoreEntry});	
 		}
 		res.send({
-			 result: "success", scores: highScoresList, err: "" });
+			 result: "success", scores: highScoresList, err: "" 
+		});
 		
 	});
-	res.send(
-		{ 
-			result: "error",
-			err: "error reading high scores file on server"
-		}
-	);
+	
 
 });
 
