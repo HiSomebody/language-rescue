@@ -108,18 +108,55 @@ app.get('/snakeHighScoresList/', function(req,res){
 
 });
 
+function sortScores()
+{
+		
+	
+}
+
 app.post('/newSnakeHighScore/:playerName/:score', function(req,res){
 	var playerName = req.params.playerName;
 	var score = req.params.score;
-	/*
-	var toWrite = hits + "\n";
-		for (var i = 1; i < arrayOfLines.length; i++)
+	
+	
+	
+	var fs = require('fs');
+	var filename = "snakeHighScores.txt";
+	fs. readFile(filename, 'utf8', function(err, contents) {
+		if (err)
 		{
-			toWrite += arrayOfLines[i];
-			toWrite += "\n";
+			res.send(
+				{ 
+					result: "error",
+					err: "error reading high scores file on server"
+				}
+			);
+			return console.log(err);
 		}
 
-		toWrite += new Date().toUTCString() + "\n";
+		console.log(contents);		
+
+		var arrayOfLines = contents.match(/[^\r\n]+/g);
+
+		var highScoresList = [];
+		for (var i = 0; i < arrayOfLines.length-1; i += 2)
+		{
+			var nameEntry = arrayOfLines[i];
+			var scoreEntry = arrayOfLines[i+1];
+			highScoresList.push({name: nameEntry, score: scoreEntry});	
+		}
+		highScoresList.push({name: playerName, score: score});
+		
+		highScoresList.sort(function(a, b){return a.score - b.score});
+		
+		var toWrite = "";
+		for (var i = 0; i < highScoresList.length; i++)
+		{
+			toWrite += highScoresList[i]['name'];
+			toWrite += "\n";
+			toWrite += highScoresList[i]['score'];
+			toWrite += "\n";
+		}
 
 		fs.writeFile(filename, toWrite, function(err) {
 			if(err) {
@@ -127,12 +164,13 @@ app.post('/newSnakeHighScore/:playerName/:score', function(req,res){
 			}
 			console.log("The file was saved!");
 		}); 
-	
-	*/
-	res.send({
-		result: 'success',
-		err: '',
+		
 	});
+
+	
+	
+	
+	
 });
 
 
