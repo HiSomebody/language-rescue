@@ -107,7 +107,7 @@
 		highScores.style.height = "500";
 		HighScoreLabel = document.createElement("h2");
 		HighScoreLabel.style.fontSize = 30;
-		HighScoreLabel.style.textAlign = "center";
+		//HighScoreLabel.style.textAlign = "center";
 		HighScoreLabel.innerHTML = "High Scores";
 		highScores.appendChild(HighScoreLabel);
 		
@@ -120,12 +120,12 @@
 				scores = parsedJSON["scores"];
 				// successfully updated high scores
 				hScoreLbl += "<br>_______"
-				hScoreLbl += "<h4 style='font-size:20'>";
+				hScoreLbl += "<h4 style='font-size:20'; text-align:left>";
 				for (var i = 0; i < scores.length; i++)
 				{
 					var score = scores[i];
 					lowestHighScore = Number(score['score']);
-					hScoreLbl += score['name'] + " " + score['score'];
+					hScoreLbl += "<span style='font-size:20; color:blue; text-align:left'>&nbsp&nbsp&nbsp" + score['score'] + "</span> " + score['name'];
 					hScoreLbl += "<br>";
 				}
 				hScoreLbl += "</h4>";
