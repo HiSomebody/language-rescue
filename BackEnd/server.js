@@ -67,6 +67,64 @@ makeDeck('JJJJ');
 
 app.use(bodyParser.json());
 
+
+app.get('/snakeHighScores/', function(req,res){
+	
+	var fs = require('fs');
+	var filename = "snakeHighScores.txt";
+	fs. readFile(filename, 'utf8', function(err, contents) {
+		if (err)
+		{
+			return console.log(err);
+		}
+
+		console.log(contents);		
+
+		var arrayOfLines = contents.match(/[^\r\n]+/g);
+
+		var highScoresList = [];
+		for (var i = 0; i < arrayOfLines.length-1; i += 2)
+		{
+			var nameEntry = arrayOfLines[i];
+			var scoreEntry = arrayOfLines[i+1];
+			highScoresList.push({name: nameEntry, score: scoreEntry});	
+		}
+		res.send('{ result: "success", scores: highScoresList, err: "" }');
+		
+	});
+	res.send('{ result: "error", err: "error reading high scores file on server" });
+
+});
+
+app.post('/newSnakeHighScore/:playerName/:score', function(req,res){
+	var playerName = req.params.playerName;
+	var score = req.params.score;
+	/*
+	var toWrite = hits + "\n";
+		for (var i = 1; i < arrayOfLines.length; i++)
+		{
+			toWrite += arrayOfLines[i];
+			toWrite += "\n";
+		}
+
+		toWrite += new Date().toUTCString() + "\n";
+
+		fs.writeFile(filename, toWrite, function(err) {
+			if(err) {
+				return console.log(err);
+			}
+			console.log("The file was saved!");
+		}); 
+	
+	*/
+	res.send({
+		result: 'success',
+		err: '',
+		gameData: gameDataForCode
+	});
+});
+
+
 function makeDeck(code)
 {
 	// following code should be run once immediately when the game is created in the hub
@@ -1498,6 +1556,7 @@ function incrementHitCountOnFile(filename)
 	
 	
 }
+
 
 app.get('/textFiles/:filename', function(req,res){
 	var fname = req.params.filename;
