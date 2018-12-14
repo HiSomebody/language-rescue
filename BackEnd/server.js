@@ -92,7 +92,7 @@ app.get('/snakeHighScores/', function(req,res){
 		res.send('{ result: "success", scores: highScoresList, err: "" }');
 		
 	});
-	res.send('{ result: "error", err: "error reading high scores file on server" });
+	res.send('{ result: "error", err: "error reading high scores file on server" }');
 
 });
 
