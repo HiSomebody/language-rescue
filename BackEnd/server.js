@@ -1541,6 +1541,9 @@ app.get('/image5x5', function(req,res){
 res.sendFile(path.resolve(__dirname + '/../FrontEnd/GAMES/imageSort5x5.html'));
 });
 
+app.get('/snakeHadden', function(req,res){
+res.sendFile(path.resolve(__dirname + '/../FrontEnd/GAMES/snakeHadden.html'));
+});
 
 app.get('/sortit4x4', function(req,res){
 res.sendFile(path.resolve(__dirname + '/../FrontEnd/GAMES/sortit4x4.html'));
