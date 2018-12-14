@@ -66,7 +66,11 @@ makeDeck('JJJJ');
 
 
 app.use(bodyParser.json());
-
+app.use(function(req, res, next) {
+	res.header("Access-Control-Allow-Origin", "*");
+	res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+	next();
+});
 
 app.get('/snakeHighScoresList/', function(req,res){
 	
@@ -895,12 +899,7 @@ app.get('/schoolStore/getInventory', function(req,res){
 	}
 });
 
-app.use(function(req, res, next) {
-	res.setHeader("Access-Control-Allow-Headers", req.getHeader("Access-Control-Request-Headers")); // allow any headers
-	res.header("Access-Control-Allow-Origin", "*");
-	res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-	next();
-});
+
 
 app.get('/unravel', function(req,res){
 res.sendFile(path.resolve(__dirname + '/../FrontEnd/GAMES/unravelit.html'));
