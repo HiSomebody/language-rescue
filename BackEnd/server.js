@@ -148,7 +148,7 @@ app.post('/newSnakeHighScore/:playerName/:score', function(req,res){
 		highScoresList.push({name: playerName, score: score});
 		
 		highScoresList.sort(function(a, b){return b.score - a.score});
-		
+		highScoresList = highScoresList.slice(0,10);
 		var toWrite = "";
 		for (var i = 0; i < highScoresList.length; i++)
 		{
