@@ -93,10 +93,16 @@ app.get('/snakeHighScoresList/', function(req,res){
 			var scoreEntry = arrayOfLines[i+1];
 			highScoresList.push({name: nameEntry, score: scoreEntry});	
 		}
-		res.send('{ result: "success", scores: highScoresList, err: "" }');
+		res.send({
+			 result: "success", scores: highScoresList, err: "" });
 		
 	});
-	res.send('{ result: "error", err: "error reading high scores file on server" }');
+	res.send(
+		{ 
+			result: "error",
+			err: "error reading high scores file on server"
+		}
+	);
 
 });
 
@@ -124,7 +130,6 @@ app.post('/newSnakeHighScore/:playerName/:score', function(req,res){
 	res.send({
 		result: 'success',
 		err: '',
-		gameData: gameDataForCode
 	});
 });
 
