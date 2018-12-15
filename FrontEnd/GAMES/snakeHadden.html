@@ -120,7 +120,7 @@
 		if ((event.key == "a" || event.key == "A" || event.keyCode == 37) && (direction != "right" || snake.length == 1)) directionRequest = "left";
 		if ((event.key == "s" || event.key == "S" || event.keyCode == 40) && (direction != "up" || snake.length == 1)) directionRequest = "down";
 		if ((event.key == "d" || event.key == "D" || event.keyCode == 39) && (direction != "left" || snake.length == 1)) directionRequest = "right";
-		if (moving == null)  //if i have not started my snake
+		if (moving == null && directionRequest != undefined)  //if i have not started my snake
 		{		
 		moving = setInterval( function(){ 
 			direction = directionRequest;
