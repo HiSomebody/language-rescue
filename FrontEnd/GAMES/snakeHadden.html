@@ -221,20 +221,11 @@
 					// Make http request and pass in response
 					var client = new HttpClient();
 					client.post('http://104.236.169.62:80/newSnakeHighScore/'+playerName+"/"+snake.length, function(response) {
-						var parsedJSON = (JSON.parse(response));
-						if (parsedJSON["result"] == "success")
-						{
-							document.location.reload(true)
-						}
-						else
-						{
-							document.location.reload(true);
-						}
+					var parsedJSON = (JSON.parse(response));
 					});			
-				} else {
-					document.location.reload(true);
 				}
-			}				
+			} 
+			document.location.reload(true);			
 		}
 	}
 	
