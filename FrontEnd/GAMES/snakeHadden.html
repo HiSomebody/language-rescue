@@ -224,16 +224,17 @@
 						var parsedJSON = (JSON.parse(response));
 						if (parsedJSON["result"] == "success")
 						{
-							// successfully updated high scores
+							document.location.reload(true)
 						}
 						else
 						{
-							// unable to get data from server
+							document.location.reload(true);
 						}
 					});			
-				}	
+				} else {
+					document.location.reload(true);
+				}
 			}				
-			document.location.reload(true);
 		}
 	}
 	
