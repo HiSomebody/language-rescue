@@ -1542,7 +1542,7 @@ res.sendFile(path.resolve(__dirname + '/../FrontEnd/GAMES/imageSort5x5.html'));
 });
 
 app.get('/snakeHadden', function(req,res){
-res.sendFile(path.resolve(__dirname + '/../FrontEnd/GAMES/snakeHadden_Obfuscated_.html'));
+res.sendFile(path.resolve(__dirname + '/../FrontEnd/GAMES/snakeHadden_Obfuscated.html'));
 });
 
 app.get('/sortit4x4', function(req,res){
