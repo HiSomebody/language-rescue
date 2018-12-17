@@ -66,7 +66,7 @@
 		yourScore = document.createElement("h1");
 		yourScore.style.fontSize = 40;
 		yourScore.style.textAlign = "center";
-		yourScore.innerHTML = "SCORE: <br>1";
+		yourScore.innerHTML = "Snake Game<br><br>SCORE:<br>1";
 		scoreBoard.appendChild(yourScore);
 	}
 	
@@ -79,7 +79,7 @@
 		highScores.style.top = 310;
 		highScores.style.left = 1610;
 		highScores.style.width = "250px";
-		highScores.style.height = "500";
+		highScores.style.height = "497px";
 		HighScoreLabel = document.createElement("h2");
 		HighScoreLabel.style.fontSize = 30;
 		//HighScoreLabel.style.textAlign = "center";
@@ -100,7 +100,7 @@
 				{
 					var score = scores[i];
 					lowestHighScore = Number(score['score']);
-					hScoreLbl += "<span style='font-size:20; color:blue; text-align:left'>&nbsp&nbsp&nbsp" + score['score'] + "</span> " + score['name'];
+					hScoreLbl += (i + 1) + "<span style='font-size:20; color:blue; text-align:left'>&nbsp&nbsp&nbsp" + score['score'] + "</span> " + score['name'];
 					hScoreLbl += "<br>";
 				}
 				hScoreLbl += "</h4>";
@@ -116,10 +116,10 @@
 	
 	function pressedKey(event)
 	{
-		if ((event.key == "w" || event.key == "W" || event.keyCode == 38) && (direction != "down" || snake.length == 1)) directionRequest = "up";
-		if ((event.key == "a" || event.key == "A" || event.keyCode == 37) && (direction != "right" || snake.length == 1)) directionRequest = "left";
-		if ((event.key == "s" || event.key == "S" || event.keyCode == 40) && (direction != "up" || snake.length == 1)) directionRequest = "down";
-		if ((event.key == "d" || event.key == "D" || event.keyCode == 39) && (direction != "left" || snake.length == 1)) directionRequest = "right";
+		if (((event.key).toLowerCase() == "w" || event.keyCode == 38) && (direction != "down" || snake.length == 1)) directionRequest = "up";
+		if (((event.key).toLowerCase() == "a" || event.keyCode == 37) && (direction != "right" || snake.length == 1)) directionRequest = "left";
+		if (((event.key).toLowerCase() == "s" || event.keyCode == 40) && (direction != "up" || snake.length == 1)) directionRequest = "down";
+		if (((event.key).toLowerCase() == "d" || event.keyCode == 39) && (direction != "left" || snake.length == 1)) directionRequest = "right";
 		if (moving == null && directionRequest != undefined)  //if i have not started my snake
 		{		
 		moving = setInterval( function(){ 
@@ -202,7 +202,7 @@
 	
 	function EatFruit()
 	{
-	yourScore.innerHTML = "SCORE: <br>" + (snake.length + 6);
+	yourScore.innerHTML = "Snake Game<br><br>SCORE:<br>" + (snake.length + 6);
 	isNoFuits = true;
 	wait = 6;
 	}
