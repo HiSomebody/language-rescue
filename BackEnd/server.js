@@ -137,7 +137,8 @@ app.post('/newSnakeHighScore/:playerName/:score', function(req,res){
 		console.log(contents);		
 
 		var arrayOfLines = contents.match(/[^\r\n]+/g);
-
+		console.log("Player Name:" + playerName);
+		console.log(score);
 		var highScoresList = [];
 		for (var i = 0; i < arrayOfLines.length-1; i += 2)
 		{
