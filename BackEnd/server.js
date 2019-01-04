@@ -144,6 +144,9 @@ app.post('/newSnakeHighScore/:playerName/:score', function(req,res){
 		{
 			var nameEntry = arrayOfLines[i];
 			var scoreEntry = arrayOfLines[i+1];
+			console.log("Checking " + nameEntry + " with score: " + scoreEntry);
+			console.log("Compared to new score " + playerName + " with score: " + score);
+
 			if (nameEntry == playerName && Number(score) > Number(scoreEntry))
 			{
 				console.log("Adding " + playerName);
