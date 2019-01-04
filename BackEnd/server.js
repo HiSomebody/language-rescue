@@ -143,9 +143,15 @@ app.post('/newSnakeHighScore/:playerName/:score', function(req,res){
 		{
 			var nameEntry = arrayOfLines[i];
 			var scoreEntry = arrayOfLines[i+1];
-			highScoresList.push({name: nameEntry, score: scoreEntry});	
+			if (nameEntry == playerName && score > scoreEntry)
+			{
+				highScoresList.push({name: playerName, score: score});
+			}
+			else
+			{
+				highScoresList.push({name: nameEntry, score: scoreEntry});
+			}
 		}
-		highScoresList.push({name: playerName, score: score});
 		
 		highScoresList.sort(function(a, b){return b.score - a.score});
 		
@@ -182,7 +188,7 @@ function makeDeck(code)
 	var gameDataForCode = getGameDataForCode(code);
 	
 	gameDataForCode['totalCards'] = [];
-	//prints out black speical cards
+	//prints out black special cards
 	for(var i = 0; i <= 3; i++)
 	{
 		for(var j = 13; j <= 14; j++)
