@@ -137,28 +137,18 @@ app.post('/newSnakeHighScore/:playerName/:score', function(req,res){
 		console.log(contents);		
 
 		var arrayOfLines = contents.match(/[^\r\n]+/g);
-		console.log("Player Name:" + playerName);
-		console.log(score);
+
 		var highScoresList = [];
 		for (var i = 0; i < arrayOfLines.length-1; i += 2)
 		{
 			var nameEntry = arrayOfLines[i];
 			var scoreEntry = arrayOfLines[i+1];
-			console.log("Checking " + nameEntry + " with score: " + scoreEntry);
-			console.log("Compared to new score " + playerName + " with score: " + score);
 
-			if (nameEntry == playerName && Number(score) > Number(scoreEntry))
-			{
-				console.log("Adding " + playerName);
-				highScoresList.push({name: playerName, score: score});
-			}
-			else
-			{
-				console.log("Adding " + nameEntry);
-				highScoresList.push({name: nameEntry, score: scoreEntry});
-			}
+			console.log("Adding " + nameEntry);
+			highScoresList.push({name: nameEntry, score: scoreEntry});
 		}
-		
+		highScoresList.push({name: playerName, score: score});
+
 		highScoresList.sort(function(a, b){return b.score - a.score});
 		
 		highScoresList = highScoresList.slice(0,10);
