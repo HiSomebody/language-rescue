@@ -146,10 +146,12 @@ app.post('/newSnakeHighScore/:playerName/:score', function(req,res){
 			var scoreEntry = arrayOfLines[i+1];
 			if (nameEntry == playerName && Number(score) > Number(scoreEntry))
 			{
+				console.log("Adding " + playerName);
 				highScoresList.push({name: playerName, score: score});
 			}
 			else
 			{
+				console.log("Adding " + nameEntry);
 				highScoresList.push({name: nameEntry, score: scoreEntry});
 			}
 		}
