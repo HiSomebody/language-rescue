@@ -5,7 +5,7 @@
 	var snake = [];       //us
 	var direction;        // the direction we are going
 	var moving;           //interval of the function that keeps us moving
-	var randTime = (Math.random() * 3) * 1000; //*1000 makes it into mili seconds
+	var randTime = (Math.random() * 2.5) * 1000; //*1000 makes it into mili seconds
 	var counter = 0;      //timer
 	var isNoFuits = true;
 	var wait = 0;         //used to make program wait a little bit while the snake grows
@@ -14,13 +14,14 @@
 	var highScores;
 	var yourScore;
 	var lowestHighScore = 0;
+	var paused = false;
+	var offset = 30;
 	
 	window.onload = function()
 	{
 	window.addEventListener("keypress", pressedKey, false);
 	window.onkeydown = pressedKey;
 		var cellWidth = 20;
-		var gap = 0;
 		grid = document.getElementById("grid");
 		for (var i = 0; i < 40; i++)
 		{
@@ -32,8 +33,8 @@
 				cell.style.position = "absolute";
 				cell.style.width = cellWidth + "px";
 				cell.style.height = cellWidth + "px";
-				cell.style.top = i * (cellWidth + gap);
-				cell.style.left = j * (cellWidth + gap);
+				cell.style.top = i * cellWidth + offset;
+				cell.style.left = j * cellWidth + offset;
 				cell.style.border = "solid blue";
 				if (i == 5 && j == 5) //if where we start
 				{
@@ -56,11 +57,12 @@
 	function createScoreBoard()
 	{
 		scoreBoard = document.getElementById("scoreBoard");
+		scoreBoard.classList.add("round");
 		scoreBoard.style.position = "absolute";
 		scoreBoard.display = "inline";
 		scoreBoard.style.backgroundColor = "gray";
-		scoreBoard.style.top = 0;
-		scoreBoard.style.left = 1610;
+		scoreBoard.style.top = 0 + offset;
+		scoreBoard.style.left = 1615 + offset;
 		scoreBoard.style.width = "250px";
 		scoreBoard.style.height = "300px";
 		yourScore = document.createElement("h1");
@@ -73,11 +75,12 @@
 	function createHighScores()
 	{
 		highScores = document.getElementById("highScores");
+		highScores.classList.add("round");
 		highScores.style.position = "absolute";
 		highScores.display = "inline";
 		highScores.style.backgroundColor = "gray";
-		highScores.style.top = 310;
-		highScores.style.left = 1610;
+		highScores.style.top = 310 + offset;
+		highScores.style.left = 1615 + offset;
 		highScores.style.width = "250px";
 		highScores.style.height = "497px";
 		HighScoreLabel = document.createElement("h2");
@@ -120,14 +123,32 @@
 		if (((event.key).toLowerCase() == "a" || event.keyCode == 37) && (direction != "right" || snake.length == 1)) directionRequest = "left";
 		if (((event.key).toLowerCase() == "s" || event.keyCode == 40) && (direction != "up" || snake.length == 1)) directionRequest = "down";
 		if (((event.key).toLowerCase() == "d" || event.keyCode == 39) && (direction != "left" || snake.length == 1)) directionRequest = "right";
+		if (event.key == "Escape") paused = true; 
 		if (moving == null && directionRequest != undefined)  //if i have not started my snake
 		{		
 		moving = setInterval( function(){ 
-			direction = directionRequest;
-			Move(); 
-			if (isNoFuits) counter += 100;
-			if (counter >= randTime) MakeFruit();
-			},60);
+			if (paused != true)
+			{
+				direction = directionRequest;
+				Move(); 
+				if (isNoFuits) counter += 100;
+				if (counter >= randTime) MakeFruit();
+			} else {
+			Pause();
+			}
+		},60);
+		}
+	}
+	
+	function Pause()
+	{
+	var StillPause = true;
+		while (StillPause)
+		{
+			if (confirm("Paused, to unpause click OK")) {
+				StillPause = false;
+				paused = false;
+			}
 		}
 	}
 	
@@ -220,7 +241,7 @@
 					console.log(playerName);
 					// Make http request and pass in response
 					var client = new HttpClient();
-					client.post('http://104.236.169.62:80/newSnakeHighScore/'+playerName+"/"+snake.length, function(response) {
+					client.post('http://104.236.169.62:80/newSnakeHighScore/' + playerName + "/"+ snake.length, function(response) {
 					var parsedJSON = (JSON.parse(response));
 					});			
 				}
@@ -253,7 +274,15 @@
 	}
 	
 	</script>
-	<div id="grid"></div>
-	<div id="scoreBoard"></div>
-	<div id="highScores"></div>
+	<style>
+		.round {                                     
+		border-radius: 15px;
+		}
+	</style>
+	<body bgcolor="#c0c0c0" >
+		<div>Press ESC to pause</div>
+		<div id="grid"></div>
+		<div id="scoreBoard"></div>
+		<div id="highScores"></div>
+	</body>
 </html>
