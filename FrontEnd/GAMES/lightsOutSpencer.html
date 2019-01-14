@@ -1,0 +1,141 @@
+
+<html>
+	<script>
+	
+	var grid;
+	var listOfCells = [];
+	var won;
+	var won1 = false;
+	// var counter;
+	
+	window.onload = function(){
+		won = false;
+		
+		var cellWidth = 75;
+		var gap = 2;
+		grid = document.getElementById("grid");
+		for (var i = 0; i < 4; i++){
+			var row = document.createElement("div");
+			
+			for (var j = 0; j < 4; j++){
+				var cell = document.createElement("div");
+				cell.style.display = "inline-block";
+				cell.style.position = "absolute";
+				cell.style.width = cellWidth + "px";
+				cell.style.height = cellWidth + "px";
+				cell.style.top = i * (cellWidth + gap);
+				cell.style.left = j * (cellWidth + gap);
+				cell.row = i;
+				cell.column = j;
+				cell.style.border = "solid black";
+				cell.style.backgroundColor = "grey";
+				row.appendChild(cell);
+				cell.style.textAlign = "center";   
+				cell.style.fontSize = 40;
+				
+				listOfCells.push(cell);
+				
+				if (won == false){
+					cell.onclick = function(){
+						click(this);
+						
+					}
+				}
+			}
+			grid.appendChild(row);
+			
+		}
+		
+		for (i = 0; i < 200; i++){
+			var ranNum = Math.floor(Math.random() * 16);
+		
+			click(listOfCells[ranNum]);
+			
+			// counter++;
+		}
+		
+		won1 = true;
+		
+	}
+	
+	
+	function click (cell){
+		if (cell.style.backgroundColor == "grey"){
+			cell.style.backgroundColor = "white";
+		}
+		
+		else if (cell.style.backgroundColor == "white"){
+			cell.style.backgroundColor = "grey";
+			
+		}
+		
+		var cellRow = cell.row;
+		var cellColumn = cell.column;
+		
+		var cellDown = cellRow+1;
+		var cellUp = cellRow-1;
+		var cellRight = cellColumn+1;
+		var cellLeft = cellColumn-1;
+		
+		if (cellLeft >= 0){
+			if (grid.childNodes[cellRow].childNodes[cellLeft].style.backgroundColor == "grey"){ grid.childNodes[cellRow].childNodes[cellLeft].style.backgroundColor = "white"; }
+			else if (grid.childNodes[cellRow].childNodes[cellLeft].style.backgroundColor == "white"){ grid.childNodes[cellRow].childNodes[cellLeft].style.backgroundColor = "grey"; }
+		}
+		if (cellRight <= 3){
+			if (grid.childNodes[cellRow].childNodes[cellRight].style.backgroundColor == "grey"){ grid.childNodes[cellRow].childNodes[cellRight].style.backgroundColor = "white"; }
+			else if (grid.childNodes[cellRow].childNodes[cellRight].style.backgroundColor == "white"){ grid.childNodes[cellRow].childNodes[cellRight].style.backgroundColor = "grey"; }
+		}
+		if (cellUp >= 0){
+			if (grid.childNodes[cellUp].childNodes[cellColumn].style.backgroundColor == "grey"){ grid.childNodes[cellUp].childNodes[cellColumn].style.backgroundColor = "white"; }
+			else if (grid.childNodes[cellUp].childNodes[cellColumn].style.backgroundColor == "white"){ grid.childNodes[cellUp].childNodes[cellColumn].style.backgroundColor = "grey"; }
+		}
+		if (cellDown <= 3){
+			if (grid.childNodes[cellDown].childNodes[cellColumn].style.backgroundColor == "grey"){ grid.childNodes[cellDown].childNodes[cellColumn].style.backgroundColor = "white"; }
+			else if (grid.childNodes[cellDown].childNodes[cellColumn].style.backgroundColor == "white"){ grid.childNodes[cellDown].childNodes[cellColumn].style.backgroundColor = "grey"; }
+		}
+		
+		// if (counter >= 19){
+			var finished = 0;
+			var won = document.getElementById("won");
+			for (var i = 0; i < 4; i++){
+				for (var j = 0; j < 4; j++){
+					var x = j;
+					var y = i;
+					
+					if (grid.childNodes[y].childNodes[x].style.backgroundColor != "grey"){
+						finished = 1;
+						break;
+					}
+					
+				}
+				if (finished == 1){
+					break;
+				}
+			}
+			if (finished == 0 && won1 == true){
+				won.style.display = "inline-block";
+				won = true;
+				
+			}
+		// }
+		
+	}
+	
+	
+	</script>
+	
+	<h1>Lights Out</h1>
+	
+	<body>
+	<div id="grid" style="text-align:center; position:absolute"></div>
+	</body>
+	
+	<br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
+	
+	<h2 hidden id="won"><font color="green">You Won!!</font></h2>
+	
+	<br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
+	
+	<h3>Created By Spencer Hobert</h3>
+
+</html>
