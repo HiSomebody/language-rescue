@@ -1516,7 +1516,9 @@ app.post('/addPlayerCommentToList/:code/:username/:message', function(req,res){
 	
 });
 
-
+app.get('/lightsOutSpencer', function(req,res){
+	res.sendFile(path.resolve(__dirname + '/../FrontEnd/GAMES/lightsOutSpencer.html'));
+});
 
 app.get('/unoAIHadden', function(req,res){
 	res.sendFile(path.resolve(__dirname + '/../FrontEnd/GAMES/Uno_Card_Game_AI_With_Updates.html'));
