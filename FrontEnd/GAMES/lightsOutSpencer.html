@@ -14,10 +14,10 @@
 		var cellWidth = 75;
 		var gap = 2;
 		grid = document.getElementById("grid");
-		for (var i = 0; i < 4; i++){
+		for (var i = 0; i < 5; i++){
 			var row = document.createElement("div");
 			
-			for (var j = 0; j < 4; j++){
+			for (var j = 0; j < 5; j++){
 				var cell = document.createElement("div");
 				cell.style.display = "inline-block";
 				cell.style.position = "absolute";
@@ -81,7 +81,7 @@
 			if (grid.childNodes[cellRow].childNodes[cellLeft].style.backgroundColor == "grey"){ grid.childNodes[cellRow].childNodes[cellLeft].style.backgroundColor = "white"; }
 			else if (grid.childNodes[cellRow].childNodes[cellLeft].style.backgroundColor == "white"){ grid.childNodes[cellRow].childNodes[cellLeft].style.backgroundColor = "grey"; }
 		}
-		if (cellRight <= 3){
+		if (cellRight <= 4){
 			if (grid.childNodes[cellRow].childNodes[cellRight].style.backgroundColor == "grey"){ grid.childNodes[cellRow].childNodes[cellRight].style.backgroundColor = "white"; }
 			else if (grid.childNodes[cellRow].childNodes[cellRight].style.backgroundColor == "white"){ grid.childNodes[cellRow].childNodes[cellRight].style.backgroundColor = "grey"; }
 		}
@@ -89,7 +89,7 @@
 			if (grid.childNodes[cellUp].childNodes[cellColumn].style.backgroundColor == "grey"){ grid.childNodes[cellUp].childNodes[cellColumn].style.backgroundColor = "white"; }
 			else if (grid.childNodes[cellUp].childNodes[cellColumn].style.backgroundColor == "white"){ grid.childNodes[cellUp].childNodes[cellColumn].style.backgroundColor = "grey"; }
 		}
-		if (cellDown <= 3){
+		if (cellDown <= 4){
 			if (grid.childNodes[cellDown].childNodes[cellColumn].style.backgroundColor == "grey"){ grid.childNodes[cellDown].childNodes[cellColumn].style.backgroundColor = "white"; }
 			else if (grid.childNodes[cellDown].childNodes[cellColumn].style.backgroundColor == "white"){ grid.childNodes[cellDown].childNodes[cellColumn].style.backgroundColor = "grey"; }
 		}
@@ -97,8 +97,8 @@
 		// if (counter >= 19){
 			var finished = 0;
 			var won = document.getElementById("won");
-			for (var i = 0; i < 4; i++){
-				for (var j = 0; j < 4; j++){
+			for (var i = 0; i < 5; i++){
+				for (var j = 0; j < 5; j++){
 					var x = j;
 					var y = i;
 					
